@@ -18,6 +18,7 @@
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
 	exotic_bloodtype = "BHZ"
+	exotic_blood_color = BLOOD_COLOR_BIOHAZARD
 	//
 
 /datum/species/zombie/notspaceproof

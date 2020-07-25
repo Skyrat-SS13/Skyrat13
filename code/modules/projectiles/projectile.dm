@@ -49,7 +49,7 @@
 	var/pixel_move_interrupted = FALSE
 
 	/// Pixels moved per second.
-	var/pixels_per_second = TILES_TO_PIXELS(12.5)
+	var/pixels_per_second = TILES_TO_PIXELS(17.5)
 	/// The number of pixels we increment by. THIS IS NOT SPEED, DO NOT TOUCH THIS UNLESS YOU KNOW WHAT YOU ARE DOING. In general, lower values means more linetrace accuracy up to a point at cost of performance.
 	var/pixel_increment_amount
 
@@ -240,9 +240,9 @@
 			else
 				if(ishuman(target))
 					var/mob/living/carbon/human/H = target
-					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, bloodtype_to_color(H.dna.blood_type))
+					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, H.blood_DNA_to_color())
 				else
-					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, bloodtype_to_color())
+					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, BLOOD_COLOR_HUMAN)
 
 				L.add_splatter_floor(target_loca)
 		else if(impact_effect_type && !hitscan)
