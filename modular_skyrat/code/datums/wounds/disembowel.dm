@@ -64,13 +64,13 @@
 	//apply the blood gush effect
 	if(wounding_type != WOUND_BURN && L.owner)
 		var/direction = L.owner.dir
-		direction = turn(direction, angle2dir(180))
-		var/bodypart_turn = 0 //north
+		direction = turn(direction, 180)
+		var/bodypart_turn = 0 //relative north
 		if(L.body_zone in list(BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_L_HAND))
-			bodypart_turn = 90 //west
+			bodypart_turn = 90 //relative west
 		else if(L.body_zone in list(BODY_ZONE_R_ARM, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_R_HAND))
-			bodypart_turn = -90 //east
-		direction = turn(direction, angle2dir(bodypart_turn))
+			bodypart_turn = -90 //relative east
+		direction = turn(direction, bodypart_turn)
 		var/dist = rand(3, 5)
 		var/turf/targ = get_ranged_target_turf(L.owner, direction, dist)
 		if(targ)
