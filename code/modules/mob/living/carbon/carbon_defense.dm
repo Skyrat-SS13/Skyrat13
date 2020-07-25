@@ -97,7 +97,7 @@
 					if(head && prob(basebloodychance))
 						head.add_mob_blood(src)
 						update_inv_head()
-				var/dist = rand(1,max(min(round(totitemdamage/10, 1),3), 1))
+				var/dist = rand(1,max(min(round(totitemdamage/5, 1),3), 1))
 				var/turf/targ = get_ranged_target_turf(user, get_dir(user, src), dist)
 				if(istype(targ))
 					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(loc, get_blood_dna_list())
