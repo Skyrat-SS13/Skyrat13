@@ -4,7 +4,7 @@
 /obj/structure/window/Initialize(mapload, direct)
 	. = ..()
 	if(length(canSmoothWith))
-		canSmoothWith |= (typesof(/obj/machinery/door) - typesof(/obj/machinery/door/window) - typesof(/obj/machinery/door/firedoor))
+		canSmoothWith |= (typesof(/obj/machinery/door) - typesof(/obj/machinery/door/window) - typesof(/obj/machinery/door/firedoor) - typesof(/obj/machinery/door/poddoor))
 
 /obj/structure/window/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/window.dmi'
