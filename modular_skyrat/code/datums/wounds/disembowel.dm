@@ -7,6 +7,7 @@
 	viable_zones = ALL_BODYPARTS
 	wound_type = WOUND_LIST_DISEMBOWEL
 	severity = WOUND_SEVERITY_LOSS
+	ignore_preexisting = TRUE
 	threshold_minimum = 180
 	status_effect_type = null
 	scarring_descriptions = list("has a large, wide and slithering keloid scar", "is a gruesome patchwork of badly healed flesh and skin", "has a large series of connected hypertrophic scars")
@@ -91,6 +92,7 @@
 	viable_zones = ALL_BODYPARTS
 	severity = WOUND_SEVERITY_CRITICAL
 	wound_type = WOUND_LIST_DISEMBOWEL
+	ignore_preexisting = TRUE
 	initial_flow = 2
 	minimum_flow = 0.5
 	clot_rate = -0.05

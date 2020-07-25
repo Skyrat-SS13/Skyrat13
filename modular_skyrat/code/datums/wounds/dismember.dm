@@ -8,6 +8,7 @@
 	viable_zones = ALL_BODYPARTS
 	wound_type = WOUND_LIST_LOSS
 	severity = WOUND_SEVERITY_LOSS
+	ignore_preexisting = TRUE
 	threshold_minimum = 180
 	status_effect_type = null
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")

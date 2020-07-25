@@ -298,16 +298,6 @@
 	if(!prob(base_chance))
 		return
 
-	switch(wounding_type)
-		if(WOUND_BLUNT)
-			wounding_type = BRUTE
-		if(WOUND_SLASH)
-			wounding_type = BRUTE
-		if(WOUND_PIERCE)
-			wounding_type = BRUTE
-		if(WOUND_BURN)
-			wounding_type = BURN
-
 	return disembowel_wound(wounding_type)
 
 /obj/item/bodypart/proc/disembowel_wound(wounding_type)
