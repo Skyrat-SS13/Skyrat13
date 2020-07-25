@@ -31,3 +31,5 @@
 	else			// if wasn't a pipe, then they're now in our turf
 		H.forceMove(get_turf(src))
 		return null
+
+#undef IFFY
