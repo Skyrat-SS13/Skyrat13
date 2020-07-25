@@ -632,8 +632,8 @@
 	var/sharpness_on = IS_SHARP_ACCURATE
 	w_class_on = WEIGHT_CLASS_NORMAL
 	custom_materials = list(MAT_METAL=12000)
-	var/onsound
-	var/offsound
+	var/onsound = 'sound/weapons/batonextend.ogg'
+	var/offsound = 'sound/weapons/batonextend.ogg'
 
 /obj/item/melee/transforming/butterfly/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
@@ -647,7 +647,7 @@
 
 
 /obj/item/melee/transforming/butterfly/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(check_target_facings(user, M) == FACING_SAME_DIR && active && user.a_intent != INTENT_HELP && ishuman(M))
+	if(check_target_facings(user, M) == FACING_SAME_DIR && active && user.a_intent != INTENT_HELP)
 		var/mob/living/carbon/human/U = M
 		return backstab(U,user,backstabforce)
 
@@ -664,7 +664,7 @@
 		to_chat(user, "<span class='notice'>[src] [active ? "is now active":"can now be concealed"].</span>")
 
 
-/obj/item/melee/transforming/butterfly/proc/backstab(mob/living/carbon/human/U, mob/living/carbon/user, damage)
+/obj/item/melee/transforming/butterfly/proc/backstab(mob/living/U, mob/living/carbon/user, damage)
 	var/obj/item/bodypart/affecting = U.get_bodypart("chest")
 
 	if(!affecting || U == user || U.stat == DEAD) //no chest???!!!!
