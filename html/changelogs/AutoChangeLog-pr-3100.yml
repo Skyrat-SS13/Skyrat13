@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - tweak: "removed legacy public mining shuttle area and remade lounge"
