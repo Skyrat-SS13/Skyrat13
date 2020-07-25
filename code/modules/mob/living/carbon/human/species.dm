@@ -1786,11 +1786,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			I.add_mob_blood(H)	//Make the weapon bloody, not the person.
 			if(prob(I.force * 2))	//blood spatter!
 				bloody = 1
-				var/turf/location = H.loc
-				if(istype(location))
-					H.add_splatter_floor(location)
 				if(get_dist(user, H) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(H)
+				var/dist = rand(1,max(min(round(totitemdamage/10, 1),3), 1))
+				var/turf/targ = get_ranged_target_turf(user, get_dir(user, H), dist)
+				if(istype(targ))
+					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(H.loc, H.get_blood_dna_list())
+					B.add_blood_DNA(H.get_blood_dna_list())
+					B.GoTo(targ, dist)
 
 		switch(hit_area)
 			if(BODY_ZONE_HEAD)

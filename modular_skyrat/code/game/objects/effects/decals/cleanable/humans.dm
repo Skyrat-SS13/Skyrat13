@@ -58,7 +58,9 @@
 			//Adjust pixel offset to make splatters appear on the wall
 			B.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
 			B.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
+	A.visible_message("<span class='warning'>[A] gets splattered in blood!</span>")
 	A.update_overlays()
+	A.update_icon()
 	qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Destroy()

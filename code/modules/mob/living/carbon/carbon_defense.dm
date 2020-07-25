@@ -84,8 +84,6 @@
 			var/basebloodychance = affecting.brute_dam + totitemdamage
 			if(prob(basebloodychance))
 				I.add_mob_blood(src)
-				var/turf/location = get_turf(src)
-				add_splatter_floor(location)
 				if(totitemdamage >= 10 && get_dist(user, src) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(src)
 
@@ -99,6 +97,12 @@
 					if(head && prob(basebloodychance))
 						head.add_mob_blood(src)
 						update_inv_head()
+				var/dist = rand(1,max(min(round(totitemdamage/10, 1),3), 1))
+				var/turf/targ = get_ranged_target_turf(user, get_dir(user, src), dist)
+				if(istype(targ))
+					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(loc, get_blood_dna_list())
+					B.add_blood_DNA(get_blood_dna_list())
+					B.GoTo(targ, dist)
 		return TRUE //successful attack
 
 /mob/living/carbon/attack_drone(mob/living/simple_animal/drone/user)
@@ -109,7 +113,7 @@
 	if(I.damtype == BRUTE && hit_BP.can_dismember())
 		var/mangled_state = hit_BP.get_mangled_state()
 		var/bio_state = get_biological_state()
-		if(mangled_state == BODYPART_MANGLED_BOTH)
+		if((mangled_state == BODYPART_MANGLED_BOTH) && !(hit_BP.body_zone == BODY_ZONE_CHEST))
 			extra_wound_details = ", threatening to sever it entirely"
 		else if(mangled_state & BODYPART_MANGLED_BONE && I.get_sharpness() || (mangled_state & BODYPART_MANGLED_MUSCLE && bio_state & BIO_FLESH))
 			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through remaining tissue"
