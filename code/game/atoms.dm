@@ -488,14 +488,14 @@
 	LAZYINITLIST(blood_DNA)	//if our list of DNA doesn't exist yet, initialise it.
 	var/old_length = blood_DNA.len
 	blood_DNA |= (new_blood_dna - "color")
-	var/changed = FALSE
+	//var/changed = FALSE
 	if(!blood_DNA["color"])
 		blood_DNA["color"] = new_blood_dna["color"]
-		changed = TRUE
+		//changed = TRUE
 	else
 		var/old = blood_DNA["color"]
 		blood_DNA["color"] = new_blood_dna["color"]
-		changed = old != blood_DNA["color"]
+		//changed = old != blood_DNA["color"]
 	if(blood_DNA.len == old_length)
 		return FALSE
 	return TRUE
