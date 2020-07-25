@@ -1,7 +1,7 @@
 /datum/bounty/item/medical/heart
 	name = "Heart"
 	description = "Commander Johnson is in critical condition after suffering yet another heart attack. Doctors say he needs a new heart fast. Ship one, pronto!"
-	reward = 3000
+	reward = 5000 //Hearts should be expensive.
 	wanted_types = list(/obj/item/organ/heart)
 
 /datum/bounty/item/medical/lung
