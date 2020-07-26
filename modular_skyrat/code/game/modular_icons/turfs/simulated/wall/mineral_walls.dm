@@ -43,16 +43,16 @@
 	color = "#ffffff"
 
 /turf/closed/wall/mineral/titanium
-	icon = 'modular_skyrat/icons/eris/turf/walls/titanium.dmi'
+	icon = 'modular_skyrat/icons/hyper/turf/walls/titanium.dmi'
 	icon_state = "wall"
 	color = "#c7c7c7"
 
-/turf/closed/wall/mineral/titanium/survival
-	icon = 'modular_skyrat/icons/eris/turf/walls/titanium.dmi'
-	icon_state = "wall"
-	color = "#53608a"
-
 /turf/closed/wall/mineral/plastitanium
-	icon = 'modular_skyrat/icons/eris/turf/walls/plastitanium.dmi'
+	icon = 'modular_skyrat/icons/hyper/turf/walls/plastitanium.dmi'
 	icon_state = "wall"
 	color = "#555555"
+
+/turf/closed/wall/mineral/wood
+	icon = 'modular_skyrat/icons/hyper/turf/walls/gwood_wall.dmi'
+	icon_state = "gwood"
+	color = "#472e00"
