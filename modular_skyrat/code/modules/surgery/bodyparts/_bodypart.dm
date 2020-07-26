@@ -777,21 +777,16 @@
 
 	var/severity = new_wound.severity
 	if(!(body_zone in new_wound.viable_zones))
-		to_chat(owner, "Non-valid bodyzone for [new_wound.name] ([src.body_zone])")
 		var/list/fuck = (new_wound.wound_type - new_wound.type)
 		for(var/i in fuck)
 			new_wound = new i()
 			if(!(body_zone in new_wound.viable_zones) || (severity != new_wound.severity))
-				to_chat(owner, "Non-valid bodyzone for [new_wound.name] ([src.body_zone])")
 				qdel(new_wound)
 				continue
 			else
 				break
 	if(new_wound)
-		to_chat(owner, "Applying [new_wound.name] on [src.body_zone]")
 		new_wound.apply_wound(src, smited = smited)
-	else
-		to_chat(owner, "No wounds applicable for [src.body_zone]")
 
 /**
   * check_wounding_mods() is where we handle the various modifiers of a wound roll
