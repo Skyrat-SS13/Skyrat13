@@ -92,6 +92,91 @@
 		return 1
 	return ..()
 
+<<<<<<< HEAD
+=======
+// Set the clothing's integrity back to 100%, remove all damage to bodyparts, and generally fix it up
+/obj/item/clothing/proc/repair(mob/user, params)
+	damaged_clothes = CLOTHING_PRISTINE
+	update_clothes_damaged_state(FALSE)
+	obj_integrity = max_integrity
+	name = initial(name) // remove "tattered" or "shredded" if there's a prefix
+	body_parts_covered = initial(body_parts_covered)
+	slot_flags = initial(slot_flags)
+	damage_by_parts = null
+	if(user)
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		to_chat(user, "<span class='notice'>You fix the damage on [src].</span>")
+
+/**
+  * take_damage_zone() is used for dealing damage to specific bodyparts on a worn piece of clothing, meant to be called from [/obj/item/bodypart/proc/check_woundings_mods()]
+  *
+  *	This proc only matters when a bodypart that this clothing is covering is harmed by a direct attack (being on fire or in space need not apply), and only if this clothing covers
+  * more than one bodypart to begin with. No point in tracking damage by zone for a hat, and I'm not cruel enough to let you fully break them in a few shots.
+  * Also if limb_integrity is 0, then this clothing doesn't have bodypart damage enabled so skip it.
+  *
+  * Arguments:
+  * * def_zone: The bodypart zone in question
+  * * damage_amount: Incoming damage
+  * * damage_type: BRUTE or BURN
+  * * armour_penetration: If the attack had armour_penetration
+  */
+/obj/item/clothing/proc/take_damage_zone(def_zone, damage_amount, damage_type, armour_penetration)
+	if(!def_zone || !limb_integrity || (initial(body_parts_covered) in GLOB.bitflags)) // the second check sees if we only cover one bodypart anyway and don't need to bother with this
+		return
+	var/list/covered_limbs = body_parts_covered2organ_names(body_parts_covered) // what do we actually cover?
+	if(!(def_zone in covered_limbs))
+		return
+
+	var/damage_dealt = take_damage(damage_amount * 0.1, damage_type, armour_penetration, FALSE) * 10 // only deal 10% of the damage to the general integrity damage, then multiply it by 10 so we know how much to deal to limb
+	LAZYINITLIST(damage_by_parts)
+	damage_by_parts[def_zone] += damage_dealt
+	if(damage_by_parts[def_zone] > limb_integrity)
+		disable_zone(def_zone, damage_type)
+
+/**
+  * disable_zone() is used to disable a given bodypart's protection on our clothing item, mainly from [/obj/item/clothing/proc/take_damage_zone()]
+  *
+  * This proc disables all protection on the specified bodypart for this piece of clothing: it'll be as if it doesn't cover it at all anymore (because it won't!)
+  * If every possible bodypart has been disabled on the clothing, we put it out of commission entirely and mark it as shredded, whereby it will have to be repaired in
+  * order to equip it again. Also note we only consider it damaged if there's more than one bodypart disabled.
+  *
+  * Arguments:
+  * * def_zone: The bodypart zone we're disabling
+  * * damage_type: Only really relevant for the verb for describing the breaking, and maybe obj_destruction()
+  */
+/obj/item/clothing/proc/disable_zone(def_zone, damage_type)
+	var/list/covered_limbs = body_parts_covered2organ_names(body_parts_covered)
+	if(!(def_zone in covered_limbs))
+		return
+
+	var/zone_name = parse_zone(def_zone)
+	var/break_verb = ((damage_type == BRUTE) ? "torn" : "burned")
+
+	if(iscarbon(loc))
+		var/mob/living/carbon/C = loc
+		C.visible_message("<span class='danger'>The [zone_name] on [C]'s [src.name] is [break_verb] away!</span>", "<span class='userdanger'>The [zone_name] on your [src.name] is [break_verb] away!</span>", vision_distance = COMBAT_MESSAGE_RANGE)
+		RegisterSignal(C, COMSIG_MOVABLE_MOVED, .proc/bristle)
+
+	zones_disabled++
+	for(var/i in zone2body_parts_covered(def_zone))
+		body_parts_covered &= ~i
+
+	if(body_parts_covered == NONE) // if there are no more parts to break then the whole thing is kaput
+		obj_destruction((damage_type == BRUTE ? "melee" : "laser")) // melee/laser is good enough since this only procs from direct attacks anyway and not from fire/bombs
+		return
+
+	damaged_clothes = CLOTHING_DAMAGED
+	switch(zones_disabled)
+		if(1)
+			name = "damaged [initial(name)]"
+		if(2)
+			name = "mangy [initial(name)]"
+		if(3 to INFINITY) // take better care of your shit, dude
+			name = "tattered [initial(name)]"
+
+	update_clothes_damaged_state()
+
+>>>>>>> 4b56dc65af... Merge pull request #12897 from Citadel-Station-13/silicons-patch-51
 /obj/item/clothing/Destroy()
 	user_vars_remembered = null //Oh god somebody put REFERENCES in here? not to worry, we'll clean it up
 	return ..()
@@ -149,7 +234,6 @@
 	var/index = "[REF(initial(icon))]-[initial(icon_state)]"
 	var/static/list/damaged_clothes_icons = list()
 	if(damaging)
-		damaged_clothes = 1
 		var/icon/damaged_clothes_icon = damaged_clothes_icons[index]
 		if(!damaged_clothes_icon)
 			damaged_clothes_icon = icon(initial(icon), initial(icon_state), , 1)	//we only want to apply damaged effect to the initial icon_state for each object
@@ -157,11 +241,9 @@
 			damaged_clothes_icon.Blend(icon('icons/effects/item_damage.dmi', "itemdamaged"), ICON_MULTIPLY) //adds damage effect and the remaining white areas become transparant
 			damaged_clothes_icon = fcopy_rsc(damaged_clothes_icon)
 			damaged_clothes_icons[index] = damaged_clothes_icon
-		add_overlay(damaged_clothes_icon, 1)
+		add_overlay(damaged_clothes_icon, TRUE)
 	else
-		damaged_clothes = 0
 		cut_overlay(damaged_clothes_icons[index], TRUE)
-
 
 /*
 SEE_SELF  // can see self, no matter what
