@@ -233,6 +233,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/needs_update = savefile_needs_update(S)
 	if(needs_update == -2)		//fatal, can't load any data
 		return 0
+	
+	. = TRUE
 
 	//general preferences
 	S["ooccolor"]			>> ooccolor
@@ -475,6 +477,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(needs_update == -2)		//fatal, can't load any data
 		return 0
 
+	. = TRUE
+	
 	//Species
 	var/species_id
 	S["species"]			>> species_id
@@ -554,6 +558,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["language"]			>> language
 	S["body_descriptors"]	>> body_descriptors
 	body_descriptors = SANITIZE_LIST(body_descriptors)
+	if(!length(body_descriptors)) //if we have a null descriptor list, we just force load it from the species
+		for(var/i in pref_species.descriptors) //of course some species might not have descriptors and this is uneccessary for them but
+			var/datum/mob_descriptor/md = pref_species.descriptors[i] //the hardest coding requires the strongest wills
+			body_descriptors[i] = md.current_value
 	//
 
 	//Citadel code

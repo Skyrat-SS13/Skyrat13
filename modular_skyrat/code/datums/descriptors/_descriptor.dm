@@ -43,16 +43,25 @@
 	var/species_text
 	if(ishuman(me) && !skip_species_mention)
 		var/mob/living/carbon/human/H = me
-		var/use_name = "\improper [H.dna.species.name]"
-		species_text = " for \a [use_name]"
+		
+		var/use_name = (H.dna.custom_species ? "\improper [H.dna.custom_species]" : "\improper [H.dna.species.name]")
+		var/species_visible = TRUE
+		var/skipface = (H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE))
+
+		if(skipface || H.get_visible_name() == "Unknown")
+			species_visible = FALSE
+
+		if(!species_visible)
+			species_text = ""
+		else
+			species_text = " for \a [use_name]"
+
 	. = "[get_third_person_message_start(me)] [get_standalone_value_descriptor(my_value)][species_text]"
 
 /datum/mob_descriptor/proc/get_secondary_comparison_component(mob/me, mob/other_mob, my_value, comparing_value)
-	var/raw_value = my_value
-	my_value += current_value
 	var/variance = abs((my_value)-comparing_value)
-	if(variance < 1)
-		. = "[.], [get_comparative_value_string_equivalent(me, other_mob, raw_value)]"
+	if(variance == 0)
+		. = "[.], [get_comparative_value_string_equivalent(me, other_mob, my_value)]"
 	else
 		variance = variance / LAZYLEN(standalone_value_descriptors)
 		if(my_value < comparing_value)
