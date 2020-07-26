@@ -110,11 +110,9 @@
 
 /obj/structure/window/plastitanium
 	icon = 'modular_skyrat/icons/eris/obj/structures/windows.dmi'
-	icon_state = "plastitaniumwindow"
 
 /obj/structure/window/plastitanium/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/plastitanium_window.dmi'
-	icon_state = "plastitanium_window"
 	canSmoothWith = list(
 	/obj/structure/window/fulltile,
 	/obj/structure/window/reinforced/fulltile,
@@ -131,13 +129,9 @@
 	/turf/closed/wall/clockwork,
 	)
 
+//shuttle windows are retarded
 /obj/structure/window/shuttle
-	icon = 'modular_skyrat/icons/eris/obj/structures/windows.dmi'
-	icon_state = "plastitaniumwindow"
-
-/obj/structure/window/shuttle/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/plastitanium_window.dmi'
-	icon_state = "plastitanium_window"
 	canSmoothWith = list(
 	/obj/structure/window/fulltile,
 	/obj/structure/window/reinforced/fulltile,
