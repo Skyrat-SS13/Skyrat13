@@ -533,6 +533,7 @@
 	occur_text = "sprays chips of bone and develops a nasty looking bruise"
 
 	severity = WOUND_SEVERITY_SEVERE
+	viable_zones = ALL_BODYPARTS
 	interaction_efficiency_penalty = 2
 	limp_slowdown = 6
 	threshold_minimum = 60
@@ -552,6 +553,7 @@
 	examine_desc = "is mangled and pulped, seemingly held together by tissue alone"
 	occur_text = "cracks apart, exposing broken bones to open air"
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	interaction_efficiency_penalty = 4
 	limp_slowdown = 9
 	sound_effect = 'modular_skyrat/sound/effects/crack2.ogg'

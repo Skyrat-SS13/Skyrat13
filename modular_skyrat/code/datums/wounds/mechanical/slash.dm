@@ -180,6 +180,7 @@
 	occur_text = "is ripped open, slowly leaking hydraulic fluid"
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_MODERATE
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 2
 	minimum_flow = 0.5
 	max_per_type = 3
@@ -197,6 +198,7 @@
 	occur_text = "is ripped open, cables spurting fluid"
 	sound_effect = 'modular_skyrat/sound/effects/blood2.ogg'
 	severity = WOUND_SEVERITY_SEVERE
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 3.25
 	minimum_flow = 2.75
 	clot_rate = 0.07
@@ -215,6 +217,7 @@
 	occur_text = "is torn open, spraying fluid wildly"
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 4.25
 	minimum_flow = 4
 	clot_rate = -0.05 // critical cuts actively get worse instead of better

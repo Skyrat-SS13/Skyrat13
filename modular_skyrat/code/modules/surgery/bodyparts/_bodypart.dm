@@ -768,27 +768,30 @@
 
 // try forcing a specific wound, but only if there isn't already a wound of that severity or greater for that type on this bodypart
 /obj/item/bodypart/proc/force_wound_upwards(specific_woundtype, smited = FALSE)
-	var/datum/wound/potential_wound = specific_woundtype
-	for(var/i in wounds)
-		var/datum/wound/existing_wound = i
-		if(existing_wound.type in (initial(potential_wound.wound_type)))
-			if(existing_wound.severity < initial(potential_wound.severity)) // we only try if the existing one is inferior to the one we're trying to force
-				existing_wound.replace_wound(potential_wound, smited)
+	var/datum/wound/new_wound = new specific_woundtype
+	for(var/datum/wound/existing_wound in wounds)
+		if(existing_wound.wound_type == new_wound.wound_type)
+			if(existing_wound.severity < initial(new_wound.severity)) // we only try if the existing one is inferior to the one we're trying to force
+				existing_wound.replace_wound(new_wound, smited)
 			return
 
-	var/datum/wound/new_wound = new potential_wound
 	var/severity = new_wound.severity
 	if(!(body_zone in new_wound.viable_zones))
+		to_chat(owner, "Non-valid bodyzone for [new_wound.name] ([src.body_zone])")
 		var/list/fuck = (new_wound.wound_type - new_wound.type)
 		for(var/i in fuck)
 			new_wound = new i()
 			if(!(body_zone in new_wound.viable_zones) || (severity != new_wound.severity))
+				to_chat(owner, "Non-valid bodyzone for [new_wound.name] ([src.body_zone])")
 				qdel(new_wound)
 				continue
 			else
 				break
 	if(new_wound)
+		to_chat(owner, "Applying [new_wound.name] on [src.body_zone]")
 		new_wound.apply_wound(src, smited = smited)
+	else
+		to_chat(owner, "No wounds applicable for [src.body_zone]")
 
 /**
   * check_wounding_mods() is where we handle the various modifiers of a wound roll

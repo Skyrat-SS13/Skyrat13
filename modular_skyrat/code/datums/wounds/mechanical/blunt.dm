@@ -340,6 +340,7 @@
 	occur_text = "loudly hums as some loose nuts and bolts fall out"
 
 	severity = WOUND_SEVERITY_SEVERE
+	viable_zones = ALL_BODYPARTS
 	interaction_efficiency_penalty = 2
 	limp_slowdown = 6
 	threshold_minimum = 60
@@ -358,6 +359,7 @@
 	examine_desc = "is damaged at several spots, with protuding bits of metal"
 	occur_text = "loudly hums as it's rotors scrapes away bits of metal"
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	interaction_efficiency_penalty = 4
 	limp_slowdown = 9
 	sound_effect = 'sound/effects/clang2.ogg'

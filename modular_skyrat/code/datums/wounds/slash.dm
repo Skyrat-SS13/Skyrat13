@@ -259,6 +259,7 @@
 	occur_text = "is cut open, slowly leaking blood"
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_MODERATE
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 2
 	minimum_flow = 0.5
 	max_per_type = 3
@@ -276,6 +277,7 @@
 	occur_text = "is ripped open, veins spurting blood"
 	sound_effect = 'modular_skyrat/sound/effects/blood2.ogg'
 	severity = WOUND_SEVERITY_SEVERE
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 3.25
 	minimum_flow = 2.75
 	clot_rate = 0.05
@@ -294,6 +296,7 @@
 	occur_text = "is brutally torn open, spraying blood wildly"
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 4.25
 	minimum_flow = 4
 	clot_rate = -0.05 // critical cuts actively get worse instead of better
@@ -312,6 +315,7 @@
 	occur_text = "is surgically cut open"
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	wound_type = WOUND_LIST_INCISION
 	treatable_by = list()
 	treatable_tool = null

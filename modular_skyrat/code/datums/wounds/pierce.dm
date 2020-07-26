@@ -129,6 +129,7 @@
 	occur_text = "spurts out a thin stream of blood"
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_MODERATE
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 1.5
 	gauzed_clot_rate = 0.8
 	internal_bleeding_chance = 30
@@ -146,6 +147,7 @@
 	occur_text = "lets loose a violent spray of blood, revealing a nasty pierced wound"
 	sound_effect = 'modular_skyrat/sound/effects/blood2.ogg'
 	severity = WOUND_SEVERITY_SEVERE
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 2.25
 	gauzed_clot_rate = 0.6
 	internal_bleeding_chance = 60
@@ -163,6 +165,7 @@
 	occur_text = "blasts apart, sending chunks of viscera flying in all directions"
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 3
 	gauzed_clot_rate = 0.4
 	internal_bleeding_chance = 80

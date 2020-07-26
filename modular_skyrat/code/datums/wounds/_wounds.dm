@@ -179,10 +179,9 @@
 
 	// we accept promotions and demotions, but no point in redundancy. This should have already been checked wherever the wound was rolled and applied for (see: bodypart damage code), but we do an extra check
 	// in case we ever directly add wounds
-	// only loss wounds will ignore preexisting ones at the moment
+	// only dismemberment and disembowelment wounds will ignore preexisting ones at the moment
 	if(!ignore_preexisting)
-		for(var/i in L.wounds)
-			var/datum/wound/preexisting_wound = i
+		for(var/datum/wound/preexisting_wound in L.wounds)
 			if((preexisting_wound.type == type) && (preexisting_wound != old_wound))
 				qdel(src)
 				return
@@ -209,7 +208,7 @@
 		var/msg = "<span class='danger'>[victim]'s [limb.name] [occur_text]!</span>"
 		var/vis_dist = COMBAT_MESSAGE_RANGE
 
-		if(severity != WOUND_SEVERITY_MODERATE)
+		if(severity > WOUND_SEVERITY_MODERATE)
 			msg = "<b>[msg]</b>"
 			vis_dist = DEFAULT_MESSAGE_RANGE
 

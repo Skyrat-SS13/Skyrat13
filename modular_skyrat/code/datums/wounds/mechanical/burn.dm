@@ -317,6 +317,7 @@
 	examine_desc = "has visible pools of molten cable sleeving"
 	occur_text = "sparks and pops audibly"
 	severity = WOUND_SEVERITY_MODERATE
+	viable_zones = ALL_BODYPARTS
 	damage_multiplier_penalty = 1.1
 	threshold_minimum = 40
 	threshold_penalty = 30 // burns cause significant decrease in limb integrity compared to other wounds
@@ -338,6 +339,7 @@
 	examine_desc = "appears mildly warped, with partially charred internal components"
 	occur_text = "flares up with a small flame, noxious smoke coming out of it"
 	severity = WOUND_SEVERITY_SEVERE
+	viable_zones = ALL_BODYPARTS
 	damage_multiplier_penalty = 1.25
 	threshold_minimum = 80
 	threshold_penalty = 40
@@ -360,6 +362,7 @@
 	examine_desc = "is completely deformed, constantly sparking and smoking from it's charred components"
 	occur_text = "melts and pools around itself"
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	damage_multiplier_penalty = 1.4
 	sound_effect = 'modular_skyrat/sound/effects/sizzle2.ogg'
 	threshold_minimum = 140

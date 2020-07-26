@@ -156,6 +156,7 @@
 	occur_text = "spurts out a thin stream of hydraulic fluid"
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_MODERATE
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 1.5
 	gauzed_clot_rate = 0.8
 	internal_bleeding_chance = 30
@@ -173,6 +174,7 @@
 	occur_text = "looses a violent spray of hydraulic fluid, revealing a considerable hole"
 	sound_effect = 'modular_skyrat/sound/effects/blood2.ogg'
 	severity = WOUND_SEVERITY_SEVERE
+	viable_zones = ALL_BODYPARTS
 	treatable_by = list(/obj/item/stack/sheet)
 	initial_flow = 2.25
 	gauzed_clot_rate = 0.6
@@ -191,6 +193,7 @@
 	occur_text = "blasts apart, sending metallic shrapnel flying in all directions"
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	treatable_by = list(/obj/item/stack/sheet)
 	initial_flow = 3
 	gauzed_clot_rate = 0.4
