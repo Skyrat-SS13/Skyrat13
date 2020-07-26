@@ -1528,6 +1528,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			ADD_TRAIT(C, TRAIT_NOSOFTCRIT, "smite")
 			ADD_TRAIT(C, TRAIT_NODEATH, "smite")
 			C.gain_trauma_type(/datum/brain_trauma/severe/paralysis, TRAUMA_RESILIENCE_ABSOLUTE)
+			C.verbs -= list(/mob/living/verb/ghost, /mob/dead/observer/verb/stay_dead, /mob/living/carbon/human/verb/suicide)
 		if(ADMIN_PUNISHMENT_RAYMAN)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
