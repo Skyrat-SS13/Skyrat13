@@ -500,11 +500,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 //////////////
 
 /client/Del()
-<<<<<<< HEAD
 	// SKYRAT EDIT: Credits
 	//if(credits)
 		//QDEL_LIST(credits)
-=======
 	if(!gc_destroyed)
 		Destroy()
 	return ..()
@@ -512,7 +510,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 /client/Destroy()
 	if(credits)
 		QDEL_LIST(credits)
->>>>>>> c36bf1b5ed... Merge pull request #12871 from Citadel-Station-13/silicons-patch-47
 	log_access("Logout: [key_name(src)]")
 	if(holder)
 		adminGreet(1)
