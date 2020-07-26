@@ -271,8 +271,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	var/quick_parry = FALSE // false = default parry, true = really small parry window
 	item_flags = ITEM_CAN_PARRY
 	block_parry_data = /datum/block_parry_data/bokken
-	bare_wound_bonus = 0
-	wound_bonus = 0
+	//bare_wound_bonus = 0 SKYRAT EDIT - NO PARRY
+	//wound_bonus = 0 SKYRAT EDIT - NO PARRY
 
 /datum/block_parry_data/bokken // fucked up parry data, emphasizing quicker, shorter parries
 	parry_stamina_cost = 8 // be wise about when you parry, though, else you won't be able to fight enough to make it count
@@ -308,14 +308,14 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		force -= 2
 		damtype = BRUTE
 		attack_verb = list("bashed", "smashed", "attacked")
-		bare_wound_bonus = 15 // having your leg smacked by a wooden stick is probably not great for it if it's naked
-		wound_bonus = 0
+	//	bare_wound_bonus = 15 // having your leg smacked by a wooden stick is probably not great for it if it's naked - SKYRAT EDIT - NO PARRY
+	//	wound_bonus = 0 SKYRAT EDIT - NO PARRY
 	else
 		force += 2
 		damtype = STAMINA
 		attack_verb = list("whacked", "smacked", "struck")
-		bare_wound_bonus = 0
-		wound_bonus = 0
+	//	bare_wound_bonus = 0 SKYRAT EDIT - NO PARRY
+	//	wound_bonus = 0 SKYRAT EDIT - NO PARRY
 	to_chat(user, "<span class='notice'>[src] is now [harm ? "harmful" : "not quite as harmful"].</span>")
 
 /obj/item/melee/bokken/AltClick(mob/user)
