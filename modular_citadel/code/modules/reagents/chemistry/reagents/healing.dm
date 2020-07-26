@@ -209,7 +209,8 @@
 /datum/reagent/fermi/zeolites/on_mob_life(mob/living/carbon/M)
 	var/datum/component/radioactive/contamination = M.GetComponent(/datum/component/radioactive)
 	if(M.radiation > 0)
-		M.radiation -= min(M.radiation, 60)
+		//M.radiation -= min(M.radiation, 60)
+		M.radiation -= min(M.radiation, 60+M.radiation*0.1) //new era -- Buffed radiation removing chems to hopefully nerf chernobyls
 	if(contamination && contamination.strength > 0)
 		contamination.strength -= min(contamination.strength, 100)
 	..()
