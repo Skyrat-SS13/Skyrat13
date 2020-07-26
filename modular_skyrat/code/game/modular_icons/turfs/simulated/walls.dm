@@ -19,6 +19,8 @@
 	/obj/structure/window/reinforced/tinted/fulltile,
 	/obj/structure/window/plasma/fulltile,
 	/obj/structure/window/plasma/reinforced/fulltile,
+	/obj/structure/window/shuttle,
+	/obj/structure/window/plastitanium/fulltile,
 	)
 
 /turf/closed/wall/Initialize(mapload)
