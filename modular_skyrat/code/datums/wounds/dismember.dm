@@ -38,19 +38,19 @@
 	switch(wounding_type)
 		if(WOUND_BLUNT)
 			occur_text = "is shattered through the last bone holding it together, severing it completely!"
-			if(limb.is_robotic_limb())
+			if(L.is_robotic_limb())
 				occur_text = "is shattered through the last bit of endoskeleton holding it together, severing it completely!"
 		if(WOUND_SLASH)
 			occur_text = "is slashed through the last tissue holding it together, severing it completely!"
-			if(limb.is_robotic_limb())
+			if(L.is_robotic_limb())
 				occur_text = "is slashed through the last bit of exoskeleton layer holding it together, severing it completely!"
 		if(WOUND_PIERCE)
 			occur_text = "is pierced through the last tissue holding it together, severing it completely!"
-			if(limb.is_robotic_limb())
+			if(L.is_robotic_limb())
 				occur_text = "is pierced through the last bit of exoskeleton holding it together, severing it completely!"
 		if(WOUND_BURN)
 			occur_text = "is completely incinerated, falling to a pile of dust!"
-			if(limb.is_robotic_limb())
+			if(L.is_robotic_limb())
 				occur_text = "is completely melted, falling to a puddle of debris!"
 
 	var/mob/living/carbon/victim = L.owner

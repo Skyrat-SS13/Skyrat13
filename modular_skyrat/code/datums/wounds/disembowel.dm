@@ -37,19 +37,19 @@
 	switch(wounding_type)
 		if(WOUND_BLUNT)
 			occur_text = "is crushed through it's wounds, all organs inside gruesomely fall out"
-			if(limb.is_robotic_limb())
+			if(L.is_robotic_limb())
 				occur_text = "is shattered through it's exoskeleton, spitting out internal components"
 		if(WOUND_SLASH)
 			occur_text = "is slashed deep through it's flesh, letting organs and bits of flesh fall out"
-			if(limb.is_robotic_limb())
+			if(L.is_robotic_limb())
 				occur_text = "is slashed through it's exoskeleton, internal components rapidly falling out"
 		if(WOUND_PIERCE)
 			occur_text = "is deeply pierced through, internal organs easily falling out of the gaping wound"
-			if(limb.is_robotic_limb())
+			if(L.is_robotic_limb())
 				occur_text = "is deeply pierced through, internal components easily falling out of the gaping wound"
 		if(WOUND_BURN)
 			occur_text = "gets a hole burned through it, burnt organs falling out"
-			if(limb.is_robotic_limb())
+			if(L.is_robotic_limb())
 				occur_text = "gets a critical amount of metal molten, opening a gaping hole from which components fall through"
 
 	var/mob/living/carbon/victim = L.owner
