@@ -45,8 +45,13 @@
 	REMOVE_TRAIT(user, secondary_trait, GLOVE_TRAIT)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
+<<<<<<< HEAD
 		H.dna.species.punchdamagehigh -= enhancement //skyrat edit
 		H.dna.species.punchdamagelow -= enhancement //skyrat edit
+=======
+		H.dna.species.punchdamagehigh -= enhancement
+		H.dna.species.punchdamagelow -= enhancement
+>>>>>>> e13b6d36da... Merge pull request #12895 from Hatterhat/bokken
 	return ..()
 
 /obj/item/clothing/gloves/fingerless/pugilist/chaplain
