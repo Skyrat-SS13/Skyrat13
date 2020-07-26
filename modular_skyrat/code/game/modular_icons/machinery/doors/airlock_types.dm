@@ -68,7 +68,7 @@
 
 /obj/machinery/door/airlock/mining
 	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_mining.dmi'
-	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_maint_overlays.dmi'
+	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
 
 /obj/machinery/door/airlock/atmos
 	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_atmospherics.dmi'
