@@ -1936,6 +1936,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	dat += "<BR><center><a href='?_src_=prefs;preference=cosmetic_scars;task=reset'>Reset Scar Preferences</a>"
 
 	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Scar Preferences</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+//
 
 //SKYRAT EDIT - species menu cool
 /datum/preferences/proc/SetSpecies(mob/user)
