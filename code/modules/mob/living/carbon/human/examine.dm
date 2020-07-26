@@ -535,7 +535,6 @@
 	var/invisible_man = skipface || get_visible_name() == "Unknown" // SKYRAT EDIT -- BEGIN
 	if(!invisible_man)
 		if(client)
-			. += "<br>"
 			. += "OOC Notes: <a href='?src=[REF(src)];skyrat_ooc_notes=1'>\[View\]</a>" // SKYRAT EDIT -- END
 	//SKYRAT EDIT - admin lookup on records/extra flavor
 	if(client)
@@ -587,11 +586,11 @@
 				//currently using third person for consistency, but in the future i might make it so that
 				//examining yourself is first person across the board.
 				var/datum/mob_descriptor/descriptor = dna.species.descriptors[entry]
-				. += "<b><span class='info'>[descriptor.get_third_person_message_start(src)] [descriptor.get_standalone_value_descriptor(descriptor.current_value)].</span></b>"
+				. += "<span class='info'><b>[descriptor.get_third_person_message_start(src)] [descriptor.get_standalone_value_descriptor(descriptor.current_value)].</b></span>"
 		else
 			for(var/entry in dna.species.descriptors)
 				var/datum/mob_descriptor/descriptor = dna.species.descriptors[entry]
-				. += "<b><span class='info'>[descriptor.get_comparative_value_descriptor(src, user, descriptor.current_value)]</span></b>"
+				. += "<span class='info'></b>[descriptor.get_comparative_value_descriptor(src, user, descriptor.current_value)]</b></span>"
 //
 
 /mob/living/carbon/human/examine_more(mob/user)
@@ -599,4 +598,4 @@
 	if(. != DEFAULT_EXAMINE_MORE)
 		//descriptors
 		var/list/show_descs = show_descriptors_to(user)
-		. += length(show_descs) ? "[show_descs.Join("\n")]\n" : ""
+		. += length(show_descs) ? "\n\t[show_descs.Join("\t")]" : ""

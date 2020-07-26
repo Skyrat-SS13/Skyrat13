@@ -309,7 +309,7 @@
 		var/style
 		switch(max_sev)
 			if(0)
-				style = "notice"
+				style = "tinynotice"
 			if(1)
 				style = "tinydanger"
 			if(2)
