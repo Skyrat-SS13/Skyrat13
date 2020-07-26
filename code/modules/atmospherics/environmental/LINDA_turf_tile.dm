@@ -249,17 +249,35 @@
 //////////////////////////SPACEWIND/////////////////////////////
 
 /turf/open/proc/consider_pressure_difference(turf/T, difference)
-	SSair.high_pressure_delta[src] = TRUE
 	if(difference > pressure_difference)
 		pressure_direction = get_dir(src, T)
 		pressure_difference = difference
+		SSair.high_pressure_delta[src] = TRUE
 
 /turf/open/proc/high_pressure_movements()
+<<<<<<< HEAD
 	var/atom/movable/M
 	for(var/thing in src)
 		M = thing
 		if (!M.anchored && !M.pulledby && M.last_high_pressure_movement_air_cycle < SSair.times_fired)
 			M.experience_pressure_difference(pressure_difference, pressure_direction)
+=======
+	var/diff = pressure_difference
+	if(locate(/obj/structure/rack) in src)
+		diff *= 0.1
+	else if(locate(/obj/structure/table) in src)
+		diff *= 0.2
+	for(var/obj/M in src)
+		if(!M.anchored && !M.pulledby && M.last_high_pressure_movement_air_cycle < SSair.times_fired)
+			M.experience_pressure_difference(diff, pressure_direction, 0, pressure_specific_target)
+	for(var/mob/M in src)
+		if(!M.anchored && !M.pulledby && M.last_high_pressure_movement_air_cycle < SSair.times_fired)
+			M.experience_pressure_difference(diff, pressure_direction, 0, pressure_specific_target)
+	/*
+	if(pressure_difference > 100)
+		new /obj/effect/temp_visual/dir_setting/space_wind(src, pressure_direction, clamp(round(sqrt(pressure_difference) * 2), 10, 255))
+	*/
+>>>>>>> b3722d0a43... Merge pull request #12913 from Citadel-Station-13/silicons-patch-55
 
 /atom/movable/var/pressure_resistance = 10
 /atom/movable/var/last_high_pressure_movement_air_cycle = 0
