@@ -5,7 +5,7 @@
 
 /datum/species/imp
 	screamsounds = list('modular_skyrat/sound/doom/impinjured.wav', 'modular_skyrat/sound/doom/impdies.wav')
-  fluff_desc = "Imp hybrids were initially the result of faulty genetic experimentation with slaughter demons by NanoTrasen researchers - the initial intent was to genetically engineer superior soldiers to be sold off to SolGov and other governments, as well as personal use by NT - This backfired, as Imp Hybrids are actually quite frail and weak when compared to humans, and require CO2 rich atmospheres to surviveds. Imp hybrids have paid off in other ways, since xenophilics have loved the consumer grade genemods to become Imp Hybrids, but just like Xenomorph Hyberids, Imp  Hybrids do not actually share much of a common connection with their feral ancestors."
+	fluff_desc = "Imp hybrids were initially the result of faulty genetic experimentation with slaughter demons by NanoTrasen researchers - the initial intent was to genetically engineer superior soldiers to be sold off to SolGov and other governments, as well as personal use by NT - This backfired, as Imp Hybrids are actually quite frail and weak when compared to humans, and require CO2 rich atmospheres to surviveds. Imp hybrids have paid off in other ways, since xenophilics have loved the consumer grade genemods to become Imp Hybrids, but just like Xenomorph Hyberids, Imp  Hybrids do not actually share much of a common connection with their feral ancestors."
 
 /datum/species/synth
 	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
