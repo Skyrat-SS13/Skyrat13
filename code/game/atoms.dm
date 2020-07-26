@@ -391,7 +391,7 @@
 	. = list()
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE_MORE, user, .)
 	if(!LAZYLEN(.)) // lol ..length
-		return list("<span class='notice'><i>You examine [src] closer, but find nothing of interest...</i></span>")
+		return DEFAULT_EXAMINE_MORE
 
 /// Updates the icon of the atom
 /atom/proc/update_icon()

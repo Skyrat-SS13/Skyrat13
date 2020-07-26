@@ -449,7 +449,7 @@
 	else
 		msg += "[t_He] [t_is] conscious.\n"
       
-//Skyrat changes begin
+	//Skyrat changes begin
 	var/scar_severity = 0
 	if(!screwy_self)
 		for(var/i in all_scars)
@@ -472,10 +472,6 @@
 	if(gunpointed.len)
 		for(var/datum/gunpoint/GP in gunpointed)
 			msg += "<b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b>\n"
-	
-	//descriptors
-	var/list/show_descs = show_descriptors_to(user)
-	msg += length(show_descs) ? "[show_descs.Join("\n")]\n" : ""
 	
 	//Skyrat changes end
 
@@ -597,3 +593,10 @@
 				var/datum/mob_descriptor/descriptor = dna.species.descriptors[entry]
 				. += "<b><span class='info'>[descriptor.get_comparative_value_descriptor(src, user, descriptor.current_value)]</span></b>"
 //
+
+/mob/living/carbon/human/examine_more(mob/user)
+	. = ..()
+	if(. != DEFAULT_EXAMINE_MORE)
+		//descriptors
+		var/list/show_descs = show_descriptors_to(user)
+		. += length(show_descs) ? "[show_descs.Join("\n")]\n" : ""
