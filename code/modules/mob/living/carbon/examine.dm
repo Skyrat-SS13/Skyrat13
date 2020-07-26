@@ -322,7 +322,7 @@
 		var/aaa = ""
 		aaa += "\t<span class='[style]'>[capitalize(p_their())] [BP.name] is "
 		if((how_brute == BP.no_brute_msg) && (how_burn != BP.no_burn_msg))
-			aaa += "[how_brute], but it is [how_burn]."
+			aaa += "[how_brute], but it is [how_burn]"
 		else if((how_brute == BP.no_brute_msg) && (how_burn == BP.no_burn_msg))
 			aaa += "[how_brute] and [how_burn]"
 		else if((how_brute != BP.no_brute_msg) && (how_burn == BP.no_burn_msg))
