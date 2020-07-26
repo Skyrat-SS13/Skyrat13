@@ -34,24 +34,24 @@
 				qdel(src)
 				return
 
-	occur_text = "is slashed through the last tissue holding it together, severing it completely!"
+	occur_text = "is slashed through the last tissue holding it together, severing it completely"
 	switch(wounding_type)
 		if(WOUND_BLUNT)
-			occur_text = "is shattered through the last bone holding it together, severing it completely!"
+			occur_text = "is shattered through the last bone holding it together, severing it completely"
 			if(L.is_robotic_limb())
-				occur_text = "is shattered through the last bit of endoskeleton holding it together, severing it completely!"
+				occur_text = "is shattered through the last bit of endoskeleton holding it together, severing it completely"
 		if(WOUND_SLASH)
-			occur_text = "is slashed through the last tissue holding it together, severing it completely!"
+			occur_text = "is slashed through the last tissue holding it together, severing it completely"
 			if(L.is_robotic_limb())
-				occur_text = "is slashed through the last bit of exoskeleton layer holding it together, severing it completely!"
+				occur_text = "is slashed through the last bit of exoskeleton layer holding it together, severing it completely"
 		if(WOUND_PIERCE)
-			occur_text = "is pierced through the last tissue holding it together, severing it completely!"
+			occur_text = "is pierced through the last tissue holding it together, severing it completely"
 			if(L.is_robotic_limb())
-				occur_text = "is pierced through the last bit of exoskeleton holding it together, severing it completely!"
+				occur_text = "is pierced through the last bit of exoskeleton holding it together, severing it completely"
 		if(WOUND_BURN)
-			occur_text = "is completely incinerated, falling to a pile of dust!"
+			occur_text = "is completely incinerated, falling to a pile of dust"
 			if(L.is_robotic_limb())
-				occur_text = "is completely melted, falling to a puddle of debris!"
+				occur_text = "is completely melted, falling to a puddle of debris"
 
 	var/mob/living/carbon/victim = L.owner
 	if(prob(40))
@@ -72,9 +72,9 @@
 		direction = turn(direction, 180)
 		var/bodypart_turn = 0 //relative north
 		if(L.body_zone in list(BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_L_HAND))
-			bodypart_turn = 90 //relative west
-		else if(L.body_zone in list(BODY_ZONE_R_ARM, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_R_HAND))
 			bodypart_turn = -90 //relative east
+		else if(L.body_zone in list(BODY_ZONE_R_ARM, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_R_HAND))
+			bodypart_turn = 90 //relative west
 		direction = turn(direction, bodypart_turn)
 		var/dist = rand(3, 5)
 		var/turf/targ = get_ranged_target_turf(L.owner, direction, dist)
