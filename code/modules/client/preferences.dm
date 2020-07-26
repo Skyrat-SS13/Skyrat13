@@ -1007,10 +1007,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			//skyrat edit
 			if((CAN_SCAR && (HAS_SKIN || HAS_FLESH || HAS_BONE)) in pref_species.species_traits)
 				dat += "<h2>Scar Options</h2>"
-				dat += "<BR><b>Temporal Scarring:</b><BR><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</A>"
-				dat += "<a href='?_src_=prefs;preference=clear_scars'>Clear persistent scar slots</A><BR>"
+				dat += "<b>Temporal Scarring:</b><BR><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</a> "
+				dat += "<a href='?_src_=prefs;preference=clear_scars'>Clear persistent scar slots</a><BR>"
 				dat += "<b>Cosmetic Scarring:</b><BR>"
-				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=menu'>Configure Scars</A><BR>"
+				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=menu'>Configure Scars</a><BR>"
 			//
 			dat += "<h2>Clothing & Equipment</h2>"
 			dat += "<b>Underwear:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=underwear;task=input'>[underwear]</a><br>"

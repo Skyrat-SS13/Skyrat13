@@ -236,4 +236,5 @@
 	can_bayonet = TRUE
 	custom_light_icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
 	custom_light_state = "caplaser_bayonet"
+	custom_light_color = "#d30000" //ANGRY BLOOD RED >:)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF

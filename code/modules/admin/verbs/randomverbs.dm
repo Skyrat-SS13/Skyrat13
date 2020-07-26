@@ -1308,6 +1308,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 								ADMIN_PUNISHMENT_ISIS,
 								ADMIN_PUNISHMENT_MEDIC,
 								ADMIN_PUNISHMENT_PAPAJOHNS,
+								ADMIN_PUNISHMENT_PHANTOM_PAIN,
 								)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list

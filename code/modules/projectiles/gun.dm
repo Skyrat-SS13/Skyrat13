@@ -66,6 +66,7 @@
 	var/datum/action/item_action/toggle_gunlight/alight
 	var/custom_light_icon //custom flashlight icon
 	var/custom_light_state //custom flashlight state
+	var/custom_light_color //custom flashlight light color
 	var/mutable_appearance/flashlight_overlay
 
 	var/ammo_x_offset = 0 //used for positioning ammo count overlay on sprite
@@ -472,7 +473,7 @@
 /obj/item/gun/proc/update_gunlight(mob/user = null)
 	if(gun_light)
 		if(gun_light.on)
-			set_light(gun_light.brightness_on, gun_light.flashlight_power, gun_light.light_color)
+			set_light(gun_light.brightness_on, gun_light.flashlight_power, custom_light_color ? custom_light_color : gun_light.light_color)
 		else
 			set_light(0)
 		cut_overlays(flashlight_overlay, TRUE)

@@ -190,28 +190,27 @@
 	var/list/missing = ALL_BODYPARTS
 	var/list/disabled = list()
 	if(!screwy_self)
-		for(var/X in bodyparts)
-			var/obj/item/bodypart/BP = X
+		for(var/obj/item/bodypart/BP in bodyparts)
 			//skyrat edit
 			if(BP.is_disabled())
 				disabled += BP
-			if(BP.etching && !clothingonpart(BP))
-				msg += "<B>[t_His] [BP.name] has \"[BP.etching]\" etched on it!</B>\n"
-			if((/datum/wound/slash/critical/incision in all_wounds) && (BP.body_zone in ORGAN_BODYPARTS))
-				for(var/obj/item/organ/O in getorganszone(BP.body_zone))
-					for(var/i in O.surgical_examine(user))
-						msg += "<span class='danger'>[icon2html(O.examine_icon ? O.examine_icon : O, user, O.examine_icon_state ? O.examine_icon_state : O.icon_state)] [i]</span>\n"
-			//
-			missing -= BP.body_zone
 			for(var/obj/item/I in BP.embedded_objects)
 			//skyrat edit
 				if(I.isEmbedHarmless())
 					msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] stuck to [t_his] [BP.name]!</B>\n"
 				else
 					msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
+			//
+			if(BP.etching && !clothingonpart(BP))
+				msg += "<B>[t_His] [BP.name] has \"[BP.etching]\" etched on it!</B>\n"
 			for(var/datum/wound/W in BP.wounds)
 				msg += "[W.get_examine_description(user)]\n"
+				if(istype(W, /datum/wound/slash/critical/incision))
+					for(var/obj/item/organ/O in getorganszone(BP.body_zone))
+						for(var/i in O.surgical_examine(user))
+							msg += "<B>[icon2html(O.examine_icon ? O.examine_icon : O, user, O.examine_icon_state ? O.examine_icon_state : O.icon_state)] [i]</B>\n"
 			//
+			missing -= BP.body_zone
 
 	if(!screwy_self)
 		for(var/X in disabled)
