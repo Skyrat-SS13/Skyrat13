@@ -66,12 +66,12 @@
 	export_types = list(/obj/item/gun/ballistic/shotgun/automatic/combat)
 
 /datum/export/weapon/flashbang
-	cost = 50 
+	cost = 50 //Skyrat edit
 	unit_name = "flashbang grenade"
 	export_types = list(/obj/item/grenade/flashbang)
 
 /datum/export/weapon/teargas
-	cost = 50
+	cost = 50 //Skyrat edit
 	unit_name = "tear gas grenade"
 	export_types = list(/obj/item/grenade/chem_grenade/teargas)
 
