@@ -121,7 +121,7 @@ datum/bounty/reagent/complex_drink/New()
 
 /datum/bounty/reagent/chemical
 	name = "Chemical"
-	reward = 4750
+	reward = 4750 //skyrat edit
 	required_volume = 30
 
 datum/bounty/reagent/chemical/New()
