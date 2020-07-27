@@ -1,14 +1,14 @@
 /datum/bounty/item/alien_organs
 	name = "Alien Organs"
-	description = "Nanotrasen is interested in studying Xenomorph biology. Ship a set of organs to be thoroughly compensated."
-	reward = 15000
+	description = "Letheia is interested in studying Xenomorph biology. Ship a set of organs to be thoroughly compensated." //Skyrat edit
+	reward = 15000 //Skyrat edit
 	required_count = 3
 	wanted_types = list(/obj/item/organ/brain/alien, /obj/item/organ/alien, /obj/item/organ/body_egg/alien_embryo)
 
 /datum/bounty/item/syndicate_documents
 	name = "Syndicate Documents"
-	description = "Intel regarding the syndicate is highly prized at CentCom. If you find syndicate documents, ship them. You could save lives."
-	reward = 15000
+	description = "Intel regarding the syndicate is highly prized by NT. If you find syndicate documents, ship them." //Skyrat edit
+	reward = 15000 //Skyrat edit
 	wanted_types = list(/obj/item/documents/syndicate, /obj/item/documents/photocopy)
 
 /datum/bounty/item/syndicate_documents/applies_to(obj/O)
@@ -22,15 +22,15 @@
 /datum/bounty/item/adamantine
 	name = "Adamantine"
 	description = "Nanotrasen's anomalous materials division is in desparate need for Adamantine. Send them a large shipment and we'll make it worth your while."
-	reward = 30000
+	reward = 30000 //Skyrat edit
 	required_count = 10
 	wanted_types = list(/obj/item/stack/sheet/mineral/adamantine)
 
 /datum/bounty/more_bounties
 	name = "More Bounties"
-	description = "Complete enough bounties and CentCom will issue new ones!"
+	description = "Completion of enough bounties will allow us to open another transport route." //Skyrat edit
 	reward = 8 // number of bounties
-	var/required_bounties = 3
+	var/required_bounties = 5 //Skyrat edit
 
 /datum/bounty/more_bounties/can_claim()
 	return ..() && completed_bounty_count() >= required_bounties
