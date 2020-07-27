@@ -236,7 +236,7 @@
 	export_types = list(/obj/structure/statue/silver/janitor)
 
 /datum/export/large/secstatue
-	cost = 200 
+	cost = 200
 	unit_name = "Sec statue"
 	export_types = list(/obj/structure/statue/silver/sec)
 
