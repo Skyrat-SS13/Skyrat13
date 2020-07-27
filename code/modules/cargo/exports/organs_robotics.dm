@@ -106,19 +106,19 @@
 	exclude_types = list(/obj/item/organ/liver/cybernetic, /obj/item/organ/liver/cybernetic/upgraded)
 
 /datum/export/organs/cybernetic
-	cost = 225
+	cost = 300
 	unit_name = "cybernetic organ"
 	export_types = list(/obj/item/organ/liver/cybernetic, /obj/item/organ/lungs/cybernetic, /obj/item/organ/eyes/robotic, /obj/item/organ/heart/cybernetic)
 	exclude_types = list(/obj/item/organ/lungs/cybernetic/upgraded, /obj/item/organ/liver/cybernetic/upgraded)
 
 /datum/export/organs/upgraded
-	cost = 275
+	cost = 425
 	unit_name = "upgraded cybernetic organ"
 	export_types = list(/obj/item/organ/lungs/cybernetic/upgraded, /obj/item/organ/liver/cybernetic/upgraded)
 
 /datum/export/organs/tail //Shhh
-	cost = 500
-	unit_name = "error shipment failer"
+	cost = 550
+	unit_name = "organic tail"
 	export_types = list(/obj/item/organ/tail)
 
 /datum/export/orgains/vocal_cords
@@ -127,8 +127,8 @@
 	export_types = list(/obj/item/organ/vocal_cords) //These are gotten via different races
 
 /datum/export/robotics/lims
-	cost = 30
-	unit_name = "robotic lim replacement"
+	cost = 60
+	unit_name = "robotic limb replacement"
 	export_types = list(/obj/item/bodypart/l_arm/robot, /obj/item/bodypart/r_arm/robot, /obj/item/bodypart/l_leg/robot, /obj/item/bodypart/r_leg/robot, /obj/item/bodypart/chest/robot, /obj/item/bodypart/head/robot)
 
 /datum/export/robotics/surpluse
@@ -137,46 +137,46 @@
 	export_types = list(/obj/item/bodypart/l_arm/robot/surplus, /obj/item/bodypart/r_arm/robot/surplus, /obj/item/bodypart/l_leg/robot/surplus, /obj/item/bodypart/r_leg/robot/surplus)
 
 /datum/export/robotics/surplus_upgraded
-	cost = 50
+	cost = 80
 	unit_name = "upgraded robotic lim replacement"
 	export_types = list(/obj/item/bodypart/l_arm/robot/surplus_upgraded, /obj/item/bodypart/r_arm/robot/surplus_upgraded, /obj/item/bodypart/l_leg/robot/surplus_upgraded, /obj/item/bodypart/r_leg/robot/surplus_upgraded)
 
 /datum/export/robotics/surgery_gear_basic
-	cost = 10
+	cost = 20
 	unit_name = "surgery tool"
 	export_types = list(/obj/item/retractor, /obj/item/hemostat, /obj/item/cautery, /obj/item/surgicaldrill, /obj/item/scalpel, /obj/item/circular_saw, /obj/item/surgical_drapes)
 
 /datum/export/robotics/mech_weapon_laser
 	cost = 300 //Sadly just metal and glass
-	unit_name = "mech laser based weapon"
+	unit_name = "mech energy weapon"
 	include_subtypes = TRUE
 	export_types = list(/obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam, /obj/item/mecha_parts/mecha_equipment/weapon/energy)
 
 /datum/export/robotics/mech_weapon_bullet
 	cost = 250
-	unit_name = "mech bullet based weapon"
+	unit_name = "mech ballistic weapon"
 	include_subtypes = TRUE
 	export_types = list(/obj/item/mecha_parts/mecha_equipment/medical/syringe_gun, /obj/item/mecha_parts/mecha_equipment/weapon/honker, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic)
 
 /datum/export/robotics/mech_tools
 	cost = 150
-	unit_name = "mech based tool"
+	unit_name = "mech tool"
 	include_subtypes = TRUE
 	export_types = list(/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp, /obj/item/mecha_parts/mecha_equipment/extinguisher, /obj/item/mecha_parts/mecha_equipment/rcd, /obj/item/mecha_parts/mecha_equipment/cable_layer, \
 						/obj/item/mecha_parts/mecha_equipment/drill, /obj/item/mecha_parts/mecha_equipment/mining_scanner, /obj/item/mecha_parts/mecha_equipment/medical/sleeper)
 
 /datum/export/robotics/mech_blue_space
-	cost = 750
+	cost = 950
 	k_elasticity = 1/10
-	unit_name = "mech bluespace tech"
+	unit_name = "mech teleportation tech"
 	export_types = list(/obj/item/mecha_parts/mecha_equipment/teleporter, /obj/item/mecha_parts/mecha_equipment/wormhole_generator, /obj/item/mecha_parts/mecha_equipment/gravcatapult)
 
 /datum/export/robotics/mech_reactors
 	cost = 350
-	unit_name = "mech based reactor"
+	unit_name = "mech reactor"
 	export_types = list(/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay, /obj/item/mecha_parts/mecha_equipment/generator, /obj/item/mecha_parts/mecha_equipment/generator/nuclear)
 
 /datum/export/robotics/mech_armor
 	cost = 350
-	unit_name = "mech armor tech"
+	unit_name = "mech armor platings"
 	export_types = list(/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster, /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster, /obj/item/mecha_parts/mecha_equipment/repair_droid)
