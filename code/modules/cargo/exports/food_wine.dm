@@ -104,12 +104,12 @@
 	export_types = list(/obj/item/reagent_containers/food/snacks/breadslice)
 
 /datum/export/food/burger
-	cost = 50
+	cost = 50 //Skyrat edit
 	unit_name = "burger"
 	export_types = list(/obj/item/reagent_containers/food/snacks/burger)
 
 /datum/export/food/cake
-	cost = 100
+	cost = 100 //Skyrat edit
 	unit_name = "cake"
 	export_types = list(/obj/item/reagent_containers/food/snacks/store/cake)
 
