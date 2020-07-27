@@ -44,22 +44,22 @@
 	include_subtypes = TRUE
 
 /datum/export/t1
-	cost = 10
+	cost = 10 //Skyrat edit
 	unit_name = "basic stock part"
 	export_types = list(/obj/item/stock_parts/capacitor, /obj/item/stock_parts/scanning_module, /obj/item/stock_parts/manipulator, /obj/item/stock_parts/micro_laser, /obj/item/stock_parts/matter_bin)
 
 /datum/export/t2
-	cost = 20
+	cost = 20 //Skyrat edit
 	unit_name = "upgraded stock part"
 	export_types = list(/obj/item/stock_parts/capacitor/adv, /obj/item/stock_parts/scanning_module/adv, /obj/item/stock_parts/manipulator/nano, /obj/item/stock_parts/micro_laser/high, /obj/item/stock_parts/matter_bin/adv)
 
 /datum/export/t3
-	cost = 30
+	cost = 30 //Skyrat edit
 	unit_name = "advanced stock part"
 	export_types = list(/obj/item/stock_parts/capacitor/super, /obj/item/stock_parts/scanning_module/phasic, /obj/item/stock_parts/manipulator/pico, /obj/item/stock_parts/micro_laser/ultra, /obj/item/stock_parts/matter_bin/super)
 
 /datum/export/t4
-	cost = 50
+	cost = 50 //Skyrat edit
 	unit_name = "blue space stock part"
 	export_types = list(/obj/item/stock_parts/capacitor/quadratic, /obj/item/stock_parts/scanning_module/triphasic, /obj/item/stock_parts/manipulator/femto, /obj/item/stock_parts/micro_laser/quadultra, /obj/item/stock_parts/matter_bin/bluespace)
 
@@ -87,12 +87,12 @@
 	export_types = list(/obj/item/stock_parts/cell/super, /obj/item/stock_parts/cell/hyper)
 
 /datum/export/cellbs
-	cost = 200
+	cost = 200 //Skyrat edit
 	unit_name = "bluespace power cell"
 	export_types = list(/obj/item/stock_parts/cell/bluespace)
 
 /datum/export/cellyellow
-	cost = 400
+	cost = 400 //Skyrat edit
 	unit_name = "slime power cell"
 	export_types = list(/obj/item/stock_parts/cell/high/slime)
 
