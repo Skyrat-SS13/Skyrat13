@@ -1,7 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "Rogue drill is no longer invisible when unwielded."
-  - bugfix: "Golden skull trophy is no longer as much of a scam as an IRL crystal skull."
-  - bugfix: "Sif no longer spams smoke everywhere when spinning."
-  - bugfix: "Sif necklace now properly grrants you the action to revive."

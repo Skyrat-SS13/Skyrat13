@@ -1,6 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - tweak: "Religion preferences are now generalized in the character setup."
-  - tweak: "Species selection now shows fluff info for each species."
-  - tweak: "Character setup is just a wee bit less ugly."
