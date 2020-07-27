@@ -155,7 +155,7 @@
 	export_types = list(/obj/item/grenade/chem_grenade/large)
 
 /datum/export/weapon/gravworm
-	cost = 1000
+	cost = 1000 //skyrat edit.........
 	unit_name = "bluespace weapon"
 	export_types = list(/obj/item/gun/energy/wormhole_projector, /obj/item/gun/energy/gravity_gun)
 
