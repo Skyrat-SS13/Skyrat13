@@ -261,12 +261,12 @@
 	export_types = list(/obj/structure/statue/diamond/ai1, /obj/structure/statue/diamond/ai2)
 
 /datum/export/large/clownstatue
-	cost = 6500
+	cost = 6500 //Skyrat edit
 	unit_name = "Clown statue"
 	export_types = list(/obj/structure/statue/bananium/clown)
 
 /datum/export/large/sandstatue
-	cost = 90 //Big cash
+	cost = 150 //Big cash //Skyrat edit
 	unit_name = "sandstone statue"
 	export_types = list(/obj/structure/statue/sandstone/assistant)
 
