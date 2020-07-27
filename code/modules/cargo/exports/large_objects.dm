@@ -30,12 +30,12 @@
 	exclude_types = list()
 
 /datum/export/large/barrel
-	cost = 600 //double the wooden cost of a coffin.
+	cost = 600 //double the wooden cost of a coffin. //Skyrat edit
 	unit_name = "wooden barrel"
 	export_types = list(/obj/structure/fermenting_barrel)
 
 /datum/export/large/crate/coffin
-	cost = 300
+	cost = 300 //Skyrat edit
 	unit_name = "coffin"
 	export_types = list(/obj/structure/closet/crate/coffin)
 
@@ -196,37 +196,37 @@
 	export_types = list(/obj/structure/statue/uranium/eng)
 
 /datum/export/large/plasmastatue
-	cost = 900
+	cost = 900 //Skyrat edit
 	unit_name = "Scientist statue"
 	export_types = list(/obj/structure/statue/plasma/scientist)
 
 /datum/export/large/hosstatue
-	cost = 400
+	cost = 400 //Skyrat edit
 	unit_name = "HoS statue"
 	export_types = list(/obj/structure/statue/gold/hos)
 
 /datum/export/large/rdstatue
-	cost = 400
+	cost = 400 //Skyrat edit
 	unit_name = "RD statue"
 	export_types = list(/obj/structure/statue/gold/rd)
 
 /datum/export/large/hopstatue
-	cost = 400
+	cost = 400 //Skyrat edit
 	unit_name = "HoP statue"
 	export_types = list(/obj/structure/statue/gold/hop)
 
 /datum/export/large/cmostatue
-	cost = 225
+	cost = 400 //Skyrat edit
 	unit_name = "CMO statue"
 	export_types = list(/obj/structure/statue/gold/cmo)
 
 /datum/export/large/cestatue
-	cost = 225
+	cost = 400 //Skyrat edit
 	unit_name = "CE statue"
 	export_types = list(/obj/structure/statue/gold/ce)
 
 /datum/export/large/mdstatue
-	cost = 200
+	cost = 200 //Skyrat edit
 	unit_name = "MD statue"
 	export_types = list(/obj/structure/statue/silver/md)
 
@@ -236,7 +236,7 @@
 	export_types = list(/obj/structure/statue/silver/janitor)
 
 /datum/export/large/secstatue
-	cost = 200
+	cost = 200 
 	unit_name = "Sec statue"
 	export_types = list(/obj/structure/statue/silver/sec)
 
@@ -251,12 +251,12 @@
 	export_types = list(/obj/structure/statue/silver/secborg)
 
 /datum/export/large/capstatue
-	cost = 1200
+	cost = 2500 //Skyrat edit
 	unit_name = "Captain statue"
 	export_types = list(/obj/structure/statue/diamond/captain)
 
 /datum/export/large/aistatue
-	cost = 2500
+	cost = 2500 //Skyrat edit
 	unit_name = "AI statue"
 	export_types = list(/obj/structure/statue/diamond/ai1, /obj/structure/statue/diamond/ai2)
 
