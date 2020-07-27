@@ -63,12 +63,12 @@
 	export_types = list(/obj/item/reagent_containers/food/snacks/rawpastrybase, /obj/item/reagent_containers/food/snacks/pastrybase)
 
 /datum/export/food/cake_pie_raw
-	cost = 12
-	unit_name = "food base"
+	cost = 12 //Skyrat edit
+	unit_name = "food base" //Skyrat edit
 	export_types = list(/obj/item/reagent_containers/food/snacks/cakebatter, /obj/item/reagent_containers/food/snacks/piedough)
 
 /datum/export/food/cooked_cake_pie
-	cost = 15
+	cost = 15 //Skyrat edit
 	unit_name = "cooked food base"
 	export_types = list(/obj/item/reagent_containers/food/snacks/store/cake/plain, /obj/item/reagent_containers/food/snacks/pie/plain)
 
