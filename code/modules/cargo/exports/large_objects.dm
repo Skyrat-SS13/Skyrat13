@@ -283,22 +283,22 @@
 	export_types = list(/obj/mecha/medical/odysseus)
 
 /datum/export/large/mech/ripley
-	cost = 13000
+	cost = 13000 //Skyrat edit
 	unit_name = "working ripley"
 	export_types = list(/obj/mecha/working/ripley)
 
 /datum/export/large/mech/firefighter
-	cost = 15000
+	cost = 15000 //Skyrat edit
 	unit_name = "working firefighter"
 	export_types = list(/obj/mecha/working/ripley/firefighter)
 
 /datum/export/large/mech/gygax
-	cost = 20000
+	cost = 20000 //Skyrat edit
 	unit_name = "working gygax"
 	export_types = list(/obj/mecha/combat/gygax)
 
 /datum/export/large/mech/durand
-	cost = 20000
+	cost = 20000 //Skyrat edit
 	unit_name = "working durand"
 	export_types = list(/obj/mecha/combat/durand)
 
