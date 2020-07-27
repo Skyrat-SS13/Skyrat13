@@ -134,7 +134,7 @@
 	export_types = list(/obj/item/gun/energy/floragun)
 
 /datum/export/weapon/xraygun
-	cost = 1300 //Wall hacks
+	cost = 1300 //Yeah kid, you're banned. //Skyrat edit
 	unit_name = "x ray gun"
 	export_types = list(/obj/item/gun/energy/xray)
 
