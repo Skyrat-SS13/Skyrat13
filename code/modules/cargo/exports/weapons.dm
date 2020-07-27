@@ -76,7 +76,7 @@
 	export_types = list(/obj/item/grenade/chem_grenade/teargas)
 
 /datum/export/weapon/flash
-	cost = 50
+	cost = 10
 	unit_name = "handheld flash"
 	export_types = list(/obj/item/assembly/flash)
 	include_subtypes = TRUE
@@ -174,12 +174,12 @@
 /////////////////
 
 /datum/export/weapon/wtammo
-	cost = 500
+	cost = 100
 	unit_name = "WT-550 automatic rifle ammo"
 	export_types = list(/obj/item/ammo_box/magazine/wt550m9, /obj/item/ammo_box/magazine/wt550m9/wtrubber)
 
 /datum/export/weapon/wtammo/advanced
-	cost = 550
+	cost = 150
 	unit_name = "advanced WT-550 automatic rifle ammo"
 	export_types = list( /obj/item/ammo_box/magazine/wt550m9/wtap,  /obj/item/ammo_box/magazine/wt550m9/wttx, /obj/item/ammo_box/magazine/wt550m9/wtic)
 
