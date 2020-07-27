@@ -28,37 +28,37 @@
 // Materials. Selling raw can lead to a big payout but takes a lot of work for miners to get a lot. Best to craft art/rnd gear
 
 /datum/export/material/bananium
-	cost = 800
+	cost = 800 //Skyrat edit
 	material_id = /datum/material/bananium
 	message = "cm3 of bananium"
 
 /datum/export/material/diamond
-	cost = 500
+	cost = 500 //Skyrat edit
 	material_id = /datum/material/diamond
 	message = "cm3 of diamonds"
 
 /datum/export/material/plasma
-	cost = 250
+	cost = 250 //Skyrat edit
 	material_id = /datum/material/plasma
 	message = "cm3 of plasma"
 
 /datum/export/material/uranium
-	cost = 150
+	cost = 150 //Skyrat edit
 	material_id = /datum/material/uranium
 	message = "cm3 of uranium"
 
 /datum/export/material/gold
-	cost = 120
+	cost = 120 //Skyrat edit
 	material_id = /datum/material/gold
 	message = "cm3 of gold"
 
 /datum/export/material/silver
-	cost = 80
+	cost = 80 //Skyrat edit
 	material_id = /datum/material/silver
 	message = "cm3 of silver"
 
 /datum/export/material/titanium
-	cost = 60
+	cost = 60 //Skyrat edit
 	material_id = /datum/material/titanium
 	message = "cm3 of titanium"
 
@@ -83,7 +83,7 @@
 		/obj/item/shard)
 
 /datum/export/material/adamantine
-	cost = 500
+	cost = 500 //Skyrat edit
 	material_id = /datum/material/adamantine
 	message = "cm3 of adamantine"
 
@@ -93,7 +93,7 @@
 	message = "cm3 of mythril"
 
 /datum/export/material/bscrystal
-	cost = 600
+	cost = 600 //Skyrat edit
 	message = "cm3 of bluespace crystals"
 	material_id = /datum/material/bluespace
 
