@@ -97,8 +97,8 @@
 	export_types = list(/obj/item/stock_parts/cell/high/slime)
 
 /datum/export/cellyellowhyper
-	cost = 1800 //Takes a lot to make and is really good
-	unit_name = "hyper slime power cell"
+	cost = 1800 //Takes a lot to make and is really good //Skyrat edit
+	unit_name = "hypercharged power cell" //Skyrat edit
 	export_types = list(/obj/item/stock_parts/cell/high/slime/hypercharged)
 
 //Glass working stuff
