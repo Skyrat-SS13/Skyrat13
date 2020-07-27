@@ -8,63 +8,63 @@
 	include_subtypes = TRUE
 
 /datum/export/food/meat
-	cost = 5
-	unit_name = "protein based food"
+	cost = 21
+	unit_name = "raw animal protein"
 	export_types = list(/obj/item/reagent_containers/food/snacks/meat/slab)
 
 /datum/export/food/raw_cutlets
-	cost = 3
-	unit_name = "protein based food"
+	cost = 7
+	unit_name = "raw prepared animal protein"
 	export_types = list(/obj/item/reagent_containers/food/snacks/meat/rawcutlet)
 
 /datum/export/food/cooked_cutlets
-	cost = 4
-	unit_name = "cooked protein based food"
+	cost = 14
+	unit_name = "cooked prepared animal protein"
 	export_types = list(/obj/item/reagent_containers/food/snacks/meat/cutlet)
 
 /datum/export/food/cooked_meat
-	cost = 8
-	unit_name = "cooked protein based food"
+	cost = 42
+	unit_name = "cooked animal protein"
 	export_types = list(/obj/item/reagent_containers/food/snacks/meat/steak)
 
 /datum/export/food/dough
-	cost = 3
-	unit_name = "uncooked food base"
+	cost = 9
+	unit_name = "food base"
 	export_types = list(/obj/item/reagent_containers/food/snacks/dough, /obj/item/reagent_containers/food/snacks/flatdough)
 
 /datum/export/food/cooked_dough
-	cost = 5
+	cost = 15
 	unit_name = "cooked food base"
 	export_types = list(/obj/item/reagent_containers/food/snacks/pizzabread)
 
 /datum/export/food/buns
-	cost = 3
+	cost = 15
 	unit_name = "cooked food base"
 	export_types = list(/obj/item/reagent_containers/food/snacks/bun)
 
 /datum/export/food/buns
-	cost = 3
+	cost = 15
 	unit_name = "cooked food base"
 	export_types = list(/obj/item/reagent_containers/food/snacks/bun)
 
 /datum/export/food/eggs
-	cost = 4
-	unit_name = "cooked food base"
+	cost = 21
+	unit_name = "prepared egg protein"
 	export_types = list(/obj/item/reagent_containers/food/snacks/friedegg)
 
 /datum/export/food/eggs_food
-	cost = 20
-	unit_name = "cooked egg based food"
+	cost = 35
+	unit_name = "prepared egg dish"
 	export_types = list(/obj/item/reagent_containers/food/snacks/omelette, /obj/item/reagent_containers/food/snacks/benedict, /obj/item/reagent_containers/food/snacks/salad/eggbowl)
 
 /datum/export/food/sweets
 	cost = 4
-	unit_name = "pastery base"
+	unit_name = "pastry base"
 	export_types = list(/obj/item/reagent_containers/food/snacks/rawpastrybase, /obj/item/reagent_containers/food/snacks/pastrybase)
 
 /datum/export/food/cake_pie_raw
 	cost = 12
-	unit_name = "uncooked food base"
+	unit_name = "food base"
 	export_types = list(/obj/item/reagent_containers/food/snacks/cakebatter, /obj/item/reagent_containers/food/snacks/piedough)
 
 /datum/export/food/cooked_cake_pie
@@ -104,12 +104,12 @@
 	export_types = list(/obj/item/reagent_containers/food/snacks/breadslice)
 
 /datum/export/food/burger
-	cost = 12
+	cost = 50
 	unit_name = "burger"
 	export_types = list(/obj/item/reagent_containers/food/snacks/burger)
 
 /datum/export/food/cake
-	cost = 50
+	cost = 100
 	unit_name = "cake"
 	export_types = list(/obj/item/reagent_containers/food/snacks/store/cake)
 
@@ -148,17 +148,17 @@
 						/obj/item/reagent_containers/food/snacks/meatballspaghetti, /obj/item/reagent_containers/food/snacks/spesslaw, /obj/item/reagent_containers/food/snacks/chowmein, /obj/item/reagent_containers/food/snacks/beefnoodle, /obj/item/reagent_containers/food/snacks/butternoodles)
 
 /datum/export/food/pizza
-	cost = 120
+	cost = 720
 	unit_name = "pizza"
 	export_types = list(/obj/item/reagent_containers/food/snacks/pizza)
 
 /datum/export/food/sliced_pizza
-	cost = 12
+	cost = 72
 	unit_name = "pizza slice"
 	export_types = list(/obj/item/reagent_containers/food/snacks/pizzaslice)
 
 /datum/export/food/snowcone
-	cost = 3
+	cost = 10
 	unit_name = "snowcone"
 	export_types = list(/obj/item/reagent_containers/food/snacks/snowcones)
 
