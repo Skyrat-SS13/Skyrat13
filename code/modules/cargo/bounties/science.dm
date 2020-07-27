@@ -44,66 +44,66 @@
 /datum/bounty/item/science/diamond_drill
 	name = "Diamond Mining Drill"
 	description = "Our contractors in Post 074 had a shortcircuit explosion in the gear room, we'll pay you big in exchange for one diamond mining drill." //Skyrat edit
-	reward = 8000
+	reward = 8000 //Skyrat edit
 	wanted_types = list(/obj/item/pickaxe/drill/diamonddrill, /obj/item/mecha_parts/mecha_equipment/drill/diamonddrill)
 
 /datum/bounty/item/science/floor_buffer
 	name = "Floor Buffer Upgrade"
 	description = "One of CentCom's janitors made a small fortune betting on carp races. Now they'd like to commission an upgrade to their floor buffer."
-	reward = 5500
+	reward = 5500 //Skyrat edit
 	wanted_types = list(/obj/item/janiupgrade)
 
 /datum/bounty/item/science/advanced_mop
 	name = "Advanced Mop"
 	description = "Excuse me. I'd like to request 17 cr for a push broom rebristling. Either that, or an advanced mop."
-	reward = 5500
+	reward = 5500 //Skyrat edit
 	wanted_types = list(/obj/item/mop/advanced)
 
 /datum/bounty/item/science/advanced_egun
 	name = "Advanced Energy Gun"
 	description = "With the price of rechargers on the rise, upper management is interested in purchasing guns that are self-powered. If you ship one, they'll pay."
-	reward = 12000
+	reward = 12000 //Skyrat edit
 	wanted_types = list(/obj/item/gun/energy/e_gun/nuclear)
 
 /datum/bounty/item/science/bscells
 	name = "Bluespace Power Cells"
 	description = "Someone in upper management keeps using the excuse that his tablet battery dies when he's in the middle of work. This will be the last time he doesn't have his presentation, I swear to -"
-	reward = 4500
+	reward = 4500 //Skyrat edit
 	required_count = 10 //Easy to make
 	wanted_types = list(/obj/item/stock_parts/cell/bluespace)
 
 /datum/bounty/item/science/t4manip
 	name = "Femto-Manipulators"
 	description = "One of our Chief Engineers has OCD. Can you send us some femto-manipulators so he stops complaining that his ID doesn't fit perfectly in the PDA slot?"
-	reward = 2500
+	reward = 2500 //Skyrat edit
 	required_count = 20 //Easy to make
 	wanted_types = list(/obj/item/stock_parts/manipulator/femto)
 
 /datum/bounty/item/science/t4bins
 	name = "Bluespace Matter Bins"
 	description = "The local Janitorial union has gone on strike. Can you send us some bluespace bins so we don't have to take out our own trash?"
-	reward = 2500
+	reward = 2500 //Skyrat edit
 	required_count = 20 //Easy to make
 	wanted_types = list(/obj/item/stock_parts/matter_bin/bluespace)
 
 /datum/bounty/item/science/t4capacitor
 	name = "Quadratic Capacitor"
 	description = "One of our linguists doesn't understand why they're called Quadratic capacitors. Can you give him a few so he leaves us alone about it?"
-	reward = 2000
+	reward = 2000 //Skyrat edit
 	required_count = 20 //Easy to make
 	wanted_types = list(/obj/item/stock_parts/capacitor/quadratic)
 
 /datum/bounty/item/science/t4triphasic
 	name = "Triphasic Scanning Module"
 	description = "One of our scientists got into the liberty caps and is demanding new scanning modules so he can talk to ghosts. At this point we just want him out of our office."
-	reward = 2500
+	reward = 2500 //Skyrat edit
 	required_count = 20 //Easy to make
 	wanted_types = list(/obj/item/stock_parts/scanning_module/triphasic)
 
 /datum/bounty/item/science/t4microlaser
 	name = "Quad-Ultra Micro-Laser"
 	description = "The cats on Vega 9 are breeding out of control. We need something to corral them into one area so we can saturation bomb it."
-	reward = 2500
+	reward = 2500 //Skyrat edit
 	required_count = 20 //Easy to make
 	wanted_types = list(/obj/item/stock_parts/micro_laser/quadultra)
 
@@ -120,7 +120,7 @@
 /datum/bounty/item/science/noneactive_reactivearmor
 	name = "Reactive Armor Shells"
 	description = "Due to the breakthroughs in anomalies, we can not keep up in making reactive armor shells, can you send us a few?"
-	reward = 5000
+	reward = 5000 //Skyrat edit
 	required_count = 5
 	wanted_types = list(/obj/item/reactive_armour_shell, /obj/item/clothing/suit/armor/reactive)
 	exclude_types = list(/obj/item/clothing/suit/armor/reactive/repulse,
@@ -132,14 +132,14 @@
 /datum/bounty/item/science/anomaly_core
 	name = "Anomaly Core"
 	description = "A new theory has begun that each sector of space has different anomalies, this all started when a local station tried to make a fire based reactive suit and failed making a stealth version, please send us a core so we may study it more."
-	reward = 5500
+	reward = 5500 //Skyrat edit
 	required_count = 1
 	wanted_types = list(/obj/item/assembly/signaler/anomaly)
 
 /datum/bounty/item/science/anomaly_neutralizer
 	name = "Anomaly Neutralizers"
 	description = "An idea for a long time was to use an unstable Supermatter Shard to help create the breeding grounds for an unstable part of space to harvest any anomalies we want. It worked a little too well and now we're out of anomaly neutralizers, please send us a baker's dozen."
-	reward = 5000
+	reward = 5000 //Skyrat edit
 	required_count = 13
 	wanted_types = list(/obj/item/anomaly_neutralizer)
 
