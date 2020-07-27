@@ -8,52 +8,52 @@
 	include_subtypes = TRUE
 
 /datum/export/food/meat
-	cost = 21
-	unit_name = "raw animal protein"
+	cost = 21  //Skyrat edit
+	unit_name = "raw animal protein" //Skyrat edit
 	export_types = list(/obj/item/reagent_containers/food/snacks/meat/slab)
 
 /datum/export/food/raw_cutlets
-	cost = 7
-	unit_name = "raw prepared animal protein"
+	cost = 7 //Skyrat edit
+	unit_name = "raw prepared animal protein" //Skyrat edit
 	export_types = list(/obj/item/reagent_containers/food/snacks/meat/rawcutlet)
 
 /datum/export/food/cooked_cutlets
-	cost = 14
-	unit_name = "cooked prepared animal protein"
+	cost = 14 //Skyrat edit
+	unit_name = "cooked prepared animal protein" //Skyrat edit
 	export_types = list(/obj/item/reagent_containers/food/snacks/meat/cutlet)
 
 /datum/export/food/cooked_meat
-	cost = 42
-	unit_name = "cooked animal protein"
+	cost = 42 //Skyrat edit
+	unit_name = "cooked animal protein" //Skyrat edit
 	export_types = list(/obj/item/reagent_containers/food/snacks/meat/steak)
 
 /datum/export/food/dough
-	cost = 9
-	unit_name = "food base"
+	cost = 9 //Skyrat edit
+	unit_name = "food base" //Skyrat edit
 	export_types = list(/obj/item/reagent_containers/food/snacks/dough, /obj/item/reagent_containers/food/snacks/flatdough)
 
 /datum/export/food/cooked_dough
-	cost = 15
+	cost = 15 //Skyrat edit
 	unit_name = "cooked food base"
 	export_types = list(/obj/item/reagent_containers/food/snacks/pizzabread)
 
 /datum/export/food/buns
-	cost = 15
+	cost = 15 //Skyrat edit
 	unit_name = "cooked food base"
 	export_types = list(/obj/item/reagent_containers/food/snacks/bun)
 
 /datum/export/food/buns
-	cost = 15
+	cost = 15 //Skyrat edit
 	unit_name = "cooked food base"
 	export_types = list(/obj/item/reagent_containers/food/snacks/bun)
 
 /datum/export/food/eggs
-	cost = 21
+	cost = 21 //Skyrat edit
 	unit_name = "prepared egg protein"
 	export_types = list(/obj/item/reagent_containers/food/snacks/friedegg)
 
 /datum/export/food/eggs_food
-	cost = 35
+	cost = 35 //Skyrat edit
 	unit_name = "prepared egg dish"
 	export_types = list(/obj/item/reagent_containers/food/snacks/omelette, /obj/item/reagent_containers/food/snacks/benedict, /obj/item/reagent_containers/food/snacks/salad/eggbowl)
 
@@ -148,17 +148,17 @@
 						/obj/item/reagent_containers/food/snacks/meatballspaghetti, /obj/item/reagent_containers/food/snacks/spesslaw, /obj/item/reagent_containers/food/snacks/chowmein, /obj/item/reagent_containers/food/snacks/beefnoodle, /obj/item/reagent_containers/food/snacks/butternoodles)
 
 /datum/export/food/pizza
-	cost = 720
+	cost = 720 //Skyrat edit
 	unit_name = "pizza"
 	export_types = list(/obj/item/reagent_containers/food/snacks/pizza)
 
 /datum/export/food/sliced_pizza
-	cost = 72
+	cost = 72 //Skyrat edit
 	unit_name = "pizza slice"
 	export_types = list(/obj/item/reagent_containers/food/snacks/pizzaslice)
 
 /datum/export/food/snowcone
-	cost = 10
+	cost = 10 //Skyrat edit
 	unit_name = "snowcone"
 	export_types = list(/obj/item/reagent_containers/food/snacks/snowcones)
 
