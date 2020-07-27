@@ -678,7 +678,7 @@ BODY_SIZE_MAX 1
 ## Pun-Pun movement slowdown given to characters with a body size smaller than this value,
 ## to compensate for their smaller hitbox.
 ## To disable, just make sure the value is lower than 'body_size_min'
-THRESHOLD_BODY_SIZE_SLOWDOWN 1
+THRESHOLD_BODY_SIZE_SLOWDOWN 0.99
 
 ## Multiplier used in the smaller strides slowdown calculation.
 ## Doesn't apply to floating or crawling mobs.
