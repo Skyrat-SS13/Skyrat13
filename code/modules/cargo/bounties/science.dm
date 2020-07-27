@@ -1,49 +1,49 @@
 /datum/bounty/item/science/boh
 	name = "Bag of Holding"
-	description = "Nanotrasen would make good use of high-capacity backpacks. If you have any, please ship them."
-	reward = 8000
+	description = "Our buyers would make good use of high-capacity backpacks. If you have any, please ship them." //Skyrat edit
+	reward = 8000 //Skyrat edit
 	wanted_types = list(/obj/item/storage/backpack/holding)
 
 /datum/bounty/item/science/tboh
 	name = "Trash Bag of Holding"
-	description = "Nanotrasen would make good use of high-capacity trash bags. If you have any, please ship them."
-	reward = 6000
+	description = "Our buyers would make good use of high-capacity trash bags. If you have any, please ship them." //Skyrat edit
+	reward = 6000 //Skyrat edit
 	wanted_types = list(/obj/item/storage/backpack/holding)
 
 /datum/bounty/item/science/bluespace_syringe
 	name = "Bluespace Syringe"
-	description = "Nanotrasen would make good use of high-capacity syringes. If you have any, please ship them."
-	reward = 2500
+	description = "Our buyers would make good use of high-capacity syringes. If you have any, please ship them." //Skyrat edit
+	reward = 2500 //Skyrat edit
 	wanted_types = list(/obj/item/reagent_containers/syringe/bluespace)
 
 /datum/bounty/item/science/bluespace_body_bag
 	name = "Bluespace Body Bag"
-	description = "Nanotrasen would make good use of high-capacity body bags. If you have any, please ship them."
-	reward = 6000
+	description = "The FTU's security forces have repelled a mercenary attack, and we need a bluespace body bag. Pronto." //Skyrat edit
+	reward = 6000 //Skyrat edit
 	wanted_types = list(/obj/item/bodybag/bluespace)
 
 /datum/bounty/item/science/nightvision_goggles
 	name = "Night Vision Goggles"
 	description = "An electrical storm has busted all the lights at CentCom. While management is waiting for replacements, perhaps some night vision goggles can be shipped?"
-	reward = 2500
+	reward = 2500 //Skyrat edit
 	wanted_types = list(/obj/item/clothing/glasses/night, /obj/item/clothing/glasses/meson/night, /obj/item/clothing/glasses/hud/health/night, /obj/item/clothing/glasses/hud/security/night, /obj/item/clothing/glasses/hud/diagnostic/night)
 
 /datum/bounty/item/science/experimental_welding_tool
 	name = "Experimental Welding Tool"
 	description = "A recent accident has left most of CentCom's welding tools exploded. Ship replacements to be rewarded."
-	reward = 8000
+	reward = 8000 //Skyrat edit
 	required_count = 3
 	wanted_types = list(/obj/item/weldingtool/experimental)
 
 /datum/bounty/item/science/cryostasis_beaker
 	name = "Cryostasis Beaker"
 	description = "Chemists at Central Command have discovered a new chemical that can only be held in cryostasis beakers. The only problem is they don't have any! Rectify this to receive payment."
-	reward = 2000
+	reward = 2000 //Skyrat edit
 	wanted_types = list(/obj/item/reagent_containers/glass/beaker/noreact)
 
 /datum/bounty/item/science/diamond_drill
 	name = "Diamond Mining Drill"
-	description = "Central Command is willing to pay three months salary in exchange for one diamond mining drill."
+	description = "Our contractors in Post 074 had a shortcircuit explosion in the gear room, we'll pay you big in exchange for one diamond mining drill." //Skyrat edit
 	reward = 8000
 	wanted_types = list(/obj/item/pickaxe/drill/diamonddrill, /obj/item/mecha_parts/mecha_equipment/drill/diamonddrill)
 
@@ -109,7 +109,7 @@
 
 /datum/bounty/item/science/fakecrystals
 	name = "Synthetic Bluespace Crystals"
-	description = "Don't, uh, tell anyone, but one of our BSA arrays might have had a little... accident. Send us some bluespace crystals so we can recalibrate it before anyone realizes. The whole set uses artificial bluespace crystals, so we need and not any other type of bluespace crystals..."
+	description = "Don't, uh, tell anyone, but one of CC's BSA arrays might have had a little... accident. Send us some bluespace crystals so we can help them recalibrate it before anyone realizes. The whole set uses artificial bluespace crystals, so make sure they're printed." //Skyrat edit
 	reward = 8000
 	required_count = 5
 	wanted_types = list(/obj/item/stack/ore/bluespace_crystal/artificial)
