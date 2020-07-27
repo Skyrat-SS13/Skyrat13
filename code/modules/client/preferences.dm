@@ -970,7 +970,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							if(T.taur_mode & P.accepted_taurs)
 								tauric_shape = TRUE
 					dat += "<b>Penis Shape:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_shape;task=input'>[features["cock_shape"]][tauric_shape ? " (Taur)" : ""]</a>"
-					dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[features["cock_length"]] inch(es)</a>"
+					dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[IN2CM(features["cock_length"])]cm</a>" //new era -- fuck the imperial system
 					dat += "<b>Penis Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=cock_visibility;task=input'>[features["cock_visibility"]]</a>"
 					dat += "<b>Has Testicles:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=has_balls'>[features["has_balls"] == TRUE ? "Yes" : "No"]</a>"
 					if(features["has_balls"])
@@ -2545,9 +2545,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("cock_length")
 					var/min_D = CONFIG_GET(number/penis_min_inches_prefs)
 					var/max_D = CONFIG_GET(number/penis_max_inches_prefs)
-					var/new_length = input(user, "Penis length in inches:\n([min_D]-[max_D])", "Character Preference") as num|null
+					var/new_length = input(user, "Penis length in centimeters:\n([min_D]-[max_D])", "Character Preference") as num|null //new era -- fuck the imperial system
 					if(new_length)
-						features["cock_length"] = clamp(round(new_length), min_D, max_D)
+						features["cock_length"] = clamp(round(CM2IN(new_length)), min_D, max_D) //new era end
 
 				if("cock_shape")
 					var/new_shape

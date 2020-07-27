@@ -299,7 +299,7 @@ GENETICS SCANNER
 			else if(istype(O, /obj/item/organ/genital/penis))
 				var/obj/item/organ/genital/penis/P = O
 				if(P.length>20)
-					temp_message += " <span class='info'>Subject has a sizeable gentleman's organ at [P.length] inches.</span>"
+					temp_message += " <span class='info'>Subject has a sizeable gentleman's organ at [IN2CM(P.length)]cm.</span>" //new era -- fuck the imperial system
 
 			else if(istype(O, /obj/item/organ/genital/breasts))
 				var/obj/item/organ/genital/breasts/Br = O
