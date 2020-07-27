@@ -167,6 +167,6 @@ datum/bounty/reagent/chemical/New()
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
-	description = "SolFed is in shortage of [name], can you send us some so that we may sell it to them? You can have a 40% cut."
+	description = "SolFed is in shortage of [name], can you send us some so that we may sell it to them? You can have a 40% cut." //Skyrat edit
 	reward += rand(0, 4) * 500
 
