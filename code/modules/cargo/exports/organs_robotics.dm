@@ -166,9 +166,9 @@
 						/obj/item/mecha_parts/mecha_equipment/drill, /obj/item/mecha_parts/mecha_equipment/mining_scanner, /obj/item/mecha_parts/mecha_equipment/medical/sleeper)
 
 /datum/export/robotics/mech_blue_space
-	cost = 950
+	cost = 950 //Skyrat edit
 	k_elasticity = 1/10
-	unit_name = "mech teleportation tech"
+	unit_name = "mech teleportation tech" //Skyrat edit
 	export_types = list(/obj/item/mecha_parts/mecha_equipment/teleporter, /obj/item/mecha_parts/mecha_equipment/wormhole_generator, /obj/item/mecha_parts/mecha_equipment/gravcatapult)
 
 /datum/export/robotics/mech_reactors
