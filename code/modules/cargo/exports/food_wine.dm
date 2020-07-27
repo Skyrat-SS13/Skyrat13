@@ -59,7 +59,7 @@
 
 /datum/export/food/sweets
 	cost = 4
-	unit_name = "pastry base"
+	unit_name = "pastry base" //Skyrat edit
 	export_types = list(/obj/item/reagent_containers/food/snacks/rawpastrybase, /obj/item/reagent_containers/food/snacks/pastrybase)
 
 /datum/export/food/cake_pie_raw
