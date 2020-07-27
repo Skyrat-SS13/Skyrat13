@@ -33,7 +33,7 @@
 
 /datum/bounty/reagent/simple_drink
 	name = "Simple Drink"
-	reward = 2500
+	reward = 2500 //Skyrat edit
 
 datum/bounty/reagent/simple_drink/New()
 	// Don't worry about making this comprehensive. It doesn't matter if some drinks are skipped.
@@ -84,12 +84,12 @@ datum/bounty/reagent/simple_drink/New()
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
-	description = "CentCom is thirsty! Send a shipment of [name] to CentCom to quench the company's thirst."
+	description = "Our miners at installation 025 are demanding [name] for their hard work. Send us some, will you?" //Skyrat edit
 	reward += rand(0, 2) * 500
 
 /datum/bounty/reagent/complex_drink
 	name = "Complex Drink"
-	reward = 4500
+	reward = 4500 //Skyrat edit
 
 datum/bounty/reagent/complex_drink/New()
 	// Don't worry about making this comprehensive. It doesn't matter if some drinks are skipped.
@@ -116,7 +116,7 @@ datum/bounty/reagent/complex_drink/New()
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
-	description = "CentCom is offering a reward for talented mixologists. Ship a container of [name] to claim the prize."
+	description = "The FTU is going to discuss important matters with Lopland, we need a talented barman to get their commander a drink. We've heard they like [name] best." //Skyrat edit
 	reward += rand(0, 4) * 300
 
 /datum/bounty/reagent/chemical
@@ -167,6 +167,6 @@ datum/bounty/reagent/chemical/New()
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
-	description = "CentCom is in desperate need of the chemical [name]. Ship a container of it to be rewarded."
+	description = "SolFed is in shortage of [name], can you send us some so that we may sell it to them? You can have a 40% cut."
 	reward += rand(0, 4) * 500
 
