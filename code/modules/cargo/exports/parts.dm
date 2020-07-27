@@ -44,22 +44,22 @@
 	include_subtypes = TRUE
 
 /datum/export/t1
-	cost = 1
+	cost = 10
 	unit_name = "basic stock part"
 	export_types = list(/obj/item/stock_parts/capacitor, /obj/item/stock_parts/scanning_module, /obj/item/stock_parts/manipulator, /obj/item/stock_parts/micro_laser, /obj/item/stock_parts/matter_bin)
 
 /datum/export/t2
-	cost = 2
+	cost = 20
 	unit_name = "upgraded stock part"
 	export_types = list(/obj/item/stock_parts/capacitor/adv, /obj/item/stock_parts/scanning_module/adv, /obj/item/stock_parts/manipulator/nano, /obj/item/stock_parts/micro_laser/high, /obj/item/stock_parts/matter_bin/adv)
 
 /datum/export/t3
-	cost = 3
+	cost = 30
 	unit_name = "advanced stock part"
 	export_types = list(/obj/item/stock_parts/capacitor/super, /obj/item/stock_parts/scanning_module/phasic, /obj/item/stock_parts/manipulator/pico, /obj/item/stock_parts/micro_laser/ultra, /obj/item/stock_parts/matter_bin/super)
 
 /datum/export/t4
-	cost = 4
+	cost = 50
 	unit_name = "blue space stock part"
 	export_types = list(/obj/item/stock_parts/capacitor/quadratic, /obj/item/stock_parts/scanning_module/triphasic, /obj/item/stock_parts/manipulator/femto, /obj/item/stock_parts/micro_laser/quadultra, /obj/item/stock_parts/matter_bin/bluespace)
 
@@ -87,17 +87,17 @@
 	export_types = list(/obj/item/stock_parts/cell/super, /obj/item/stock_parts/cell/hyper)
 
 /datum/export/cellbs
-	cost = 25
+	cost = 200
 	unit_name = "bluespace power cell"
 	export_types = list(/obj/item/stock_parts/cell/bluespace)
 
 /datum/export/cellyellow
-	cost = 200
+	cost = 400
 	unit_name = "slime power cell"
 	export_types = list(/obj/item/stock_parts/cell/high/slime)
 
 /datum/export/cellyellowhyper
-	cost = 1200 //Takes a lot to make and is really good
+	cost = 1800 //Takes a lot to make and is really good
 	unit_name = "hyper slime power cell"
 	export_types = list(/obj/item/stock_parts/cell/high/slime/hypercharged)
 
