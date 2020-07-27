@@ -271,7 +271,7 @@
 	name = "double-barreled shotgun"
 	desc = "A true classic."
 	icon_state = "dshotgun"
-	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'  //Skyrat edit start
 	righthand_file = 'icons/mob/inhands/weapons/64x_guns_right.dmi'
 	item_state = "shotgun_db"
 	inhand_x_dimension = 64
@@ -290,7 +290,7 @@
 						"Faded Grey" = "dshotgun_g",
 						"Maple" = "dshotgun_l",
 						"Rosewood" = "dshotgun_p"
-						)
+						)                                                 //Skyrat edit end
 
 /obj/item/gun/ballistic/revolver/doublebarrel/attackby(obj/item/A, mob/user, params)
 	..()
