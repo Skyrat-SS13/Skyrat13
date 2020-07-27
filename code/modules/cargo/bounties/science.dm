@@ -146,14 +146,14 @@
 /datum/bounty/item/science/integrated_circuit_printer
 	name = "Integrated Circuit Printer"
 	description = "Due to a paperwork error, a newly made integrated circuit manufacturer line is missing three of its printers needed to operate. Until the paper work is corrected we are outsourcing this problem, so please send us three integrated circuit printers."
-	reward = 2500
+	reward = 2500 //Skyrat edit
 	required_count = 3
 	wanted_types = list(/obj/item/integrated_circuit_printer)
 
 /datum/bounty/item/science/integrated_circuit_disks
 	name = "Integrated Circuit Printer Upgrade Disks"
 	description = "HR has requested ten more integrated circuit printer upgrade disks, please send them to CC as soon as possible."
-	reward = 2000
+	reward = 2000 
 	required_count = 10 //Its just metal
 	wanted_types = list(/obj/item/disk/integrated_circuit/upgrade)
 
