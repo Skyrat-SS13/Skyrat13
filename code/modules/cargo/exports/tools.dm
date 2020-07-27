@@ -68,13 +68,13 @@
 
 // Basic tools
 /datum/export/tool/basicmining
-	cost = 30
+	cost = 50
 	unit_name = "basic mining tool"
 	export_types = list(/obj/item/pickaxe, /obj/item/pickaxe/mini, /obj/item/shovel, /obj/item/resonator)
 	include_subtypes = FALSE
 
 /datum/export/tool/upgradedmining
-	cost = 80
+	cost = 125
 	unit_name = "mining tool"
 	export_types = list(/obj/item/pickaxe/silver, /obj/item/pickaxe/drill, /obj/item/gun/energy/plasmacutter, /obj/item/resonator/upgraded)
 	include_subtypes = FALSE
