@@ -11,12 +11,16 @@
 	mutanttongue = /obj/item/organ/tongue/robot
 	species_language_holder = /datum/language_holder/synthetic
 	limbs_id = "synth"
+<<<<<<< HEAD
 	//SKYRAT CHANGE - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
 	exotic_bloodtype = "SY"
 	exotic_blood_color = BLOOD_COLOR_SYNTHETIC
 	rainbowblood = TRUE
 	//
+=======
+	species_type = "robotic"
+>>>>>>> 20d9c74f9f... Merge pull request #12876 from timothyteakettle/species-are-dumb
 
 /datum/species/android/on_species_gain(mob/living/carbon/C)
 	. = ..()

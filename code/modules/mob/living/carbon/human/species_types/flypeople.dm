@@ -12,11 +12,15 @@
 	liked_food = GROSS
 	exotic_bloodtype = "BUG"
 	exotic_blood_color = BLOOD_COLOR_BUG
+<<<<<<< HEAD
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "BUG")
 	exotic_bloodtype = "BUG"
 	rainbowblood = TRUE
 	//
+=======
+	species_type = "insect"
+>>>>>>> 20d9c74f9f... Merge pull request #12876 from timothyteakettle/species-are-dumb
 
 /datum/species/fly/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(istype(chem, /datum/reagent/toxin/pestkiller))

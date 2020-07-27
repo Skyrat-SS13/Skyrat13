@@ -22,6 +22,7 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 	exotic_blood_color = BLOOD_COLOR_ALCOHOL
 	//
 	species_language_holder = /datum/language_holder/dwarf
+	species_type = "human" //a kind of human
 
 /mob/living/carbon/human/species/dwarf //species admin spawn path
 	race = /datum/species/dwarf //and the race the path is set to.

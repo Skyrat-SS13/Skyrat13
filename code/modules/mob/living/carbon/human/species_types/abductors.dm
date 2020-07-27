@@ -6,11 +6,15 @@
 	species_traits = list(NOBLOOD,NOEYES,NOGENITALS,NOAROUSAL)
 	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_CHUNKYFINGERS,TRAIT_NOHUNGER,TRAIT_NOBREATH)
 	mutanttongue = /obj/item/organ/tongue/abductor
+<<<<<<< HEAD
 	//SKYRAT CHANGE - blood
 	exotic_bloodtype = "GREY"
 	exotic_blood_color = BLOOD_COLOR_GREY
 	rainbowblood = TRUE
 	//
+=======
+	species_type = "alien"
+>>>>>>> 20d9c74f9f... Merge pull request #12876 from timothyteakettle/species-are-dumb
 
 /datum/species/abductor/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()

@@ -25,6 +25,7 @@
 	exotic_blood_color = BLOOD_COLOR_SYNTHETIC
 	//
 	species_language_holder = /datum/language_holder/synthetic
+	species_type = "robotic"
 
 /datum/species/synth/military
 	name = "Military Synth"
@@ -50,7 +51,6 @@
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 		return TRUE
 	return ..()
-
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H)
 	if(S && !istype(S, type))

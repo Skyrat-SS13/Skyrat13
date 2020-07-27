@@ -15,11 +15,15 @@
 	var/static/list/spooks = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
 	disliked_food = NONE
 	liked_food = GROSS | MEAT | RAW
+<<<<<<< HEAD
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
 	exotic_bloodtype = "BHZ"
 	exotic_blood_color = BLOOD_COLOR_BIOHAZARD
 	//
+=======
+	species_type = "undead"
+>>>>>>> 20d9c74f9f... Merge pull request #12876 from timothyteakettle/species-are-dumb
 
 /datum/species/zombie/notspaceproof
 	id = "notspaceproofzombie"

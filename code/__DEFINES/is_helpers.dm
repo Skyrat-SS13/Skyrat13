@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isluminescent(A) (is_species(A, /datum/species/jelly/luminescent))
 #define iszombie(A) (is_species(A, /datum/species/zombie))
 #define ishumanbasic(A) (is_species(A, /datum/species/human))
-#define iscatperson(A) (ishumanbasic(A) && istype(A.dna.species, /datum/species/human/felinid) )
+#define iscatperson(A) (ishumanbasic(A) && istype(A.dna.species, /datum/species/human/felinid))
 #define isdwarf(A) (is_species(A, /datum/species/dwarf))
 #define isdullahan(A) (is_species(A, /datum/species/dullahan))
 #define isangel(A) (is_species(A, /datum/species/angel))
@@ -78,6 +78,10 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 // Citadel specific species
 #define isipcperson(A) (is_species(A, /datum/species/ipc))
 #define issynthliz(A) (is_species(A, /datum/species/synthliz))
+<<<<<<< HEAD
+=======
+#define ismammal(A) (is_species(A, /datum/species/mammal))
+>>>>>>> 20d9c74f9f... Merge pull request #12876 from timothyteakettle/species-are-dumb
 #define isinsect(A) (is_species(A, /datum/species/insect))
 #define isxenoperson(A) (is_species(A, /datum/species/xeno))
 #define isstartjelly(A) (is_species(A, /datum/species/jelly/roundstartslime))

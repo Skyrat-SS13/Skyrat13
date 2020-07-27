@@ -18,6 +18,7 @@
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
 	//
 
+<<<<<<< HEAD
 //Curiosity killed the cat's wagging tail.
 /datum/species/mammal/spec_death(gibbed, mob/living/carbon/human/H)
 	if(H)
@@ -82,3 +83,8 @@
 
 /mob/living/carbon/human/vore
 	vore_flags = DEVOURABLE | DIGESTABLE | FEEDING
+=======
+	tail_type = "mam_tail"
+	wagging_type = "mam_waggingtail"
+	species_type = "furry"
+>>>>>>> 20d9c74f9f... Merge pull request #12876 from timothyteakettle/species-are-dumb
