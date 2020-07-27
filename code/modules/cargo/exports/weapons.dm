@@ -4,69 +4,69 @@
 	include_subtypes = FALSE
 
 /datum/export/weapon/makeshift_shield
-	cost = 250
+	cost = 250 //Skyrat edit
 	unit_name = "unknown shield"
 	export_types = list(/obj/item/shield/riot, /obj/item/shield/riot/roman, /obj/item/shield/riot/buckler, /obj/item/shield/makeshift)
 
 /datum/export/weapon/riot_shield
-	cost = 250
+	cost = 250 //Skyrat edit
 	unit_name = "riot shield"
 	export_types = list(/obj/item/shield/riot, /obj/item/shield/riot/tower)
 
 /datum/export/weapon/riot_shield
-	cost = 350
+	cost = 350 //Skyrat edit
 	unit_name = "flash shield"
 	export_types = list(/obj/item/assembly/flash/shield)
 
 /datum/export/weapon/tele_shield
-	cost = 650
+	cost = 650 //Skyrat edit
 	unit_name = "tele shield"
 	export_types = list(/obj/item/shield/riot/tele, /obj/item/shield/energy)
 
 /datum/export/weapon/baton
-	cost = 850
+	cost = 850 //Skyrat edit
 	unit_name = "stun baton"
 	export_types = list(/obj/item/melee/baton)
 	exclude_types = list(/obj/item/melee/baton/cattleprod)
 	include_subtypes = TRUE
 
 /datum/export/weapon/knife
-	cost = 950
+	cost = 950 //Skyrat edit
 	unit_name = "combat knife"
 	export_types = list(/obj/item/kitchen/knife/combat)
 
 /datum/export/weapon/taser
-	cost = 500
+	cost = 500 //Skyrat edit
 	unit_name = "advanced taser"
 	export_types = list(/obj/item/gun/energy/e_gun/advtaser)
 
 /datum/export/weapon/laser
-	cost = 800
+	cost = 800 //Skyrat edit
 	unit_name = "laser gun"
 	export_types = list(/obj/item/gun/energy/laser)
 
 /datum/export/weapon/disabler
-	cost = 300
+	cost = 300 //Skyrat edit
 	unit_name = "disabler"
 	export_types = list(/obj/item/gun/energy/disabler)
 
 /datum/export/weapon/energy_gun
-	cost = 500
+	cost = 500 //Skyrat edit
 	unit_name = "energy gun"
 	export_types = list(/obj/item/gun/energy/e_gun)
 
 /datum/export/weapon/wt550
-	cost = 1250
+	cost = 1250 //Skyrat edit
 	unit_name = "WT-550 automatic rifle"
 	export_types = list(/obj/item/gun/ballistic/automatic/wt550)
 
 /datum/export/weapon/shotgun
-	cost = 4000
+	cost = 4000 //Skyrat edit
 	unit_name = "combat shotgun"
 	export_types = list(/obj/item/gun/ballistic/shotgun/automatic/combat)
 
 /datum/export/weapon/flashbang
-	cost = 50
+	cost = 50 
 	unit_name = "flashbang grenade"
 	export_types = list(/obj/item/grenade/flashbang)
 
@@ -76,13 +76,13 @@
 	export_types = list(/obj/item/grenade/chem_grenade/teargas)
 
 /datum/export/weapon/flash
-	cost = 10
+	cost = 10 //Skyrat edit
 	unit_name = "handheld flash"
 	export_types = list(/obj/item/assembly/flash)
 	include_subtypes = TRUE
 
 /datum/export/weapon/handcuffs
-	cost = 30
+	cost = 30 //Skyrat edit
 	unit_name = "pair"
 	message = "of handcuffs"
 	export_types = list(/obj/item/restraints/handcuffs)
@@ -92,18 +92,18 @@
 //////////////
 
 /datum/export/weapon/lasercarbine
-	cost = 500
+	cost = 500 //Skyrat edit
 	unit_name = "laser carbine"
 	export_types = list(/obj/item/gun/energy/laser/carbine)
 	include_subtypes = TRUE
 
 /datum/export/weapon/teslagun
-	cost = 900
+	cost = 900 //Skyrat edit
 	unit_name = "tesla revolver"
 	export_types = list(/obj/item/gun/energy/tesla_revolver)
 
 /datum/export/weapon/aeg
-	cost = 1000 //Endless power
+	cost = 1000 //Endless power //Skyrat edit
 	unit_name = "advance engery gun"
 	export_types = list(/obj/item/gun/energy/e_gun/nuclear)
 
@@ -113,7 +113,7 @@
 	export_types = list(/obj/item/gun/energy/decloner)
 
 /datum/export/weapon/ntsniper
-	cost = 1500
+	cost = 1500 //Skyrat edit
 	unit_name = "beam rifle"
 	export_types = list(/obj/item/gun/energy/beam_rifle)
 
@@ -145,7 +145,7 @@
 	export_types = list(/obj/item/gun/energy/ionrifle/carbine)
 
 /datum/export/weapon/largeebow
-	cost = 1500
+	cost = 1500 //Skyrat edit
 	unit_name = "crossbow"
 	export_types = list(/obj/item/gun/energy/kinetic_accelerator/crossbow/large)
 
@@ -174,12 +174,12 @@
 /////////////////
 
 /datum/export/weapon/wtammo
-	cost = 100
+	cost = 100 //Skyrat edit
 	unit_name = "WT-550 automatic rifle ammo"
 	export_types = list(/obj/item/ammo_box/magazine/wt550m9, /obj/item/ammo_box/magazine/wt550m9/wtrubber)
 
 /datum/export/weapon/wtammo/advanced
-	cost = 150
+	cost = 150 //Skyrat edit
 	unit_name = "advanced WT-550 automatic rifle ammo"
 	export_types = list( /obj/item/ammo_box/magazine/wt550m9/wtap,  /obj/item/ammo_box/magazine/wt550m9/wttx, /obj/item/ammo_box/magazine/wt550m9/wtic)
 
@@ -229,23 +229,23 @@
 /////////////////////////
 
 /datum/export/weapon/pistol
-	cost = 1250
+	cost = 1250 //Skyrat edit
 	unit_name = "illegal firearm"
 	export_types = list(/obj/item/gun/ballistic/automatic/pistol)
 
 /datum/export/weapon/revolver
-	cost = 4000
+	cost = 4000 //Skyrat edit
 	unit_name = "large handgun"
 	export_types = list(/obj/item/gun/ballistic/revolver)
 	exclude_types = list(/obj/item/gun/ballistic/revolver/russian, /obj/item/gun/ballistic/revolver/doublebarrel)
 
 /datum/export/weapon/rocketlauncher
-	cost = 8000
+	cost = 8000 //Skyrat edit
 	unit_name = "rocketlauncher"
 	export_types = list(/obj/item/gun/ballistic/rocketlauncher)
 
 /datum/export/weapon/antitank
-	cost = 2500
+	cost = 2500 //Skyrat edit
 	unit_name = "hand cannon"
 	export_types = list(/obj/item/gun/ballistic/automatic/pistol/antitank/syndicate)
 
@@ -255,12 +255,12 @@
 	export_types = list(/obj/item/pneumatic_cannon/pie/selfcharge, /obj/item/shield/energy/bananium, /obj/item/melee/transforming/energy/sword/bananium, )
 
 /datum/export/weapon/bulldog
-	cost = 4500
+	cost = 4500 //Skyrat edit
 	unit_name = "drum loaded shotgun"
 	export_types = list(/obj/item/gun/ballistic/automatic/shotgun/bulldog)
 
 /datum/export/weapon/smg
-	cost = 350
+	cost = 3500 //Skyrat edit
 	unit_name = "automatic c-20r"
 	export_types = list(/obj/item/gun/ballistic/automatic/c20r)
 
@@ -290,12 +290,12 @@
 	export_types = list(/obj/item/clothing/gloves/fingerless/pugilist/rapid)
 
 /datum/export/weapon/l6
-	cost = 5000
+	cost = 5000 //Skyrat edit
 	unit_name = "law 6 saw"
 	export_types = list(/obj/item/gun/ballistic/automatic/l6_saw)
 
 /datum/export/weapon/m90
-	cost = 4800
+	cost = 4800 //Skyrat edit
 	unit_name = "assault class weapon"
 	export_types = list(/obj/item/gun/ballistic/automatic/m90)
 
@@ -305,12 +305,12 @@
 	export_types = list(/obj/item/melee/powerfist)
 
 /datum/export/weapon/sniper
-	cost = 7500
+	cost = 7500 //Skyrat edit
 	unit_name = ".50 sniper"
 	export_types = list(/obj/item/gun/ballistic/automatic/sniper_rifle/syndicate)
 
 /datum/export/weapon/ebow
-	cost = 1600
+	cost = 1600 //Skyrat edit
 	unit_name = "mini crossbow"
 	export_types = list(/obj/item/gun/energy/kinetic_accelerator/crossbow)
 
