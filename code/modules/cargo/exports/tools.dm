@@ -68,19 +68,19 @@
 
 // Basic tools
 /datum/export/tool/basicmining
-	cost = 50
+	cost = 50 //Skyrat edit
 	unit_name = "basic mining tool"
 	export_types = list(/obj/item/pickaxe, /obj/item/pickaxe/mini, /obj/item/shovel, /obj/item/resonator)
 	include_subtypes = FALSE
 
 /datum/export/tool/upgradedmining
-	cost = 125
+	cost = 125 //Skyrat edit
 	unit_name = "mining tool"
 	export_types = list(/obj/item/pickaxe/silver, /obj/item/pickaxe/drill, /obj/item/gun/energy/plasmacutter, /obj/item/resonator/upgraded)
 	include_subtypes = FALSE
 
 /datum/export/tool/advdmining
-	cost = 150
+	cost = 150 //Skyrat edit
 	unit_name = "advanced mining tool"
 	export_types = list(/obj/item/pickaxe/diamond, /obj/item/pickaxe/drill/diamonddrill, /obj/item/pickaxe/drill/jackhammer, /obj/item/gun/energy/plasmacutter/adv)
 	include_subtypes = FALSE
