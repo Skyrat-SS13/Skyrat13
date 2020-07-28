@@ -192,7 +192,7 @@
 	result =  /obj/item/gun/ballistic/bow/pipe
 	reqs = list(/obj/item/pipe = 5,
 	/obj/item/stack/sheet/plastic = 15,
-	/obj/item/weaponcrafting/string = 5)
+	/obj/item/weaponcrafting/durathread_string = 5)
 	time = 150
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
