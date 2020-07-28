@@ -18,14 +18,6 @@
 		to_chat(src, "<span class='warning'>The blood soaks through your bandage.</span>")
 
 
-/mob/living/carbon/monkey/handle_blood()
-	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_NOCLONE))) //cryosleep or husked people do not pump the blood.
-		//Blood regeneration if there is some space
-		if(blood_volume < (BLOOD_VOLUME_NORMAL * blood_ratio))
-			blood_volume += 0.1 // regenerate blood VERY slowly
-			if(blood_volume < (BLOOD_VOLUME_OKAY * blood_ratio))
-				adjustOxyLoss(round(((BLOOD_VOLUME_NORMAL * blood_ratio) - blood_volume) * 0.02, 1))
-
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
 
@@ -33,6 +25,7 @@
 		bleed_rate = 0
 		return
 
+<<<<<<< HEAD
 	if(bleed_rate < 0)
 		bleed_rate = 0
 
@@ -40,6 +33,12 @@
 		return
 
 	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_NOCLONE))) //cryosleep or husked people do not pump the blood.
+=======
+	if(HAS_TRAIT(src, TRAIT_NOMARROW)) //Bloodsuckers don't need to be here.
+		return
+
+	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
+>>>>>>> ab67ae3291... Merge pull request #12951 from timothyteakettle/haha-yes-blood
 
 		//Blood regeneration if there is some space
 		if(blood_volume < (BLOOD_VOLUME_NORMAL * blood_ratio) && !HAS_TRAIT(src, TRAIT_NOHUNGER))
