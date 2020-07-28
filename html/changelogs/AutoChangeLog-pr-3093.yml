@@ -1,6 +1,0 @@
-author: "Owai-Seek"
-delete-after: True
-changes: 
-  - rscadd: "Individual Oxygen, Plasma, and Nitrogen Tanks can be ordered at cargo."
-  - rscadd: "Medical Kit, Anesthetic, and Medipen Crates can be ordered at cargo."
-  - rscadd: "Individual packs of hand mirrors and crayons can be ordered at cargo."
