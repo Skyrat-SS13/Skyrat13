@@ -3640,6 +3640,7 @@
 #include "modular_skyrat\code\game\modular_icons\objects\structures\door_assembly\_windoor_assembly.dm"
 #include "modular_skyrat\code\game\modular_icons\objects\structures\door_assembly\door_assembly_types.dm"
 #include "modular_skyrat\code\game\modular_icons\stupidity\stupid.dm"
+#include "modular_skyrat\code\game\modular_icons\turfs\closed.dm"
 #include "modular_skyrat\code\game\modular_icons\turfs\simulated\walls.dm"
 #include "modular_skyrat\code\game\modular_icons\turfs\simulated\floor\fancy_floor.dm"
 #include "modular_skyrat\code\game\modular_icons\turfs\simulated\floor\mineral_floor.dm"
