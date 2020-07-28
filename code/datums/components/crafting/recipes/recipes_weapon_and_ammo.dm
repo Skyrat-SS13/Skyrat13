@@ -190,8 +190,7 @@
 /datum/crafting_recipe/pipebow
 	name = "Pipe Bow"
 	result =  /obj/item/gun/ballistic/bow/pipe
-	reqs = list(/obj/item/pipe = 5,
-	/obj/item/stack/sheet/plastic = 15,
+	reqs = list(/obj/item/pipe = 3, //removed the requirement for plastic, 3 pipes instead of 5 - skyrat edit
 	/obj/item/weaponcrafting/durathread_string = 5)
 	time = 150
 	category = CAT_WEAPONRY
