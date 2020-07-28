@@ -27,20 +27,20 @@
 
 /obj/item/weaponcrafting/improvised_parts/rifle_receiver
 	name = "rifle receiver"
-	desc = "A crudely constructed receiver to create an improvised bolt-action breechloaded rifle."  // removed some text implying that the item had more uses than it does
+	desc = "A crudely constructed receiver to create an improvised bolt-action breechloaded rifle. Could probably still be used to create some other weapons."
 	icon_state = "receiver_rifle"
 	w_class = WEIGHT_CLASS_SMALL
 
 
 /obj/item/weaponcrafting/improvised_parts/shotgun_receiver
-	name = "shotgun reciever"
-	desc = "An improvised receiver to create a break-action breechloaded shotgun."  // removed some text implying that the item had more uses than it does
+	name = "shotgun receiver"
+	desc = "An improvised receiver to create a break-action breechloaded shotgun. Could probably still be used to create some other weapons."
 	icon_state = "receiver_shotgun"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/weaponcrafting/improvised_parts/pistol_receiver	
 	name = "pistol receiver"	
-	desc = "A receiver to connect house and connects all the parts to make an improvised pistol."	
+	desc = "A receiver to connect house and connects all the parts to make an improvised pistol. Could probably still be used to create some other weapons."	
 	icon_state = "receiver_pistol"	
 	w_class = WEIGHT_CLASS_SMALL	
 
@@ -50,7 +50,6 @@
 	icon_state = "laser_assembly"
 
 // MISC
-
 /obj/item/weaponcrafting/improvised_parts/trigger_assembly
 	name = "firearm trigger assembly"
 	desc = "A modular trigger assembly with a firing pin, this can be used to make a whole bunch of improvised firearss."
@@ -66,17 +65,17 @@
 
 /obj/item/weaponcrafting/improvised_parts/barrel_rifle	
 	name = "rifle barrel"	
-	desc = "A pipe with a diameter just the right size to fire 7.62 rounds out of."	
+	desc = "A pipe with a diameter just the right size to fire 7.62 rounds out of. Could probably still be used to create some other weapons."	
 	icon_state = "barrel_rifle"	
 
 /obj/item/weaponcrafting/improvised_parts/barrel_shotgun	
 	name = "shotgun barrel"	
-	desc = "A twenty bore shotgun barrel."	
+	desc = "A twelve gauge bore shotgun barrel. Could probably still be used to create some other weapons."	
 	icon_state = "barrel_shotgun"	
 
 /obj/item/weaponcrafting/improvised_parts/barrel_pistol	
 	name = "pistol barrel"	
-	desc = "A pipe with a small diameter and some holes finely cut into it. It fits .32 ACP bullets. Probably."	
+	desc = "A pipe with a small diameter and some holes finely cut into it. It fits .32 ACP bullets. Probably. Could probably still be used to create some other weapons."	
 	icon_state = "barrel_pistol"	
 	w_class = WEIGHT_CLASS_SMALL
 
