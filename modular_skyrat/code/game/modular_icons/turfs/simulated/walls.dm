@@ -29,3 +29,4 @@
 		canSmoothWith |= (typesof(/obj/machinery/door) - typesof(/obj/machinery/door/window) - typesof(/obj/machinery/door/firedoor) - typesof(/obj/machinery/door/poddoor))
 		canSmoothWith |= typesof(/turf/closed/wall)
 		canSmoothWith |= typesof(/obj/structure/falsewall)
+		canSmoothWith |= typesof(/turf/closed/indestructible/riveted)
