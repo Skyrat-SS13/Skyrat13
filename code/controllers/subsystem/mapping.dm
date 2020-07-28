@@ -473,11 +473,16 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		else
 			return
 
+<<<<<<< HEAD
 	possible_options += "Custom"
 	var/lvl_name
 	var/datum/space_level/level
+=======
+	var/away_name
+	var/datum/space_level/away_level
+>>>>>>> 6c83beea02... Merge pull request #12937 from Ghommie/Ghommie-cit834
 
-	var/answer = input("What kind ? ","Away/VR") as null|anything in possible_options
+	var/answer = input("What kind ? ","Away/VR") as null|anything in list(possible_options + "Custom")
 	switch(answer)
 		if(null)
 			return

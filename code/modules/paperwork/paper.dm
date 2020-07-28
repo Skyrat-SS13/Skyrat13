@@ -312,8 +312,15 @@
 
 	else if(istype(P, /obj/item/stamp))
 
+<<<<<<< HEAD
 		if(!in_range(src, user))
 			return
+=======
+		var/datum/ui_state/default/paper_state/state = new
+		state.edit_mode = MODE_STAMPING	// we are read only becausse the sheet is full
+		state.stamp_icon_state = P.icon_state
+		state.stamp_name = P.name
+>>>>>>> 6c83beea02... Merge pull request #12937 from Ghommie/Ghommie-cit834
 
 		var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/simple/paper)
 		if (isnull(stamps))
