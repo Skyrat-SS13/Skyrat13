@@ -303,7 +303,7 @@
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/ilaser/upgraded
-	name = "Improvised Energy Carbine Upgrade"
+	name = "Improvised Energy Carbine Upgrade" //Again: from the skyrat one.
 	result = /obj/item/gun/energy/e_gun/old/improvised/upgraded
 	reqs = list(/obj/item/gun/energy/e_gun/old/improvised = 1,
 				///obj/item/glasswork/glass_base/lens = 1, //requiring glasswork is stupid, insane
