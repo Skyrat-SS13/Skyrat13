@@ -505,15 +505,16 @@
 	LAZYINITLIST(blood_DNA)
 
 	var/old_length = blood_DNA.len
-	blood_DNA |= (blood_dna - "color")
-	LAZYINITLIST(blood_DNA["color"])
-	blood_DNA["color"] = blood_dna["color"]
+	blood_DNA |= blood_dna
 	if(blood_DNA.len > old_length)
 		. = TRUE
 		//some new blood DNA was added
 		if(!blood_dna["color"])
 			return
-		blood_DNA["color"] = blood_dna["color"]
+		if(!blood_DNA["color"])
+			blood_DNA["color"] = blood_dna["color"]
+		else
+			blood_DNA["color"] = BlendRGB(blood_DNA["color"], blood_dna["color"])
 
 //to add blood from a mob onto something, and transfer their dna info
 /atom/proc/add_mob_blood(mob/living/M)
