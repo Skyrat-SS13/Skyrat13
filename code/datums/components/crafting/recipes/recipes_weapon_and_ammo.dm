@@ -248,7 +248,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/ishotgun
+/datum/crafting_recipe/ishotgun // smaller and more versatile gun requires some better materials
 	name = "Improvised Shotgun"
 	result = /obj/item/gun/ballistic/revolver/doublebarrel/improvised
 	reqs = list(/obj/item/weaponcrafting/improvised_parts/barrel_shotgun = 1,
@@ -262,13 +262,12 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/irifle
+/datum/crafting_recipe/irifle // larger and less versatile gun, but a bit easier to make since it has no body
 	name = "Improvised Rifle (7.62mm)"
 	result = /obj/item/gun/ballistic/shotgun/boltaction/improvised
 	reqs = list(/obj/item/weaponcrafting/improvised_parts/barrel_rifle = 1,
 				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
 				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1,
-				/obj/item/weaponcrafting/improvised_parts/wooden_body = 1,
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/stack/packageWrap = 5)
 	tools = list(TOOL_SCREWDRIVER)
@@ -276,29 +275,27 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/ipistol
+/datum/crafting_recipe/ipistol //this weapon is dogshit and i did not want to outright remove it, so instead it's just way easier to craft
 	name = "Improvised Pistol (.32)"
-	result = /obj/item/gun/ballistic/automatic/pistol/improvised/nomag
+	result = /obj/item/gun/ballistic/automatic/pistol/improvised //they come with a magazine
 	reqs = list(/obj/item/weaponcrafting/improvised_parts/barrel_pistol = 1,
 				/obj/item/weaponcrafting/improvised_parts/pistol_receiver = 1,
 				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1,
 				/obj/item/weaponcrafting/improvised_parts/wooden_grip = 1,
-				/obj/item/stack/sheet/plastic = 15,
-				/obj/item/stack/sheet/plasteel = 1)
+				/obj/item/stack/sheet/metal = 2)//2 iron, not 1 plasteel, from 15 plastic to 0 plastic
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER, TOOL_WIRECUTTER)
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/ilaser
-	name = "Improvised Energy Gun"
+	name = "Improvised Energy Gun" //To differentiate from the skyrat one. It's redundant and useless, but it's to avoid shitting on Kat's work.
 	result = /obj/item/gun/energy/e_gun/old/improvised
 	reqs = list(/obj/item/weaponcrafting/improvised_parts/laser_receiver = 1,
 				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1,
 				/obj/item/weaponcrafting/improvised_parts/makeshift_lens = 1,
 				/obj/item/stock_parts/cell = 1,
-				/obj/item/stack/sheet/metal = 10,
-				/obj/item/stack/sheet/plasteel = 5,
+				/obj/item/stack/sheet/metal = 5, //5 metal instead of 10, no plasteel
 				/obj/item/stack/cable_coil = 10)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 100
@@ -306,13 +303,16 @@
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/ilaser/upgraded
-	name = "Improvised Energy Gun Upgrade"
+	name = "Improvised Energy Gun (Model A) Upgrade"
 	result = /obj/item/gun/energy/e_gun/old/improvised/upgraded
 	reqs = list(/obj/item/gun/energy/e_gun/old/improvised = 1,
-				/obj/item/glasswork/glass_base/lens = 1,
-				/obj/item/stock_parts/capacitor/quadratic = 2,
-				/obj/item/stock_parts/micro_laser/ultra = 1,
-				/obj/item/stock_parts/cell/bluespace = 1,
+				///obj/item/glasswork/glass_base/lens = 1, //requiring glasswork is stupid, insane
+				/obj/item/weaponcrafting/improvised_parts/barrel_rifle = 1, //we just add a barrel and it automatically becomes powerful because reasons
+				//changed from tier 4s to tier 2s, otherwise just not worth it at all
+				/obj/item/stock_parts/capacitor/adv = 1, //2 to 1
+				/obj/item/stock_parts/micro_laser/high = 1,
+				/obj/item/stock_parts/cell/high = 1,
+				//
 				/obj/item/stack/cable_coil = 5)
 	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL)
 	time = 100
@@ -445,8 +445,7 @@
 /datum/crafting_recipe/m32acp
 	name = ".32ACP Empty Magazine"
 	result = /obj/item/ammo_box/magazine/m32acp/empty
-	reqs = list(/obj/item/stack/sheet/metal = 3,
-				/obj/item/stack/sheet/plasteel = 1,
+	reqs = list(/obj/item/stack/sheet/metal = 4, //changed plasteel for simply more metal
 				/obj/item/stack/packageWrap = 1)
 	tools = list(TOOL_WELDER,TOOL_SCREWDRIVER)
 	time = 5
@@ -481,7 +480,7 @@
 	name = "Improvised Pistol Barrel"
 	result = /obj/item/weaponcrafting/improvised_parts/barrel_pistol
 	reqs = list(/obj/item/pipe = 1,
-				/obj/item/stack/sheet/plasteel = 1)
+				/obj/item/stack/rods = 1) //mo plasteel, just one pipe and a metal rod
 	tools = list(TOOL_WELDER,TOOL_SAW)
 	time = 150
 	category = CAT_WEAPONRY
@@ -492,8 +491,7 @@
 /datum/crafting_recipe/rifle_receiver
 	name = "Improvised Rifle Receiver"
 	result = /obj/item/weaponcrafting/improvised_parts/rifle_receiver
-	reqs = list(/obj/item/stack/sheet/metal = 10,
-				/obj/item/stack/sheet/plasteel = 1)
+	reqs = list(/obj/item/stack/sheet/metal = 5) //no plasteel, lowered the metal necessary to 5
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
 	time = 50
 	category = CAT_WEAPONRY
@@ -502,8 +500,7 @@
 /datum/crafting_recipe/shotgun_receiver
 	name = "Improvised Shotgun Receiver"
 	result = /obj/item/weaponcrafting/improvised_parts/shotgun_receiver
-	reqs = list(/obj/item/stack/sheet/metal = 10,
-				/obj/item/stack/sheet/plasteel = 1)
+	reqs = list(/obj/item/stack/sheet/metal = 5) //no plasteel, necessary metal lowered to 5
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER) // Dual wielding has been removed, plasteel is a soft timesink to obtain for most to make mass production harder.
 	time = 50
 	category = CAT_WEAPONRY
@@ -513,7 +510,7 @@
 	name = "Improvised Pistol Receiver"
 	result = /obj/item/weaponcrafting/improvised_parts/pistol_receiver
 	reqs = list(/obj/item/stack/sheet/metal = 5,
-				/obj/item/stack/sheet/plasteel = 1)
+				/obj/item/stack/rods = 1) //no plasteel, replaced with a metal rod instead
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER, TOOL_SAW)
 	time = 50
 	category = CAT_WEAPONRY
@@ -522,8 +519,8 @@
 /datum/crafting_recipe/laser_receiver
 	name = "Energy Weapon Assembly"
 	result = /obj/item/weaponcrafting/improvised_parts/laser_receiver
-	reqs = list(/obj/item/stack/sheet/metal = 10,
-				/obj/item/stock_parts/capacitor = 2,
+	reqs = list(/obj/item/stack/sheet/metal = 5, //lowered frrom 10 to 5
+				/obj/item/stock_parts/capacitor = 1, //lowered from 2 to 1
 				/obj/item/stock_parts/micro_laser = 1,
 				/obj/item/assembly/prox_sensor = 1)
 	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WELDER) // Prox sensor and multitool for the circuit board, welder for extremely ghetto soldering.
@@ -547,7 +544,7 @@
 	name = "Makeshift Lens"
 	result = /obj/item/weaponcrafting/improvised_parts/makeshift_lens
 	reqs = list(/obj/item/stack/sheet/metal = 1,
-				/obj/item/stack/sheet/glass = 2)
+				/obj/item/stack/sheet/glass = 1) //lowered from 2 glass to 1 glass
 	tools = list(TOOL_WELDER) // Glassmaking lets you make non-makeshift lenses.
 	time = 50
 	category = CAT_WEAPONRY
