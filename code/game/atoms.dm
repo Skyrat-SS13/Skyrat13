@@ -483,18 +483,18 @@
 		return FALSE
 	LAZYINITLIST(blood_DNA)	//if our list of DNA doesn't exist yet, initialise it.
 	var/old_length = blood_DNA.len
-	blood_DNA |= (new_blood_dna - "color")
-	//var/changed = FALSE
+	blood_DNA |= new_blood_dna
+	var/changed = FALSE
 	if(!blood_DNA["color"])
 		blood_DNA["color"] = new_blood_dna["color"]
-		//changed = TRUE
+		changed = TRUE
 	else
 		var/old = blood_DNA["color"]
-		blood_DNA["color"] = new_blood_dna["color"]
-		//changed = old != blood_DNA["color"]
+		blood_DNA["color"] = BlendRGB(blood_DNA["color"], new_blood_dna["color"])
+		changed = old != blood_DNA["color"]
 	if(blood_DNA.len == old_length)
 		return FALSE
-	return TRUE
+	return changed
 
 //to add blood dna info to the object's blood_DNA list
 /atom/proc/transfer_blood_dna(list/blood_dna, list/datum/disease/diseases)
