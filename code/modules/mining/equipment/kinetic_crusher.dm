@@ -101,7 +101,7 @@
 		T.add_to(src, user)
 	if(!wielded)
 		return
-	if(!proximity_flag && charged && !HAS_TRAIT(user, TRAIT_CHUNKYFINGERS))//Mark a target, or mine a tile. //skyrat edit - fuck ashwalkers
+	if(!proximity_flag && charged && !HAS_TRAIT(user, TRAIT_CHUNKYFINGERS))//Mark a target, or mine a tile. //skyrat edit - chunky fingers cannot mark with crushers
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
