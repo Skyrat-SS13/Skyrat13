@@ -289,7 +289,7 @@
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/ilaser
-	name = "Improvised Energy Gun" //To differentiate from the skyrat one. It's redundant and useless, but it's to avoid shitting on Kat's work.
+	name = "Improvised Energy Carbine" //To differentiate from the skyrat one. It's redundant and useless, but it's to avoid shitting on Kat's work.
 	result = /obj/item/gun/energy/e_gun/old/improvised
 	reqs = list(/obj/item/weaponcrafting/improvised_parts/laser_receiver = 1,
 				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1,
@@ -303,7 +303,7 @@
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/ilaser/upgraded
-	name = "Improvised Energy Gun (Model A) Upgrade"
+	name = "Improvised Energy Carbine Upgrade"
 	result = /obj/item/gun/energy/e_gun/old/improvised/upgraded
 	reqs = list(/obj/item/gun/energy/e_gun/old/improvised = 1,
 				///obj/item/glasswork/glass_base/lens = 1, //requiring glasswork is stupid, insane
