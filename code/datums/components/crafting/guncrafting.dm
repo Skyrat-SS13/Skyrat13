@@ -38,6 +38,17 @@
 	icon_state = "receiver_shotgun"
 	w_class = WEIGHT_CLASS_SMALL
 
+/obj/item/weaponcrafting/improvised_parts/pistol_receiver	
+	name = "pistol receiver"	
+	desc = "A receiver to connect house and connects all the parts to make an improvised pistol."	
+	icon_state = "receiver_pistol"	
+	w_class = WEIGHT_CLASS_SMALL	
+
+/obj/item/weaponcrafting/improvised_parts/laser_receiver	
+	name = "energy emitter assembly"	
+	desc = "A mixture of components haphazardly wired together to form an energy emitter."	
+	icon_state = "laser_assembly"
+
 // MISC
 
 /obj/item/weaponcrafting/improvised_parts/trigger_assembly
@@ -68,3 +79,16 @@
 	desc = "A pipe with a small diameter and some holes finely cut into it. It fits .32 ACP bullets. Probably."	
 	icon_state = "barrel_pistol"	
 	w_class = WEIGHT_CLASS_SMALL
+
+// Misc
+/obj/item/weaponcrafting/improvised_parts/wooden_grip	
+	name = "wooden pistol grip"	
+	desc = "A nice wooden grip hollowed out for pistol magazines."	
+	icon_state = "wooden_pistolgrip"	
+	w_class = WEIGHT_CLASS_SMALL	
+
+/obj/item/weaponcrafting/improvised_parts/makeshift_lens	
+	name = "makeshift focusing lens"	
+	desc = "A properly made lens made with actual glassworking tools would perform much better, but this will have to do."	
+	icon_state = "focusing_lens"	
+	w_class = WEIGHT_CLASS_TINY
