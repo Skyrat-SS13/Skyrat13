@@ -115,7 +115,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 // PROCS //
 ///////////
 
-
 /datum/species/New()
 	//if we havent set a limbs id to use, just use our own id
 	if(!limbs_id)
@@ -135,7 +134,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	//
 
 	..()
-
 
 /proc/generate_selectable_species(clear = FALSE)
 	if(clear)
@@ -1305,9 +1303,15 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 /datum/species/proc/check_weakness(obj/item, mob/living/attacker)
 	return FALSE
 
+<<<<<<< HEAD
 ////////
 //LIFE//
 ////////
+=======
+/////////////
+////LIFE////
+////////////
+>>>>>>> 475d8ed6fb... Merge pull request #12950 from timothyteakettle/species-are-dumb
 
 /datum/species/proc/handle_digestion(mob/living/carbon/human/H)
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
@@ -2264,8 +2268,32 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	return FALSE
 
 /datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)
+<<<<<<< HEAD
 	return FALSE
 
 /datum/species/proc/start_wagging_tail(mob/living/carbon/human/H)
 
 /datum/species/proc/stop_wagging_tail(mob/living/carbon/human/H)
+=======
+	return mutant_bodyparts[wagging_type]
+
+/datum/species/proc/start_wagging_tail(mob/living/carbon/human/H)
+	if(tail_type && wagging_type)
+		if(mutant_bodyparts[tail_type])
+			mutant_bodyparts[wagging_type] = mutant_bodyparts[tail_type]
+			mutant_bodyparts -= tail_type
+			if(tail_type == "tail_lizard") //special lizard thing
+				mutant_bodyparts["waggingspines"] = mutant_bodyparts["spines"]
+				mutant_bodyparts -= "spines"
+			H.update_body()
+
+/datum/species/proc/stop_wagging_tail(mob/living/carbon/human/H)
+	if(tail_type && wagging_type)
+		if(mutant_bodyparts[wagging_type])
+			mutant_bodyparts[tail_type] = mutant_bodyparts[wagging_type]
+			mutant_bodyparts -= wagging_type
+			if(tail_type == "tail_lizard") //special lizard thing
+				mutant_bodyparts["spines"] = mutant_bodyparts["waggingspines"]
+				mutant_bodyparts -= "waggingspines"
+			H.update_body()
+>>>>>>> 475d8ed6fb... Merge pull request #12950 from timothyteakettle/species-are-dumb
