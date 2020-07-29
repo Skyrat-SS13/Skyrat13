@@ -97,10 +97,14 @@ GLOBAL_LIST_EMPTY(power_sinks)
 /obj/item/powersink/attack_ai()
 	return
 
+<<<<<<< HEAD
 /obj/item/powersink/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/item/powersink/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	switch(mode)
 		if(DISCONNECTED)
 			..()

@@ -28,8 +28,12 @@
 	SSradio.remove_object(src, frequency)
 	. = ..()
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/electropack/attack_hand(mob/user)
+=======
+/obj/item/electropack/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(src == C.back)
@@ -169,7 +173,11 @@ Code:
 	materials = list(/datum/material/iron = 5000, /datum/material/glass =2000)
 	category = list("hacked", "Misc")
 
+<<<<<<< HEAD
 /obj/item/electropack/shockcollar/attack_hand(mob/user)
+=======
+/obj/item/electropack/shockcollar/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc == user && user.get_item_by_slot(SLOT_NECK))
 		to_chat(user, "<span class='warning'>The collar is fastened tight! You'll need help taking this off!</span>")
 		return

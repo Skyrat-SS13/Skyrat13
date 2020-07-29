@@ -519,6 +519,7 @@
 
 
 /obj/item/electronic_assembly/attack_self(mob/user)
+	set waitfor = FALSE
 	if(!check_interactivity(user))
 		return
 	if(opened)
@@ -611,7 +612,11 @@
 		return
 	..()
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/attack_hand(mob/user)
+=======
+/obj/item/electronic_assembly/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(anchored)
 		attack_self(user)
 		return

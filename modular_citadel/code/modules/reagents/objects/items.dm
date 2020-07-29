@@ -9,7 +9,11 @@
 	w_class = WEIGHT_CLASS_TINY
 
 //A little janky with pockets
+<<<<<<< HEAD
 /obj/item/fermichem/pHbooklet/attack_hand(mob/user)
+=======
+/obj/item/fermichem/pHbooklet/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(user.get_held_index_of_item(src))//Does this check pockets too..?
 		if(numberOfPages == 50)
 			icon_state = "pHbookletOpen"

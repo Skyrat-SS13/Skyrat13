@@ -62,11 +62,16 @@
 	if(floorbuffer)
 		. += "cart_buffer"
 
+<<<<<<< HEAD
 /obj/vehicle/ridden/janicart/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	else if(mybag)
+=======
+/obj/vehicle/ridden/janicart/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+	if(mybag)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 		mybag.forceMove(get_turf(user))
 		user.put_in_hands(mybag)
 		mybag = null

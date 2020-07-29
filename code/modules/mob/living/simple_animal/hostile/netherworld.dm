@@ -86,7 +86,11 @@
 	.=..()
 	START_PROCESSING(SSprocessing, src)
 
+<<<<<<< HEAD
 /obj/structure/spawner/nether/attack_hand(mob/user)
+=======
+/obj/structure/spawner/nether/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 		user.visible_message("<span class='warning'>[user] is violently pulled into the link!</span>", \
 						  "<span class='userdanger'>Touching the portal, you are quickly pulled through into a world of unimaginable horror!</span>")
 		contents.Add(user)

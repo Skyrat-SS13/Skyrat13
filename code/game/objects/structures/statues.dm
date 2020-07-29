@@ -74,7 +74,11 @@
 	radiate()
 	..()
 
+<<<<<<< HEAD
 /obj/structure/statue/uranium/attack_hand(mob/user)
+=======
+/obj/structure/statue/uranium/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	radiate()
 	. = ..()
 
@@ -240,7 +244,11 @@
 	honk()
 	return ..()
 
+<<<<<<< HEAD
 /obj/structure/statue/bananium/attack_hand(mob/user)
+=======
+/obj/structure/statue/bananium/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	honk()
 	. = ..()
 

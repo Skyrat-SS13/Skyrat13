@@ -88,7 +88,11 @@
 	user.visible_message("<span class='notice'>[user] inserts a power cell into [src].</span>", "<span class='notice'>You insert the power cell into [src].</span>")
 	update_icon()
 
+<<<<<<< HEAD
 /obj/item/reagent_containers/glass/maunamug/attack_hand(mob/living/user)
+=======
+/obj/item/reagent_containers/glass/maunamug/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(cell && open)
 		cell.update_icon()
 		user.put_in_hands(cell)

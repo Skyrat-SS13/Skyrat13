@@ -158,10 +158,14 @@
 			attached.transfer_blood_to(beaker, amount)
 			update_icon()
 
+<<<<<<< HEAD
 /obj/machinery/iv_drip/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/iv_drip/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(attached)
 		visible_message("[attached] is detached from [src]")
 		attached = null

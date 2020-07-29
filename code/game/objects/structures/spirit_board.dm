@@ -14,10 +14,14 @@
 	desc = "[initial(desc)] The planchette is sitting at \"[planchette]\"."
 	return ..()
 
+<<<<<<< HEAD
 /obj/structure/spirit_board/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/structure/spirit_board/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	spirit_board_pick_letter(user)
 
 

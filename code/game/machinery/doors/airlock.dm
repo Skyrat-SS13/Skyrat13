@@ -762,10 +762,14 @@
 /obj/machinery/door/airlock/attack_paw(mob/user)
 	return attack_hand(user)
 
+<<<<<<< HEAD
 /obj/machinery/door/airlock/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/door/airlock/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!(issilicon(user) || IsAdminGhost(user)))
 		if(src.isElectrified())
 			if(src.shock(user, 100))
@@ -782,6 +786,8 @@
 				H.apply_damage(2, BRUTE, BODY_ZONE_HEAD) // Skyrat edit -- made headbanging on doors a lot less harmful, 10 -> 2
 			else
 				visible_message("<span class='danger'>[user] headbutts the airlock. Good thing [user.p_theyre()] wearing a helmet.</span>")
+	else
+		return ..()
 
 /obj/machinery/door/airlock/attempt_wire_interaction(mob/user)
 	if(security_level)

@@ -19,7 +19,11 @@
 	new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
 	qdel(src)
 
+<<<<<<< HEAD
 /obj/structure/dresser/attack_hand(mob/user)
+=======
+/obj/structure/dresser/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(. || !ishuman(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return

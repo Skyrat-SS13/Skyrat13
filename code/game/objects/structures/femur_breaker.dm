@@ -32,7 +32,11 @@
 	if (LAZYLEN(buckled_mobs))
 		. += "Someone appears to be strapped in. You can help them unbuckle, or activate the femur breaker."
 
+<<<<<<< HEAD
 /obj/structure/femur_breaker/attack_hand(mob/user)
+=======
+/obj/structure/femur_breaker/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	add_fingerprint(user)
 
 	// Currently being used

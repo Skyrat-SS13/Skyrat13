@@ -523,10 +523,14 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 	else
 		return ..()
 
+<<<<<<< HEAD
 /obj/machinery/libraryscanner/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/libraryscanner/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	usr.set_machine(src)
 	var/dat = "" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	if(cache)

@@ -31,10 +31,14 @@
 	return parent_turret.attack_ai(user)
 
 
+<<<<<<< HEAD
 /obj/machinery/porta_turret_cover/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/porta_turret_cover/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 
 	return parent_turret.attack_hand(user)
 

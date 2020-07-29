@@ -363,7 +363,11 @@
 	obj_flags |= EMAGGED
 	return TRUE
 
+<<<<<<< HEAD
 /obj/item/hypospray/mkii/attack_hand(mob/user)
+=======
+/obj/item/hypospray/mkii/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..() //Don't bother changing this or removing it from containers will break.
 
 /obj/item/hypospray/mkii/attack(obj/item/I, mob/user, params)

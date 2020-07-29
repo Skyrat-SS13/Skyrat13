@@ -29,7 +29,11 @@
 	. = ..()
 	GLOB.navigation_computers -= src
 
+<<<<<<< HEAD
 /obj/machinery/computer/camera_advanced/shuttle_docker/attack_hand(mob/user)
+=======
+/obj/machinery/computer/camera_advanced/shuttle_docker/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(jammed)
 		to_chat(user, "<span class='warning'>The Syndicate is jamming the console!</span>")
 		return

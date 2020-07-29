@@ -130,7 +130,11 @@ God bless America.
 /obj/machinery/deepfryer/attack_ai(mob/user)
 	return
 
+<<<<<<< HEAD
 /obj/machinery/deepfryer/attack_hand(mob/user)
+=======
+/obj/machinery/deepfryer/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(frying)
 		if(frying.loc == src)
 			to_chat(user, "<span class='notice'>You eject [frying] from [src].</span>")
@@ -146,6 +150,8 @@ God bless America.
 			fry_loop.stop()
 			return
 	else if(user.pulling && user.a_intent == "grab" && iscarbon(user.pulling) && reagents.total_volume)
+		if(!user.CheckActionCooldown(CLICK_CD_MELEE))
+			return
 		if(user.grab_state < GRAB_AGGRESSIVE)
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
@@ -155,5 +161,5 @@ God bless America.
 		C.apply_damage(min(30, reagents.total_volume), BURN, BODY_ZONE_HEAD)
 		reagents.remove_any((reagents.total_volume/2))
 		C.DefaultCombatKnockdown(60)
-		user.changeNext_move(CLICK_CD_MELEE)
+		user.DelayNextAction()
 	return ..()

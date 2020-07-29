@@ -833,10 +833,14 @@
 
 // attack with hand - remove cell (if cover open) or interact with the APC
 
+<<<<<<< HEAD
 /obj/machinery/power/apc/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/power/apc/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(opened && (!issilicon(user)))
 		if(cell)
 			user.visible_message("[user] removes \the [cell] from [src]!","<span class='notice'>You remove \the [cell].</span>")

@@ -174,10 +174,14 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return ..()
 
 // attack with hand, move pulled object onto conveyor
+<<<<<<< HEAD
 /obj/machinery/conveyor/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/conveyor/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	user.Move_Pulled(src)
 
 // make the conveyor broken

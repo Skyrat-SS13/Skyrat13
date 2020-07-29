@@ -23,6 +23,13 @@
 	assemblytype = /obj/structure/firelock_frame
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 95, "acid" = 70)
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
+<<<<<<< HEAD
+=======
+	air_tight = TRUE
+	attack_hand_is_action = TRUE
+	attack_hand_speed = CLICK_CD_MELEE
+	var/emergency_close_timer = 0
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	var/nextstate = null
 	var/boltslocked = TRUE
 	var/list/affecting_areas
@@ -74,7 +81,6 @@
 		return ..()
 	return FALSE
 
-
 /obj/machinery/door/firedoor/power_change()
 	if(powered(power_channel))
 		stat &= ~NOPOWER
@@ -82,13 +88,24 @@
 	else
 		stat |= NOPOWER
 
+<<<<<<< HEAD
 /obj/machinery/door/firedoor/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/door/firedoor/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+	if(!welded && !operating && !(stat & NOPOWER) && (!density || allow_hand_open(user)))
+		add_fingerprint(user)
+		if(density)
+			emergency_close_timer = world.time + 30 // prevent it from instaclosing again if in space
+			open()
+		else
+			close()
+		return TRUE
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(operating || !density)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
 
 	user.visible_message("[user] bangs on \the [src].",
 						 "You bang on \the [src].")

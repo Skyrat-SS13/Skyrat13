@@ -594,8 +594,12 @@
 	assignedrole = "Space Bar Patron"
 	job_description = "Space Bar Patron"
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/effect/mob_spawn/human/alive/space_bar_patron/attack_hand(mob/user)
+=======
+/obj/effect/mob_spawn/human/alive/space_bar_patron/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	var/despawn = alert("Return to cryosleep? (Warning, Your mob will be deleted!)",,"Yes","No")
 	if(despawn == "No" || !loc || !Adjacent(user))
 		return

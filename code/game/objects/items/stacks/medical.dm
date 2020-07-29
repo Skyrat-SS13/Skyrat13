@@ -309,7 +309,11 @@
 		return
 	. = ..()
 
+<<<<<<< HEAD
 /obj/item/stack/medical/mesh/attack_hand(mob/user)
+=======
+/obj/item/stack/medical/mesh/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!is_open & user.get_inactive_held_item() == src)
 		to_chat(user, "<span class='warning'>You need to open [src] first.</span>")
 		return

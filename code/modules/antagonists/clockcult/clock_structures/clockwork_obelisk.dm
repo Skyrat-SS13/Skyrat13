@@ -41,7 +41,11 @@
 		affected += try_use_power(MIN_CLOCKCULT_POWER*4)
 	return affected
 
+<<<<<<< HEAD
 /obj/structure/destructible/clockwork/powered/clockwork_obelisk/attack_hand(mob/living/user)
+=======
+/obj/structure/destructible/clockwork/powered/clockwork_obelisk/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(.)
 		return

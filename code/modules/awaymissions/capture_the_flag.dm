@@ -53,8 +53,12 @@
 				to_chat(M, "<span class='userdanger'>\The [src] has been returned to base!</span>")
 		STOP_PROCESSING(SSobj, src)
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/ctf/attack_hand(mob/living/user)
+=======
+/obj/item/ctf/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!is_ctf_target(user) && !anyonecanpickup)
 		to_chat(user, "Non players shouldn't be moving the flag!")
 		return
@@ -679,10 +683,14 @@
 /obj/machinery/control_point/attackby(mob/user, params)
 	capture(user)
 
+<<<<<<< HEAD
 /obj/machinery/control_point/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/control_point/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	capture(user)
 
 /obj/machinery/control_point/proc/capture(mob/user)

@@ -31,7 +31,11 @@
 	if(user.Adjacent(src))
 		. += "<span class='notice'>Alt-click it to beam its contents to any nearby disposal bins.</span>"
 
+<<<<<<< HEAD
 /obj/machinery/dish_drive/attack_hand(mob/living/user)
+=======
+/obj/machinery/dish_drive/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!contents.len)
 		to_chat(user, "<span class='warning'>There's nothing in [src]!</span>")
 		return

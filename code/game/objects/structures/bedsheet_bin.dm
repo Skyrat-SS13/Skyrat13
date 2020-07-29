@@ -311,10 +311,14 @@ LINEN BINS
 /obj/structure/bedsheetbin/attack_paw(mob/user)
 	return attack_hand(user)
 
+<<<<<<< HEAD
 /obj/structure/bedsheetbin/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/structure/bedsheetbin/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(user.incapacitated())
 		return
 	if(amount >= 1)

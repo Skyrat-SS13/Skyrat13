@@ -65,7 +65,11 @@
 	var/gift_type = /obj/item/a_gift/anything
 	var/list/ckeys_that_took = list()
 
+<<<<<<< HEAD
 /obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user)
+=======
+/obj/structure/flora/tree/pine/xmas/presents/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(.)
 		return

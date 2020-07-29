@@ -59,7 +59,11 @@
 		return defib.get_cell()
 
 //defib interaction
+<<<<<<< HEAD
 /obj/machinery/defibrillator_mount/attack_hand(mob/living/user)
+=======
+/obj/machinery/defibrillator_mount/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!defib)
 		to_chat(user, "<span class='warning'>There's no defibrillator unit loaded!</span>")
 		return

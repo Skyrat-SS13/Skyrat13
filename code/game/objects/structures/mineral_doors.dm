@@ -50,10 +50,14 @@
 /obj/structure/mineral_door/attack_paw(mob/user)
 	return attack_hand(user)
 
+<<<<<<< HEAD
 /obj/structure/mineral_door/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/structure/mineral_door/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	return TryToSwitchState(user)
 
 /obj/structure/mineral_door/CanPass(atom/movable/mover, turf/target)

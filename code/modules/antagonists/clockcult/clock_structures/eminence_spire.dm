@@ -11,7 +11,11 @@
 	var/selection_timer //Timer ID; this is canceled if the vote is canceled
 	var/kingmaking
 
+<<<<<<< HEAD
 /obj/structure/destructible/clockwork/eminence_spire/attack_hand(mob/living/user)
+=======
+/obj/structure/destructible/clockwork/eminence_spire/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(.)
 		return

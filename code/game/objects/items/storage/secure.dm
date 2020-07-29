@@ -205,10 +205,14 @@
 	new /obj/item/paper(src)
 	new /obj/item/pen(src)
 
+<<<<<<< HEAD
 /obj/item/storage/secure/safe/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/item/storage/secure/safe/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	return attack_self(user)
 
 /obj/item/storage/secure/safe/HoS

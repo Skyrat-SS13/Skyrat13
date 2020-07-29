@@ -101,10 +101,14 @@
 			to_chat(user, "<span class='notice'>You carefully remove the poster from the wall.</span>")
 			roll_and_drop(user.loc)
 
+<<<<<<< HEAD
 /obj/structure/sign/poster/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/structure/sign/poster/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(ruined)
 		return
 	visible_message("[user] rips [src] in a single, decisive motion!" )

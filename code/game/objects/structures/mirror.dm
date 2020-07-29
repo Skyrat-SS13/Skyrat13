@@ -15,10 +15,14 @@
 	if(icon_state == "mirror_broke" && !broken)
 		obj_break(null, mapload)
 
+<<<<<<< HEAD
 /obj/structure/mirror/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/structure/mirror/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(broken || !Adjacent(user))
 		return
 
@@ -118,10 +122,14 @@
 		choosable_races += S.id
 	..()
 
+<<<<<<< HEAD
 /obj/structure/mirror/magic/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/structure/mirror/magic/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!ishuman(user))
 		return
 

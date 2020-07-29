@@ -1466,7 +1466,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		target.grabbedby(user)
 		return 1
 
+<<<<<<< HEAD
 /datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
+=======
+/datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style, attackchain_flags = NONE)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!attacker_style && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm [target]!</span>")
 		return FALSE
@@ -1478,10 +1482,18 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			target_message = "<span class='warning'>[target] blocks your attack!</span>")
 		return FALSE
 
+<<<<<<< HEAD
 	if(HAS_TRAIT(user, TRAIT_PUGILIST))//CITADEL CHANGE - makes punching cause staminaloss but funny martial artist types get a discount
 		user.adjustStaminaLossBuffered(1.5)
 	else
 		user.adjustStaminaLossBuffered(3.5)
+=======
+	if(!(attackchain_flags & ATTACK_IS_PARRY_COUNTERATTACK))
+		if(HAS_TRAIT(user, TRAIT_PUGILIST))//CITADEL CHANGE - makes punching cause staminaloss but funny martial artist types get a discount
+			user.adjustStaminaLossBuffered(1.5)
+		else
+			user.adjustStaminaLossBuffered(3.5)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 
 	if(attacker_style && attacker_style.harm_act(user,target))
 		return TRUE
@@ -1519,6 +1531,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 
 		var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases
+<<<<<<< HEAD
 		if(user.dna.species.punchdamagelow)
 			if(atk_verb == ATTACK_EFFECT_KICK) //kicks never miss (provided your species deals more than 0 damage)
 				miss_chance = 0
@@ -1526,6 +1539,18 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				miss_chance = 10
 			else
 				miss_chance = min(10 + max(puncherstam * 0.5, puncherbrute * 0.5), 100) //probability of miss has a base of 10, and modified based on half brute total. Capped at max 100 to prevent weirdness in prob()
+=======
+		if(attackchain_flags & ATTACK_IS_PARRY_COUNTERATTACK)
+			miss_chance = 0
+		else
+			if(user.dna.species.punchdamagelow)
+				if(atk_verb == ATTACK_EFFECT_KICK) //kicks never miss (provided your species deals more than 0 damage)
+					miss_chance = 0
+				else if(HAS_TRAIT(user, TRAIT_PUGILIST)) //pugilists have a flat 10% miss chance
+					miss_chance = 10
+				else
+					miss_chance = min(10 + max(puncherstam * 0.5, puncherbrute * 0.5), 100) //probability of miss has a base of 10, and modified based on half brute total. Capped at max 100 to prevent weirdness in prob()
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 
 		if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 			playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)
@@ -1703,7 +1728,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 /datum/species/proc/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
 	return
 
+<<<<<<< HEAD
 /datum/species/proc/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+=======
+/datum/species/proc/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style, act_intent, attackchain_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!istype(M))
 		return
 	CHECK_DNA_AND_SPECIES(M)
@@ -1723,7 +1752,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			grab(M, H, attacker_style)
 
 		if("harm")
+<<<<<<< HEAD
 			harm(M, H, attacker_style)
+=======
+			harm(M, H, attacker_style, attackchain_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 
 		if("disarm")
 			disarm(M, H, attacker_style)
@@ -1733,7 +1766,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	// Allows you to put in item-specific reactions based on species
 	if(user != H)
 		var/list/block_return = list()
-		if(H.mob_run_block(I, totitemdamage, "the [I.name]", ((attackchain_flags & ATTACKCHAIN_PARRY_COUNTERATTACK)? ATTACK_TYPE_PARRY_COUNTERATTACK : NONE) | ATTACK_TYPE_MELEE, I.armour_penetration, user, affecting.body_zone, block_return) & BLOCK_SUCCESS)
+		if(H.mob_run_block(I, totitemdamage, "the [I.name]", ((attackchain_flags & ATTACK_IS_PARRY_COUNTERATTACK)? ATTACK_TYPE_PARRY_COUNTERATTACK : NONE) | ATTACK_TYPE_MELEE, I.armour_penetration, user, affecting.body_zone, block_return) & BLOCK_SUCCESS)
 			return 0
 		totitemdamage = block_calculate_resultant_damage(totitemdamage, block_return)
 	if(H.check_martial_melee_block())
@@ -1838,6 +1871,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		return TRUE
 	CHECK_DNA_AND_SPECIES(M)
 	CHECK_DNA_AND_SPECIES(H)
+	if(!M.CheckActionCooldown())
+		return
+	M.DelayNextAction(CLICK_CD_MELEE)
 
 	if(!istype(M)) //sanity check for drones.
 		return TRUE

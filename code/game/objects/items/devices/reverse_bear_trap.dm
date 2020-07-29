@@ -45,7 +45,11 @@
 		to_chat(loc, "<span class='userdanger'>*ding*</span>")
 		addtimer(CALLBACK(src, .proc/snap), 2)
 
+<<<<<<< HEAD
 /obj/item/reverse_bear_trap/attack_hand(mob/user)
+=======
+/obj/item/reverse_bear_trap/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(C.get_item_by_slot(SLOT_HEAD) == src)

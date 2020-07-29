@@ -79,8 +79,12 @@
 	no_destination_swap = 1
 	var/static/list/dumb_rev_heads = list()
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/machinery/computer/shuttle/mining/attack_hand(mob/user)
+=======
+/obj/machinery/computer/shuttle/mining/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(is_station_level(user.z) && user.mind && is_head_revolutionary(user) && !(user.mind in dumb_rev_heads))
 		to_chat(user, "<span class='warning'>You get a feeling that leaving the station might be a REALLY dumb idea...</span>")
 		dumb_rev_heads += user.mind

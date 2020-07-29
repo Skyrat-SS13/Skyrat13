@@ -120,7 +120,11 @@
 	open = TRUE
 	density = TRUE
 
+<<<<<<< HEAD
 /obj/structure/fence/door/attack_hand(mob/user)
+=======
+/obj/structure/fence/door/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(can_open(user))
 		toggle(user)
 

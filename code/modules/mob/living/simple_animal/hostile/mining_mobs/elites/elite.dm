@@ -148,7 +148,11 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	desc = "You're not quite sure how a signal can be menacing."
 	invisibility = 100
 
+<<<<<<< HEAD
 /obj/structure/elite_tumor/attack_hand(mob/user)
+=======
+/obj/structure/elite_tumor/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(ishuman(user))
 		switch(activity)

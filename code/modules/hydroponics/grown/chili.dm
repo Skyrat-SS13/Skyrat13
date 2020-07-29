@@ -80,10 +80,14 @@
 	foodtype = FRUIT
 	wine_power = 50
 
+<<<<<<< HEAD
 /obj/item/reagent_containers/food/snacks/grown/ghost_chili/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/item/reagent_containers/food/snacks/grown/ghost_chili/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if( ismob(loc) )
 		held_mob = loc
 		START_PROCESSING(SSobj, src)

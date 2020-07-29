@@ -103,7 +103,11 @@ GLOBAL_LIST_INIT(marker_beacon_colors, list(
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
 	set_light(light_range, light_power, GLOB.marker_beacon_colors[picked_color])
 
+<<<<<<< HEAD
 /obj/structure/marker_beacon/attack_hand(mob/living/user)
+=======
+/obj/structure/marker_beacon/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(.)
 		return

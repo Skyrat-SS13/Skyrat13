@@ -72,7 +72,11 @@
 			return
 	return
 
+<<<<<<< HEAD
 /turf/closed/wall/mineral/uranium/attack_hand(mob/user)
+=======
+/turf/closed/wall/mineral/uranium/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	radiate()
 	. = ..()
 

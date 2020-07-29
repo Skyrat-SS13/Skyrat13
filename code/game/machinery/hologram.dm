@@ -78,7 +78,11 @@ GLOBAL_LIST_EMPTY(network_holopads)
 			new_disk.forceMove(src)
 			disk = new_disk
 
+<<<<<<< HEAD
 /obj/machinery/holopad/tutorial/attack_hand(mob/user)
+=======
+/obj/machinery/holopad/tutorial/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!istype(user))
 		return
 	if(user.incapacitated() || !is_operational())

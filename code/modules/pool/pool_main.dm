@@ -177,7 +177,11 @@
 	else
 		return ..()
 
+<<<<<<< HEAD
 /turf/open/pool/attack_hand(mob/living/user)
+=======
+/turf/open/pool/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(.)
 		return

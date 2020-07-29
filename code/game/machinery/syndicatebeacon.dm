@@ -68,10 +68,14 @@ GLOBAL_VAR_INIT(singularity_counter, 0)
 /obj/machinery/power/singularity_beacon/attack_ai(mob/user)
 	return
 
+<<<<<<< HEAD
 /obj/machinery/power/singularity_beacon/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/power/singularity_beacon/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(anchored)
 		return active ? Deactivate(user) : Activate(user)
 	else

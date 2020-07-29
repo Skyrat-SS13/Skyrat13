@@ -26,10 +26,14 @@
 	on = TRUE
 	icon_state = "igniter1"
 
+<<<<<<< HEAD
 /obj/machinery/igniter/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/igniter/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	add_fingerprint(user)
 
 	use_power(50)

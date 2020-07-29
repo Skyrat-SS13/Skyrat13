@@ -107,7 +107,11 @@
 /obj/machinery/grill/attack_ai(mob/user)
 	return
 
+<<<<<<< HEAD
 /obj/machinery/grill/attack_hand(mob/user)
+=======
+/obj/machinery/grill/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(grilled_item)
 		to_chat(user, "<span class='notice'>You take out [grilled_item] from [src].</span>")
 		grilled_item.forceMove(drop_location())

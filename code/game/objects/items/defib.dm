@@ -77,8 +77,12 @@
 /obj/item/defibrillator/ui_action_click()
 	toggle_paddles()
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/defibrillator/attack_hand(mob/user)
+=======
+/obj/item/defibrillator/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc == user)
 		if(slot_flags == ITEM_SLOT_BACK)
 			if(user.get_item_by_slot(SLOT_BACK) == src)

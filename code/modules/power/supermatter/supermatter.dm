@@ -571,7 +571,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/attack_ai(mob/user)
 	return
 
+<<<<<<< HEAD
 /obj/machinery/power/supermatter_crystal/attack_hand(mob/living/user)
+=======
+/obj/machinery/power/supermatter_crystal/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(.)
 		return

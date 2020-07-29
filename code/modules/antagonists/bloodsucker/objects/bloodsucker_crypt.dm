@@ -217,7 +217,11 @@
 		return FALSE
 	return ..()
 
+<<<<<<< HEAD
 /obj/structure/bloodsucker/vassalrack/attack_hand(mob/user)
+=======
+/obj/structure/bloodsucker/vassalrack/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	//. = ..()	// Taken from sacrificial altar in divine.dm
 	//if(.)
 	//	return
@@ -469,7 +473,11 @@
 		. += {"<span class='cult'>This is a magical candle which drains at the sanity of the fools who havent yet accepted your master, as long as it is active.\n
 		You can turn it on and off by clicking on it while you are next to it</span>"} */
 
+<<<<<<< HEAD
 /obj/structure/bloodsucker/candelabrum/attack_hand(mob/user)
+=======
+/obj/structure/bloodsucker/candelabrum/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	var/datum/antagonist/vassal/T = user.mind.has_antag_datum(ANTAG_DATUM_VASSAL)
 	if(AmBloodsucker(user) || istype(T))
 		toggle()

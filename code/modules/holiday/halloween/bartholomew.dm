@@ -31,7 +31,11 @@
 			return
 	say("It doesn't seem like that's magical enough!")
 
+<<<<<<< HEAD
 /obj/item/barthpot/attack_hand(mob/user)
+=======
+/obj/item/barthpot/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!active)
 		say("Meow!")
 		return

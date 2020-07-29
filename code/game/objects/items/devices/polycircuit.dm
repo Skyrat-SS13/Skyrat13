@@ -11,7 +11,11 @@
 /obj/item/stack/circuit_stack/attack_self(mob/user)// Prevents the crafting menu, and tells you how to use it.
 	to_chat(user, "<span class='warning'>You can't use [src] by itself, you'll have to try and remove one of these circuits by hand... carefully.</span>")
 
+<<<<<<< HEAD
 /obj/item/stack/circuit_stack/attack_hand(mob/user)
+=======
+/obj/item/stack/circuit_stack/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	var/mob/living/carbon/human/H = user
 	if(!user.get_inactive_held_item() == src)
 		return ..()

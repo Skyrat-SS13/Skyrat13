@@ -371,6 +371,7 @@
 			var/wait_desc = get_wait_description()
 			if(wait_desc)
 				to_chat(user, wait_desc)
+			return DISCARD_LAST_ACTION
 
 /obj/item/melee/classic_baton/telescopic
 	name = "telescopic baton"
@@ -621,7 +622,11 @@
 			to_chat(user, "<span class='warning'>[target] doesn't seem to want to get on [src]!</span>")
 	update_icon()
 
+<<<<<<< HEAD
 /obj/item/melee/roastingstick/attack_hand(mob/user)
+=======
+/obj/item/melee/roastingstick/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	..()
 	if (held_sausage)
 		user.put_in_hands(held_sausage)

@@ -86,8 +86,12 @@
 /obj/guardian_bomb/attackby(mob/living/user)
 	detonate(user)
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/guardian_bomb/attack_hand(mob/living/user)
+=======
+/obj/guardian_bomb/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	detonate(user)
 
 /obj/guardian_bomb/examine(mob/user)

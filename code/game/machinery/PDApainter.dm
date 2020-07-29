@@ -107,10 +107,14 @@
 			stat |= BROKEN
 			update_icon()
 
+<<<<<<< HEAD
 /obj/machinery/pdapainter/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/pdapainter/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 
 	if(!storedpda)
 		to_chat(user, "<span class='notice'>[src] is empty.</span>")

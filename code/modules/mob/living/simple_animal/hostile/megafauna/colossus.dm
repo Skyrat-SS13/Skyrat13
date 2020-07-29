@@ -385,10 +385,14 @@ Difficulty: Very Hard
 	if(isliving(speaker))
 		ActivationReaction(speaker, ACTIVATE_SPEECH)
 
+<<<<<<< HEAD
 /obj/machinery/anomalous_crystal/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/anomalous_crystal/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	ActivationReaction(user, ACTIVATE_TOUCH)
 
 /obj/machinery/anomalous_crystal/attackby(obj/item/I, mob/user, params)

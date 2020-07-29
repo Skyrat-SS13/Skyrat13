@@ -207,10 +207,14 @@
 			return ..()
 
 
+<<<<<<< HEAD
 /obj/structure/bonfire/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/structure/bonfire/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(burning)
 		to_chat(user, "<span class='warning'>You need to extinguish [src] before removing the logs!</span>")
 		return

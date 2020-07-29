@@ -158,7 +158,11 @@
 	if(user)
 		log_game("[user] reset a fire alarm at [COORD(src)]")
 
+<<<<<<< HEAD
 /obj/machinery/firealarm/attack_hand(mob/user)
+=======
+/obj/machinery/firealarm/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(buildstage != 2)
 		return ..()
 	add_fingerprint(user)

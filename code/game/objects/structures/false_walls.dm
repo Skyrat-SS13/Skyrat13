@@ -41,8 +41,12 @@
 	new /obj/structure/falsewall/brass(loc)
 	qdel(src)
 
+<<<<<<< HEAD
 /* Moved to Modular Skyrat
 /obj/structure/falsewall/attack_hand(mob/user)
+=======
+/obj/structure/falsewall/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(opening)
 		return
 	. = ..()
@@ -182,7 +186,11 @@
 	radiate()
 	return ..()
 
+<<<<<<< HEAD
 /obj/structure/falsewall/uranium/attack_hand(mob/user)
+=======
+/obj/structure/falsewall/uranium/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	radiate()
 	. = ..()
 

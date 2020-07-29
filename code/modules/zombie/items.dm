@@ -32,11 +32,23 @@
 	. = ..()
 	if(!proximity_flag)
 		return
+<<<<<<< HEAD
 	else if(isliving(target))
 		if(ishuman(target))
 			try_to_zombie_infect(target, user) //SKYRAT CHANGE - User
 		else
 			check_feast(target, user)
+=======
+	else
+		if(istype(target, /obj)) //do far more damage to non mobs so we can get through airlocks
+			var/obj/target_object = target
+			target_object.take_damage(force * 3, BRUTE, "melee", 0)
+		else if(isliving(target))
+			if(ishuman(target))
+				try_to_zombie_infect(target)
+			else
+				check_feast(target, user)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 
 /proc/try_to_zombie_infect(mob/living/carbon/human/target, mob/living/carbon/human/user) //SKYRAT CHANGE - User
 	CHECK_DNA_AND_SPECIES(target)

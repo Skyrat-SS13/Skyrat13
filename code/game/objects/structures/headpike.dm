@@ -38,10 +38,14 @@
 		MA.pixel_y = 12
 		. += H
 
+<<<<<<< HEAD
 /obj/structure/headpike/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/structure/headpike/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	to_chat(user, "<span class='notice'>You take down [src].</span>")
 	if(victim)
 		victim.forceMove(drop_location())

@@ -79,10 +79,14 @@
 	charging = null
 	update_icon()
 
+<<<<<<< HEAD
 /obj/machinery/cell_charger/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/cell_charger/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!charging)
 		return
 

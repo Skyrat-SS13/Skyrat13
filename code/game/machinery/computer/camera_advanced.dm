@@ -95,10 +95,14 @@
 		return FALSE
 	return ..()
 
+<<<<<<< HEAD
 /obj/machinery/computer/camera_advanced/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/computer/camera_advanced/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(current_user)
 		to_chat(user, "The console is already in use!")
 		return

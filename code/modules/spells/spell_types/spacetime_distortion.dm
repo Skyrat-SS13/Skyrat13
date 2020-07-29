@@ -110,8 +110,12 @@
 	else
 		walk_link(user)
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/effect/cross_action/spacetime_dist/attack_hand(mob/user)
+=======
+/obj/effect/cross_action/spacetime_dist/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	walk_link(user)
 
 /obj/effect/cross_action/spacetime_dist/attack_paw(mob/user)

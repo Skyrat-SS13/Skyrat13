@@ -139,10 +139,14 @@
 			do_animate("deny")
 	return
 
+<<<<<<< HEAD
 /obj/machinery/door/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/door/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	return try_to_activate_door(user)
 
 /obj/machinery/door/attack_tk(mob/user)

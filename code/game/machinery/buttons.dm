@@ -130,7 +130,16 @@
 		A.id = id
 	initialized_button = 1
 
+<<<<<<< HEAD
 /obj/machinery/button/attack_hand(mob/user)
+=======
+/obj/machinery/button/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
+	if(id && istype(device, /obj/item/assembly/control))
+		var/obj/item/assembly/control/A = device
+		A.id = "[idnum][id]"
+
+/obj/machinery/button/on_attack_hand(mob/user)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(.)
 		return

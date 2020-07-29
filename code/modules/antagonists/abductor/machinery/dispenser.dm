@@ -22,10 +22,14 @@
 		gland_colors[i] = random_color()
 		amounts[i] = rand(1,5)
 
+<<<<<<< HEAD
 /obj/machinery/abductor/gland_dispenser/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/abductor/gland_dispenser/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!isabductor(user))
 		return
 	user.set_machine(src)

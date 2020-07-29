@@ -60,10 +60,14 @@
 /obj/effect/portal/attack_tk(mob/user)
 	return
 
+<<<<<<< HEAD
 /obj/effect/portal/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/effect/portal/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(get_turf(user) == get_turf(src))
 		teleport(user)
 	if(Adjacent(user))

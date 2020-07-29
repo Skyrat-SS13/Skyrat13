@@ -137,10 +137,14 @@
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
 	beauty = -150
 
+<<<<<<< HEAD
 /obj/effect/decal/cleanable/vomit/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/effect/decal/cleanable/vomit/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(isflyperson(H))

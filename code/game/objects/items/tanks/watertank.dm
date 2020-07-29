@@ -72,7 +72,11 @@
 	QDEL_NULL(noz)
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/watertank/attack_hand(mob/user)
+=======
+/obj/item/watertank/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if (user.get_item_by_slot(user.getBackSlot()) == src)
 		toggle_mister(user)
 	else

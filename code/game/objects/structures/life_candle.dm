@@ -24,10 +24,14 @@
 	var/respawn_time = 50
 	var/respawn_sound = 'sound/magic/staff_animation.ogg'
 
+<<<<<<< HEAD
 /obj/structure/life_candle/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/structure/life_candle/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!user.mind)
 		return
 	if(user.mind in linked_minds)

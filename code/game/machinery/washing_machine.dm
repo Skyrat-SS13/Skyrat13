@@ -297,10 +297,14 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	else
 		return ..()
 
+<<<<<<< HEAD
 /obj/machinery/washing_machine/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/machinery/washing_machine/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(busy)
 		to_chat(user, "<span class='warning'>[src] is busy.</span>")
 		return

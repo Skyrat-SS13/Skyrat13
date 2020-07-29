@@ -57,7 +57,11 @@
 		canvas rotting away and contents vanishing.</span>")
 	qdel(src)
 
+<<<<<<< HEAD
 /obj/structure/cursed_money/attack_hand(mob/living/user)
+=======
+/obj/structure/cursed_money/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(.)
 		return

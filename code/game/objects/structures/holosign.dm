@@ -25,12 +25,16 @@
 		projector = null
 	return ..()
 
+<<<<<<< HEAD
 /obj/structure/holosign/attack_hand(mob/living/user)
+=======
+/obj/structure/holosign/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(.)
 		return
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.DelayNextAction(CLICK_CD_MELEE)
 	take_damage(5 , BRUTE, "melee", 1)
 
 /obj/structure/holosign/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
@@ -162,7 +166,11 @@
 				return TRUE //nice or benign diseases!
 	return TRUE
 
+<<<<<<< HEAD
 /obj/structure/holosign/barrier/medical/attack_hand(mob/living/user)
+=======
+/obj/structure/holosign/barrier/medical/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(CanPass(user) && user.a_intent == INTENT_HELP)
 		force_allaccess = !force_allaccess
 		to_chat(user, "<span class='warning'>You [force_allaccess ? "deactivate" : "activate"] the biometric scanners.</span>") //warning spans because you can make the station sick!
@@ -182,7 +190,11 @@
 /obj/structure/holosign/barrier/cyborg/hacked/proc/cooldown()
 	shockcd = FALSE
 
+<<<<<<< HEAD
 /obj/structure/holosign/barrier/cyborg/hacked/attack_hand(mob/living/user)
+=======
+/obj/structure/holosign/barrier/cyborg/hacked/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(.)
 		return

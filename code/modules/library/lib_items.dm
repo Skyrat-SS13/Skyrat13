@@ -112,7 +112,11 @@
 			else
 				return ..()
 
+<<<<<<< HEAD
 /obj/structure/bookcase/attack_hand(mob/living/user)
+=======
+/obj/structure/bookcase/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(. || !istype(user))
 		return

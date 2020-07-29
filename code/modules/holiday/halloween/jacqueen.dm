@@ -76,7 +76,7 @@
 	health = 25
 	poof()
 
-/mob/living/simple_animal/jacq/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_animal/jacq/on_attack_hand(mob/living/carbon/human/M)
 	if(!active)
 		say("Hello there [gender_check(M)]!")
 		return ..()
@@ -406,14 +406,22 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, GLUED_ITEM_TRAIT)
 
+<<<<<<< HEAD
 /obj/item/clothing/suit/ghost_sheet/sticky/attack_hand(mob/user)
+=======
+/obj/item/clothing/suit/ghost_sheet/sticky/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(iscarbon(user))
 		to_chat(user, "<span class='spooky'><i>Boooooo~!</i></span>")
 		return
 	else
 		..()
 
+<<<<<<< HEAD
 /obj/item/clothing/suit/ghost_sheet/sticky/attack_hand(mob/user)
+=======
+/obj/item/clothing/suit/ghost_sheet/sticky/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(iscarbon(user))
 		to_chat(user, "<span class='spooky'><i>Boooooo~!</i></span>")
 		return

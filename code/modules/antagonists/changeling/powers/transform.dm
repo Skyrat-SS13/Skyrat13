@@ -17,8 +17,12 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/glasses/changeling/attack_hand(mob/user)
+=======
+/obj/item/clothing/glasses/changeling/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
 		to_chat(user, "<span class='notice'>You reabsorb [src] into your body.</span>")
 		qdel(src)
@@ -33,8 +37,12 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/under/changeling/attack_hand(mob/user)
+=======
+/obj/item/clothing/under/changeling/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
 		to_chat(user, "<span class='notice'>You reabsorb [src] into your body.</span>")
 		qdel(src)
@@ -50,8 +58,12 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/suit/changeling/attack_hand(mob/user)
+=======
+/obj/item/clothing/suit/changeling/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
 		to_chat(user, "<span class='notice'>You reabsorb [src] into your body.</span>")
 		qdel(src)
@@ -65,8 +77,12 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/head/changeling/attack_hand(mob/user)
+=======
+/obj/item/clothing/head/changeling/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
 		to_chat(user, "<span class='notice'>You reabsorb [src] into your body.</span>")
 		qdel(src)
@@ -81,8 +97,12 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/shoes/changeling/attack_hand(mob/user)
+=======
+/obj/item/clothing/shoes/changeling/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
 		to_chat(user, "<span class='notice'>You reabsorb [src] into your body.</span>")
 		qdel(src)
@@ -97,8 +117,12 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/gloves/changeling/attack_hand(mob/user)
+=======
+/obj/item/clothing/gloves/changeling/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
 		to_chat(user, "<span class='notice'>You reabsorb [src] into your body.</span>")
 		qdel(src)
@@ -113,8 +137,12 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/mask/changeling/attack_hand(mob/user)
+=======
+/obj/item/clothing/mask/changeling/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
 		to_chat(user, "<span class='notice'>You reabsorb [src] into your body.</span>")
 		qdel(src)
@@ -131,8 +159,12 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/changeling/attack_hand(mob/user)
+=======
+/obj/item/changeling/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
 		to_chat(user, "<span class='notice'>You reabsorb [src] into your body.</span>")
 		qdel(src)

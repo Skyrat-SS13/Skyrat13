@@ -167,10 +167,14 @@
 		qdel(src)
 	return TRUE
 
+<<<<<<< HEAD
 /obj/item/gps/computer/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/item/gps/computer/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	attack_self(user)
 
 //Bed

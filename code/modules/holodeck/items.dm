@@ -105,10 +105,14 @@
 		if(user.transferItemToLoc(W, drop_location()))
 			visible_message("<span class='warning'> [user] dunks [W] into \the [src]!</span>")
 
+<<<<<<< HEAD
 /obj/structure/holohoop/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/structure/holohoop/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
 		var/mob/living/L = user.pulling
 		if(user.grab_state < GRAB_AGGRESSIVE)
@@ -164,7 +168,7 @@
 /obj/machinery/readybutton/attackby(obj/item/W as obj, mob/user as mob, params)
 	to_chat(user, "The device is a solid button, there's nothing you can do with it!")
 
-/obj/machinery/readybutton/attack_hand(mob/user as mob)
+/obj/machinery/readybutton/on_attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return

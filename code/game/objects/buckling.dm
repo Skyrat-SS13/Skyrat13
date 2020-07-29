@@ -9,7 +9,11 @@
 	var/buckle_prevents_pull = FALSE
 
 //Interaction
+<<<<<<< HEAD
 /atom/movable/attack_hand(mob/living/user)
+=======
+/atom/movable/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
 	if(.)
 		return
@@ -145,3 +149,13 @@
 		var/mob/living/L = M.pulledby
 		L.set_pull_offsets(M, L.grab_state)
 	return M
+
+/atom/movable/proc/precise_user_unbuckle_mob(mob/user)
+	if(!buckled_mobs)
+		return
+	else if(length(buckled_mobs) == 1)
+		return user_unbuckle_mob(buckled_mobs[1], user)
+	else
+		var/unbuckled = input(user, "Who do you wish to unbuckle?","Unbuckle Who?") as null|mob in buckled_mobs
+		return user_unbuckle_mob(unbuckled, user)
+

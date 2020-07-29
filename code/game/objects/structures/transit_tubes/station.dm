@@ -58,10 +58,14 @@
 	qdel(R)
 
 
+<<<<<<< HEAD
 /obj/structure/transit_tube/station/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/structure/transit_tube/station/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(!pod_moving)
 		if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
 			if(open_status == STATION_TUBE_OPEN)

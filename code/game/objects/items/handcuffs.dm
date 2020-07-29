@@ -320,7 +320,11 @@
 		do_sparks(1, TRUE, src)
 		qdel(src)
 
+<<<<<<< HEAD
 /obj/item/restraints/legcuffs/beartrap/energy/attack_hand(mob/user)
+=======
+/obj/item/restraints/legcuffs/beartrap/energy/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	Crossed(user) //honk
 	. = ..()
 

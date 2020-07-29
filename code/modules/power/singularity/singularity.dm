@@ -59,7 +59,11 @@
 		last_failed_movement = direct
 		return 0
 
+<<<<<<< HEAD
 /obj/singularity/attack_hand(mob/user)
+=======
+/obj/singularity/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	consume(user)
 	return TRUE
 

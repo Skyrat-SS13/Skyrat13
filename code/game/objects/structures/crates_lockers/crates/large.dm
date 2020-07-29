@@ -8,7 +8,11 @@
 	delivery_icon = "deliverybox"
 	integrity_failure = 0 //Makes the crate break when integrity reaches 0, instead of opening and becoming an invisible sprite.
 
+<<<<<<< HEAD
 /obj/structure/closet/crate/large/attack_hand(mob/user)
+=======
+/obj/structure/closet/crate/large/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	add_fingerprint(user)
 	if(manifest)
 		tear_manifest(user)

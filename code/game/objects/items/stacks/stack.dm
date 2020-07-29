@@ -389,8 +389,12 @@
 		merge(AM)
 	. = ..()
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/stack/attack_hand(mob/user)
+=======
+/obj/item/stack/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(user.get_inactive_held_item() == src)
 		if(zero_amount())
 			return

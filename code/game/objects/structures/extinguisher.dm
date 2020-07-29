@@ -69,10 +69,14 @@
 		return ..()
 
 
+<<<<<<< HEAD
 /obj/structure/extinguisher_cabinet/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/structure/extinguisher_cabinet/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(iscyborg(user) || isalien(user))
 		return
 	if(stored_extinguisher)

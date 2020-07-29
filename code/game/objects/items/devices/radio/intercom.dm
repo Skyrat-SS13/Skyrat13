@@ -86,10 +86,14 @@
 /obj/item/radio/intercom/attack_ai(mob/user)
 	interact(user)
 
+<<<<<<< HEAD
 /obj/item/radio/intercom/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/item/radio/intercom/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	interact(user)
 
 /obj/item/radio/intercom/interact(mob/user)

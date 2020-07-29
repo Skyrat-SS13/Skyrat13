@@ -593,10 +593,14 @@ GLOBAL_LIST_INIT(valid_mechtoy_paths, valid_mechtoy_paths())
 	else
 		. = ..()
 
+<<<<<<< HEAD
 /obj/item/toy/prize/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/item/toy/prize/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc == user)
 		attack_self(user)
 
@@ -830,9 +834,12 @@ GLOBAL_LIST_INIT(valid_mechtoy_paths, valid_mechtoy_paths())
 	cards += "Ace of Clubs"
 	cards += "Ace of Diamonds"
 
-//ATTACK HAND IGNORING PARENT RETURN VALUE
 //ATTACK HAND NOT CALLING PARENT
+<<<<<<< HEAD
 /obj/item/toy/cards/deck/attack_hand(mob/user)
+=======
+/obj/item/toy/cards/deck/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	draw_card(user)
 
 /obj/item/toy/cards/deck/proc/draw_card(mob/user)

@@ -41,10 +41,12 @@
 	if(manifest)
 		. += "manifest"
 
+<<<<<<< HEAD
 /obj/structure/closet/crate/attack_hand(mob/user)
+=======
+/obj/structure/closet/crate/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	. = ..()
-	if(.)
-		return
 	if(manifest)
 		tear_manifest(user)
 

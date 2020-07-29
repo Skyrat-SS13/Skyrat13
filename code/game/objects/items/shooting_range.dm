@@ -31,10 +31,14 @@
 		to_chat(user, "<span class='notice'>You slice off [src]'s uneven chunks of aluminium and scorch marks.</span>")
 	return TRUE
 
+<<<<<<< HEAD
 /obj/item/target/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/item/target/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(pinnedLoc)
 		pinnedLoc.removeTarget(user)
 

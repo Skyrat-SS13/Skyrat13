@@ -373,8 +373,12 @@
 		. = ..()
 		update_icon()
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/gun/ballistic/automatic/l6_saw/attack_hand(mob/user)
+=======
+/obj/item/gun/ballistic/automatic/l6_saw/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc != user)
 		..()
 		return	//let them pick it up

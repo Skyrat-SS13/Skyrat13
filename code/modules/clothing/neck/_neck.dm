@@ -219,7 +219,11 @@
 			lock = TRUE
 	return
 
+<<<<<<< HEAD
 /obj/item/clothing/neck/petcollar/locked/attack_hand(mob/user)
+=======
+/obj/item/clothing/neck/petcollar/locked/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> 81a7542aa6... Merge pull request #12834 from silicons/clickcd_experimental
 	if(loc == user && user.get_item_by_slot(SLOT_NECK) && lock != FALSE)
 		to_chat(user, "<span class='warning'>The collar is locked! You'll need unlock the collar before you can take it off!</span>")
 		return
