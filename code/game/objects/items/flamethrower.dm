@@ -131,7 +131,11 @@
 /obj/item/flamethrower/analyzer_act(mob/living/user, obj/item/I)
 	if(ptank)
 		ptank.analyzer_act(user, I)
+<<<<<<< HEAD
 	return TRUE // Skyrat change
+=======
+	return TRUE
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 
 
 /obj/item/flamethrower/attack_self(mob/user)

@@ -62,7 +62,11 @@
 
 /obj/item/onetankbomb/analyzer_act(mob/living/user, obj/item/I)
 	bombtank.analyzer_act(user, I)
+<<<<<<< HEAD
 	return TRUE // Skyrat change
+=======
+	return TRUE
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 
 /obj/item/onetankbomb/attack_self(mob/user) //pressing the bomb accesses its assembly
 	bombassembly.attack_self(user, TRUE)

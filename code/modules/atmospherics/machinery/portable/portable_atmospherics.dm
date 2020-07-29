@@ -146,7 +146,11 @@
 
 /obj/machinery/portable_atmospherics/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(air_contents, user, src)
+<<<<<<< HEAD
 	return TRUE // Skyrat change
+=======
+	return TRUE
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 
 /obj/machinery/portable_atmospherics/attacked_by(obj/item/I, mob/user, attackchain_flags = NONE, damage_multiplier = 1)
 	if(I.force < 10 && !(stat & BROKEN))

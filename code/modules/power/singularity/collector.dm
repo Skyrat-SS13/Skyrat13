@@ -184,7 +184,11 @@
 /obj/machinery/power/rad_collector/analyzer_act(mob/living/user, obj/item/I)
 	if(loaded_tank)
 		loaded_tank.analyzer_act(user, I)
+<<<<<<< HEAD
 	return TRUE // Skyrat change 
+=======
+	return TRUE
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 
 /obj/machinery/power/rad_collector/examine(mob/user)
 	. = ..()

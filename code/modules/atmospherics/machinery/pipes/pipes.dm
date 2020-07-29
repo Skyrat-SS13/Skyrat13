@@ -64,7 +64,11 @@
 
 /obj/machinery/atmospherics/pipe/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(parent.air, user, src)
+<<<<<<< HEAD
 	return TRUE // Skyrat change
+=======
+	return TRUE
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 
 /obj/machinery/atmospherics/pipe/returnPipenet()
 	return parent

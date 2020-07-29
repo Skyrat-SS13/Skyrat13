@@ -541,7 +541,11 @@ GENETICS SCANNER
 	if (user.stat || user.eye_blind)
 		return
 
+<<<<<<< HEAD
 	// Skyrat change: Functionality moved down to proc/scan_turf()
+=======
+	//Functionality moved down to proc/scan_turf()
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 	var/turf/location = get_turf(user)
 	if(!istype(location))
 		return
@@ -626,7 +630,11 @@ GENETICS SCANNER
 		var/total_moles = air_contents.total_moles()
 		var/pressure = air_contents.return_pressure()
 		var/volume = air_contents.return_volume() //could just do mixture.volume... but safety, I guess?
+<<<<<<< HEAD
 		var/temperature = air_contents.temperature
+=======
+		var/temperature = air_contents.return_temperature()
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 		var/cached_scan_results = air_contents.analyzer_results
 
 		if(total_moles > 0)
@@ -653,9 +661,16 @@ GENETICS SCANNER
 			to_chat(user, "<span class='notice'>Power of the last fusion reaction: [fusion_power]\n This power indicates it was a [tier]-tier fusion reaction.</span>")
 	return
 
+<<<<<<< HEAD
 // Skyrat change
 /obj/item/analyzer/proc/scan_turf(mob/user, turf/location)
 	var/datum/gas_mixture/environment = location.return_air()
+=======
+/obj/item/analyzer/proc/scan_turf(mob/user, turf/location)
+
+	var/datum/gas_mixture/environment = location.return_air()
+
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 	var/pressure = environment.return_pressure()
 	var/total_moles = environment.total_moles()
 	var/cached_scan_results = environment.analyzer_results
@@ -666,6 +681,7 @@ GENETICS SCANNER
 	else
 		to_chat(user, "<span class='alert'>Pressure: [round(pressure, 0.01)] kPa</span>")
 	if(total_moles)
+<<<<<<< HEAD
 		var/list/env_gases = environment.gases
 
 		var/o2_concentration = env_gases[/datum/gas/oxygen]/total_moles
@@ -702,6 +718,41 @@ GENETICS SCANNER
 			to_chat(user, "<span class='alert'>[GLOB.meta_gas_names[id]]: [round(gas_concentration*100, 0.01)] % ([round(env_gases[id], 0.01)] mol)</span>")
 		to_chat(user, "<span class='info'>Temperature: [round(environment.temperature-T0C, 0.01)] &deg;C ([round(environment.temperature, 0.01)] K)</span>")
 		
+=======
+
+		var/o2_concentration = environment.get_moles(/datum/gas/oxygen)/total_moles
+		var/n2_concentration = environment.get_moles(/datum/gas/nitrogen)/total_moles
+		var/co2_concentration = environment.get_moles(/datum/gas/carbon_dioxide)/total_moles
+		var/plasma_concentration = environment.get_moles(/datum/gas/plasma)/total_moles
+
+		if(abs(n2_concentration - N2STANDARD) < 20)
+			to_chat(user, "<span class='info'>Nitrogen: [round(n2_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/nitrogen), 0.01)] mol)</span>")
+		else
+			to_chat(user, "<span class='alert'>Nitrogen: [round(n2_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/nitrogen), 0.01)] mol)</span>")
+
+		if(abs(o2_concentration - O2STANDARD) < 2)
+			to_chat(user, "<span class='info'>Oxygen: [round(o2_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/oxygen), 0.01)] mol)</span>")
+		else
+			to_chat(user, "<span class='alert'>Oxygen: [round(o2_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/oxygen), 0.01)] mol)</span>")
+
+		if(co2_concentration > 0.01)
+			to_chat(user, "<span class='alert'>CO2: [round(co2_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/carbon_dioxide), 0.01)] mol)</span>")
+		else
+			to_chat(user, "<span class='info'>CO2: [round(co2_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/carbon_dioxide), 0.01)] mol)</span>")
+
+		if(plasma_concentration > 0.005)
+			to_chat(user, "<span class='alert'>Plasma: [round(plasma_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/plasma), 0.01)] mol)</span>")
+		else
+			to_chat(user, "<span class='info'>Plasma: [round(plasma_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/plasma), 0.01)] mol)</span>")
+
+		for(var/id in environment.get_gases())
+			if(id in GLOB.hardcoded_gases)
+				continue
+			var/gas_concentration = environment.get_moles(id)/total_moles
+			to_chat(user, "<span class='alert'>[GLOB.meta_gas_names[id]]: [round(gas_concentration*100, 0.01)] % ([round(environment.get_moles(id), 0.01)] mol)</span>")
+		to_chat(user, "<span class='info'>Temperature: [round(environment.return_temperature()-T0C, 0.01)] &deg;C ([round(environment.return_temperature(), 0.01)] K)</span>")
+
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 		if(cached_scan_results && cached_scan_results["fusion"]) //notify the user if a fusion reaction was detected
 			var/fusion_power = round(cached_scan_results["fusion"], 0.01)
 			var/tier = fusionpower2text(fusion_power)
@@ -711,7 +762,11 @@ GENETICS SCANNER
 /obj/item/analyzer/ranged
 	desc = "A hand-held scanner which uses advanced spectroscopy and infrared readings to analyze gases as a distance. Alt-Click to use the built in barometer function."
 	name = "long-range analyzer"
+<<<<<<< HEAD
 	icon = 'modular_skyrat/icons/obj/device.dmi'
+=======
+	icon = 'icons/obj/device.dmi'
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 	icon_state = "ranged_analyzer"
 
 /obj/item/analyzer/ranged/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
@@ -721,7 +776,10 @@ GENETICS SCANNER
 	// Tool act didn't scan it, so let's get it's turf.
 	var/turf/location = get_turf(target)
 	scan_turf(user, location)
+<<<<<<< HEAD
 // End skyrat change
+=======
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 
 //slime scanner
 
@@ -908,3 +966,12 @@ GENETICS SCANNER
 		return  "[HM.name] ([HM.alias])"
 	else
 		return HM.alias
+<<<<<<< HEAD
+=======
+
+#undef SCANMODE_HEALTH
+#undef SCANMODE_CHEMICAL
+#undef SCANMODE_WOUND
+#undef SCANNER_CONDENSED
+#undef SCANNER_VERBOSE
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer

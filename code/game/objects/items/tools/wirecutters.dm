@@ -117,7 +117,11 @@
 /obj/item/wirecutters/power/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
 	var/obj/item/crowbar/power/pryjaws = new /obj/item/crowbar/power(drop_location())
+<<<<<<< HEAD
 	pryjaws.name = name // Skyrat fix
+=======
+	pryjaws.name = name
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 	to_chat(user, "<span class='notice'>You attach the pry jaws to [src].</span>")
 	qdel(src)
 	user.put_in_active_hand(pryjaws)

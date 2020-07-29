@@ -83,7 +83,11 @@
 	new /obj/item/multitool(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 	new /obj/item/extinguisher/mini(src)
+<<<<<<< HEAD
 	new /obj/item/analyzer/ranged(src) // Skyrat change
+=======
+	new /obj/item/analyzer/ranged(src)
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 	//much roomier now that we've managed to remove two tools
 
 /obj/item/storage/belt/utility/full/PopulateContents()

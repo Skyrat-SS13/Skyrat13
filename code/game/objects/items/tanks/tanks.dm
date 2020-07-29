@@ -123,7 +123,11 @@
 
 /obj/item/tank/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(air_contents, user, src)
+<<<<<<< HEAD
 	return TRUE // Skyrat change
+=======
+	return TRUE
+>>>>>>> 9ff94e019b... Merge pull request #12924 from SiliconMain/analyzer
 
 /obj/item/tank/deconstruct(disassembled = TRUE)
 	if(!disassembled)
