@@ -608,9 +608,31 @@ so as to remain in compliance with the most up-to-date laws."
 	var/mob/living/L = usr
 	if(!istype(L) || !L.can_resist())
 		return
+<<<<<<< HEAD
 	L.changeNext_move(CLICK_CD_RESIST)
 	if(L.last_special <= world.time)
 		return L.resist_buckle()
+=======
+	L.MarkResistTime()
+	return L.resist_buckle()
+
+/obj/screen/alert/shoes/untied
+	name = "Untied Shoes"
+	desc = "Your shoes are untied! Click the alert or your shoes to tie them."
+	icon_state = "shoealert"
+
+/obj/screen/alert/shoes/knotted
+	name = "Knotted Shoes"
+	desc = "Someone tied your shoelaces together! Click the alert or your shoes to undo the knot."
+	icon_state = "shoealert"
+
+/obj/screen/alert/shoes/Click()
+	var/mob/living/carbon/C = usr
+	if(!istype(C) || !C.can_resist() || C != mob_viewer || !C.shoes)
+		return
+	C.MarkResistTime()
+	C.shoes.handle_tying(C)
+>>>>>>> fbf81930c3... Merge pull request #12958 from silicons/fix_142
 
 // PRIVATE = only edit, use, or override these if you're editing the system as a whole
 
