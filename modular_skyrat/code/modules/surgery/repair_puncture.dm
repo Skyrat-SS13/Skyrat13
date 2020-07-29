@@ -37,7 +37,7 @@
 ///// realign the blood vessels so we can reweld them
 /datum/surgery_step/repair_innards
 	name = "realign blood vessels"
-	implements = list(TOOL_FIXOVEIN = 100, /obj/item/stack/cable_coil = 40, /obj/item/organ/cyberimp/arm/power_cord = 25)
+	implements = list(/obj/item/stack/medical/fixovein = 100, /obj/item/stack/cable_coil = 40, /obj/item/organ/cyberimp/arm/power_cord = 25)
 	time = 3 SECONDS
 	var/puncture_or_slash = "puncture"
 

@@ -14,6 +14,7 @@
 	splint_factor = 0.75
 	custom_price = PRICE_EXPENSIVE
 	novariants = TRUE
+	merge_type = /obj/item/stack/medical/gauze/splint
 
 /obj/item/stack/medical/gauze/splint/tribal
 	name = "tribal splints"
@@ -26,6 +27,7 @@
 	absorption_capacity = 3.5
 	splint_factor = 0.65
 	novariants = TRUE
+	merge_type = /obj/item/stack/medical/gauze/splint/tribal
 
 /obj/item/stack/medical/nanopaste
 	name = "nanite paste"
@@ -39,6 +41,7 @@
 	heal_brute = 20
 	heal_burn = 20
 	required_status = BODYPART_ROBOTIC
+	merge_type = /obj/item/stack/medical/nanopaste
 
 /obj/item/stack/medical/fixovein
 	name = "fix o' vein"
@@ -54,3 +57,4 @@
 	other_delay = 40
 	grind_results = list(/datum/reagent/medicine/fibrin = 10, /datum/reagent/medicine/coagulant = 10)
 	novariants = TRUE
+	merge_type = /obj/item/stack/medical/fixovein
