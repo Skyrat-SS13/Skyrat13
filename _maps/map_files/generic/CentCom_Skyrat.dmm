@@ -850,12 +850,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"bif" = (
-/obj/machinery/sleeper/centcomm{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/centcom/evac)
 "biq" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Thunderdome Locker Room";
@@ -2625,7 +2619,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/sleeper/centcomm{
+/obj/machinery/sleeper/centcom{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
@@ -4906,6 +4900,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena)
+"fTy" = (
+/obj/machinery/sleeper/centcom{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/centcom/evac)
 "fTC" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light{
@@ -6730,15 +6730,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
-"igU" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/sleeper/centcomm{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/centcom/evac)
 "ihv" = (
 /obj/structure/chair{
 	dir = 4
@@ -9923,6 +9914,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership)
+"lBI" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/sleeper/centcom{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/centcom/evac)
 "lBW" = (
 /obj/machinery/computer/operating{
 	dir = 8
@@ -14017,6 +14017,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/tdomeadmin)
+"qKz" = (
+/obj/machinery/sleeper/centcom{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/centcom/evac)
 "qKP" = (
 /obj/item/surgical_drapes,
 /obj/item/paper/guides/antag/abductor,
@@ -14088,12 +14094,6 @@
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-"qQJ" = (
-/obj/machinery/sleeper/centcomm{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/centcom/evac)
 "qRh" = (
 /obj/structure/chair{
 	dir = 1
@@ -69128,16 +69128,16 @@ qVK
 qVK
 qVK
 hpf
-bif
+fTy
 dol
-bif
+fTy
 kUz
 mXw
 idS
 jwF
-qQJ
-igU
-qQJ
+qKz
+lBI
+qKz
 hpf
 ocn
 iPJ

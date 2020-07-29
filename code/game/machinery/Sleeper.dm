@@ -418,7 +418,7 @@
 	RefreshParts()
 
 
-/obj/machinery/sleeper/centcomm/Initialize()
+/obj/machinery/sleeper/centcom/Initialize()
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/sleeper/syndie(null)
