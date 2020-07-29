@@ -15,6 +15,67 @@
 	idle_power_usage = 10
 	active_power_usage = 100
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
+<<<<<<< HEAD
+=======
+	var/obj/item/stored
+
+/obj/machinery/blackbox_recorder/Initialize()
+	. = ..()
+	stored = new /obj/item/blackbox(src)
+
+/obj/machinery/blackbox_recorder/on_attack_hand(mob/living/user, act_intent, unarmed_attack_flags)
+	. = ..()
+	if(stored)
+		to_chat(user, "<span class='notice'>You start struggling to pry the [stored] from the [src]...</span>")
+		if(!do_after(user, 30 SECONDS, TRUE, src))
+			to_chat(user, "<span class='warning'>Your fingers slip as you fail to pry the [stored] from the [src], clicking it right back into the slot!</span>")
+			return
+		if(user.put_in_hands(stored))
+			stored.forceMove(user.drop_location())
+		stored = null
+		to_chat(user, "<span class='warning'>You successfully pry the [stored] from the [src], and send its overwhelming weight tumbling onto the ground! The tapes on the [src] stop spinning...</span>")
+		update_icon()
+		return
+	else
+		to_chat(user, "<span class='warning'>It seems that the blackbox is missing...</span>")
+		return
+
+/obj/machinery/blackbox_recorder/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/blackbox))
+		if(HAS_TRAIT(I, TRAIT_NODROP) || !user.transferItemToLoc(I, src))
+			to_chat(user, "<span class='warning'>[I] is stuck to your hand!</span>")
+			return
+		user.visible_message("<span class='notice'>[user] clicks the [I] into the [src]!</span>", \
+		"<span class='notice'>You press [I] into [src], and it clicks into place. The tapes on the [src] begin spinning again...</span>")
+		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+		stored = I
+		update_icon()
+		return ..()
+	return ..()
+
+/obj/machinery/blackbox_recorder/Destroy()
+	if(stored)
+		stored.forceMove(loc)
+		new /obj/effect/decal/cleanable/oil(loc)
+	return ..()
+
+/obj/machinery/blackbox_recorder/update_icon()
+	. = ..()
+	if(!stored)
+		icon_state = "blackbox_b"
+	else
+		icon_state = "blackbox"
+
+/obj/item/blackbox
+	name = "the blackbox"
+	desc = "A strange relic, capable of recording data on extradimensional vertices. It lives inside the blackbox recorder for safe keeping."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "blackcube"
+	w_class = WEIGHT_CLASS_BULKY
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+
+>>>>>>> 41a711ff01... Merge pull request #12959 from Citadel-Station-13/AAAAAAA
 
 // The message server itself.
 /obj/machinery/telecomms/message_server
