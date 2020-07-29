@@ -92,7 +92,11 @@
 	category = list("Tool Designs")
 	departmental_flags =  DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
 
+<<<<<<< HEAD
 /datum/design/ranged_analyzer // Skyrat addition
+=======
+/datum/design/ranged_analyzer
+>>>>>>> 446e0df667... Merge pull request #12961 from timothyteakettle/travis-patch-1
 	name = "Long-range Analyzer"
 	desc = "A new advanced atmospheric analyzer design, capable of performing scans at long range."
 	id = "ranged_analyzer"
