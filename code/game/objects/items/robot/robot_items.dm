@@ -841,7 +841,7 @@
 /obj/item/weapon/gripper/medical
 	name = "medical gripper"
 	desc = "A simple grasping tool for interacting with medical equipment, such as beakers, blood bags, chem bags and more. Alt click to drop instead of use."
-	icon_state = "gripper_medical"
+	icon_state = "gripper"
 	can_hold = list(
 		/obj/item/storage/bag/bio,
 		/obj/item/storage/bag/chemistry,
