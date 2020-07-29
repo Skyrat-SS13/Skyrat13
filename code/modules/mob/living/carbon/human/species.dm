@@ -2,6 +2,9 @@
 
 GLOBAL_LIST_EMPTY(roundstart_races)
 GLOBAL_LIST_EMPTY(roundstart_race_names)
+//skyrat edit
+GLOBAL_LIST_EMPTY(roundstart_race_datums)
+//
 
 /datum/species
 	var/id	// if the game needs to manually check your race to do something not included in a proc here, it will use this
@@ -124,7 +127,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	//if we havent set a limbs id to use, just use our own id
 	if(!limbs_id)
 		limbs_id = id
-	
+
 	//skyrat change
 	//Set our descriptors proper
 	if(LAZYLEN(descriptors))
@@ -137,7 +140,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			descriptor_datums[descriptor.name] = descriptor
 		descriptors = descriptor_datums
 	//
-	
+
 	..()
 
 
@@ -150,7 +153,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(S.check_roundstart_eligible())
 			GLOB.roundstart_races |= S.id
 			GLOB.roundstart_race_names["[S.name]"] = S.id
-			qdel(S)
+			//skyrat edit
+			GLOB.roundstart_race_datums["[S.id]"] = S
+			//
 	if(!GLOB.roundstart_races.len)
 		GLOB.roundstart_races += "human"
 
@@ -323,7 +328,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 	if(exotic_bloodtype && C.dna.blood_type != exotic_bloodtype)
 		C.dna.blood_type = exotic_bloodtype
-	
+
 	//skyrat edti
 	if(C.client)
 		var/client/cli = C.client
@@ -374,7 +379,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 						H.physiology.footstep_type = null
 			else
 				H.physiology.footstep_type = null
-				
+
 	/* SKYRAT EDIT - START, COMMENTED OUT
 		if(H.client && has_field_of_vision && CONFIG_GET(flag/use_field_of_vision))
 			H.LoadComponent(/datum/component/field_of_vision, H.field_of_vision_type)

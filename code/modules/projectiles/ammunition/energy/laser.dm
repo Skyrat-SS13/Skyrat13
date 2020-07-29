@@ -50,7 +50,7 @@
 	projectile_type = /obj/item/projectile/beam/pulse
 	e_cost = 200
 	select_name = "DESTROY"
-	fire_sound = 'sound/weapons/pulse.ogg'
+	fire_sound = 'modular_skyrat/sound/weapons/pulse.ogg'
 
 /obj/item/ammo_casing/energy/laser/bluetag
 	projectile_type = /obj/item/projectile/beam/lasertag/bluetag
