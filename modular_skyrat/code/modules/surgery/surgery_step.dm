@@ -18,7 +18,7 @@
 			prob_chance *= 0.8
 		if(implement_type)	//this means it isn't a require hand or any item step.
 			prob_chance = implements[implement_type]
-		prob_chance *= surgery.get_propability_multiplier()
+		prob_chance *= surgery.get_probability_multiplier()
 
 		if(ishuman(target) && target.stat == CONSCIOUS && target.mob_biotypes & MOB_ORGANIC && !target.IsUnconscious() && !target.InCritical() && !target.IsSleeping() && !HAS_TRAIT(target, TRAIT_PAINKILLER))
 			prob_chance *= 0.4

@@ -16,7 +16,7 @@
 	var/requires_bodypart = TRUE							//Surgery available only when a bodypart is present, or only when it is missing.
 	var/success_multiplier = 0								//Step success propability multiplier
 	var/requires_real_bodypart = 0							//Some surgeries don't work on limbs that don't really exist
-	var/lying_required = FALSE								//Does the vicitm needs to be lying down.
+	var/lying_required = FALSE								//Does the victim needs to be lying down.
 	var/requires_tech = FALSE
 	var/replaced_by
 	//skyrat edit
@@ -127,7 +127,7 @@
 	SSblackbox.record_feedback("tally", "surgeries_completed", 1, type)
 	qdel(src)
 
-/datum/surgery/proc/get_propability_multiplier()
+/datum/surgery/proc/get_probability_multiplier()
 	var/propability = 0.5
 	var/turf/T = get_turf(target)
 

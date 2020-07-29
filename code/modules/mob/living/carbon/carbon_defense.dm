@@ -169,14 +169,15 @@
 	//skyrat edit
 	for(var/datum/wound/W in all_wounds)
 		if(W.try_handling(user))
-			return 1
+			return TRUE
 	//
 
-	if(lying && surgeries.len)
-		if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
+	if(surgeries.len)
+		if(user.a_intent == INTENT_HELP)
 			for(var/datum/surgery/S in surgeries)
-				if(S.next_step(user, user.a_intent))
-					return TRUE
+				if(!S.lying_required || (S.lying_required && lying))
+					if(S.next_step(user, user.a_intent))
+						return TRUE
 
 
 /mob/living/carbon/attack_paw(mob/living/carbon/monkey/M)

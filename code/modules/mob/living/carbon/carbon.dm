@@ -83,11 +83,12 @@
 		mode() // Activate held item
 
 /mob/living/carbon/attackby(obj/item/I, mob/user, params)
-	if(lying && surgeries.len)
-		if(user != src && (user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM))
+	if(surgeries.len)
+		if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
 			for(var/datum/surgery/S in surgeries)
-				if(S.next_step(user,user.a_intent))
-					return 1
+				if(!S.lying_required || (S.lying_required && lying))
+					if(S.next_step(user,user.a_intent))
+						return 1
 	//skyrat edit
 	if(!all_wounds || !all_wounds.len || !(user.a_intent == INTENT_HELP || user == src))
 		return ..()

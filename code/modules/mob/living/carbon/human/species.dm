@@ -1770,8 +1770,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	armor_block = min(95,armor_block) //cap damage reduction at 95%
 	var/Iwound_bonus = I.wound_bonus
 
-	// this way, you can't wound with a surgical tool on help intent if they have a surgery active and are laying down, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
-	if((I.item_flags & SURGICAL_TOOL) && user.a_intent == INTENT_HELP && (H.mobility_flags & ~MOBILITY_STAND) && (LAZYLEN(H.surgeries) > 0))
+	// this way, you can't wound with a surgical tool on help intent if they have a surgery active, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
+	if((I.item_flags & SURGICAL_TOOL) && (user.a_intent == INTENT_HELP) && (LAZYLEN(H.surgeries) > 0))
 		Iwound_bonus = CANT_WOUND
 	//
 	var/weakness = H.check_weakness(I, user)
