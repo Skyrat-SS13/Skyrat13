@@ -142,7 +142,7 @@
 		. += "<span class='warning'>This limb has [burn_dam > 30 ? "severe" : "minor"] burns.</span>"
 	if(etching)
 		. += "<span class='notice'>[src] has <b>\"[etching]\"</b> inscribed on it.</span>"
-	if(status & BODYPART_ROBOTIC && status & BODYPART_ORGANIC)
+	if((status & BODYPART_ROBOTIC) && (status & BODYPART_ORGANIC))
 		. += "<span class='notice'>[src] is seemingly of both inorganic and organic nature.</span>"
 	else if(status & BODYPART_ROBOTIC)
 		. += "<span class='notice'>[src] is seemingly of inorganic nature.</span>"
