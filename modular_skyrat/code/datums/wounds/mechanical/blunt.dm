@@ -229,14 +229,14 @@
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(60 + prob_mod))
+	if(prob(70 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps their own [limb.name]'s rotors back in place!</span>", "<span class='danger'>You snap your own [limb.name]'s rotors back into place!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=24, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
 		user.visible_message("<span class='danger'>[user] wrenches their [limb.name] around!</span>", "<span class='danger'>You wrench your [limb.name] around!</span>")
-		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=8, wound_bonus=CANT_WOUND)
 		self_treat(user, FALSE)
 	return
 
@@ -277,12 +277,12 @@
 		user.visible_message("<span class='danger'>[user] forcefully connects [victim]'s disconnected [limb.name] actuators!</span>", "<span class='notice'>You forcefully connect [victim]'s disconnected [limb.name] actuators!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your desynchronized [limb.name] actuators back into place!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=20, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
 		user.visible_message("<span class='danger'>[user] torques and grinds [victim]'s disconnected [limb.name] actuators!</span>", "<span class='danger'>You torque and grind [victim]'s disconnected [limb.name] actuators!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] torques and grings your [limb.name]'s disconnected actuators!</span>")
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=8, wound_bonus=CANT_WOUND)
 		chiropractice(user)
 
 /// If someone is snapping our dislocated joint into a fracture by hand with an aggro grab and harm or disarm intent
@@ -299,11 +299,11 @@
 		user.visible_message("<span class='danger'>[user] torques [victim]'s disconnected [limb.name] actuators with a loud pop!</span>", "<span class='danger'>You torque [victim]'s disconnected [limb.name] actuators with a loud pop!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=25, wound_bonus=30 + prob_mod * 3)
+		limb.receive_damage(brute=12, wound_bonus=30 + prob_mod * 3)
 	else
 		user.visible_message("<span class='danger'>[user] grinds [victim]'s disconnected [limb.name] actuators around!</span>", "<span class='danger'>You grind [victim]'s disconnected [limb.name] actuators around painfully!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] grinds your dislocated [limb.name] actuators around!</span>")
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=8, wound_bonus=CANT_WOUND)
 		malpractice(user)
 
 
@@ -320,7 +320,7 @@
 		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
 		victim.visible_message("<span class='danger'>[user] finishes resetting [victim.p_their()] [limb.name]!</span>", "<span class='userdanger'>You reset your [limb.name]!</span>")
 	else
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=7, wound_bonus=CANT_WOUND)
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s [limb.name]!</span>", "<span class='nicegreen'>You finish resetting [victim]'s [limb.name]!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your [limb.name]!</span>")
 
@@ -394,7 +394,7 @@
 		
 		victim.visible_message("<span class='notice'>[victim] finishes fastening [victim.p_their()] [limb.name]!</span>", "<span class='notice'>You fastening your [limb.name]!</span>")
 
-	limb.receive_damage(30, stamina=100, wound_bonus=CANT_WOUND)
+	limb.receive_damage(20, stamina=80, wound_bonus=CANT_WOUND)
 	if(!wrenched)
 		wrenched = TRUE
 
