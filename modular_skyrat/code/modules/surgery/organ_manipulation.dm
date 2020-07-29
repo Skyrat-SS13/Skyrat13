@@ -1,5 +1,5 @@
 /datum/surgery_step/manipulate_organs
-	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100, /obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100, /obj/item/stack/medical/mesh = 100, /obj/item/stack/medical/aloe = 100, /obj/item/stack/medical/suture = 100, /obj/item/reagent_containers = 100)
+	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100, /obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100, /obj/item/stack/medical/mesh = 100, /obj/item/stack/medical/aloe = 100, /obj/item/stack/medical/suture = 100, /obj/item/reagent_containers = 100, /obj/item/pen = 100)
 	var/heal_amount = 40
 	var/disinfect_amount = 20
 
@@ -57,9 +57,12 @@
 		var/obj/item/stack/medical/M = tool
 		var/list/organs = target.getorganszone(target_zone)
 		for(var/obj/item/organ/O in organs)
+			if(O.damage <= 3)
+				organs -= O
+				continue
+			O.on_find(user)
+			organs -= O
 			organs[O.name] = O
-			if(!O.damage)
-				organs -= O.name
 		if(!length(organs))
 			display_results(user, target, "<span class='notice'>There are no damaged organs in the [parse_zone(target_zone)]!</span>",
 				"[user] begins to heal [target]'s [parse_zone(target_zone)], only to be met with no damaged organs at all.",
@@ -69,6 +72,9 @@
 		if(!choice)
 			return -1
 		var/obj/item/organ/targeted_organ = organs[choice]
+		if(!istype(targeted_organ))
+			return -1
+		I = targeted_organ
 		current_type = "heal"
 		if(M.use(2))
 			display_results(user, target, "<span class='notice'>You begin to heal \the [targeted_organ] in [target]'s [parse_zone(target_zone)]...</span>",
@@ -216,4 +222,4 @@
 			display_results(user, target, "<span class='danger'>You were unable to fix [target]'s [O.name].</span>",
 				"[user] couldn't disinfect [target]'s [O.name]!",
 				"[user] couldn't disinfect [target]'s [O.name]!")
-	return 0
+	return TRUE
