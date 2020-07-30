@@ -133,7 +133,7 @@
 					. += facial_overlay
 
 			//Applies the debrained overlay if there is no brain
-			if(!brain)
+			if(!(owner?.getorganslot(ORGAN_SLOT_BRAIN) || brain))
 				var/image/debrain_overlay = image(layer = -HAIR_LAYER, dir = SOUTH)
 				if(animal_origin == ALIEN_BODYPART)
 					debrain_overlay.icon = 'icons/mob/animal_parts.dmi'

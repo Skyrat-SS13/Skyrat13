@@ -9,6 +9,7 @@
 	icon_state = "posibrain-ipc"
 
 /obj/item/organ/brain/ipc_positron/Insert(mob/living/carbon/C, special = 0, drop_if_replaced = TRUE)
+	..()
 	owner = C
 	C.internal_organs |= src
 	C.internal_organs_slot[slot] = src
