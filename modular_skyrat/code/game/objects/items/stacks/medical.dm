@@ -6,8 +6,8 @@
 	desc = "Oofie ouchie my bones."
 	self_delay = 75
 	other_delay = 30
-	amount = 8
-	max_amount = 16
+	amount = 15
+	max_amount = 15
 	custom_price = 150
 	absorption_rate = 0.30
 	absorption_capacity = 8
@@ -51,7 +51,7 @@
 	icon_state = "fixovein"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	amount = 5
+	amount = 10
 	max_amount = 10
 	self_delay = 80
 	other_delay = 40

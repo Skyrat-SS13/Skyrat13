@@ -211,8 +211,13 @@
 		if(severity > WOUND_SEVERITY_MODERATE)
 			msg = "<b>[msg]</b>"
 			vis_dist = DEFAULT_MESSAGE_RANGE
-
-		victim.visible_message(msg, "<span class='userdanger'>Your [limb.name] [occur_text]!</span>", vision_distance = vis_dist)
+		var/list/ignore =list()
+		if(L.owner?.client?.prefs?.chat_toggles & CHAT_WOUNDS_SELF)
+			ignore |= L
+		for(var/mob/Y in (view(vis_dist, L.owner) - L.owner))
+			if(Y.client?.prefs?.chat_toggles & CHAT_WOUNDS_OTHER)
+				ignore |= Y
+		victim.visible_message(msg, "<span class='userdanger'>Your [limb.name] [occur_text]!</span>", vision_distance = vis_dist, ignored_mobs = ignore)
 		if(sound_effect)
 			playsound(L.owner, sound_effect, 60 + 20 * severity, TRUE)
 

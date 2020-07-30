@@ -2,8 +2,8 @@
 	name = "medical pack"
 	singular_name = "medical pack"
 	icon = 'modular_skyrat/icons/obj/stack_objects.dmi'
-	amount = 8
-	max_amount = 16
+	amount = 15
+	max_amount = 15
 	w_class = WEIGHT_CLASS_TINY
 	full_w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
@@ -122,8 +122,8 @@
 	icon_state = "gauze"
 	self_delay = 50
 	other_delay = 20
-	amount = 8
-	max_amount = 16
+	amount = 15
+	max_amount = 15
 	custom_price = 100
 	absorption_rate = 0.25
 	absorption_capacity = 5
@@ -214,8 +214,8 @@
 	icon_state = "suture"
 	self_delay = 30
 	other_delay = 10
-	amount = 12
-	max_amount = 12
+	amount = 15
+	max_amount = 15
 	repeating = TRUE
 	heal_brute = 10
 	stop_bleeding = 0.6
@@ -228,8 +228,8 @@
 	name = "emergency suture"
 	desc = "A value pack of cheap sutures, not very good at repairing damage, but still decent at stopping bleeding."
 	heal_brute = 5
-	amount = 6
-	max_amount = 6
+	amount = 5
+	max_amount = 5
 
 /obj/item/stack/medical/suture/medicated
 	name = "medicated suture"
@@ -271,8 +271,8 @@
 	icon_state = "ointment"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	amount = 8
-	max_amount = 16
+	amount = 15
+	max_amount = 15
 	self_delay = 40
 	other_delay = 20
 
@@ -304,9 +304,9 @@
 	icon_state = "regen_mesh"
 	self_delay = 30
 	other_delay = 10
-	amount = 12
+	amount = 15
 	heal_burn = 10
-	max_amount = 16
+	max_amount = 15
 	repeating = TRUE
 	sanitization = 0.75
 	flesh_regeneration = 3
@@ -411,8 +411,8 @@
 	self_delay = 20
 	other_delay = 10
 	novariants = TRUE
-	amount = 20
-	max_amount = 20
+	amount = 15
+	max_amount = 15
 	var/heal = 3
 	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
 
@@ -455,7 +455,7 @@ The interesting limb targeting mechanic is retained and i still believe they wil
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 
-	amount = 5
+	amount = 10
 	max_amount = 10
 	self_delay = 60
 	other_delay = 40

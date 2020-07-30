@@ -1194,6 +1194,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a><br>"
 
 			dat += "<b>Income Updates:</b> <a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Allowed" : "Muted"]</a><br>"
+			
+			dat += "<b>Combat Wound Messages (Other):</b> <a href='?_src_=prefs;preference=wounds_other'>[(chat_toggles & CHAT_WOUNDS_OTHER) ? "Allowed" : "Muted"]</a><br>"
+
+			dat += "<b>Combat Wound Messages (Self):</b> <a href='?_src_=prefs;preference=wounds_self'>[(chat_toggles & CHAT_WOUNDS_SELF) ? "Allowed" : "Muted"]</a><br>"
+			
 			dat += "<br>"
 
 			dat += "<b>Parallax (Fancy Space):</b> <a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
@@ -3401,6 +3406,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("pull_requests")
 					chat_toggles ^= CHAT_PULLR
+				
+				if("wounds_other")
+					chat_toggles ^= CHAT_WOUNDS_OTHER
+				
+				if("wounds_self")
+					chat_toggles ^= CHAT_WOUNDS_SELF
 
 				if("allow_midround_antag")
 					toggles ^= MIDROUND_ANTAG
