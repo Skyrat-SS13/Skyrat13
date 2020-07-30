@@ -162,7 +162,9 @@
 	limb = new buildpath(loc)
 	limb.icon = selected.icon_limbs
 	// Set this limb up using the species name and body zone
-	limb.icon_state = "[selected.limbs_id]_[limb.body_zone][selected.sexes ? "[pick("_m", "_f")]" : ""]"
+	limb.icon_state = "[selected.limbs_id]_[limb.body_zone]"
+	if((body_zone in ORGAN_BODYPARTS) && selected.sexes)
+		limb.icon_state += "[pick("_m", "_f")]"
 	limb.name = "\improper synthetic [lowertext(selected.name)] [limb.name]"
 	limb.desc = "A synthetic [selected_category] limb that will morph on its first use in surgery. This one is for the [parse_zone(limb.body_zone)]."
 	limb.species_id = selected_category
