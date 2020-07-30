@@ -194,7 +194,7 @@
 	id = "penis"
 	build_type = LIMBGROWER
 	research_icon_state = "penis_human_3_s"
-	research_icon = 'icons/obj/genital/penis.dmi'
+	research_icon = 'icons/obj/genitals/penis.dmi'
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
 	build_path = /obj/item/organ/genital/penis
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
