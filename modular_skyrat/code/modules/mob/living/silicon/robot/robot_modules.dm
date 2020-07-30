@@ -207,7 +207,7 @@ obj/item/robot_module/butler/Initialize()
 	var/static/list/clown_icons = sortList(list(
 		"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "clown"),
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "bootyclown"),
-		"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "male_bootyclown"),
+		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "male_bootyclown"),
 		"Marina" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "marina_mommy"),
 		"Garish" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "garish"),
 		"Robot" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "clownbot"),
@@ -221,9 +221,11 @@ obj/item/robot_module/butler/Initialize()
 		if("Bootyborg")
 			cyborg_base_icon = "bootyclown"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
+		
 		if("Male Bootyborg")
 			cyborg_base_icon = "male_bootyclown"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
+
 		if("Marina")
 			cyborg_base_icon = "marina_mommy"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
