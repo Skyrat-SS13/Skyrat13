@@ -74,6 +74,13 @@ They deal 35 brute (armor is considered).
 			if(!(M in introduced) && (stat != DEAD))
 				introduction(M)
 
+/mob/living/simple_animal/hostile/megafauna/gladiator/death()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/deadify), 2.5 SECONDS)
+
+/mob/living/simple_animal/hostile/megafauna/gladiator/proc/deadify()
+	icon_state = "gladiator_dead"
+
 /mob/living/simple_animal/hostile/megafauna/gladiator/apply_damage(damage, damagetype, def_zone, blocked, forced)
 	if(speen)
 		visible_message("<span class='danger'>[src] brushes off all incoming attacks!")
