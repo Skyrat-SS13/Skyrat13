@@ -2110,10 +2110,6 @@
 	},
 /turf/closed/indestructible/riveted,
 /area/space)
-"fy" = (
-/obj/effect/landmark/erg_zone,
-/turf/open/floor/plasteel,
-/area/tdome/arena)
 "fz" = (
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
@@ -2244,10 +2240,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
-"fR" = (
-/obj/effect/landmark/erg_zone,
-/turf/open/floor/circuit/green,
-/area/tdome/arena)
 "fS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -61205,14 +61197,14 @@ GM
 HW
 HW
 Il
-fy
+It
 IE
 IX
 Jh
 Jh
 Js
 IE
-fy
+It
 JI
 JP
 JZ
@@ -61977,12 +61969,12 @@ HW
 Id
 Il
 It
-fy
+It
 IG
 IG
 IG
 IG
-fy
+It
 It
 JI
 JR
@@ -63007,8 +62999,8 @@ Il
 It
 IH
 IH
-fR
-fR
+Ji
+Ji
 IH
 IH
 It
@@ -64033,12 +64025,12 @@ HW
 Id
 Il
 It
-fy
+It
 II
 II
 II
 II
-fy
+It
 It
 JI
 JR
@@ -64803,14 +64795,14 @@ GM
 HW
 HW
 Il
-fy
+It
 IJ
 IY
 Jk
 Jk
 Jt
 IJ
-fy
+It
 JI
 JP
 Kc
