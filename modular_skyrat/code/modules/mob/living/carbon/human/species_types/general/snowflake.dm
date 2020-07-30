@@ -30,7 +30,7 @@
 
 /datum/species/ipc/man
 	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
-	fluff_desc = "Men were created in 300 years before christ, by the philosopher Diogenes in ancient greece. Men were initially simply featherless chickens, but can be found in various forms since they are just featherless bipeds. Their most common form is that of a metal chair."
+	fluff_desc = "Men were created 300 years before the birth of Jesus Christ, by the philosopher Diogenes in ancient greece. Men were initially simply featherless chickens, but can be found in various forms since they are just featherless bipeds. Their most common form is that of a metal chair."
 
 /datum/species/insect
 	screamsounds = list('modular_citadel/sound/voice/scream_moth.ogg')
