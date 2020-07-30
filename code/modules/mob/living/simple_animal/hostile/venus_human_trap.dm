@@ -98,6 +98,8 @@
 	var/playable_plant = FALSE //Normal plants can **not** have players.
 
 /mob/living/simple_animal/hostile/venus_human_trap/ghost_playable
+	health = 100 // Skyrat change: slight health buff
+	maxHealth = 100
 	playable_plant = TRUE //For admins that want to buss some harmless plants
 
 /mob/living/simple_animal/hostile/venus_human_trap/BiologicalLife(seconds, times_fired)

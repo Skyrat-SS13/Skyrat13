@@ -268,6 +268,12 @@
 		new/obj/structure/alien/resin/flower_bud_enemy(get_turf(holder))
 
 /datum/spacevine_mutation/flowering/on_cross(obj/structure/spacevine/holder, mob/living/crosser)
+	if(istype(crosser, /mob/living/simple_animal/hostile/venus_human_trap)) //skyrat change: flowering vines heal flytraps 10% on cross
+		if(crosser.health == crosser.maxHealth)
+			return
+		crosser.health = clamp((crosser.health + crosser.maxHealth * 0.1), crosser.health, crosser.maxHealth)
+		to_chat(crosser, "<span class='notice'>The flowering vines attempt to regenerate some of your wounds!</span>")
+		return
 	if(prob(25))
 		holder.entangle(crosser)
 
