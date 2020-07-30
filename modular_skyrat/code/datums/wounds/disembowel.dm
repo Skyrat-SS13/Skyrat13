@@ -81,7 +81,7 @@
 	second_wind()
 	log_wound(victim, src)
 	qdel(src)
-	return L.disembowel(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE),silent = TRUE)
+	return L.disembowel(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE),silent = TRUE, wound = TRUE)
 
 /datum/wound/slash/critical/incision/disembowel
 	name = "Disemboweled"
@@ -104,18 +104,20 @@
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
 	required_status = BODYPART_ORGANIC
 	biology_required = list()
+	sound_effect = 'sound/misc/splort.ogg'
 
-/datum/wound/slash/loss/get_examine_description(mob/user)
-	. = ..()
-	if(fake_body_zone == BODY_ZONE_HEAD)
-		return "<span class='deadsay'>[..()]</span>"
-
-/datum/wound/slash/loss/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)
+/datum/wound/slash/critical/incision/disembowel/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)
 	. = ..()
 	switch(L.body_zone)
+		if(BODY_ZONE_HEAD)
+			initial_flow = 3
+			minimum_flow = 0.1
+		if(BODY_ZONE_CHEST)
+			initial_flow = 4
+			minimum_flow = 0.1
 		if(BODY_ZONE_PRECISE_GROIN)
 			initial_flow = 4
-			minimum_flow = 0.5
+			minimum_flow = 0.4
 		if(BODY_ZONE_L_ARM)
 			initial_flow = 2.5
 			minimum_flow = 0.5

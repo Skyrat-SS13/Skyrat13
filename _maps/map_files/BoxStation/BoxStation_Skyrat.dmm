@@ -8408,6 +8408,19 @@
 "aqW" = (
 /turf/open/floor/carpet,
 /area/security/detectives_office)
+"aqX" = (
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/limbgrower,
+/turf/open/floor/plasteel/white/side{
+	dir = 1
+	},
+/area/medical/sleeper)
 "aqY" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -37055,18 +37068,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/medical/sleeper)
-"bFz" = (
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -22
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white/side{
-	dir = 1
-	},
 /area/medical/sleeper)
 "bFA" = (
 /obj/structure/sink{
@@ -99640,7 +99641,7 @@ bzH
 bAW
 bCE
 bFv
-bFz
+aqX
 bvd
 bKH
 bLK

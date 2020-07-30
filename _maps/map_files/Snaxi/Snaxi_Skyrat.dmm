@@ -1,4 +1,160 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/obj/effect/landmark/event_spawn,
+/mob/living/simple_animal/hostile/retaliate/goat{
+	name = "Pete"
+	},
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/kitchen)
+"aab" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	name = "south facing firelock"
+	},
+/mob/living/carbon/monkey/punpun,
+/turf/open/floor/plasteel/grimy,
+/area/crew_quarters/bar)
+"aac" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/glasses/meson{
+	pixel_y = 4
+	},
+/obj/item/cartridge/atmos,
+/obj/item/cartridge/engineering{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/cartridge/engineering{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/cartridge/engineering{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/radio/intercom{
+	dir = 4;
+	name = "Station Intercom (General)";
+	pixel_x = 27
+	},
+/obj/machinery/keycard_auth{
+	pixel_y = -28
+	},
+/mob/living/simple_animal/parrot/Poly,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/chief)
+"aad" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/obj/machinery/limbgrower,
+/turf/open/floor/plasteel/freezer,
+/area/medical/surgery)
+"aae" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/mob/living/simple_animal/sloth/paperwork,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
+"aaf" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=8";
+	dir = 8;
+	freq = 1400;
+	location = "QM #1"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/starboard";
+	dir = 4;
+	name = "Starboard Maintenance APC";
+	pixel_x = 26
+	},
+/mob/living/simple_animal/bot/mulebot{
+	beacon_freq = 1400;
+	home_destination = "QM #1";
+	suffix = "#1"
+	},
+/turf/open/floor/pod/dark,
+/area/maintenance/starboard)
+"aag" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=8";
+	dir = 8;
+	freq = 1400;
+	location = "QM #2"
+	},
+/obj/machinery/camera{
+	c_tag = "Cargo Garage";
+	dir = 8
+	},
+/mob/living/simple_animal/bot/mulebot{
+	home_destination = "QM #2";
+	suffix = "#2"
+	},
+/turf/open/floor/pod/dark,
+/area/maintenance/starboard)
+"aah" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	pixel_x = 28
+	},
+/obj/machinery/light_switch{
+	pixel_y = 26
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Chief Medical Office";
+	dir = 8;
+	network = list("ss13","medbay");
+	pixel_y = -22
+	},
+/mob/living/simple_animal/pet/cat/Runtime,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/cmo)
+"aai" = (
+/obj/structure/chair/comfy/brown{
+	color = "#596479";
+	dir = 1
+	},
+/mob/living/simple_animal/mouse/brown/Tom,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
+"aaj" = (
+/obj/machinery/camera{
+	c_tag = "Head of Security's Office";
+	dir = 8
+	},
+/obj/structure/bed/dogbed{
+	desc = "A comfy-looking pet bed. You can even strap your pet in, in case the gravity turns off.";
+	name = "pet bed"
+	},
+/obj/item/storage/secure/safe/HoS{
+	pixel_x = 35
+	},
+/mob/living/simple_animal/hostile/retaliate/bat/secbat{
+	desc = "An adorable fruit bat with a cute little hat, may or may not have a reputation for biting out eyeballs, or at least that's what the HoS'd tell you.";
+	name = "Colonel Chomps"
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "aaw" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -9806,14 +9962,6 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
-"dvh" = (
-/obj/structure/table/reinforced,
-/mob/living/carbon/monkey/punpun,
-/obj/machinery/door/firedoor/border_only{
-	name = "south facing firelock"
-	},
-/turf/open/floor/plasteel/grimy,
-/area/crew_quarters/bar)
 "dvs" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Snow Airlock"
@@ -12948,24 +13096,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
-"fpW" = (
-/obj/effect/turf_decal/bot,
-/mob/living/simple_animal/bot/mulebot{
-	home_destination = "QM #2";
-	suffix = "#2"
-	},
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=8";
-	dir = 8;
-	freq = 1400;
-	location = "QM #2"
-	},
-/obj/machinery/camera{
-	c_tag = "Cargo Garage";
-	dir = 8
-	},
-/turf/open/floor/pod/dark,
-/area/maintenance/starboard)
 "fqj" = (
 /obj/machinery/field/generator,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -13418,12 +13548,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/storage/tech)
-"fGi" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 30
-	},
-/turf/open/floor/plasteel/freezer,
-/area/medical/surgery)
 "fGl" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
@@ -16190,31 +16314,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"hnB" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	pixel_x = 28
-	},
-/obj/machinery/light_switch{
-	pixel_y = 26
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/mob/living/simple_animal/pet/cat/Runtime,
-/obj/machinery/camera{
-	c_tag = "Chief Medical Office";
-	dir = 8;
-	network = list("ss13","medbay");
-	pixel_y = -22
-	},
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/cmo)
 "hnO" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/plasteel/white,
@@ -17876,14 +17975,6 @@
 /obj/structure/closet/crate/coffin,
 /turf/open/floor/wood,
 /area/chapel/office)
-"ifQ" = (
-/mob/living/simple_animal/mouse/brown/Tom,
-/obj/structure/chair/comfy/brown{
-	color = "#596479";
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "ifT" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -26162,14 +26253,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"noB" = (
-/obj/effect/turf_decal/bot,
-/mob/living/simple_animal/sloth/paperwork,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "noQ" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
@@ -26788,34 +26871,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"nGa" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot,
-/mob/living/simple_animal/bot/mulebot{
-	beacon_freq = 1400;
-	home_destination = "QM #1";
-	suffix = "#1"
-	},
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=8";
-	dir = 8;
-	freq = 1400;
-	location = "QM #1"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/maintenance/starboard";
-	dir = 4;
-	name = "Starboard Maintenance APC";
-	pixel_x = 26
-	},
-/turf/open/floor/pod/dark,
-/area/maintenance/starboard)
 "nGd" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/portable_atmospherics/canister/toxins,
@@ -29572,13 +29627,6 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
-"pkh" = (
-/mob/living/simple_animal/hostile/retaliate/goat{
-	name = "Pete"
-	},
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel/freezer,
-/area/crew_quarters/kitchen)
 "pkJ" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
@@ -33777,35 +33825,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"rFQ" = (
-/obj/structure/table/reinforced,
-/mob/living/simple_animal/parrot/Poly,
-/obj/item/clothing/glasses/meson{
-	pixel_y = 4
-	},
-/obj/item/cartridge/atmos,
-/obj/item/cartridge/engineering{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/cartridge/engineering{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/cartridge/engineering{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/radio/intercom{
-	dir = 4;
-	name = "Station Intercom (General)";
-	pixel_x = 27
-	},
-/obj/machinery/keycard_auth{
-	pixel_y = -28
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/chief)
 "rGc" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
@@ -42975,24 +42994,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"xdr" = (
-/obj/machinery/camera{
-	c_tag = "Head of Security's Office";
-	dir = 8
-	},
-/obj/structure/bed/dogbed{
-	desc = "A comfy-looking pet bed. You can even strap your pet in, in case the gravity turns off.";
-	name = "pet bed"
-	},
-/mob/living/simple_animal/hostile/retaliate/bat/secbat{
-	desc = "An adorable fruit bat with a cute little hat, may or may not have a reputation for biting out eyeballs, or at least that's what the HoS'd tell you.";
-	name = "Colonel Chomps"
-	},
-/obj/item/storage/secure/safe/HoS{
-	pixel_x = 35
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "xdD" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 4
@@ -59439,7 +59440,7 @@ ydp
 ydp
 ydp
 oto
-fGi
+aad
 acV
 nOj
 acV
@@ -60222,7 +60223,7 @@ ash
 cxX
 sXJ
 sXJ
-hnB
+aah
 qhU
 vCE
 gIm
@@ -71329,7 +71330,7 @@ avT
 kfv
 kfv
 ilb
-ifQ
+aai
 rlG
 wSb
 wav
@@ -74684,7 +74685,7 @@ oJF
 piv
 nre
 bWR
-xdr
+aaj
 uKb
 fKC
 rVN
@@ -83345,8 +83346,8 @@ skZ
 mSt
 geO
 cQv
-nGa
-fpW
+aaf
+aag
 oyf
 dzS
 dSQ
@@ -87456,7 +87457,7 @@ mhq
 bNF
 wIA
 hTO
-noB
+aae
 wIA
 kti
 nrg
@@ -88462,7 +88463,7 @@ hAw
 skK
 vKa
 gdg
-pkh
+aaa
 loM
 vKa
 nsv
@@ -92068,7 +92069,7 @@ gcY
 xop
 fbq
 lFv
-dvh
+aab
 gkl
 eOt
 eFy
@@ -96953,7 +96954,7 @@ ulr
 jJb
 xfH
 puE
-rFQ
+aac
 iiY
 piR
 tty

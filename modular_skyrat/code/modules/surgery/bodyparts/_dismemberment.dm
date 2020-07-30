@@ -49,7 +49,7 @@
 	return TRUE
 
 //Disembowel a limb
-/obj/item/bodypart/proc/disembowel(dam_type = BRUTE, silent = FALSE)
+/obj/item/bodypart/proc/disembowel(dam_type = BRUTE, silent = FALSE, wound = FALSE)
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner
@@ -79,10 +79,18 @@
 		organ_spilled = 1
 
 	if(organ_spilled)
-		if(!silent)
+		if(!silent && !wound)
 			playsound(get_turf(C), 'sound/misc/splort.ogg', 80, 1)
 			C.visible_message("<span class='danger'><B>[C]'s [parse_zone(body_zone)] organs spill out onto the floor!</B></span>")
-		C.bleed(50)
+		if(wound)
+			if(is_organic_limb())
+				var/datum/wound/slash/critical/incision/disembowel/D = new()
+				D.apply_wound(src)
+			else
+				var/datum/wound/mechanical/slash/critical/incision/disembowel/D = new()
+				D.apply_wound(src)
+
+		C.bleed(40)
 		return TRUE
 	
 	return FALSE
