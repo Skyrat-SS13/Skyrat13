@@ -24,9 +24,11 @@
 		var/obj/item/organ/brain/ipc_positron/posi = posibraine.brain
 		if(!posi)
 			posi = new(posibraine)
+			posi.brainmob = posibraine.brainmob
 			posibraine.brain = posi
 		mmi = posibraine
 		tool = mmi.brain
+		I = tool
 		var/datum/surgery/organ_manipulation/OM = surgery
 		if(istype(OM))
 			OM.mmi = mmi
@@ -190,6 +192,8 @@
 		var/datum/surgery/organ_manipulation/OM = surgery
 		if(istype(OM.mmi))
 			mmi = OM.mmi
+			tool = mmi.brain
+			I = mmi.brain
 			mmi.eject_brain()
 		if(istype(tool, /obj/item/organ_storage))
 			I = tool.contents[1]
