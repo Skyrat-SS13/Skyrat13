@@ -240,15 +240,9 @@
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
 	return ..()
 
-/obj/effect/mob_spawn/robot/
-
 /obj/effect/mob_spawn/robot
 	mob_type = /mob/living/silicon/robot
 	assignedrole = "Ghost Role"
-
-	//these vars are for lazy mappers to override parts of the outfit
-	//these cannot be null by default, or mappers cannot set them to null if they want nothing in that slot
-	
 
 /obj/effect/mob_spawn/robot/Initialize()
 	. = ..()
