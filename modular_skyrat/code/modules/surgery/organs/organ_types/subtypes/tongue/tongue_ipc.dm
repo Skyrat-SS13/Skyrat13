@@ -2,6 +2,7 @@
 	name = "robotic voicebox"
 	desc = "A voice synthesizer that can interface with organic lifeforms."
 	status = ORGAN_ROBOTIC
+	icon = 'modular_skyrat/icons/obj/surgery.dmi'
 	icon_state = "tonguerobot"
 	say_mod = "beeps"
 	attack_verb = list("beeped", "booped")

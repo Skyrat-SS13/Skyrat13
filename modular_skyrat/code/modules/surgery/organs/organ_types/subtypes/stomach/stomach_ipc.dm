@@ -1,5 +1,6 @@
 /obj/item/organ/stomach/robot_ipc
-	name = "IPC power cell"
+	name = "IPC micro cell"
+	icon = 'modular_skyrat/icons/obj/surgery.dmi'
 	icon_state = "microcell"
 	w_class = WEIGHT_CLASS_NORMAL
 	zone = "chest"
