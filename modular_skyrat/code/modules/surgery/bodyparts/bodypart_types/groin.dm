@@ -5,6 +5,7 @@
 	max_damage = 100
 	body_zone = BODY_ZONE_PRECISE_GROIN
 	body_part = GROIN
+	disembowable = FALSE
 	px_x = 0
 	px_y = -3
 	stam_damage_coeff = 1
