@@ -323,9 +323,9 @@
 			if(WOUND_BLUNT)
 				wounding_dmg *= 1.25
 			if(WOUND_SLASH)
-				wounding_dmg *= 2.5 //well you're just fucked
+				wounding_dmg *= 2 //well you're just fucked
 			if(WOUND_PIERCE)
-				wounding_dmg *= 1.65
+				wounding_dmg *= 1.5
 	
 	//Handling for bone only/flesh only/skin only/all of them targets
 	switch(bio_state)
@@ -756,7 +756,7 @@
 				else
 					replaced_wound = existing_wound
 
-		if(initial(possible_wound.threshold_minimum) * CONFIG_GET(number/wound_threshold_multiplier) < injury_roll)
+		if(possible_wound.threshold_minimum * CONFIG_GET(number/wound_threshold_multiplier) < injury_roll)
 			var/datum/wound/new_wound
 			if(replaced_wound)
 				new_wound = replaced_wound.replace_wound(possible_wound.type)

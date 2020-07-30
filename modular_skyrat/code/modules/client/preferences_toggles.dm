@@ -51,7 +51,7 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, woundsself)()
 	set desc = "Silence wound occur texts on yourself"
 	usr.client.prefs.chat_toggles ^= CHAT_WOUNDS_SELF
 	usr.client.prefs.save_preferences()
-	to_chat(usr, "You will [usr.client.prefs.chat_toggles & CHAT_WOUNDS_SELF ? "no longer" : "now"] see combat wound messages on other people")
+	to_chat(usr, "You will [usr.client.prefs.chat_toggles & CHAT_WOUNDS_SELF ? "no longer" : "now"] see combat wound messages on yourself")
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Slef Wound Messages", "[usr.client.prefs.toggles & CHAT_WOUNDS_SELF ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/verbs/menu/Settings/woundsself/Get_checked(client/C)
