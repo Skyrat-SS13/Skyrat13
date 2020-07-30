@@ -122,7 +122,7 @@
 	. = ..()
 	if(dropped) //certain overlays only appear when the limb is being detached from its owner.
 
-		if(status != BODYPART_ROBOTIC) //having a robotic head hides certain features.
+		if(!(status & BODYPART_ROBOTIC)) //having a robotic head hides certain features.
 			//facial hair
 			if(facial_hair_style)
 				var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facial_hair_style]
@@ -133,7 +133,7 @@
 					. += facial_overlay
 
 			//Applies the debrained overlay if there is no brain
-			if(!owner?.getorganslot(ORGAN_SLOT_BRAIN) && !brain))
+			if(!owner?.getorganslot(ORGAN_SLOT_BRAIN) && !brain)
 				var/datum/sprite_accessory/S2 = GLOB.hair_styles_list[hair_style]
 				if(S2)
 					var/image/hair_overlay = image(S2.icon, "[S2.icon_state]", -HAIR_LAYER, SOUTH)
