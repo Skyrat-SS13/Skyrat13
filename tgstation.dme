@@ -3890,6 +3890,7 @@
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\anthro\mammal.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\anthro\mothpeople.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\anthro\xenohybrid.dm"
+#include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\exotic\man.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\exotic\plasmamen.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\exotic\shadowpeople.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\exotic\vox.dm"
