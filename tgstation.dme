@@ -3612,6 +3612,7 @@
 #include "modular_skyrat\code\game\machinery\cryopod.dm"
 #include "modular_skyrat\code\game\machinery\dance_machine.dm"
 #include "modular_skyrat\code\game\machinery\exp_cloner.dm"
+#include "modular_skyrat\code\game\machinery\limbgrower.dm"
 #include "modular_skyrat\code\game\machinery\lpchutes.dm"
 #include "modular_skyrat\code\game\machinery\pdavendor.dm"
 #include "modular_skyrat\code\game\machinery\posialert.dm"
