@@ -34,7 +34,7 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, lewd_verb_sound_consent)()
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Seeing LOOC Globally", "[usr.client.prefs.chat_toggles & CHAT_LOOC_ADMIN ? "Enabled" : "Disabled"]"))
 
 TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, woundsothers)()
-	set name = "Show/Hide Other Wound Messages"
+	set name = "Show/Hide Combat Wound Messages (Other)"
 	set category = "Preferences"
 	set desc = "Silence wound occur texts on other people"
 	usr.client.prefs.chat_toggles ^= CHAT_WOUNDS_OTHER
@@ -46,7 +46,7 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, woundsothers)()
 	return C.prefs.toggles & CHAT_WOUNDS_OTHER
 
 TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, woundsself)()
-	set name = "Show/Hide Self Wound Messages"
+	set name = "Show/Hide Combat Wound Messages (Self)"
 	set category = "Preferences"
 	set desc = "Silence wound occur texts on yourself"
 	usr.client.prefs.chat_toggles ^= CHAT_WOUNDS_SELF
