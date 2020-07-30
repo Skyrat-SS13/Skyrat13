@@ -1,4 +1,3 @@
-/* moved to modular_skyrat
 #define ROBOTIC_NO_BRUTE_MSG "not dented"
 #define ROBOTIC_LIGHT_BRUTE_MSG "marred"
 #define ROBOTIC_MEDIUM_BRUTE_MSG "dented"
@@ -569,4 +568,3 @@
 #undef ROBOTIC_LIGHT_BURN_MSG
 #undef ROBOTIC_MEDIUM_BURN_MSG
 #undef ROBOTIC_HEAVY_BURN_MSG
-*/

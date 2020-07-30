@@ -4119,6 +4119,7 @@
 #include "modular_skyrat\code\modules\surgery\bodyparts\bodypart_types\subtypes\alien.dm"
 #include "modular_skyrat\code\modules\surgery\bodyparts\bodypart_types\subtypes\devil.dm"
 #include "modular_skyrat\code\modules\surgery\bodyparts\bodypart_types\subtypes\monkey.dm"
+#include "modular_skyrat\code\modules\surgery\bodyparts\bodypart_types\subtypes\robot_bodyparts.dm"
 #include "modular_skyrat\code\modules\surgery\organs\_organ.dm"
 #include "modular_skyrat\code\modules\surgery\organs\autosurgeon.dm"
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\appendix.dm"

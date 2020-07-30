@@ -42,7 +42,8 @@
 #define CANT_WOUND -100
 
 // List in order of highest severity to lowest (if the wound is rolled for normally - there are edge cases like incisions)
-#define WOUND_LIST_INCISION list(/datum/wound/slash/critical/incision)
+#define WOUND_LIST_INCISION	list(/datum/wound/slash/critical/incision)
+#define WOUND_LIST_INCISION_MECHANICAL	list(/datum/wound/mechanical/slash/critical/incision)
 #define WOUND_LIST_BLUNT		list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate/ribcage, /datum/wound/blunt/moderate/hips, /datum/wound/blunt/moderate)
 #define WOUND_LIST_BLUNT_MECHANICAL list(/datum/wound/mechanical/blunt/critical, /datum/wound/mechanical/blunt/severe, /datum/wound/mechanical/blunt/moderate)
 #define WOUND_LIST_SLASH		list(/datum/wound/slash/critical, /datum/wound/slash/severe, /datum/wound/slash/moderate)

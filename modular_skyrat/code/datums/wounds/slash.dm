@@ -317,14 +317,9 @@
 	severity = WOUND_SEVERITY_CRITICAL
 	viable_zones = ALL_BODYPARTS
 	wound_type = WOUND_LIST_INCISION
-	treatable_by = list()
-	treatable_tool = null
 	initial_flow = 1.5
-	minimum_flow = 0.5
-	clot_rate = 0.03
+	minimum_flow = 0.1
+	clot_rate = 0.02
 	max_per_type = 5
 	demotes_to = null
-	status_effect_type = null
 	scarring_descriptions = list("a precise line of scarred tissue", "a long line of slightly darker tissue")
-	required_status = null
-	biology_required = list()

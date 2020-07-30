@@ -61,7 +61,7 @@
 			msg += "<B>[t_His] [BP.name] has \"[BP.etching]\" etched on it!</B>\n"
 		for(var/datum/wound/W in BP.wounds)
 			msg += "[W.get_examine_description(user)]\n"
-			if(istype(W, /datum/wound/slash/critical/incision))
+			if(istype(W, /datum/wound/slash/critical/incision) || istype(W, /datum/wound/mechanical/slash/critical/incision))
 				for(var/obj/item/organ/O in getorganszone(BP.body_zone))
 					for(var/i in O.surgical_examine(user))
 						msg += "<B>[icon2html(O.examine_icon ? O.examine_icon : O, user, O.examine_icon_state ? O.examine_icon_state : O.icon_state)] [i]</B>\n"

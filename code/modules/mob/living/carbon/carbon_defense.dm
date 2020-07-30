@@ -165,19 +165,20 @@
 		var/datum/disease/D = thing
 		if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
 			ContactContractDisease(D)
-	
-	//skyrat edit
-	for(var/datum/wound/W in all_wounds)
-		if(W.try_handling(user))
-			return TRUE
-	//
 
+	//surgeries have higher priority than wounds due to incision wounds.
 	if(surgeries.len)
 		if(user.a_intent == INTENT_HELP)
 			for(var/datum/surgery/S in surgeries)
 				if(!S.lying_required || (S.lying_required && lying))
 					if(S.next_step(user, user.a_intent))
 						return TRUE
+	
+	//skyrat edit
+	for(var/datum/wound/W in all_wounds)
+		if(W.try_handling(user))
+			return TRUE
+	//
 
 
 /mob/living/carbon/attack_paw(mob/living/carbon/monkey/M)
