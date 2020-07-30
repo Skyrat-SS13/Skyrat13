@@ -1,9 +1,10 @@
 /datum/surgery_step/manipulate_organs
-	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100, /obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100, /obj/item/stack/medical/mesh = 100, /obj/item/stack/medical/aloe = 100, /obj/item/stack/medical/suture = 100, /obj/item/reagent_containers = 100, /obj/item/pen = 100)
+	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100, /obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100, /obj/item/stack/medical/mesh = 100, /obj/item/stack/medical/aloe = 100, /obj/item/stack/medical/suture = 100, /obj/item/reagent_containers = 100, /obj/item/pen = 100, /obj/item/mmi = 100)
 	var/heal_amount = 80
 	var/disinfect_amount = 30
 
 /datum/surgery_step/manipulate_organs/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	var/obj/item/mmi/mmi = null
 	I = null
 	var/hasnecroticorgans = FALSE
 	for(var/obj/item/organ/O in target.getorganszone(target_zone))
@@ -18,6 +19,23 @@
 			to_chat(user, "<span class='notice'>You cannot put [I] into [target]'s [parse_zone(target_zone)]!</span>")
 			return -1
 		tool = I
+	if(istype(tool, /obj/item/mmi/posibrain))
+		var/obj/item/mmi/posibrain/posibraine = tool
+		var/obj/item/organ/brain/ipc_positron/posi = posibraine.brain
+		if(!posi)
+			posi = new(posibraine)
+			posibraine.brain = posi
+		mmi = posibraine
+		tool = mmi.brain
+		var/datum/surgery/organ_manipulation/OM = surgery
+		if(istype(OM))
+			OM.mmi = mmi
+	else if(istype(tool, /obj/item/mmi))
+		mmi = tool
+		tool = mmi.brain
+		var/datum/surgery/organ_manipulation/OM = surgery
+		if(istype(OM))
+			OM.mmi = mmi
 	if(isorgan(tool))
 		current_type = "insert"
 		I = tool
@@ -168,6 +186,11 @@
 
 /datum/surgery_step/manipulate_organs/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(current_type == "insert")
+		var/obj/item/mmi/mmi
+		var/datum/surgery/organ_manipulation/OM = surgery
+		if(istype(OM.mmi))
+			mmi = OM.mmi
+			mmi.eject_brain()
 		if(istype(tool, /obj/item/organ_storage))
 			I = tool.contents[1]
 			tool.icon_state = initial(tool.icon_state)
@@ -177,7 +200,32 @@
 		else
 			I = tool
 		user.temporarilyRemoveItemFromInventory(I, TRUE)
-		I.Insert(target)
+		if(!I.Insert(target) && mmi) //if we can't insert, fuck, we already kinda fucked the brain over
+			var/obj/item/organ/brain/newbrain = I
+			var/mob/living/brain/B = newbrain.brainmob
+			//mmis don't have a proc for transferring a brain proper
+			mmi.brainmob = B
+			newbrain.brainmob = null
+			if(istype(B))
+				B.forceMove(mmi)
+				B.container = mmi
+				if(!(newbrain.organ_flags & ORGAN_FAILING)) // the brain organ hasn't been beaten to death.
+					B?.stat = CONSCIOUS //we manually revive the brain mob
+					GLOB.dead_mob_list -= B
+					GLOB.alive_mob_list += B
+
+				B.reset_perspective()
+			newbrain.forceMove(mmi)
+			mmi.brain = newbrain
+			mmi.brain.organ_flags |= ORGAN_FROZEN
+			
+			if(!istype(mmi, /obj/item/mmi/posibrain))
+				mmi.name = "Man-Machine Interface: [B.real_name]"
+			mmi.update_icon()
+		else if(istype(mmi, /obj/item/mmi/posibrain))
+			QDEL_NULL(mmi)
+		else if(mmi)
+			mmi.update_icon()
 		display_results(user, target, "<span class='notice'>You insert [tool] into [target]'s [parse_zone(target_zone)].</span>",
 			"[user] inserts [tool] into [target]'s [parse_zone(target_zone)]!",
 			"[user] inserts something into [target]'s [parse_zone(target_zone)]!")
