@@ -194,6 +194,7 @@
 	id = "penis"
 	build_type = LIMBGROWER
 	research_icon_state = "penis_human_3_s"
+	research_icon = 'icons/obj/genital/penis.dmi'
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
 	build_path = /obj/item/organ/genital/penis
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
@@ -201,6 +202,7 @@
 /datum/design/vagina
 	name = "Vagina"
 	id = "vagina"
+	research_icon_state = "vagina-s"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
 	build_path = /obj/item/organ/genital/vagina
@@ -209,6 +211,7 @@
 /datum/design/womb
 	name = "Womb"
 	id = "womb"
+	research_icon_state = "womb"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
 	build_path = /obj/item/organ/genital/womb
@@ -217,8 +220,8 @@
 /datum/design/testicles
 	name = "Testicles"
 	id = "testicles"
-	build_type = LIMBGROWER
 	research_icon_state = "testicles_single_3_s"
+	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
 	build_path = /obj/item/organ/genital/testicles
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
@@ -226,6 +229,7 @@
 /datum/design/penis
 	name = "Breasts"
 	id = "breasts"
+	research_icon_state = "breasts_pair_e_s"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
 	build_path = /obj/item/organ/genital/breasts

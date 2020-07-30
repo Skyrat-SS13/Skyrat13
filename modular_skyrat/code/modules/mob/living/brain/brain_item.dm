@@ -1,7 +1,7 @@
 /obj/item/organ/brain/ipc_positron
 	name = "ipc positronic brain"
 	slot = ORGAN_SLOT_BRAIN
-	zone = BODY_ZONE_HEAD
+	zone = BODY_ZONE_CHEST
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. It is usually slotted into the head of synthetic crewmembers."
