@@ -22,8 +22,8 @@
 	ranged_cooldown_time = 80
 	ranged = 1
 	del_on_death = 0
-	crusher_loot = list(/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer, /obj/item/crusher_trophy/brokentech, /obj/item/rogue)
-	loot = list(/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer, /obj/item/rogue)
+	crusher_loot = list(/obj/structure/closet/crate/necropolis/rogue/crusher)
+	loot = list(/obj/structure/closet/crate/necropolis/rogue)
 	deathmessage = "sparkles and emits corrupted screams in agony, falling defeated on the ground."
 	death_sound = 'sound/mecha/critdestr.ogg'
 	anger_modifier = 0
@@ -283,80 +283,3 @@
 		sleep(3)
 	if(specialize)
 		special = FALSE
-
-//loot
-/obj/item/rogue
-	name = "\proper Rogue's Drill"
-	desc = "A drill coupled with an internal mechanism that produces shockwaves on demand. Serves as a very robust melee."
-	sharpness = IS_SHARP
-	icon = 'modular_skyrat/icons/obj/mining.dmi'
-	icon_state = "roguedrill"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/mining_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/mining_righthand.dmi'
-	item_state = "roguedrill"
-	w_class = WEIGHT_CLASS_BULKY
-	tool_behaviour = TOOL_MINING
-	toolspeed = 0.1
-	slot_flags = ITEM_SLOT_BELT
-	custom_materials = list(/datum/material/diamond=2000, /datum/material/titanium=20000, /datum/material/plasma=20000)
-	usesound = 'sound/weapons/drill.ogg'
-	hitsound = 'sound/weapons/drill.ogg'
-	attack_verb = list("drilled")
-	var/cooldowntime = 50
-	var/cooldown = 0
-	var/range = 7
-
-/obj/item/rogue/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=20, icon_wielded="roguedrill")
-
-/obj/item/rogue/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
-	. = ..()
-	var/datum/component/two_handed/TH = GetComponent(/datum/component/two_handed)
-	if(TH.wielded && proximity_flag)
-		if(isliving(target))
-			playsound(src,'sound/misc/crunch.ogg', 200, 1)
-			var/mob/living/M = target
-			M.DefaultCombatKnockdown(10)
-			M.adjustStaminaLoss(20)
-	else if(TH.wielded && !proximity_flag)
-		if(cooldown < world.time)
-			cooldown = world.time + cooldowntime
-			playsound(src,'sound/misc/crunch.ogg', 200, 1)
-			var/list/hit_things = list()
-			var/turf/T = get_turf(get_step(user, user.dir))
-			var/ogdir = user.dir
-			var/turf/otherT = get_step(T, turn(ogdir, 90))
-			var/turf/otherT2 = get_step(T, turn(ogdir, -90))
-			for(var/i in 1 to range)
-				new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-				new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
-				new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)
-				for(var/mob/living/L in T.contents)
-					if(L != src && !(L in hit_things))
-						L.Stun(20)
-						L.adjustBruteLoss(10)
-						hit_things += L
-				for(var/mob/living/L in otherT.contents)
-					if(L != src && !(L in hit_things))
-						L.Stun(20)
-						L.adjustBruteLoss(10)
-						hit_things += L
-				for(var/mob/living/L in otherT2.contents)
-					if(L != src && !(L in hit_things))
-						L.Stun(20)
-						L.adjustBruteLoss(10)
-						hit_things += L
-				if(ismineralturf(T))
-					var/turf/closed/mineral/M = T
-					M.gets_drilled(user)
-				if(ismineralturf(otherT))
-					var/turf/closed/mineral/M = otherT
-					M.gets_drilled(user)
-				if(ismineralturf(otherT2))
-					var/turf/closed/mineral/M = otherT2
-					M.gets_drilled(user)
-				T = get_step(T, ogdir)
-				otherT = get_step(otherT, ogdir)
-				otherT2 = get_step(otherT2, ogdir)
-				sleep(2)

@@ -31,6 +31,7 @@
 /obj/item/clothing/head/goatpope
 	name = "goat pope hat"
 	desc = "And on the seventh day King Goat said there will be cabbage!"
+	icon = 'modular_skyrat/icons/mob/large-worn-icons/64x64/head.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/large-worn-icons/64x64/head.dmi'
 	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	icon_state = "goatpope"
