@@ -1272,5 +1272,4 @@
 
 //skyrat funny
 /mob/living/carbon/proc/get_biological_state()
-	var/bio_state = BIO_INORGANIC
-	return bio_state
+	. = BIO_INORGANIC

@@ -87,27 +87,27 @@
 // 	3. Bone is mangled: At least a severe bone wound on that limb
 // see [/obj/item/bodypart/proc/get_mangled_state()] for more information
 #define BODYPART_MANGLED_NONE	0
-#define BODYPART_MANGLED_SKIN	(1<<1)
-#define BODYPART_MANGLED_MUSCLE (1<<2)
-#define BODYPART_MANGLED_BONE	(1<<3)
+#define BODYPART_MANGLED_SKIN	(1<<0)
+#define BODYPART_MANGLED_MUSCLE (1<<1)
+#define BODYPART_MANGLED_BONE	(1<<2)
 #define BODYPART_MANGLED_BOTH 	(BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE | BODYPART_MANGLED_BONE)
 
 // What kind of biology we have, and what wounds we can suffer, mostly relies on the HAS_FLESH and HAS_BONE species traits on human species
-#define BIO_INORGANIC	(1<<1) // golems, cannot suffer any wounds
-#define BIO_BONE	(1<<2) // skeletons and plasmemes, can only suffer bone wounds, only needs mangled bone to be able to dismember
-#define BIO_FLESH	(1<<3) // nothing right now, maybe slimepeople in the future, can only suffer slashing, piercing, and burn wounds
-#define BIO_SKIN	(1<<4)
+#define BIO_INORGANIC	0 // golems, cannot suffer any wounds
+#define BIO_BONE	(1<<0) // skeletons and plasmemes, can only suffer bone wounds, only needs mangled bone to be able to dismember
+#define BIO_FLESH	(1<<1) // nothing right now, maybe slimepeople in the future, can only suffer slashing, piercing, and burn wounds
+#define BIO_SKIN	(1<<2)
 #define BIO_FULL	(BIO_BONE | BIO_FLESH | BIO_SKIN) // standard humanoids, can suffer all wounds, needs mangled bone and flesh to dismember
 
 //Organ status flags
-#define ORGAN_ORGANIC   (1<<1)
-#define ORGAN_ROBOTIC   (1<<2)
-#define ORGAN_NODAMAGE  (1<<3) //not yet implemented
+#define ORGAN_ORGANIC   (1<<0)
+#define ORGAN_ROBOTIC   (1<<1)
+#define ORGAN_NODAMAGE  (1<<2) //not yet implemented
 
 //Bodypart status flags
-#define BODYPART_ORGANIC   (1<<1)
-#define BODYPART_ROBOTIC   (1<<2)
-#define BODYPART_NOBLEED	(1<<3)
+#define BODYPART_ORGANIC   (1<<0)
+#define BODYPART_ROBOTIC   (1<<1)
+#define BODYPART_NOBLEED	(1<<2)
 
 //Bodypart disabling defines
 #define BODYPART_NOT_DISABLED 0

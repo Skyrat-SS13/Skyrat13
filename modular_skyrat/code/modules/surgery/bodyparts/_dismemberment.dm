@@ -3,6 +3,11 @@
 	if(dismemberable)
 		return TRUE
 
+//Check if the limb is disembowable
+/obj/item/bodypart/proc/can_disembowel(obj/item/I)
+	if(disembowable)
+		return TRUE
+
 //Dismember a limb
 /obj/item/bodypart/proc/dismember(dam_type = BRUTE, silent = FALSE, destroy = FALSE)
 	if(!owner)
@@ -211,10 +216,10 @@
 	var/required_flesh_severity = WOUND_SEVERITY_SEVERE
 	var/required_skin_severity = WOUND_SEVERITY_MODERATE
 
-	if(owner && owner.get_biological_state() == BIO_BONE && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
+	if(owner && (owner.get_biological_state() == BIO_BONE || owner.get_biological_state() == BIO_BONE|BIO_SKIN) && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		required_bone_severity = WOUND_SEVERITY_CRITICAL
 	
-	if(owner && owner.get_biological_state() == BIO_FLESH && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
+	if(owner && (owner.get_biological_state() == BIO_FLESH || owner.get_biological_state() == BIO_FLESH|BIO_SKIN) && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		required_flesh_severity = WOUND_SEVERITY_CRITICAL
 
 	if(owner && owner.get_biological_state() == BIO_SKIN && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
@@ -286,7 +291,7 @@
 	dismembering.apply_dismember(src, wounding_type)
 
 /obj/item/bodypart/proc/try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
-	if(!can_dismember() || !disembowable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE))
+	if(!can_disembowel() || !disembowable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE))
 		return FALSE
 	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
 	var/bio_state = owner.get_biological_state()

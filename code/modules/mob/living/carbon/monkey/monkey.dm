@@ -195,3 +195,5 @@
 	H = new H(src)
 	equip_to_slot_or_del(H,SLOT_HEAD)
 
+/mob/living/carbon/monkey/get_biological_state()
+	. = BIO_FULL

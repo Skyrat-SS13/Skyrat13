@@ -318,8 +318,8 @@
 	viable_zones = ALL_BODYPARTS
 	wound_type = WOUND_LIST_INCISION
 	initial_flow = 1.5
-	minimum_flow = 0.1
-	clot_rate = 0.02
+	minimum_flow = 0
+	clot_rate = 0.025
 	max_per_type = 5
 	demotes_to = null
 	scarring_descriptions = list("a precise line of scarred tissue", "a long line of slightly darker tissue")

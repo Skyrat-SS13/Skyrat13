@@ -115,7 +115,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 // PROCS //
 ///////////
 
-
 /datum/species/New()
 	//if we havent set a limbs id to use, just use our own id
 	if(!limbs_id)
@@ -2298,16 +2297,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 /**
   * The human species version of [/mob/living/carbon/proc/get_biological_state]. Depends on the HAS_SKIN, HAS_FLESH and HAS_BONE species traits, having bones lets you have bone wounds, having flesh lets you have burn, slash, and piercing wounds, skin is currently unused
   */
-/datum/species/proc/get_biological_state(mob/living/carbon/human/H)
+/datum/species/proc/get_biological_state()
 	. = BIO_INORGANIC
 	if(HAS_SKIN in species_traits)
-		. &= ~BIO_INORGANIC
 		. |= BIO_SKIN
 	if(HAS_FLESH in species_traits)
-		. &= ~BIO_INORGANIC
 		. |= BIO_FLESH
 	if(HAS_BONE in species_traits)
-		. &= ~BIO_INORGANIC
 		. |= BIO_BONE
-	if(species_traits & list(HAS_BONE, HAS_FLESH, HAS_SKIN))
-		. = BIO_FULL
