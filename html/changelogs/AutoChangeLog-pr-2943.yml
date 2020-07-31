@@ -1,0 +1,4 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - rscadd: "Shrunk borgs are now tiny bit smaller. Bjork!"
