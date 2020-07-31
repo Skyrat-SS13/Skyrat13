@@ -328,52 +328,51 @@
 				wounding_dmg *= 1.5
 	
 	//Handling for bone only/flesh only/skin only/all of them targets
-	switch(bio_state)
-		// if we're bone only, all cutting attacks go straight to the bone
-		if(BIO_BONE)
-			if(wounding_type == WOUND_SLASH)
-				wounding_type = WOUND_BLUNT
-				if(!easy_dismember)
-					wounding_dmg *= 0.5
-			else if(wounding_type == WOUND_PIERCE)
-				wounding_type = WOUND_BLUNT
-				if(!easy_dismember)
-					wounding_dmg *= 0.75
-			
-			if((mangled_state & BODYPART_MANGLED_BONE) && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
-				return
+	// if we're bone only, all cutting attacks go straight to the bone
+	if(bio_state in list(BIO_BONE, BIO_BONE|BIO_SKIN))
+		if(wounding_type == WOUND_SLASH)
+			wounding_type = WOUND_BLUNT
+			if(!easy_dismember)
+				wounding_dmg *= 0.5
+		else if(wounding_type == WOUND_PIERCE)
+			wounding_type = WOUND_BLUNT
+			if(!easy_dismember)
+				wounding_dmg *= 0.75
 		
-		// slime people p much they dont have bone
-		if(BIO_FLESH)
-			if(wounding_type == WOUND_BLUNT)
-				wounding_type = WOUND_SLASH
-				if(!easy_dismember)
-					wounding_dmg *= 0.5
-			else if(wounding_type == WOUND_PIERCE)
-				wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
-			if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
-				return
-
-		// nothing uses only skin just yet
-		if(BIO_SKIN)
+		if((mangled_state & BODYPART_MANGLED_BONE) && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
+			return
+	
+	// slime people p much they dont have bone
+	else if(bio_state in list(BIO_FLESH, BIO_SKIN|BIO_FLESH))
+		if(wounding_type == WOUND_BLUNT)
+			wounding_type = WOUND_SLASH
+			if(!easy_dismember)
+				wounding_dmg *= 0.5
+		else if(wounding_type == WOUND_PIERCE)
+			wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
+		if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
 
-		// standard humanoids
-		if(BIO_FULL)
-			// If there is already a moderate or above cut, the target is just a wee bit softened up
-			if(mangled_state == BODYPART_MANGLED_SKIN && sharpness)
-				wounding_dmg *= 1.1
-			// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
-			// So a big sharp weapon is still all you need to destroy a limb
-			else if(mangled_state == (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE) && sharpness)
-				playsound(src, "sound/effects/crackandbleed.ogg", 100)
-				if(wounding_type == WOUND_SLASH && !easy_dismember)
-					wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
-				if(wounding_type == WOUND_PIERCE && !easy_dismember)
-					wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
-				wounding_type = WOUND_BLUNT
-			else if(mangled_state & BODYPART_MANGLED_BOTH && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
-				return
+	// nothing uses only skin just yet
+	else if(bio_state in list(BIO_SKIN))
+		return
+
+	// standard humanoids
+	else if(bio_state in list(BIO_FULL))
+		// If there is already a moderate or above cut, the target is just a wee bit softened up
+		if(mangled_state == BODYPART_MANGLED_SKIN && sharpness)
+			wounding_dmg *= 1.1
+		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
+		// So a big sharp weapon is still all you need to destroy a limb
+		else if(mangled_state == (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE) && sharpness)
+			playsound(src, "sound/effects/crackandbleed.ogg", 100)
+			if(wounding_type == WOUND_SLASH && !easy_dismember)
+				wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
+			if(wounding_type == WOUND_PIERCE && !easy_dismember)
+				wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
+			wounding_type = WOUND_BLUNT
+		else if(mangled_state & BODYPART_MANGLED_BOTH && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
+			return
 	/*
 	// END WOUND HANDLING
 	*/
