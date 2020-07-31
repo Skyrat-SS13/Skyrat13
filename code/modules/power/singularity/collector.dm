@@ -39,6 +39,10 @@
 	Radio.listening = 0
 	Radio.set_frequency(FREQ_ENGINEERING)
 
+/obj/machinery/power/rad_collector/on_construction() // Skyrat bugfix
+	if(anchored)
+		connect_to_network()
+
 /obj/machinery/power/rad_collector/Destroy()
 	QDEL_NULL(Radio)
 	return ..()
@@ -180,7 +184,7 @@
 /obj/machinery/power/rad_collector/analyzer_act(mob/living/user, obj/item/I)
 	if(loaded_tank)
 		loaded_tank.analyzer_act(user, I)
-	return TRUE // Skyrat change
+	return TRUE // Skyrat change 
 
 /obj/machinery/power/rad_collector/examine(mob/user)
 	. = ..()

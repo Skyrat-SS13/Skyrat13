@@ -271,7 +271,11 @@
 	name = "double-barreled shotgun"
 	desc = "A true classic."
 	icon_state = "dshotgun"
-	item_state = "shotgun"
+	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'  //Skyrat edit start
+	righthand_file = 'icons/mob/inhands/weapons/64x_guns_right.dmi'
+	item_state = "shotgun_db"
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
 	force = 10
@@ -281,12 +285,12 @@
 	sawn_desc = "Omar's coming!"
 	obj_flags = UNIQUE_RENAME
 	unique_reskin = list("Default" = "dshotgun",
-						"Dark Red Finish" = "dshotgun-d",
-						"Ash" = "dshotgun-f",
-						"Faded Grey" = "dshotgun-g",
-						"Maple" = "dshotgun-l",
-						"Rosewood" = "dshotgun-p"
-						)
+						"Dark Red Finish" = "dshotgun_d",
+						"Ash" = "dshotgun_f",
+						"Faded Grey" = "dshotgun_g",
+						"Maple" = "dshotgun_l",
+						"Rosewood" = "dshotgun_p"
+						)                                                 //Skyrat edit end
 
 /obj/item/gun/ballistic/revolver/doublebarrel/attackby(obj/item/A, mob/user, params)
 	..()

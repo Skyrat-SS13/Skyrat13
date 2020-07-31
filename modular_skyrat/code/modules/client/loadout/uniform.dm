@@ -15,6 +15,11 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/syndicate/tacticool/skirt
 
+/datum/gear/skirtleneck
+	name = "Sensible Suitskirt"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/rank/civilian/curator/skirt
+
 /datum/gear/trekcmdtos
 	name = "EntCorp uniform, cmd"
 	restricted_roles = CMD_ROLES

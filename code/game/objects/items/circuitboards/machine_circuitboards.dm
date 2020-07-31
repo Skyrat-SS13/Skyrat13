@@ -61,6 +61,14 @@
 	name = "Experimental Clone Pod (Machine Board)"
 	build_path = /obj/machinery/clonepod/experimental
 
+/obj/item/circuitboard/machine/sheetifier
+	name = "Sheet-meister 2000 (Machine Board)"
+	icon_state = "supply"
+	build_path = /obj/machinery/sheetifier
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/matter_bin = 2)
+
 /obj/item/circuitboard/machine/abductor
 	name = "alien board (Report This)"
 	icon_state = "abductor_mod"
@@ -146,7 +154,9 @@
 	req_components = list(
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stock_parts/capacitor = 1,
-		/obj/item/stack/cable_coil = 3)
+		/obj/item/stack/cable_coil = 3,
+		/obj/item/stock_parts/cell = 1) // Skyrat edit: adds cell to recipe
+	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/telecomms/broadcaster
@@ -227,14 +237,13 @@
 		/obj/item/stock_parts/capacitor = 2,
 		/obj/item/stack/sheet/glass = 1)
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
-
+// SKYRAT EDIT - Changing our vendors switch
 /obj/item/circuitboard/machine/vendor
 	name = "Custom Vendor (Machine Board)"
 	desc = "You can turn the \"brand selection\" dial using a screwdriver."
 	custom_premium_price = 100
 	build_path = /obj/machinery/vending/custom
 	req_components = list(/obj/item/vending_refill/custom = 1)
-
 	var/static/list/vending_names_paths = list(
 		/obj/machinery/vending/boozeomat = "Booze-O-Mat",
 		/obj/machinery/vending/coffee = "Solar's Best Hot Drinks",
@@ -271,20 +280,25 @@
 		/obj/machinery/vending/clothing = "ClothesMate",
 		/obj/machinery/vending/medical = "NanoMed Plus",
 		/obj/machinery/vending/wallmed = "NanoMed",
-		// SKYRAT EDIT - Prison Variants & PDA Vendors
 		/obj/machinery/vending/dinnerware/prisoner = "\improper Plasteel Chef's Prisoner Dinnerware Vendor",
 		/obj/machinery/vending/hydronutrients/prisoner = "\improper Prisoner NutriMax",
 		/obj/machinery/vending/pdavendor = "\improper PDA Vending",
-		// SKYRAT EDIT END
+		/obj/machinery/vending/kink = "\improper KinkMate",
 		/obj/machinery/vending/custom = "Custom Vendor")
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/screwdriver))
-		var/position = vending_names_paths.Find(build_path)
-		position = (position == vending_names_paths.len) ? 1 : (position + 1)
-		var/typepath = vending_names_paths[position]
+		var/choice = show_radial_menu(user, src, GLOB.vending_m_choices, radius = 46, require_near = TRUE, tooltips = TRUE)
+		if(!choice)
+			return
+		var/static/list/vendinglist = GLOB.vending_m_choices
+		var/choiceposition = vendinglist.Find(choice)
+		if(!choiceposition)
+			return
+		var/typepath = GLOB.vending_machines[choiceposition]
+		var/namepath = vending_names_paths[choiceposition]
 		set_type(typepath)
-		to_chat(user, "<span class='notice'>You set the board to \"[vending_names_paths[typepath]]\".</span>")
+		to_chat(user, "<span class='notice'>You set the board to \"[vending_names_paths[namepath]]\".</span>")
 	else
 		return ..()
 
@@ -299,7 +313,7 @@
 			set_type(typepath)
 			break
 	return ..()
-
+// SKYRAT EDIT END
 /obj/item/circuitboard/machine/mech_recharger
 	name = "Mechbay Recharger (Machine Board)"
 	build_path = /obj/machinery/mech_bay_recharge_port
@@ -1085,12 +1099,12 @@
 		/obj/item/stock_parts/capacitor = 1,
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/reagent_containers/glass/beaker = 6) //So it can hold lots of chems
-
+/* skyrat edit - removing this and placing it in the actual vending circuit
 /obj/item/circuitboard/machine/kinkmate
 	name = "Kinkmate Vendor (Machine Board)"
 	build_path = /obj/machinery/vending/kink
 	req_components = list(/obj/item/vending_refill/kink = 1)
-
+*/
 /obj/item/circuitboard/machine/autolathe/toy
 	name = "Autoylathe (Machine Board)"
 	build_path = /obj/machinery/autolathe/toy

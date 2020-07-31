@@ -331,10 +331,9 @@ Difficulty: Medium
 			icon_state = "Great_Brown_Wolf_Spin"
 			src.spinIntervals += 1
 			if(isturf(src.loc) || isobj(src.loc) && src.loc.density)
-				for(var/turf/T in view(2, src))
-					var/obj/effect/temp_visual/small_smoke/sm = new /obj/effect/temp_visual/small_smoke(T)
-					sm.duration = 3
-				for(var/mob/living/LM in view(2, src))
+				for(var/turf/T in view(1, src))
+					new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+				for(var/mob/living/LM in view(1, src))
 					if(!(LM in hit_things))
 						LM.Stun(30, TRUE)
 						hit_things += LM

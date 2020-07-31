@@ -388,6 +388,10 @@
 				return TRUE
 			// SKYRAT EDIT: Medipens/injectors
 			if(item_type == "injector")
+				for(var/datum/reagent/M in reagents.reagent_list)
+					if(!istype(M, /datum/reagent/medicine))
+						to_chat(usr, "<span class = 'warning'>Non-medicinal reagent detected. Halting operation.</span>")
+						return FALSE
 				var/obj/item/reagent_containers/hypospray/medipen/empty/P
 				for(var/i = 0; i < amount; i++)
 					P = new /obj/item/reagent_containers/hypospray/medipen/empty(drop_location())

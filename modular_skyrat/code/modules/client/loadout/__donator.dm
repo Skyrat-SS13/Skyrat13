@@ -21,3 +21,4 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/custom/blutigen_undergarment
 	ckeywhitelist = list("random516")
+

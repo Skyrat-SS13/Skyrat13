@@ -151,7 +151,6 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/flashlight/lantern = 25,
 	/obj/item/flashlight/pen = 25,
 	/obj/item/flashlight/seclite = 10,
-	/obj/item/folder/paperwork = 25,
 	/obj/item/geiger_counter = 100,
 	/obj/item/gps/engineering = 10,
 	/obj/item/grenade/chem_grenade/cleaner = 25,

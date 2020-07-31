@@ -1,3 +1,4 @@
+// Drakeborg sprites by Mizartz. drakeborg are licensed under the CC BY-NC-SA 3.0 license.
 /obj/item/robot_module/proc/add_module(obj/item/I, nonstandard, requires_rebuild)
 	rad_flags |= RAD_NO_CONTAMINATE
 	if(istype(I, /obj/item/stack))
@@ -163,6 +164,7 @@ obj/item/robot_module/butler/Initialize()
 		"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "whitespider"),
 		"Sleek" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "sleekpeace"),
 		"Marina" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "marinapeace"),
+		"Drake" = image(icon = 'icons/mob/cyborg/drakemech.dmi', icon_state = "drakepeacebox"),
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootypeace"),
 		"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootypeace"),
 		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_peacekeeper")
@@ -189,6 +191,11 @@ obj/item/robot_module/butler/Initialize()
 			cyborg_base_icon = "marinapeace"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/customrobot.dmi'
 			has_snowflake_deadsprite = TRUE
+		if("Drake")
+			cyborg_base_icon = "drakepeace" 
+			sleeper_overlay = "drakepeacesleeper"
+			cyborg_icon_override = 'icons/mob/cyborg/drakemech.dmi'
+			dogborg = TRUE
 		if("Bootyborg")
 			cyborg_base_icon = "bootypeace"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -268,7 +275,7 @@ obj/item/robot_module/butler/Initialize()
 		/obj/item/stack/cable_coil/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/stack/medical/gauze/cyborg,
-		/obj/item/twohanded/shockpaddles/cyborg,
+		/obj/item/shockpaddles/cyborg,
 		/obj/item/healthanalyzer/advanced,
 		/obj/item/surgical_drapes/advanced,
 		/obj/item/retractor/advanced,
@@ -343,7 +350,7 @@ obj/item/robot_module/butler/Initialize()
 		else
 			return FALSE
 	return ..()
-	
+
 /obj/item/robot_module/syndicatejack/rebuild_modules()
     ..()
     var/mob/living/silicon/robot/syndicatejack = loc
