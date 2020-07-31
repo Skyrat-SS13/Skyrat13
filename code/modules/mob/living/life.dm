@@ -136,7 +136,11 @@
 		ExtinguishMob()
 		return
 	var/datum/gas_mixture/G = loc.return_air() // Check if we're standing in an oxygenless environment
+<<<<<<< HEAD
 	if(G.gases[/datum/gas/oxygen] < 1)
+=======
+	if(!G.get_moles(/datum/gas/oxygen, 1))
+>>>>>>> b437383e55... Merge pull request #12988 from Citadel-Station-13/silicons-patch-65
 		ExtinguishMob() //If there's no oxygen in the tile we're on, put out the fire
 		return
 	var/turf/location = get_turf(src)
