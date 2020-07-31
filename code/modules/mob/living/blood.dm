@@ -8,9 +8,26 @@
 /mob/living/carbon/human/proc/suppress_bloodloss(amount)
 	if(bleedsuppress)
 		return
+<<<<<<< HEAD
 	else
 		bleedsuppress = TRUE
 		addtimer(CALLBACK(src, .proc/resume_bleeding), amount)
+=======
+
+	var/temp_bleed = 0
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/BP = X
+		temp_bleed += BP.get_bleed_rate()
+		BP.generic_bleedstacks = max(0, BP.generic_bleedstacks - 1)
+	if(temp_bleed)
+		bleed(temp_bleed)
+
+	//Blood regeneration if there is some space
+	if(blood_volume < BLOOD_VOLUME_NORMAL)
+		blood_volume += 0.1 // regenerate blood VERY slowly
+		if(blood_volume < BLOOD_VOLUME_OKAY)
+			adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.02, 1))
+>>>>>>> 16fb4b3291... Merge pull request #12964 from timothyteakettle/monkeys-bleed-a-lot
 
 /mob/living/carbon/human/proc/resume_bleeding()
 	bleedsuppress = 0
