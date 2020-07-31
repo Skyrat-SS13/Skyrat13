@@ -454,8 +454,8 @@
 	if(!screwy_self)
 		for(var/i in all_scars)
 			var/datum/scar/S = i
-			if(istype(S) && S.is_visible(user))
-				scar_severity += S.severity
+			if(istype(S) && S.is_visible(checkviewer = FALSE))
+				scar_severity += (S.severity/2)
 
 		switch(scar_severity)
 			if(WOUND_SEVERITY_TRIVIAL)
