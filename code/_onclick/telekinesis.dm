@@ -124,7 +124,12 @@
 	. = ..()
 	if(!target || !user)
 		return
+<<<<<<< HEAD
 
+=======
+	if(!user.CheckActionCooldown(CLICK_CD_MELEE))
+		return
+>>>>>>> 159d5c1896... Merge pull request #12985 from Citadel-Station-13/silicons-patch-64
 	if(!focus)
 		focus_object(target)
 		return
@@ -146,7 +151,11 @@
 	else
 		apply_focus_overlay()
 		focus.throw_at(target, 10, 1,user)
+<<<<<<< HEAD
 	user.changeNext_move(CLICK_CD_MELEE)
+=======
+	user.DelayNextAction(considered_action = TRUE, flush = TRUE)
+>>>>>>> 159d5c1896... Merge pull request #12985 from Citadel-Station-13/silicons-patch-64
 	update_icon()
 
 /proc/tkMaxRangeCheck(mob/user, atom/target)
