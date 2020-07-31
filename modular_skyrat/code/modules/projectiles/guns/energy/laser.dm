@@ -220,7 +220,7 @@
 
 //captain's laser gun
 /obj/item/gun/energy/laser/captain
-	name = "\improper Y-10 MultiPhase Energy Gun Mk.I"
+	name = "\improper Y-10 MultiPhase Energy Gun"
 	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
