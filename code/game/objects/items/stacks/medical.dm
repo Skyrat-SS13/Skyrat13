@@ -13,8 +13,8 @@
 	novariants = FALSE
 	item_flags = NOBLUDGEON
 	var/self_delay = 50
-	var/other_delay = 0
-	var/repeating = FALSE
+	var/other_delay = 10
+	var/repeating = TRUE
 	/// How much brute we heal per application
 	var/heal_brute
 	/// How much burn we heal per application

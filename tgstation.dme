@@ -4217,6 +4217,7 @@
 #include "modular_skyrat\code\modules\vending\engivend.dm"
 #include "modular_skyrat\code\modules\vending\kinkmate.dm"
 #include "modular_skyrat\code\modules\vending\medical.dm"
+#include "modular_skyrat\code\modules\vending\medical_wall.dm"
 #include "modular_skyrat\code\modules\vending\nutrimaxprisoner.dm"
 #include "modular_skyrat\code\modules\vending\security.dm"
 #include "modular_skyrat\code\modules\vending\wardrobes.dm"
