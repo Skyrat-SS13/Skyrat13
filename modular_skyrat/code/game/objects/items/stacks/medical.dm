@@ -29,6 +29,11 @@
 	novariants = TRUE
 	merge_type = /obj/item/stack/medical/gauze/splint/tribal
 
+/obj/item/stack/medical/gauze/splint/cyborg
+	custom_materials = null
+	is_cyborg = 1
+	cost = 250
+
 /obj/item/stack/medical/nanopaste
 	name = "nanite paste"
 	singular_name = "nanite paste"
@@ -42,6 +47,11 @@
 	heal_burn = 20
 	required_status = BODYPART_ROBOTIC
 	merge_type = /obj/item/stack/medical/nanopaste
+
+/obj/item/stack/medical/nanopaste/cyborg
+	custom_materials = null
+	is_cyborg = 1
+	cost = 250
 
 /obj/item/stack/medical/fixovein
 	name = "fix o' vein"
@@ -58,3 +68,8 @@
 	grind_results = list(/datum/reagent/medicine/fibrin = 10, /datum/reagent/medicine/coagulant = 10)
 	novariants = TRUE
 	merge_type = /obj/item/stack/medical/fixovein
+
+/obj/item/stack/medical/fixovein/cyborg
+	custom_materials = null
+	is_cyborg = 1
+	cost = 300
