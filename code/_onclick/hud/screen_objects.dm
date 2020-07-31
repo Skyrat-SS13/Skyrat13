@@ -153,11 +153,7 @@
 	var/image/item_overlay = image(holding)
 	item_overlay.alpha = 92
 
-<<<<<<< HEAD
-	if(!user.can_equip(holding, slot_id, TRUE, TRUE)) //skyrat change
-=======
 	if(!user.can_equip(holding, slot_id, TRUE, TRUE, TRUE))
->>>>>>> 3f1119fcdb... Merge pull request #12630 from Ghommie/Ghommie-cit822
 		item_overlay.color = "#FF0000"
 	else
 		item_overlay.color = "#00ff00"
