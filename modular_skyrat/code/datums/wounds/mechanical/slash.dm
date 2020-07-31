@@ -129,7 +129,7 @@
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	limb.heal_damage(2.5, 2.5)
+	limb.heal_damage(10, 10)
 	welded = TRUE
 	if(patched)
 		user.visible_message("<span class='green'>[user] welds \the [patch] on [victim]'s [limb.name] with [I].</span>", "<span class='green'>You weld \the patch on [user == victim ? "your" : "[victim]'s"] [limb.name] with [I].</span>")
@@ -164,7 +164,7 @@
 		to_chat(user, "<span class='warning'>[capitalize(I)] doesn't have enough sheets!</span>")
 		return
 
-	limb.heal_damage(3.5 * power/2, 2.5 * power)
+	limb.heal_damage(5 * power, 5 * power)
 	var/blood_cauterized = power * 0.10
 	blood_flow -= blood_cauterized
 	patch = "[lowertext(I.name)]"

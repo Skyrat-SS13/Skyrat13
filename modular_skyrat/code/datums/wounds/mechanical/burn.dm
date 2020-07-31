@@ -296,7 +296,7 @@
 	if(!do_after(victim, (victim == victim ? 6 SECONDS : 3 SECONDS), extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	limb.heal_damage(0, 5)
+	limb.heal_damage(10, 15)
 	victim.visible_message("<span class='green'>[victim] repairs some of the wiring on [victim]'s [limb.name].</span>", "<span class='green'>You repair some of the wiring on [victim]'s [limb.name].</span>")
 	I.use(10)
 	heat_warpingnt += 1.25
