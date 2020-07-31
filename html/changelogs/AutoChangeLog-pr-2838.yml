@@ -1,7 +1,0 @@
-author: "KathrinBailey"
-delete-after: True
-changes: 
-  - rscadd: "New Titanium icons from https://github.com/tgstation/tgstation/pull/50454 ported."
-  - rscadd: "New carpet from TG, 'eighties' carpet. Currently requires an admin to spawn. Ask in-game!"
-  - rscadd: "Shift-click titanium tiles to change what tile it places."
-  - rscadd: "You can 'paint' plasteel flooring and their subtypes by clicking on them with a plasteel tile."

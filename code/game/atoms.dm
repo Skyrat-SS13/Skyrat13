@@ -465,11 +465,7 @@
 		return
 	var/list/blood_dna = list()
 	if(dna)
-		blood_dna["color"] = dna.species.exotic_blood_color
-		if(dna.blood_color)
-			blood_dna["color"] = dna.blood_color
-		if(!blood_dna["color"])
-			blood_dna["color"] = BLOOD_COLOR_HUMAN
+		blood_dna["color"] = dna.species.exotic_blood_color //so when combined, the list grows with the number of colors
 		blood_dna[dna.unique_enzymes] = dna.blood_type
 	else
 		blood_dna["color"] = BLOOD_COLOR_HUMAN
@@ -487,14 +483,14 @@
 		return FALSE
 	LAZYINITLIST(blood_DNA)	//if our list of DNA doesn't exist yet, initialise it.
 	var/old_length = blood_DNA.len
-	blood_DNA |= (new_blood_dna - "color")
+	blood_DNA |= new_blood_dna
 	var/changed = FALSE
 	if(!blood_DNA["color"])
 		blood_DNA["color"] = new_blood_dna["color"]
 		changed = TRUE
 	else
 		var/old = blood_DNA["color"]
-		blood_DNA["color"] = new_blood_dna["color"]
+		blood_DNA["color"] = BlendRGB(blood_DNA["color"], new_blood_dna["color"])
 		changed = old != blood_DNA["color"]
 	if(blood_DNA.len == old_length)
 		return FALSE
@@ -505,15 +501,16 @@
 	LAZYINITLIST(blood_DNA)
 
 	var/old_length = blood_DNA.len
-	blood_DNA |= (blood_dna - "color")
-	LAZYINITLIST(blood_DNA["color"])
-	blood_DNA["color"] = blood_dna["color"]
+	blood_DNA |= blood_dna
 	if(blood_DNA.len > old_length)
 		. = TRUE
 		//some new blood DNA was added
 		if(!blood_dna["color"])
 			return
-		blood_DNA["color"] = blood_dna["color"]
+		if(!blood_DNA["color"])
+			blood_DNA["color"] = blood_dna["color"]
+		else
+			blood_DNA["color"] = BlendRGB(blood_DNA["color"], blood_dna["color"])
 
 //to add blood from a mob onto something, and transfer their dna info
 /atom/proc/add_mob_blood(mob/living/M)
