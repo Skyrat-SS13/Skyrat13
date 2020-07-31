@@ -8,7 +8,7 @@
 	body_zone = BODY_ZONE_HEAD
 	body_part = HEAD
 	w_class = WEIGHT_CLASS_BULKY
-	stam_heal_tick = 2
+	stam_heal_tick = 3
 	throw_range = 5
 	px_x = 0
 	px_y = -8
