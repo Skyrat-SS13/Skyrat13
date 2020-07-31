@@ -41,3 +41,10 @@
 	results = list(/datum/reagent/medicine/fibrin = 20)
 	required_reagents = list(/datum/reagent/blood = 10, /datum/reagent/oxygen = 10, /datum/reagent/water = 10, /datum/reagent/medicine/bicaridine = 10)
 	mix_message = "The mixture bubbles into a browned color."
+
+/datum/chemical_reaction/fibrin2
+	name = "Fibrin"
+	id = /datum/reagent/medicine/fibrin
+	results = list(/datum/reagent/medicine/fibrin = 20)
+	required_reagents = list(/datum/reagent/blood/synthetics = 10, /datum/reagent/oxygen = 10, /datum/reagent/water = 10, /datum/reagent/medicine/bicaridine = 10)
+	mix_message = "The mixture bubbles into a browned color."
