@@ -1,44 +1,51 @@
-/turf/open/pacifytile
+GLOBAL_LIST_EMPTY(safezone_players)
+
+/turf/open/centcom_safezone
+	name = "safezone tile"
+	icon = 'modular_skyrat/icons/turf/floors/pacifytile.dmi'
+	slowdown = -1
+	CanAtmosPass = ATMOS_PASS_NO
+
+/turf/open/centcom_safezone/pacifytile
 	name = "pacifying tile"
-	icon = 'modular_skyrat/icons/turf/floors/pacifytile.dmi'
 	icon_state = "safezone"
-	baseturfs = /turf/open/pacifytile
-	slowdown = -1
+	baseturfs = /turf/open/centcom_safezone/pacifytile
 
-/turf/open/pacifytile/Entered(atom/movable/AM)
-	if(!isliving(AM))
-		qdel(AM)
-		return
+/turf/open/centcom_safezone/pacifytile/CanPass(atom/movable/mover, turf/target)
+	if(!ishuman(mover))
+		if(isprojectile(mover))
+			qdel(mover)
+		return FALSE
+	if(mover in GLOB.safezone_players)
+		return FALSE
+	var/mob/living/carbon/human/H = mover
+	if(!HAS_TRAIT(H, TRAIT_PACIFISM))
+		ADD_TRAIT(H, TRAIT_PACIFISM, "pacified")
+		to_chat(H, "You have been pacified.")
+	GLOB.safezone_players += mover
+	return TRUE
 
-	var/mob/living/L = AM
-	if(!L.ckey)
-		return
-
-	if(!HAS_TRAIT(L, TRAIT_PACIFISM))
-		ADD_TRAIT(L, TRAIT_PACIFISM, "pacified")
-		to_chat(L, "You have been pacified.")
-		return
-	else
-		return
-
-/turf/open/warzonetile
+/turf/open/centcom_safezone/warzonetile
 	name = "warzone tile"
-	icon = 'modular_skyrat/icons/turf/floors/pacifytile.dmi'
 	icon_state = "killzone"
-	baseturfs = /turf/open/warzonetile
-	slowdown = -1
+	baseturfs = /turf/open/centcom_safezone/warzonetile
 
-/turf/open/warzonetile/Entered(atom/movable/AM)
-	if(!isliving(AM))
-		return
+/turf/open/centcom_safezone/warzonetile/CanPass(atom/movable/mover, turf/target)
+	if(mover in GLOB.safezone_players)
+		return FALSE
+	var/mob/living/carbon/human/H = mover
+	if(HAS_TRAIT(H, TRAIT_PACIFISM))
+		return FALSE
+	GLOB.safezone_players += mover
+	return TRUE
 
-	var/mob/living/L = AM
-	if(!L.ckey)
-		return
+/turf/open/centcom_safezone/healtile
+	name = "heal tile"
+	icon_state = "healzone"
+	baseturfs = /turf/open/centcom_safezone/healtile
 
-	if(HAS_TRAIT(L, TRAIT_PACIFISM))
-		REMOVE_TRAIT(L, TRAIT_PACIFISM, "pacified")
-		to_chat(L, "You have been un-pacified.")
+/turf/open/centcom_safezone/healtile/Entered(atom/movable/AM)
+	if(!ishuman(AM))
 		return
-	else
-		return
+	var/mob/living/carbon/human/H = AM
+	H.fully_heal(TRUE)
