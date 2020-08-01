@@ -70,7 +70,7 @@
 	for(var/X in C.internal_organs)
 		var/obj/item/organ/O = X
 		var/org_zone = check_zone(O.zone)
-		if(org_zone != body_zone)
+		if((org_zone != body_zone) || (O.organ_flags & ORGAN_NO_DISMEMBERMENT))
 			continue
 		O.Remove()
 		O.forceMove(T)
