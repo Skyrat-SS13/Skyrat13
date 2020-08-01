@@ -22,7 +22,7 @@
 	var/disguise_icon_override = null
 	var/disguise_pixel_offset = null
 	var/mob/listeningTo
-	var/static/list/signalCache = list( // list here all signals that should break the camouflage
+	var/list/signalCache = list( // list here all signals that should break the camouflage
 			COMSIG_PARENT_ATTACKBY,
 			COMSIG_ATOM_ATTACK_HAND,
 			COMSIG_MOVABLE_IMPACT_ZONE,
@@ -714,7 +714,7 @@
 					"Spider" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "spidersyndi"),
 					"Booty Striker" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootynukie"),
 					"Booty Syndicate" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootysyndie"),
-					"Male Booty Striker" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootysynukie"),
+					"Male Booty Striker" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootynukie"),
 					"Male Booty Syndicate" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootysyndie")
 				))
 				var/borg_icon = show_radial_menu(R, R , syndicatejack_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
@@ -827,13 +827,23 @@
 	user.module.name = savedModuleName
 	user.module.cyborg_base_icon = savedIcon
 	user.module.cyborg_icon_override = savedOverride
+	user.module.cyborg_pixel_offset = 0
 	user.bubble_icon = savedBubbleIcon
 	active = FALSE
 	user.update_icons()
-	user.pixel_x = 0 //this solely exists because of dogborgs. I want anyone who ever reads this code later on to know this. Don't ask me why it's here, doesn't work above update_icons()
+	disguise_pixel_offset = 0
 	src.user = user
 
 /obj/item/borg_shapeshifter/proc/disrupt(mob/living/silicon/robot/user)
 	if(active)
 		to_chat(user, "<span class='danger'>Your chameleon field deactivates.</span>")
 		deactivate(user)
+
+/obj/item/borg_shapeshifter/stable
+	signalCache = list()
+	activationCost = 0
+	activationUpkeep = 0
+
+/obj/item/borg_shapeshifter/stable/activate(mob/living/silicon/robot/user, disguiseModuleName)
+	friendlyName = user.name
+	. = ..()
