@@ -72,20 +72,6 @@
 		ref_src = "[REF(src)]"
 	return "<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp_player=[ref_src];ahelp_action=[action]'>[msg]</A>"
 
-/datum/admin_help/proc/remind_admins()
-	var/msg = "<span class='command_headset'> <span class='adminsay'><span class='message linkify'>Ticket #[id] needs handled!</span></span></span>"
-	to_chat(GLOB.admins, msg)
-
-	for(var/client/X in GLOB.admins)
-		if(X.prefs.toggles & SOUND_ADMINHELP)
-			SEND_SOUND(X, sound('modular_skyrat/sound/effects/duckhonk.ogg'))
-		window_flash(X, ignorepref = TRUE)
-
-	SSblackbox.record_feedback("tally", "admin_remind", 1, "remind_admins") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	
-	deltimer(reminder_timer_id)
-	reminder_timer_id = addtimer(CALLBACK(src, .proc/remind_admins), 5 MINUTES, TIMER_STOPPABLE)
-
 //
 // CLIENT PROCS
 //
