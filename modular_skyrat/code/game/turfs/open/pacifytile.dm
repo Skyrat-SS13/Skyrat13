@@ -15,6 +15,8 @@ GLOBAL_LIST_EMPTY(safezone_players)
 	if(!ishuman(mover))
 		if(isprojectile(mover))
 			qdel(mover)
+		if(issilicon(mover))
+			return TRUE
 		return FALSE
 	if(mover in GLOB.safezone_players)
 		return FALSE
