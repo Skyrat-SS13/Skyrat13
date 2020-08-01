@@ -1,6 +1,0 @@
-author: "NotRanged"
-delete-after: True
-changes: 
-  - rscadd: "Warning cones can be crafted from plastic sheets"
-  - tweak: "Venus human traps from Kudzu are now ghost controllable. Click them as ghost! You can cross the flowering vines to regenerate some health."
-  - bugfix: "Medibots now actually remember the person who bullies them"
