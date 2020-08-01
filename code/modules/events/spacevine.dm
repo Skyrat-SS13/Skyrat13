@@ -23,6 +23,8 @@
 	if(turfs.len) //Pick a turf to spawn at if we can
 		var/turf/T = pick(turfs)
 		new /datum/spacevine_controller(T, list(pick(subtypesof(/datum/spacevine_mutation))), rand(30,100), rand(5,10), src) //spawn a controller at turf with randomized stats and a single random mutation
+		for(var/i in 1 to 3)
+			new /mob/living/simple_animal/hostile/venus_human_trap/ghost_playable(T)
 
 
 
@@ -277,6 +279,19 @@
 	if(prob(25))
 		holder.entangle(crosser)
 
+/datum/spacevine_mutation/slipping
+	name = "slipping"
+	hue = "#97eaff"
+	severity = 1
+	quality = NEGATIVE
+
+/datum/spacevine_mutation/slipping/on_cross(obj/structure/spacevine/holder, mob/living/crosser)
+	if(issilicon(crosser))
+		return
+	if(ishuman(crosser))
+		var/mob/living/carbon/human/H = crosser
+		H.slip(10)
+		to_chat(H, "<span class='alert'>The vines slip you!</span>")
 
 // SPACE VINES (Note that this code is very similar to Biomass code)
 /obj/structure/spacevine
@@ -473,7 +488,7 @@
 		for(var/datum/spacevine_mutation/SM in SV.mutations)
 			SM.process_mutation(SV)
 		if(SV.energy < 2) //If tile isn't fully grown
-			if(prob(20))
+			if(prob(50))
 				SV.grow()
 		else //If tile is fully grown
 			SV.entangle_mob()
@@ -516,7 +531,11 @@
 /obj/structure/spacevine/proc/spread()
 	var/direction = pick(GLOB.cardinals)
 	var/turf/stepturf = get_step(src,direction)
-	if (!isspaceturf(stepturf) && stepturf.Enter(src))
+	//if (!isspaceturf(stepturf) && stepturf.Enter(src)) // SKYRAT EDIT - VINES (ORIGINAL)
+	for(var/obj/machinery/door/D in stepturf.contents)
+		if(prob(50))
+			D.open()
+	if (stepturf.Enter(src)) //SKYRAT EDIT - VINES
 		for(var/datum/spacevine_mutation/SM in mutations)
 			SM.on_spread(src, stepturf)
 			stepturf = get_step(src,direction) //in case turf changes, to make sure no runtimes happen
