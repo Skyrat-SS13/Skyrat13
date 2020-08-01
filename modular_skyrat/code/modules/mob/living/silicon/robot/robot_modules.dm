@@ -214,7 +214,7 @@ obj/item/robot_module/butler/Initialize()
 	var/static/list/clown_icons = sortList(list(
 		"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "clown"),
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "bootyclown"),
-		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "male_bootyclown"),
+		"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "male_bootyclown"),
 		"Marina" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "marina_mommy"),
 		"Garish" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "garish"),
 		"Robot" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "clownbot"),
@@ -228,11 +228,9 @@ obj/item/robot_module/butler/Initialize()
 		if("Bootyborg")
 			cyborg_base_icon = "bootyclown"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
-		
 		if("Male Bootyborg")
 			cyborg_base_icon = "male_bootyclown"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
-
 		if("Marina")
 			cyborg_base_icon = "marina_mommy"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
@@ -360,3 +358,35 @@ obj/item/robot_module/butler/Initialize()
     ..()
     var/mob/living/silicon/robot/syndicatejack = loc
     syndicatejack.scrambledcodes = FALSE // Friends with the AI again
+
+/obj/item/robot_module/roleplay
+	name = "Roleplay"
+	basic_modules = list(
+		/obj/item/assembly/flash/cyborg,
+		/obj/item/extinguisher/mini,
+		/obj/item/weldingtool/largetank/cyborg,
+		/obj/item/screwdriver/cyborg,
+		/obj/item/wrench/cyborg,
+		/obj/item/crowbar/cyborg,
+		/obj/item/wirecutters/cyborg,
+		/obj/item/multitool/cyborg,
+		/obj/item/stack/sheet/metal/cyborg,
+		/obj/item/stack/sheet/glass/cyborg,
+		/obj/item/stack/sheet/rglass/cyborg,
+		/obj/item/stack/rods/cyborg,
+		/obj/item/stack/tile/plasteel/cyborg,
+		/obj/item/stack/cable_coil/cyborg,
+		/obj/item/restraints/handcuffs/cable/zipties,
+		/obj/item/rsf/cyborg,
+		/obj/item/reagent_containers/food/drinks/drinkingglass,
+		/obj/item/reagent_containers/borghypo/borgshaker/beershaker,
+		/obj/item/reagent_containers/borghypo/borgshaker/juiceshaker,
+		/obj/item/reagent_containers/borghypo/borgshaker/sodashaker,
+		/obj/item/reagent_containers/borghypo/borgshaker/miscshaker,
+		/obj/item/soap/nanotrasen,
+		/obj/item/borg/cyborghug,
+		/obj/item/dogborg_nose,
+		/obj/item/dogborg_tongue,
+		/obj/item/borg_shapeshifter/stable)
+	moduleselect_icon = "standard"
+	hat_offset = -3
