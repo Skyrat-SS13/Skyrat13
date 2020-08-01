@@ -448,11 +448,7 @@
 	icon_state = "webbing-durathread"
 	item_state = "webbing-durathread"
 	resistance_flags = FIRE_PROOF
-<<<<<<< HEAD
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE //Skyrat edit
-=======
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE //If normal belts get this, the upgraded version should too
->>>>>>> 850bc0dc33... Merge pull request #12919 from SiliconMain/patch-5
 
 /obj/item/storage/belt/durathread/ComponentInitialize()
 	. = ..()
