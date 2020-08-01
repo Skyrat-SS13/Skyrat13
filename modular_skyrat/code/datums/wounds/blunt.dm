@@ -88,7 +88,7 @@
 
 	regen_points_current++
 	if(prob(severity * 2))
-		victim.take_bodypart_damage(rand(2, severity * 2), stamina=rand(2, severity * 2.5), wound_bonus=CANT_WOUND)
+		victim.take_bodypart_damage(rand(2, (min(severity - 1, 1) * 2)), stamina=rand(2, severity * 2.5), wound_bonus=CANT_WOUND)
 		if(prob(33))
 			to_chat(victim, "<span class='danger'>You feel a sharp pain in your body as your bones are reforming!</span>")
 
@@ -609,7 +609,7 @@
 			return
 		victim.visible_message("<span class='notice'>[victim] finishes applying [I] to [victim.p_their()] [limb.name], grimacing from the pain!</span>", "<span class='notice'>You finish applying [I] to your [limb.name], and your bones explode in pain!</span>")
 
-	limb.receive_damage(20, stamina=75, wound_bonus=CANT_WOUND)
+	limb.receive_damage(15, stamina=75, wound_bonus=CANT_WOUND)
 	if(!gelled)
 		gelled = TRUE
 

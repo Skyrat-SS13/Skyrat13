@@ -394,7 +394,7 @@
 		
 		victim.visible_message("<span class='notice'>[victim] finishes fastening [victim.p_their()] [limb.name]!</span>", "<span class='notice'>You fastening your [limb.name]!</span>")
 
-	limb.receive_damage(20, stamina=80, wound_bonus=CANT_WOUND)
+	limb.receive_damage(15, stamina=75, wound_bonus=CANT_WOUND)
 	if(!wrenched)
 		wrenched = TRUE
 
