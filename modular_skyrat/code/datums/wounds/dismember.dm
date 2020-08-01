@@ -16,6 +16,11 @@
 	required_status = null
 
 /datum/wound/loss/proc/apply_dismember(obj/item/bodypart/L, wounding_type=WOUND_SLASH)
+	if(L.body_zone == BODY_ZONE_CHEST)
+		qdel(src)
+		var/datum/wound/disembowel/des = new()
+		des.apply_disembowel(L, wounding_type)
+		return
 	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.can_dismember())
 		qdel(src)
 		return
