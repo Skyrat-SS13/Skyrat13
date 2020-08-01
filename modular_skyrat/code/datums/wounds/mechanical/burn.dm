@@ -282,22 +282,22 @@
 	. += "Alternative treatment: Apply synthetic repair chemicals to the patient (liquid solder, nanite slurry or system cleaner). While these chemicals are in the patient's system, the wound will gradually diminish - apply all of these reagents for best results."
 	. += "</div>"
 
-/datum/wound/mechanical/burn/treat(obj/item/I, mob/victim)
+/datum/wound/mechanical/burn/treat(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/cable_coil))
-		cable(I, victim)
+		cable(I, user)
 
 /*
 	new mechanical burn common procs
 */
 
 /// if someone is using cable on the wound
-/datum/wound/mechanical/burn/proc/cable(obj/item/stack/cable_coil/I, mob/victim)
-	victim.visible_message("<span class='notice'>[victim] begins repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>", "<span class='notice'>You begin begin repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>")
+/datum/wound/mechanical/burn/proc/cable(obj/item/stack/cable_coil/I, mob/user)
+	victim.visible_message("<span class='notice'>[user] begins repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>", "<span class='notice'>You begin begin repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>")
 	if(!do_after(victim, (victim == victim ? 6 SECONDS : 3 SECONDS), extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
 	limb.heal_damage(10, 15)
-	victim.visible_message("<span class='green'>[victim] repairs some of the wiring on [victim]'s [limb.name].</span>", "<span class='green'>You repair some of the wiring on [victim]'s [limb.name].</span>")
+	victim.visible_message("<span class='green'>[user] repairs some of the wiring on [victim]'s [limb.name].</span>", "<span class='green'>You repair some of the wiring on [victim]'s [limb.name].</span>")
 	I.use(10)
 	heat_warpingnt += 1.25
 

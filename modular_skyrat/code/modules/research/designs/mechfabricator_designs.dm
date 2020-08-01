@@ -451,3 +451,67 @@
 	materials = list(/datum/material/iron = 25000, /datum/material/titanium = 30000, /datum/material/plasma = 30000, /datum/material/gold = 30000, /datum/material/glass = 10000, /datum/material/silver = 20000)
 	construction_time = 150
 	category = list("IPC")
+
+//ipc organs
+/datum/design/ipc_heart
+	name = "IPC heart"
+	id = "ipc_heart"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/heart/robot_ipc
+	materials = list(/datum/material/iron = 3000, /datum/material/gold = 1000, /datum/material/titanium = 500)
+	construction_time = 150
+	category = list("IPC")
+
+/datum/design/ipc_lungs
+	name = "IPC lungs"
+	id = "ipc_lungs"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/lungs/robot_ipc
+	materials = list(/datum/material/iron = 1500, /datum/material/gold = 500)
+	construction_time = 150
+	category = list("IPC")
+
+/datum/design/ipc_tongue
+	name = "IPC tongue"
+	id = "ipc_tongue"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/tongue/robot_ipc
+	materials = list(/datum/material/iron = 1000, /datum/material/gold = 1000)
+	construction_time = 100
+	category = list("IPC")
+
+/datum/design/ipc_stomach
+	name = "IPC stomach cell"
+	id = "ipc_stomach"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/stomach/robot_ipc
+	materials = list(/datum/material/iron = 1000, /datum/material/gold = 1000, /datum/material/uranium = 2500)
+	construction_time = 100
+	category = list("IPC")
+
+/datum/design/ipc_liver
+	name = "IPC liver processor"
+	id = "ipc_liver"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/liver/robot_ipc
+	materials = list(/datum/material/iron = 1000, /datum/material/gold = 1000, /datum/material/uranium = 2500)
+	construction_time = 100
+	category = list("IPC")
+
+/datum/design/ipc_eyes
+	name = "IPC eyes"
+	id = "ipc_eyes"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/eyes/robot_ipc
+	materials = list(/datum/material/iron = 1000, /datum/material/gold = 1000, /datum/material/uranium = 2500, /datum/material/glass = 1000)
+	construction_time = 100
+	category = list("IPC")
+
+/datum/design/ipc_ears
+	name = "IPC ears"
+	id = "ipc_ears"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/ears/robot_ipc
+	materials = list(/datum/material/iron = 3000, /datum/material/silver = 1000, /datum/material/titanium = 2000)
+	construction_time = 100
+	category = list("IPC")

@@ -18,7 +18,7 @@
 	display_name = "Sapient Synthetic Fabrication"
 	description = "With enhanced artificial intelligence and mechatronic technology, we are able to build sapient synthetics from scratch."
 	prereq_ids = list("ai", "posibrain", "adv_robotics", "mmi", "cyborg")
-	design_ids = list("ipc_chassis", "synthliz_chassis", "synth_chassis")
+	design_ids = list("ipc_chassis", "synthliz_chassis", "synth_chassis", "ipc_heart", "ipc_lungs", "ipc_tongue", "ipc_stomach", "ipc_liver", "ipc_eyes", "ipc_ears")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 8000)
 
 /datum/techweb_node/adv_robotics/New()
