@@ -137,7 +137,7 @@
 	id = "stomach"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
-	build_path = /obj/item/organ/tail
+	build_path = /obj/item/organ/stomach
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
 /datum/design/appendix
