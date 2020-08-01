@@ -357,7 +357,7 @@
 /datum/wound/mechanical/burn/critical
 	name = "Catastrophic Melting"
 	desc = "Patient's limb has been severely deformed by high heat, along with complete charring of many internal components, causing extreme malfunctioning and leaving the limb extremely frail."
-	treat_text = "Full reconstruction or replacement of the affected limb."
+	treat_text = "Full reconstruction or replacement of the affected limb, although cable coil can prevent a worsening situation."
 	treatable_by = list()
 	examine_desc = "is completely deformed, constantly sparking and smoking from it's charred components"
 	occur_text = "melts and pools around itself"

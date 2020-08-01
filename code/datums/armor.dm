@@ -56,6 +56,7 @@
 					//skyrat edit
 					(isnull(magic) ? src.magic : magic),\
 					(isnull(wound) ? src.wound : wound))
+					//
 
 /datum/armor/proc/getRating(rating)
 	return vars[rating]

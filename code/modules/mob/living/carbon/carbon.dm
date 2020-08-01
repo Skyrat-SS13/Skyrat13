@@ -1259,12 +1259,14 @@
 		if(BP.get_bleed_rate())
 			return TRUE
 
-// if any of our bodyparts is gauzed
-/mob/living/carbon/proc/has_gauze()
-	for(var/i in bodyparts)
-		var/obj/item/bodypart/BP = i
-		if(BP.current_gauze)
-			return TRUE
+// Check if any of our limbs is gauzed
+/mob/living/proc/has_gauze()
+	return FALSE
+
+/mob/living/carbon/has_gauze()
+	for(var/obj/item/bodypart/limb in bodyparts)
+		if(limb.current_gauze)
+			return limb.current_gauze
 
 // If our face is visible
 /mob/living/carbon/is_face_visible()

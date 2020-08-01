@@ -169,7 +169,7 @@
 /datum/wound/mechanical/pierce/severe
 	name = "Open Dent"
 	desc = "Patient's internals have been severely punctured, causing reduced limb stability and noticeable hydraulic leakage."
-	treat_text = "Recommended full internal repair, but mineral patching and welding of the limb may suffice."
+	treat_text = "Recommended full internal repair, but mineral patching, taping and welding of the limb may suffice."
 	examine_desc = "is pierced clear through, with jagged metal edges leaking hydraulic fluids"
 	occur_text = "looses a violent spray of hydraulic fluid, revealing a considerable hole"
 	sound_effect = 'modular_skyrat/sound/effects/blood2.ogg'
@@ -188,7 +188,7 @@
 /datum/wound/mechanical/pierce/critical
 	name = "Ruptured Hydraulics"
 	desc = "Patient's hydraulic cablings have been shredded, causing critical leakage and damage to internal components."
-	treat_text = "Full internal repair of the affected area."
+	treat_text = "Full internal repair of the affected area, but mineral patching, taping and welding of the limb can prevent a worsening situation."
 	examine_desc = "is ripped clear through, barely held together by it's endoskeleton"
 	occur_text = "blasts apart, sending metallic shrapnel flying in all directions"
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'

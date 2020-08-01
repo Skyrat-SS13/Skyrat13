@@ -17,8 +17,8 @@
 	if(stat != DEAD && bleed_rate) //skyrat edit
 		to_chat(src, "<span class='warning'>The blood soaks through your bandage.</span>")
 */
-//skyrat edit
 
+//skyrat edit
 ///Returns how much blood we're losing from being dragged a tile, from [mob/living/proc/makeTrail]
 /mob/living/proc/get_bleed_amount(brute_ratio)
 	return max(1, brute_ratio * 2)

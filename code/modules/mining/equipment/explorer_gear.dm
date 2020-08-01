@@ -31,11 +31,11 @@
 
 /obj/item/clothing/head/hooded/explorer/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 3, list("melee" = 10, "wound" = 3.5))
+	AddComponent(/datum/component/armor_plate, 3, /obj/item/stack/sheet/animalhide/goliath_hide, list("melee" = 10, "wound" = 3.5))
 
 /obj/item/clothing/suit/hooded/explorer/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 3, list("melee" = 10, "wound" = 3.5))
+	AddComponent(/datum/component/armor_plate, 3, /obj/item/stack/sheet/animalhide/goliath_hide, list("melee" = 10, "wound" = 3.5))
 
 /obj/item/clothing/suit/hooded/explorer/standard
 	hoodtype = /obj/item/clothing/head/hooded/explorer/standard

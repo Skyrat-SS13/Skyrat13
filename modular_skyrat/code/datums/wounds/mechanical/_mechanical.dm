@@ -156,7 +156,7 @@
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	limb.heal_damage(3, 3)
+	limb.heal_damage(10, 10)
 	limb.apply_gauze(I)
 	user.visible_message("<span class='green'>[user] wraps on [victim]'s [limb.name] with [I].</span>", "<span class='green'>You wrap [user == victim ? "your" : "[victim]'s"] [limb.name] with [I].</span>")
 	return TRUE

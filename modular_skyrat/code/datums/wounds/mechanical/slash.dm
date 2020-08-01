@@ -175,7 +175,7 @@
 /datum/wound/mechanical/slash/moderate
 	name = "Ripped Metal"
 	desc = "Patient's exoskeleton has been badly ripped, generating moderate hydraulic leakage."
-	treat_text = "Welding and fusing the jagged metal together."
+	treat_text = "Recommended mineral patching and welding of the affected area, but application of sticky tape may suffice."
 	examine_desc = "has an open tear"
 	occur_text = "is ripped open, slowly leaking hydraulic fluid"
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
@@ -193,7 +193,7 @@
 /datum/wound/mechanical/slash/severe
 	name = "Jagged Tear"
 	desc = "Patient's exoskleton has been severely ripped, allowing significant fluid leakage."
-	treat_text = "Application and welding of a mineral patch."
+	treat_text = "Recommended full internal repair, but mineral patching, taping and welding of the limb may suffice."
 	examine_desc = "has a severe tear"
 	occur_text = "is ripped open, cables spurting fluid"
 	sound_effect = 'modular_skyrat/sound/effects/blood2.ogg'
@@ -212,7 +212,7 @@
 /datum/wound/mechanical/slash/critical
 	name = "Torn Cabling"
 	desc = "Patient's exoskeleton is completely torn open, along with loss of armoring. Extreme leakage."
-	treat_text = "Immediate bandaging and either suturing or cauterization, followed by supervised resanguination."
+	treat_text = "Full internal repair of the affected area, but mineral patching, taping and welding of the limb can prevent a worsening situation."
 	examine_desc = "is spurting hydraulic fluid at an alarming rate"
 	occur_text = "is torn open, spraying fluid wildly"
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'

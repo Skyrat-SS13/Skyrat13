@@ -662,8 +662,13 @@
 			TH.existing_dirs += newdir
 			TH.add_overlay(image('icons/effects/blood.dmi', trail_type, dir = newdir))
 			TH.transfer_mob_blood_dna(src)
+	//warn the player occasionally about it
+	if(prob(7) && lying && bleed_amt && iscarbon(src))
+		var/mob/living/C = src
+		var/extra_message = (C.has_gauze() ? " and tearing into their gauze" : "")
+		C.visible_message("<span class='danger'>\The [C]'s wounds scrape against \the [target_turf], worsening their situation[extra_message]!</span>", "<span class='bolddanger'><b>Your wounds scrape against \the [target_turf], worsening their situation[extra_message]!<b></span>")
 
-/mob/living/carbon/human/makeTrail(turf/T)
+/mob/living/carbon/human/makeTrail(turf/target_turf, turf/start, direction)
 	if((NOBLOOD in dna.species.species_traits) || !is_bleeding()) //skyrat edit
 		return
 	..()
