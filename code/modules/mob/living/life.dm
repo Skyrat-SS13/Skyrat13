@@ -201,3 +201,9 @@
 //skyrat edit
 /mob/living/proc/handle_wounds()
 	return
+
+/mob/living/carbon/handle_wounds()
+	for(var/thing in all_wounds)
+		var/datum/wound/W = thing
+		if(W.processes) // meh
+			W.handle_process()
