@@ -11323,14 +11323,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"nnn" = (
-/obj/structure/window/reinforced/spawner/east,
-/obj/effect/turf_decal/trimline/neutral/filled/line{
-	dir = 8
-	},
-/obj/machinery/clonepod/fullupgrade,
-/turf/open/floor/plasteel/dark,
-/area/centcom/evac)
 "nny" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -64545,7 +64537,7 @@ nIn
 bqJ
 hpf
 jdg
-nnn
+jdg
 jdg
 pou
 jdg
