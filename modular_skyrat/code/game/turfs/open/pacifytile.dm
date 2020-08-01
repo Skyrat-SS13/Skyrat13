@@ -21,6 +21,8 @@ GLOBAL_LIST_EMPTY(safezone_players)
 	if(mover in GLOB.safezone_players)
 		return FALSE
 	var/mob/living/carbon/human/H = mover
+	if(!H.ckey)
+		return FALSE
 	if(!HAS_TRAIT(H, TRAIT_PACIFISM))
 		ADD_TRAIT(H, TRAIT_PACIFISM, "pacified")
 		to_chat(H, "You have been pacified.")
@@ -35,9 +37,10 @@ GLOBAL_LIST_EMPTY(safezone_players)
 /turf/open/centcom_safezone/warzonetile/CanPass(atom/movable/mover, turf/target)
 	if(mover in GLOB.safezone_players)
 		return FALSE
-	var/mob/living/carbon/human/H = mover
-	if(HAS_TRAIT(H, TRAIT_PACIFISM))
-		return FALSE
+	if(isliving(mover))
+		var/mob/living/L = mover
+		if(HAS_TRAIT(L, TRAIT_PACIFISM))
+			return FALSE
 	GLOB.safezone_players += mover
 	return TRUE
 
