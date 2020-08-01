@@ -85257,7 +85257,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/table/wood,
-/obj/item/folder/paperwork,
 /turf/open/floor/wood,
 /area/security/vacantoffice)
 "ppP" = (
