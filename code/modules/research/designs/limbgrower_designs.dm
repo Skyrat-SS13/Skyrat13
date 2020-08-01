@@ -7,7 +7,7 @@
 	id = "leftarm"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 50)
-	build_path = /obj/item/bodypart/l_arm
+	build_path = /obj/item/bodypart/l_arm/children
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
 /datum/design/rightarm
@@ -15,7 +15,7 @@
 	id = "rightarm"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 50)
-	build_path = /obj/item/bodypart/r_arm
+	build_path = /obj/item/bodypart/r_arm/children
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
 /datum/design/leftleg
@@ -23,7 +23,7 @@
 	id = "leftleg"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 50)
-	build_path = /obj/item/bodypart/l_leg
+	build_path = /obj/item/bodypart/l_leg/children
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
 /datum/design/rightleg
@@ -31,7 +31,7 @@
 	id = "rightleg"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 50)
-	build_path = /obj/item/bodypart/r_leg
+	build_path = /obj/item/bodypart/r_leg/children
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
 /datum/design/armblade
@@ -47,15 +47,15 @@
 	name = "Groin"
 	id = "groin"
 	build_type = LIMBGROWER
-	reagents_list = list(/datum/reagent/medicine/synthflesh = 75)
-	build_path = /obj/item/bodypart/groin
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 100)
+	build_path = /obj/item/bodypart/groin/children
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
 /datum/design/chest
 	name = "Chest"
 	id = "chest"
 	build_type = LIMBGROWER
-	reagents_list = list(/datum/reagent/medicine/synthflesh = 100)
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 50)
 	build_path = /obj/item/bodypart/chest
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 

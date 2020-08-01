@@ -4118,6 +4118,7 @@
 #include "modular_skyrat\code\modules\surgery\bodyparts\bodypart_types\r_hand.dm"
 #include "modular_skyrat\code\modules\surgery\bodyparts\bodypart_types\r_leg.dm"
 #include "modular_skyrat\code\modules\surgery\bodyparts\bodypart_types\subtypes\alien.dm"
+#include "modular_skyrat\code\modules\surgery\bodyparts\bodypart_types\subtypes\children_bearer.dm"
 #include "modular_skyrat\code\modules\surgery\bodyparts\bodypart_types\subtypes\devil.dm"
 #include "modular_skyrat\code\modules\surgery\bodyparts\bodypart_types\subtypes\monkey.dm"
 #include "modular_skyrat\code\modules\surgery\bodyparts\bodypart_types\subtypes\robot_bodyparts.dm"
