@@ -183,6 +183,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/obj/effect/statclick/ahelp/statclick
 
 	var/static/ticket_counter = 0
+	var/reminder_timer_id = null // Skyrat change
 
 //call this on its own to create a ticket, don't manually assign current_ticket
 //msg is the title of the ticket: usually the ahelp text
@@ -211,6 +212,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	initiator.tickets += src // Skyrat Change
 
 	TimeoutVerb()
+	reminder_timer_id = addtimer(CALLBACK(src, .proc/remind_admins), 10 SECONDS, TIMER_STOPPABLE) // Skyrat Change
 
 	statclick = new(null, src)
 	_interactions = list()
@@ -472,6 +474,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	// Skyrat change END
 
 	var/msg = "<span class ='adminhelp'>Your ticket is now being handled by [usr?.client?.holder?.fakekey? usr.client.holder.fakekey : "an administrator"]! Please wait while they type their response and/or gather relevant information.</span>" // Skyrat Change
+	deltimer(reminder_timer_id) // Skyrat change
 
 	if(initiator)
 		to_chat(initiator, msg)
