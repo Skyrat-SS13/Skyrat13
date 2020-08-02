@@ -14,7 +14,7 @@
 	var/list/comparative_value_descriptors_smaller // String set for looking at someone smaller than you.
 	var/list/comparative_value_descriptors_larger  // String set for looking at someone larger than you.
 	var/list/chargen_value_descriptors             // Used for chargen selection of values in cases where there is a hidden meaning.
-	var/skip_species_mention
+	var/skip_species_mention = TRUE
 
 /datum/mob_descriptor/New()
 	if(!chargen_label)
