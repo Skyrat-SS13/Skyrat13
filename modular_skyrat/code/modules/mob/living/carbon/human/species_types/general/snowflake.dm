@@ -2,6 +2,12 @@
 	var/list/screamsounds = list('modular_citadel/sound/voice/scream_m1.ogg', 'modular_citadel/sound/voice/scream_m2.ogg')
 	var/list/femalescreamsounds = list()
 	var/fluff_desc = "No description."
+	//kind of cringe nae nae baby to not be able to modify other say verbs
+	var/ask_mod = "asks"
+	var/exclaim_mod = "exclaims"
+	var/whisper_mod = "whispers"
+	var/yell_mod = "yells"
+	var/sing_mod = "sings"
 
 /datum/species/synth
 	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')

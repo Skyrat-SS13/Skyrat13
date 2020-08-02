@@ -1,5 +1,12 @@
 /mob/living/carbon/human/say_mod(input, message_mode)
 	verb_say = dna.species.say_mod
+	//skyrat edit
+	verb_ask = dna.species.ask_mod
+	verb_exclaim = dna.species.exclaim_mod
+	verb_whisper = dna.species.whisper_mod
+	verb_yell = dna.species.yell_mod
+	verb_sing = dna.species.sing_mod
+	//
 	. = ..()
 	if(message_mode != MODE_CUSTOM_SAY && message_mode != MODE_WHISPER_CRIT)
 		switch(slurring)

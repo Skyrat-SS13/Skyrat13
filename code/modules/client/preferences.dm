@@ -136,6 +136,13 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/list/body_descriptors = list()
 
 	var/list/alt_titles_preferences = list()
+
+	var/say_verb = ""
+	var/ask_verb = ""
+	var/exclaim_verb = ""
+	var/whisper_verb = ""
+	var/yell_verb = ""
+	var/sing_verb = ""
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
@@ -386,7 +393,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += " <a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
 
 			dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
-			dat += "<b>Additional Language:</b> <a href='?_src_=prefs;preference=language;task=menu'><b>[language ? language : "None"]</b></a><BR>"
 			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a>"
 			//skyrat edit
 			dat += "<h2>Religion</h2>"
@@ -399,11 +405,18 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					old_group = namedata["group"]
 					dat += "<br>"
 				dat += "<b>[capitalize(custom_name_id)]:</b> <a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a><br>"
-			dat += "<h2>Additional Preferences</h2>"
-			//
+			dat += "<h2>Speech</h2>"
+			dat += "<b>Additional Language:</b> <a href='?_src_=prefs;preference=language;task=menu'><b>[language ? language : "None"]</b></a><BR>"
 			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a><BR>"
+			dat += "<b>Say Verb:</b> <a href='?_src_=prefs;preference=say_verb;task=input'>[say_verb ? say_verb : "Default"]</a><BR>"
+			dat += "<b>Ask Verb:</b> <a href='?_src_=prefs;preference=ask_verb;task=input'>[ask_verb ? ask_verb : "Default"]</a><BR>"
+			dat += "<b>Exclaim Verb:</b> <a href='?_src_=prefs;preference=exclaim_verb;task=input'>[exclaim_verb ? exclaim_verb : "Default"]</a><BR>"
+			dat += "<b>Whisper Verb:</b> <a href='?_src_=prefs;preference=whisper_verb;task=input'>[whisper_verb ? whisper_verb : "Default"]</a><BR>"
+			dat += "<b>Yell Verb:</b> <a href='?_src_=prefs;preference=yell_verb;task=input'>[yell_verb ? yell_verb : "Default"]</a><BR>"
+			dat += "<b>Sing Verb:</b> <a href='?_src_=prefs;preference=sing_verb;task=input'>[sing_verb ? sing_verb : "Default"]</a>"
 
-			dat += "<BR><b>Special Names:</b><BR>"
+			dat += "<h2>Special Names</h2>"
+			//
 			old_group = null
 			for(var/custom_name_id in (GLOB.preferences_custom_names - list("religion", "deity"))) //skyrat edit
 				var/namedata = GLOB.preferences_custom_names[custom_name_id]
@@ -2191,6 +2204,48 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/msg = input(usr, "Set your exploitable information, this rarely will be showed to antagonists", "Exploitable Info", exploitable_info) as message|null
 					if(msg)
 						exploitable_info = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
+				
+				if("say_verb")
+					var/msg = input(usr, "Set your say verb. Do not abuse this.", "Say Verb", say_verb) as message|null
+					if(!msg)
+						msg = "" //just to make sure it saves as a string even though it doesn't make much sense for byond
+					if(msg)
+						say_verb = strip_html_simple(msg, 25, TRUE)
+
+				if("ask_verb")
+					var/msg = input(usr, "Set your ask verb. Do not abuse this.", "Ask Verb", ask_verb) as message|null
+					if(!msg)
+						msg = "" //just to make sure it saves as a string even though it doesn't make much sense for byond
+					if(msg)
+						ask_verb = strip_html_simple(msg, 25, TRUE)
+
+				if("exclaim_verb")
+					var/msg = input(usr, "Set your exclaim verb. Do not abuse this.", "Exclaim Verb", exclaim_verb) as message|null
+					if(!msg)
+						msg = "" //just to make sure it saves as a string even though it doesn't make much sense for byond
+					if(msg)
+						exclaim_verb = strip_html_simple(msg, 25, TRUE)
+
+				if("whisper_verb")
+					var/msg = input(usr, "Set your whisper verb. Do not abuse this.", "Whisper Verb", whisper_verb) as message|null
+					if(!msg)
+						msg = "" //just to make sure it saves as a string even though it doesn't make much sense for byond
+					if(msg)
+						whisper_verb = strip_html_simple(msg, 25, TRUE)
+
+				if("yell_verb")
+					var/msg = input(usr, "Set your yell verb. Do not abuse this.", "Yell Verb", yell_verb) as message|null
+					if(!msg)
+						msg = "" //just to make sure it saves as a string even though it doesn't make much sense for byond
+					if(msg)
+						yell_verb = strip_html_simple(msg, 25, TRUE)
+
+				if("sing_verb")
+					var/msg = input(usr, "Set your ask verb. Do not abuse this.", "Sing Verb", sing_verb) as message|null
+					if(!msg)
+						msg = "" //just to make sure it saves as a string even though it doesn't make much sense for byond
+					if(msg)
+						sing_verb = strip_html_simple(msg, 25, TRUE)
 				//END OF SKYRAT CHANGES
 				/* Skyrat changes - do nothing here because we dont use this and this may be exploited
 				if("ooc_notes")
