@@ -354,9 +354,6 @@
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
-	//skyrat edit - advanced markings
-	msg += get_marking_strings(user)
-	//
 
 	//Skyrat changes begin
 	if(gunpointing)
@@ -366,9 +363,10 @@
 			msg += "<b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b>\n"
 	
 	//descriptors
-	var/list/show_descs = show_descriptors_to(user)
-	for(var/descrip in show_descs)
-		msg += descrip
+	msg |= show_descriptors_to(user)
+	
+	//advanced markings
+	msg |= get_marking_strings(user)
 	
 	//Skyrat changes end
 
@@ -475,14 +473,13 @@
 
 //skyrat edit - advanced markings
 /mob/living/carbon/human/proc/get_marking_strings(mob/viewer)
+	. = list()
 	var/t_He = p_they(TRUE)
 	var/t_his = p_their()
 	var/t_has = p_have()
-	var/msg = ""
 	for(var/datum/adv_marking/mark in src.all_markings)
 		if(istype(mark) && mark.is_visible(viewer))
-			msg += "<span class='boldnotice'>[t_He] [t_has] [mark.examine_text] on [t_his] [parse_zone(mark.body_zone)].</span>\n"
-	return msg
+			. += "<span class='boldnotice'>[t_He] [t_has] [mark.examine_text] on [t_his] [parse_zone(mark.body_zone)].</span>\n"
 
 //skyrat edit - baystation descriptors
 /mob/living/carbon/human/proc/show_descriptors_to(mob/user)

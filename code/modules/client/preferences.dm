@@ -138,7 +138,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 	var/maxlikes = 3
 	var/maxdislikes = 3
 
-	var/max_marking_per_bp = 5
+	var/max_marking_per_bp = 1
 	var/list/adv_markings = list(BODY_ZONE_HEAD = list(), BODY_ZONE_CHEST = list(), BODY_ZONE_PRECISE_GROIN = list(),
 								BODY_ZONE_L_ARM = list(), BODY_ZONE_PRECISE_L_HAND = list(),
 								BODY_ZONE_R_ARM = list(), BODY_ZONE_PRECISE_R_HAND = list(),
@@ -505,12 +505,17 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				dat += "<b>Body Model:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=body_model'>[features["body_model"] == MALE ? "Masculine" : "Feminine"]</a><BR>"
 			dat += "<b>Species:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><BR>"
 			dat += "<b>Custom Species Name:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=custom_species;task=input'>[custom_species ? custom_species : "None"]</a><BR>"
+			//Skyrat change
 			if(LAZYLEN(pref_species.descriptors) && LAZYLEN(body_descriptors))
 				dat += "<h2>Descriptors:</h2>"
 				for(var/entry in body_descriptors)
 					var/datum/mob_descriptor/descriptor = pref_species.descriptors[entry]
 					dat += "<b>[capitalize(descriptor.chargen_label)]:</b> [descriptor.get_standalone_value_descriptor(body_descriptors[entry]) ? descriptor.get_standalone_value_descriptor(body_descriptors[entry]) : "None"] <a href='?_src_=prefs;preference=descriptors;task=input;change_descriptor=[entry]'>Change</a><BR>"
+			if(pref_species.allow_adv_markings)
+				dat += "<h2>Advanced Markings</h2>"
+				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=adv_markings;task=menu'>Configure</a>"
 				dat += "<BR>"
+			//
 			dat += "<b>Random Body:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=all;task=random'>Randomize!</A><BR>"
 			dat += "<b>Always Random Body:</b><a href='?_src_=prefs;preference=all'>[be_random_body ? "Yes" : "No"]</A><BR>"
 			dat += "<br><b>Cycle background:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=cycle_bg;task=input'>[bgstate]</a><BR>"
@@ -827,20 +832,6 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
-					
-			//skyrat change
-			if(pref_species.allow_adv_markings)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
-
-				dat += "<h3>Advanced Markings</h3>"
-
-				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=adv_markings;task=menu'>Configure</a>"
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
-			//
 
 			if(pref_species.mutant_bodyparts["insect_markings"])
 				if(!mutant_category)
@@ -1753,7 +1744,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 	var/list/dat = list()
 	dat += "<center><b>Advanced Markings setup</b></center><BR>"
 	dat += "<div align='center'>"
-	dat += "Each bodypart can have up to [max_marking_per_bp] markings.<BR>"
+	dat += "Each bodypart can have up to <b>[max_marking_per_bp]</b> markings.<BR>"
 	dat += "Markings without descriptions will not be shown on examine.<BR>"
 	dat += "Descriptions should be written so that they fit in this format:<BR>"
 	var/p_he = "they"
