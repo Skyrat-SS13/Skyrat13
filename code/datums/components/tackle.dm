@@ -263,13 +263,11 @@
 			defense_mod += 5
 		if(T.is_holding_item_of_type(/obj/item/shield))
 			defense_mod += 2
-		/* No. No mechanical advantages for liggers.
 		if(islizard(T))
 			if(!T.getorganslot(ORGAN_SLOT_TAIL)) // lizards without tails are off-balance
 				defense_mod -= 1
 			else if(T.dna.species.is_wagging_tail()) // lizard tail wagging is robust and can swat away assailants!
 				defense_mod += 1
-		*/
 
 	// OF-FENSE
 	var/mob/living/carbon/sacker = parent
