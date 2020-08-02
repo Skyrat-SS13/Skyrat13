@@ -17,7 +17,9 @@
 	if(usr.hud_used.inventory_shown && targetmob.hud_used)
 		usr.hud_used.inventory_shown = FALSE
 		usr.client.screen -= targetmob.hud_used.toggleable_inventory
+		//SKYRAT EDIT
 		usr.client.screen -= targetmob.hud_used.extra_inventory
+		//SKYRAT EDIT END
 	else
 		usr.hud_used.inventory_shown = TRUE
 		usr.client.screen += targetmob.hud_used.toggleable_inventory
