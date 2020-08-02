@@ -1,6 +1,0 @@
-author: "Sarmenti and Funce"
-delete-after: True
-changes: 
-  - rscadd: "Ghost Cafe Robots are now a thing!"
-  - bugfix: "Dogborgs no longer 'bork' the chameleon projector"
-  - bugfix: "Some other assorted Borg Chameleon projector fixes"
