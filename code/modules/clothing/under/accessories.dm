@@ -23,9 +23,11 @@
 			return FALSE
 		U.TakeComponent(storage)
 		detached_pockets = storage
+	//SKYRAT EDIT
 	U.attached_accessories |= src
 	force_unto(U)
 	current_uniform = U
+	//SKYRAT EDIT END
 	forceMove(U)
 
 	if (islist(U.armor) || isnull(U.armor)) 										// This proc can run before /obj/Initialize has run for U and src,
@@ -46,7 +48,9 @@
 		TakeComponent(detached_pockets)
 
 	U.armor = U.armor.detachArmor(armor)
+	//SKYRAT EDIT
 	current_uniform = null
+	//SKYRAT EDIT END
 
 	if(isliving(user))
 		on_uniform_dropped(U, user)
@@ -68,7 +72,7 @@
 			Y.alpha = attached_accessory.alpha
 			Y.color = attached_accessory.color
 			U.accessory_overlay.add_overlay(Y)
-
+//SKYRAT EDIT
 /obj/item/clothing/accessory/proc/force_unto(obj/item/clothing/under/U)
 	layer = FLOAT_LAYER
 	plane = FLOAT_PLANE
@@ -94,6 +98,7 @@
 					pixel_x += rand(-16, 16)
 					pixel_y += rand(-16, 16)
 	U.add_overlay(src)
+//SKYRAT EDIT END
 
 /obj/item/clothing/accessory/proc/on_uniform_equip(obj/item/clothing/under/U, user)
 	return
