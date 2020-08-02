@@ -29,7 +29,9 @@
 		//SKYRAT EDIT END
 
 	targetmob.hud_used.hidden_inventory_update(usr)
+	//SKYRAT EDIT
 	targetmob.hud_used.extra_inventory_update(usr)
+	//SKYRAT EDIT END
 
 //skyrat edit
 /obj/screen/human/toggle/extra
