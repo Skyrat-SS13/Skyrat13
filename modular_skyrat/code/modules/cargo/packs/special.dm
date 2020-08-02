@@ -33,8 +33,6 @@
 	contains = list(/obj/item/clothing/suit/space/hardsuit/security/metrocop)
 	crate_name = "HEV Hardsuit crate"
 
-
-//Fuck you citadel maintainers for merging the removal of null crates _|_ (this is a middle finger)
 /datum/supply_pack/emergency/syndicate
 	name = "NULL_ENTRY"
 	desc = "(#@&^$THIS PACKAGE CONTAINS 30TC WORTH OF SOME RANDOM SYNDICATE GEAR WE HAD LYING AROUND THE WAREHOUSE. GIVE 'EM HELL OPERATIVE@&!*() "

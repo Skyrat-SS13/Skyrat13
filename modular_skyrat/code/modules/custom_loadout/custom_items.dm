@@ -49,3 +49,4 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 	fitted = FEMALE_UNIFORM_TOP
+
