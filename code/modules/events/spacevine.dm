@@ -24,7 +24,7 @@
 		var/turf/T = pick(turfs)
 		new /datum/spacevine_controller(T, list(pick(subtypesof(/datum/spacevine_mutation))), rand(30,100), rand(5,10), src) //spawn a controller at turf with randomized stats and a single random mutation
 		// SKYRAT EDIT - VINES - START
-		for(var/i in 1 to 3)
+		for(var/i in 1 to 2)
 			new /mob/living/simple_animal/hostile/venus_human_trap/ghost_playable(T)
 		// SKYRAT EDIT - VINES - END
 
@@ -534,11 +534,16 @@
 /obj/structure/spacevine/proc/spread()
 	var/direction = pick(GLOB.cardinals)
 	var/turf/stepturf = get_step(src,direction)
-	//if (!isspaceturf(stepturf) && stepturf.Enter(src)) // SKYRAT EDIT - VINES (ORIGINAL)
+	//SKYRAT EDIT START - VINES
+	var/area/steparea = get_area(stepturf)
 	for(var/obj/machinery/door/D in stepturf.contents)
 		if(prob(50))
 			D.open()
+	//if (!isspaceturf(stepturf) && stepturf.Enter(src)) // SKYRAT EDIT - VINES (ORIGINAL)
 	if (stepturf.Enter(src)) //SKYRAT EDIT - VINES
+		if(isspaceturf(stepturf) && istype(steparea, /area/space/station_ruins))
+			return
+	//SKYRAT EDIT END - VINES
 		for(var/datum/spacevine_mutation/SM in mutations)
 			SM.on_spread(src, stepturf)
 			stepturf = get_step(src,direction) //in case turf changes, to make sure no runtimes happen
