@@ -16,7 +16,7 @@
 	amputation_point = "groin"
 	dismember_bodyzone = BODY_ZONE_PRECISE_GROIN
 	children_zones = list(BODY_ZONE_PRECISE_R_FOOT)
-	specific_locations = list("right sole", "right ankle", "right heel")
+	specific_locations = list("inner right thigh", "outer right calf", "outer right hip", "right kneecap", "lower right shin")
 	max_cavity_size = WEIGHT_CLASS_SMALL
 
 /obj/item/bodypart/r_leg/is_disabled()

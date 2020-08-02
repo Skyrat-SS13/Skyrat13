@@ -19,7 +19,7 @@
 /obj/item/projectile/bullet/process_hit(turf/T, atom/target, qdel_self, hit_something)
 	. = ..()
 	var/mob/living/L = target
-	if(istype(L) && ((L.mob_biotypes & MOB_ORGANIC) || (L.mob_biotypes & MOB_HUMANOID)) && (damage >= 10) && !nodamage)
+	if((damage_type == BRUTE) && istype(L) && ((L.mob_biotypes & MOB_ORGANIC) || (L.mob_biotypes & MOB_HUMANOID)) && (damage >= 10) && !nodamage)
 		var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(target.loc, L.get_blood_dna_list())
 		B.add_blood_DNA(L.get_blood_dna_list())
 		var/dist = rand(1,min(damage/10, 5))
