@@ -102,7 +102,7 @@
 				if(istype(location))
 					add_splatter_floor(location)
 				var/turf/targ = get_ranged_target_turf(user, get_dir(user, src), dist)
-				if(istype(targ) && dist > 0 && (mob_biotypes & MOB_ORGANIC))
+				if(istype(targ) && dist > 0 && ((L.mob_biotypes & MOB_ORGANIC) || (L.mob_biotypes & MOB_HUMANOID)))
 					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(loc, get_blood_dna_list())
 					B.add_blood_DNA(get_blood_dna_list())
 					B.GoTo(targ, dist)
