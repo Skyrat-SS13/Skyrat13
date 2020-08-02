@@ -51,6 +51,8 @@
 	//skyrat edit
 	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
 	if(istype(BP))
+		for(var/datum/wound/slash/critical/incision/inch in BP.wounds)
+			inch.remove_wound()
 		for(var/datum/wound/mechanical/slash/critical/incision/inch in BP.wounds)
 			inch.remove_wound()
 	//

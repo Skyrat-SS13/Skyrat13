@@ -135,7 +135,7 @@
 		user.visible_message("<span class='green'>[user] welds \the [patch] on [victim]'s [limb.name] with [I].</span>", "<span class='green'>You weld \the patch on [user == victim ? "your" : "[victim]'s"] [limb.name] with [I].</span>")
 	else
 		user.visible_message("<span class='green'>[user] welds \the [lowertext(name)] [victim]'s [limb.name] with [I].</span>", "<span class='green'>You weld \the [lowertext(name)] on [user == victim ? "your" : "[victim]'s"] [limb.name] with [I].</span>")
-	var/blood_cauterized = (1 / self_penalty_mult) * 0.25 * max(0.5, patched)
+	var/blood_cauterized = (1 / self_penalty_mult) * max(0.5, patched)
 	blood_flow -= blood_cauterized
 
 	if(repeat_patch)
@@ -165,7 +165,7 @@
 		return
 
 	limb.heal_damage(5 * power, 5 * power)
-	var/blood_cauterized = power * 0.10
+	var/blood_cauterized = power * 0.15
 	blood_flow -= blood_cauterized
 	patch = "[lowertext(I.name)]"
 	patched = power

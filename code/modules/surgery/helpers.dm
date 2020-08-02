@@ -109,6 +109,8 @@
 		M.surgeries -= S
 		for(var/datum/wound/slash/critical/incision/inch in S.operated_bodypart.wounds)
 			inch.remove_wound()
+		for(var/datum/wound/mechanical/slash/critical/incision/inch in S.operated_bodypart.wounds)
+			inch.remove_wound()
 		user.visible_message("<span class='notice'>[user] closes [M]'s [parse_zone(selected_zone)] with [close_tool] and removes [I].</span>", \
 			"<span class='notice'>You close [M]'s [parse_zone(selected_zone)] with [close_tool] and remove [I].</span>")
 		qdel(S)

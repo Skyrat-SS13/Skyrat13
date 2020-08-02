@@ -42,12 +42,12 @@
 	var/obj/item/stack/sticky_tape/tapered = null
 
 /obj/item/bodypart/head/can_dismember(obj/item/I)
-	if(owner && !((owner.stat == DEAD) || owner.InFullCritical()))
+	if(owner && brain && !((owner.stat == DEAD) || owner.InFullCritical()))
 		return FALSE
 	return ..()
 
 /obj/item/bodypart/head/can_disembowel(obj/item/I)
-	if(owner && !((owner.stat == DEAD) || owner.InFullCritical()))
+	if(owner && brain && !((owner.stat == DEAD) || owner.InFullCritical()))
 		return FALSE
 	return ..()
 
