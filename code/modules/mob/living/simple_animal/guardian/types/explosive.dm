@@ -36,20 +36,23 @@
 		return
 	if(isobj(A) && Adjacent(A))
 		if(bomb_cooldown <= world.time && !stat)
-			var/obj/guardian_bomb/B = new /obj/guardian_bomb(get_turf(A))
+			var/datum/component/killerqueen/K = A.AddComponent(/datum/component/killerqueen, EXPLODE_HEAVY, CALLBACK(src, .proc/on_explode), CALLBACK(src, .proc/on_failure), \
+			examine_message = "<span class='holoparasite'>It glows with a strange <font color=\"[guardiancolor]\">light</font>!</span>")
+			QDEL_IN(K, 1 MINUTES)
 			to_chat(src, "<span class='danger'><B>Success! Bomb armed!</span></B>")
 			bomb_cooldown = world.time + 200
-			B.spawner = src
-			B.disguise(A)
 		else
 			to_chat(src, "<span class='danger'><B>Your powers are on cooldown! You must wait 20 seconds between bombs.</span></B>")
 
-/obj/guardian_bomb
-	name = "bomb"
-	desc = "You shouldn't be seeing this!"
-	var/obj/stored_obj
-	var/mob/living/simple_animal/hostile/guardian/spawner
+/mob/living/simple_animal/hostile/guardian/bomb/proc/on_explode(atom/bomb, atom/victim)
+	if((victim == src) || (victim == summoner) || (hasmatchingsummoner(victim)))
+		to_chat(victim, "<span class='holoparasite'>[src] glows with a strange <font color=\"[guardiancolor]\">light</font>, and you don't touch it.</span>")
+		return FALSE
+	to_chat(src, "<span class='danger'>One of your explosive traps caught [victim]!</span>")
+	to_chat(victim, "<span class='danger'>[bomb] was boobytrapped!</span>")
+	return TRUE
 
+<<<<<<< HEAD
 
 /obj/guardian_bomb/proc/disguise(obj/A)
 	A.forceMove(src)
@@ -94,3 +97,7 @@
 	. = stored_obj.examine(user)
 	if(get_dist(user,src)<=2)
 		. += "<span class='holoparasite'>It glows with a strange <font color=\"[spawner.guardiancolor]\">light</font>!</span>"
+=======
+/mob/living/simple_animal/hostile/guardian/bomb/proc/on_failure(atom/bomb)
+	to_chat(src, "<span class='danger'><b>Failure! Your trap didn't catch anyone this time.</span></B>")
+>>>>>>> 2885b861f2... Merge pull request #12954 from silicons/killer_queen
