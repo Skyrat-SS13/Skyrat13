@@ -370,11 +370,11 @@
 	
 	//Skyrat changes end
 
-	if (length(msg))
+	if(length(msg))
 		. += "<span class='warning'>[msg.Join("")]</span>"
 
 	var/trait_exam = common_trait_examine()
-	if (!isnull(trait_exam))
+	if(!isnull(trait_exam))
 		. += trait_exam
 
 	var/traitstring = get_trait_string()

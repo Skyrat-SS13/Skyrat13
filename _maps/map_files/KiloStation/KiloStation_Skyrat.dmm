@@ -331,10 +331,6 @@
 	pixel_y = 30
 	},
 /obj/effect/decal/cleanable/cobweb,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
 "aaP" = (
@@ -749,13 +745,6 @@
 /obj/item/reagent_containers/food/snacks/pie/cream,
 /obj/item/clothing/under/costume/lobster,
 /obj/item/clothing/head/lobsterhat,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
 "abK" = (
@@ -1393,9 +1382,6 @@
 /obj/item/bikehorn/rubberducky,
 /obj/structure/sign/poster/contraband/clown{
 	pixel_x = -30
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
@@ -5301,6 +5287,7 @@
 	name = "Lia's bed"
 	},
 /mob/living/simple_animal/hostile/retaliate/bat{
+	!INVALID_VAR! = "pets";
 	desc = "A failed experiment of Nanotrasen to create weaponised carp technology. This less than intimidating carp now serves as an authority figure's pet.";
 	emote_taunt = list("gnashes");
 	faction = list("carp");
@@ -5318,7 +5305,6 @@
 	min_oxy = 5;
 	name = "Lia";
 	real_name = "Lia";
-	!INVALID_VAR! = "pets";
 	turns_per_move = 10
 	},
 /turf/open/floor/plasteel/dark,
@@ -17696,10 +17682,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
 "aKU" = (
@@ -17713,10 +17695,6 @@
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
@@ -21049,13 +21027,6 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
 "aRp" = (
@@ -22454,12 +22425,6 @@
 	},
 /obj/machinery/light_switch{
 	pixel_x = 24
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -24615,16 +24580,10 @@
 /turf/open/floor/plasteel/dark,
 /area/maintenance/central)
 "aXw" = (
-/obj/structure/table,
-/obj/item/folder,
-/obj/item/nanite_scanner{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/nanite_remote,
 /obj/machinery/light{
-	dir = 4
+	dir = 1
 	},
+/obj/machinery/airalarm/directional/north,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "aXy" = (
@@ -24690,16 +24649,19 @@
 /turf/open/floor/engine,
 /area/ai_monitored/turret_protected/ai_upload)
 "aXE" = (
-/obj/machinery/nanite_chamber,
+/obj/effect/turf_decal/bot,
+/obj/machinery/rnd/bepis,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "aXF" = (
-/obj/machinery/computer/nanite_chamber_control,
+/obj/effect/turf_decal/bot,
 /obj/machinery/camera{
 	c_tag = "Nanite Lab";
 	name = "science camera";
 	network = list("ss13","rd")
 	},
+/obj/structure/table/reinforced,
+/obj/item/storage/bag/money,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "aXG" = (
@@ -24851,10 +24813,9 @@
 /area/crew_quarters/kitchen)
 "aXX" = (
 /obj/structure/chair/office/light{
-	dir = 1;
-	pixel_y = 3
+	dir = 1
 	},
-/obj/effect/landmark/start/scientist,
+/obj/effect/turf_decal/box/red,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "aXY" = (
@@ -25228,7 +25189,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "aYN" = (
-/obj/machinery/nanite_program_hub,
+/obj/effect/turf_decal/bot,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "aYP" = (
@@ -25246,12 +25208,11 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/bar)
-"aYR" = (
-/obj/machinery/computer/nanite_cloud_controller,
-/turf/open/floor/plasteel/dark,
-/area/science/research)
 "aYT" = (
-/obj/machinery/nanite_programmer,
+/obj/effect/turf_decal/bot,
+/obj/machinery/modular_computer/console/preset/civilian{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "aYV" = (
@@ -25833,6 +25794,7 @@
 /area/crew_quarters/bar)
 "aZX" = (
 /obj/structure/table/reinforced,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "aZY" = (
@@ -26726,6 +26688,7 @@
 /area/science/mixing)
 "bbJ" = (
 /obj/structure/table/reinforced,
+/obj/effect/turf_decal/bot,
 /obj/item/multitool,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
@@ -26747,17 +26710,11 @@
 /obj/machinery/computer/security/telescreen/circuitry{
 	pixel_y = 30
 	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "bbM" = (
 /obj/item/clipboard,
-/obj/item/nanite_remote{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/nanite_scanner{
-	pixel_x = 4
-	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -27554,9 +27511,6 @@
 	c_tag = "Backstage";
 	name = "diner camera"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
 "bdo" = (
@@ -27610,6 +27564,7 @@
 /obj/machinery/computer/aifixer{
 	dir = 4
 	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hor)
 "bdt" = (
@@ -27677,6 +27632,7 @@
 /obj/machinery/computer/robotics{
 	dir = 4
 	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hor)
 "bdy" = (
@@ -28318,6 +28274,7 @@
 /obj/item/clothing/glasses/science,
 /obj/item/clothing/glasses/science,
 /obj/item/stack/sheet/metal/ten,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "beF" = (
@@ -28745,6 +28702,7 @@
 /area/maintenance/central/secondary)
 "bfB" = (
 /obj/structure/displaycase/labcage,
+/obj/effect/turf_decal/box,
 /obj/machinery/light,
 /obj/machinery/firealarm{
 	dir = 1;
@@ -34513,23 +34471,11 @@
 /obj/item/radio/intercom{
 	pixel_y = -28
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
 "bqW" = (
 /obj/structure/dresser,
 /obj/machinery/light/small,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
 "bqX" = (
@@ -45702,9 +45648,7 @@
 	name = "landing marker";
 	picked_color = "Burgundy"
 	},
-/turf/open/floor/plating/airless{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
+/turf/open/floor/plating/airless,
 /area/hallway/secondary/entry)
 "bOe" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
@@ -46652,9 +46596,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plating/airless{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
+/turf/open/floor/plating/airless,
 /area/hallway/secondary/entry)
 "bQc" = (
 /obj/effect/decal/remains/xeno,
@@ -46969,15 +46911,15 @@
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
 "bQE" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
 /obj/machinery/power/apc{
-	areastring = "/area/janitor";
+	areastring = "/area/vacant_room/commissary";
 	dir = 4;
 	name = "Vacant Commissary APC";
 	pixel_x = 27;
 	pixel_y = 2
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/dark,
 /area/vacant_room/commissary)
@@ -48719,9 +48661,7 @@
 	name = "landing marker";
 	picked_color = "Burgundy"
 	},
-/turf/open/floor/plating/airless{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
+/turf/open/floor/plating/airless,
 /area/hallway/secondary/entry)
 "bUk" = (
 /obj/effect/turf_decal/tile/red,
@@ -48941,9 +48881,7 @@
 /turf/closed/wall,
 /area/engine/atmos)
 "bUN" = (
-/turf/open/floor/plating/airless{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
+/turf/open/floor/plating/airless,
 /area/hallway/secondary/entry)
 "bUP" = (
 /obj/machinery/door/airlock/external{
@@ -49976,9 +49914,9 @@
 	pixel_x = 24
 	},
 /obj/machinery/button/electrochromatic{
+	id = "!interrogation_room";
 	pixel_x = 38;
-	pixel_y = -5;
-	id = "!interrogation_room"
+	pixel_y = -5
 	},
 /turf/open/floor/plasteel,
 /area/security/warden)
@@ -54079,9 +54017,7 @@
 	name = "landing marker";
 	picked_color = "Burgundy"
 	},
-/turf/open/floor/plating/airless{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
+/turf/open/floor/plating/airless,
 /area/hallway/secondary/entry)
 "ceV" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -54104,17 +54040,13 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plating/airless{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
+/turf/open/floor/plating/airless,
 /area/hallway/secondary/entry)
 "ceX" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plating/airless{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
+/turf/open/floor/plating/airless,
 /area/hallway/secondary/entry)
 "ceY" = (
 /obj/machinery/airalarm{
@@ -63973,9 +63905,7 @@
 /area/maintenance/fore)
 "cDp" = (
 /obj/structure/lattice/catwalk,
-/turf/open/floor/plating/airless{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
+/turf/open/floor/plating/airless,
 /area/hallway/secondary/entry)
 "cDq" = (
 /obj/machinery/door/airlock/maintenance{
@@ -67047,6 +66977,7 @@
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "dxq" = (
+/obj/effect/turf_decal/bot,
 /obj/machinery/computer/mecha{
 	dir = 4
 	},
@@ -67056,6 +66987,7 @@
 /obj/structure/table/reinforced,
 /obj/item/integrated_circuit_printer,
 /obj/item/integrated_electronics/wirer,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "dYu" = (
@@ -67336,9 +67268,7 @@
 "jAT" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/light,
-/turf/open/floor/plating/airless{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
+/turf/open/floor/plating/airless,
 /area/hallway/secondary/entry)
 "jCp" = (
 /obj/structure/cable{
@@ -67571,7 +67501,6 @@
 	pixel_x = -28;
 	pixel_y = 3
 	},
-/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "nIP" = (
@@ -105818,7 +105747,7 @@ aZv
 aXw
 aXE
 bbl
-aYR
+bbl
 beD
 bbj
 aNF

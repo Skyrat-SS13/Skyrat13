@@ -27,11 +27,11 @@
 //VORE markings
 /datum/sprite_accessory/adv_marking
 	icon = 'modular_skyrat/icons/mob/adv_markings/markings.dmi'
-	//Empty list is unrestricted. Should only restrict the ones that make NO SENSE on other species.
+	//Empty list is unrestricted. Should only restrict markings that make NO SENSE on non-specified species.
 	var/list/species_allowed = list()
 	//Body zones that this accessory can go on.
 	var/list/body_parts = list()
-	//This dummy is able to be recolored
+	//Is this marking able to be recolored?
 	var/has_colors = TRUE
 
 /datum/sprite_accessory/adv_marking/tat_heart
@@ -83,7 +83,8 @@
 	name = "Back Stripe"
 	icon_state = "backstripe"
 	body_parts = list(BODY_ZONE_CHEST)
-/* not working sadly
+
+/* not working well sadly
 /datum/sprite_accessory/adv_marking/heterochromia
 	name = "Heterochromia (Right Eye)"
 	icon_state = "heterochromia"
