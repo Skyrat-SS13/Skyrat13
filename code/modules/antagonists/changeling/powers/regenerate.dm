@@ -29,6 +29,12 @@
 			C.emote("scream")
 			C.regenerate_limbs(1)
 		C.regenerate_organs()
+<<<<<<< HEAD
+=======
+		for(var/i in C.all_wounds)
+			var/datum/wound/iter_wound = i
+			iter_wound.remove_wound()
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 		if(!user.getorganslot(ORGAN_SLOT_BRAIN))
 			var/obj/item/organ/brain/B
 			if(C.has_dna() && C.dna.species.mutant_brain)

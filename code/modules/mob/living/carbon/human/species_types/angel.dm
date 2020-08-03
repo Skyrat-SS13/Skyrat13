@@ -2,7 +2,11 @@
 	name = "Angel"
 	id = "angel"
 	default_color = "FFFFFF"
+<<<<<<< HEAD
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
+=======
+	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,HAS_FLESH,HAS_BONE)
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 	mutant_bodyparts = list("tail_human" = "None", "ears" = "None", "wings" = "Angel")
 	use_skintones = USE_SKINTONES_GRAYSCALE_CUSTOM
 	no_equip = list(SLOT_BACK)

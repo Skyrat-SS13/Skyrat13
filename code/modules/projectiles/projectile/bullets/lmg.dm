@@ -25,8 +25,14 @@
 
 /obj/item/projectile/bullet/mm195x129
 	name = "1.95x129mm bullet"
+<<<<<<< HEAD
 	damage = 35 //Skyrat Edit: LMGs should be for suppressive fire, please no 3 shot crits on the 60 round gun.
+=======
+	damage = 40
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 	armour_penetration = 5
+	wound_bonus = -50
+	wound_falloff_tile = 0
 
 /obj/item/projectile/bullet/mm195x129_ap
 	name = "1.95x129mm armor-piercing bullet"
@@ -35,8 +41,16 @@
 
 /obj/item/projectile/bullet/mm195x129_hp
 	name = "1.95x129mm hollow-point bullet"
+<<<<<<< HEAD
 	damage = 40   //Skyrat Edit: 3 shot crits, but bulletproof gear completely negates it.
+=======
+	damage = 50
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 	armour_penetration = -60
+	sharpness = SHARP_EDGED
+	wound_bonus = -40
+	bare_wound_bonus = 30
+	wound_falloff_tile = -8
 
 /obj/item/projectile/bullet/incendiary/mm195x129
 	name = "1.95x129mm incendiary bullet"

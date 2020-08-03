@@ -35,8 +35,14 @@
 	//If the head is a special sprite
 	var/custom_head
 
+<<<<<<< HEAD
+=======
+	wound_resistance = 10
+	scars_covered_by_clothes = FALSE
+
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 /obj/item/bodypart/head/can_dismember(obj/item/I)
-	if(!((owner.stat == DEAD) || owner.InFullCritical()))
+	if(owner && !((owner.stat == DEAD) || owner.InFullCritical()))
 		return FALSE
 	return ..()
 

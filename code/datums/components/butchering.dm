@@ -64,8 +64,16 @@
 		H.visible_message("<span class='danger'>[user] slits [H]'s throat!</span>", \
 					"<span class='userdanger'>[user] slits your throat...</span>")
 		log_combat(user, H, "finishes slicing the throat of")
+<<<<<<< HEAD
 		H.apply_damage(source.force, BRUTE, BODY_ZONE_HEAD)
 		H.bleed_rate = clamp(H.bleed_rate + 20, 0, 30)
+=======
+		H.apply_damage(source.force, BRUTE, BODY_ZONE_HEAD, wound_bonus=CANT_WOUND) // easy tiger, we'll get to that in a sec
+		var/obj/item/bodypart/slit_throat = H.get_bodypart(BODY_ZONE_HEAD)
+		if(slit_throat)
+			var/datum/wound/slash/critical/screaming_through_a_slit_throat = new
+			screaming_through_a_slit_throat.apply_wound(slit_throat)
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 		H.apply_status_effect(/datum/status_effect/neck_slice)
 
 /datum/component/butchering/proc/Butcher(mob/living/butcher, mob/living/meat)

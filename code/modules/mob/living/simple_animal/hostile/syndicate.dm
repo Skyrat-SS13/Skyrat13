@@ -77,6 +77,12 @@
 /mob/living/simple_animal/hostile/syndicate/melee
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+<<<<<<< HEAD
+=======
+	wound_bonus = -10
+	bare_wound_bonus = 20
+	sharpness = SHARP_EDGED
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 	icon_state = "syndicate_knife"
 	icon_living = "syndicate_knife"
 	loot = list(/obj/effect/gibspawner/human)

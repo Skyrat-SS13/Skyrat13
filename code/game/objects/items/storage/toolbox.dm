@@ -20,6 +20,11 @@ GLOBAL_LIST_EMPTY(rubber_toolbox_icons)
 	var/has_latches = TRUE
 	var/can_rubberify = TRUE
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE //very protecc too
+<<<<<<< HEAD
+=======
+	wound_bonus = -10
+	bare_wound_bonus = 5
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 
 /obj/item/storage/toolbox/greyscale
 	icon_state = "toolbox_default"

@@ -2,7 +2,11 @@
 	name = "Anthromorphic Fly"
 	id = "fly"
 	say_mod = "buzzes"
+<<<<<<< HEAD
 	species_traits = list(NOEYES)
+=======
+	species_traits = list(NOEYES,HAS_FLESH,HAS_BONE)
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	mutanttongue = /obj/item/organ/tongue/fly
 	mutantliver = /obj/item/organ/liver/fly

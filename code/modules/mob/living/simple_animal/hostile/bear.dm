@@ -29,8 +29,16 @@
 	var/armored = FALSE
 
 	obj_damage = 60
+<<<<<<< HEAD
 	melee_damage_lower = 20
 	melee_damage_upper = 30
+=======
+	melee_damage_lower = 15 // i know it's like half what it used to be, but bears cause bleeding like crazy now so it works out
+	melee_damage_upper = 15
+	wound_bonus = -5
+	bare_wound_bonus = 10 // BEAR wound bonus am i right
+	sharpness = SHARP_EDGED
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claw"
 	attack_sound = 'sound/weapons/bladeslice.ogg'

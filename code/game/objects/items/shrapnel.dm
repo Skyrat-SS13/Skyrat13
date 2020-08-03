@@ -7,11 +7,19 @@
 	icon_state = "large"
 	w_class = WEIGHT_CLASS_TINY
 	item_flags = DROPDEL
+<<<<<<< HEAD
+=======
+	sharpness = SHARP_EDGED
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 
 /obj/item/shrapnel/stingball // stingbang grenades
 	name = "stingball"
 	embedding = list(embed_chance=90, fall_chance=3, jostle_chance=7, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.7, pain_mult=5, jostle_pain_mult=6, rip_time=15, embed_chance_turf_mod=-100)
 	icon_state = "tiny"
+<<<<<<< HEAD
+=======
+	sharpness = SHARP_NONE
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 
 /obj/item/shrapnel/bullet // bullets
 	name = "bullet"
@@ -28,21 +36,32 @@
 
 /obj/item/projectile/bullet/shrapnel
 	name = "flying shrapnel shard"
+<<<<<<< HEAD
 	damage = 9
 	range = 10
+=======
+	damage = 14
+	range = 20
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 	armour_penetration = -30
 	dismemberment = 5
 	ricochets_max = 2
-	ricochet_chance = 40
+	ricochet_chance = 70
 	shrapnel_type = /obj/item/shrapnel
 	ricochet_incidence_leeway = 60
+<<<<<<< HEAD
+=======
+	sharpness = SHARP_EDGED
+	wound_bonus = 40
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 
 /obj/item/projectile/bullet/shrapnel/mega
 	name = "flying shrapnel hunk"
-	range = 25
-	dismemberment = 10
-	ricochets_max = 4
-	ricochet_chance = 90
+	range = 45
+	dismemberment = 15
+	ricochets_max = 6
+	ricochet_chance = 130
+	ricochet_incidence_leeway = 0
 	ricochet_decay_chance = 0.9
 
 /obj/item/projectile/bullet/pellet/stingball
@@ -62,3 +81,18 @@
 	name = "megastingball pellet"
 	ricochets_max = 6
 	ricochet_chance = 110
+<<<<<<< HEAD
+=======
+
+/obj/item/projectile/bullet/pellet/stingball/breaker
+	name = "breakbang pellet"
+	damage = 10
+	wound_bonus = 40
+	sharpness = SHARP_NONE
+
+/obj/item/projectile/bullet/pellet/stingball/shred
+	name = "shredbang pellet"
+	damage = 10
+	wound_bonus = 30
+	sharpness = SHARP_EDGED
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2

@@ -4,7 +4,11 @@
 	say_mod = "rattles"
 	sexes = 0
 	meat = /obj/item/stack/sheet/mineral/plasma
+<<<<<<< HEAD
 	species_traits = list(NOBLOOD,NOTRANSSTING) //Skyrat change
+=======
+	species_traits = list(NOBLOOD,NOTRANSSTING,NOGENITALS,HAS_BONE)
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOHUNGER,TRAIT_CALCIUM_HEALER)
 	inherent_biotypes = MOB_HUMANOID|MOB_MINERAL
 	mutantlungs = /obj/item/organ/lungs/plasmaman

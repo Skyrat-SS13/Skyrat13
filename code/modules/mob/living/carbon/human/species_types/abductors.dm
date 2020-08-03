@@ -3,7 +3,11 @@
 	id = "abductor"
 	say_mod = "gibbers"
 	sexes = FALSE
+<<<<<<< HEAD
 	species_traits = list(NOBLOOD,NOEYES,NOGENITALS,NOAROUSAL)
+=======
+	species_traits = list(NOBLOOD,NOEYES,NOGENITALS,NOAROUSAL,HAS_FLESH,HAS_BONE)
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_CHUNKYFINGERS,TRAIT_NOHUNGER,TRAIT_NOBREATH)
 	mutanttongue = /obj/item/organ/tongue/abductor
 	//SKYRAT CHANGE - blood

@@ -141,6 +141,10 @@
 #define HORNCOLOR		25
 #define WINGCOLOR		26
 
+/// Used for determining which wounds are applicable to this species.
+#define HAS_FLESH	28 /// if we have flesh (can suffer slash/piercing/burn wounds, requires they don't have NOBLOOD)
+#define HAS_BONE	29 /// if we have bones (can suffer bone wounds)
+
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
 #define ORGAN_SLOT_APPENDIX "appendix"

@@ -655,6 +655,16 @@
 #include "code\datums\wires\syndicatebomb.dm"
 #include "code\datums\wires\tesla_coil.dm"
 #include "code\datums\wires\vending.dm"
+<<<<<<< HEAD
+=======
+#include "code\datums\wounds\_scars.dm"
+#include "code\datums\wounds\_wounds.dm"
+#include "code\datums\wounds\bones.dm"
+#include "code\datums\wounds\burns.dm"
+#include "code\datums\wounds\loss.dm"
+#include "code\datums\wounds\pierce.dm"
+#include "code\datums\wounds\slash.dm"
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 #include "code\game\alternate_appearance.dm"
 #include "code\game\atoms.dm"
 #include "code\game\atoms_movable.dm"
@@ -3281,6 +3291,7 @@
 #include "code\modules\surgery\plastic_surgery.dm"
 #include "code\modules\surgery\prosthetic_replacement.dm"
 #include "code\modules\surgery\remove_embedded_object.dm"
+#include "code\modules\surgery\repair_puncture.dm"
 #include "code\modules\surgery\surgery.dm"
 #include "code\modules\surgery\surgery_step.dm"
 #include "code\modules\surgery\tools.dm"

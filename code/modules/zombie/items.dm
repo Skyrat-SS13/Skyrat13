@@ -11,9 +11,19 @@
 	var/icon_left = "bloodhand_left"
 	var/icon_right = "bloodhand_right"
 	hitsound = 'sound/hallucinations/growl1.ogg'
+<<<<<<< HEAD
 	force = 21 // Just enough to break airlocks with melee attacks
 	damtype = "brute"
 	total_mass = TOTAL_MASS_HAND_REPLACEMENT
+=======
+	force = 18
+	sharpness = SHARP_POINTY //it's a claw, they're sharp.
+	damtype = "brute"
+	total_mass = TOTAL_MASS_HAND_REPLACEMENT
+	sharpness = SHARP_EDGED
+	wound_bonus = -30
+	bare_wound_bonus = 15
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 
 /obj/item/zombie_hand/Initialize()
 	. = ..()

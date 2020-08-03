@@ -164,7 +164,13 @@
 	armour_penetration = 20
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+<<<<<<< HEAD
 	sharpness = IS_SHARP
+=======
+	sharpness = SHARP_EDGED
+	wound_bonus = -60
+	bare_wound_bonus = 20
+>>>>>>> a4132c04ea... Merge pull request #12894 from timothyteakettle/wounds-part-2
 	var/can_drop = FALSE
 	var/fake = FALSE
 	total_mass = TOTAL_MASS_HAND_REPLACEMENT
