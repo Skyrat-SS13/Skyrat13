@@ -77,6 +77,7 @@
 	var/dismember_bodyzone //body zone that receives wound when this limb is dismembered
 	var/list/starting_children = list() //children that are already "inside" this limb on spawn. could be organs or limbs.
 	var/list/children_zones = list() //body zones that are considered "children" of this bodypart's zone
+	var/list/heal_zones = list() //body zones that are healed in "multiple" mode on medical items
 	var/amputation_point //descriptive string used in amputation.
 	var/obj/item/cavity_item
 	var/cremation_progress = 0 //Gradually increases while burning when at full damage, destroys the limb when at 100

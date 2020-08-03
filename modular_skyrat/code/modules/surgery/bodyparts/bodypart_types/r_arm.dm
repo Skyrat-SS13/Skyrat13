@@ -15,5 +15,6 @@
 	amputation_point = "right shoulder"
 	dismember_bodyzone = BODY_ZONE_CHEST
 	children_zones = list(BODY_ZONE_PRECISE_R_HAND)
+	heal_zones = list(BODY_ZONE_PRECISE_R_HAND)
 	specific_locations = list("outer right forearm", "inner right wrist", "outer right wrist", "right elbow", "right bicep", "right shoulder")
 	max_cavity_size = WEIGHT_CLASS_SMALL

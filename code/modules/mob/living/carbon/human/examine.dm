@@ -598,4 +598,4 @@
 	if(. != DEFAULT_EXAMINE_MORE)
 		//descriptors
 		var/list/show_descs = show_descriptors_to(user)
-		. |= length(show_descs) ? "\n\t[show_descs.Join("\n\t")]" : null
+		. |= length(show_descs) ? "\t[show_descs.Join("\n\t")]" : null
