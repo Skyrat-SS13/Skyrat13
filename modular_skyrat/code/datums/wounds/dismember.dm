@@ -54,7 +54,7 @@
 			if(L.is_robotic_limb())
 				occur_text = "is pierced through the last bit of exoskeleton holding it together, severing it completely"
 		if(WOUND_BURN)
-			occur_text = "is completely incinerated, falling to a pile of dust"
+			occur_text = "is completely incinerated, falling to a pile of carbonized remains"
 			if(L.is_robotic_limb())
 				occur_text = "is completely melted, falling to a puddle of debris"
 
