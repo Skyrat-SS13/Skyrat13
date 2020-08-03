@@ -30,3 +30,4 @@
 		canSmoothWith |= typesof(/turf/closed/wall)
 		canSmoothWith |= typesof(/obj/structure/falsewall)
 		canSmoothWith |= typesof(/turf/closed/indestructible/riveted)
+		canSmoothWith |= typesof(/obj/structure/table/low_wall)

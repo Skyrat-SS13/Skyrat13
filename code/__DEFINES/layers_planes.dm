@@ -57,13 +57,13 @@
 #define GAS_PIPE_HIDDEN_LAYER 2.35
 #define WIRE_LAYER 2.4
 //skyrat edit
-#define WIRE_TERMINAL_LAYER 2.43
-#define GAS_SCRUBBER_LAYER 2.44
-#define GAS_PIPE_VISIBLE_LAYER 2.45
-#define GAS_FILTER_LAYER 2.46
-#define GAS_PUMP_LAYER 2.47
-#define DISPOSAL_PIPE_LAYER 2.48
-#define POD_DOOR_LAYER 2.49
+#define WIRE_TERMINAL_LAYER 2.42
+#define GAS_SCRUBBER_LAYER 2.43
+#define GAS_PIPE_VISIBLE_LAYER 2.4
+#define GAS_FILTER_LAYER 2.45
+#define GAS_PUMP_LAYER 2.46
+#define DISPOSAL_PIPE_LAYER 2.47
+#define POD_DOOR_LAYER 2.48
 #define LATTICE_LAYER 2.5
 #define WINDOW_LAYER 2.6
 //
@@ -99,8 +99,9 @@
 //#define MOB_LAYER 4 //For easy recordkeeping; this is a byond define
 #define MOB_UPPER_LAYER 4.05
 #define ABOVE_MOB_LAYER 4.1
-#define WALL_OBJ_LAYER 4.25
 //skyrat edit
+#define LOW_WALL_LAYER 4.2
+#define WALL_OBJ_LAYER 4.25
 #define WALL_WINDOW_LAYER 4.27
 //
 #define EDGED_TURF_LAYER 4.3

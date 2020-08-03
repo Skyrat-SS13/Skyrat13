@@ -8,6 +8,7 @@
 		canSmoothWith |= typesof(/turf/closed/wall)
 		canSmoothWith |= typesof(/obj/structure/falsewall)
 		canSmoothWith |= typesof(/turf/closed/indestructible/riveted)
+		canSmoothWith |= typesof(/obj/structure/table/low_wall)
 
 /obj/structure/window/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/window.dmi'

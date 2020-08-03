@@ -488,7 +488,10 @@ RLD
 	var/list/choices = list(
 		"Airlock" = image(icon = 'icons/mob/radial.dmi', icon_state = "airlock"),
 		"Grilles & Windows" = image(icon = 'icons/mob/radial.dmi', icon_state = "grillewindow"),
-		"Floors & Walls" = image(icon = 'icons/mob/radial.dmi', icon_state = "wallfloor")
+		"Floors & Walls" = image(icon = 'icons/mob/radial.dmi', icon_state = "wallfloor"),
+		//skyrat edit - low walls
+		"Low Walls" = image(icon = 'modular_skyrat/icons/mob/radial.dmi', icon_state = "lowwall"),
+		//skyrat edit end
 	)
 	if(upgrade & RCD_UPGRADE_FRAMES)
 		choices += list(
@@ -517,6 +520,10 @@ RLD
 			mode = RCD_DECONSTRUCT
 		if("Grilles & Windows")
 			mode = RCD_WINDOWGRILLE
+		//skyrat edit - low walls
+		if("Low Walls")
+			mode = RCD_LOWWALL
+		//skyrat edit end
 		if("Machine Frames")
 			mode = RCD_MACHINE
 		if("Computer Frames")
@@ -538,7 +545,7 @@ RLD
 	to_chat(user, "<span class='notice'>You change RCD's mode to '[choice]'.</span>")
 
 /obj/item/construction/rcd/proc/target_check(atom/A, mob/user) // only returns true for stuff the device can actually work with
-	if((isturf(A) && A.density && mode==RCD_DECONSTRUCT) || (isturf(A) && !A.density) || (istype(A, /obj/machinery/door/airlock) && mode==RCD_DECONSTRUCT) || istype(A, /obj/structure/grille) || (istype(A, /obj/structure/window) && mode==RCD_DECONSTRUCT) || istype(A, /obj/structure/girder))
+	if((isturf(A) && !A.density && mode==RCD_LOWWALL) || (isturf(A) && A.density && mode==RCD_DECONSTRUCT) || (isturf(A) && !A.density) || (istype(A, /obj/machinery/door/airlock) && mode==RCD_DECONSTRUCT) || istype(A, /obj/structure/grille) || (istype(A, /obj/structure/window) && mode==RCD_DECONSTRUCT) || istype(A, /obj/structure/girder)) //skyrat edit - low walls
 		return TRUE
 	else
 		return FALSE
