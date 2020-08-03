@@ -1,8 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added slipping mutation to kudzu"
-  - rscadd: "Added 3 ghost playable venus plants on kudzu event"
-  - rscadd: "Spacevines can now grow on space"
-  - rscadd: "Kudzu has a chance to open doors"
-  - tweak: "increased growth chance on kudzu"
