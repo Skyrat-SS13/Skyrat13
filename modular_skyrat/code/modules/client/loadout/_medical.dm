@@ -10,12 +10,12 @@
 	name = "Medical Hud"
 	category = SLOT_GLASSES
 	path = /obj/item/clothing/glasses/hud/health
-	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Geneticist", "Chemist", "Virologist", "Paramedic")
+	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Geneticist", "Chemist", "Virologist", "Paramedic", "Brig Physician")
 	restricted_desc = "Medical"
 
 /datum/gear/medhud_nearsighted
 	name = "Prescription Medical Hud"
 	category = SLOT_GLASSES
 	path = /obj/item/clothing/glasses/hud/health/prescription
-	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Geneticist", "Chemist", "Virologist", "Paramedic")
+	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Geneticist", "Chemist", "Virologist", "Paramedic", "Brig Physician")
 	restricted_desc = "Medical"
