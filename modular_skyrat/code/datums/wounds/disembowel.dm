@@ -46,7 +46,7 @@
 		if(WOUND_PIERCE)
 			occur_text = "is deeply pierced through, internal organs easily falling out of the gaping wound"
 			if(L.is_robotic_limb())
-				occur_text = "is deeply pierced through, internal components easily falling out of the gaping wound"
+				occur_text = "is deeply pierced through, internal components easily falling out of the gaping hole"
 		if(WOUND_BURN)
 			occur_text = "gets a hole burned through it, burnt organs falling out"
 			if(L.is_robotic_limb())
@@ -84,7 +84,7 @@
 	return L.disembowel(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE),silent = TRUE, wound = TRUE)
 
 /datum/wound/slash/critical/incision/disembowel
-	name = "Disemboweled"
+	name = "Disembowelment"
 	desc = "Patient's limb has been violently avulsioned, to the point of large chunks of flesh and organs getting lost."
 	treat_text = "Immediate surgical closure of the wound, as well as reimplantation of lost organs."
 	examine_desc = "has a wide and gaping wound, enough to see through the flesh"

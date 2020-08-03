@@ -158,7 +158,7 @@
 			minimum_flow = 0.5
 
 /datum/wound/mechanical/slash/loss
-	name = "Dismembered"
+	name = "Dismembered stump"
 	desc = "Patient's limb has been violently dismembered, leaving only a severely damaged stump in it's place."
 	treat_text = "Immediate surgical reattachment of the lost limb or suitable equivalent if possible. Welding and patching of the stump otherwise."
 	examine_desc = "has been violently severed from their body"
