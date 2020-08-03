@@ -594,8 +594,25 @@
 //
 
 /mob/living/carbon/human/examine_more(mob/user)
-	. = ..()
-	if(. != DEFAULT_EXAMINE_MORE)
-		//descriptors
-		var/list/show_descs = show_descriptors_to(user)
-		. |= length(show_descs) ? "\t[show_descs.Join("\n\t")]" : null
+	var/msg = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
+	msg |= show_descriptors_to(user)
+	if((src == user) && HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF))
+		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
+		return msg
+	
+	var/list/visible_scars = list()
+	for(var/i in all_scars)
+		var/datum/scar/S = i
+		if(istype(S) && S.is_visible(user))
+			LAZYADD(visible_scars, S)
+
+	for(var/i in visible_scars)
+		var/datum/scar/S = i
+		var/scar_text = S.get_examine_description(user)
+		if(scar_text)
+			msg += "[scar_text]"
+	
+	if(!length(visible_scars))
+		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
+
+	return msg

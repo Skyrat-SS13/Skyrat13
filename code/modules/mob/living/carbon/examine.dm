@@ -264,9 +264,6 @@
 
 //skyrat edit
 /mob/living/carbon/examine_more(mob/user)
-	if((src == user) && HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF))
-		return ..()
-
 	var/list/visible_scars = list()
 	for(var/i in all_scars)
 		var/datum/scar/S = i
@@ -274,6 +271,9 @@
 			LAZYADD(visible_scars, S)
 
 	var/msg = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
+	if((src == user) && HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF))
+		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
+		return msg
 
 	for(var/i in visible_scars)
 		var/datum/scar/S = i
@@ -281,7 +281,7 @@
 		if(scar_text)
 			msg += "[scar_text]"
 	
-	if(length(msg) <= 1)
+	if(!length(visible_scars))
 		msg += "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
-
+	
 	return msg
