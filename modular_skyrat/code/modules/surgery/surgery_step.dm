@@ -4,6 +4,7 @@
 	surgery.step_in_progress = TRUE
 	var/speed_mod = (user == target ? 0.6 : 1) //self-surgery is hard
 	var/advance = FALSE
+	var/obj/item/bodypart/affecting = target.get_bodypart(target_zone)
 	if(preop(user, target, target_zone, tool, surgery) == -1)
 		surgery.step_in_progress = FALSE
 		return FALSE
@@ -20,7 +21,7 @@
 			prob_chance = implements[implement_type]
 		prob_chance *= surgery.get_probability_multiplier()
 
-		if(ishuman(target) && target.stat == CONSCIOUS && target.mob_biotypes & MOB_ORGANIC && !target.IsUnconscious() && !target.InCritical() && !target.IsSleeping() && !HAS_TRAIT(target, TRAIT_PAINKILLER))
+		if(ishuman(target) && affecting && affecting.is_organic_limb() && (target.stat == CONSCIOUS) && (target.mob_biotypes & MOB_ORGANIC) && !target.IsUnconscious() && !target.InCritical() && !HAS_TRAIT(target, TRAIT_PAINKILLER))
 			prob_chance *= 0.4
 			to_chat(user, "<span class='notice'>You feel like anesthetics could make this much easier.</span>")
 			target.visible_message("<span class='warning'>[target] [pick("writhes in pain", "squirms and kicks in agony", "cries in pain as [target.p_their()] body violently jerks")], impeding the surgery!</span>", \
