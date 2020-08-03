@@ -43,8 +43,7 @@
 /datum/wound/blunt/Destroy()
 	. = ..()
 	if(active_trauma)
-		active_trauma.Destroy()
-		active_trauma = null
+		QDEL_NULL(active_trauma)
 
 /datum/wound/blunt/on_hemostatic(quantity)
 	if((severity <= WOUND_SEVERITY_SEVERE) && (quantity >= 15))

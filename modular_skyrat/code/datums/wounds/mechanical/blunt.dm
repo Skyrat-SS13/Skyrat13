@@ -38,8 +38,7 @@
 /datum/wound/mechanical/blunt/Destroy()
 	. = ..()
 	if(active_trauma)
-		active_trauma.Destroy()
-		active_trauma = null
+		QDEL_NULL(active_trauma)
 
 /datum/wound/mechanical/blunt/wound_injury(datum/wound/old_wound = null)
 	if(limb.body_zone == BODY_ZONE_HEAD && brain_trauma_group)
