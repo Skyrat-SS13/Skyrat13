@@ -7,7 +7,7 @@
 	custom_materials = list(/datum/material/wood = 2000)
 	flags_1 = 0
 	icon_state = "frame-empty"
-	result_path = /obj/structure/sign/picture_frame
+	result_path = /obj/item/toy/plush/carpplushie
 	var/obj/item/photo/displayed
 /* - Skyrat temporary removal
 /obj/item/wallframe/picture/attackby(obj/item/I, mob/user)
@@ -152,7 +152,7 @@
 	. = ..()
 	if(framed)
 		. += image(framed)
-*/
+
 /obj/structure/sign/picture_frame/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		var/obj/item/wallframe/picture/F = new /obj/item/wallframe/picture(loc)
@@ -164,3 +164,4 @@
 			I.forceMove(F)
 		F.update_icon()
 	qdel(src)
+*/

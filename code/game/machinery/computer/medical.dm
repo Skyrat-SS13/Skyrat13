@@ -386,6 +386,7 @@
 							if(!canUseMedicalRecordsConsole(usr, t1, null, a2))
 								return
 							active2.fields["b_dna"] = t1
+/*
 					if("show_photo_front")
 						if(active1)
 							if(active1.fields["photo_front"])
@@ -398,6 +399,7 @@
 								if(istype(active1.fields["photo_side"], /obj/item/photo))
 									var/obj/item/photo/P = active1.fields["photo_side"]
 									P.show(usr)
+*/
 					else
 
 			else if(href_list["p_stat"])

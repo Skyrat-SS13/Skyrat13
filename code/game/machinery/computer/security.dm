@@ -615,6 +615,7 @@ What a mess.*/
 							if(!canUseSecurityRecordsConsole(usr, t1, a1))
 								return
 							active1.fields["species"] = t1
+/*
 					if("show_photo_front")
 						if(active1.fields["photo_front"])
 							if(istype(active1.fields["photo_front"], /obj/item/photo))
@@ -640,8 +641,8 @@ What a mess.*/
 					if("show_photo_side")
 						if(active1.fields["photo_side"])
 							if(istype(active1.fields["photo_side"], /obj/item/photo))
-								var/obj/item/photo/P = active1.fields["photo_side"]
-								P.show(usr)
+//								var/obj/item/photo/P = active1.fields["photo_side"]
+//								P.show(usr)
 					if("upd_photo_side")
 						var/obj/item/photo/photo = get_photo(usr)
 						if(photo)
@@ -659,6 +660,7 @@ What a mess.*/
 							if(istype(active1.fields["photo_side"], /obj/item/photo))
 								var/obj/item/photo/P = active1.fields["photo_side"]
 								print_photo(P.picture.picture_image, active1.fields["name"])
+*/
 					if("mi_crim_add")
 						if(istype(active1, /datum/data/record))
 							var/t1 = stripped_input(usr, "Please input minor crime names:", "Secure. records", "", null)
@@ -779,7 +781,7 @@ What a mess.*/
 	else if(istype(user.get_active_held_item(), /obj/item/photo))
 		P = user.get_active_held_item()
 	return P
-
+/*
 /obj/machinery/computer/secure_data/proc/print_photo(icon/temp, person_name)
 	if (printing)
 		return
@@ -791,7 +793,7 @@ What a mess.*/
 	P.pixel_x = rand(-10, 10)
 	P.pixel_y = rand(-10, 10)
 	printing = FALSE
-
+*/
 /obj/machinery/computer/secure_data/emp_act(severity)
 	. = ..()
 

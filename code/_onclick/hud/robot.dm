@@ -149,6 +149,7 @@
 //End of module select
 
 //Photography stuff
+/*
 	using = new /obj/screen/ai/image_take()
 	using.screen_loc = ui_borg_camera
 	using.hud = src
@@ -158,7 +159,7 @@
 	using.screen_loc = ui_borg_album
 	using.hud = src
 	static_inventory += using
-
+*/
 //Sec/Med HUDs
 	using = new /obj/screen/robot/sensors()
 	using.screen_loc = ui_borg_sensor
