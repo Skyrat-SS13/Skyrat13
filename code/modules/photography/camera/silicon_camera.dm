@@ -8,6 +8,7 @@
 	name = "AI photo camera"
 	flash_enabled = FALSE
 
+/*skyrat edit - temp remove of camera systems
 /obj/item/camera/siliconcam/proc/toggle_camera_mode(mob/user)
 	if(in_camera_mode)
 		camera_mode_off(user)
@@ -48,11 +49,12 @@
 	picture.picture_name = "Image [number] (taken by [loc.name])"
 	stored[picture] = TRUE
 	to_chat(usr, "<span class='unconscious'>Image recorded</span>")
+*/
 
 /obj/item/camera/siliconcam/robot_camera
 	name = "Cyborg photo camera"
 	var/printcost = 2
-
+/*
 /obj/item/camera/siliconcam/robot_camera/after_picture(mob/user, datum/picture/picture, proximity_flag)
 	var/mob/living/silicon/robot/C = loc
 	if(istype(C) && istype(C.connected_ai))
@@ -97,3 +99,4 @@
 	C.toner -= printcost	 //All fun allowed.
 	visible_message("[C.name] spits out a photograph from a narrow slot on its chassis.")
 	to_chat(usr, "<span class='notice'>You print a photograph.</span>")
+*/

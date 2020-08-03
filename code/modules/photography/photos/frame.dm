@@ -9,7 +9,7 @@
 	icon_state = "frame-empty"
 	result_path = /obj/structure/sign/picture_frame
 	var/obj/item/photo/displayed
-
+/* - Skyrat temporary removal
 /obj/item/wallframe/picture/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/photo))
 		if(!displayed)
@@ -152,7 +152,7 @@
 	. = ..()
 	if(framed)
 		. += image(framed)
-
+*/
 /obj/structure/sign/picture_frame/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		var/obj/item/wallframe/picture/F = new /obj/item/wallframe/picture(loc)

@@ -9,7 +9,7 @@
 	var/has_blueprints = FALSE
 	var/logpath						//If the picture has been logged this is the path.
 	var/id							//this var is NOT protected because the worst you can do with this that you couldn't do otherwise is overwrite photos, and photos aren't going to be used as attack logs/investigations anytime soon.
-
+/*skyrat edit - temp remove of camera systems
 /datum/picture/New(name, desc, image, icon, size_x, size_y, bp, caption_, autogenerate_icon)
 	if(!isnull(name))
 		picture_name = name
@@ -169,3 +169,4 @@
 			P.picture_image.Crop(cropx, cropy, psize_x - cropx, psize_y - cropy)
 		P.regenerate_small_icon()
 	return P
+*/

@@ -10,7 +10,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/briefcase_righthand.dmi'
 	resistance_flags = FLAMMABLE
 	var/persistence_id
-
+/*  - Skyrat temporary removal
 /obj/item/storage/photo_album/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
@@ -52,7 +52,7 @@
 		if(istype(P))
 			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, P, null, TRUE, TRUE))
 				qdel(P)
-
+*/
 /obj/item/storage/photo_album/HoS
 	persistence_id = "HoS"
 
