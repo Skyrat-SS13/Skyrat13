@@ -48,9 +48,9 @@
 			if(L.is_robotic_limb())
 				occur_text = "is deeply pierced through, internal components easily falling out of the gaping hole"
 		if(WOUND_BURN)
-			occur_text = "gets a hole burned through it, burnt organs falling out"
+			occur_text = "gets a hole burned through it, slightly charred organs falling out"
 			if(L.is_robotic_limb())
-				occur_text = "gets a critical amount of metal molten, opening a gaping hole from which components fall through"
+				occur_text = "gets a critical amount of metal molten, opening a gaping hole from which slightly components fall through"
 
 	var/mob/living/carbon/victim = L.owner
 	victim.confused += 10
