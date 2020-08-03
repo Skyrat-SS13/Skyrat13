@@ -9,7 +9,7 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list()
 	volume = 15
-	force = 10
+	force = 5
 	var/mode = SYRINGE_DRAW
 	var/busy = FALSE		// needed for delayed drawing of blood
 	var/proj_piercing = 0 //does it pierce through thick clothes when shot with syringe gun
@@ -134,11 +134,6 @@
 				if(user.a_intent == INTENT_HARM)
 					useless = TRUE
 					name = "broken [name]"
-					if(iscarbon(L))
-						var/mob/living/carbon/C = L
-						C.apply_damage(force, BRUTE, check_zone(user.zone_selected), C.run_armor_check(check_zone(user.zone_selected), "melee"))
-					else
-						L.adjustBruteLoss(force)
 
 			else //if not mob
 				if(!target.reagents.total_volume)
@@ -203,11 +198,6 @@
 				if(user.a_intent == INTENT_HARM)
 					useless = TRUE
 					name = "broken [name]"
-					if(iscarbon(L))
-						var/mob/living/carbon/C = L
-						C.apply_damage(force, BRUTE, check_zone(user.zone_selected), C.run_armor_check(check_zone(user.zone_selected), "melee"))
-					else
-						L.adjustBruteLoss(force)
 				
 			var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
 			reagents.reaction(L, INJECT, fraction)
