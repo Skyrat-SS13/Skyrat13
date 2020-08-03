@@ -262,7 +262,7 @@
 	name = "Second Degree Burns"
 	desc = "Patient is suffering considerable burns with mild skin penetration, weakening limb integrity and increased burning sensations."
 	treat_text = "Recommended application of topical ointment or regenerative mesh to affected region."
-	examine_desc = "is badly burned and breaking out in blisters"
+	examine_desc = "is badly burnt and breaking out in blisters"
 	occur_text = "breaks out with violent red burns"
 	severity = WOUND_SEVERITY_MODERATE
 	viable_zones = ALL_BODYPARTS
