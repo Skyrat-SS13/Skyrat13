@@ -116,3 +116,5 @@
 	splint_factor = 0.4
 	custom_price = 500
 	apply_time = 40
+	amount = 12
+	max_amount = 12
