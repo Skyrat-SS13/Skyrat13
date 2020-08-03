@@ -70,7 +70,7 @@
 
 /obj/machinery/photocopier/proc/disable_busy()
 	busy = FALSE
-
+/*
 /obj/machinery/photocopier/proc/photocopy(var/obj/item/photo/photocopy)
 	var/obj/item/photo/p
 	for(var/i = 0, i < copies, i++)
@@ -105,7 +105,7 @@
 		else
 			break
 	return p
-
+*/
 /obj/machinery/photocopier/Topic(href, href_list)
 
 	if(..())
@@ -116,7 +116,7 @@
 			copy(copy)
 
 		else if(photocopy)
-			photocopy(photocopy)
+//			photocopy(photocopy)
 
 		else if(doccopy)
 			for(var/i = 0, i < copies, i++)
