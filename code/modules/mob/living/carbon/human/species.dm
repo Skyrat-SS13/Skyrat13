@@ -1775,7 +1775,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	//
 	var/weakness = H.check_weakness(I, user)
 
-	H.send_item_attack_message(I, user, hit_area, affecting)
+	H.send_item_attack_message(I, user, hit_area, totitemdamage, affecting)
 	
 	apply_damage(totitemdamage * weakness, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
 
