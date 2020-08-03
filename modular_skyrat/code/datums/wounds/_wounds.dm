@@ -129,6 +129,8 @@
 /datum/wound/Destroy()
 	if(attached_surgery)
 		QDEL_NULL(attached_surgery)
+	if(victim?.all_wounds && (src in victim.all_wounds))
+		victim.all_wounds -= src
 	if(limb?.wounds && (src in limb.wounds)) // destroy can call remove_wound() and remove_wound() calls qdel, so we check to make sure there's anything to remove first
 		remove_wound()
 	limb = null

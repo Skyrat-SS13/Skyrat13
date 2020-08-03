@@ -40,6 +40,12 @@
 	Overwriting of base procs
 */
 
+/datum/wound/blunt/Destroy()
+	. = ..()
+	if(active_trauma)
+		active_trauma.Destroy()
+		active_trauma = null
+
 /datum/wound/blunt/on_hemostatic(quantity)
 	if((severity <= WOUND_SEVERITY_SEVERE) && (quantity >= 15))
 		internal_bleeding_chance = round(internal_bleeding_chance/2, 0.1)
