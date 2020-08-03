@@ -281,7 +281,7 @@
 		if(scar_text)
 			msg += "[scar_text]"
 	
-	if(!length(msg))
+	if(length(msg) <= 1)
 		msg += "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
 
 	return msg
