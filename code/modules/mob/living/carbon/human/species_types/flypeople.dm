@@ -23,6 +23,7 @@
 		H.adjustToxLoss(3)
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 		return TRUE
+	/* Skyrat change - no more gross vomit banbait stuff, yucky.
 	else if(istype(chem, /datum/reagent/consumable))
 		var/datum/reagent/consumable/nutri_check = chem
 		if(nutri_check.nutriment_factor > 0)
@@ -35,6 +36,7 @@
 			H.visible_message("<span class='danger'>[H] vomits on the floor!</span>", \
 						"<span class='userdanger'>You throw up on the floor!</span>")
 			return TRUE
+	*/
 	return ..()
 
 /datum/species/fly/check_weakness(obj/item/weapon, mob/living/attacker)

@@ -141,6 +141,7 @@
 	. = ..()
 	if(.)
 		return
+	/* Skyrat change - Commented out for being nasty banbait.
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(isflyperson(H))
@@ -153,6 +154,7 @@
 						reagents.del_reagent(R.type)
 			reagents.trans_to(H, reagents.total_volume)
 			qdel(src)
+	*/
 
 /obj/effect/decal/cleanable/vomit/old
 	name = "crusty dried vomit"
