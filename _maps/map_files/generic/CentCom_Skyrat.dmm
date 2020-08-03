@@ -20174,13 +20174,7 @@
 "Zd" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/corndog{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/food/snacks/corndog,
-/obj/item/reagent_containers/food/snacks/corndog{
-	pixel_x = -5
-	},
+/obj/item/megaphone,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "Zf" = (
