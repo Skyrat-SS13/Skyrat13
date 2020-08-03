@@ -46,7 +46,7 @@
 			if(L.is_robotic_limb())
 				occur_text = "is shattered through the last bit of endoskeleton holding it together, severing it completely"
 		if(WOUND_SLASH)
-			occur_text = "is slashed through the last tissue holding it together, severing it completely"
+			occur_text = "is slashed through the last bit of tissue holding it together, severing it completely"
 			if(L.is_robotic_limb())
 				occur_text = "is slashed through the last bit of exoskeleton layer holding it together, severing it completely"
 		if(WOUND_PIERCE)
