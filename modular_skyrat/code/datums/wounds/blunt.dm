@@ -530,7 +530,7 @@
 	treat_text = "Recommended light surgical application of bone gel, though a sling of medical gauze will prevent worsening situation."
 	examine_desc = "appears grotesquely swollen, its attachment weakened"
 
-	occur_text = "sprays chips of bone and develops a nasty looking bruise"
+	occur_text = "cracks audibly and develops a nasty looking bruise"
 
 	severity = WOUND_SEVERITY_SEVERE
 	viable_zones = ALL_BODYPARTS
