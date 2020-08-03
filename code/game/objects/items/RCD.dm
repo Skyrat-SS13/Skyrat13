@@ -38,6 +38,9 @@ RLD
 	var/ammo_sections = 10	//amount of divisions in the ammo indicator overlay/number of ammo indicator states
 	var/custom_range = 7
 	var/upgrade = FALSE
+	//skyrat edit - low walls
+	var/lowwalltype = /obj/structure/table/low_wall/metal
+	//
 
 /obj/item/construction/Initialize()
 	. = ..()
@@ -508,6 +511,12 @@ RLD
 		choices += list(
 			"Change Window Type" = image(icon = 'icons/mob/radial.dmi', icon_state = "windowtype")
 		)
+	//Skyrat edit - low walls
+	else if(mode == RCD_WINDOWGRILLE)
+		choices += list(
+			"Change Low Wall Type" = image(icon = 'modular_skyrat/icons/mob/radial.dmi', icon_state = "lowwalltype")
+		)
+	//
 	var/choice = show_radial_menu(user,src,choices, custom_check = CALLBACK(src,.proc/check_menu,user))
 	if(!check_menu(user))
 		return
@@ -523,6 +532,12 @@ RLD
 		//skyrat edit - low walls
 		if("Low Walls")
 			mode = RCD_LOWWALL
+		if("Change Low Wall Type")
+			if(lowwalltype == initial(lowwalltype))
+				lowwalltype = /obj/structure/table/low_wall/metal/reinforced
+			else
+				lowwalltype = /obj/structure/table/low_wall/metal
+			to_chat(user, "<span class='notice'>You switch \the [src]'s low wall type to [lowwalltype == /obj/structure/table/low_wall/metal ? "normal low walls" : "reinforced low walls"].</span>")
 		//skyrat edit end
 		if("Machine Frames")
 			mode = RCD_MACHINE

@@ -77,17 +77,17 @@
 	switch(the_rcd.mode)
 		if(RCD_DECONSTRUCT)
 			return list("mode" = RCD_DECONSTRUCT, "delay" = 20, "cost" = 5)
-		if(RCD_LOWWALL)
+		if(RCD_WINDOWGRILLE)
 			if(the_rcd.window_type == /obj/structure/window/reinforced/fulltile)
-				return list("mode" = RCD_LOWWALL, "delay" = 40, "cost" = 12)
+				return list("mode" = RCD_WINDOWGRILLE, "delay" = 40, "cost" = 12)
 			else
-				return list("mode" = RCD_LOWWALL, "delay" = 20, "cost" = 8)
+				return list("mode" = RCD_WINDOWGRILLE, "delay" = 20, "cost" = 8)
 	return FALSE
 
 /obj/structure/table/low_wall/rcd_act(mob/user, var/obj/item/construction/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_DECONSTRUCT)
-			to_chat(user, "<span class='notice'>You deconstruct the grille.</span>")
+			to_chat(user, "<span class='notice'>You deconstruct \the [src].</span>")
 			qdel(src)
 			return TRUE
 		if(RCD_WINDOWGRILLE)
@@ -107,7 +107,7 @@
 
 /obj/structure/table/low_wall/attack_animal(mob/user)
 	. = ..()
-	if(!shock(user, 70) && !QDELETED(src)) //Last hit still shocks but shouldn't deal damage to the grille)
+	if(!shock(user, 70) && !QDELETED(src)) //Last hit still shocks but shouldn't deal damage to the low wall
 		take_damage(rand(5,10), BRUTE, "melee", 1)
 
 /obj/structure/table/low_wall/attack_paw(mob/user)
@@ -153,7 +153,7 @@
 	. = !density
 	if(ismovable(caller))
 		var/atom/movable/mover = caller
-		. = . || (mover.pass_flags & PASSGRILLE)
+		. = . || (mover.pass_flags & PASSTABLE)
 
 /obj/structure/table/low_wall/attackby(obj/item/W, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -194,9 +194,9 @@
 				return
 			to_chat(user, "<span class='notice'>You start placing the window...</span>")
 			if(do_after(user,20, target = src))
-				if(!src.loc || !anchored) //Grille broken or unanchored while waiting
+				if(!src.loc || !anchored) //Low wall broken or unanchored while waiting
 					return
-				for(var/obj/structure/window/WINDOW in loc) //Another window already installed on grille
+				for(var/obj/structure/window/WINDOW in loc) //Another window already installed on low wall
 					return
 				var/obj/structure/window/WD
 				if(istype(W, /obj/item/stack/sheet/plasmarglass))
@@ -257,7 +257,7 @@
 // returns 1 if shocked, 0 otherwise
 
 /obj/structure/table/low_wall/proc/shock(mob/user, prb)
-	if(!anchored || broken)		// anchored/broken grilles are never connected
+	if(!anchored || broken)		// anchored/broken low walls are never connected
 		return FALSE
 	if(!prob(prb))
 		return FALSE
