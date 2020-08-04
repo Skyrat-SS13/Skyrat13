@@ -6458,6 +6458,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
+"oW" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/light/floor{
+	invisibility = 100
+	},
+/turf/open/floor/plasteel,
+/area/centcom/evac)
 "oX" = (
 /obj/structure/bookcase/random,
 /obj/machinery/light{
@@ -13728,8 +13744,14 @@
 "Fk" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/structure/table/reinforced,
-/obj/item/bikehorn/airhorn,
 /obj/machinery/light,
+/obj/item/reagent_containers/food/snacks/hotdog{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/food/snacks/hotdog,
+/obj/item/reagent_containers/food/snacks/hotdog{
+	pixel_x = -5
+	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "Fl" = (
@@ -19572,16 +19594,11 @@
 /area/centcom/holding)
 "Wt" = (
 /obj/structure/table/reinforced,
-/obj/item/bodybag/bluespace{
-	pixel_y = 8
+/obj/item/healthanalyzer/advanced{
+	pixel_x = 2;
+	pixel_y = 6
 	},
-/obj/item/bodybag/bluespace{
-	pixel_x = 1;
-	pixel_y = 4
-	},
-/obj/item/bodybag/bluespace{
-	pixel_x = 2
-	},
+/obj/item/healthanalyzer/advanced,
 /turf/open/floor/mineral/titanium,
 /area/centcom/evac)
 "Wu" = (
@@ -19761,16 +19778,11 @@
 /area/centcom/holding)
 "Xb" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 5;
-	pixel_y = 9
+/obj/item/storage/fancy/donut_box{
+	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -5;
-	pixel_y = 9
+/obj/item/storage/fancy/donut_box{
+	pixel_x = -3
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
@@ -20097,8 +20109,29 @@
 /area/centcom/holding)
 "Yk" = (
 /obj/structure/table/reinforced,
-/obj/item/banhammer,
-/obj/item/coin/antagtoken,
+/obj/item/storage/bag/tray,
+/obj/item/reagent_containers/food/snacks/donut/choco{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/snacks/donut/caramel{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/snacks/donut/berry{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/snacks/donut/jelly{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/food/snacks/donut/jelly{
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/food/snacks/donut/jelly{
+	pixel_x = 5;
+	pixel_y = -3
+	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "Yl" = (
@@ -70865,7 +70898,7 @@ uB
 vh
 vg
 vY
-vY
+oW
 vY
 yB
 vh
