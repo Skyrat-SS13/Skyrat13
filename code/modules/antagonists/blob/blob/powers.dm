@@ -134,24 +134,24 @@
 
 /mob/camera/blob/verb/create_resource()
 	set category = "Blob"
-	set name = "Create Resource Blob (20)" //SKYRAT EDIT - BLOB
+	set name = "Create Resource Blob (30)" //SKYRAT EDIT - BLOB
 	set desc = "Create a resource tower which will generate resources for you."
 	//createSpecial(40, /obj/structure/blob/resource, 4, 1)
-	createSpecial(20, /obj/structure/blob/resource, 3, 1) //SKYRAT EDIT - BLOB
+	createSpecial(30, /obj/structure/blob/resource, 3, 1) //SKYRAT EDIT - BLOB
 
 /mob/camera/blob/verb/create_node()
 	set category = "Blob"
-	set name = "Create Node Blob (30)" //SKYRAT EDIT - BLOB
+	set name = "Create Node Blob (40)" //SKYRAT EDIT - BLOB
 	set desc = "Create a node, which will power nearby factory and resource blobs."
 	//createSpecial(50, /obj/structure/blob/node, 5, 0)
-	createSpecial(30, /obj/structure/blob/node, 4, 0) //SKYRAT EDIT - BLOB
+	createSpecial(40, /obj/structure/blob/node, 4, 0) //SKYRAT EDIT - BLOB
 
 /mob/camera/blob/verb/create_factory()
 	set category = "Blob"
-	set name = "Create Factory Blob (40)" //SKYRAT EDIT - BLOB
+	set name = "Create Factory Blob (50)" //SKYRAT EDIT - BLOB
 	set desc = "Create a spore tower that will spawn spores to harass your enemies."
 	//createSpecial(60, /obj/structure/blob/factory, 7, 1)
-	createSpecial(40, /obj/structure/blob/factory, 5, 1) //SKYRAT EDIT - BLOB
+	createSpecial(50, /obj/structure/blob/factory, 5, 1) //SKYRAT EDIT - BLOB
 
 /mob/camera/blob/verb/create_blobbernaut()
 	set category = "Blob"

@@ -19,7 +19,7 @@
 	if(overmind)
 		update_icon()
 	//addtimer(CALLBACK(src, .proc/generate_announcement), 1800) // this is 3 minutes
-	addtimer(CALLBACK(src, .proc/generate_announcement), 2 MINUTES) // this is 2 minutes SKYRAT EDIT - BLOB
+	addtimer(CALLBACK(src, .proc/generate_announcement), 5 MINUTES) // this is 5 minutes SKYRAT EDIT - BLOB
 	. = ..()
 
 /obj/structure/blob/core/proc/generate_announcement()
