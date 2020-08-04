@@ -600,3 +600,9 @@
 	name = "kudzu flooring"
 	icon = 'modular_skyrat/icons/turf/smooth/_smooth.dmi'
 	icon_state = "grass"
+
+/turf/open/floor/plating/airless/kudzu/attackby(obj/item/C, mob/user, params)
+	if(istype(C, /obj/item/wirecutters))
+		ChangeTurf(/turf/open/space)
+	else
+		return ..()
