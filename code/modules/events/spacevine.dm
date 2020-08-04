@@ -383,10 +383,11 @@
 		SM.on_cross(src, AM)
 	//SKYRAT EDIT START - VINES
 	if(istype(AM, /mob/living/simple_animal/hostile/venus_human_trap)) //skyrat change: vines heal flytraps 10% on cross
-		if(AM.health == AM.maxHealth)
+		var/mob/living/simple_animal/hostile/venus_human_trap/VS = AM
+		if(VS.health == VS.maxHealth)
 			return
-		AM.health = clamp((AM.health + AM.maxHealth * 0.1), AM.health, AM.maxHealth)
-		to_chat(AM, "<span class='notice'>The vines attempt to regenerate some of your wounds!</span>")
+		VS.health = clamp((VS.health + VS.maxHealth * 0.1), VS.health, VS.maxHealth)
+		to_chat(VS, "<span class='notice'>The vines attempt to regenerate some of your wounds!</span>")
 		return
 	//SKYRAT EDIT END - VINES
 
