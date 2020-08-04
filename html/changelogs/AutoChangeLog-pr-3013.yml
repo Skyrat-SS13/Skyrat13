@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "Many emotes like tail wagging are now properly functional like they used to be."
+  - rscdel: "comments out mawp emote"
