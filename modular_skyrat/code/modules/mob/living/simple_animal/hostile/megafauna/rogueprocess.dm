@@ -22,8 +22,8 @@
 	ranged_cooldown_time = 80
 	ranged = 1
 	del_on_death = 0
-	crusher_loot = list(/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer, /obj/item/crusher_trophy/brokentech, /obj/item/rogue)
-	loot = list(/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer, /obj/item/rogue)
+	crusher_loot = list(/obj/structure/closet/crate/necropolis/rogue/crusher)
+	loot = list(/obj/structure/closet/crate/necropolis/rogue)
 	deathmessage = "sparkles and emits corrupted screams in agony, falling defeated on the ground."
 	death_sound = 'sound/mecha/critdestr.ogg'
 	anger_modifier = 0

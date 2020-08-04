@@ -21,7 +21,7 @@
 	idiot.real_name = "Screamer"
 	idiot.dna.real_name = "Screamer"
 	disguise = copify_dna(idiot.dna)
-	disguise_features = copify_features(idiot, TRUE, TRUE)
+	disguise_features = copify_features(idiot, TRUE, FALSE)
 	qdel(idiot)
 
 /obj/item/clothing/mask/infiltrator/ghostface/equipped(mob/M, slot)
@@ -32,7 +32,7 @@
 			stored = copify_dna(user.dna)
 			stored_features = copify_features(user, TRUE, TRUE)
 			user.dna = copify_dna(disguise)
-			featurize_human(user, disguise_features, TRUE, TRUE)
+			featurize_human(user, disguise_features, TRUE, FALSE)
 			user.regenerate_icons()
 
 /obj/item/clothing/mask/infiltrator/ghostface/dropped(mob/M)
