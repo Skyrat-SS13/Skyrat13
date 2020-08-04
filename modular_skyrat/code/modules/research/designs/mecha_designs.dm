@@ -42,7 +42,7 @@
 	category = list("Misc")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/jawsoflife
+/datum/design/clawsoflife
 	name = "Claws of Life"
 	desc = "A small, compact Claws of Life with an interchangeable pry claws and cutting claws."
 	id = "clawsoflife"
