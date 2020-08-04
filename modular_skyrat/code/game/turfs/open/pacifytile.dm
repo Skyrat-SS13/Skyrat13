@@ -3,7 +3,7 @@
 	icon = 'modular_skyrat/icons/turf/floors/pacifytile.dmi'
 	icon_state = "safezone"
 	baseturfs = /turf/open/pacifytile
-	slowdown = -1
+	CanAtmosPass = ATMOS_PASS_NO
 
 /turf/open/pacifytile/Entered(atom/movable/AM)
 	if(!isliving(AM))
@@ -12,6 +12,7 @@
 
 	var/mob/living/L = AM
 	if(!L.ckey)
+		qdel(L)
 		return
 
 	if(!HAS_TRAIT(L, TRAIT_PACIFISM))
@@ -26,7 +27,7 @@
 	icon = 'modular_skyrat/icons/turf/floors/pacifytile.dmi'
 	icon_state = "killzone"
 	baseturfs = /turf/open/warzonetile
-	slowdown = -1
+	CanAtmosPass = ATMOS_PASS_NO
 
 /turf/open/warzonetile/Entered(atom/movable/AM)
 	if(!isliving(AM))
