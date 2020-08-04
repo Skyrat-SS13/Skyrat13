@@ -70,7 +70,7 @@
 	. = "[get_third_person_message_start(me)] [get_standalone_value_descriptor(my_value)][species_text]"
 
 /datum/mob_descriptor/proc/get_secondary_comparison_component(mob/me, mob/other_mob, my_value, comparing_value)
-	var/variance = abs((my_value)-comparing_value)
+	var/variance = abs(my_value - comparing_value)
 	if(variance == 0)
 		. = "[.], [get_comparative_value_string_equivalent(me, other_mob, my_value)]"
 	else

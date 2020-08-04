@@ -552,7 +552,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Custom Species Name:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=custom_species;task=input'>[custom_species ? custom_species : "None"]</a><BR>"
 			if(LAZYLEN(pref_species.descriptors) && LAZYLEN(body_descriptors))
 				dat += "<b>Descriptors:</b><BR>"
-				for(var/entry in body_descriptors)
+				for(var/entry in pref_species.descriptors)
 					var/datum/mob_descriptor/descriptor = pref_species.descriptors[entry]
 					dat += "<b>[capitalize(descriptor.chargen_label)]:</b> [descriptor.get_standalone_value_descriptor(body_descriptors[entry]) ? descriptor.get_standalone_value_descriptor(body_descriptors[entry]) : "None"] <a href='?_src_=prefs;preference=descriptors;task=input;change_descriptor=[entry]'>Change</a><BR>"
 				dat += "<BR>"
@@ -1838,14 +1838,13 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 	//skyrat edit
 	if(href_list["preference"] == "descriptors")
-		if(href_list["change_descriptor"])
-			if(LAZYLEN(pref_species.descriptors))
-				var/desc_id = href_list["change_descriptor"]
-				if(body_descriptors[desc_id])
-					var/datum/mob_descriptor/descriptor = pref_species.descriptors[desc_id]
-					var/choice = input("Please select a descriptor", "Descriptor") as null|anything in descriptor.chargen_value_descriptors
-					if(choice && pref_species.descriptors[desc_id]) // Check in case they sneakily changed species.
-						body_descriptors[descriptor.name] = descriptor.chargen_value_descriptors[choice]
+		var/desc_id = href_list["change_descriptor"]
+		if(desc_id)
+			if(LAZYLEN(pref_species.descriptors) && pref_species.descriptors[desc_id])
+				var/datum/mob_descriptor/descriptor = pref_species.descriptors[desc_id]
+				var/choice = input("Please select a descriptor", "Descriptor") as null|anything in descriptor.chargen_value_descriptors
+				if(choice && pref_species.descriptors[desc_id]) // Check in case they sneakily changed species.
+					body_descriptors[descriptor.name] = descriptor.chargen_value_descriptors[choice]
 		ShowChoices(user)
 		return 1
 	//
