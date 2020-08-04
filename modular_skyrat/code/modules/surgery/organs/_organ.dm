@@ -176,17 +176,17 @@
 	if(organ_flags & ORGAN_FAILING)
 		failing = TRUE
 		if(status == ORGAN_ROBOTIC)
-			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : "\The "][src.name] seems to be broken!</span>"
+			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : ""][src] seems to be broken!</span>"
 		else
-			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : "\The "][src.name] has decayed for too long, and has turned a sickly color! It doesn't look like it will work anymore!</span>"
+			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : ""][src] has decayed for too long, and has turned a sickly color! It doesn't look like it will work anymore!</span>"
 	if(damage > high_threshold)
 		if(!failing)
 			damaged = TRUE
-			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : "\The "][src.name] is starting to look discolored.</span>"
+			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : ""][src] is starting to look discolored.</span>"
 	if(!failing && !damaged)
-		. += "<span class='notice'>[owner ? "[capitalize(owner.p_their())] " : "\The "][src.name] seems to be quite healthy.</span>"
+		. += "<span class='notice'>[owner ? "[capitalize(owner.p_their())] " : ""][src] seems to be quite healthy.</span>"
 	if(etching)
-		. += "<span class='notice'>[owner ? "[capitalize(owner.p_their())] " : "\The "][src.name] has <b>\"[etching]\"</b> inscribed on it.</span>"
+		. += "<span class='notice'>[owner ? "[capitalize(owner.p_their())] " : ""][src] has <b>\"[etching]\"</b> inscribed on it.</span>"
 
 /obj/item/organ/proc/OnEatFrom(eater, feeder)
 	useable = FALSE //You can't use it anymore after eating it you spaztic
