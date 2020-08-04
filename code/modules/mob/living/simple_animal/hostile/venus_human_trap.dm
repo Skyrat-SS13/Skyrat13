@@ -81,8 +81,8 @@
 	obj_damage = 60
 	//melee_damage_lower = 25
 	//melee_damage_upper = 25
-	melee_damage_lower = 10 //SKYRAT EDIT - VINES
-	melee_damage_upper = 10 //SKYRAT EDIT - VINES
+	melee_damage_lower = 15 //SKYRAT EDIT - VINES
+	melee_damage_upper = 20 //SKYRAT EDIT - VINES
 	a_intent = INTENT_HARM
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)

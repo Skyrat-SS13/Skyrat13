@@ -272,12 +272,14 @@
 		new/obj/structure/alien/resin/flower_bud_enemy(get_turf(holder))
 
 /datum/spacevine_mutation/flowering/on_cross(obj/structure/spacevine/holder, mob/living/crosser)
+	/* SKYRAT EDIT - VINES
 	if(istype(crosser, /mob/living/simple_animal/hostile/venus_human_trap)) //skyrat change: flowering vines heal flytraps 10% on cross
 		if(crosser.health == crosser.maxHealth)
 			return
 		crosser.health = clamp((crosser.health + crosser.maxHealth * 0.1), crosser.health, crosser.maxHealth)
 		to_chat(crosser, "<span class='notice'>The flowering vines attempt to regenerate some of your wounds!</span>")
 		return
+	SKYRAT EDIT - VINES */
 	if(prob(25))
 		holder.entangle(crosser)
 //SKYRAT EDIT - VINES - START
@@ -379,6 +381,14 @@
 		return
 	for(var/datum/spacevine_mutation/SM in mutations)
 		SM.on_cross(src, AM)
+	//SKYRAT EDIT START - VINES
+	if(istype(AM, /mob/living/simple_animal/hostile/venus_human_trap)) //skyrat change: vines heal flytraps 10% on cross
+		if(AM.health == AM.maxHealth)
+			return
+		AM.health = clamp((AM.health + AM.maxHealth * 0.1), AM.health, AM.maxHealth)
+		to_chat(AM, "<span class='notice'>The vines attempt to regenerate some of your wounds!</span>")
+		return
+	//SKYRAT EDIT END - VINES
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/spacevine/attack_hand(mob/user)
@@ -580,6 +590,8 @@
 	if(isliving(A))
 		var/mob/living/M = A
 		if(("vines" in M.faction) || ("plants" in M.faction))
+			return TRUE
+		if(istype(M, /mob/living/simple_animal/hostile/venus_human_trap))
 			return TRUE
 	return FALSE
 
