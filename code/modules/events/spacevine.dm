@@ -541,7 +541,7 @@
 			D.open()
 	//if (!isspaceturf(stepturf) && stepturf.Enter(src)) // SKYRAT EDIT - VINES (ORIGINAL)
 	if (stepturf.Enter(src)) //SKYRAT EDIT - VINES
-		if(isspaceturf(stepturf) && istype(steparea, /area/space/station_ruins))
+		if(istype(steparea, /area/space/station_ruins))
 			return
 	//SKYRAT EDIT END - VINES
 		for(var/datum/spacevine_mutation/SM in mutations)
@@ -550,6 +550,10 @@
 		if(!locate(/obj/structure/spacevine, stepturf))
 			if(master)
 				master.spawn_spacevine_piece(stepturf, src)
+				//SKYRAT EDIT START - VINES
+				if(istype(stepturf, /turf/open/space))
+					stepturf.ChangeTurf(/turf/open/floor/plating/airless/kudzu)
+				//SKYRAT EDIT END - VINES
 
 /obj/structure/spacevine/ex_act(severity, target)
 	if(istype(target, type)) //if its agressive spread vine dont do anything
@@ -578,3 +582,8 @@
 		if(("vines" in M.faction) || ("plants" in M.faction))
 			return TRUE
 	return FALSE
+
+/turf/open/floor/plating/airless/kudzu
+	name = "kudzu flooring"
+	icon = 'modular_skyrat/icons/turf/smooth/_smooth.dmi'
+	icon_state = "grass"
