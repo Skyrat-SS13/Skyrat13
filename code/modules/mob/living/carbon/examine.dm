@@ -264,24 +264,78 @@
 
 //skyrat edit
 /mob/living/carbon/examine_more(mob/user)
+	var/msg = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
+	if((src == user) && HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF))
+		msg |= "\t<span class='smallnotice'>[p_they(TRUE)] have no significantly damaged bodyparts.</span>"
+		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
+		return msg
+	
+	var/list/damaged_bodypart_text = list()
+	for(var/obj/item/bodypart/BP in bodyparts)
+		var/how_brute = ""
+		var/how_burn = ""
+		var/max_sev = 0
+		var/sev = 0
+		var/styletext = "tinydanger"
+		var/text = ""
+		if(!BP.brute_dam && !BP.burn_dam)
+			continue
+		if(BP.brute_dam >= (BP.max_damage/3))
+			sev = round(BP.brute_dam/BP.max_damage * 3, 1)
+			max_sev = max(max_sev, sev)
+			switch(sev)
+				if(1)
+					how_brute = BP.light_brute_msg
+				if(2)
+					how_brute = BP.medium_brute_msg
+				if(3)
+					how_brute = BP.heavy_brute_msg
+		if(BP.burn_dam >= (BP.max_damage/3))
+			sev = round(BP.burn_dam/BP.max_damage * 3, 1)
+			max_sev = max(max_sev, sev)
+			switch(sev)
+				if(1)
+					how_burn = BP.light_burn_msg
+				if(2)
+					how_burn = BP.medium_burn_msg
+				if(3)
+					how_burn = BP.heavy_burn_msg
+		switch(max_sev)
+			if(1)
+				styletext = "tinydanger"
+			if(2)
+				styletext = "smalldanger"
+			if(3)
+				styletext = "danger"
+		if(how_brute && how_burn)
+			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP] is [how_brute] and [how_burn][max_sev >= 2 ? "!" : "."]</span>"
+		else if(how_brute)
+			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP] is [how_brute][max_sev >= 2 ? "!" : "."]</span>"
+		else if(how_burn)
+			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP] is [how_burn][max_sev >= 2 ? "!" : "."]</span>"
+		
+		if(length(text))
+			damaged_bodypart_text |= text
+	
+	msg |= damaged_bodypart_text
+
+	if(!length(damaged_bodypart_text))
+		msg |= "\t<span class='smallnotice'>[p_they(TRUE)] have no significantly damaged bodyparts.</span>"
+	
 	var/list/visible_scars = list()
 	for(var/i in all_scars)
 		var/datum/scar/S = i
 		if(istype(S) && S.is_visible(user))
 			LAZYADD(visible_scars, S)
-
-	var/msg = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
-	if((src == user) && HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF))
-		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
-		return msg
-
+	
 	for(var/i in visible_scars)
 		var/datum/scar/S = i
 		var/scar_text = S.get_examine_description(user)
 		if(scar_text)
-			msg += "[scar_text]"
+			msg |= "\t[scar_text]"
 	
 	if(!length(visible_scars))
-		msg += "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
+		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
 	
 	return msg
+//

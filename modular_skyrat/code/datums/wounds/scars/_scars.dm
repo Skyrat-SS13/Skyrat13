@@ -126,9 +126,9 @@
 			msg = "[victim.p_their(TRUE)] [limb.name] [description]." // different format
 			msg = "<span class='notice'><i><b>[msg]</b></i></span>"
 	if((viewer == victim) && (!is_visible(checkviewer = FALSE) && is_visible(viewer)))
-		return "\t[msg] <span class='purple'>It is too well hidden for others to notice.</span>"
+		return "[msg] <span class='purple'>It is too well hidden for others to notice.</span>"
 	else
-		return "\t[msg]"
+		return msg
 
 /// Whether a scar can currently be seen by the viewer
 /datum/scar/proc/is_visible(mob/viewer, checkviewer = TRUE)
