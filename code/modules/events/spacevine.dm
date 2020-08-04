@@ -24,8 +24,8 @@
 		var/turf/T = pick(turfs)
 		new /datum/spacevine_controller(T, list(pick(subtypesof(/datum/spacevine_mutation))), rand(30,100), rand(5,10), src) //spawn a controller at turf with randomized stats and a single random mutation
 		// SKYRAT EDIT - VINES - START
-		for(var/i in 1 to 2)
-			new /mob/living/simple_animal/hostile/venus_human_trap/ghost_playable(T)
+		//for(var/i in 1 to 2)
+		//	new /mob/living/simple_animal/hostile/venus_human_trap/ghost_playable(T)
 		// SKYRAT EDIT - VINES - END
 
 
