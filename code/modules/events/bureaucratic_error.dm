@@ -13,7 +13,7 @@
 /datum/round_event/bureaucratic_error/start()
 	//Skyrat edit -- start
 	var/datum/job/random_job = SSjob.GetJob(pick(get_all_jobs() - "Assistant"))
-	var/cap = rand(0,10)
+	var/cap = rand(0,15)
 	random_job.spawn_positions = cap
 	random_job.total_positions = cap
 	//Skyrat edit -- end
