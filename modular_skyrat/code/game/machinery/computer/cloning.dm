@@ -198,8 +198,11 @@
 	if(pod)
 		dat += "<br><div class='statusDisplay'><b>Pod Biomass:</b> [pod.biomass]/[pod.max_biomass]"
 		dat += " <a href='byond://?src=[REF(src)];task=succ'>Collect Biomass</a></div>"
-		dat += "<br><div class='statusDisplay'><b>Paying Account:</b> [pod.currently_linked_account.account_holder]"
-		dat += " <a href='byond://?src=[REF(src)];task=payday'>Change Account</a></div>"
+		dat += "<br>"
+		dat += "<div class='statusDisplay'><b>Paying Account:</b> [pod.currently_linked_account.account_holder]"
+		dat += " <a href='byond://?src=[REF(src)];task=payday'>Change Account</a>"
+		dat += "<br>"
+		dat += "<b>Credits:</b> [pod.currently_linked_account.account_balance]/[pod.cost_per_clone]</div>"
 	switch(src.menu)
 		if(1)
 			// Modules

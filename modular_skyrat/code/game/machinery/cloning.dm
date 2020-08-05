@@ -39,7 +39,7 @@
 	var/flesh_number = 0
 	var/biomass = 0
 	var/max_biomass = 1000
-	var/biomass_per_clone = 300
+	var/biomass_per_clone = 400
 
 	var/pays_for_clone = TRUE
 	var/cost_per_clone = 1000 //cost in credits for a clone, of course.
