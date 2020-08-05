@@ -10,24 +10,14 @@
 	group = "Science"
 	crate_type = /obj/structure/closet/crate/science
 
-/* For later
-/datum/supply_pack/science/monkey
+/datum/supply_pack/science/ape  //Ape out!
 	name = "Ape Cube Crate"
 	desc = "Pss what a new test subject with supper strangth, speed, and love for bananas all at the same time? Say no more... Contains a single ape cube. Dont add water!"
 	contraband = TRUE
 	cost = 2500
-	contains = list (/obj/item/reagent_containers/food/snacks/monkeycube/ape)
+	contains = list (/obj/item/reagent_containers/food/snacks/cube/ape)
 	crate_name = "ape cube crate"
-*/
-
-/datum/supply_pack/science/aliens
-	name = "Advanced Alien Alloy Crate Crate"
-	desc = "Hello brothers from the stars!!! Our fellow brethren have made contact at long last and gave us gifts man! They really did build the prymi- Connection Error- Bro we’ll send you a sheet of advanced alien alloy."
-	cost = 15000
-	DropPodOnly = TRUE
-	contraband = TRUE
-	contains = list(/obj/item/stack/sheet/mineral/abductor)
-	crate_name = "alien bro alloy crate"
+	can_private_buy = FALSE
 
 /datum/supply_pack/science/beakers
 	name = "Chemistry Beakers Crate"
@@ -84,7 +74,7 @@
 
 /datum/supply_pack/science/glasswork
 	name = "Glass Blower Kit Crate"
-	desc = "Learn and make glassworks of useful things for a profit! Contains glassworking tools and blowing rods. Glass not included."
+	desc = "Learn and make useful items out of glass for a profit! Contains glassworking tools and blowing rods. Glass not included." //Skyrat change, fixes line to sound better
 	cost = 1000
 	contains = list(/obj/item/glasswork/glasskit,
 					/obj/item/glasswork/glasskit,
@@ -101,7 +91,7 @@
 
 /datum/supply_pack/science/nitrilegloves
 	name = "Nitrile Gloves Crate"
-	desc = "Handling toxic chemicals? Well worry not, keep your flesh intact with some nitrile made gloves! Contains three pairs of nitrile gloves."
+	desc = "Handling toxic chemicals? Well worry not! Keep your flesh intact with some nitrile made gloves! Contains three pairs of nitrile gloves." //Skyrat change, Fixes grammatical punctuation error
 	cost = 1500
 	contains = list(/obj/item/clothing/gloves/color/latex/nitrile,
 					/obj/item/clothing/gloves/color/latex/nitrile,
@@ -139,7 +129,7 @@
 
 /datum/supply_pack/science/robotics
 	name = "Robotics Assembly Crate"
-	desc = "The tools you need to replace those finicky humans with a loyal robot army! Contains three proximity sensors, two high-powered cells, six flashes, and an electrical toolbox. Requires Robotics access to open."
+	desc = "The tools you need to replace those finicky organics with a loyal robot army! Contains three proximity sensors, two high-powered cells, six flashes, and an electrical toolbox. Requires Robotics access to open." //Skyrat change, made line more inclusive
 	cost = 1500
 	access = ACCESS_ROBOTICS
 	contains = list(/obj/item/assembly/prox_sensor,

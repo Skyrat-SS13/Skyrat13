@@ -35,6 +35,10 @@
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stack/sheet/glass = 1)
 
+/obj/item/circuitboard/machine/autolathe/secure
+	name = "Secure Autolathe (Machine Board)"
+	build_path = /obj/machinery/autolathe/secure
+
 /obj/item/circuitboard/machine/bloodbankgen
 	name = "Blood Bank Generator (Machine Board)"
 	build_path = /obj/machinery/bloodbankgen
@@ -56,6 +60,14 @@
 /obj/item/circuitboard/machine/clonepod/experimental
 	name = "Experimental Clone Pod (Machine Board)"
 	build_path = /obj/machinery/clonepod/experimental
+
+/obj/item/circuitboard/machine/sheetifier
+	name = "Sheet-meister 2000 (Machine Board)"
+	icon_state = "supply"
+	build_path = /obj/machinery/sheetifier
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/matter_bin = 2)
 
 /obj/item/circuitboard/machine/abductor
 	name = "alien board (Report This)"
@@ -142,7 +154,9 @@
 	req_components = list(
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stock_parts/capacitor = 1,
-		/obj/item/stack/cable_coil = 3)
+		/obj/item/stack/cable_coil = 3,
+		/obj/item/stock_parts/cell = 1) // Skyrat edit: adds cell to recipe
+	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/telecomms/broadcaster
@@ -223,13 +237,13 @@
 		/obj/item/stock_parts/capacitor = 2,
 		/obj/item/stack/sheet/glass = 1)
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
-
+// SKYRAT EDIT - Changing our vendors switch
 /obj/item/circuitboard/machine/vendor
-	name = "Booze-O-Mat Vendor (Machine Board)"
+	name = "Custom Vendor (Machine Board)"
 	desc = "You can turn the \"brand selection\" dial using a screwdriver."
-	build_path = /obj/machinery/vending/boozeomat
-	req_components = list(/obj/item/vending_refill/boozeomat = 1)
-
+	custom_premium_price = 100
+	build_path = /obj/machinery/vending/custom
+	req_components = list(/obj/item/vending_refill/custom = 1)
 	var/static/list/vending_names_paths = list(
 		/obj/machinery/vending/boozeomat = "Booze-O-Mat",
 		/obj/machinery/vending/coffee = "Solar's Best Hot Drinks",
@@ -240,7 +254,7 @@
 		/obj/machinery/vending/autodrobe = "AutoDrobe",
 		/obj/machinery/vending/assist = "\improper Vendomat",
 		/obj/machinery/vending/engivend = "\improper Engi-Vend",
-		/obj/machinery/vending/engivend = "\improper YouTool",
+		/obj/machinery/vending/tool = "\improper YouTool",
 		/obj/machinery/vending/sustenance = "\improper Sustenance Vendor",
 		/obj/machinery/vending/dinnerware = "\improper Plasteel Chef's Dinnerware Vendor",
 		/obj/machinery/vending/cart = "\improper PTech",
@@ -265,15 +279,26 @@
 		/obj/machinery/vending/wardrobe/viro_wardrobe = "ViroDrobe",
 		/obj/machinery/vending/clothing = "ClothesMate",
 		/obj/machinery/vending/medical = "NanoMed Plus",
-		/obj/machinery/vending/wallmed = "NanoMed")
+		/obj/machinery/vending/wallmed = "NanoMed",
+		/obj/machinery/vending/dinnerware/prisoner = "\improper Plasteel Chef's Prisoner Dinnerware Vendor",
+		/obj/machinery/vending/hydronutrients/prisoner = "\improper Prisoner NutriMax",
+		/obj/machinery/vending/pdavendor = "\improper PDA Vending",
+		/obj/machinery/vending/kink = "\improper KinkMate",
+		/obj/machinery/vending/custom = "Custom Vendor")
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/screwdriver))
-		var/position = vending_names_paths.Find(build_path)
-		position = (position == vending_names_paths.len) ? 1 : (position + 1)
-		var/typepath = vending_names_paths[position]
+		var/choice = show_radial_menu(user, src, GLOB.vending_m_choices, radius = 46, require_near = TRUE, tooltips = TRUE)
+		if(!choice)
+			return
+		var/static/list/vendinglist = GLOB.vending_m_choices
+		var/choiceposition = vendinglist.Find(choice)
+		if(!choiceposition)
+			return
+		var/typepath = GLOB.vending_machines[choiceposition]
+		var/namepath = vending_names_paths[choiceposition]
 		set_type(typepath)
-		to_chat(user, "<span class='notice'>You set the board to \"[vending_names_paths[typepath]]\".</span>")
+		to_chat(user, "<span class='notice'>You set the board to \"[vending_names_paths[namepath]]\".</span>")
 	else
 		return ..()
 
@@ -288,7 +313,7 @@
 			set_type(typepath)
 			break
 	return ..()
-
+// SKYRAT EDIT END
 /obj/item/circuitboard/machine/mech_recharger
 	name = "Mechbay Recharger (Machine Board)"
 	build_path = /obj/machinery/mech_bay_recharge_port
@@ -304,6 +329,13 @@
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stack/sheet/glass = 1)
+	var/offstation_security_levels = TRUE
+
+/obj/item/circuitboard/machine/mechfab/offstation
+	offstation_security_levels = FALSE
+
+/obj/item/circuitboard/machine/mechfab/rnd_crafted(obj/machinery/rnd/production/P)
+	offstation_security_levels = P.offstation_security_levels
 
 /obj/item/circuitboard/machine/cryo_tube
 	name = "Cryotube (Machine Board)"
@@ -679,6 +711,17 @@
 	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/chem_dispenser/apothecary
+	name = "Apotechary Chem Dispenser (Machine Board)"
+	build_path = /obj/machinery/chem_dispenser/apothecary
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stack/sheet/glass = 1,
+		/obj/item/stock_parts/cell = 1)
+	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/upgraded/plus)
+
 /obj/item/circuitboard/machine/chem_dispenser/drinks
 	name = "Soda Dispenser (Machine Board)"
 	build_path = /obj/machinery/chem_dispenser/drinks
@@ -693,6 +736,10 @@
 	build_path = /obj/machinery/chem_dispenser/abductor
 	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
 	needs_anchored = FALSE
+
+/obj/item/circuitboard/machine/sleeper/party
+	name = "Party Pod (Machine Board)"
+	build_path = /obj/machinery/sleeper/party
 
 /obj/item/circuitboard/machine/smoke_machine
 	name = "Smoke Machine (Machine Board)"
@@ -755,6 +802,13 @@
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/reagent_containers/glass/beaker = 2)
+	var/offstation_security_levels = TRUE
+
+/obj/item/circuitboard/machine/circuit_imprinter/offstation
+	offstation_security_levels = FALSE
+
+/obj/item/circuitboard/machine/mechfab/rnd_crafted(obj/machinery/rnd/production/P)
+	offstation_security_levels = P.offstation_security_levels
 
 /obj/item/circuitboard/machine/circuit_imprinter/department
 	name = "Departmental Circuit Imprinter (Machine Board)"
@@ -800,7 +854,7 @@
 	var/new_cloud = input("Set the public nanite chamber's Cloud ID (1-100).", "Cloud ID", cloud_id) as num|null
 	if(new_cloud == null)
 		return
-	cloud_id = CLAMP(round(new_cloud, 1), 1, 100)
+	cloud_id = clamp(round(new_cloud, 1), 1, 100)
 
 /obj/item/circuitboard/machine/public_nanite_chamber/examine(mob/user)
 	. = ..()
@@ -828,6 +882,13 @@
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/reagent_containers/glass/beaker = 2)
+	var/offstation_security_levels = TRUE
+
+/obj/item/circuitboard/machine/protolathe/offstation
+	offstation_security_levels = FALSE
+
+/obj/item/circuitboard/machine/protolathe/rnd_crafted(obj/machinery/rnd/production/P)
+	offstation_security_levels = P.offstation_security_levels
 
 /obj/item/circuitboard/machine/protolathe/department
 	name = "Departmental Protolathe (Machine Board)"
@@ -856,6 +917,16 @@
 /obj/item/circuitboard/machine/protolathe/department/service
 	name = "Departmental Protolathe - Service (Machine Board)"
 	build_path = /obj/machinery/rnd/production/protolathe/department/service
+
+/obj/item/circuitboard/machine/bepis
+	name = "BEPIS Chamber (Machine Board)"
+	build_path = /obj/machinery/rnd/bepis
+	req_components = list(
+		/obj/item/stack/cable_coil = 5,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/stock_parts/scanning_module = 1)
 
 /obj/item/circuitboard/machine/techfab
 	name = "\improper Techfab (Machine Board)"
@@ -1015,6 +1086,11 @@
 	build_path = /obj/machinery/ore_silo
 	req_components = list()
 
+/obj/item/circuitboard/machine/paystand
+	name = "Pay Stand (Machine Board)"
+	build_path = /obj/machinery/paystand
+	req_components = list()
+
 /obj/item/circuitboard/machine/autobottler
 	name = "Auto-Bottler (Machine Board)"
 	build_path = /obj/machinery/rnd/production/protolathe/department/autobottler //Manips make you print things cheaper, even chems
@@ -1023,16 +1099,59 @@
 		/obj/item/stock_parts/capacitor = 1,
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/reagent_containers/glass/beaker = 6) //So it can hold lots of chems
-
+/* skyrat edit - removing this and placing it in the actual vending circuit
 /obj/item/circuitboard/machine/kinkmate
 	name = "Kinkmate Vendor (Machine Board)"
 	build_path = /obj/machinery/vending/kink
 	req_components = list(/obj/item/vending_refill/kink = 1)
-
-/obj/item/circuitboard/machine/autoylathe
+*/
+/obj/item/circuitboard/machine/autolathe/toy
 	name = "Autoylathe (Machine Board)"
-	build_path = /obj/machinery/autoylathe
+	build_path = /obj/machinery/autolathe/toy
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 3,
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stack/sheet/glass = 1)
+
+/obj/item/circuitboard/machine/prize_counter
+	name = "Prize Counter (Machine Board)"
+	build_path = /obj/machinery/prize_counter
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stack/cable_coil = 1,
+		/obj/item/stack/sheet/glass = 1)
+
+/obj/item/circuitboard/machine/hypnochair
+	name = "Enhanced Interrogation Chamber (Machine Board)"
+	icon_state = "security"
+	build_path = /obj/machinery/hypnochair
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 2,
+		/obj/item/stock_parts/scanning_module = 2
+	)
+
+/obj/item/circuitboard/machine/shuttle/engine
+	name = "Thruster (Machine Board)"
+	build_path = /obj/machinery/shuttle/engine
+	req_components = list()
+
+/obj/item/circuitboard/machine/shuttle/engine/plasma
+	name = "Plasma Thruster (Machine Board)"
+	build_path = /obj/machinery/shuttle/engine/plasma
+	req_components = list(/obj/item/stock_parts/capacitor = 2,
+		/obj/item/stack/cable_coil = 5,
+		/obj/item/stock_parts/micro_laser = 1)
+
+/obj/item/circuitboard/machine/shuttle/engine/void
+	name = "Void Thruster (Machine Board)"
+	build_path = /obj/machinery/shuttle/engine/void
+	req_components = list(/obj/item/stock_parts/capacitor/quadratic = 2,
+		/obj/item/stack/cable_coil = 5,
+		/obj/item/stock_parts/micro_laser/quadultra = 1)
+
+/obj/item/circuitboard/machine/shuttle/heater
+	name = "Electronic Engine Heater (Machine Board)"
+	build_path = /obj/machinery/atmospherics/components/unary/shuttle/heater
+	req_components = list(/obj/item/stock_parts/micro_laser = 2,
+		/obj/item/stock_parts/matter_bin = 1)

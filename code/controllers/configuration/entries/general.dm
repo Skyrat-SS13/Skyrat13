@@ -211,10 +211,10 @@
 	config_entry_value = "http://tgstation13.org/phpBB/index.php"
 
 /datum/config_entry/string/rulesurl
-	config_entry_value = "http://www.tgstation13.org/wiki/Rules"
+	config_entry_value = "https://skyrat13.tk/wiki/index.php/Rules" // Skyrat Edit
 
 /datum/config_entry/string/githuburl
-	config_entry_value = "https://www.github.com/tgstation/-tg-station"
+	config_entry_value = "https://github.com/Skyrat-SS13/Skyrat13/pulls" // Skyrat Edit
 
 /datum/config_entry/string/roundstatsurl
 
@@ -468,3 +468,8 @@
 
 /datum/config_entry/flag/minimaps_enabled
 	config_entry_value = TRUE
+
+//SKYRAT CHANGES BEGIN
+/datum/config_entry/number/max_ambitions	// Maximum number of ambitions a mind can store.
+	config_entry_value = 5
+//SKYRAT CHANGES END

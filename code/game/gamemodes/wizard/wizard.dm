@@ -17,6 +17,8 @@
 	<span class='danger'>Wizard</span>: Accomplish your objectives and cause mayhem on the station.\n\
 	<span class='notice'>Crew</span>: Eliminate the wizard before they can succeed!"
 	var/finished = 0
+	// SKYRAT EDIT: Credits
+	title_icon = "wizard"
 
 /datum/game_mode/wizard/pre_setup()
 	var/datum/mind/wizard = antag_pick(antag_candidates)
@@ -44,7 +46,7 @@
 
 
 /datum/game_mode/wizard/are_special_antags_dead()
-	for(var/datum/mind/wizard in wizards)
+	for(var/datum/mind/wizard in wizards | apprentices)
 		if(isliving(wizard.current) && wizard.current.stat!=DEAD)
 			return FALSE
 
@@ -57,6 +59,14 @@
 		SSevents.resetFrequency()
 
 	return TRUE
+
+/datum/game_mode/wizard/check_finished()
+	. = ..()
+	if(.)
+		finished = TRUE
+	else if(gamemode_ready && are_special_antags_dead() && !CONFIG_GET(keyed_list/continuous)[config_tag])
+		finished = TRUE
+		. = TRUE
 
 /datum/game_mode/wizard/set_round_result()
 	..()
@@ -71,3 +81,20 @@
 //returns whether the mob is a wizard (or apprentice)
 /proc/iswizard(mob/living/M)
 	return M.mind && M.mind.has_antag_datum(/datum/antagonist/wizard,TRUE)
+// SKYRAT EDIT: Credits
+/datum/game_mode/wizard/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Space Wizard Federation:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/wizard in wizards)
+		round_credits += "<center><h2>[wizard.name] as a master wizard</h2>"
+	for(var/datum/mind/apprentice in apprentices)
+		round_credits += "<center><h2>[apprentice.name] as an eager apprentice</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The wizards have removed themselves from this realm of existance!</h2>", "<center><h2>We couldn't locate them!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

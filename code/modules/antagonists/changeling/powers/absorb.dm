@@ -59,13 +59,15 @@
 		changeling.trueabsorbs++
 
 	if(user.nutrition < NUTRITION_LEVEL_WELL_FED)
-		user.nutrition = min((user.nutrition + target.nutrition), NUTRITION_LEVEL_WELL_FED)
+		user.adjust_nutrition(target.nutrition, NUTRITION_LEVEL_WELL_FED)
 
-	if(target.mind)//if the victim has got a mind
-		// Absorb a lizard, speak Draconic.
-		user.copy_known_languages_from(target)
+	// Absorb a lizard, speak Draconic.
+	user.copy_languages(target, LANGUAGE_ABSORB)
 
-		target.mind.show_memory(user, 0) //I can read your mind, kekeke. Output all their notes.
+	if(target.mind && user.mind)//if the victim and user have minds
+//SKYRAT CHANGES BEGIN
+		to_chat(user, "<i>[target.mind.show_memory()]</i>") //I can read your mind, kekeke. Output all their notes.
+//SKYRAT CHANGES END
 
 		//Some of target's recent speech, so the changeling can attempt to imitate them better.
 		//Recent as opposed to all because rounds tend to have a LOT of text.
@@ -92,15 +94,17 @@
 
 
 		var/datum/antagonist/changeling/target_ling = target.mind.has_antag_datum(/datum/antagonist/changeling)
-		if(target_ling)//If the target was a changeling, suck out their extra juice and objective points!
+		if(target_ling && !target_ling.hostile_absorbed)//If the target was a changeling, suck out their extra juice and objective points!
 			to_chat(user, "<span class='boldnotice'>[target] was one of us. We have absorbed their power.</span>")
 			target_ling.remove_changeling_powers()
 			changeling.geneticpoints += round(target_ling.geneticpoints/2)
+			changeling.maxgeneticpoints += round(target_ling.geneticpoints/2)
 			target_ling.geneticpoints = 0
 			target_ling.canrespec = 0
 			changeling.chem_storage += round(target_ling.chem_storage/2)
 			changeling.chem_charges += min(target_ling.chem_charges, changeling.chem_storage)
 			target_ling.chem_charges = 0
+			target_ling.hostile_absorbed = TRUE
 			target_ling.chem_storage = 0
 			changeling.absorbedcount += (target_ling.absorbedcount)
 			target_ling.stored_profiles.len = 1

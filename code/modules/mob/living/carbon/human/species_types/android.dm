@@ -9,7 +9,14 @@
 	gib_types = /obj/effect/gibspawner/robot
 	damage_overlay_type = "synth"
 	mutanttongue = /obj/item/organ/tongue/robot
+	species_language_holder = /datum/language_holder/synthetic
 	limbs_id = "synth"
+	//SKYRAT CHANGE - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
+	exotic_bloodtype = "SY"
+	exotic_blood_color = BLOOD_COLOR_SYNTHETIC
+	rainbowblood = TRUE
+	//
 
 /datum/species/android/on_species_gain(mob/living/carbon/C)
 	. = ..()

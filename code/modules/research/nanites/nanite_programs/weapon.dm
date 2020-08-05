@@ -6,6 +6,7 @@
 	desc = "The nanites destroy cellular structures in the host's body, causing brute damage."
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/necrotic)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/flesh_eating/active_effect()
 	if(iscarbon(host_mob))
@@ -21,6 +22,7 @@
 	desc = "The nanites deliver poisonous chemicals to the host's internal organs, causing toxin damage and vomiting."
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/toxic)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/poison/active_effect()
 	host_mob.adjustToxLoss(1)
@@ -35,6 +37,7 @@
 	desc = "This program invades the memory space used by other programs, causing frequent corruptions and errors."
 	use_rate = 0
 	rogue_types = list(/datum/nanite_program/toxic)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/memory_leak/active_effect()
 	if(prob(6))
@@ -48,6 +51,7 @@
 	desc = "Nanites will consume organic matter to improve their replication rate, damaging the host. The efficiency increases with the volume of nanites, requiring 200 to break even."
 	use_rate = 0
 	rogue_types = list(/datum/nanite_program/necrotic)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/aggressive_replication/active_effect()
 	var/extra_regen = round(nanites.nanite_volume / 50, 0.1)
@@ -84,7 +88,7 @@
 /datum/nanite_program/explosive/on_trigger(comm_message)
 	host_mob.visible_message("<span class='warning'>[host_mob] starts emitting a high-pitched buzzing, and [host_mob.p_their()] skin begins to glow...</span>",\
 							"<span class='userdanger'>You start emitting a high-pitched buzzing, and your skin begins to glow...</span>")
-	addtimer(CALLBACK(src, .proc/boom), CLAMP((nanites.nanite_volume * 0.35), 25, 150))
+	addtimer(CALLBACK(src, .proc/boom), clamp((nanites.nanite_volume * 0.35), 25, 150))
 
 /datum/nanite_program/explosive/proc/boom()
 	var/nanite_amount = nanites.nanite_volume
@@ -102,6 +106,7 @@
 	trigger_cost = 12
 	trigger_cooldown = 10
 	rogue_types = list(/datum/nanite_program/nerve_decay)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/heart_stop/on_trigger(comm_message)
 	if(iscarbon(host_mob))
@@ -134,6 +139,7 @@
 	desc = "The nanites cause buildup of flammable fluids under the host's skin, then ignites them."
 	use_rate = 4
 	rogue_types = list(/datum/nanite_program/skin_decay, /datum/nanite_program/cryo)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/pyro/check_conditions()
 	if(host_mob.fire_stacks >= 10 && host_mob.on_fire)
@@ -149,6 +155,7 @@
 	desc = "The nanites rapidly sink heat through the host's skin, lowering their temperature."
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/skin_decay, /datum/nanite_program/pyro)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/cryo/check_conditions()
 	if(host_mob.bodytemperature <= 70)

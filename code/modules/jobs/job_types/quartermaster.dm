@@ -24,6 +24,8 @@
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINING,
 					ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_KEYCARD_AUTH, ACCESS_RC_ANNOUNCE,
 					ACCESS_SEC_DOORS, ACCESS_HEADS)
+	paycheck = PAYCHECK_HARD //They can already buy stuff using cargo budget, don't give em a command-level paycheck.
+	paycheck_department = ACCOUNT_CAR
 
 	display_order = JOB_DISPLAY_ORDER_QUARTERMASTER
 	blacklisted_quirks = list(/datum/quirk/mute, /datum/quirk/brainproblems, /datum/quirk/insanity)
@@ -39,7 +41,6 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/clipboard
-	id = /obj/item/card/id/silver
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic = 1, /obj/item/modular_computer/tablet/preset/advanced = 1)
 
 	chameleon_extras = /obj/item/stamp/qm

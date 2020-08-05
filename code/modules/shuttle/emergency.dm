@@ -245,6 +245,9 @@
 	if(!IS_DOCKED)
 		return
 
+	if(SSshuttle.emergency.mode == SHUTTLE_DISABLED)
+		return
+
 	if((obj_flags & EMAGGED) || ENGINES_STARTED)	//SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LAUNCH IN 10 SECONDS
 		to_chat(user, "<span class='warning'>The shuttle is already about to launch!</span>")
 		return
@@ -310,12 +313,18 @@
 
 /obj/docking_port/mobile/emergency/request(obj/docking_port/stationary/S, area/signalOrigin, reason, redAlert, set_coefficient=null, silent = FALSE)
 	if(!isnum(set_coefficient))
-		var/security_num = seclevel2num(get_security_level())
+		var/security_num = SECLEVEL2NUM(NUM2SECLEVEL(GLOB.security_level))
 		switch(security_num)
 			if(SEC_LEVEL_GREEN)
 				set_coefficient = 2
 			if(SEC_LEVEL_BLUE)
 				set_coefficient = 1.2
+			//Skyrat change start
+			if(SEC_LEVEL_VIOLET)
+				set_coefficient = 0.8
+			if(SEC_LEVEL_ORANGE)
+				set_coefficient = 0.8
+			//Skyrat change stop
 			if(SEC_LEVEL_AMBER)
 				set_coefficient = 0.8
 			else
@@ -338,9 +347,11 @@
 		SSshuttle.emergencyLastCallLoc = null
 
 	if(!silent)
-		priority_announce("The emergency shuttle has been called. [redAlert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ]", null, "shuttlecalled", "Priority")
+		priority_announce("The emergency shuttle has been called. [redAlert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ][SSshuttle.adminEmergencyNoRecall ? "\n\nWarning: Shuttle recall subroutines disabled; Recall not possible." : ""]", null, "shuttlecalled", "Priority")
 
 /obj/docking_port/mobile/emergency/cancel(area/signalOrigin)
+	if(SSshuttle.adminEmergencyNoRecall)
+		return
 	if(mode != SHUTTLE_CALL)
 		return
 	if(SSshuttle.emergencyNoRecall)
@@ -451,6 +462,9 @@
 		if(SHUTTLE_STRANDED)
 			SSshuttle.checkHostileEnvironment()
 
+		if(SHUTTLE_DISABLED)
+			SSshuttle.checkHostileEnvironment()
+
 		if(SHUTTLE_ESCAPE)
 			if(sound_played && time_left <= HYPERSPACE_END_TIME)
 				var/list/areas = list()
@@ -557,7 +571,7 @@
 	dwidth = 1
 	width = 3
 	height = 4
-	var/target_area = /area/lavaland/surface/outdoors
+	var/target_area = list(/area/lavaland/surface/outdoors, /area/icemoon/underground/unexplored/rivers)
 	var/edge_distance = 16
 	// Minimal distance from the map edge, setting this too low can result in shuttle landing on the edge and getting "sliced"
 

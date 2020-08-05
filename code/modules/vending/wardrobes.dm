@@ -1,6 +1,16 @@
 /obj/item/vending_refill/wardrobe
 	icon_state = "refill_clothes"
 
+/obj/machinery/vending/wardrobe
+	default_price = PRICE_NORMAL
+	extra_price = PRICE_EXPENSIVE
+	payment_department = NO_FREEBIES
+	input_display_header = "Returned Clothing"
+
+/obj/machinery/vending/wardrobe/canLoadItem(obj/item/I,mob/user)
+	return (I.type in products)
+
+// SKYRAT EDIT: Courier Bags
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	name = "\improper SecDrobe"
 	desc = "A vending machine for security and security-related clothing!"
@@ -8,9 +18,11 @@
 	product_ads = "Beat perps in style!;It's red so you can't see the blood!;You have the right to be fashionable!;Now you can be the fashion police you always wanted to be!"
 	vend_reply = "Thank you for using the SecDrobe!"
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/security = 2,
-					/obj/item/storage/backpack/security = 2,
-					/obj/item/storage/backpack/satchel/sec = 2,
-					/obj/item/storage/backpack/duffelbag/sec = 3,
+					/obj/item/storage/backpack/security = 5,
+					/obj/item/storage/backpack/satchel/sec = 5,
+					/obj/item/storage/backpack/duffelbag/sec = 5,
+					/obj/item/storage/backpack/courier/sec = 5,
+// SKYRAT EDIT CLOSE
 					/obj/item/clothing/under/rank/security/officer = 5,
 					/obj/item/clothing/shoes/jackboots = 5,
 					/obj/item/clothing/head/beret/sec =5,
@@ -22,10 +34,14 @@
 	premium = list(/obj/item/clothing/under/rank/security/officer/formal = 5,
 					/obj/item/clothing/head/beret/sec/navyofficer = 5)
 	refill_canister = /obj/item/vending_refill/wardrobe/sec_wardrobe
+	payment_department = ACCOUNT_SEC
+	cost_multiplier_per_dept = list(ACCOUNT_SEC = 0)
+	default_price = PRICE_ABOVE_NORMAL
+	extra_price = PRICE_EXPENSIVE
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
 	machine_name = "SecDrobe"
-
+// SKYRAT EDIT: Courier Bags
 /obj/machinery/vending/wardrobe/medi_wardrobe
 	name = "\improper MediDrobe"
 	desc = "A vending machine rumoured to be capable of dispensing clothing for medical personnel."
@@ -37,7 +53,10 @@
 					/obj/item/storage/backpack/duffelbag/med = 5,
 					/obj/item/storage/backpack/medic = 5,
 					/obj/item/storage/backpack/satchel/med = 5,
+					/obj/item/storage/backpack/courier/med = 5,
+					// SKYRAT EDIT CLOSE
 					/obj/item/clothing/suit/hooded/wintercoat/medical = 5,
+					/obj/item/clothing/suit/hooded/wintercoat/paramedic = 2,
 					/obj/item/clothing/under/rank/medical/doctor/nurse = 5,
 					/obj/item/clothing/head/nursehat = 5,
 					/obj/item/clothing/under/rank/medical/doctor/skirt= 5,
@@ -57,10 +76,12 @@
 					/obj/item/clothing/suit/apron/surgical = 5,
 					/obj/item/clothing/mask/surgical = 5)
 	refill_canister = /obj/item/vending_refill/wardrobe/medi_wardrobe
+	payment_department = ACCOUNT_MED
+	cost_multiplier_per_dept = list(ACCOUNT_MED = 0)
 
 /obj/item/vending_refill/wardrobe/medi_wardrobe
 	machine_name = "MediDrobe"
-
+// SKYRAT EDIT: Courier Bags
 /obj/machinery/vending/wardrobe/engi_wardrobe
 	name = "EngiDrobe"
 	desc = "A vending machine renowned for vending industrial grade clothing."
@@ -72,6 +93,8 @@
 					/obj/item/storage/backpack/duffelbag/engineering = 3,
 					/obj/item/storage/backpack/industrial = 3,
 					/obj/item/storage/backpack/satchel/eng = 3,
+					/obj/item/storage/backpack/courier/engi = 3,
+					// SKYRAT EDIT CLOSE
 					/obj/item/clothing/suit/hooded/wintercoat/engineering = 3,
 					/obj/item/clothing/under/rank/engineering/engineer = 5,
 					/obj/item/clothing/under/rank/engineering/engineer/skirt = 5,
@@ -80,10 +103,12 @@
 					/obj/item/clothing/head/hardhat = 5,
 					/obj/item/clothing/head/hardhat/weldhat = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/engi_wardrobe
+	payment_department = ACCOUNT_ENG
+	cost_multiplier_per_dept = list(ACCOUNT_ENG = 0)
 
 /obj/item/vending_refill/wardrobe/engi_wardrobe
 	machine_name = "EngiDrobe"
-
+// SKYRAT EDIT: Courier Bags
 /obj/machinery/vending/wardrobe/atmos_wardrobe
 	name = "AtmosDrobe"
 	desc = "This relatively unknown vending machine delivers clothing for Atmospherics Technicians, an equally unknown job."
@@ -95,12 +120,16 @@
 					/obj/item/storage/backpack/duffelbag/engineering = 3,
 					/obj/item/storage/backpack/satchel/eng = 3,
 					/obj/item/storage/backpack/industrial = 3,
+					/obj/item/storage/backpack/courier/engi = 3,
+					// SKYRAT EDIT CLOSE
 					/obj/item/clothing/head/hardhat/weldhat/dblue = 3,
 					/obj/item/clothing/suit/hooded/wintercoat/engineering/atmos = 3,
 					/obj/item/clothing/under/rank/engineering/atmospheric_technician = 5,
 					/obj/item/clothing/under/rank/engineering/atmospheric_technician/skirt = 5,
 					/obj/item/clothing/shoes/sneakers/black = 5)
 	refill_canister = /obj/item/vending_refill/wardrobe/atmos_wardrobe
+	payment_department = ACCOUNT_ENG
+	cost_multiplier_per_dept = list(ACCOUNT_ENG = 0)
 
 /obj/item/vending_refill/wardrobe/atmos_wardrobe
 	machine_name = "AtmosDrobe"
@@ -119,6 +148,8 @@
 					/obj/item/clothing/head/soft = 5,
 					/obj/item/radio/headset/headset_cargo = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/cargo_wardrobe
+	payment_department = ACCOUNT_CAR
+	cost_multiplier_per_dept = list(ACCOUNT_CAR = 0)
 
 /obj/item/vending_refill/wardrobe/cargo_wardrobe
 	machine_name = "CargoDrobe"
@@ -141,10 +172,12 @@
 					/obj/item/clothing/mask/bandana/skull = 2)
 	contraband = list(/obj/item/clothing/suit/hooded/techpriest = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/robo_wardrobe
+	payment_department = ACCOUNT_SCI
+	cost_multiplier_per_dept = list(ACCOUNT_SCI = 0)
 
 /obj/item/vending_refill/wardrobe/robo_wardrobe
 	machine_name = "RoboDrobe"
-
+// SKYRAT EDIT: Courier Bags
 /obj/machinery/vending/wardrobe/science_wardrobe
 	name = "SciDrobe"
 	desc = "A simple vending machine suitable to dispense well tailored science clothing. Endorsed by Cubans."
@@ -155,6 +188,8 @@
 					/obj/item/clothing/head/beret/sci = 3,
 					/obj/item/storage/backpack/science = 3,
 					/obj/item/storage/backpack/satchel/tox = 3,
+					/obj/item/storage/backpack/courier/sci = 3,
+					// SKYRAT EDIT CLOSE
 					/obj/item/clothing/suit/hooded/wintercoat/science = 3,
 					/obj/item/clothing/under/rank/rnd/scientist = 4,
 					/obj/item/clothing/under/rank/rnd/scientist/skirt = 4,
@@ -163,10 +198,12 @@
 					/obj/item/radio/headset/headset_sci = 4,
 					/obj/item/clothing/mask/gas = 5)
 	refill_canister = /obj/item/vending_refill/wardrobe/science_wardrobe
+	payment_department = ACCOUNT_SCI
+	cost_multiplier_per_dept = list(ACCOUNT_SCI = 0)
 
 /obj/item/vending_refill/wardrobe/science_wardrobe
 	machine_name = "SciDrobe"
-
+// SKYRAT EDIT: Courier Bags
 /obj/machinery/vending/wardrobe/hydro_wardrobe
 	name = "Hydrobe"
 	desc = "A machine with a catchy name. It dispenses botany related clothing and gear."
@@ -175,6 +212,8 @@
 	vend_reply = "Thank you for using the Hydrobe!"
 	products = list(/obj/item/storage/backpack/botany = 3,
 					/obj/item/storage/backpack/satchel/hyd = 3,
+					/obj/item/storage/backpack/courier/hydr = 3,
+					// SKYRAT EDIT CLOSE
 					/obj/item/clothing/suit/hooded/wintercoat/hydro = 2,
 					/obj/item/clothing/suit/apron = 3,
 					/obj/item/clothing/suit/apron/overalls = 5,
@@ -182,6 +221,8 @@
 					/obj/item/clothing/under/rank/civilian/hydroponics/skirt = 5,
 					/obj/item/clothing/mask/bandana = 4)
 	refill_canister = /obj/item/vending_refill/wardrobe/hydro_wardrobe
+	payment_department = ACCOUNT_SRV
+	cost_multiplier_per_dept = list(ACCOUNT_SRV = 0)
 
 /obj/item/vending_refill/wardrobe/hydro_wardrobe
 	machine_name = "HyDrobe"
@@ -206,6 +247,8 @@
 					/obj/item/clothing/glasses/regular/jamjar = 1,
 					/obj/item/storage/bag/books = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/curator_wardrobe
+	payment_department = ACCOUNT_CIV
+	cost_multiplier_per_dept = list(ACCOUNT_CIV = 0)
 
 /obj/item/vending_refill/wardrobe/curator_wardrobe
 	machine_name = "CuraDrobe"
@@ -234,6 +277,8 @@
 					/obj/item/clothing/neck/petcollar = 3,
 					/obj/item/storage/belt/bandolier = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/bar_wardrobe
+	payment_department = ACCOUNT_SRV
+	cost_multiplier_per_dept = list(ACCOUNT_SRV = 0)
 
 /obj/item/vending_refill/wardrobe/bar_wardrobe
 	machine_name = "BarDrobe"
@@ -259,6 +304,8 @@
 					/obj/item/book/granter/crafting_recipe/cooking_sweets_101 = 2,
 					/obj/item/book/granter/crafting_recipe/coldcooking = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/chef_wardrobe
+	payment_department = ACCOUNT_SRV
+	cost_multiplier_per_dept = list(ACCOUNT_SRV = 0)
 
 /obj/item/vending_refill/wardrobe/chef_wardrobe
 	machine_name = "ChefDrobe"
@@ -275,7 +322,7 @@
 					/obj/item/cartridge/janitor = 3,
 					/obj/item/clothing/gloves/color/black = 2,
 					/obj/item/clothing/head/soft/purple = 2,
-					/obj/item/twohanded/broom = 2,
+					/obj/item/broom = 2,
 					/obj/item/paint/paint_remover = 2,
 					/obj/item/melee/flyswatter = 2,
 					/obj/item/flashlight = 2,
@@ -290,6 +337,8 @@
 					/obj/item/screwdriver = 2,
 					/obj/item/stack/cable_coil/random = 4)
 	refill_canister = /obj/item/vending_refill/wardrobe/jani_wardrobe
+	payment_department = ACCOUNT_SRV
+	cost_multiplier_per_dept = list(ACCOUNT_SRV = 0)
 
 /obj/item/vending_refill/wardrobe/jani_wardrobe
 	machine_name = "JaniDrobe"
@@ -321,6 +370,8 @@
 					/obj/item/clothing/shoes/laceup = 3,
 					/obj/item/clothing/accessory/lawyers_badge = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/law_wardrobe
+	payment_department = ACCOUNT_CIV
+	cost_multiplier_per_dept = list(ACCOUNT_CIV = 0)
 
 /obj/item/vending_refill/wardrobe/law_wardrobe
 	machine_name = "LawDrobe"
@@ -347,10 +398,12 @@
 	premium = list(/obj/item/toy/plush/plushvar = 1,
 					/obj/item/toy/plush/narplush = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/chap_wardrobe
+	payment_department = ACCOUNT_CIV
+	cost_multiplier_per_dept = list(ACCOUNT_CIV = 0)
 
 /obj/item/vending_refill/wardrobe/chap_wardrobe
 	machine_name = "ChapDrobe"
-
+// SKYRAT EDIT: Courier Bags
 /obj/machinery/vending/wardrobe/chem_wardrobe
 	name = "ChemDrobe"
 	desc = "A vending machine for dispensing chemistry related clothing."
@@ -366,8 +419,12 @@
 					/obj/item/storage/backpack/chemistry = 3,
 					/obj/item/storage/backpack/satchel/chem = 3,
 					/obj/item/storage/bag/chemistry = 3,
+					/obj/item/storage/backpack/courier/chem = 3,
+					// SKYRAT EDIT CLOSE
 					/obj/item/fermichem/pHbooklet = 3)//pH indicator)
 	refill_canister = /obj/item/vending_refill/wardrobe/chem_wardrobe
+	payment_department = ACCOUNT_MED
+	cost_multiplier_per_dept = list(ACCOUNT_MED = 0)
 
 /obj/item/vending_refill/wardrobe/chem_wardrobe
 	machine_name = "ChemDrobe"
@@ -386,10 +443,12 @@
 					/obj/item/storage/backpack/genetics = 3,
 					/obj/item/storage/backpack/satchel/gen = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/gene_wardrobe
+	payment_department = ACCOUNT_MED
+	cost_multiplier_per_dept = list(ACCOUNT_MED = 0)
 
 /obj/item/vending_refill/wardrobe/gene_wardrobe
 	machine_name = "GeneDrobe"
-
+// SKYRAT EDIT: Courier Bags
 /obj/machinery/vending/wardrobe/viro_wardrobe
 	name = "ViroDrobe"
 	desc = "An unsterilized machine for dispending virology related clothing."
@@ -404,24 +463,29 @@
 					/obj/item/clothing/suit/toggle/labcoat/virologist = 3,
 					/obj/item/clothing/mask/surgical = 3,
 					/obj/item/storage/backpack/virology = 3,
-					/obj/item/storage/backpack/satchel/vir = 3)
+					/obj/item/storage/backpack/satchel/vir = 3,
+					/obj/item/storage/backpack/courier/viro = 3)
+					// SKYRAT EDIT CLOSE
 	refill_canister = /obj/item/vending_refill/wardrobe/viro_wardrobe
+	payment_department = ACCOUNT_MED
+	cost_multiplier_per_dept = list(ACCOUNT_MED = 0)
 
 /obj/item/vending_refill/wardrobe/viro_wardrobe
 	machine_name = "ViroDrobe"
-
+// SKYRAT EDIT: Courier Bags
 /obj/machinery/vending/wardrobe/cap_wardrobe
 	name = "Captain's Wardrobe"
 	desc = "The latest and greatest in Nanotrasen fashion for your great leader."
 	icon_state = "capsdrobe"
 	icon_deny = "capsdrobe-deny"
 	product_ads = "Only the greatest for a commander such as ours."
-	req_access = list(ACCESS_CAPTAIN)
 	vend_reply = "A wonderful day to you, great leader."
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/captain = 1,
 					/obj/item/storage/backpack/captain = 1,
 					/obj/item/storage/backpack/satchel/cap = 1,
 					/obj/item/storage/backpack/duffelbag/captain = 1,
+					/obj/item/storage/backpack/courier/com = 1,
+					// SKYRAT EDIT CLOSE
 					/obj/item/clothing/neck/cloak/cap = 1,
 					/obj/item/clothing/shoes/sneakers/brown = 2,
 					/obj/item/clothing/under/rank/captain = 1,
@@ -436,6 +500,13 @@
 					/obj/item/clothing/glasses/sunglasses/gar/supergar = 1,
 					/obj/item/clothing/gloves/color/captain = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/cap_wardrobe
+	payment_department = ACCOUNT_CIV
+	default_price = PRICE_ALMOST_EXPENSIVE
+	extra_price = PRICE_ABOVE_EXPENSIVE
+
+/obj/machinery/vending/wardrobe/cap_wardrobe/Initialize()
+	. = ..()
+	cost_multiplier_per_dept = list("[ACCESS_CAPTAIN]" = 0)
 
 /obj/item/vending_refill/wardrobe/cap_wardrobe
 	machine_name = "Captain's Wardrobe"

@@ -34,7 +34,7 @@
 		if(is_dynamic)
 			var/threat_spent = CONFIG_GET(number/dynamic_assassinate_cost)
 			mode.spend_threat(threat_spent)
-			mode.log_threat("[T.owner.name] spent [threat_spent] on an assassination target.")
+			mode.log_threat("[T.owner.name] added [threat_spent] on an assassination target.")
 		var/list/active_ais = active_ais()
 		if(active_ais.len && prob(100/GLOB.joined_player_list.len))
 			var/datum/objective/destroy/destroy_objective = new
@@ -42,10 +42,12 @@
 			destroy_objective.find_target()
 			T.add_objective(destroy_objective)
 		else if(prob(30) || (is_dynamic && (mode.storyteller.flags & NO_ASSASSIN)))
-			var/datum/objective/maroon/maroon_objective = new
-			maroon_objective.owner = T.owner
-			maroon_objective.find_target()
-			T.add_objective(maroon_objective)
+			//Skyrat changes - changes maroon to flavor obj 
+			var/datum/objective/flavor/traitor/flavor_objective = new
+			flavor_objective.owner = T.owner
+			flavor_objective.forge_objective()
+			T.add_objective(flavor_objective)
+			//End of skyrat changes
 		else if(prob(max(0,assassin_prob-20)))
 			var/datum/objective/assassinate/kill_objective = new
 			kill_objective.owner = T.owner

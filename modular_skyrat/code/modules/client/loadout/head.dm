@@ -25,7 +25,7 @@
 
 /datum/gear/neethelm
 	name = "Desperate Assistance Battleforce helmet"
-  
+
 /datum/gear/papersack
 	name = "Paper Sack"
 	category = SLOT_HEAD
@@ -83,7 +83,8 @@
 /datum/gear/baseballcap/security
 	name = "Security Cap"
 	path = /obj/item/clothing/head/soft/sec
-	restricted_roles = list("Security Officer", "Warden", "Head of Security")
+	restricted_roles = SEC_ROLES
+	restricted_desc = "Security"
 
 /datum/gear/baseballcap/emt
 	name = "EMT Cap"
@@ -121,3 +122,48 @@
 /datum/gear/beanie/cyan
 	name = "Cyan Beanie"
 	path = /obj/item/clothing/head/beanie/cyan
+
+/datum/gear/trekcap
+	name = "EntCorp Officer's Cap (White)"
+
+/datum/gear/trekcapmedisci
+	name = "EntCorp Officer's Cap (Blue)"
+	restricted_roles = MEDSCI_ROLES
+
+/datum/gear/trekcapsec
+	name = "EntCorp Officer's Cap (Red)"
+	restricted_roles = list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster", "Blueshield", "Brig Physician", "Warden", "Detective", "Security Officer")
+
+/datum/gear/trekcapeng
+	name = "EntCorp Officer's Cap (Yellow)"
+
+/datum/gear/trekcapcap
+	name = "EntCorp Officer's Cap (Black)"
+	restricted_roles = list("Captain", "Head of Personnel", "Blueshield")
+
+// orvilike "original" kepi
+/datum/gear/orvkepicom
+	name = "EntCorp Kepi, command"
+	description = "A visored cap. Intended to be used with Orvlike reskin of EntCorp uniform."
+	restricted_roles = CMD_ROLES
+
+/datum/gear/orvkepiops
+	name = "EntCorp Kepi, ops/sec"
+	description = "A visored cap. Intended to be used with Orvlike reskin of EntCorp uniform."
+	restricted_roles = OPRS_ROLES
+
+/datum/gear/orvkepimedsci
+	name = "EntCorp Kepi, medsci"
+	description = "A visored cap. Intended to be used with Orvlike reskin of EntCorp uniform."
+	restricted_roles = MEDSCI_ROLES
+
+/datum/gear/orvkepisrv
+	name = "EntCorp Kepi, service"
+	description = "A visored cap. Intended to be used with Orvlike reskin of EntCorp uniform."
+	restricted_desc = "Service and Civilian"
+	restricted_roles = CIV_ROLES
+
+/datum/gear/orvkepiass
+	name = "EntCorp Kepi, assistant"
+	description = "A visored cap. Intended to be used with Orvlike reskin of EntCorp uniform."
+	restricted_roles = list("Assistant")

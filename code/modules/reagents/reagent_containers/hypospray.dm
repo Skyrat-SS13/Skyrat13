@@ -95,7 +95,8 @@
 	ignore_flags = 1 //so you can medipen through hardsuits
 	reagent_flags = DRAWABLE
 	flags_1 = null
-	list_reagents = list(/datum/reagent/medicine/epinephrine = 10, /datum/reagent/preservahyde = 3)
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 10, /datum/reagent/medicine/preservahyde = 3) // Skyrat Edit - repaths preservahyde
+	custom_premium_price = PRICE_ALMOST_EXPENSIVE
 
 /obj/item/reagent_containers/hypospray/medipen/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to choke on \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -193,6 +194,15 @@
 	volume = 250
 	list_reagents = list(/datum/reagent/water/holywater = 150, /datum/reagent/peaceborg_tire = 50, /datum/reagent/peaceborg_confuse = 50)
 	amount_per_transfer_from_this = 50
+// SKYRAT EDIT: Adding Injectors to ChemMaster
+/obj/item/reagent_containers/hypospray/medipen/empty
+	name = "medipen"
+	desc = "An empty medipen."
+	icon_state = "lepopen"
+	volume = 10
+	list_reagents = null
+	amount_per_transfer_from_this = 10
+	ignore_flags = FALSE //so you can't medipen through hardsuits
 
 #define HYPO_SPRAY 0
 #define HYPO_INJECT 1
@@ -202,8 +212,8 @@
 #define SELF_SPRAY 15
 #define SELF_INJECT 15
 
-#define DELUXE_WAIT_SPRAY 20
-#define DELUXE_WAIT_INJECT 20
+#define DELUXE_WAIT_SPRAY 0 // Skyrat change
+#define DELUXE_WAIT_INJECT 5 // Skyrat change
 #define DELUXE_SELF_SPRAY 10
 #define DELUXE_SELF_INJECT 10
 
@@ -331,7 +341,6 @@
 	else
 		to_chat(user, "<span class='notice'>This doesn't fit in [src].</span>")
 		return FALSE
-	return FALSE
 
 /obj/item/hypospray/mkii/AltClick(mob/user)
 	. = ..()

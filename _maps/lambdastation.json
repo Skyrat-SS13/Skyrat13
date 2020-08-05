@@ -1,7 +1,7 @@
 {
     "map_name": "Lambda Station",
     "map_path": "map_files/LambdaStation",
-    "map_file": "lambda.dmm",
+    "map_file": "lambda_Skyrat.dmm",
     "shuttles": {
 	    "cargo": "cargo_box",
 	    "ferry": "ferry_fancy",

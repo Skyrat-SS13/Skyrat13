@@ -29,7 +29,7 @@ God bless America.
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	layer = BELOW_OBJ_LAYER
-	var/obj/item/reagent_containers/food/snacks/deepfryholder/frying	//What's being fried RIGHT NOW?
+	var/obj/item/frying	//What's being fried RIGHT NOW?
 	var/cook_time = 0
 	var/oil_use = 0.05 //How much cooking oil is used per tick
 	var/fry_speed = 1 //How quickly we fry food
@@ -82,28 +82,30 @@ God bless America.
 		I.reagents.trans_to(src, I.reagents.total_volume)
 		qdel(I)
 		return
-	if(istype(I,/obj/item/clothing/head/mob_holder))
-		to_chat(user, "<span class='warning'>This does not fit in the fryer.</span>") // TODO: Deepfrying instakills mobs, spawns a whole deep-fried mob.
-		return
+//	if(istype(I,/obj/item/clothing/head/mob_holder)) // Skyrat edit - fried mobs
+//		to_chat(user, "<span class='warning'>This does not fit in the fryer.</span>") // TODO: Deepfrying instakills mobs, spawns a whole deep-fried mob.
+//		return
 	if(!reagents.has_reagent(/datum/reagent/consumable/cooking_oil))
 		to_chat(user, "<span class='warning'>[src] has no cooking oil to fry with!</span>")
 		return
 	if(I.resistance_flags & INDESTRUCTIBLE)
 		to_chat(user, "<span class='warning'>You don't feel it would be wise to fry [I]...</span>")
 		return
-	if(istype(I, /obj/item/reagent_containers/food/snacks/deepfryholder))
+	if(I.GetComponent(/datum/component/fried))
 		to_chat(user, "<span class='userdanger'>Your cooking skills are not up to the legendary Doublefry technique.</span>")
 		return
 	if(default_unfasten_wrench(user, I))
 		return
 	else if(default_deconstruction_screwdriver(user, "fryer_off", "fryer_off" ,I))	//where's the open maint panel icon?!
 		return
+	else if(I.reagents && !isfood(I))
+		return
 	else
 		if(is_type_in_typecache(I, deepfry_blacklisted_items) || HAS_TRAIT(I, TRAIT_NODROP) || (I.item_flags & (ABSTRACT | DROPDEL)))
 			return ..()
 		else if(!frying && user.transferItemToLoc(I, src))
+			frying = I
 			to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
-			frying = new/obj/item/reagent_containers/food/snacks/deepfryholder(src, I)
 			icon_state = "fryer_on"
 			fry_loop.start()
 

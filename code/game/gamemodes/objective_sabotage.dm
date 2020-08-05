@@ -33,19 +33,20 @@
 /datum/sabotage_objective/processing/check_conditions()
 	return won
 
-/datum/sabotage_objective/processing/power_sink
+
+/*/datum/sabotage_objective/processing/power_sink
 	name = "Drain at least 100 megajoules of power using a power sink."
 	sabotage_type = "powersink"
 	special_equipment = list(/obj/item/sbeacondrop/powersink)
 	var/sink_found = FALSE
 	var/count = 0
 
-/*/datum/sabotage_objective/processing/power_sink/check_condition_processing()
+/datum/sabotage_objective/processing/power_sink/check_condition_processing()
 	for(var/s in GLOB.power_sinks)
 		var/obj/item/powersink/sink = s
-		won = max(won,sink.power_drained/1e8)
+		won = max(won,sink.power_drained/1e8)*/
 
-/obj/item/paper/guides/antag/supermatter_sabotage
+/*/obj/item/paper/guides/antag/supermatter_sabotage
 	info = "Ways to sabotage a supermatter:<br>\
 	<ul>\
 	<li>Set the air alarm's operating mode to anything that isn't 'draught' (yes, anything, though 'off' works best). Or just smash the air alarm, that works too.</li>\
@@ -76,27 +77,33 @@
 	return FALSE
 
 /datum/sabotage_objective/processing/supermatter/can_run()
-	return (locate(/obj/machinery/power/supermatter_crystal) in GLOB.machines)
-*/
+	return (locate(/obj/machinery/power/supermatter_crystal) in GLOB.machines) */
+/*
 /datum/sabotage_objective/station_integrity
 	name = "Make sure the station is at less than 80% integrity by the end. Smash walls, windows etc. to reach this goal."
 	sabotage_type = "integrity"
 
 /datum/sabotage_objective/station_integrity/check_conditions()
 	return 5-(max(SSticker.station_integrity*4,320)/80)
-
+*/
 /datum/sabotage_objective/cloner
 	name = "Destroy all Nanotrasen cloning machines."
 	sabotage_type = "cloner"
 
 /datum/sabotage_objective/cloner/check_conditions()
-	return !(locate(/obj/machinery/clonepod) in GLOB.machines)
+	for(var/obj/machinery/clonepod/cloner in GLOB.machines)
+		if(is_station_level(cloner.z))
+			return FALSE
+	return TRUE
 
 /datum/sabotage_objective/ai_law
 	name = "Upload a hacked law to the AI."
 	sabotage_type = "ailaw"
 	special_equipment = list(/obj/item/aiModule/syndicate)
 	excludefromjob = list("Chief Engineer","Research Director","Head of Personnel","Captain","Chief Medical Officer","Head Of Security")
+
+/datum/sabotage_objective/ai_law/can_run()
+	return length(active_ais())
 
 /datum/sabotage_objective/ai_law/check_conditions()
 	for (var/i in GLOB.ai_list)

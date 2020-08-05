@@ -174,23 +174,21 @@
 
 	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
 	if(LAZYLEN(GLOB.round_end_notifiees))
-		send2irc("Notice", "[GLOB.round_end_notifiees.Join(", ")] the round has ended.")
+		world.TgsTargetedChatBroadcast("[GLOB.round_end_notifiees.Join(", ")] the round has ended.", FALSE)
 
 	for(var/I in round_end_events)
 		var/datum/callback/cb = I
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
-
+	RollCredits()
 	for(var/client/C in GLOB.clients)
-		if(!C.credits)
-			C.RollCredits()
 		C.playtitlemusic(40)
 	CONFIG_SET(flag/suicide_allowed,TRUE) // EORG suicides allowed
 	var/popcount = gather_roundend_feedback()
 	display_report(popcount)
 
 	CHECK_TICK
-
+	/* Skyrat change, removed.
 	// Add AntagHUD to everyone, see who was really evil the whole time!
 	for(var/datum/atom_hud/antag/H in GLOB.huds)
 		for(var/m in GLOB.player_list)
@@ -198,7 +196,7 @@
 			H.add_hud_to(M)
 
 	CHECK_TICK
-
+	*/
 	//Set news report and mode result
 	mode.set_round_result()
 
@@ -233,6 +231,7 @@
 	for(var/antag_name in total_antagonists)
 		var/list/L = total_antagonists[antag_name]
 		log_game("[antag_name]s :[L.Join(", ")].")
+	set_observer_default_invisibility(0, "<span class='warning'>The round is over! You are now visible to the living.</span>")
 
 	CHECK_TICK
 	SSdbcore.SetRoundEnd()
@@ -320,8 +319,10 @@
 				parts += "[FOURSPACES]<i>Nobody died this shift!</i>"
 	if(istype(SSticker.mode, /datum/game_mode/dynamic))
 		var/datum/game_mode/dynamic/mode = SSticker.mode
+		mode.update_playercounts()
 		parts += "[FOURSPACES]Final threat level: [mode.threat_level]"
 		parts += "[FOURSPACES]Final threat: [mode.threat]"
+		parts += "[FOURSPACES]Average threat: [mode.threat_average]"
 		parts += "[FOURSPACES]Executed rules:"
 		for(var/datum/dynamic_ruleset/rule in mode.executed_rules)
 			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
@@ -399,7 +400,9 @@
 	for (var/i in GLOB.ai_list)
 		var/mob/living/silicon/ai/aiPlayer = i
 		if(aiPlayer.mind)
-			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was <span class='redtext'>deactivated</span>"] were:"
+//SKYRAT CHANGES
+			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.mind.appear_in_round_end_report ? aiPlayer.mind.key : "Unknown"]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was <span class='redtext'>deactivated</span>"] were:"
+//END OF SKYRAT CHANGES
 			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
 
 		parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
@@ -410,14 +413,18 @@
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				borg_num--
 				if(robo.mind)
-					robolist += "<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>)[robo.stat == DEAD ? " <span class='redtext'>(Deactivated)</span>" : ""][borg_num ?", ":""]<br>"
+//SKYRAT CHANGES
+					robolist += "<b>[robo.name]</b> (Played by: <b>[robo.mind.appear_in_round_end_report ? robo.mind.key : "Unknown"]</b>)[robo.stat == DEAD ? " <span class='redtext'>(Deactivated)</span>" : ""][borg_num ?", ":""]<br>"
+//END OF SKYRAT CHANGES
 			parts += "[robolist]"
 		if(!borg_spacer)
 			borg_spacer = TRUE
 
 	for (var/mob/living/silicon/robot/robo in GLOB.silicon_mobs)
 		if (!robo.connected_ai && robo.mind)
-			parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>) [(robo.stat != DEAD)? "<span class='greentext'>survived</span> as an AI-less borg!" : "was <span class='redtext'>unable to survive</span> the rigors of being a cyborg without an AI."] Its laws were:"
+//SKYRAT CHANGES
+			parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> (Played by: <b>[robo.mind.appear_in_round_end_report ? robo.mind.key : "Unknown"]</b>) [(robo.stat != DEAD)? "<span class='greentext'>survived</span> as an AI-less borg!" : "was <span class='redtext'>unable to survive</span> the rigors of being a cyborg without an AI."] Its laws were:"
+//END OF SKYRAT CHANGES
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				parts += robo.laws.get_law_list(include_zeroth=TRUE)
@@ -483,6 +490,10 @@
 			currrent_category = A.roundend_category
 			previous_category = A
 		result += A.roundend_report()
+//SKYRAT CHANGES BEGIN
+		for(var/count in 1 to LAZYLEN(A.owner.ambitions))
+			result += "<br><B>Ambition #[count]</B>: [A.owner.ambitions[count]]"
+//SKYRAT CHANGES END
 		result += "<br><br>"
 		CHECK_TICK
 
@@ -511,7 +522,7 @@
 	if(owner && GLOB.common_report && SSticker.current_state == GAME_STATE_FINISHED)
 		SSticker.show_roundend_report(owner.client, FALSE)
 
-/datum/action/report/IsAvailable()
+/datum/action/report/IsAvailable(silent = FALSE)
 	return 1
 
 /datum/action/report/Topic(href,href_list)
@@ -526,7 +537,9 @@
 	var/jobtext = ""
 	if(ply.assigned_role)
 		jobtext = " the <b>[ply.assigned_role]</b>"
-	var/text = "<b>[ply.key]</b> was <b>[ply.name]</b>[jobtext] and"
+//SKYRAT CHANGES
+	var/text = "<b>[ply.appear_in_round_end_report ? ply.key : "Unknown"]</b> was <b>[ply.name]</b>[jobtext] and"
+//END OF SKYRAT CHANGES
 	if(ply.current)
 		if(ply.current.stat == DEAD)
 			text += " <span class='redtext'>died</span>"
@@ -561,7 +574,7 @@
 		if(objective.completable)
 			var/completion = objective.check_completion()
 			if(completion >= 1)
-				objective_parts += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='greentext'><B>Success!</span>"
+				objective_parts += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='greentext'><B>Success!</B></span>"
 			else if(completion <= 0)
 				objective_parts += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
 			else

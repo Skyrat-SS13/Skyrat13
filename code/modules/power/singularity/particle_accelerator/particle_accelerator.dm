@@ -22,7 +22,7 @@
 /obj/structure/particle_accelerator
 	name = "Particle Accelerator"
 	desc = "Part of a Particle Accelerator."
-	icon = 'icons/obj/machines/particle_accelerator.dmi'
+	icon = 'modular_skyrat/icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "none"
 	anchored = FALSE
 	density = TRUE
@@ -79,8 +79,7 @@
 				construction_state = PA_CONSTRUCTION_UNSECURED
 				did_something = TRUE
 			else if(istype(W, /obj/item/stack/cable_coil))
-				var/obj/item/stack/cable_coil/CC = W
-				if(CC.use(1))
+				if(W.use_tool(src, user, 0, 1))
 					user.visible_message("[user.name] adds wires to the [name].", \
 						"You add some wires.")
 					construction_state = PA_CONSTRUCTION_PANEL_OPEN
@@ -160,13 +159,13 @@
 /obj/structure/particle_accelerator/power_box
 	name = "Particle Focusing EM Lens"
 	desc = "This uses electromagnetic waves to focus the Alpha particles."
-	icon = 'icons/obj/machines/particle_accelerator.dmi'
+	icon = 'modular_skyrat/icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "power_box"
 	reference = "power_box"
 
 /obj/structure/particle_accelerator/fuel_chamber
 	name = "EM Acceleration Chamber"
 	desc = "This is where the Alpha particles are accelerated to <b><i>radical speeds</i></b>."
-	icon = 'icons/obj/machines/particle_accelerator.dmi'
+	icon = 'modular_skyrat/icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "fuel_chamber"
 	reference = "fuel_chamber"

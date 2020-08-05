@@ -9,31 +9,55 @@
 	return ..()
 */
 
-/mob/living/carbon/human/MouseDrop_T(mob/M as mob, mob/living/carbon/human/user as mob)
+/mob/living/MouseDrop_T(mob/M as mob, mob/living/user as mob)
 	. = ..()
 	if(M == src || src == usr || M != usr)
 		return
 	if(usr.restrained())
 		return
-	if(!ishuman(src))
-		return
 
 	user.try_interaction(src)
 
-/mob/living/carbon/human/verb/interact_with()
+/mob/living/verb/interact_with()
 	set name = "Interact With"
 	set desc = "Perform an interaction with someone."
 	set category = "IC"
 	set src in view()
 
-	if(usr != src && !usr.restrained() && ishuman(src))
+	if(!usr.restrained())
 		usr.try_interaction(src)
 
-/mob/living/carbon/human/try_interaction(mob/living/carbon/human/partner)
-	var/dat = "<B><HR><FONT size=3>Interacting with \the [partner]...</FONT></B><HR>"
+/mob/living/silicon/robot/verb/toggle_gender() //Change to add silicon genderchanges. Experimental.
+	set category = "IC"
+	set name = "Set Gender"
+	set desc = "Allows you to set your gender."
 
-	dat += "You...<br>[list_interaction_attributes()]<hr>"
-	dat += "They...<br>[partner.list_interaction_attributes()]<hr>"
+	if(stat != CONSCIOUS)
+		to_chat(usr, "<span class='warning'>You cannot toggle your gender while unconcious!</span>")
+		return
+		
+	var/choice = alert(src, "Select Gender.", "Gender", "Both", "Male", "Female")
+	switch(choice)
+		if("Both")
+			src.has_penis = TRUE
+			src.has_vagina = TRUE
+		if("Male")
+			src.has_penis = TRUE
+			src.has_vagina = FALSE
+		if("Female")
+			src.has_penis = FALSE
+			src.has_vagina = TRUE
+
+/mob/living/try_interaction(mob/living/partner)
+	var/dat
+	if(partner != src)
+		dat = "<B><HR><FONT size=3>Interacting with \the [partner]...</FONT></B><HR>"
+	else
+		dat = "<B><HR><FONT size=3>Interacting with yourself...</FONT></B><HR>"
+
+	dat += "You...<br>[list_interaction_attributes(src)]<hr>"
+	if(partner != src)
+		dat += "They...<br>[partner.list_interaction_attributes(src)]<hr>"
 
 	make_interactions()
 	for(var/interaction_key in interactions)

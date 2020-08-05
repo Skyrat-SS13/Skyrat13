@@ -262,6 +262,7 @@ em						{font-style: normal;	font-weight: bold;}
 
 .ooc					{color: #002eb8;	font-weight: bold;}
 .looc					{color: #6699CC;	font-weight: bold;}
+.rlooc					{color: #507294;	font-weight: bold;}
 .antagooc				{color: #b8002e;	font-weight: bold;}
 .adminobserverooc		{color: #0099cc;	font-weight: bold;}
 .adminooc				{color: #700038;	font-weight: bold;}
@@ -383,6 +384,7 @@ h1.alert, h2.alert		{color: #000000;}
 .noticealien			{color: #00c000;}
 .alertalien				{color: #00c000;	font-weight: bold;}
 .changeling				{color: #800080;	font-style: italic;}
+.terrorspider			{color: #320E32;}
 
 .spider					{color: #4d004d; font-weight: bold; font-size: 185%;}
 
@@ -400,9 +402,16 @@ h1.alert, h2.alert		{color: #000000;}
 .greentext				{color: #00FF00;	font-size: 185%;}
 .redtext				{color: #FF0000;	font-size: 185%;}
 .clown					{color: #FF69Bf;	font-size: 160%; font-family: "Comic Sans MS", cursive, sans-serif; font-weight: bold;}
+.singing				{font-family: "Trebuchet MS", cursive, sans-serif; font-style: italic;} /* Skyrat edit */
 .his_grace				{color: #15D512;	font-family: "Courier New", cursive, sans-serif; font-style: italic;}
 .spooky					{color: #FF6100;}
 .velvet					{color: #660015; 	font-weight: bold; animation: velvet 5000ms infinite;}
+
+.lethal					{color: #bf3d3d;	font-weight: bold;}
+.stun					{color: #0f81bc;	font-weight: bold;}
+.ion					{color: #d084d6;	font-weight: bold;}
+.xray					{color: #32c025;	font-weight: bold;}
+
 @keyframes velvet {
 	0% { color: #400020; }
 	40% { color: #FF0000; }

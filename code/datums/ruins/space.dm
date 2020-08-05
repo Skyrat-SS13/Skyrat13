@@ -218,6 +218,7 @@
 	Incompetent inspectors believe this."
 
 /datum/map_template/ruin/space/oldteleporter
+	prefix = "modular_skyrat/_maps/RandomRuins/SpaceRuins/"
 	id = "oldteleporter"
 	suffix = "oldteleporter.dmm"
 	name = "Detached Teleporter"
@@ -239,6 +240,7 @@
 
 /datum/map_template/ruin/space/oldstation
 	id = "oldstation"
+	prefix = "modular_skyrat/_maps/RandomRuins/SpaceRuins/" //Skyrat edit because this shit doesn't spawn unless the main file is edited
 	suffix = "oldstation.dmm"
 	name = "Ancient Space Station"
 	description = "The crew of a space station awaken one hundred years after a crisis. Awaking to a derelict space station on the verge of collapse, and a hostile force of invading \

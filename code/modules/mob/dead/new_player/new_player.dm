@@ -176,9 +176,6 @@
 			SSticker.queue_delay = 4
 			qdel(src)
 
-	if(!ready && href_list["preference"])
-		if(client)
-			client.prefs.process_link(src, href_list)
 	else if(!href_list["late_join"])
 		new_player_panel()
 
@@ -392,6 +389,8 @@
 
 		character.update_parallax_teleport()
 
+	job.standard_assign_skills(character.mind)
+
 	SSticker.minds += character.mind
 
 	var/mob/living/carbon/human/humanc
@@ -413,6 +412,8 @@
 			give_guns(humanc)
 		if(GLOB.summon_magic_triggered)
 			give_magic(humanc)
+		if(GLOB.curse_of_madness_triggered)
+			give_madness(humanc, GLOB.curse_of_madness_triggered)
 
 	GLOB.joined_player_list += character.ckey
 	GLOB.latejoiners += character
@@ -428,6 +429,10 @@
 
 	if(humanc && CONFIG_GET(flag/roundstart_traits))
 		SSquirks.AssignQuirks(humanc, humanc.client, TRUE, FALSE, job, FALSE)
+	//skyrat change
+	if(humanc)
+		SSlanguage.AssignLanguage(humanc, humanc.client, TRUE, FALSE, job, FALSE)
+	//
 
 	log_manifest(character.mind.key,character.mind,character,latejoin = TRUE)
 
@@ -447,6 +452,12 @@
 			level = "green"
 		if(SEC_LEVEL_BLUE)
 			level = "blue"
+		//Skyrat change start
+		if(SEC_LEVEL_ORANGE)
+			level = "orange"
+		if(SEC_LEVEL_VIOLET)
+			level = "violet"
+		//Skyrat change stop
 		if(SEC_LEVEL_AMBER)
 			level = "amber"
 		if(SEC_LEVEL_RED)
@@ -481,10 +492,16 @@
 				var/command_bold = ""
 				if(job in GLOB.command_positions)
 					command_bold = " command"
+				//SKYRAT CHANGES
+				var/jobline = "[job_datum.title] ([job_datum.current_positions])"
 				if(job_datum in SSjob.prioritized_jobs)
-					dept_dat += "<a class='job[command_bold]' style='display:block;width:170px'  href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'><span class='priority'>[job_datum.title] ([job_datum.current_positions])</span></a>"
-				else
-					dept_dat += "<a class='job[command_bold]' style='display:block;width:170px' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'>[job_datum.title] ([job_datum.current_positions])</a>"
+					jobline = "<span class='priority'>[jobline]</span>"
+				if(client && client.prefs && client.prefs.alt_titles_preferences[job_datum.title])
+					jobline = "[jobline]<br><span style='color:#BBBBBB; font-style: italic;'>(as [client.prefs.alt_titles_preferences[job_datum.title]])</span>"
+
+				jobline = "<a class='job[command_bold]' style='display:block;width:170px' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'>[jobline]</a>"
+				dept_dat += jobline
+				//END OF SKYRAT CHANGES
 		if(!dept_dat.len)
 			dept_dat += "<span class='nopositions'>No positions open.</span>"
 		dat += jointext(dept_dat, "")
@@ -580,6 +597,12 @@
 		qdel(src)
 
 /mob/dead/new_player/proc/ViewManifest()
+	if(!client)
+		return
+	if(world.time < client.crew_manifest_delay)
+		return
+	client.crew_manifest_delay = world.time + (1 SECONDS)
+
 	var/dat = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><body>"
 	dat += "<h4>Crew Manifest</h4>"
 	dat += GLOB.data_core.get_manifest(OOC = 1)

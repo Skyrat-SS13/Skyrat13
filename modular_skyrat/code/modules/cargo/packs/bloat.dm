@@ -1,4 +1,7 @@
-//fuck you citadel maintainers for removing all this cool shit _|_ (this is still a middle finger)
+//Reminders-
+// If you add something to this list, please group it by type and sort it alphabetically instead of just jamming it in like an animal
+// cost = 700- Minimum cost, or infinite points are possible.
+
 /datum/supply_pack/security/armory/riotshotguns
 	name = "Riot Shotgun Crate"
 	desc = "For when the greytide gets really uppity. Contains three riot shotguns, seven rubber shot and beanbag shells. Requires Armory access to open."
@@ -12,7 +15,7 @@
 
 /datum/supply_pack/security/armory/swattasers //Lesser AEG tbh
 	name = "SWAT tactical tasers Crate"
-	desc = "Contains two tactical energy gun, these guns are able to tase, disable and lethal as well as hold a seclight. Requires Armory access to open."
+	desc = "Contains two tactical energy guns, these guns are able to tase, disable and lethal. They are also able to hold a seclight. Requires Armory access to open."
 	cost = 7000
 	contains = list(/obj/item/gun/energy/e_gun/stun,
 					/obj/item/gun/energy/e_gun/stun)
@@ -20,7 +23,7 @@
 
 /datum/supply_pack/security/armory/woodstock
 	name = "WoodStock Classic Shotguns Crate"
-	desc = "Contains three rustic, pumpaction shotguns. Requires Armory access to open."
+	desc = "Contains three rustic, pump action shotguns. Requires Armory access to open."
 	cost = 3000
 	contains = list(/obj/item/gun/ballistic/shotgun,
 					/obj/item/gun/ballistic/shotgun,
@@ -29,7 +32,7 @@
 
 /datum/supply_pack/security/armory/wt550ammo_special
 	name = "WT-550 Semi-Auto SMG Special Ammo Crate"
-	desc = "Contains 2 20-round Armour Piercing and Incendiary magazines for the WT-550 Semi-Auto SMG. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	desc = "Contains two 20-round Armour Piercing and Incendiary magazines for the WT-550 Semi-Auto SMG. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 3000
 	contains = list(/obj/item/ammo_box/magazine/wt550m9/wtap,
 					/obj/item/ammo_box/magazine/wt550m9/wtap,
@@ -39,7 +42,7 @@
 
 /datum/supply_pack/science/nuke_b_gone
 	name = "Nuke Defusal Kit"
-	desc = "Contains set of tools to defuse a nuke."
+	desc = "Contains a set of tools to defuse a nuke."
 	cost = 7500 //Useful for traitors/nukies that fucked up
 	dangerous = TRUE
 	hidden = TRUE

@@ -50,7 +50,7 @@
 /datum/supply_pack/vending/dinner
 	name = "Engineering Supply Crate"
 	desc = "Packs of tools waiting to be used for repairing. Contains a tool and engineering vending machine refill. Requires CE access."
-	cost = 5500 //Powerfull
+	cost = 5500 //Powerful
 	access = ACCESS_CE
 	contains = list(/obj/item/vending_refill/tool,
 					/obj/item/vending_refill/engivend)
@@ -67,7 +67,7 @@
 
 /datum/supply_pack/vending/hydro
 	name = "Hydroponics Supply Crate"
-	desc = "Arnt you glad you dont have to do it the natural way? Contains a megaseed and nutrimax vending machine refill."
+	desc = "Aren't you glad you dont have to do it the natural way? Contains a megaseed and nutrimax vending machine refill." //Skyrat change, fixes typo
 	cost = 5000
 	contains = list(/obj/item/vending_refill/hydroseeds,
 					/obj/item/vending_refill/hydronutrients)
@@ -75,11 +75,13 @@
 	crate_type = /obj/structure/closet/crate
 
 /datum/supply_pack/vending/kinkmate
-	name = "Kinkmate Supply and Construction Kit"
+	// skyrat edit - removes the construction from the name, as the circuit is removed
+	name = "Kinkmate Supply Kit"
 	desc = "A fun way to spend the shift. Contains unmentionable desires."
 	cost = 2000
 	contraband = TRUE
-	contains = list(/obj/item/vending_refill/kink, /obj/item/circuitboard/machine/kinkmate)
+	// skyrat edit - removed the circuit thing like this, made it like the others
+	contains = list(/obj/item/vending_refill/kink)
 	crate_name = "Kinkmate construction kit"
 
 /datum/supply_pack/vending/medical
@@ -93,12 +95,13 @@
 
 /datum/supply_pack/vending/security
 	name = "SecTech Supply Crate"
-	desc = "Officer Paul bought all the donuts? Then refill the security vendor with ths crate. Requires Security Access to open."
+	desc = "Do you know who ate all the donuts? Refill the security vendor with ths crate. Requires Security Access to open." //Skyrat change, added HL reference
 	cost = 1500
 	access = ACCESS_SECURITY
 	contains = list(/obj/machinery/vending/security)
 	crate_name = "SecTech supply crate"
 	crate_type = /obj/structure/closet/crate/secure/gear
+	can_private_buy = FALSE
 
 /datum/supply_pack/vending/snack
 	name = "Snack Supply Crate"
@@ -109,7 +112,7 @@
 
 /datum/supply_pack/vending/cola
 	name = "Softdrinks Supply Crate"
-	desc = "Got whacked by a toolbox, but you still have those pesky teeth? Get rid of those pearly whites with this soda machine refill, today!"
+	desc = "Got whacked by a toolbox but still have those pesky teeth? Get rid of those pearly whites with this soda machine refill today!" //Skyrat change, fixed grammatical and punctuation errors
 	cost = 1500
 	contains = list(/obj/item/vending_refill/cola)
 	crate_name = "soft drinks supply crate"

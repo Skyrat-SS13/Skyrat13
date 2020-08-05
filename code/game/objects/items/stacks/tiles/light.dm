@@ -1,3 +1,4 @@
+/* Skyrat edit -- redefined in modular code
 /obj/item/stack/tile/light
 	name = "light tile"
 	singular_name = "light floor tile"
@@ -28,3 +29,4 @@
 			qdel(src)
 	else
 		return ..()
+*/

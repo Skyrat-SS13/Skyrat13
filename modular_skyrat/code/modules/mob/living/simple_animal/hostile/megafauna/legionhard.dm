@@ -42,7 +42,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	size = 3
 	charging = FALSE
-	var/true_spawn = TRUE
+	true_spawn = TRUE
 
 /obj/item/gps/internal/legion/hard
 	icon_state = null
@@ -163,8 +163,8 @@
 	if(last_legion)
 		loot = list(/obj/structure/closet/crate/necropolis/legion/hard)
 		elimination = FALSE
-	else if(prob(100)) //100% chance for sick loots!
-		loot = list(/obj/structure/closet/crate/necropolis/tendril)
+	else if(prob(80)) //80% chance for sick lootz!
+		loot = list(/obj/structure/closet/crate/necropolis/tendril/legion_loot)
 		if(!true_spawn)
 			loot = null
 	return ..()

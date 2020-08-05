@@ -6,7 +6,7 @@
 	antagpanel_category = "Abductor"
 	job_rank = ROLE_ABDUCTOR
 	show_in_antagpanel = FALSE //should only show subtypes
-	threat = 5
+	//threat = 5 Modular Skyrat
 	var/datum/team/abductor_team/team
 	var/sub_role
 	var/outfit
@@ -21,6 +21,7 @@
 	landmark_type = /obj/effect/landmark/abductor/agent
 	greet_text = "Use your stealth technology and equipment to incapacitate humans for your scientist to retrieve."
 	show_in_antagpanel = TRUE
+	skill_modifiers = list(/datum/skill_modifier/job/level/wiring)
 
 /datum/antagonist/abductor/scientist
 	name = "Abductor Scientist"
@@ -29,6 +30,7 @@
 	landmark_type = /obj/effect/landmark/abductor/scientist
 	greet_text = "Use your experimental console and surgical equipment to monitor your agent and experiment upon abducted humans."
 	show_in_antagpanel = TRUE
+	skill_modifiers = list(/datum/skill_modifier/job/affinity/surgery)
 
 /datum/antagonist/abductor/create_team(datum/team/abductor_team/new_team)
 	if(!new_team)
@@ -55,12 +57,16 @@
 	REMOVE_TRAIT(owner, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
 	return ..()
 
+/* Modular Skyrat
 /datum/antagonist/abductor/greet()
 	to_chat(owner.current, "<span class='notice'>You are the [owner.special_role]!</span>")
-	to_chat(owner.current, "<span class='notice'>With the help of your teammate, kidnap and experiment on station crew members!</span>")
-	to_chat(owner.current, "<span class='notice'>Try not to disturb the habitat, it could lead to dead specimens.</span>")
+	to_chat(owner.current, "<span class='notice'>You are an operative for your home planet's government. Your mission is to detain, experiment, and observe.</span>")
+	to_chat(owner.current, "<span class='notice'>Work together with your teammate to bring live subjects from the space station nearby onto your ship for experimentation.</span>")
+	to_chat(owner.current, "<span class='notice'>For the sake of the mission, do not damage the integrity of the station, do not kill anyone unless in self defense, always capture specimens first if you can, and do not steal equipment or belongings from abducted specimens.</span>")
+	to_chat(owner.current, "<span class='notice'>Your task is to observe and take notes of the effects of your experiments.</span>")
 	to_chat(owner.current, "<span class='notice'>[greet_text]</span>")
 	owner.announce_objectives()
+*/
 
 /datum/antagonist/abductor/proc/finalize_abductor()
 	//Equip
@@ -127,11 +133,13 @@
 	var/list/datum/mind/abductees = list()
 	var/static/team_count = 1
 
+/* MODULAR SKYRAT
 /datum/team/abductor_team/New()
 	..()
 	team_number = team_count++
 	name = "Mothership [pick(GLOB.possible_changeling_IDs)]" //TODO Ensure unique and actual alieny names
 	add_objective(new/datum/objective/experiment)
+*/
 
 /datum/team/abductor_team/is_solo()
 	return FALSE
@@ -173,8 +181,10 @@
 /datum/objective/experiment
 	target_amount = 6
 
+/* MODULAR SKYRAT
 /datum/objective/experiment/New()
 	explanation_text = "Experiment on [target_amount] humans."
+*/
 
 /datum/objective/experiment/check_completion()
 	for(var/obj/machinery/abductor/experiment/E in GLOB.machines)

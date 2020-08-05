@@ -157,12 +157,12 @@
 
 /datum/plant_gene/reagent/polypyr
 	name = "Polypyrylium Oligomers"
-	reagent_id = "polypyr"
+	reagent_id = /datum/reagent/medicine/polypyr
 	rate = 0.15
 
 /datum/plant_gene/reagent/liquidelectricity
 	name = "Liquid Electricity"
-	reagent_id = "liquidelectricity"
+	reagent_id = /datum/reagent/consumable/liquidelectricity
 	rate = 0.1
 
 // Various traits affecting the product. Each must be somehow useful.
@@ -235,9 +235,11 @@
 
 	G.AddComponent(/datum/component/slippery, min(stun_len,140), NONE, CALLBACK(src, .proc/handle_slip, G))
 
+/*moved to modular_skyrat
 /datum/plant_gene/trait/slip/proc/handle_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/M)
 	for(var/datum/plant_gene/trait/T in G.seed.genes)
 		T.on_slip(G, M)
+*/
 
 /datum/plant_gene/trait/cell_charge
 	// Cell recharging trait. Charges all mob's power cells to (potency*rate)% mark when eaten.
@@ -300,6 +302,9 @@
 	name = "Shadow Emission"
 	rate = 0.04
 	glow_color = "#AAD84B"
+
+/datum/plant_gene/trait/glow/shadow/glow_power(obj/item/seeds/S)
+	return -max(S.potency*(rate*0.2), 0.2)
 
 /datum/plant_gene/trait/glow/white
 	name = "White Bioluminescence"
@@ -399,8 +404,7 @@
 
 /datum/plant_gene/trait/battery/on_attackby(obj/item/reagent_containers/food/snacks/grown/G, obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/C = I
-		if(C.use(5))
+		if(I.use_tool(src, user, 0, 5, max_level = JOB_SKILL_EXPERT))
 			to_chat(user, "<span class='notice'>You add some cable to [G] and slide it inside the battery encasing.</span>")
 			var/obj/item/stock_parts/cell/potato/pocell = new /obj/item/stock_parts/cell/potato(user.loc)
 			pocell.icon_state = G.icon_state
@@ -438,6 +442,7 @@
 /datum/plant_gene/trait/smoke
 	name = "gaseous decomposition"
 
+/**** moved to modular_skyrat
 /datum/plant_gene/trait/smoke/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	var/datum/effect_system/smoke_spread/chem/S = new
 	var/splat_location = get_turf(target)
@@ -446,6 +451,7 @@
 	S.set_up(G.reagents, smoke_amount, splat_location, 0)
 	S.start()
 	G.reagents.clear_reagents()
+*/
 
 /datum/plant_gene/trait/fire_resistance // Lavaland
 	name = "Fire Resistance"

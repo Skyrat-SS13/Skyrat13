@@ -1,3 +1,4 @@
+/* Moved to modular skyrat to squash the species squash
 /datum/species/mammal
 	name = "Anthromorph"
 	id = "mammal"
@@ -13,6 +14,9 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/mammal
 	liked_food = MEAT | FRIED
 	disliked_food = TOXIC
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
+	//
 
 //Curiosity killed the cat's wagging tail.
 /datum/species/mammal/spec_death(gibbed, mob/living/carbon/human/H)
@@ -45,7 +49,7 @@
 
 /datum/species/mammal/qualifies_for_rank(rank, list/features)
 	return TRUE
-
+*/
 
 //Alien//
 /datum/species/xeno
@@ -74,9 +78,7 @@
 
 //misc
 /mob/living/carbon/human/dummy
-	no_vore = TRUE
+	vore_flags = NO_VORE
 
 /mob/living/carbon/human/vore
-	devourable = TRUE
-	digestable = TRUE
-	feeding = TRUE
+	vore_flags = DEVOURABLE | DIGESTABLE | FEEDING

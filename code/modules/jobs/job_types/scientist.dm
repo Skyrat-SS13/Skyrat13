@@ -4,8 +4,8 @@
 	department_head = list("Research Director")
 	department_flag = MEDSCI
 	faction = "Station"
-	total_positions = 5
-	spawn_positions = 3
+	total_positions = 9
+	spawn_positions = 7
 	supervisors = "the research director"
 	selection_color = "#9574cd"
 	exp_requirements = 120 //SKYRAT CHANGE - upping the exp time on jobs
@@ -15,6 +15,8 @@
 
 	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE, ACCESS_GENETICS)
 	minimal_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MINERAL_STOREROOM)
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_SCI
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
 	threat = 1.2

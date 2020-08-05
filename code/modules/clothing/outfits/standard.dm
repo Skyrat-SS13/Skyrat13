@@ -123,7 +123,7 @@
 	l_pocket = /obj/item/reagent_containers/food/snacks/grown/banana
 	r_pocket = /obj/item/bikehorn
 	id = /obj/item/card/id
-	r_hand = /obj/item/twohanded/fireaxe
+	r_hand = /obj/item/fireaxe
 
 /datum/outfit/tunnel_clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
 	if(visualsOnly)
@@ -148,7 +148,7 @@
 	suit = /obj/item/clothing/suit/apron
 	l_pocket = /obj/item/kitchen/knife
 	r_pocket = /obj/item/scalpel
-	r_hand = /obj/item/twohanded/fireaxe
+	r_hand = /obj/item/fireaxe
 
 /datum/outfit/psycho/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
 	for(var/obj/item/carried_item in H.get_equipped_items(TRUE))
@@ -205,7 +205,7 @@
 	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/combat/swat
-	gloves = /obj/item/clothing/gloves/combat
+	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	ears = /obj/item/radio/headset/headset_cent/commander
 	glasses = /obj/item/clothing/glasses/eyepatch
 	mask = /obj/item/clothing/mask/cigarette/cigar/cohiba
@@ -234,7 +234,7 @@
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/space/officer
 	shoes = /obj/item/clothing/shoes/combat/swat
-	gloves = /obj/item/clothing/gloves/combat
+	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
 	ears = /obj/item/radio/headset/headset_cent/commander
 	mask = /obj/item/clothing/mask/cigarette/cigar/havana
@@ -316,7 +316,7 @@
 	uniform = /obj/item/clothing/under/costume/soviet
 	head = /obj/item/clothing/head/pirate/captain
 	shoes = /obj/item/clothing/shoes/combat
-	gloves = /obj/item/clothing/gloves/combat
+	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	ears = /obj/item/radio/headset/headset_cent
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
 	suit = /obj/item/clothing/suit/pirate/captain
@@ -372,7 +372,7 @@
 	uniform = /obj/item/clothing/under/color/green
 	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad
 	shoes = /obj/item/clothing/shoes/combat/swat
-	gloves = /obj/item/clothing/gloves/combat
+	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	glasses = /obj/item/clothing/glasses/hud/toggle/thermal
 	back = /obj/item/storage/backpack/security
@@ -415,7 +415,7 @@
 	name = "Death Commando Officer"
 	head = /obj/item/clothing/head/helmet/space/beret
 
-/datum/outfit/chrono_agent
+/* /datum/outfit/chrono_agent //SK13 CHANGES - GANDALF
 	name = "Timeline Eradication Agent"
 	uniform = /obj/item/clothing/under/color/white
 	suit = /obj/item/clothing/suit/space/chronos
@@ -423,7 +423,7 @@
 	head = /obj/item/clothing/head/helmet/space/chronos
 	mask = /obj/item/clothing/mask/breath
 	suit_store = /obj/item/tank/internals/oxygen
-
+*/
 /datum/outfit/debug //Debug objs plus hardsuit
 	name = "Debug outfit"
 	uniform = /obj/item/clothing/under/misc/patriotsuit
@@ -431,7 +431,7 @@
 	glasses = /obj/item/clothing/glasses/debug
 	ears = /obj/item/radio/headset/headset_cent/commander
 	mask = /obj/item/clothing/mask/gas/welding/up
-	gloves = /obj/item/clothing/gloves/combat
+	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	belt = /obj/item/storage/belt/utility/chief/full
 	l_pocket = /obj/item/gun/magic/wand/resurrection/debug
 	r_pocket = /obj/item/gun/magic/wand/death/debug

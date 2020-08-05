@@ -110,6 +110,9 @@
 	if(prob(12))
 		icon_state = "necro[rand(2,3)]"
 
+/turf/open/indestructible/necropolis/ice
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
 /turf/open/indestructible/necropolis/air
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 
@@ -301,7 +304,7 @@
 
 /turf/open/rad_act(pulse_strength)
 	. = ..()
-	if (air.gases[/datum/gas/carbon_dioxide] && air.gases[/datum/gas/oxygen])
+	if (air?.gases[/datum/gas/carbon_dioxide] && air?.gases[/datum/gas/oxygen]) //skyrat change fuck
 		pulse_strength = min(pulse_strength,air.gases[/datum/gas/carbon_dioxide]*1000,air.gases[/datum/gas/oxygen]*2000) //Ensures matter is conserved properly
 		air.gases[/datum/gas/carbon_dioxide]=max(air.gases[/datum/gas/carbon_dioxide]-(pulse_strength/1000),0)
 		air.gases[/datum/gas/oxygen]=max(air.gases[/datum/gas/oxygen]-(pulse_strength/2000),0)

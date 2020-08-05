@@ -49,7 +49,7 @@
 
 /datum/supply_pack/engineering/engihardsuit
 	name = "Engineering Hardsuit"
-	desc = "Poly 'Who stole all the hardsuits!' Well now you can get more hardsuits if needed! NOTE ONE HARDSUIT IS IN THIS CRATE, as well as one air tank and mask!"
+	desc = "Poly 'Who stole all the hardsuits?!' Well now you can get more hardsuits if needed! NOTE: THERE IS ONLY ONE HARDSUIT IN THIS CRATE, as well as one air tank and mask!" //Skyrat Change, fixed grammatical errors
 	cost = 2250
 	access = ACCESS_ENGINE
 	contains = list(/obj/item/tank/internals/air,
@@ -60,7 +60,7 @@
 
 /datum/supply_pack/engineering/atmoshardsuit
 	name = "Atmospherics Hardsuit"
-	desc = "Too many techs and not enough hardsuits? Time to buy some more! Comes with gas mask and air tank. Ask the CE to open."
+	desc = "Too many techs and not enough hardsuits? Time to buy some more! Comes with gas mask and air tank. Requires CE access to open." //Skyrat Change, changed CE part for consistency
 	cost = 5000
 	access = ACCESS_CE //100% Fire and Bio resistance
 	contains = list(/obj/item/tank/internals/air,
@@ -71,7 +71,7 @@
 
 /datum/supply_pack/engineering/radvoidsuit
 	name = "Radiation Voidsuit"
-	desc = "The Singulo is loose? Do you need to do a few changes to its containment and don't want to spent the rest of the shift under the shower? Get this Radiation Hardsuit! It protect from radiations and space only."
+	desc = "The Singulo is loose? Do you need to do a few changes to its containment and don't want to spend the rest of the shift under the shower? Get this Radiation Hardsuit! It protects from radiations and space only." //Skyrat Change, fixes typos
 	cost = 3500
 	access = ACCESS_ENGINE
 	contains = list(/obj/item/tank/internals/air,
@@ -83,22 +83,12 @@
 
 /datum/supply_pack/engineering/industrialrcd
 	name = "Industrial RCD"
-	desc = "An industrial RCD in case the station has gone through more then one meteor storm and the CE needs to bring out the somthing a bit more reliable. Does not contain spare ammo for the industrial RCD or any other RCD models."
+	desc = "An industrial RCD in case the station has gone through more then one meteor storm and the CE needs to bring out somthing a bit more reliable. Does not contain spare ammo for the industrial RCD or any other RCD models." //Skyrat Change, fixes grammatical error
 	cost = 4500
 	access = ACCESS_CE
 	contains = list(/obj/item/construction/rcd/industrial)
 	crate_name = "industrial rcd"
 	crate_type = /obj/structure/closet/crate/secure/engineering
-
-/datum/supply_pack/engineering/powergamermitts
-	name = "Insulated Gloves Crate"
-	desc = "The backbone of modern society. Barely ever ordered for actual engineering. Contains three insulated gloves."
-	cost = 2300	//Made of pure-grade bullshittinium
-	contains = list(/obj/item/clothing/gloves/color/yellow,
-					/obj/item/clothing/gloves/color/yellow,
-					/obj/item/clothing/gloves/color/yellow)
-	crate_name = "insulated gloves crate"
-	crate_type = /obj/structure/closet/crate/engineering/electrical
 
 /datum/supply_pack/engineering/inducers
 	name = "NT-75 Electromagnetic Power Inducers Crate"
@@ -134,7 +124,7 @@
 
 /datum/supply_pack/engineering/power
 	name = "Power Cell Crate"
-	desc = "Looking for power overwhelming? Look no further. Contains three high-voltage power cells."
+	desc = "Looking for overwhelming power? Look no further. Contains three high-voltage power cells." //Skyrat Change, fixes grammatical error
 	cost = 1000
 	contains = list(/obj/item/stock_parts/cell/high,
 					/obj/item/stock_parts/cell/high,
@@ -162,10 +152,11 @@
 					/obj/item/storage/toolbox/mechanical)
 	cost = 1200
 	crate_name = "toolbox crate"
+	special = TRUE //Department resupply shuttle loan event.
 
 /datum/supply_pack/engineering/bsa
 	name = "Bluespace Artillery Parts"
-	desc = "The pride of Nanotrasen Naval Command. The legendary Bluespace Artillery Cannon is a devastating feat of human engineering and testament to wartime determination. Highly advanced research is required for proper construction. "
+	desc = "The pride of Nanotrasen Naval Command. The legendary Bluespace Artillery Cannon is a devastating feat of human engineering and testament to wartime determination. Highly advanced research is required for proper construction." //Skyrat change, fixed space at the end of line
 	cost = 15000
 	special = TRUE
 	contains = list(/obj/item/circuitboard/machine/bsa/front,

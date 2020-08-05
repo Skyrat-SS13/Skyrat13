@@ -14,6 +14,7 @@
 	max_integrity = 200
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
 	layer = DISPOSAL_PIPE_LAYER			// slightly lower than wires and other pipes
+	plane = ABOVE_WALL_PLANE
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	var/dpdir = NONE					// bitmask of pipe directions
 	var/initialize_dirs = NONE			// bitflags of pipe directions added on init, see \code\_DEFINES\pipe_construction.dm
@@ -65,7 +66,7 @@
 // overridden for special behaviour
 /obj/structure/disposalpipe/proc/transfer(obj/structure/disposalholder/H)
 	return transfer_to_dir(H, nextdir(H))
-
+/* moved to modular
 /obj/structure/disposalpipe/proc/transfer_to_dir(obj/structure/disposalholder/H, nextdir)
 	H.setDir(nextdir)
 	var/turf/T = H.nextloc()
@@ -84,7 +85,7 @@
 	else			// if wasn't a pipe, then they're now in our turf
 		H.forceMove(get_turf(src))
 		return null
-
+*/
 // update the icon_state to reflect hidden status
 /obj/structure/disposalpipe/proc/update()
 	var/turf/T = get_turf(src)

@@ -24,7 +24,16 @@
 		/datum/language/slime,
 		/datum/language/vampiric,
 		/datum/language/dwarf,
-		/datum/language/vox //Skyrat change - adds vox language
+		/datum/language/vox, //Skyrat change - adds vox language
+		/datum/language/machine, //Skyrat change - adds machine language
+		/datum/language/calcic, //Skyrat change - plasmaman language
+		/datum/language/dunmeri, //Skyrat change - dunmer language
+		/datum/language/moffic, //Skyrat change - insect language
+		/datum/language/neokanji, //Skyrat change - generally asian language
+		/datum/language/shadowtongue, //Skyrat change - shadowpeople language
+		/datum/language/solcommon, //Skyrat change - sol common blah blah
+		/datum/language/sylvan, //Skyrat change - plantpeople langauge
+		/datum/language/technorussian //Skyrat change - russian stereotype language
 	))
 	healing_factor = STANDARD_ORGAN_HEALING*5 //Fast!!
 	decay_factor = STANDARD_ORGAN_DECAY/2
@@ -65,8 +74,8 @@
 		owner.RegisterSignal(owner, COMSIG_MOB_SAY, /mob/living/carbon/.proc/handle_tongueless_speech)
 	return ..()
 
-/obj/item/organ/tongue/could_speak_in_language(datum/language/dt)
-	return is_type_in_typecache(dt, languages_possible)
+/obj/item/organ/tongue/could_speak_language(language)
+	return is_type_in_typecache(language, languages_possible)
 
 /obj/item/organ/tongue/lizard
 	name = "forked tongue"
@@ -142,7 +151,7 @@
 /obj/item/organ/tongue/abductor/handle_speech(datum/source, list/speech_args)
 	//Hacks
 	var/message = speech_args[SPEECH_MESSAGE]
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/carbon/human/user = source
 	var/rendered = "<span class='abductor'><b>[user.name]:</b> [message]</span>"
 	user.log_talk(message, LOG_SAY, tag="abductor")
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
@@ -253,6 +262,7 @@
 	name = "robotic voicebox"
 	desc = "A voice synthesizer that can interface with organic lifeforms."
 	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_NO_SPOIL
 	icon_state = "tonguerobot"
 	say_mod = "states"
 	attack_verb = list("beeped", "booped")
@@ -261,7 +271,7 @@
 	maxHealth = 100 //RoboTongue!
 	var/electronics_magic = TRUE
 
-/obj/item/organ/tongue/robot/can_speak_in_language(datum/language/dt)
+/obj/item/organ/tongue/robot/could_speak_language(language)
 	return ..() || electronics_magic
 
 /obj/item/organ/tongue/robot/handle_speech(datum/source, list/speech_args)

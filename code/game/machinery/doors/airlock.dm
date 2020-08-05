@@ -95,6 +95,7 @@
 
 	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
+	var/pried_so_hard = FALSE // Skyrat change
 
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	rad_insulation = RAD_MEDIUM_INSULATION
@@ -188,7 +189,7 @@
 /obj/machinery/door/airlock/vv_edit_var(var_name)
 	. = ..()
 	switch (var_name)
-		if ("cyclelinkeddir")
+		if (NAMEOF(src, cyclelinkeddir))
 			cyclelinkairlock()
 
 /obj/machinery/door/airlock/check_access_ntnet(datum/netdata/data)
@@ -413,8 +414,8 @@
 // shock user with probability prb (if all connections & power are working)
 // returns TRUE if shocked, FALSE otherwise
 // The preceding comment was borrowed from the grille's shock script
-/obj/machinery/door/airlock/proc/shock(mob/user, prb)
-	if(!hasPower())		// unpowered, no shock
+/obj/machinery/door/airlock/proc/shock(mob/living/user, prb)
+	if(!istype(user) || !hasPower())		// unpowered, no shock
 		return FALSE
 	if(shockCooldown > world.time)
 		return FALSE	//Already shocked someone recently?
@@ -470,15 +471,15 @@
 			if(welded)
 				weld_overlay = get_airlock_overlay("welded", overlays_file)
 			if(obj_integrity < integrity_failure * max_integrity)
-				damag_overlay = get_airlock_overlay("sparks_broken", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+				damag_overlay = get_airlock_overlay("sparks_broken", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 			else if(obj_integrity < (0.75 * max_integrity))
-				damag_overlay = get_airlock_overlay("sparks_damaged", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+				damag_overlay = get_airlock_overlay("sparks_damaged", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 			if(lights && hasPower())
 
 				if(locked)
-					lights_overlay = get_airlock_overlay("lights_bolts", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+					lights_overlay = get_airlock_overlay("lights_bolts", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 				else if(emergency)
-					lights_overlay = get_airlock_overlay("lights_emergency", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+					lights_overlay = get_airlock_overlay("lights_emergency", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 			if(note)
 				note_overlay = get_airlock_overlay(notetype, note_overlay_file)
 
@@ -496,18 +497,18 @@
 				else
 					panel_overlay = get_airlock_overlay("panel_closed", overlays_file)
 			if(obj_integrity < integrity_failure * max_integrity)
-				damag_overlay = get_airlock_overlay("sparks_broken", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+				damag_overlay = get_airlock_overlay("sparks_broken", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 			else if(obj_integrity < (0.75 * max_integrity))
-				damag_overlay = get_airlock_overlay("sparks_damaged", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+				damag_overlay = get_airlock_overlay("sparks_damaged", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 			if(welded)
 				weld_overlay = get_airlock_overlay("welded", overlays_file)
-			lights_overlay = get_airlock_overlay("lights_denied", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+			lights_overlay = get_airlock_overlay("lights_denied", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 			if(note)
 				note_overlay = get_airlock_overlay(notetype, note_overlay_file)
 
 		if(AIRLOCK_EMAG)
 			frame_overlay = get_airlock_overlay("closed", icon)
-			sparks_overlay = get_airlock_overlay("sparks", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+			sparks_overlay = get_airlock_overlay("sparks", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 			if(airlock_material)
 				filling_overlay = get_airlock_overlay("[airlock_material]_closed", overlays_file)
 			else
@@ -518,9 +519,9 @@
 				else
 					panel_overlay = get_airlock_overlay("panel_closed", overlays_file)
 			if(obj_integrity < integrity_failure * max_integrity)
-				damag_overlay = get_airlock_overlay("sparks_broken", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+				damag_overlay = get_airlock_overlay("sparks_broken", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 			else if(obj_integrity < (0.75 * max_integrity))
-				damag_overlay = get_airlock_overlay("sparks_damaged", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+				damag_overlay = get_airlock_overlay("sparks_damaged", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 			if(welded)
 				weld_overlay = get_airlock_overlay("welded", overlays_file)
 			if(note)
@@ -533,7 +534,7 @@
 			else
 				filling_overlay = get_airlock_overlay("fill_closing", icon)
 			if(lights && hasPower())
-				lights_overlay = get_airlock_overlay("lights_closing", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+				lights_overlay = get_airlock_overlay("lights_closing", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 			if(panel_open)
 				if(security_level)
 					panel_overlay = get_airlock_overlay("panel_closing_protected", overlays_file)
@@ -554,7 +555,7 @@
 				else
 					panel_overlay = get_airlock_overlay("panel_open", overlays_file)
 			if(obj_integrity < (0.75 * max_integrity))
-				damag_overlay = get_airlock_overlay("sparks_open", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+				damag_overlay = get_airlock_overlay("sparks_open", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 			if(note)
 				note_overlay = get_airlock_overlay("[notetype]_open", note_overlay_file)
 
@@ -565,7 +566,7 @@
 			else
 				filling_overlay = get_airlock_overlay("fill_opening", icon)
 			if(lights && hasPower())
-				lights_overlay = get_airlock_overlay("lights_opening", overlays_file, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+				lights_overlay = get_airlock_overlay("lights_opening", overlays_file, EMISSIVE_UNBLOCKABLE_LAYER, EMISSIVE_UNBLOCKABLE_PLANE)
 			if(panel_open)
 				if(security_level)
 					panel_overlay = get_airlock_overlay("panel_opening_protected", overlays_file)
@@ -577,11 +578,17 @@
 	cut_overlays()
 	add_overlay(frame_overlay)
 	add_overlay(filling_overlay)
-	add_overlay(lights_overlay)
+	if(lights_overlay)
+		add_overlay(lights_overlay)
+		var/mutable_appearance/lights_vis = mutable_appearance(lights_overlay.icon, lights_overlay.icon_state)
+		add_overlay(lights_vis)
 	add_overlay(panel_overlay)
 	add_overlay(weld_overlay)
 	add_overlay(sparks_overlay)
-	add_overlay(damag_overlay)
+	if(damag_overlay)
+		add_overlay(damag_overlay)
+		var/mutable_appearance/damage_vis = mutable_appearance(damag_overlay.icon, damag_overlay.icon_state)
+		add_overlay(damage_vis)
 	add_overlay(note_overlay)
 	check_unres()
 
@@ -647,6 +654,8 @@
 		. += "<span class='warning'>The maintenance panel seems haphazardly fastened.</span>"
 	if(charge && panel_open)
 		. += "<span class='warning'>Something is wired up to the airlock's electronics!</span>"
+	if(pried_so_hard) // Skyrat change
+		. += "<span class='warning'>There are signs of forced entry where the halves meet, dents and scratches in the airlock's metal.</span>"
 	if(note)
 		if(!in_range(user, src))
 			. += "There's a [note.name] pinned to the front. You can't read it from here."
@@ -770,7 +779,7 @@
 				H.visible_message("<span class='danger'>[user] headbutts the airlock.</span>", \
 									"<span class='userdanger'>You headbutt the airlock!</span>")
 				H.DefaultCombatKnockdown(100)
-				H.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
+				H.apply_damage(2, BRUTE, BODY_ZONE_HEAD) // Skyrat edit -- made headbanging on doors a lot less harmful, 10 -> 2
 			else
 				visible_message("<span class='danger'>[user] headbutts the airlock. Good thing [user.p_theyre()] wearing a helmet.</span>")
 
@@ -1012,6 +1021,7 @@
 								"<span class='italics'>You hear welding.</span>")
 				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, .proc/weld_checks, W, user)))
 					obj_integrity = max_integrity
+					pried_so_hard = FALSE // Skyrat
 					stat &= ~BROKEN
 					user.visible_message("[user.name] has repaired [src].", \
 										"<span class='notice'>You finish repairing the airlock.</span>")
@@ -1052,11 +1062,11 @@
 		to_chat(user, "<span class='warning'>The airlock's bolts prevent it from being forced!</span>")
 	else if( !welded && !operating)
 		if(!beingcrowbarred) //being fireaxe'd
-			var/obj/item/twohanded/fireaxe/F = I
-			if(F.wielded)
-				INVOKE_ASYNC(src, (density ? .proc/open : .proc/close), 2)
-			else
-				to_chat(user, "<span class='warning'>You need to be wielding the fire axe to do that!</span>")
+			var/obj/item/fireaxe/axe = I
+			if(!axe.wielded)
+				to_chat(user, "<span class='warning'>You need to be wielding \the [axe] to do that!</span>")
+				return
+			INVOKE_ASYNC(src, (density ? .proc/open : .proc/close), 2)
 		else
 			INVOKE_ASYNC(src, (density ? .proc/open : .proc/close), 2)
 
@@ -1085,6 +1095,8 @@
 			prying_so_hard = FALSE
 			if(result)
 				open(2)
+				take_damage(25, BRUTE, 0, 0) // Skyrat change
+				pried_so_hard = TRUE // Skyrat change
 				if(density && !open(2))
 					to_chat(user, "<span class='warning'>Despite your attempts, [src] refuses to open.</span>")
 

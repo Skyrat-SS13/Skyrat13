@@ -27,6 +27,9 @@ SUBSYSTEM_DEF(shuttle)
 	var/emergencyCallAmount = 0		//how many times the escape shuttle was called
 	var/emergencyNoEscape
 	var/emergencyNoRecall = FALSE
+	var/adminEmergencyNoRecall = FALSE //so admins can block the recall MODULE: SHUTTLE TOGGLE
+	var/lastMode = SHUTTLE_IDLE //MODULE: SHUTTLE TOGGLE
+	var/lastCallTime = 6000 //MODULE: SHUTTLE TOGGLE
 	var/list/hostileEnvironments = list() //Things blocking escape shuttle from leaving
 	var/list/tradeBlockade = list() //Things blocking cargo from leaving.
 	var/supplyBlocked = FALSE
@@ -35,10 +38,8 @@ SUBSYSTEM_DEF(shuttle)
 		//supply shuttle stuff
 	var/obj/docking_port/mobile/supply/supply
 	var/ordernum = 1					//order number given to next order
-	var/points = 5000					//number of trade-points we have
 	var/centcom_message = ""			//Remarks from CentCom on how well you checked the last order.
 	var/list/discoveredPlants = list()	//Typepaths for unusual plants we've already sent CentCom, associated with their potencies
-	var/passive_supply_points_per_minute = 125
 
 	var/list/supply_packs = list()
 	var/list/shoppinglist = list()
@@ -58,6 +59,14 @@ SUBSYSTEM_DEF(shuttle)
 	var/endvote_passed = FALSE
 
 	var/realtimeofstart = 0
+
+	//SKYRAT CHANGE
+	//PROBLEM COMPUTER CHARGES
+	var/problem_computer_max_charges = 5
+	var/problem_computer_charges = 5
+	var/problem_computer_charge_time = 90 SECONDS
+	var/problem_computer_next_charge_time = 0
+	//END SKYRAT CHANGE
 
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
 	ordernum = rand(1, 9000)
@@ -113,8 +122,11 @@ SUBSYSTEM_DEF(shuttle)
 				qdel(T, force=TRUE)
 	CheckAutoEvac()
 
-	if(!(times_fired % CEILING(600/wait, 1)))
-		points += passive_supply_points_per_minute
+	// Skyrat change. Handles Problem Computer charges here
+	if(problem_computer_charges < problem_computer_max_charges && world.time >= problem_computer_next_charge_time)
+		problem_computer_next_charge_time = world.time + problem_computer_charge_time
+		problem_computer_charges += 1
+	// End Skyrat change.
 
 	var/esETA = emergency?.getModeStr()
 	emergency_shuttle_stat_text = "[esETA? "[esETA] [emergency.getTimerStr()]" : ""]"
@@ -134,7 +146,7 @@ SUBSYSTEM_DEF(shuttle)
 				break
 
 /datum/controller/subsystem/shuttle/proc/CheckAutoEvac()
-	if(emergencyNoEscape || emergencyNoRecall || !emergency || !SSticker.HasRoundStarted())
+	if(emergencyNoEscape || adminEmergencyNoRecall || emergencyNoRecall || !emergency || !SSticker.HasRoundStarted())
 		return
 
 	var/threshold = CONFIG_GET(number/emergency_shuttle_autocall_threshold)
@@ -159,10 +171,17 @@ SUBSYSTEM_DEF(shuttle)
 			emergency.request(null, set_coefficient = 0.4)
 
 /datum/controller/subsystem/shuttle/proc/block_recall(lockout_timer)
+	if(adminEmergencyNoRecall)
+		priority_announce("Error!", "Emergency Shuttle Uplink Alert", 'sound/misc/announce_dig.ogg')
+		addtimer(CALLBACK(src, .proc/unblock_recall), lockout_timer)
+		return
 	emergencyNoRecall = TRUE
 	addtimer(CALLBACK(src, .proc/unblock_recall), lockout_timer)
 
 /datum/controller/subsystem/shuttle/proc/unblock_recall()
+	if(adminEmergencyNoRecall) //MODULE: SHUTTLE TOGGLE
+		priority_announce("Error!", "Emergency Shuttle Uplink Alert", 'sound/misc/announce_dig.ogg')
+		return
 	emergencyNoRecall = FALSE
 
 /datum/controller/subsystem/shuttle/proc/getShuttle(id)
@@ -197,33 +216,36 @@ SUBSYSTEM_DEF(shuttle)
 
 	switch(emergency.mode)
 		if(SHUTTLE_RECALL)
-			to_chat(user, "The emergency shuttle may not be called while returning to CentCom.")
+			to_chat(user, "<span class='alert'>The emergency shuttle may not be called while returning to CentCom.</span>")
 			return
 		if(SHUTTLE_CALL)
-			to_chat(user, "The emergency shuttle is already on its way.")
+			to_chat(user, "<span class='alert'>The emergency shuttle is already on its way.</span>")
 			return
 		if(SHUTTLE_DOCKED)
-			to_chat(user, "The emergency shuttle is already here.")
+			to_chat(user, "<span class='alert'>The emergency shuttle is already here.</span>")
 			return
 		if(SHUTTLE_IGNITING)
-			to_chat(user, "The emergency shuttle is firing its engines to leave.")
+			to_chat(user, "<span class='alert'>The emergency shuttle is firing its engines to leave.</span>")
 			return
 		if(SHUTTLE_ESCAPE)
-			to_chat(user, "The emergency shuttle is moving away to a safe distance.")
+			to_chat(user, "<span class='alert'>The emergency shuttle is moving away to a safe distance.</span>")
 			return
 		if(SHUTTLE_STRANDED)
-			to_chat(user, "The emergency shuttle has been disabled by CentCom.")
+			to_chat(user, "<span class='alert'>The emergency shuttle has been disabled by CentCom.</span>")
+			return
+		if(SHUTTLE_DISABLED)//MODULE: SHUTTLE TOGGLE
+			to_chat(user, "<span class='alert'>The emergency shuttle has been disabled by CentCom.</span>")
 			return
 
 	call_reason = trim(html_encode(call_reason))
 
-	if(length(call_reason) < CALL_SHUTTLE_REASON_LENGTH && seclevel2num(get_security_level()) > SEC_LEVEL_GREEN)
-		to_chat(user, "You must provide a reason.")
+	if(length(call_reason) < CALL_SHUTTLE_REASON_LENGTH && GLOB.security_level > SEC_LEVEL_GREEN)
+		to_chat(user, "<span class='alert'>You must provide a reason.</span>")
 		return
 
 	var/area/signal_origin = get_area(user)
 	var/emergency_reason = "\nNature of emergency:\n\n[call_reason]"
-	var/security_num = seclevel2num(get_security_level())
+	var/security_num = GLOB.security_level
 	switch(security_num)
 		if(SEC_LEVEL_RED,SEC_LEVEL_DELTA)
 			emergency.request(null, signal_origin, html_decode(emergency_reason), 1) //There is a serious threat we gotta move no time to give them five minutes.
@@ -283,9 +305,9 @@ SUBSYSTEM_DEF(shuttle)
 		return 1
 
 /datum/controller/subsystem/shuttle/proc/canRecall()
-	if(!emergency || emergency.mode != SHUTTLE_CALL || emergencyNoRecall || SSticker.mode.name == "meteor")
+	if(!emergency || emergency.mode != SHUTTLE_CALL || adminEmergencyNoRecall || emergencyNoRecall || SSticker.mode.name == "meteor")//MODULE: SHUTTLE TOGGLE
 		return
-	var/security_num = seclevel2num(get_security_level())
+	var/security_num = GLOB.security_level
 	switch(security_num)
 		if(SEC_LEVEL_GREEN)
 			if(emergency.timeLeft(1) < emergencyCallTime)
@@ -293,6 +315,14 @@ SUBSYSTEM_DEF(shuttle)
 		if(SEC_LEVEL_BLUE)
 			if(emergency.timeLeft(1) < emergencyCallTime * 0.6)
 				return
+		//Skyrat change start
+		if(SEC_LEVEL_ORANGE)
+			if(emergency.timeLeft(1) < emergencyCallTime * 0.4)
+				return
+		if(SEC_LEVEL_VIOLET)
+			if(emergency.timeLeft(1) < emergencyCallTime * 0.4)
+				return
+		//Skyrat change stop
 		if(SEC_LEVEL_AMBER)
 			if(emergency.timeLeft(1) < emergencyCallTime * 0.4)
 				return
@@ -559,7 +589,6 @@ SUBSYSTEM_DEF(shuttle)
 
 	centcom_message = SSshuttle.centcom_message
 	ordernum = SSshuttle.ordernum
-	points = SSshuttle.points
 	emergencyNoEscape = SSshuttle.emergencyNoEscape
 	emergencyCallAmount = SSshuttle.emergencyCallAmount
 	shuttle_purchased = SSshuttle.shuttle_purchased
@@ -642,7 +671,7 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/autoEnd() //CIT CHANGE - allows shift to end without being a proper shuttle call?
 	if(EMERGENCY_IDLE_OR_RECALLED)
 		SSshuttle.emergency.request(silent = TRUE)
-		priority_announce("The shift has come to an end and the shuttle called. [seclevel2num(get_security_level()) == SEC_LEVEL_RED ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [emergency.timeLeft(600)] minutes.", null, "shuttlecalled", "Priority")
+		priority_announce("The shift has come to an end and the shuttle called. [GLOB.security_level == SEC_LEVEL_RED ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [emergency.timeLeft(600)] minutes.", null, "shuttlecalled", "Priority")
 		log_game("Round end vote passed. Shuttle has been auto-called.")
 		message_admins("Round end vote passed. Shuttle has been auto-called.")
 	emergencyNoRecall = TRUE

@@ -8,6 +8,7 @@
 	var/modifies_speech = FALSE
 	var/mask_adjusted = 0
 	var/adjusted_flags = null
+	var/datum/beepsky_fashion/beepsky_fashion //the associated datum for applying this to a secbot
 
 /obj/item/clothing/mask/attack_self(mob/user)
 	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))
@@ -28,8 +29,8 @@
 
 /obj/item/clothing/mask/proc/handle_speech()
 
-/obj/item/clothing/mask/worn_overlays(isinhands = FALSE, icon_file, style_flags = NONE)
-	. = list()
+/obj/item/clothing/mask/worn_overlays(isinhands = FALSE, icon_file, used_state, style_flags = NONE)
+	. = ..()
 	if(!isinhands)
 		if(body_parts_covered & HEAD)
 			if(damaged_clothes)

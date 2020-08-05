@@ -7,10 +7,13 @@
 	blood_state = BLOOD_STATE_BLOOD
 	bloodiness = BLOOD_AMOUNT_PER_DECAL
 	color = BLOOD_COLOR_HUMAN //default so we don't have white splotches everywhere.
+	beauty = -100
 
 /obj/effect/decal/cleanable/blood/replace_decal(obj/effect/decal/cleanable/blood/C)
 	if (C.blood_DNA)
-		blood_DNA |= C.blood_DNA
+		blood_DNA |= (C.blood_DNA - "color")
+		if(C.blood_DNA["color"])
+			blood_DNA["color"] = C.blood_DNA["color"]
 	update_icon()
 	..()
 
@@ -33,7 +36,7 @@
 /obj/effect/decal/cleanable/blood/old/Initialize(mapload, list/datum/disease/diseases)
 	..()
 	icon_state += "-old"
-	add_blood_DNA(list("Non-human DNA" = "A+"))
+	add_blood_DNA(list("color" = BLOOD_COLOR_HUMAN, "Non-human DNA" = "A+"))
 
 /obj/effect/decal/cleanable/blood/splats
 	random_icon_states = list("gibbl1", "gibbl2", "gibbl3", "gibbl4", "gibbl5")
@@ -45,12 +48,14 @@
 	icon_state = "tracks"
 	desc = "They look like tracks left by wheels."
 	random_icon_states = null
+	beauty = -50
 
 /obj/effect/decal/cleanable/trail_holder //not a child of blood on purpose
 	name = "blood"
 	icon_state = "ltrails_1"
 	desc = "Your instincts say you shouldn't be following these."
 	random_icon_states = null
+	beauty = -50
 	var/list/existing_dirs = list()
 
 /obj/effect/decal/cleanable/trail_holder/update_icon()
@@ -88,7 +93,7 @@
 		var/mob/living/carbon/human/H = O
 		var/obj/item/clothing/shoes/S = H.shoes
 		if(S && S.bloody_shoes[blood_state])
-			if(color != bloodtype_to_color(S.last_bloodtype))
+			if(color != S.last_blood_color)
 				return
 			S.bloody_shoes[blood_state] = max(S.bloody_shoes[blood_state] - BLOOD_LOSS_PER_STEP, 0)
 			shoe_types |= S.type
@@ -101,7 +106,7 @@
 		var/mob/living/carbon/human/H = O
 		var/obj/item/clothing/shoes/S = H.shoes
 		if(S && S.bloody_shoes[blood_state])
-			if(color != bloodtype_to_color(S.last_bloodtype))//last entry - we check its color
+			if(color != S.last_blood_color)//last entry - we check its color
 				return
 			S.bloody_shoes[blood_state] = max(S.bloody_shoes[blood_state] - BLOOD_LOSS_PER_STEP, 0)
 			shoe_types  |= S.type

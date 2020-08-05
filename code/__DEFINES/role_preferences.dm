@@ -15,6 +15,7 @@
 #define ROLE_REV					"revolutionary"
 #define ROLE_REV_HEAD				"Head Revolutionary"
 #define ROLE_ALIEN					"xenomorph"
+#define ROLE_TERROR_SPIDER			"terror spider" // skyrat change
 #define ROLE_PAI					"pAI"
 #define ROLE_CULTIST				"cultist"
 #define ROLE_BLOB					"blob"

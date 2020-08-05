@@ -59,7 +59,7 @@
 				nutrition_ratio *= 1.2
 			if(satiety > 80)
 				nutrition_ratio *= 1.25
-			nutrition = max(0, nutrition - nutrition_ratio * HUNGER_FACTOR)
+			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR)
 			blood_volume = min((BLOOD_VOLUME_NORMAL * blood_ratio), blood_volume + 0.5 * nutrition_ratio)
 
 		//Effects of bloodloss
@@ -94,7 +94,9 @@
 
 			//We want an accurate reading of .len
 			listclearnulls(BP.embedded_objects)
-			temp_bleed += 0.5 * BP.embedded_objects.len
+			for(var/obj/item/embeddies in BP.embedded_objects)
+				if(!embeddies.isEmbedHarmless())
+					temp_bleed += 0.5
 
 			if(brutedamage >= 20)
 				temp_bleed += (brutedamage * 0.013)
@@ -116,6 +118,10 @@
 
 /mob/living/carbon/human/bleed(amt)
 	amt *= physiology.bleed_mod
+	//skyrat edit - hemophilia quirk
+	if(HAS_TRAIT(src, TRAIT_HEMOPHILIA))
+		amt *= 2
+	//
 	if(!(NOBLOOD in dna.species.species_traits))
 		.=..()
 		if(dna.species.exotic_blood && .) // Do we have exotic blood, and have we left any on the ground?
@@ -186,7 +192,13 @@
 			blood_data["viruses"] += D.Copy()
 
 		blood_data["blood_DNA"] = dna.unique_enzymes
-		blood_data["bloodcolor"] = bloodtype_to_color(dna.blood_type)
+		//skyrat edit
+		blood_data["bloodcolor"] = dna.species.exotic_blood_color
+		if(dna.blood_color)
+			blood_data["bloodcolor"] = dna.blood_color
+		if(!blood_data["bloodcolor"])
+			blood_data["bloodcolor"] = BLOOD_COLOR_HUMAN
+		//
 		if(disease_resistances && disease_resistances.len)
 			blood_data["resistances"] = disease_resistances.Copy()
 		var/list/temp_chem = list()
@@ -263,7 +275,17 @@
 		"X*" = list("X*", "SY"),
 		"SY" = list("SY"),
 		"GEL" = list("GEL","SY"),
-		"BUG" = list("BUG", "SY")
+		"BUG" = list("BUG", "SY"),
+		//Skyrat change - more blood
+		"PL" = list("PL", "SY"),
+		"AL" = list("AL", "SY"),
+		"GREY" = list("GREY", "SY"),
+		"ANGL" = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "ANGL", "SY", "HF", "PL", "AL", "GREY",\
+						"GEL", "BUG", "X", "L", "U", "SPOR", "DRK", "S"),
+		"SPOR" = list("SPOR", "SY"),
+		"DRK" = list("DRK", "HF", "SY"),
+		"S" = list("S", "SY", "HF"),
+		"BHZ" = list("BHZ", "SY", "DRK", "BUG", "GREY")
 	)
 
 	var/safe = bloodtypes_safe[bloodtype]
@@ -289,7 +311,8 @@
 				drop.update_icon()
 				return
 			else
-				temp_blood_DNA = drop.blood_DNA.Copy()		//transfer dna from drip to splatter.
+				temp_blood_DNA = (drop.blood_DNA - "color")	//transfer dna from drip to splatter.
+				temp_blood_DNA["color"] = drop.blood_DNA["color"]
 				qdel(drop)//the drip is replaced by a bigger splatter
 		else
 			drop = new(T, get_static_viruses())
@@ -305,7 +328,12 @@
 		B.bloodiness += BLOOD_AMOUNT_PER_DECAL
 	B.transfer_mob_blood_dna(src) //give blood info to the blood decal.
 	if(temp_blood_DNA)
-		B.blood_DNA |= temp_blood_DNA
+		B.blood_DNA |= (temp_blood_DNA - "color")
+		if(temp_blood_DNA["color"])
+			if(B.blood_DNA["color"])
+				B.blood_DNA["color"] = BlendRGB(B.blood_DNA["color"], temp_blood_DNA["color"])
+			else
+				temp_blood_DNA["color"] = B.blood_DNA["color"]
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip)
 	if(!(NOBLOOD in dna.species.species_traits))
@@ -317,6 +345,7 @@
 	var/obj/effect/decal/cleanable/blood/splatter/B = locate() in T.contents
 	if(!B)
 		B = new(T)
+	B.blood_DNA["color"] = BLOOD_COLOR_HUMAN
 	B.blood_DNA["UNKNOWN DNA"] = "X*"
 
 /mob/living/silicon/robot/add_splatter_floor(turf/T, small_drip)
@@ -343,7 +372,11 @@
 	B.transfer_mob_blood_dna(src) //give blood info to the blood decal.
 	src.transfer_blood_to(B, 10) //very heavy bleeding, should logically leave larger pools
 	if(temp_blood_DNA)
-		B.blood_DNA |= temp_blood_DNA
+		B.blood_DNA |= (temp_blood_DNA - "color")
+		if(B.blood_DNA["color"])
+			B.blood_DNA["color"] = BlendRGB(temp_blood_DNA["color"], B.blood_DNA["color"])
+		else
+			B.blood_DNA["color"] = temp_blood_DNA["color"]
 
 /mob/living/carbon/human/add_splash_floor(turf/T)
 	if(!(NOBLOOD in dna.species.species_traits))
@@ -355,6 +388,7 @@
 	var/obj/effect/decal/cleanable/blood/splatter/B = locate() in T.contents
 	if(!B)
 		B = new(T)
+	B.blood_DNA["color"] = BLOOD_COLOR_HUMAN
 	B.blood_DNA["UNKNOWN DNA"] = "X*"
 
 /mob/living/silicon/robot/add_splash_floor(turf/T)

@@ -12,6 +12,15 @@
 	e_cost = 200
 	select_name = "kill"
 
+/obj/item/ammo_casing/energy/lasergun/improvised
+	projectile_type = /obj/item/projectile/beam/weak/improvised
+	e_cost = 200
+	select_name = "kill"
+
+/obj/item/ammo_casing/energy/lasergun/improvised/upgraded
+	projectile_type = /obj/item/projectile/beam/weak
+	e_cost = 100
+
 /obj/item/ammo_casing/energy/laser/hos
 	e_cost = 100
 
@@ -41,7 +50,7 @@
 	projectile_type = /obj/item/projectile/beam/pulse
 	e_cost = 200
 	select_name = "DESTROY"
-	fire_sound = 'sound/weapons/pulse.ogg'
+	fire_sound = 'modular_skyrat/sound/weapons/pulse.ogg'
 
 /obj/item/ammo_casing/energy/laser/bluetag
 	projectile_type = /obj/item/projectile/beam/lasertag/bluetag

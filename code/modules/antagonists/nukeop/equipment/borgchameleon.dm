@@ -99,11 +99,11 @@
 				disguise_icon_override = 'modular_citadel/icons/mob/robots.dmi'
 			if("Pup Dozer")
 				disguise = "pupdozer"
-				disguise_icon_override = 'modular_citadel/icons/mob/widerobot.dmi'
+				disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 				disguise_pixel_offset = -16
 			if("Vale")
 				disguise = "valeeng"
-				disguise_icon_override = 'modular_citadel/icons/mob/widerobot.dmi'
+				disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 				disguise_pixel_offset = -16
 		animation_playing = TRUE
 		to_chat(user, "<span class='notice'>You activate \the [src].</span>")

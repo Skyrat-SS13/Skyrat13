@@ -7,6 +7,7 @@
 	anchored = TRUE
 	icon = 'icons/turf/walls/wall.dmi'
 	icon_state = "wall"
+	plane = WALL_PLANE
 	layer = LOW_OBJ_LAYER
 	density = TRUE
 	opacity = 1
@@ -40,6 +41,7 @@
 	new /obj/structure/falsewall/brass(loc)
 	qdel(src)
 
+/* Moved to Modular Skyrat
 /obj/structure/falsewall/attack_hand(mob/user)
 	if(opening)
 		return
@@ -55,6 +57,7 @@
 			opening = FALSE
 			return
 	addtimer(CALLBACK(src, /obj/structure/falsewall/proc/toggle_open), 5)
+*/
 
 /obj/structure/falsewall/proc/toggle_open()
 	if(!QDELETED(src))

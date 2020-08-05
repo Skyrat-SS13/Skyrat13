@@ -89,7 +89,7 @@
 	temperature_archived = temperature
 
 /turf/open/archive()
-	ARCHIVE_TEMPERATURE(air)
+	ARCHIVE(air)
 	archived_cycle = SSair.times_fired
 	temperature_archived = temperature
 
@@ -215,7 +215,7 @@
 	if (planet_atmos) //share our air with the "atmosphere" "above" the turf
 		var/datum/gas_mixture/G = new
 		G.copy_from_turf(src)
-		ARCHIVE_TEMPERATURE(G)
+		ARCHIVE(G)
 		if(our_air.compare(G))
 			if(!our_excited_group)
 				var/datum/excited_group/EG = new
@@ -249,7 +249,7 @@
 //////////////////////////SPACEWIND/////////////////////////////
 
 /turf/open/proc/consider_pressure_difference(turf/T, difference)
-	SSair.high_pressure_delta |= src
+	SSair.high_pressure_delta[src] = TRUE
 	if(difference > pressure_difference)
 		pressure_direction = get_dir(src, T)
 		pressure_difference = difference
@@ -436,7 +436,8 @@
 	if(!thermal_conductivity)
 		return FALSE
 
-	SSair.active_super_conductivity |= src
+	SSair.active_super_conductivity[src] = TRUE
+
 	return TRUE
 
 /turf/open/consider_superconductivity(starting)

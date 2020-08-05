@@ -32,7 +32,7 @@
 	var/turf/T = loc
 	if(level == 2 || (istype(T) && !T.intact))
 		showpipe = TRUE
-		plane = GAME_PLANE
+		plane = ABOVE_WALL_PLANE
 	else
 		showpipe = FALSE
 		plane = FLOOR_PLANE
@@ -65,7 +65,7 @@
 // Pipenet stuff; housekeeping
 
 /obj/machinery/atmospherics/components/nullifyNode(i)
-	if(nodes[i])
+	if(parents[i])
 		nullifyPipenet(parents[i])
 		QDEL_NULL(airs[i])
 	..()
@@ -84,7 +84,6 @@
 /obj/machinery/atmospherics/components/proc/nullifyPipenet(datum/pipeline/reference)
 	if(!reference)
 		CRASH("nullifyPipenet(null) called by [type] on [COORD(src)]")
-		return
 	var/i = parents.Find(reference)
 	reference.other_airs -= airs[i]
 	reference.other_atmosmch -= src
@@ -145,7 +144,7 @@
 		var/datum/pipeline/parent = parents[i]
 		if(!parent)
 			stack_trace("Component is missing a pipenet! Rebuilding...")
-			build_network()
+			SSair.add_to_rebuild_queue(src)
 		parent.update = 1
 
 /obj/machinery/atmospherics/components/returnPipenets()
@@ -163,9 +162,13 @@
 	to_chat(user, "<span class='danger'>Access denied.</span>")
 	return UI_CLOSE
 
+/obj/machinery/atmospherics/components/attack_ghost(mob/dead/observer/O)
+	. = ..()
+	atmosanalyzer_scan(airs, O, src, FALSE)
 
 // Tool acts
 
 
 /obj/machinery/atmospherics/components/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(airs, user, src)
+	return TRUE // Skyrat change

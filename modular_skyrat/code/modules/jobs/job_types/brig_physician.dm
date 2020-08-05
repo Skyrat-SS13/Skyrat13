@@ -9,10 +9,13 @@
 	supervisors = "the head of security and chief medical officer"
 	selection_color = "#c02f2f"
 	minimal_player_age = 7
-	exp_requirements = 120 //SKYRAT CHANGE - lowers security exp requirement
-	exp_type = EXP_TYPE_CREW
+	exp_requirements = 120 //SKYRAT CHANGE - lowers medical exp requirement
+	exp_type = EXP_TYPE_MEDICAL
 
 	outfit = /datum/outfit/job/brig_phys
+
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_MED
 
 	access = list(ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_LEAVE_GENPOP, ACCESS_ENTER_GENPOP, ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_VIROLOGY, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_LEAVE_GENPOP, ACCESS_ENTER_GENPOP, ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING, ACCESS_MINERAL_STOREROOM)

@@ -7,13 +7,30 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 	var/obscure_name
+	var/species_visible //Skyrat edit
+	var/species_name_string //Skyrat edit
 
 	if(isliving(user))
 		var/mob/living/L = user
 		if(HAS_TRAIT(L, TRAIT_PROSOPAGNOSIA))
 			obscure_name = TRUE
 
-	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
+	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE)) //skyrat - moved this higher
+	//Skyrat stuff
+	if(skipface || get_visible_name() == "Unknown")
+		species_visible = FALSE
+	else
+		species_visible = TRUE
+
+	if(!species_visible)
+		species_name_string = "!"
+	else if (dna.custom_species)
+		species_name_string = ", [prefix_a_or_an(dna.custom_species)] <EM>[dna.custom_species]</EM>!"
+	else
+		species_name_string = ", [prefix_a_or_an(dna.species.name)] <EM>[dna.species.name]</EM>!"
+	//End of skyrat stuff
+
+	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>[species_name_string]") //Skyrat edit
 
 	var/vampDesc = ReturnVampExamine(user) // Vamps recognize the names of other vamps.
 	var/vassDesc = ReturnVassalExamine(user) // Vassals recognize each other's marks.
@@ -23,12 +40,13 @@
 		. += vassDesc
 
 	var/list/obscured = check_obscured_slots()
-	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
+	//Skyrat changes - edited that to only show the extra species tidbit if it's unknown or he's got a custom species
 	if(skipface || get_visible_name() == "Unknown")
 		. += "You can't make out what species they are."
-	else
-		. += "[t_He] [t_is] a [dna.custom_species ? dna.custom_species : dna.species.name]!"
+	else if(dna.custom_species)
+		. += "[t_He] [t_is] [prefix_a_or_an(dna.species.name)] [dna.species.name]!"
+	//End of skyrat changes
 
 	//uniform
 	if(w_uniform && !(SLOT_W_UNIFORM in obscured))
@@ -165,7 +183,10 @@
 			disabled += BP
 		missing -= BP.body_zone
 		for(var/obj/item/I in BP.embedded_objects)
-			msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
+			if(I.isEmbedHarmless())
+				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] stuck to [t_his] [BP.name]!</B>\n"
+			else
+				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
 
 	for(var/X in disabled)
 		var/obj/item/bodypart/BP = X
@@ -322,7 +343,7 @@
 			msg += "[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.\n"
 		else
 			if(HAS_TRAIT(src, TRAIT_DUMB))
-				msg += "[t_He] [t_has] a stupid expression on [t_his] face.\n"
+				msg += "[t_He] [t_has] a vapid expression on [t_his] face.\n" // Skyrat edit
 			if(InCritical())
 				msg += "[t_He] [t_is] barely conscious.\n"
 		if(getorgan(/obj/item/organ/brain))
@@ -334,12 +355,24 @@
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
 
+	//Skyrat changes begin
+	if(gunpointing)
+		msg += "<b>[t_He] [t_is] holding [gunpointing.target.name] at gunpoint with [gunpointing.aimed_gun.name]!</b>\n"
+	if(gunpointed.len)
+		for(var/datum/gunpoint/GP in gunpointed)
+			msg += "<b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b>\n"
+	
+	//descriptors
+	var/list/show_descs = show_descriptors_to(user)
+	msg += length(show_descs) ? "[show_descs.Join("\n")]\n" : ""
+	
+	//Skyrat changes end
 
-	if (length(msg))
+	if(length(msg))
 		. += "<span class='warning'>[msg.Join("")]</span>"
 
 	var/trait_exam = common_trait_examine()
-	if (!isnull(trait_exam))
+	if(!isnull(trait_exam))
 		. += trait_exam
 
 	var/traitstring = get_trait_string()
@@ -394,8 +427,34 @@
 	var/invisible_man = skipface || get_visible_name() == "Unknown" // SKYRAT EDIT -- BEGIN
 	if(!invisible_man)
 		if(client)
-			. += "OOC Notes: <a href='?src=[REF(src)];ooc_notes=1'>\[View\]</a>" // SKYRAT EDIT -- END
+			. += "<br>"
+			. += "OOC Notes: <a href='?src=[REF(src)];skyrat_ooc_notes=1'>\[View\]</a>" // SKYRAT EDIT -- END
+	//SKYRAT EDIT - admin lookup on records/extra flavor
+	if(client)
+		var/list/line = list()
+		if(user.client?.holder && isobserver(user))
+			if(client.prefs.general_records)
+				line += "<a href='?src=[REF(src)];general_records=1'>\[GEN\]</a>"
+			if(client.prefs.security_records)
+				line += "<a href='?src=[REF(src)];security_records=1'>\[SEC\]</a>"
+			if(client.prefs.medical_records)
+				line += "<a href='?src=[REF(src)];medical_records=1'>\[MED\]</a>"
+			if(client.prefs.flavor_background)
+				line += "<a href='?src=[REF(src)];flavor_background=1'>\[BG\]</a>"
+			if(client.prefs.character_skills)
+				line += "<a href='?src=[REF(src)];character_skills=1'>\[SKL\]</a>"
+			if(client.prefs.exploitable_info)
+				line += "<a href='?src=[REF(src)];exploitable_info=1'>\[EXP\]</a>"
+		else if(user.mind?.antag_datums && client.prefs.exploitable_info)
+			for(var/a in user.mind.antag_datums)
+				var/datum/antagonist/curious_antag = a
+				if(!(curious_antag.antag_flags & CAN_SEE_EXPOITABLE_INFO))
+					continue
+				line += "<a href='?src=[REF(src)];exploitable_info=1'>\[Exploitable Info\]</a>"
+				break
 
+		. += line.Join()
+	//END OF SKYRAT EDIT
 	. += "*---------*</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
@@ -410,3 +469,19 @@
 			dat += "[new_text]\n" //dat.Join("\n") doesn't work here, for some reason
 	if(dat.len)
 		return dat.Join()
+
+//skyrat edit - baystation descriptors
+/mob/living/carbon/human/proc/show_descriptors_to(mob/user)
+	. = list()
+	if(LAZYLEN(dna?.species?.descriptors))
+		if(user == src)
+			for(var/entry in dna.species.descriptors)
+				//currently using third person for consistency, but in the future i might make it so that
+				//examining yourself is first person across the board.
+				var/datum/mob_descriptor/descriptor = dna.species.descriptors[entry]
+				. += "<b><span class='info'>[descriptor.get_third_person_message_start(src)] [descriptor.get_standalone_value_descriptor(descriptor.current_value)].</span></b>"
+		else
+			for(var/entry in dna.species.descriptors)
+				var/datum/mob_descriptor/descriptor = dna.species.descriptors[entry]
+				. += "<b><span class='info'>[descriptor.get_comparative_value_descriptor(src, user, descriptor.current_value)]</span></b>"
+//

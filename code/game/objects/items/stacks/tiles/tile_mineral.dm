@@ -65,6 +65,7 @@
 	name = "titanium tile"
 	singular_name = "titanium floor tile"
 	desc = "A tile made of titanium, used for shuttles."
+	icon = 'modular_skyrat/icons/obj/tiles.dmi' // Skyrat Edit: Tiles can now be alt-clicked to change turf_type, so you can place different tile types.
 	icon_state = "tile_shuttle"
 	turf_type = /turf/open/floor/mineral/titanium
 	mineralType = "titanium"
@@ -78,4 +79,3 @@
 	turf_type = /turf/open/floor/mineral/plastitanium
 	mineralType = "plastitanium"
 	custom_materials = list(/datum/material/titanium=250, /datum/material/plasma=250)
-	material_flags = MATERIAL_NO_EFFECTS

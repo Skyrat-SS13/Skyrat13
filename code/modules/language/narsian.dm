@@ -4,6 +4,7 @@
 	speech_verb = "intones"
 	ask_verb = "inquires"
 	exclaim_verb = "invokes"
+	sing_verb = "chants" // Skyrat edit
 	key = "n"
 	sentence_chance = 8
 	space_chance = 95 //very high due to the potential length of each syllable
@@ -27,6 +28,9 @@
 	) //the base syllables, which include a few rare ones that won't appear in the mixed syllables
 	icon_state = "narsie"
 	default_priority = 10
+	//SKYRAT CHANGE - language restriction
+	restricted = TRUE
+	//
 
 /datum/language/narsie/New()
 	for(var/syllable in base_syllables) //we only do this once, since there's only ever a single one of each language datum.

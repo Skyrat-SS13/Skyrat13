@@ -16,7 +16,6 @@ SUBSYSTEM_DEF(atoms)
 
 /datum/controller/subsystem/atoms/Initialize(timeofday)
 	GLOB.fire_overlay.appearance_flags = RESET_COLOR
-	setupGenetics() //to set the mutations' sequence.
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 	return ..()
@@ -57,6 +56,45 @@ SUBSYSTEM_DEF(atoms)
 			A.LateInitialize()
 		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
+	//skyrat edit
+	var/list/bruh = list(/mob/living/simple_animal/hostile/megafauna/dragon = 0,\
+						/mob/living/simple_animal/hostile/megafauna/colossus = 0,\
+						/mob/living/simple_animal/hostile/megafauna/bubblegum = 0)
+	var/list/accept_turfs = (GLOB.spawned_turfs - GLOB.success_spawned_turfs)
+	for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
+		if(bruh[M.type])
+			bruh[M.type]++
+	var/attempts = 0
+	for(var/I in bruh)
+		attempts = 0
+		while(get_mega_count(I) < 1)
+			if(attempts >= 30)
+				testing("Static megafauna spawning failed after [attempts] attempts.")
+				break
+			attempts++
+			if(length(accept_turfs))
+				var/turf/open/floor/plating/asteroid/airless/cave/T = pick_n_take(accept_turfs)
+				if(istype(T))
+					if(T.BruteForceSpawn(I))
+						break
+			else
+				testing("Static megafauna spawning ran out of possible turfs to spawn on.")
+				break
+	attempts = 0
+	while(get_tendril_count(/obj/structure/spawner/lavaland/legion) < 1)
+		if(attempts >= 30)
+			testing("Static tendril spawning failed after [attempts] attempts.")
+			break
+		attempts++
+		if(length(accept_turfs))
+			var/turf/open/floor/plating/asteroid/airless/cave/T = pick_n_take(accept_turfs)
+			if(istype(T))
+				if(T.BruteForceTendril(/obj/structure/spawner/lavaland/legion))
+					break
+		else
+			testing("Static tendril spawning ran out of possible turfs to spawn on.")
+			break
+	//
 
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
 	var/the_type = A.type
@@ -106,28 +144,6 @@ SUBSYSTEM_DEF(atoms)
 		InitializeAtoms()
 	old_initialized = SSatoms.old_initialized
 	BadInitializeCalls = SSatoms.BadInitializeCalls
-
-/datum/controller/subsystem/atoms/proc/setupGenetics()
-	var/list/mutations = subtypesof(/datum/mutation/human)
-	shuffle_inplace(mutations)
-	for(var/A in subtypesof(/datum/generecipe))
-		var/datum/generecipe/GR = A
-		GLOB.mutation_recipes[initial(GR.required)] = initial(GR.result)
-	for(var/i in 1 to LAZYLEN(mutations))
-		var/path = mutations[i] //byond gets pissy when we do it in one line
-		var/datum/mutation/human/B = new path ()
-		B.alias = "Mutation #[i]"
-		GLOB.all_mutations[B.type] = B
-		GLOB.full_sequences[B.type] = generate_gene_sequence(B.blocks)
-		if(B.locked)
-			continue
-		if(B.quality == POSITIVE)
-			GLOB.good_mutations |= B
-		else if(B.quality == NEGATIVE)
-			GLOB.bad_mutations |= B
-		else if(B.quality == MINOR_NEGATIVE)
-			GLOB.not_good_mutations |= B
-		CHECK_TICK
 
 /datum/controller/subsystem/atoms/proc/InitLog()
 	. = ""

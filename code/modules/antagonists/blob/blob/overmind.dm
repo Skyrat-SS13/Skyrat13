@@ -36,11 +36,11 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/autoplace_max_time = 3600 //six minutes, as long as should be needed
 	var/list/blobs_legit = list()
 	var/max_count = 0 //The biggest it got before death
-	var/blobwincount = 400
+	var/blobwincount = 800 //skyrat change up from 400
 	var/victory_in_progress = FALSE
 	var/rerolling = FALSE
 
-/mob/camera/blob/Initialize(mapload, starting_points = 60)
+/mob/camera/blob/Initialize(mapload, starting_points = 100)//skyrat change up from 60
 	validate_location()
 	blob_points = starting_points
 	manualplace_min_time += world.time
@@ -203,7 +203,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 				B.hud_used.blobpwrdisplay.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[round(blob_core.obj_integrity)]</font></div>"
 
 /mob/camera/blob/proc/add_points(points)
-	blob_points = CLAMP(blob_points + points, 0, max_blob_points)
+	blob_points = clamp(blob_points + points, 0, max_blob_points)
 	hud_used.blobpwrdisplay.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[round(blob_points)]</font></div>"
 
 /mob/camera/blob/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)

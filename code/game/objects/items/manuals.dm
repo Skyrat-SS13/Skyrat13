@@ -172,7 +172,7 @@
 				It can cook multiple items at once.
 
 				<h2>Processor:</h2>
-				Use it to process certain ingredients (meat into faggot, doughslice into spaghetti, potato into fries,etc...)
+				Use it to process certain ingredients (meat into meatball, doughslice into spaghetti, potato into fries,etc...)
 
 				<h2>Gibber:</h2>
 				Stuff an animal in it to grind it into meat.
@@ -251,7 +251,7 @@
 		initialize_wikibook()
 	..()
 
-/obj/item/book/manual/wiki/proc/initialize_wikibook()
+/*/obj/item/book/manual/wiki/proc/initialize_wikibook() MOVED TO MODULAR_SKYRAT
 	var/wikiurl = CONFIG_GET(string/wikiurltg)
 	if(wikiurl)
 		dat = {"
@@ -277,7 +277,7 @@
 
 			</html>
 
-			"}
+			"}*/
 
 /obj/item/book/manual/wiki/cit
 	name = "Citadel infobook"
@@ -362,13 +362,13 @@
 	title = "Singularity and Tesla for Dummies"
 	page_link = "Singularity_and_Tesla_engines"
 
-/obj/item/book/manual/wiki/security_space_law
+/*/obj/item/book/manual/wiki/security_space_law MOVED TO MODULAR_SKYRAT
 	name = "Space Law"
 	desc = "A set of Nanotrasen guidelines for keeping law and order on their space stations."
 	icon_state = "bookSpaceLaw"
 	author = "Nanotrasen"
 	title = "Space Law"
-	page_link = "Space_Law"
+	page_link = "Space_Law"*/
 
 /obj/item/book/manual/wiki/security_space_law/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] pretends to read \the [src] intently... then promptly dies of laughter!</span>")

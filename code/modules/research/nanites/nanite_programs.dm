@@ -54,6 +54,9 @@
 	//Rules that automatically manage if the program's active without requiring separate sensor programs
 	var/list/datum/nanite_rule/rules = list()
 
+	//Mob biotypes this program can run on
+	var/required_biotypes = MOB_ORGANIC | MOB_ROBOTIC
+
 /datum/nanite_program/New()
 	. = ..()
 	register_extra_settings()
@@ -134,6 +137,8 @@
 
 /datum/nanite_program/proc/on_mob_add()
 	host_mob = nanites.host_mob
+	if(!(host_mob.mob_biotypes & required_biotypes))
+		return qdel(src)
 	if(activated) //apply activation effects depending on initial status; starts the restart and shutdown timers
 		activate()
 	else
@@ -290,7 +295,7 @@
 		qdel(src)
 
 ///A nanite program containing a behaviour protocol. Only one protocol of each class can be active at once.
-//Currently unused due to us lacking the B.E.P.I.S
+//Moved to being 'normally' researched due to lack of B.E.P.I.S.
 /datum/nanite_program/protocol
 	name = "Nanite Protocol"
 	var/protocol_class = NONE

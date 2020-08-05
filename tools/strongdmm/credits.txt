@@ -1,0 +1,3 @@
+StrongDMM was created by Spair, who has kindly allowed to add a copy of StrongDMM to our tools
+
+Link to StrongDMM on Github: https://github.com/SpaiR/StrongDMM

@@ -6,6 +6,8 @@
 	var/nometeors = 0
 	var/rampupdelta = 5
 	required_players = 0
+	// SKYRAT EDIT: Credits
+	title_icon = "meteor"
 
 	announce_span = "danger"
 	announce_text = "A major meteor shower is bombarding the station! The crew needs to evacuate or survive the onslaught."
@@ -25,7 +27,7 @@
 	if (prob(meteorminutes/2))
 		wavetype = GLOB.meteors_catastrophic
 
-	var/ramp_up_final = CLAMP(round(meteorminutes/rampupdelta), 1, 10)
+	var/ramp_up_final = clamp(round(meteorminutes/rampupdelta), 1, 10)
 
 	spawn_meteors(ramp_up_final, wavetype)
 

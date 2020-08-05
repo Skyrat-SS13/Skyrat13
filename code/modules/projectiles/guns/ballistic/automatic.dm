@@ -1,7 +1,12 @@
 /obj/item/gun/ballistic/automatic
 	w_class = WEIGHT_CLASS_NORMAL
 	var/alarmed = 0
-	var/select = 1
+	//woops skyrat edit
+	canMouseDown = TRUE
+	var/select = SEMIAUTO
+	var/can_fullauto = TRUE
+	var/done_empty = 0
+	//
 	var/automatic_burst_overlay = TRUE
 	can_suppress = TRUE
 	burst_size = 3
@@ -21,10 +26,10 @@
 /obj/item/gun/ballistic/automatic/update_icon()
 	..()
 	if(automatic_burst_overlay)
-		if(!select)
-			add_overlay("[initial(icon_state)]semi")
-		if(select == 1)
+		if(select == (ROUNDBURST || FULLAUTO))
 			add_overlay("[initial(icon_state)]burst")
+		else
+			add_overlay("[initial(icon_state)]semi")
 	icon_state = "[initial(icon_state)][magazine ? "-[magazine.max_ammo]" : ""][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"
 
 /obj/item/gun/ballistic/automatic/attackby(obj/item/A, mob/user, params)
@@ -60,13 +65,30 @@
 
 /obj/item/gun/ballistic/automatic/proc/burst_select()
 	var/mob/living/carbon/human/user = usr
-	select = !select
-	if(!select)
-		disable_burst()
-		to_chat(user, "<span class='notice'>You switch to semi-automatic.</span>")
+	//woops skyrat edit
+	if(!can_fullauto)
+		if(select == ROUNDBURST)
+			select = SEMIAUTO
+			disable_burst()
+			to_chat(user, "<span class='notice'>You switch to semi-automatic.</span>")
+		else
+			select = ROUNDBURST
+			enable_burst()
+			to_chat(user, "<span class='notice'>You switch to [burst_size]-rnd burst.</span>")
 	else
-		enable_burst()
-		to_chat(user, "<span class='notice'>You switch to [burst_size]-rnd burst.</span>")
+		if(select == FULLAUTO)
+			select = SEMIAUTO
+			disable_burst()
+			to_chat(user, "<span class='notice'>You switch to semi-automatic.</span>")
+		else if(select == ROUNDBURST)
+			select = FULLAUTO
+			disable_burst()
+			to_chat(user, "<span class='notice'>You switch to full-automatic.</span>")
+		else
+			select = ROUNDBURST
+			enable_burst()
+			to_chat(user, "<span class='notice'>You switch to [burst_size]-rnd burst.</span>")
+	//
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
 	update_icon()
@@ -89,6 +111,30 @@
 		update_icon()
 		alarmed = 1
 	return
+//skyrat edit
+/obj/item/gun/ballistic/automatic/onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
+	. = ..()
+	var/mob/living/L = mob
+	if(istype(L) && can_fullauto && (select == FULLAUTO) && over_object)
+		process_afterattack(over_object, L, TRUE)
+
+/obj/item/gun/ballistic/automatic/on_cooldown()
+	return busy_action || firing || (last_fire + fire_delay > world.time) || ((select == FULLAUTO) && (last_fire + burst_shot_delay >= world.time))
+
+/obj/item/gun/ballistic/automatic/calculate_extra_inaccuracy(mob/living/user, bonus_spread, stamloss)
+	if(select == FULLAUTO)
+		return getinaccuracy(user, bonus_spread, stamloss)
+
+/obj/item/gun/ballistic/automatic/shoot_with_empty_chamber(mob/living/user)
+	if(done_empty >= world.time)
+		return FALSE
+	else
+		if(select == FULLAUTO)
+			done_empty = world.time + 2 SECONDS
+		return ..()
+
+/obj/item/gun/ballistic/automatic/
+//
 
 /obj/item/gun/ballistic/automatic/c20r
 	name = "\improper C-20r SMG"
@@ -140,11 +186,11 @@
 /obj/item/gun/ballistic/automatic/wt550/disable_burst()
 	. = ..()
 	spread = 0
-
+/* moved to modular_skyrat
 /obj/item/gun/ballistic/automatic/wt550/update_icon()
 	..()
 	icon_state = "wt550[magazine ? "-[CEILING((	(get_ammo(FALSE) / magazine.max_ammo) * 20) /4, 1)*4]" : "-0"]"	//Sprites only support up to 20.
-
+*/
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
 	desc = "A lightweight, burst-fire submachine gun, for when you really want someone dead. Uses 9mm rounds."
@@ -365,7 +411,7 @@
 	can_unsuppress = TRUE
 	can_suppress = TRUE
 	w_class = WEIGHT_CLASS_NORMAL
-	inaccuracy_modifier = 0
+	inaccuracy_modifier = 0.5
 	zoomable = TRUE
 	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
 	zoom_out_amt = 13

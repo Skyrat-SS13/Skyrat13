@@ -18,8 +18,8 @@
 //USP pistol - Universal Self Protection pistol
 /obj/item/gun/ballistic/automatic/pistol/uspm
 	name = "USP 9mm"
-	desc = "USP - Universal Self Protection. A standard-issued security handgun, chambered in 9mm, refitted to be only capable of firing non-lethal rounds."
-	icon = 'modular_skyrat/icons/obj/guns/usp.dmi'
+	desc = "USP - Universal Self Protection. A standard-issued security handgun, chambered in 9mm, locked to firing non-lethal rounds."
+	icon = 'modular_skyrat/icons/obj/guns/projectile.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_state = "usp-m"
@@ -33,6 +33,7 @@
 						"Beretta" = "beretta",
 						"M1911" = "1911")
 	obj_flags = UNIQUE_RENAME
+	req_access = list(ACCESS_HOS)
 
 /obj/item/gun/ballistic/automatic/pistol/uspm/update_icon()
 	..()
@@ -45,3 +46,9 @@
 	if(magazine)
 		var/obj/item/ammo_box/magazine/M = magazine
 		M.emag_act(user)
+
+/obj/item/gun/ballistic/automatic/pistol/uspm/attackby(obj/item/A, mob/user, params)
+	. = ..()
+	if(check_access(A))
+		if(magazine)
+			magazine.attackby(A, user)

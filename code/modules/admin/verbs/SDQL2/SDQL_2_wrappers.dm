@@ -223,7 +223,7 @@
 /// Locating turfs
 /proc/_turf_in_offset(s = usr, x = 0, y = 0, z = 0)
 	var/turf/T = get_turf(s)
-	return locate(CLAMP(T.x + x, 1, world.maxx), CLAMP(T.y + y, 1, world.maxy), CLAMP(T.z + z, 1, world.maxz))
+	return locate(clamp(T.x + x, 1, world.maxx), clamp(T.y + y, 1, world.maxy), clamp(T.z + z, 1, world.maxz))
 
 /proc/_random_turf_in_range(s = usr, r = 7)
 	return _turf_in_offset(s, rand(-r, r), rand(-r, r))
@@ -234,3 +234,7 @@
 	for(var/turf/T in v)
 		. += T
 	return pick(.)
+
+/proc/__nan()
+	var/list/L = json_decode("{\"value\":NaN}")
+	return L["value"]

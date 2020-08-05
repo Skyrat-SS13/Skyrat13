@@ -4,11 +4,17 @@
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
 	mutant_bodyparts = list("tail_human" = "None", "ears" = "None", "wings" = "Angel")
-	use_skintones = 1
+	use_skintones = USE_SKINTONES_GRAYSCALE_CUSTOM
 	no_equip = list(SLOT_BACK)
 	blacklisted = 1
 	limbs_id = "human"
 	skinned_type = /obj/item/stack/sheet/animalhide/human
+	//SKYRAT CHANGE - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "ANGL")
+	exotic_bloodtype = "ANGL"
+	exotic_blood_color = BLOOD_COLOR_ANGEL
+	rainbowblood = TRUE
+	//
 
 	var/datum/action/innate/flight/fly
 

@@ -56,6 +56,10 @@
 #define ADMIN_SET_SD_CODE "(<a href='?_src_=holder;[HrefToken(TRUE)];set_selfdestruct_code=1'>SETCODE</a>)"
 #define ADMIN_FULLMONTY_NONAME(user) "[ADMIN_QUE(user)] [ADMIN_PP(user)] [ADMIN_VV(user)] [ADMIN_SM(user)] [ADMIN_FLW(user)] [ADMIN_TP(user)] [ADMIN_INDIVIDUALLOG(user)] [ADMIN_SMITE(user)]"
 #define ADMIN_FULLMONTY(user) "[key_name_admin(user)] [ADMIN_FULLMONTY_NONAME(user)]"
+//SKYRAT CHANGES BEGIN
+#define ADMIN_TPMONTY_NONAME(user) "[ADMIN_QUE(user)] [ADMIN_JMP(user)] [ADMIN_FLW(user)]"
+#define ADMIN_TPMONTY(user) "[key_name_admin(user)] [ADMIN_TPMONTY_NONAME(user)]"
+//SKYRAT CHANGES END
 #define ADMIN_JMP(src) "(<a href='?_src_=holder;[HrefToken(TRUE)];adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)"
 #define COORD(src) "[src ? "([src.x],[src.y],[src.z])" : "nonexistent location"]"
 #define AREACOORD(src) "[src ? "[get_area_name(src, TRUE)] ([src.x], [src.y], [src.z])" : "nonexistent location"]"
@@ -74,24 +78,18 @@
 #define ADMIN_PUNISHMENT_MAZING "Puzzle"
 #define ADMIN_PUNISHMENT_PIE "Cream Pie"
 #define ADMIN_PUNISHMENT_CUSTOM_PIE "Custom Cream Pie"
+#define ADMIN_PUNISHMENT_PICKLE "Pickle-ify"
+#define ADMIN_PUNISHMENT_FRY "Fry"
 
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2
 #define AHELP_RESOLVED 3
+#define AHELP_ANTAGREQ 4 // Skyrat change
 
 #define ROUNDSTART_LOGOUT_REPORT_TIME	6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 #define SPAM_TRIGGER_WARNING	5	//Number of identical messages required before the spam-prevention will warn you to stfu
 #define SPAM_TRIGGER_AUTOMUTE	10	//Number of identical messages required before the spam-prevention will automute you
 
-///Max length of a keypress command before it's considered to be a forged packet/bogus command
-#define MAX_KEYPRESS_COMMANDLENGTH 16
-///Max amount of keypress messages per second over two seconds before client is autokicked
-#define MAX_KEYPRESS_AUTOKICK 100
-///Length of max held keys
-#define MAX_HELD_KEYS 15
-//SKYRAT COLLAR BAN
-#define COLLARBAN	"Collar ban"
-#define COLLARITEM	/obj/item/electropack/shockcollar/pacify/admin
-#define LESSERCOLLARBAN		"Lesser Collar ban"
-#define LESSERCOLLARITEM	/obj/item/electropack/shockcollar/pacify/admin/lesser
+//SKYRAT COLLAR BAN - now no collar
+#define COLLARBAN	"Collar ban" //Pacification but called that so we dont lose our earlier bans

@@ -594,36 +594,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	admin_delete(A)
 
-/client/proc/admin_delete(datum/D)
-	var/atom/A = D
-	var/coords = ""
-	var/jmp_coords = ""
-	if(istype(A))
-		var/turf/T = get_turf(A)
-		if(T)
-			coords = "at [COORD(T)]"
-			jmp_coords = "at [ADMIN_COORDJMP(T)]"
-		else
-			jmp_coords = coords = "in nullspace"
-
-	if (alert(src, "Are you sure you want to delete:\n[D]\n[coords]?", "Confirmation", "Yes", "No") == "Yes")
-		log_admin("[key_name(usr)] deleted [D] [coords]")
-		message_admins("[key_name_admin(usr)] deleted [D] [jmp_coords]")
-		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delete") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		if(isturf(D))
-			var/turf/T = D
-			T.ScrapeAway()
-		else
-			vv_update_display(D, "deleted", VV_MSG_DELETED)
-			qdel(D)
-			if(!QDELETED(D))
-				vv_update_display(D, "deleted", "")
-
 /client/proc/cmd_admin_list_open_jobs()
 	set category = "Admin"
 	set name = "Manage Job Slots"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_DEBUG|R_SERVER)) //Skyrat change
 		return
 	holder.manage_free_slots()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Manage Job Slots") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -750,49 +725,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Change View Range", "[view]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/admin_call_shuttle()
-
-	set category = "Admin"
-	set name = "Call Shuttle"
-
-	if(EMERGENCY_AT_LEAST_DOCKED)
-		return
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes")
-		return
-
-	SSshuttle.emergency.request()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Call Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-called the emergency shuttle.</span>")
-	return
-
-/client/proc/admin_cancel_shuttle()
-	set category = "Admin"
-	set name = "Cancel Shuttle"
-	if(!check_rights(0))
-		return
-	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
-		return
-
-	if(EMERGENCY_AT_LEAST_DOCKED)
-		return
-
-	SSshuttle.emergency.cancel()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Cancel Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-recalled the emergency shuttle.</span>")
-
-	return
-
 /client/proc/everyone_random()
 	set category = "Fun"
 	set name = "Make Everyone Random"
 	set desc = "Make everyone have a random appearance. You can only use this before rounds!"
+
+	if(!check_rights(R_SERVER)) //Skyrat change
+		return
 
 	if(SSticker.HasRoundStarted())
 		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!")
@@ -845,7 +784,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/level = input("Select security level to change to","Set Security Level") as null|anything in list("green","blue","amber","red","delta")
+	var/level = input("Select security level to change to","Set Security Level") as null|anything in GLOB.all_security_levels //Skyrat change
 	if(level)
 		set_security_level(level)
 
@@ -1243,13 +1182,77 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggled Hub Visibility", "[GLOB.hub_visibility ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/cmd_admin_toggle_fov()
+	set category = "Fun"
+	set name = "Enable/Disable Field of Vision"
+
+	var/static/busy_toggling_fov = FALSE
+	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
+		return
+
+	var/on_off = CONFIG_GET(flag/use_field_of_vision)
+
+	if(busy_toggling_fov)
+		to_chat(usr, "<span class='warning'>A previous call of this function is still busy toggling FoV [on_off ? "on" : "off"]. Have some patiece</span>.")
+		return
+	busy_toggling_fov = TRUE
+
+	log_admin("[key_name(usr)] has [on_off ? "disabled" : "enabled"] the Field of Vision configuration.")
+	CONFIG_SET(flag/use_field_of_vision, !on_off)
+
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggled Field of Vision", "[on_off ? "Enabled" : "Disabled"]"))
+
+	if(on_off)
+		for(var/k in GLOB.mob_list)
+			if(!k)
+				continue
+			var/mob/M = k
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(!(H.dna?.species.has_field_of_vision))
+					continue
+			else if(!M.has_field_of_vision)
+				continue
+			var/datum/component/field_of_vision/FoV = M.GetComponent(/datum/component/field_of_vision)
+			if(FoV)
+				qdel(FoV)
+			CHECK_TICK
+	else
+		for(var/k in GLOB.clients)
+			if(!k)
+				continue
+			var/client/C = k
+			var/mob/M = C.mob
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(!(H.dna?.species.has_field_of_vision))
+					continue
+			else if(!M.has_field_of_vision)
+				continue
+			M.LoadComponent(/datum/component/field_of_vision, M.field_of_vision_type)
+			CHECK_TICK
+
+	busy_toggling_fov = FALSE
+
 /client/proc/smite(mob/living/carbon/human/target as mob)
 	set name = "Smite"
 	set category = "Fun"
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_PIE, ADMIN_PUNISHMENT_CUSTOM_PIE, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_ROD)
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_PIE,
+		ADMIN_PUNISHMENT_CUSTOM_PIE,
+		ADMIN_PUNISHMENT_FIREBALL,
+		ADMIN_PUNISHMENT_LIGHTNING,
+		ADMIN_PUNISHMENT_BRAINDAMAGE,
+		ADMIN_PUNISHMENT_BSA,
+		ADMIN_PUNISHMENT_GIB,
+		ADMIN_PUNISHMENT_SUPPLYPOD_QUICK,
+		ADMIN_PUNISHMENT_SUPPLYPOD,
+		ADMIN_PUNISHMENT_MAZING,
+		ADMIN_PUNISHMENT_ROD,
+		ADMIN_PUNISHMENT_PICKLE,
+		ADMIN_PUNISHMENT_FRY)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1314,7 +1317,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		if(ADMIN_PUNISHMENT_PIE)
 			var/obj/item/reagent_containers/food/snacks/pie/cream/nostun/creamy = new(get_turf(target))
 			creamy.splat(target)
-		if (ADMIN_PUNISHMENT_CUSTOM_PIE)
+		if(ADMIN_PUNISHMENT_CUSTOM_PIE)
 			var/obj/item/reagent_containers/food/snacks/pie/cream/nostun/A = new()
 			if(!A.reagents)
 				var/amount = input(usr, "Specify the reagent size of [A]", "Set Reagent Size", 50) as num|null
@@ -1327,6 +1330,10 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 					if(amount)
 						A.reagents.add_reagent(chosen_id, amount)
 						A.splat(target)
+		if(ADMIN_PUNISHMENT_PICKLE)
+			target.turn_into_pickle()
+		if(ADMIN_PUNISHMENT_FRY)
+			target.fry()
 
 	punish_log(target, punishment)
 
@@ -1404,3 +1411,138 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	else
 		message_admins("[key_name_admin(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name_admin(C)]")
 		log_admin("[key_name(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name(C)]")
+
+/// Allow admin to add or remove traits of datum
+/datum/admins/proc/modify_traits(datum/D)
+	if(!D)
+		return
+
+	var/add_or_remove = input("Remove/Add?", "Trait Remove/Add") as null|anything in list("Add","Remove")
+	if(!add_or_remove)
+		return
+	var/list/availible_traits = list()
+
+	switch(add_or_remove)
+		if("Add")
+			for(var/key in GLOB.traits_by_type)
+				if(istype(D,key))
+					availible_traits += GLOB.traits_by_type[key]
+		if("Remove")
+			if(!GLOB.trait_name_map)
+				GLOB.trait_name_map = generate_trait_name_map()
+			for(var/trait in D.status_traits)
+				var/name = GLOB.trait_name_map[trait] || trait
+				availible_traits[name] = trait
+
+	var/chosen_trait = input("Select trait to modify", "Trait") as null|anything in sortList(availible_traits)
+	if(!chosen_trait)
+		return
+	chosen_trait = availible_traits[chosen_trait]
+
+	var/source = "adminabuse"
+	switch(add_or_remove)
+		if("Add") //Not doing source choosing here intentionally to make this bit faster to use, you can always vv it.
+			ADD_TRAIT(D,chosen_trait,source)
+		if("Remove")
+			var/specific = input("All or specific source ?", "Trait Remove/Add") as null|anything in list("All","Specific")
+			if(!specific)
+				return
+			switch(specific)
+				if("All")
+					source = null
+				if("Specific")
+					source = input("Source to be removed","Trait Remove/Add") as null|anything in sortList(D.status_traits[chosen_trait])
+					if(!source)
+						return
+			REMOVE_TRAIT(D,chosen_trait,source)
+
+//SHUTTLE CONTROL
+/client/proc/admin_disable_shuttle()
+	set category = "Admin"
+	set name = "Disable Shuttle"
+	if(!check_rights(R_ADMIN))	return
+
+	if(SSshuttle.emergency.mode == SHUTTLE_DISABLED)
+		to_chat(usr, "<span class='warning'>Error, shuttle is already disabled.</span>")
+		return
+
+	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
+
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] disabled the shuttle.</span>")
+
+	SSshuttle.lastMode = SSshuttle.emergency.mode
+	SSshuttle.lastCallTime = SSshuttle.emergency.timeLeft(1)
+	SSshuttle.adminEmergencyNoRecall = TRUE
+	SSshuttle.emergency.setTimer(null)
+	SSshuttle.emergency.mode = SHUTTLE_DISABLED
+	priority_announce("Warning: Emergency Shuttle uplink failure, shuttle disabled until further notice.", "Emergency Shuttle Uplink Alert", 'sound/misc/announce_dig.ogg')
+
+/client/proc/admin_enable_shuttle()
+	set category = "Admin"
+	set name = "Enable Shuttle"
+	if(!check_rights(R_ADMIN))	return
+
+	if(SSshuttle.emergency.mode != SHUTTLE_DISABLED)
+		to_chat(usr, "<span class='warning'>Error, shuttle not disabled.</span>")
+		return
+
+	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
+
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] enabled the emergency shuttle.</span>")
+	SSshuttle.adminEmergencyNoRecall = FALSE
+	SSshuttle.emergencyNoRecall = FALSE
+	if(SSshuttle.lastMode == SHUTTLE_DISABLED) //If everything goes to shit, fix it.
+		SSshuttle.lastMode = SHUTTLE_IDLE
+
+	SSshuttle.emergency.mode = SSshuttle.lastMode
+	if(SSshuttle.lastCallTime < 100 && SSshuttle.lastMode != SHUTTLE_IDLE)
+		SSshuttle.lastCallTime = 100 //Make sure no insta departures.
+	SSshuttle.emergency.setTimer(SSshuttle.lastCallTime)
+	priority_announce("Warning: Emergency Shuttle uplink reestablished, shuttle enabled.", "Emergency Shuttle Uplink Alert", 'sound/misc/announce_dig.ogg')
+
+/client/proc/admin_call_shuttle()
+	set category = "Admin"
+	set name = "Call Shuttle"
+
+	if(EMERGENCY_AT_LEAST_DOCKED)
+		return
+
+	if(!check_rights(R_ADMIN))	return
+
+	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "Yes (No Recall)", "No")
+	if(confirm == "No")
+		return
+
+	if(confirm == "Yes (No Recall)")
+		SSshuttle.adminEmergencyNoRecall = TRUE
+		SSshuttle.emergency.mode = SHUTTLE_IDLE
+
+	SSshuttle.emergency.request()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Call Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
+	if(confirm == "Yes (No Recall)")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-called the emergency shuttle (non-recallable).</span>")
+	else
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-called the emergency shuttle.</span>")
+	return
+
+/client/proc/admin_cancel_shuttle()
+	set category = "Admin"
+	set name = "Cancel Shuttle"
+	if(!check_rights(0))
+		return
+	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
+		return
+
+	if(SSshuttle.adminEmergencyNoRecall)
+		SSshuttle.adminEmergencyNoRecall = FALSE
+
+	if(EMERGENCY_AT_LEAST_DOCKED)
+		return
+
+	SSshuttle.emergency.cancel()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Cancel Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-recalled the emergency shuttle.</span>")
+
+	return

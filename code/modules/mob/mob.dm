@@ -9,6 +9,7 @@
 	movespeed_modification = null
 	for (var/alert in alerts)
 		clear_alert(alert, TRUE)
+	QDEL_LIST(mob_spell_list) //Skyrat edit to appease the GC
 	if(observers && observers.len)
 		for(var/M in observers)
 			var/mob/dead/observe = M
@@ -19,7 +20,7 @@
 	client_colours = null
 	ghostize()
 	..()
-	return QDEL_HINT_HARDDEL
+	return QDEL_HINT_QUEUE //Skyrat change
 
 /mob/Initialize()
 	GLOB.mob_list += src
@@ -35,7 +36,7 @@
 			continue
 		var/datum/atom_hud/alternate_appearance/AA = v
 		AA.onNewMob(src)
-	nutrition = rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX)
+	set_nutrition(rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX))
 	. = ..()
 	update_config_movespeed()
 	update_movespeed(TRUE)
@@ -52,7 +53,7 @@
 			if(HUD_LIST_LIST)
 				hud_list[hud] = list()
 			else
-				var/image/I = image('icons/mob/hud.dmi', src, "")
+				var/image/I = image('icons/mob/hud.dmi', src, "") && image('modular_skyrat/icons/mob/hud.dmi' , src, "")
 				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM
 				hud_list[hud] = I
 
@@ -125,17 +126,30 @@
   * * blind_message (optional) is what blind people will hear e.g. "You hear something!"
   * * vision_distance (optional) define how many tiles away the message can be seen.
   * * ignored_mobs (optional) doesn't show any message to any given mob in the list.
+  * * target (optional) is the other mob involved with the visible message. For example, the attacker in many combat messages.
+  * * target_message (optional) is what the target mob will see e.g. "[src] does something to you!"
   */
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs)
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, ignored_mobs, mob/target, target_message, user_msg, runechat_popup) //SKYRAT CHANGE
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
+	var/final_msg = user_msg ? "<b>[src]</b> " + message : message //SKYRAT CHANGE
 	var/list/hearers = get_hearers_in_view(vision_distance, src) //caches the hearers and then removes ignored mobs.
 	if(!length(hearers))
 		return
-	if(!islist(ignored_mobs))
-		ignored_mobs = list(ignored_mobs)
 	hearers -= ignored_mobs
+
+	if(target_message && target && istype(target) && target.client)
+		hearers -= target
+		//This entire if/else chain could be in two lines but isn't for readibilties sake.
+		var/msg = target_message
+		if(target.see_invisible<invisibility) //if src is invisible to us,
+			msg = blind_message
+		//the light object is dark and not invisible to us, darkness does not matter if you're directly next to the target
+		else if(T.lighting_object && T.lighting_object.invisibility <= target.see_invisible && T.is_softly_lit() && !in_range(T,target))
+			msg = blind_message
+		if(msg)
+			target.show_message(msg, MSG_VISUAL,blind_message, MSG_AUDIBLE)
 	if(self_message)
 		hearers -= src
 	for(var/mob/M in hearers)
@@ -146,18 +160,23 @@
 		//CITADEL EDIT, required for vore code to remove (T != loc && T != src)) as a check
 		if(M.see_invisible<invisibility) //if src is invisible to us,
 			msg = blind_message
-		else if(T.lighting_object && T.lighting_object.invisibility <= M.see_invisible && T.is_softly_lit()) //the light object is dark and not invisible to us
+		else if(T.lighting_object && T.lighting_object.invisibility <= M.see_invisible && T.is_softly_lit() && !in_range(T,M)) //the light object is dark and not invisible to us, darkness does not matter if you're directly next to the target
 			msg = blind_message
-
+		else if(SEND_SIGNAL(M, COMSIG_MOB_GET_VISIBLE_MESSAGE, src, message, vision_distance, ignored_mobs) & COMPONENT_NO_VISIBLE_MESSAGE)
+			msg = blind_message
 		if(!msg)
 			continue
-		M.show_message(msg, MSG_VISUAL,blind_message, MSG_AUDIBLE)
+		if (runechat_popup && M.client?.prefs.chat_on_map && (M.client.prefs.see_chat_non_mob || ismob(src)) && M.client.prefs.see_chat_emotes) //SKYRAT CHANGE
+			M.create_chat_message(src, null, msg, list("emote", "italics"), null) //Skyrat change
+		M.show_message(final_msg, MSG_VISUAL,blind_message, MSG_AUDIBLE) //SKYRAT CHANGE
 
 ///Adds the functionality to self_message.
-mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs)
+mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, mob/target, target_message, user_msg, runechat_popup) //SKYRAT CHANGE
 	. = ..()
-	if(self_message)
-		show_message(self_message, MSG_VISUAL, blind_message, MSG_AUDIBLE)
+	if(self_message && target != src)
+		if (runechat_popup && client?.prefs.chat_on_map && client.prefs.see_chat_emotes) //SKYRAT CHANGE
+			create_chat_message(src, null, self_message, list("emote", "italics"), null) //Skyrat change
+		show_message(user_msg ? "<b>[src]</b> " + self_message : self_message, MSG_VISUAL, blind_message, MSG_AUDIBLE) //SKYRAT CHANGE
 
 /**
   * Show a message to all mobs in earshot of this atom
@@ -170,20 +189,21 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
   * * hearing_distance (optional) is the range, how many tiles away the message can be heard.
   * * ignored_mobs (optional) doesn't show any message to any given mob in the list.
   */
-/atom/proc/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, list/ignored_mobs)
+/atom/proc/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, ignored_mobs, user_msg, runechat_popup) //SKYRAT CHANGE
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
+	var/final_msg = user_msg ? "<b>[src]</b> " + message : message //SKYRAT CHANGE
 	var/list/hearers = get_hearers_in_view(hearing_distance, src)
 	if(!length(hearers))
 		return
-	if(!islist(ignored_mobs))
-		ignored_mobs = list(ignored_mobs)
 	hearers -= ignored_mobs
 	if(self_message)
 		hearers -= src
 	for(var/mob/M in hearers)
-		M.show_message(message, MSG_AUDIBLE, deaf_message, MSG_VISUAL)
+		if (runechat_popup && M.client?.prefs.chat_on_map && (M.client.prefs.see_chat_non_mob || ismob(src)) && M.client.prefs.see_chat_emotes) //SKYRAT CHANGE
+			M.create_chat_message(src, null, message, list("emote", "italics"), null) //Skyrat change
+		M.show_message(final_msg, MSG_AUDIBLE, deaf_message, MSG_VISUAL) //SKYRAT CHANGE
 
 /**
   * Show a message to all mobs in earshot of this one
@@ -197,10 +217,12 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
   * * hearing_distance (optional) is the range, how many tiles away the message can be heard.
   * * ignored_mobs (optional) doesn't show any message to any given mob in the list.
   */
-/mob/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, list/ignored_mobs)
+/mob/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, list/ignored_mobs, user_msg, runechat_popup) //SKYRAT CHANGE
 	. = ..()
 	if(self_message)
-		show_message(self_message, MSG_AUDIBLE, deaf_message, MSG_VISUAL)
+		if (runechat_popup && client?.prefs.chat_on_map && client.prefs.see_chat_emotes) //SKYRAT CHANGE
+			create_chat_message(src, null, self_message, list("emote", "italics"), null) //Skyrat change
+		show_message(user_msg ? "<b>[src]</b> " + self_message : self_message, MSG_AUDIBLE, deaf_message, MSG_VISUAL)
 
 /mob/proc/get_item_by_slot(slot_id)
 	return null
@@ -282,40 +304,53 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 // reset_perspective(thing) set the eye to the thing (if it's equal to current default reset to mob perspective)
 // reset_perspective() set eye to common default : mob on turf, loc otherwise
 /mob/proc/reset_perspective(atom/A)
-	if(client)
-		if(A)
-			if(ismovableatom(A))
-				//Set the the thing unless it's us
-				if(A != src)
-					client.perspective = EYE_PERSPECTIVE
-					client.eye = A
-				else
-					client.eye = client.mob
-					client.perspective = MOB_PERSPECTIVE
-			else if(isturf(A))
-				//Set to the turf unless it's our current turf
-				if(A != loc)
-					client.perspective = EYE_PERSPECTIVE
-					client.eye = A
-				else
-					client.eye = client.mob
-					client.perspective = MOB_PERSPECTIVE
+	if(!client)
+		return
+	if(A)
+		if(ismovable(A))
+			//Set the the thing unless it's us
+			if(A != src)
+				client.perspective = EYE_PERSPECTIVE
+				client.eye = A
 			else
-				//Do nothing
-		else
-			//Reset to common defaults: mob if on turf, otherwise current loc
-			if(isturf(loc))
 				client.eye = client.mob
 				client.perspective = MOB_PERSPECTIVE
-			else
+		else if(isturf(A))
+			//Set to the turf unless it's our current turf
+			if(A != loc)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = loc
-		return 1
+				client.eye = A
+			else
+				client.eye = client.mob
+				client.perspective = MOB_PERSPECTIVE
+		else
+			//Do nothing
+	else
+		//Reset to common defaults: mob if on turf, otherwise current loc
+		if(isturf(loc))
+			client.eye = client.mob
+			client.perspective = MOB_PERSPECTIVE
+		else
+			client.perspective = EYE_PERSPECTIVE
+			client.eye = loc
+	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE, A)
+	return TRUE
 
 /mob/proc/show_inv(mob/user)
 	return
 
-//mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
+//view() but with a signal, to allow blacklisting some of the otherwise visible atoms.
+/mob/proc/fov_view(dist = world.view)
+	. = view(dist, src)
+	SEND_SIGNAL(src, COMSIG_MOB_FOV_VIEW, .)
+
+/**
+  * Examine a mob
+  *
+  * mob verbs are faster than object verbs. See
+  * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
+  * for why this isn't atom/verb/examine()
+  */
 /mob/verb/examinate(atom/A as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
 	set name = "Examine"
 	set category = "IC"
@@ -324,20 +359,69 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 		// shift-click catcher may issue examinate() calls for out-of-sight turfs
 		return
 
-	if(is_blind(src))
+	if(is_blind())
 		to_chat(src, "<span class='warning'>Something is there but you can't see it!</span>")
 		return
 
 	face_atom(A)
-	var/list/result = A.examine(src)
+	var/list/result
+	if(client)
+		LAZYINITLIST(client.recent_examines)
+		if(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time)
+			result = A.examine(src)
+			client.recent_examines[A] = world.time + EXAMINE_MORE_TIME // set the value to when the examine cooldown ends
+			RegisterSignal(A, COMSIG_PARENT_QDELETING, .proc/clear_from_recent_examines, override=TRUE) // to flush the value if deleted early
+			addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)
+			handle_eye_contact(A)
+		else
+			result = A.examine_more(src)
+	else
+		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
+
 	to_chat(src, result.Join("\n"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
+
+/mob/proc/clear_from_recent_examines(atom/A)
+	if(!client)
+		return
+	UnregisterSignal(A, COMSIG_PARENT_QDELETING)
+	LAZYREMOVE(client.recent_examines, A)
+
+/**
+  * handle_eye_contact() is called when we examine() something. If we examine an alive mob with a mind who has examined us in the last second within 5 tiles, we make eye contact!
+  *
+  * Note that if either party has their face obscured, the other won't get the notice about the eye contact
+  * Also note that examine_more() doesn't proc this or extend the timer, just because it's simpler this way and doesn't lose much.
+  *	The nice part about relying on examining is that we don't bother checking visibility, because we already know they were both visible to each other within the last second, and the one who triggers it is currently seeing them
+  */
+/mob/proc/handle_eye_contact(mob/living/examined_mob)
+	return
+
+/mob/living/handle_eye_contact(mob/living/examined_mob)
+	if(!istype(examined_mob) || src == examined_mob || examined_mob.stat >= UNCONSCIOUS || !client || !examined_mob.client?.recent_examines || !(src in examined_mob.client.recent_examines))
+		return
+
+	if(get_dist(src, examined_mob) > EYE_CONTACT_RANGE)
+		return
+
+	var/mob/living/carbon/examined_carbon = examined_mob
+	// check to see if their face is blocked (or if they're not a carbon, in which case they can't block their face anyway)
+	if(!istype(examined_carbon) || (!(examined_carbon.wear_mask && examined_carbon.wear_mask.flags_inv & HIDEFACE) && !(examined_carbon.head && examined_carbon.head.flags_inv & HIDEFACE)))
+		if(SEND_SIGNAL(src, COMSIG_MOB_EYECONTACT, examined_mob, TRUE) != COMSIG_BLOCK_EYECONTACT)
+			var/msg = "<span class='smallnotice'>You make eye contact with [examined_mob].</span>"
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, src, msg), 3) // so the examine signal has time to fire and this will print after
+
+	var/mob/living/carbon/us_as_carbon = src // i know >casting as subtype, but this isn't really an inheritable check
+	if(!istype(us_as_carbon) || (!(us_as_carbon.wear_mask && us_as_carbon.wear_mask.flags_inv & HIDEFACE) && !(us_as_carbon.head && us_as_carbon.head.flags_inv & HIDEFACE)))
+		if(SEND_SIGNAL(examined_mob, COMSIG_MOB_EYECONTACT, src, FALSE) != COMSIG_BLOCK_EYECONTACT)
+			var/msg = "<span class='smallnotice'>[src] makes eye contact with you.</span>"
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, examined_mob, msg), 3)
 
 //same as above
 //note: ghosts can point, this is intended
 //visible_message will handle invisibility properly
 //overridden here and in /mob/dead/observer for different point span classes and sanity checks
-/mob/verb/pointed(atom/A as mob|obj|turf in view())
+/mob/verb/pointed(atom/A as mob|obj|turf in fov_view())
 	set name = "Point To"
 	set category = "Object"
 
@@ -351,7 +435,7 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 		return FALSE
 
 	new /obj/effect/temp_visual/point(A,invisibility)
-
+	SEND_SIGNAL(src, COMSIG_MOB_POINTED, A)
 	return TRUE
 
 /mob/proc/can_resist()
@@ -403,7 +487,11 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 	set category = "IC"
 	set desc = "View your character's notes memory."
 	if(mind)
-		mind.show_memory(src)
+//SKYRAT CHANGES BEGIN
+		var/datum/browser/popup = new(src, "memory", "Memory and Notes")
+		popup.set_content(mind.show_memory())
+		popup.open()
+//SKYRAT CHANGES END
 	else
 		to_chat(src, "You don't have a mind datum for some reason, so you can't look at your notes, if you had any.")
 
@@ -562,6 +650,8 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 /mob/Stat()
 	..()
 
+	SSvote?.render_statpanel(src)
+
 	//This is only called from client/Stat(), let's assume client exists.
 
 	if(statpanel("Status"))
@@ -594,7 +684,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 				stat("Failsafe Controller:", "ERROR")
 			if(Master)
 				stat(null)
-				for(var/datum/controller/subsystem/SS in Master.subsystems)
+				for(var/datum/controller/subsystem/SS in Master.statworthy_subsystems)
 					SS.stat_entry()
 			GLOB.cameranet.stat_entry()
 		if(statpanel("Tickets"))
@@ -633,7 +723,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 
 /mob/proc/add_spells_to_statpanel(list/spells)
 	for(var/obj/effect/proc_holder/spell/S in spells)
-		if(S.can_be_cast_by(src))
+		if((!S.mobs_blacklist || !S.mobs_blacklist[src]) && (!S.mobs_whitelist || S.mobs_whitelist[src]))
 			switch(S.charge_type)
 				if("recharge")
 					statpanel("[S.panel]","[S.charge_counter/10.0]/[S.charge_max/10]",S)
@@ -657,7 +747,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 		return FALSE
 	if(anchored)
 		return FALSE
-	if(notransform)
+	if(mob_transforming)
 		return FALSE
 	if(restrained())
 		return FALSE
@@ -734,7 +824,11 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	return FALSE
 
 /mob/proc/swap_hand()
-	return
+	var/obj/item/held_item = get_active_held_item()
+	if(SEND_SIGNAL(src, COMSIG_MOB_SWAP_HANDS, held_item) & COMPONENT_BLOCK_SWAP)
+		to_chat(src, "<span class='warning'>Your other hand is too busy holding [held_item].</span>")
+		return FALSE
+	return TRUE
 
 /mob/proc/activate_hand(selhand)
 	return
@@ -947,18 +1041,65 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 
 /mob/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	.["Gib"] = "?_src_=vars;[HrefToken()];gib=[REF(src)]"
-	.["Give Spell"] = "?_src_=vars;[HrefToken()];give_spell=[REF(src)]"
-	.["Remove Spell"] = "?_src_=vars;[HrefToken()];remove_spell=[REF(src)]"
-	.["Give Disease"] = "?_src_=vars;[HrefToken()];give_disease=[REF(src)]"
-	.["Toggle Godmode"] = "?_src_=vars;[HrefToken()];godmode=[REF(src)]"
-	.["Drop Everything"] = "?_src_=vars;[HrefToken()];drop_everything=[REF(src)]"
-	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
-	.["Show player panel"] = "?_src_=vars;[HrefToken()];mob_player_panel=[REF(src)]"
-	.["Toggle Build Mode"] = "?_src_=vars;[HrefToken()];build_mode=[REF(src)]"
-	.["Assume Direct Control"] = "?_src_=vars;[HrefToken()];direct_control=[REF(src)]"
-	.["Offer Control to Ghosts"] = "?_src_=vars;[HrefToken()];offer_control=[REF(src)]"
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_GIB, "Gib")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "Give Spell")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Remove Spell")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_DISEASE, "Give Disease")
+	VV_DROPDOWN_OPTION(VV_HK_GODMODE, "Toggle Godmode")
+	VV_DROPDOWN_OPTION(VV_HK_DROP_ALL, "Drop Everything")
+	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS, "Regenerate Icons")
+	VV_DROPDOWN_OPTION(VV_HK_PLAYER_PANEL, "Show player panel")
+	VV_DROPDOWN_OPTION(VV_HK_BUILDMODE, "Toggle Buildmode")
+	VV_DROPDOWN_OPTION(VV_HK_DIRECT_CONTROL, "Assume Direct Control")
+	VV_DROPDOWN_OPTION(VV_HK_OFFER_GHOSTS, "Offer Control to Ghosts")
+
+/mob/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_REGEN_ICONS])
+		if(!check_rights(NONE))
+			return
+		regenerate_icons()
+	if(href_list[VV_HK_PLAYER_PANEL])
+		if(!check_rights(NONE))
+			return
+		usr.client.holder.show_player_panel(src)
+	if(href_list[VV_HK_GODMODE])
+		if(!check_rights(R_ADMIN))
+			return
+		usr.client.cmd_admin_godmode(src)
+	if(href_list[VV_HK_GIVE_SPELL])
+		if(!check_rights(NONE))
+			return
+		usr.client.give_spell(src)
+	if(href_list[VV_HK_REMOVE_SPELL])
+		if(!check_rights(NONE))
+			return
+		usr.client.remove_spell(src)
+	if(href_list[VV_HK_GIVE_DISEASE])
+		if(!check_rights(NONE))
+			return
+		usr.client.give_disease(src)
+	if(href_list[VV_HK_GIB])
+		if(!check_rights(R_FUN))
+			return
+		usr.client.cmd_admin_gib(src)
+	if(href_list[VV_HK_BUILDMODE])
+		if(!check_rights(R_BUILDMODE))
+			return
+		togglebuildmode(src)
+	if(href_list[VV_HK_DROP_ALL])
+		if(!check_rights(NONE))
+			return
+		usr.client.cmd_admin_drop_everything(src)
+	if(href_list[VV_HK_DIRECT_CONTROL])
+		if(!check_rights(NONE))
+			return
+		usr.client.cmd_assume_direct_control(src)
+	if(href_list[VV_HK_OFFER_GHOSTS])
+		if(!check_rights(NONE))
+			return
+		offer_control(src)
 
 /mob/vv_get_var(var_name)
 	switch(var_name)
@@ -966,12 +1107,24 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 			return debug_variable(var_name, logging, 0, src, FALSE)
 	. = ..()
 
+/mob/vv_auto_rename(new_name)
+	//Do not do parent's actions, as we *usually* do this differently.
+	fully_replace_character_name(real_name, new_name)
+
 /mob/verb/open_language_menu()
 	set name = "Open Language Menu"
 	set category = "IC"
 
 	var/datum/language_holder/H = get_language_holder()
 	H.open_language_menu(usr)
+
+///Adjust the nutrition of a mob
+/mob/proc/adjust_nutrition(change, max = INFINITY) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
+	nutrition = clamp(nutrition + change, 0, max)
+
+///Force set the mob nutrition
+/mob/proc/set_nutrition(var/change) //Seriously fuck you oldcoders.
+	nutrition = max(0, change)
 
 /mob/setMovetype(newval)
 	. = ..()
@@ -983,17 +1136,22 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 /// Updates the grab state of the mob and updates movespeed
 /mob/setGrabState(newstate)
 	. = ..()
-	if(grab_state == GRAB_PASSIVE)
-		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, update=TRUE)
-	else
-		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, update=TRUE, priority=100, override=TRUE, multiplicative_slowdown=grab_state*3, blacklisted_movetypes=FLOATING)
+	switch(grab_state)
+		if(GRAB_PASSIVE)
+			remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
+		if(GRAB_AGGRESSIVE)
+			add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/aggressive)
+		if(GRAB_NECK)
+			add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/neck)
+		if(GRAB_KILL)
+			add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/kill)
 
 /mob/proc/update_equipment_speed_mods()
 	var/speedies = equipped_speed_mods()
 	if(!speedies)
-		remove_movespeed_modifier(MOVESPEED_ID_MOB_EQUIPMENT, update=TRUE)
+		remove_movespeed_modifier(/datum/movespeed_modifier/equipment_speedmod, update=TRUE)
 	else
-		add_movespeed_modifier(MOVESPEED_ID_MOB_EQUIPMENT, update=TRUE, priority=100, override=TRUE, multiplicative_slowdown=speedies, blacklisted_movetypes=FLOATING)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/equipment_speedmod, multiplicative_slowdown = speedies)
 
 /// Gets the combined speed modification of all worn items
 /// Except base mob type doesnt really wear items
@@ -1001,3 +1159,10 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	for(var/obj/item/I in held_items)
 		if(I.item_flags & SLOWS_WHILE_IN_HAND)
 			. += I.slowdown
+
+/**
+  * Mostly called by doUnEquip()
+  * Like item dropped() on mob side.
+  */
+/mob/proc/on_item_dropped(obj/item/I)
+	return

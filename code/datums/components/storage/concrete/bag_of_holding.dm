@@ -18,8 +18,9 @@
 		to_chat(user, "<span class='danger'>The Bluespace interfaces of the two devices catastrophically malfunction!</span>")
 		qdel(W)
 		playsound(loccheck,'sound/effects/supermatter.ogg', 200, 1)
-		user.gib(TRUE, TRUE, TRUE)
-		for(var/turf/T in range(6,loccheck))
+		//user.gib(TRUE, TRUE, TRUE)
+		for(var/turf/T in range(4,loccheck)) //Skyrat changes, lowers range from 6 to 4 removes selfgib
+		for(var/turf/T in range(4,loccheck))
 			if(istype(T, /turf/open/space/transit))
 				continue
 			for(var/mob/living/M in T)

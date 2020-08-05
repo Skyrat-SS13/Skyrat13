@@ -82,11 +82,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return new_msg
 
 /mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
-	var/static/list/crit_allowed_modes = list(MODE_WHISPER = TRUE, MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
-	var/static/list/unconscious_allowed_modes = list(MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
+	var/static/list/crit_allowed_modes = list(MODE_WHISPER = TRUE, MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE, MODE_TERROR_SPIDER = TRUE) //skyrat change
+	var/static/list/unconscious_allowed_modes = list(MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE, MODE_TERROR_SPIDER = TRUE) //skyrat change
 	var/talk_key = get_key(message)
 
-	var/static/list/one_character_prefix = list(MODE_HEADSET = TRUE, MODE_ROBOT = TRUE, MODE_WHISPER = TRUE)
+	var/static/list/one_character_prefix = list(MODE_HEADSET = TRUE, MODE_ROBOT = TRUE, MODE_WHISPER = TRUE, MODE_SING = TRUE) // Skyrat edit: MODE_SING
 	if(sanitize)
 		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message || message == "")
@@ -132,15 +132,16 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/datum/language/message_language = get_message_language(message)
 	if(message_language)
 		// No, you cannot speak in xenocommon just because you know the key
-		if(can_speak_in_language(message_language))
+		if(can_speak_language(message_language))
 			language = message_language
-		message = copytext_char(message, 3)
+		var/datum/language/langguage = GLOB.language_datum_instances[message_language]
+		message = copytext_char(message, length(langguage.key) + 2) //skyrat edit
 
 		// Trim the space if they said ",0 I LOVE LANGUAGES"
 		message = trim_left(message)
 
 	if(!language)
-		language = get_default_language()
+		language = get_selected_language()
 
 	// Detection of language needs to be before inherent channels, because
 	// AIs use inherent channels for the holopad. Most inherent channels
@@ -187,6 +188,17 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(language)
 		var/datum/language/L = GLOB.language_datum_instances[language]
 		spans |= L.spans
+
+// Skyrat edits
+	if(message_mode == MODE_SING)
+	#if DM_VERSION < 513
+		var/randomnote = "~"
+	#else
+		var/randomnote = pick("\u2669", "\u266A", "\u266B")
+	#endif
+		spans |= SPAN_SINGING
+		message = "[randomnote] [message] [randomnote]"
+// End of Skyrat edits
 
 	var/radio_return = radio(message, message_mode, spans, language)
 	if(radio_return & ITALICS)
@@ -236,12 +248,17 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		deaf_message = "<span class='notice'>You can't hear yourself!</span>"
 		deaf_type = 2 // Since you should be able to hear yourself without looking
 
+	// Create map text prior to modifying message for goonchat
+	if (client?.prefs.chat_on_map && stat != UNCONSCIOUS && (client.prefs.see_chat_non_mob || ismob(speaker)) && can_hear())
+		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
+
 	// Recompose message for AI hrefs, language incomprehension.
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode, FALSE, source)
 
 	show_message(message, MSG_AUDIBLE, deaf_message, deaf_type)
 	return message
 
+/*****moved to modular_skyrat*******
 /mob/living/send_speech(message, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language=null, message_mode)
 	var/static/list/eavesdropping_modes = list(MODE_WHISPER = TRUE, MODE_WHISPER_CRIT = TRUE)
 	var/eavesdrop_range = 0
@@ -288,11 +305,12 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	//speech bubble
 	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in listening)
-		if(M.client)
+		if(M.client && !M.client.prefs.chat_on_map)
 			speech_bubble_recipients.Add(M.client)
 	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, /.proc/animate_speechbubble, I, speech_bubble_recipients, 30) //skyrat-edit
+********/
 
 /mob/proc/binarycheck()
 	return FALSE
@@ -330,11 +348,15 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 /mob/living/proc/get_message_language(message)
 	if(message[1] == ",")
-		var/key = message[1 + length(message[1])]
-		for(var/ld in GLOB.all_languages)
-			var/datum/language/LD = ld
-			if(initial(LD.key) == key)
-				return LD
+		//skyrat edit - fucking hate this i want to use multichar keys
+		var/list/bruh = splittext_char(message, " ", 2)
+		if(length(bruh))
+			var/key = bruh[1]
+		//
+			for(var/ld in GLOB.all_languages)
+				var/datum/language/LD = ld
+				if(initial(LD.key) == key)
+					return LD
 	return null
 
 /mob/living/proc/treat_message(message)
@@ -353,7 +375,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	if(cultslurring)
 		message = cultslur(message)
-	
+
 	if(clockcultslurring)
 		message = CLOCK_CULT_SLUR(message)
 
@@ -406,15 +428,14 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			. = "stammers"
 		else if(derpspeech)
 			. = "gibbers"
-
+		// Skyrat edits
+		else if(message_mode == MODE_SING)
+			. = verb_sing
+		// End of Skyrat edits
 /mob/living/whisper(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	say("#[message]", bubble_type, spans, sanitize, language, ignore_spam, forced)
 
-/mob/living/get_language_holder(shadow=TRUE)
-	if(mind && shadow)
-		// Mind language holders shadow mob holders.
-		. = mind.get_language_holder()
-		if(.)
-			return .
-
+/mob/living/get_language_holder(get_minds = TRUE)
+	if(get_minds && mind)
+		return mind.get_language_holder()
 	. = ..()

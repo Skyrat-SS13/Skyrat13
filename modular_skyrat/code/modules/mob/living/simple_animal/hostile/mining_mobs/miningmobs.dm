@@ -1,20 +1,28 @@
 /mob/living/simple_animal/hostile/asteroid
 	var/glorykill = FALSE //CAN THIS MOTHERFUCKER BE SNAPPED IN HALF FOR HEALTH?
-	var/glorymessageshand = list() //WHAT THE FUCK ARE THE MESSAGES SAID BY THIS CUNT WHEN HE'S GLORY KILLED WITH AN EMPTY HAND?
-	var/glorymessagescrusher = list() //SAME AS ABOVE BUT CRUSHER
-	var/glorymessagespka = list() //SAME AS ABOVE THE ABOVE BUT PKA
-	var/glorymessagespkabayonet = list() //SAME AS ABOVE BUT WITH A HONKING KNIFE ON THE FUCKING THING
+	var/list/glorymessageshand = list() //WHAT THE FUCK ARE THE MESSAGES SAID BY THIS FUCK WHEN HE'S GLORY KILLED WITH AN EMPTY HAND?
+	var/list/glorymessagescrusher = list() //SAME AS ABOVE BUT CRUSHER
+	var/list/glorymessagespka = list() //SAME AS ABOVE THE ABOVE BUT PKA
+	var/list/glorymessagespkabayonet = list() //SAME AS ABOVE BUT WITH A HONKING KNIFE ON THE FUCKING THING
 	var/gloryhealth = 7.5
+	var/glorymodifier = 1.5
 
 /mob/living/simple_animal/hostile/asteroid/Life()
 	..()
-	if(health <= (maxHealth/10 * 1.5) && !glorykill && stat != DEAD)
+	if(health <= (maxHealth/10 * glorymodifier) && !glorykill && stat != DEAD)
 		glorykill = TRUE
 		glory()
+	else if(health > (maxHealth/10 * glorymodifier) && glorykill && stat != DEAD)
+		glorykill = FALSE
+		unglory()
 
 /mob/living/simple_animal/hostile/asteroid/proc/glory()
 	desc += "<br><b>[src] is staggered and can be glory killed!</b>"
 	animate(src, color = "#00FFFF", time = 5)
+
+/mob/living/simple_animal/hostile/asteroid/proc/unglory()
+	desc = initial(desc)
+	animate(src, color = initial(color), time = 5)
 
 /mob/living/simple_animal/hostile/asteroid/death(gibbed)
 	animate(src, color = initial(color), time = 3)
@@ -26,12 +34,14 @@
 	..(gibbed)
 
 /mob/living/simple_animal/hostile/asteroid/AltClick(mob/living/carbon/slayer)
-	if(glorykill && stat != DEAD)
-		if(do_after(slayer, 10, needhand = TRUE, target = src, progress = FALSE))
+	if(!slayer.canUseTopic(src, TRUE))
+		return
+	if(glorykill)
+		if(do_mob(slayer, src, 10) && (stat != DEAD))
 			var/message
-			if(!slayer.get_active_held_item() || (!istype(slayer.get_active_held_item(), /obj/item/twohanded/kinetic_crusher) && !istype(slayer.get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator)))
+			if(!slayer.get_active_held_item() || (!istype(slayer.get_active_held_item(), /obj/item/kinetic_crusher) && !istype(slayer.get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator)))
 				message = pick(glorymessageshand)
-			else if(istype(slayer.get_active_held_item(), /obj/item/twohanded/kinetic_crusher))
+			else if(istype(slayer.get_active_held_item(), /obj/item/kinetic_crusher))
 				message = pick(glorymessagescrusher)
 			else if(istype(slayer.get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator))
 				message = pick(glorymessagespka)
@@ -45,6 +55,10 @@
 			slayer.heal_overall_damage(gloryhealth,gloryhealth)
 			playsound(src.loc, death_sound, 150, TRUE, -1)
 			crusher_drop_mod *= 2
-			gib()
+			adjustHealth(maxHealth, TRUE, TRUE)
+			if(mob_biotypes & MOB_ORGANIC)
+				new /obj/effect/gibspawner/generic(src.loc)
+			else if(mob_biotypes & MOB_ROBOTIC)
+				new /obj/effect/gibspawner/robot(src.loc)
 		else
 			to_chat(slayer, "<span class='danger'>You fail to glory kill [src]!</span>")

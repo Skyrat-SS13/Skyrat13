@@ -36,6 +36,7 @@
 	targetitem = /obj/item/gun/energy/e_gun/hos
 	difficulty = 10
 	excludefromjob = list("Head Of Security")
+	altitems = list(/obj/item/gun/ballistic/revolver/mws, /obj/item/choice_beacon/hosgun) //We now look for either the alt verson of the hos gun or the beacon picker.
 
 /datum/objective_item/steal/handtele
 	name = "a hand teleporter."
@@ -65,7 +66,7 @@
 	name = "the Chief Medical Officer's MKII hypospray."
 	targetitem = /obj/item/hypospray/mkii/CMO //CITADEL EDIT, changing theft objective for the Hypo MK II
 	difficulty = 5
-	excludefromjob = list("Chief Medical Officer", "Medical Doctor", "Chemist", "Virologist", "Geneticist")
+	excludefromjob = list("Chief Medical Officer", "Medical Doctor", "Chemist", "Virologist", "Geneticist", "Psychologist") //Skyrat change
 
 /datum/objective_item/steal/nukedisc
 	name = "the nuclear authentication disk."

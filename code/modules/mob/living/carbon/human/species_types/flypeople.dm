@@ -11,6 +11,12 @@
 	disliked_food = null
 	liked_food = GROSS
 	exotic_bloodtype = "BUG"
+	exotic_blood_color = BLOOD_COLOR_BUG
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "BUG")
+	exotic_bloodtype = "BUG"
+	rainbowblood = TRUE
+	//
 
 /datum/species/fly/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(istype(chem, /datum/reagent/toxin/pestkiller))

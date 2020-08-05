@@ -18,35 +18,20 @@
 #define THERMAL_PROTECTION_HAND_LEFT	0.025
 #define THERMAL_PROTECTION_HAND_RIGHT	0.025
 
-/mob/living/carbon/human/Life(seconds, times_fired)
-	set invisibility = 0
-	if (notransform)
+/mob/living/carbon/human/BiologicalLife(seconds, times_fired)
+	if(!(. = ..()))
 		return
+	handle_active_genes()
+	//heart attack stuff
+	handle_heart()
+	dna.species.spec_life(src) // for mutantraces
+	return (stat != DEAD) && !QDELETED(src)
 
-	. = ..()
-
-	if (QDELETED(src))
-		return 0
-
-	if(.) //not dead
-		handle_active_genes()
-
-	if(stat != DEAD)
-		//heart attack stuff
-		handle_heart()
-
-	if(stat != DEAD)
-		//Stuff jammed in your limbs hurts
-		handle_embedded_objects()
-
+/mob/living/carbon/human/PhysicalLife(seconds, times_fired)
+	if(!(. = ..()))
+		return
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
-
-	dna.species.spec_life(src) // for mutantraces
-
-	if(stat != DEAD)
-		return 1
-
 
 /mob/living/carbon/human/calculate_affecting_pressure(pressure)
 	var/headless = !get_bodypart(BODY_ZONE_HEAD) //should the mob be perennially headless (see dullahans), we only take the suit into account, so they can into space.
@@ -71,15 +56,14 @@
 	else if(eye_blurry)			//blurry eyes heal slowly
 		adjust_blurriness(-1)
 
-	if (getOrganLoss(ORGAN_SLOT_BRAIN) >= 30) //Citadel change to make memes more often.
+	//Skyrat changes - adjusts brain damage insanity
+	if (getOrganLoss(ORGAN_SLOT_BRAIN) >= 50) //Citadel change to make memes more often. //Back to a bit higher
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "brain_damage", /datum/mood_event/brain_damage)
-		if(prob(3))
-			if(prob(25))
-				emote("drool")
-			else
-				say(pick_list_replacements(BRAIN_DAMAGE_FILE, "brain_damage"))
+		if(prob(1))
+			emote("drool")
 	else
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "brain_damage")
+	//End of skyrat changes
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	if(!dna || !dna.species.handle_mutations_and_radiation(src))
@@ -303,26 +287,9 @@
 			return TRUE
 	return ..()
 
-
-/mob/living/carbon/human/proc/handle_embedded_objects()
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/BP = X
-		for(var/obj/item/I in BP.embedded_objects)
-			if(prob(I.embedding.embedded_pain_chance))
-				BP.receive_damage(I.w_class*I.embedding.embedded_pain_multiplier)
-				to_chat(src, "<span class='userdanger'>[I] embedded in your [BP.name] hurts!</span>")
-
-			if(prob(I.embedding.embedded_fall_chance))
-				BP.receive_damage(I.w_class*I.embedding.embedded_fall_pain_multiplier)
-				BP.embedded_objects -= I
-				I.forceMove(drop_location())
-				I.unembedded()
-				visible_message("<span class='danger'>[I] falls out of [name]'s [BP.name]!</span>","<span class='userdanger'>[I] falls out of your [BP.name]!</span>")
-				if(!has_embedded_objects())
-					clear_alert("embeddedobject")
-					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
-
 /mob/living/carbon/human/proc/handle_active_genes()
+	if(HAS_TRAIT(src, TRAIT_MUTATION_STASIS))
+		return
 	for(var/datum/mutation/human/HM in dna.mutations)
 		HM.on_life(src)
 

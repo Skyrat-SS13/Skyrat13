@@ -24,16 +24,11 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, lewd_verb_sound_consent)()
 /datum/verbs/menu/Settings/lewd_verb_sound_consent/Get_checked(client/C)
 	return C.prefs.toggles & LEWD_VERB_SOUNDS
 
-TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, toggle_asynchronous_say)()
-	set name = "Toggle Asynchronous Say"
+/client/proc/togglegloballoocs()
+	set name = "Show/Hide LOOC Globally"
 	set category = "Preferences"
-	set desc = "Toggle Asynchronous Say"
-
-	usr.client.prefs.toggles ^= ASYNCHRONOUS_SAY
+	set desc = "Toggles seeing LocalOutOfCharacter chat globally"
+	usr.client.prefs.chat_toggles ^= CHAT_LOOC_ADMIN
 	usr.client.prefs.save_preferences()
-	usr.client.set_macros()
-	to_chat(usr, "You [(usr.client.prefs.toggles & ASYNCHRONOUS_SAY) ? "turn on" : "turn off"] asynchronous speech.")
-	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Asynchronous Say", "[usr.client.prefs.toggles & LEWD_VERB_SOUNDS ? "Yes" : "No"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/datum/verbs/menu/Settings/toggle_asynchronous_say/Get_checked(client/C)
-	return C.prefs.toggles & ASYNCHRONOUS_SAY
+	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & CHAT_LOOC_ADMIN) ? "now see all" : "now only see local"] messages on the LOOC channel.")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Seeing LOOC Globally", "[usr.client.prefs.chat_toggles & CHAT_LOOC_ADMIN ? "Enabled" : "Disabled"]"))

@@ -21,6 +21,7 @@
 	desc = null
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
+	plane = ABOVE_WALL_PLANE
 	density = FALSE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
@@ -286,10 +287,10 @@
 	if(!.)
 		return
 	switch(var_name)
-		if("shuttle_id")
+		if(NAMEOF(src, shuttle_id))
 			update()
 
-/obj/machinery/status_display/shuttle/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
+/obj/machinery/status_display/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
 	if (port && (shuttle_id == initial(shuttle_id) || override))
 		shuttle_id = port.id
 	update()
@@ -346,6 +347,18 @@
 				set_picture("ai_urist")
 			if("Thinking")
 				set_picture("ai_thinking")
+			if("Discord")
+				set_picture("ai_discord")
+			if("Monitor")
+				set_picture("ai_monitor")
+			if("Face")
+				set_picture("ai_face")
+			if("owo")
+				set_picture("ai_owo")
+			if("Trasen")
+				set_picture("ai_trasen")
+			if("Static")
+				set_picture("ai_static")
 			if("Facepalm")
 				set_picture("ai_facepalm")
 			if("Friend Computer")

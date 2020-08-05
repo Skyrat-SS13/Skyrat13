@@ -13,6 +13,7 @@
 	gib_types = list(/obj/effect/gibspawner/slime, /obj/effect/gibspawner/slime/bodypartless)
 	exotic_blood = /datum/reagent/blood/jellyblood
 	exotic_bloodtype = "GEL"
+	exotic_blood_color = BLOOD_COLOR_SLIME
 	damage_overlay_type = ""
 	var/datum/action/innate/regenerate_limbs/regenerate_limbs
 	var/datum/action/innate/slime_change/slime_change	//CIT CHANGE
@@ -21,20 +22,34 @@
 	coldmod = 6   // = 3x cold damage
 	heatmod = 0.5 // = 1/4x heat damage
 	burnmod = 0.5 // = 1/2x generic burn damage
+	//Skyrat change
+	languagewhitelist = list("Slime")
+	bloodreagents = list("Synthetic Blood", "Slime Jelly Blood")
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "GEL")
+	rainbowblood = TRUE
+	//
+	species_language_holder = /datum/language_holder/jelly
+	mutant_brain = /obj/item/organ/brain/jelly
+
+/obj/item/organ/brain/jelly
+	name = "slime nucleus"
+	desc = "A slimey membranous mass from a slime person"
+	icon_state = "brain-slime"
+
 
 /datum/species/jelly/on_species_loss(mob/living/carbon/C)
 	if(regenerate_limbs)
 		regenerate_limbs.Remove(C)
 	if(slime_change)	//CIT CHANGE
 		slime_change.Remove(C)	//CIT CHANGE
-	C.remove_language(/datum/language/slime)
+	//C.remove_language(/datum/language/slime) SKYRAT CHANGE= We have an additional language option for this
 	C.faction -= "slime"
 	..()
 	C.faction -= "slime"
 
 /datum/species/jelly/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
-	C.grant_language(/datum/language/slime)
+	//C.grant_language(/datum/language/slime) SKYRAT CHANGE= We have an additional language option for this
 	if(ishuman(C))
 		regenerate_limbs = new
 		regenerate_limbs.Grant(C)
@@ -42,8 +57,13 @@
 		slime_change.Grant(C)	//CIT CHANGE
 	C.faction |= "slime"
 
+/datum/species/jelly/handle_body(mob/living/carbon/human/H)
+	. = ..()
+	//update blood color to body color
+	exotic_blood_color = "#" + H.dna.features["mcolor"]
+
 /datum/species/jelly/spec_life(mob/living/carbon/human/H)
-	if(H.stat == DEAD || HAS_TRAIT(H, TRAIT_NOMARROW)) //can't farm slime jelly from a dead slime/jelly person indefinitely, and no regeneration for vampires
+	if(H.stat == DEAD || HAS_TRAIT(H, TRAIT_NOMARROW)) //can't farm slime jelly from a dead slime/jelly person indefinitely, and no regeneration for blooduskers
 		return
 	if(!H.blood_volume)
 		H.blood_volume += 5
@@ -84,7 +104,7 @@
 	background_icon_state = "bg_alien"
 	required_mobility_flags = NONE
 
-/datum/action/innate/regenerate_limbs/IsAvailable()
+/datum/action/innate/regenerate_limbs/IsAvailable(silent = FALSE)
 	if(..())
 		var/mob/living/carbon/human/H = owner
 		var/list/limbs_to_heal = H.get_missing_limbs()
@@ -223,7 +243,7 @@
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
 
-/datum/action/innate/split_body/IsAvailable()
+/datum/action/innate/split_body/IsAvailable(silent = FALSE)
 	if(..())
 		var/mob/living/carbon/human/H = owner
 		if(H.blood_volume >= BLOOD_VOLUME_SLIME_SPLIT)
@@ -240,7 +260,7 @@
 		"<span class='notice'>You focus intently on moving your body while \
 		standing perfectly still...</span>")
 
-	H.notransform = TRUE
+	H.mob_transforming = TRUE
 
 	if(do_after(owner, delay=60, needhand=FALSE, target=owner, progress=TRUE))
 		if(H.blood_volume >= BLOOD_VOLUME_SLIME_SPLIT)
@@ -250,7 +270,7 @@
 	else
 		to_chat(H, "<span class='warning'>...but fail to stand perfectly still!</span>")
 
-	H.notransform = FALSE
+	H.mob_transforming = FALSE
 
 /datum/action/innate/split_body/proc/make_dupe()
 	var/mob/living/carbon/human/H = owner
@@ -268,7 +288,7 @@
 	spare.Move(get_step(H.loc, pick(NORTH,SOUTH,EAST,WEST)))
 
 	H.blood_volume *= 0.45
-	H.notransform = 0
+	H.mob_transforming = 0
 
 	var/datum/species/jelly/slime/origin_datum = H.dna.species
 	origin_datum.bodies |= spare
@@ -460,8 +480,19 @@
 
 /datum/action/innate/slime_change/proc/change_form()
 	var/mob/living/carbon/human/H = owner
-	var/select_alteration = input(owner, "Select what part of your form to alter", "Form Alteration", "cancel") in list("Hair Style", "Genitals", "Tail", "Snout", "Markings", "Ears", "Taur body", "Penis", "Vagina", "Penis Length", "Breast Size", "Breast Shape", "Cancel")
-	if(select_alteration == "Hair Style")
+	var/select_alteration = input(owner, "Select what part of your form to alter", "Form Alteration", "cancel") in list("Body Color","Hair Style", "Genitals", "Tail", "Snout", "Markings", "Ears", "Taur body", "Penis", "Vagina", "Penis Length", "Breast Size", "Breast Shape", "Cancel")
+
+	if(select_alteration == "Body Color")
+		var/new_color = input(owner, "Choose your skin color:", "Race change","#"+H.dna.features["mcolor"]) as color|null
+		if(new_color)
+			var/temp_hsv = RGBtoHSV(new_color)
+			if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright
+				H.dna.features["mcolor"] = sanitize_hexcolor(new_color, 6)
+				H.update_body()
+				H.update_hair()
+			else
+				to_chat(H, "<span class='notice'>Invalid color. Your color is not bright enough.</span>")
+	else if(select_alteration == "Hair Style")
 		if(H.gender == MALE)
 			var/new_style = input(owner, "Select a facial hair style", "Hair Alterations")  as null|anything in GLOB.facial_hair_styles_list
 			if(new_style)
@@ -524,7 +555,7 @@
 		H.update_body()
 
 	else if (select_alteration == "Markings")
-		var/list/snowflake_markings_list = list()
+		var/list/snowflake_markings_list = list("None")
 		for(var/path in GLOB.mam_body_markings_list)
 			var/datum/sprite_accessory/mam_body_markings/instance = GLOB.mam_body_markings_list[path]
 			if(istype(instance, /datum/sprite_accessory))
@@ -535,8 +566,6 @@
 		new_mam_body_markings = input(H, "Choose your character's body markings:", "Marking Alteration") as null|anything in snowflake_markings_list
 		if(new_mam_body_markings)
 			H.dna.features["mam_body_markings"] = new_mam_body_markings
-			if(new_mam_body_markings == "None")
-				H.dna.features["mam_body_markings"] = "Plain"
 		for(var/X in H.bodyparts) //propagates the markings changes
 			var/obj/item/bodypart/BP = X
 			BP.update_limb(FALSE, H)
@@ -606,7 +635,7 @@
 		var/max_D = CONFIG_GET(number/penis_max_inches_prefs)
 		var/new_length = input(owner, "Penis length in inches:\n([min_D]-[max_D])", "Genital Alteration") as num|null
 		if(new_length)
-			H.dna.features["cock_length"] = CLAMP(round(new_length), min_D, max_D)
+			H.dna.features["cock_length"] = clamp(round(new_length), min_D, max_D)
 		H.update_genitals()
 		H.apply_overlay()
 		H.give_genital(/obj/item/organ/genital/testicles)
@@ -776,7 +805,7 @@
 	..()
 	species = _species
 
-/datum/action/innate/use_extract/IsAvailable()
+/datum/action/innate/use_extract/IsAvailable(silent = FALSE)
 	if(..())
 		if(species && species.current_extract && (world.time > species.extract_cooldown))
 			return TRUE
