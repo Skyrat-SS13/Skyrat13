@@ -62,7 +62,10 @@
 	if(chambered)
 		user.visible_message("<span class='notice'>[user] removes the [chambered.BB] from the [src].</span>", \
 							"<span class='notice'>You remove the [chambered.BB] from the [src].</span>")
-		user.put_in_inactive_hand(new /obj/item/stack/rods)
+		if(!user.get_inactive_held_item())
+			user.put_in_inactive_hand(new /obj/item/stack/rods)
+		else
+			new /obj/item/stack/rods(user.loc)
 		QDEL_NULL(chambered)
 		playsound(user, insert_sound, 50, 1)
 		update_icon()
