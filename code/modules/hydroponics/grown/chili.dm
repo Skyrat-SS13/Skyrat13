@@ -80,11 +80,17 @@
 	foodtype = FRUIT
 	wine_power = 50
 
+<<<<<<< HEAD
 /obj/item/reagent_containers/food/snacks/grown/ghost_chili/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	if( ismob(loc) )
+=======
+/obj/item/reagent_containers/food/snacks/grown/ghost_chili/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+	. = ..()
+	if(ishuman(loc))
+>>>>>>> 8442d69858... Merge pull request #12963 from Seris02/morefix
 		held_mob = loc
 		START_PROCESSING(SSobj, src)
 
