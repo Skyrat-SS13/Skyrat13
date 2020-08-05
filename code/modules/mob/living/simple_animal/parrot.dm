@@ -148,8 +148,13 @@
 		stat("Held Item", held_item)
 		stat("Mode",a_intent)
 
+/mob/living/simple_animal/parrot/proc/check_command() // Skyrat - Poly listens to some of the CE's commands!
+	return FALSE // Simply return false for non-Poly parrots
+
 /mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode, atom/movable/source)
 	. = ..()
+	if(check_command())
+		return
 	if(speaker != src && prob(50)) //Dont imitate ourselves
 		if(!radio_freq || prob(10))
 			if(speech_buffer.len >= 500)
@@ -908,6 +913,11 @@
 	. = ..()
 	if(. && !client && prob(1) && prob(1)) //Only the one true bird may speak across dimensions.
 		world.TgsTargetedChatBroadcast("A stray squawk is heard... \"[message]\"", FALSE)
+
+/mob/living/simple_animal/parrot/proc/check_command() // Skyrat - Poly listens to some of the CE's commands!
+
+
+	return FALSE // Wasn't a command
 
 /mob/living/simple_animal/parrot/Poly/BiologicalLife(seconds, times_fired)
 	if(!(. = ..()))
