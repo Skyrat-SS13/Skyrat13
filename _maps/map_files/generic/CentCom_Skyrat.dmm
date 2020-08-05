@@ -17237,11 +17237,16 @@
 /area/centcom/evac)
 "PC" = (
 /obj/structure/rack,
-/obj/item/clothing/mask/breath/vox,
-/obj/item/clothing/mask/breath/vox,
-/obj/item/clothing/mask/breath/vox,
-/obj/item/clothing/mask/breath/vox,
-/obj/item/clothing/mask/breath/vox,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/tank/internals/plasmaman/belt/full,
+/obj/item/tank/internals/plasmaman/belt/full,
+/obj/item/tank/internals/plasmaman/belt/full,
+/obj/item/tank/internals/plasmaman/belt/full,
+/obj/item/tank/internals/plasmaman/belt/full,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "PD" = (
@@ -17375,6 +17380,11 @@
 /obj/item/tank/internals/nitrogen/belt/full,
 /obj/item/tank/internals/nitrogen/belt/full,
 /obj/item/tank/internals/nitrogen/belt/full,
+/obj/item/clothing/mask/breath/vox,
+/obj/item/clothing/mask/breath/vox,
+/obj/item/clothing/mask/breath/vox,
+/obj/item/clothing/mask/breath/vox,
+/obj/item/clothing/mask/breath/vox,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Qk" = (
@@ -17658,22 +17668,20 @@
 	},
 /area/bluespace_locker)
 "Ro" = (
+/obj/item/clothing/head/helmet/space/plasmaman,
+/obj/item/clothing/head/helmet/space/plasmaman,
+/obj/item/clothing/head/helmet/space/plasmaman,
+/obj/item/clothing/head/helmet/space/plasmaman,
+/obj/item/clothing/head/helmet/space/plasmaman,
+/obj/item/clothing/under/plasmaman,
+/obj/item/clothing/under/plasmaman,
+/obj/item/clothing/under/plasmaman,
+/obj/item/clothing/under/plasmaman,
+/obj/item/clothing/under/plasmaman,
 /obj/structure/closet{
 	anchored = 1;
-	desc = "A storage unit for plasmaman internals, courtesy of the Spider Clan.";
-	icon_state = "emergency";
-	name = "Plasmaman emergency closet"
+	name = "Plasmaman suits"
 	},
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/item/tank/internals/plasmaman/belt/full,
-/obj/item/tank/internals/plasmaman/belt/full,
-/obj/item/tank/internals/plasmaman/belt/full,
-/obj/item/tank/internals/plasmaman/belt/full,
-/obj/item/tank/internals/plasmaman/belt/full,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Rp" = (
@@ -18183,8 +18191,8 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/tinted{
-	icon_state = "twindow";
-	dir = 1
+	dir = 1;
+	icon_state = "twindow"
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
@@ -18197,20 +18205,7 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Tw" = (
-/obj/structure/closet{
-	anchored = 1;
-	name = "Plasmaman suits"
-	},
-/obj/item/clothing/under/plasmaman,
-/obj/item/clothing/under/plasmaman,
-/obj/item/clothing/under/plasmaman,
-/obj/item/clothing/under/plasmaman,
-/obj/item/clothing/under/plasmaman,
-/obj/item/clothing/head/helmet/space/plasmaman,
-/obj/item/clothing/head/helmet/space/plasmaman,
-/obj/item/clothing/head/helmet/space/plasmaman,
-/obj/item/clothing/head/helmet/space/plasmaman,
-/obj/item/clothing/head/helmet/space/plasmaman,
+/obj/effect/mob_spawn/robot/ghostcafe,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Tx" = (
@@ -18260,8 +18255,8 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/tinted{
-	icon_state = "twindow";
-	dir = 1
+	dir = 1;
+	icon_state = "twindow"
 	},
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/white,
