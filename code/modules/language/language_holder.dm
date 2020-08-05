@@ -276,11 +276,16 @@ Key procs
 						//	/datum/language/draconic = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
 
 /datum/language_holder/lizard/ash
+<<<<<<< HEAD
 	selected_language = /datum/language/draconic
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM), //SKYRAT EDIT - additional languages
 								/datum/language/draconic = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 							/datum/language/draconic = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
+=======
+	understood_languages = list(/datum/language/draconic = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/draconic = list(LANGUAGE_ATOM))
+>>>>>>> 9f5004e637... Merge pull request #13036 from lolman360/AshwalkerFix
 
 /datum/language_holder/monkey
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
