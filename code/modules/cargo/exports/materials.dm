@@ -38,17 +38,17 @@
 	message = "cm3 of diamonds"
 
 /datum/export/material/plasma
-	cost = 250 //Skyrat edit
+	cost = 150 //Skyrat edit
 	material_id = /datum/material/plasma
 	message = "cm3 of plasma"
 
 /datum/export/material/uranium
-	cost = 150 //Skyrat edit
+	cost = 120 //Skyrat edit
 	material_id = /datum/material/uranium
 	message = "cm3 of uranium"
 
 /datum/export/material/gold
-	cost = 120 //Skyrat edit
+	cost = 100 //Skyrat edit
 	material_id = /datum/material/gold
 	message = "cm3 of gold"
 
@@ -83,7 +83,7 @@
 		/obj/item/shard)
 
 /datum/export/material/adamantine
-	cost = 500 //Skyrat edit
+	cost = 600 //Skyrat edit
 	material_id = /datum/material/adamantine
 	message = "cm3 of adamantine"
 
