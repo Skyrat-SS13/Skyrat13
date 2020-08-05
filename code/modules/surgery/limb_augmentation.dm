@@ -11,9 +11,11 @@
 	if(istype(tool, /obj/item/organ_storage) && istype(tool.contents[1], /obj/item/bodypart))
 		tool = tool.contents[1]
 	var/obj/item/bodypart/aug = tool
-	if(aug.status != BODYPART_ROBOTIC)
+	/* Skyrat edit - we don't care if the limb is robotic, this will pretty much serve as a "limb replacement" surgery for extreme wounds.
+	if(!(aug.status & BODYPART_ROBOTIC))
 		to_chat(user, "<span class='warning'>That's not an augment, silly!</span>")
 		return -1
+	*/
 	if(aug.body_zone != target_zone)
 		to_chat(user, "<span class='warning'>[tool] isn't the right type for [parse_zone(target_zone)].</span>")
 		return -1
