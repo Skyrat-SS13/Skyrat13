@@ -186,52 +186,52 @@
 //////////////
 
 /datum/export/large/nukestatue
-	cost = 175
+	cost = 235
 	unit_name = "Nuke statue"
 	export_types = list(/obj/structure/statue/uranium/nuke)
 
 /datum/export/large/engstatue
-	cost = 175
+	cost = 235
 	unit_name = "Engine statue"
 	export_types = list(/obj/structure/statue/uranium/eng)
 
 /datum/export/large/plasmastatue
-	cost = 900 //Skyrat edit
+	cost = 1800 //Skyrat edit
 	unit_name = "Scientist statue"
 	export_types = list(/obj/structure/statue/plasma/scientist)
 
 /datum/export/large/hosstatue
-	cost = 400 //Skyrat edit
+	cost = 800 //Skyrat edit
 	unit_name = "HoS statue"
 	export_types = list(/obj/structure/statue/gold/hos)
 
 /datum/export/large/rdstatue
-	cost = 400 //Skyrat edit
+	cost = 800 //Skyrat edit
 	unit_name = "RD statue"
 	export_types = list(/obj/structure/statue/gold/rd)
 
 /datum/export/large/hopstatue
-	cost = 400 //Skyrat edit
+	cost = 800 //Skyrat edit
 	unit_name = "HoP statue"
 	export_types = list(/obj/structure/statue/gold/hop)
 
 /datum/export/large/cmostatue
-	cost = 400 //Skyrat edit
+	cost = 8'0 //Skyrat edit
 	unit_name = "CMO statue"
 	export_types = list(/obj/structure/statue/gold/cmo)
 
 /datum/export/large/cestatue
-	cost = 400 //Skyrat edit
+	cost = 800 //Skyrat edit
 	unit_name = "CE statue"
 	export_types = list(/obj/structure/statue/gold/ce)
 
 /datum/export/large/mdstatue
-	cost = 200 //Skyrat edit
+	cost = 300 //Skyrat edit
 	unit_name = "MD statue"
 	export_types = list(/obj/structure/statue/silver/md)
 
 /datum/export/large/janitorstatue
-	cost = 200
+	cost = 300
 	unit_name = "Janitor statue"
 	export_types = list(/obj/structure/statue/silver/janitor)
 
@@ -278,7 +278,7 @@
 	include_subtypes = FALSE
 
 /datum/export/large/mech/odysseus
-	cost = 7500
+	cost = 14500 //Why the fuck does an Ody cost less than a ripley anyway
 	unit_name = "working odysseus"
 	export_types = list(/obj/mecha/medical/odysseus)
 
