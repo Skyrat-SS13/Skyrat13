@@ -1032,7 +1032,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							if(T.taur_mode & P.accepted_taurs)
 								tauric_shape = TRUE
 					dat += "<b>Penis Shape:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_shape;task=input'>[features["cock_shape"]][tauric_shape ? " (Taur)" : ""]</a>"
-					dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[features["cock_length"]] inch(es)</a>"
+					//Skyrat edit - Metric measurements
+					if(toggles & METRIC_OR_BUST)
+						dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[round(features["cock_length"] * 2.54, 1)] centimeter(s)</a>"
+					else
+						dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[features["cock_length"]] inch(es)</a>"
+					//Skyrat edit end
 					dat += "<b>Penis Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=cock_visibility;task=input'>[features["cock_visibility"]]</a>"
 					dat += "<b>Has Testicles:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=has_balls'>[features["has_balls"] == TRUE ? "Yes" : "No"]</a>"
 					if(features["has_balls"])
@@ -2676,9 +2681,19 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("cock_length")
 					var/min_D = CONFIG_GET(number/penis_min_inches_prefs)
 					var/max_D = CONFIG_GET(number/penis_max_inches_prefs)
-					var/new_length = input(user, "Penis length in inches:\n([min_D]-[max_D])", "Character Preference") as num|null
-					if(new_length)
-						features["cock_length"] = clamp(round(new_length), min_D, max_D)
+					//Skyrat edit - Metric measurements
+					var/min_D_m = round(min_D * 2.54, 1)
+					var/max_D_m = round(max_D * 2.54, 1)
+					var/new_length
+					if(toggles & METRIC_OR_BUST)
+						new_length = input(user, "Penis length in centimeters:\n([min_D_m]-[max_D_m])", "Character Preference") as num|null
+						if(new_length)
+							features["cock_length"] = clamp(round(new_length/2.54, 1), min_D, max_D)
+					else
+						new_length = input(user, "Penis length in inches:\n([min_D]-[max_D])", "Character Preference") as num|null
+						if(new_length)
+							features["cock_length"] = clamp(round(new_length, 1), min_D, max_D)
+					//Skyrat edit end
 
 				if("cock_shape")
 					var/new_shape
@@ -3389,7 +3404,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		character.update_hair()
 	if(auto_hiss)
 		character.toggle_hiss()
-
+	//Skyrat edit - Let's update the gene tools, in case the client uses metric (is based)
+	for(var/obj/item/organ/genital/genetool in character.internal_organs)
+		genetool.update()
+	//Skyrat edit end
 
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)
