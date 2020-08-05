@@ -40,7 +40,7 @@
 				text = "seems to be"
 		if("appear to be")
 			if(!target || target.gender != PLURAL)
-				text = "appear to be"
+				text = "appears to be"
 	return text
 
 /datum/mob_descriptor/proc/get_standalone_value_descriptor(check_value)
