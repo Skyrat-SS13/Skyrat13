@@ -3410,10 +3410,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		character.update_hair()
 	if(auto_hiss)
 		character.toggle_hiss()
-	//Skyrat edit - Let's update the gene tools, in case the client uses metric (is based)
-	for(var/obj/item/organ/genital/genetool in character.internal_organs)
-		genetool.update()
-	//Skyrat edit end
 
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)
