@@ -377,7 +377,7 @@
 		)
 		var/list/L = list("Medihound" = "medihound", "Medihound Dark" = "medihounddark", "Vale" = "valemed")
 		for(var/a in L)
-			var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+			var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a]) //skyrat change
 			wide.pixel_x = -16
 			med_icons[a] = wide
 		if(R.client && R.client.ckey == "nezuli")
@@ -529,9 +529,9 @@
 		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_engi"),
 		"Drake" = image(icon = 'icons/mob/cyborg/drakemech.dmi', icon_state = "drakeengbox")
 		)
-		var/list/L = list("Pup Dozer" = "pupdozer", "Vale" = "valeeng")
+		var/list/L = list("Pup Dozer" = "pupdozer", "Vale" = "valeeng", "Hound" = "engihound", "Darkhound" = "engihounddark") //skyrat change
 		for(var/a in L)
-			var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+			var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a]) //skyrat change
 			wide.pixel_x = -16
 			engi_icons[a] = wide
 		if(R.client && R.client.ckey == "nezuli")
@@ -583,6 +583,16 @@
 			cyborg_base_icon = "valeeng"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			sleeper_overlay = "valeengsleeper"
+			dogborg = TRUE
+		if("Hound") //Skyrat change
+			cyborg_base_icon = "engihound"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+			sleeper_overlay = "engihoundsleeper"
+			dogborg = TRUE
+		if("Darkhound") //Skyrat change
+			cyborg_base_icon = "engihounddark"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+			sleeper_overlay = "engihounddarksleeper"
 			dogborg = TRUE
 		if("Alina")
 			cyborg_base_icon = "alina-eng"
@@ -657,9 +667,9 @@
 		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_sec"),
 		"Drake" = image(icon = 'icons/mob/cyborg/drakemech.dmi', icon_state = "drakesecbox")
 		)
-		var/list/L = list("K9" = "k9", "Vale" = "valesec", "K9 Dark" = "k9dark")
+		var/list/L = list("K9" = "k9", "Vale" = "valesec", "K9 Dark" = "k9dark", "Otie" = "oties") //skyrat change
 		for(var/a in L)
-			var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+			var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a]) //skyrat change
 			wide.pixel_x = -16
 			sec_icons[a] = wide
 		if(R.client && R.client.ckey == "nezuli")
@@ -698,6 +708,11 @@
 		if("K9")
 			cyborg_base_icon = "k9"
 			sleeper_overlay = "ksleeper"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+			dogborg = TRUE
+		if("Otie")
+			cyborg_base_icon = "oties"
+			sleeper_overlay = "otiessleeper"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			dogborg = TRUE
 		if("Alina")
@@ -957,10 +972,10 @@
 		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_jani"),
 		"(Janitor) Drake" = image(icon = 'icons/mob/cyborg/drakemech.dmi', icon_state = "drakejanitbox") 
 		)
-		var/list/L = list("(Service) DarkK9" = "k50", "(Service) Vale" = "valeserv", "(Service) ValeDark" = "valeservdark",
-						"(Janitor) Scrubpuppy" = "scrubpup")
+		var/list/L = list("(Service) DarkK9" = "k50", "(Service) Vale" = "valeserv", "(Service) ValeDark" = "valeservdark", "(Janitor) Otie" = "otiej",
+						"(Janitor) Scrubpuppy" = "scrubpup") //Skyrat change
 		for(var/a in L)
-			var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+			var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a]) //skyrat change
 			wide.pixel_x = -16
 			service_icons[a] = wide
 		if(R.client && R.client.ckey == "nezuli")
@@ -1044,6 +1059,11 @@
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			sleeper_overlay = "jsleeper"
 			dogborg = TRUE
+		if("(Janitor) Otie") //Skyrat change
+			cyborg_base_icon = "otiej"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+			sleeper_overlay = "otiejsleeper"
+			dogborg = TRUE
 		if("(Janitor) Bootyborg") //Skyrat change
 			cyborg_base_icon = "bootyjanitor"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -1120,7 +1140,7 @@
 		)
 		var/list/L = list("Blade" = "blade", "Vale" = "valemine")
 		for(var/a in L)
-			var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+			var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a]) //skyrat change
 			wide.pixel_x = -16
 			mining_icons[a] = wide
 		if(R.client && R.client.ckey == "banangarang") //skyrat change
