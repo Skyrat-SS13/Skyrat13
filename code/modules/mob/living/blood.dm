@@ -64,7 +64,19 @@
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")
+<<<<<<< HEAD
 		switch(blood_volume * INVERSE(blood_ratio))
+=======
+		switch(blood_volume)
+			if(BLOOD_VOLUME_EXCESS to BLOOD_VOLUME_MAX_LETHAL)
+				if(prob(15))
+					to_chat(src, "<span class='userdanger'>Blood starts to tear your skin apart. You're going to burst!</span>")
+					adjustBruteLoss(15)
+					bleed(20)
+			if(BLOOD_VOLUME_MAXIMUM to BLOOD_VOLUME_EXCESS)
+				if(prob(10))
+					to_chat(src, "<span class='warning'>You feel terribly bloated.</span>")
+>>>>>>> ad77a6120a... Merge pull request #13033 from Citadel-Station-13/silicons-patch-72
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(prob(5))
 					to_chat(src, "<span class='warning'>You feel [word].</span>")
