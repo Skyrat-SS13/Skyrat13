@@ -53,7 +53,14 @@
 /obj/item/reagent_containers/syringe/attackby(obj/item/I, mob/user, params)
 	return
 
+<<<<<<< HEAD
 /obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user , proximity)
+=======
+/obj/item/reagent_containers/syringe/attack()
+	return			// no bludgeoning.
+
+/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user, proximity)
+>>>>>>> c310b1a70e... Merge pull request #12997 from silicons/lavastaff
 	. = ..()
 	if(busy)
 		return
