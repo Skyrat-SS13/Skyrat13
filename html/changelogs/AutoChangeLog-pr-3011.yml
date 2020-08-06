@@ -1,4 +1,0 @@
-author: "ShadeAware"
-delete-after: True
-changes: 
-  - rscadd: "You can now pick the Medical, Prescription Medical, and Prescription Security HUDS in the loadout menu."
