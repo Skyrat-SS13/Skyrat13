@@ -597,8 +597,8 @@
 	for(var/i in show_descriptors_to(user))
 		msg |= "\t[i]"
 	if((src == user) && HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF))
-		msg |= "\t<span class='smallnotice'>[p_they(TRUE)] have no significantly damaged bodyparts.</span>"
-		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
+		msg |= "\t<span class='smallnotice'>[p_they(TRUE)] [p_have()] no significantly damaged bodyparts.</span>"
+		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] [p_have()] no visible scars.</i></span>"
 		return msg
 	
 	var/list/damaged_bodypart_text = list()
@@ -651,7 +651,7 @@
 	msg |= damaged_bodypart_text
 
 	if(!length(damaged_bodypart_text))
-		msg |= "\t<span class='smallnotice'>[p_they(TRUE)] have no significantly damaged bodyparts.</span>"
+		msg |= "\t<span class='smallnotice'>[p_they(TRUE)] [p_have()] no significantly damaged bodyparts.</span>"
 	
 	var/list/visible_scars = list()
 	for(var/i in all_scars)
@@ -666,7 +666,7 @@
 			msg |= "\t[scar_text]"
 	
 	if(!length(visible_scars))
-		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
+		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] [p_have()] no visible scars.</i></span>"
 	
 	return msg
 //

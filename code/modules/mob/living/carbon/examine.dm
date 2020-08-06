@@ -266,8 +266,8 @@
 /mob/living/carbon/examine_more(mob/user)
 	var/msg = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
 	if((src == user) && HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF))
-		msg |= "\t<span class='smallnotice'>[p_they(TRUE)] have no significantly damaged bodyparts.</span>"
-		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
+		msg |= "\t<span class='smallnotice'>[p_they(TRUE)] [p_have()] no significantly damaged bodyparts.</span>"
+		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] [p_have()] no visible scars.</i></span>"
 		return msg
 	
 	var/list/damaged_bodypart_text = list()
@@ -308,11 +308,11 @@
 			if(3)
 				styletext = "danger"
 		if(how_brute && how_burn)
-			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP] is [how_brute] and [how_burn][max_sev >= 2 ? "!" : "."]</span>"
+			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP.name] is [how_brute] and [how_burn][max_sev >= 2 ? "!" : "."]</span>"
 		else if(how_brute)
-			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP] is [how_brute][max_sev >= 2 ? "!" : "."]</span>"
+			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP.name] is [how_brute][max_sev >= 2 ? "!" : "."]</span>"
 		else if(how_burn)
-			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP] is [how_burn][max_sev >= 2 ? "!" : "."]</span>"
+			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP.name] is [how_burn][max_sev >= 2 ? "!" : "."]</span>"
 		
 		if(length(text))
 			damaged_bodypart_text |= text
@@ -320,7 +320,7 @@
 	msg |= damaged_bodypart_text
 
 	if(!length(damaged_bodypart_text))
-		msg |= "\t<span class='smallnotice'>[p_they(TRUE)] have no significantly damaged bodyparts.</span>"
+		msg |= "\t<span class='smallnotice'>[p_they(TRUE)] [p_have()] no significantly damaged bodyparts.</span>"
 	
 	var/list/visible_scars = list()
 	for(var/i in all_scars)
@@ -335,7 +335,7 @@
 			msg |= "\t[scar_text]"
 	
 	if(!length(visible_scars))
-		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] have no visible scars.</i></span>"
+		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] [p_have()] no visible scars.</i></span>"
 	
 	return msg
 //
