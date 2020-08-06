@@ -451,7 +451,7 @@
 		else if(!taped)
 			. += "<span class='notice'>Continue Alternative Treatment: Apply sticky tape directly to injured limb to begin automatic. This is very ineffective and may damage internal components, and as such only recommended in dire need.</span>\n"
 		else
-			. += "<span class='notice'>Note: Automatic repair in effect. Background tasks are [round(regen_points_current/regen_points_needed)]% operational.</span>\n"
+			. += "<span class='notice'>Note: Automatic repair in effect. Background tasks are [round((regen_points_current/regen_points_needed) * 100)]% operational.</span>\n"
 
 	if(limb.body_zone == BODY_ZONE_HEAD)
 		. += "Head Trauma Detected: Patient will suffer random bouts of [severity == WOUND_SEVERITY_SEVERE ? "mild" : "severe"] runtimes until damage is repaired."
