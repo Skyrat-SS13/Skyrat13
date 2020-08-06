@@ -19,11 +19,9 @@
 	id = "sticky_basic"
 	display_name = "Basic Sticky Technology"
 	description = "The only thing left to do after researching this tech is to start printing out a bunch of 'kick me' signs."
-	prereq_ids = list("base")
+	prereq_ids = list("adv_engi", "high_efficiency")
 	design_ids = list("sticky_tape")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
-	hidden = TRUE
-	experimental = TRUE
 
 // Can be researched after getting the basic sticky technology from the BEPIS major reward
 /datum/techweb_node/sticky_advanced
@@ -32,8 +30,9 @@
 	description = "Taking a good joke too far? Nonsense!"
 	prereq_ids = list("sticky_basic")
 	design_ids = list("super_sticky_tape", "pointy_tape")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	hidden = TRUE
 
+// Nyanites
 /datum/techweb_node/nanite_smart
 	design_ids = list("purging_nanites", "research_nanites", "metabolic_nanites", "stealth_nanites", "memleak_nanites","sensor_voice_nanites", "voice_nanites", "signaler_nanites")
