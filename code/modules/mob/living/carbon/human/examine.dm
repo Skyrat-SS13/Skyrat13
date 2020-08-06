@@ -639,11 +639,11 @@
 			if(3)
 				styletext = "danger"
 		if(how_brute && how_burn)
-			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP] is [how_brute] and [how_burn][max_sev >= 2 ? "!" : "."]</span>"
+			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP.name] is [how_brute] and [how_burn][max_sev >= 2 ? "!" : "."]</span>"
 		else if(how_brute)
-			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP] is [how_brute][max_sev >= 2 ? "!" : "."]</span>"
+			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP.name] is [how_brute][max_sev >= 2 ? "!" : "."]</span>"
 		else if(how_burn)
-			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP] is [how_burn][max_sev >= 2 ? "!" : "."]</span>"
+			text = "\t<span class='[styletext]'>[p_their(TRUE)] [BP.name] is [how_burn][max_sev >= 2 ? "!" : "."]</span>"
 		
 		if(length(text))
 			damaged_bodypart_text |= text
