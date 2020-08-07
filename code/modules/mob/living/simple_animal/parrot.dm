@@ -924,8 +924,8 @@
 		return FALSE // Not CE, Poly don't care!
 	
 	if(findtext(message, "poly"))
-		if(findtext(message, "perch") && (findtext(message, "me") || findtext(message, "shoulder")))
-			// Variations of the message "Poly, perch on me/my shoulder"
+		if((findtext(message, "perch") || findtext(message, "hop")) && (findtext(message, "me") || findtext(message, "shoulder")))
+			// Variations of the message "Poly, hop/perch on me/my shoulder"
 			command_perch(H)
 			return TRUE
 
