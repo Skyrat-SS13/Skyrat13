@@ -26,7 +26,7 @@
 	tastes = list("fish" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/carpmeat/tcarpmeat
+/obj/item/reagent_containers/food/snacks/carpmeat/tcarpmeat  //skyrat edit
 	name = "tiger carp fillet"
 	desc = "A robust and nutrient filled fillet of carp meat."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 3)
