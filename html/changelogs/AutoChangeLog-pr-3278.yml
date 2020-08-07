@@ -1,0 +1,4 @@
+author: "DarkWolfInsanity"
+delete-after: True
+changes: 
+  - bugfix: "Skeleton key can now be seen after emag actions"
