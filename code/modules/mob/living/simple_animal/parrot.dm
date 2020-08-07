@@ -76,6 +76,7 @@
 	var/parrot_lastmove = null //Updates/Stores position of the parrot while it's moving
 	var/parrot_stuck = 0	//If parrot_lastmove hasnt changed, this will increment until it reaches parrot_stuck_threshold
 	var/parrot_stuck_threshold = 10 //if this == parrot_stuck, it'll force the parrot back to wandering
+	var/buckled_to_human = FALSE // Skyrat - if she's on someone's shoulder
 
 	var/list/speech_buffer = list()
 	var/speech_shuffle_rate = 20
@@ -153,7 +154,7 @@
 
 /mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode, atom/movable/source)
 	. = ..()
-	if(check_command())
+	if(check_command(message, speaker))
 		return
 	if(speaker != src && prob(50)) //Dont imitate ourselves
 		if(!radio_freq || prob(10))
@@ -854,6 +855,7 @@
 		pixel_x = pick(-8,8) //pick left or right shoulder
 		icon_state = icon_sit
 		parrot_state = PARROT_PERCH
+		buckled_to_human = TRUE
 		to_chat(src, "<span class='notice'>You sit on [H]'s shoulder.</span>")
 
 
@@ -914,10 +916,63 @@
 	if(. && !client && prob(1) && prob(1)) //Only the one true bird may speak across dimensions.
 		world.TgsTargetedChatBroadcast("A stray squawk is heard... \"[message]\"", FALSE)
 
-/mob/living/simple_animal/parrot/proc/check_command() // Skyrat - Poly listens to some of the CE's commands!
+/mob/living/simple_animal/parrot/Poly/check_command(message, speaker) // Skyrat - Poly listens to some of the CE's commands!
+	var/mob/living/carbon/human/H = speaker
+	if(!istype(H))
+		return FALSE
+	if(!H.mind || H.mind.assigned_role != "Chief Engineer")
+		return FALSE // Not CE, Poly don't care!
+	
+	if(findtext(message, "poly"))
+		if(findtext(message, "perch") && (findtext(message, "me") || findtext(message, "shoulder")))
+			// Variations of the message "Poly, perch on me/my shoulder"
+			command_perch(H)
+			return TRUE
 
+		if(findtext(message, "off") && (findtext(message, "me") || findtext(message, "shoulder") || findtext(message, "hop")))
+			// Variations of "Poly, get/hop off of me/my shoulder."
+			command_hop_off(H)
+			return TRUE
+			
+		if(findtext(message, "shut") && speak_chance)
+			if(prob(90))
+				emote("me", EMOTE_VISIBLE, "lets out a soft bawk and lowers their head, remaining silent afterwards.")
+				addtimer(CALLBACK(src, .proc/command_resume_speech, speak_chance), 5 MINUTES)
+				speak_chance = 0
+			return TRUE
 
-	return FALSE // Wasn't a command
+	return FALSE // Wasn't a command.
+
+/mob/living/simple_animal/parrot/Poly/proc/command_perch(var/mob/living/carbon/human/H) // Skyrat proc
+	if(H.has_buckled_mobs() && H.buckled_mobs.len >= H.max_buckled_mobs)
+		return
+	if(buckled_to_human)
+		emote("me", EMOTE_VISIBLE, "gives [H] a confused look, squawking softly.")
+		return
+	if(get_dist(src, H) > 1 || buckled) // Only adjacent
+		emote("me", EMOTE_VISIBLE, "tilts their head at [H], before bawking loudly and staying put.")
+		return
+	emote("me", EMOTE_VISIBLE, "obediently hops up onto [H]'s shoulder, spreading their wings for a moment before settling down.")
+	perch_on_human(H)
+
+/mob/living/simple_animal/parrot/Poly/proc/command_hop_off(var/mob/living/carbon/human/H) // Skyrat proc
+	if(!buckled_to_human || !buckled)
+		emote("me", EMOTE_VISIBLE, "gives [H] a confused look, squawking softly.")
+		return
+
+	icon_state = icon_living
+	parrot_state = PARROT_WANDER
+	if(buckled)
+		to_chat(src, "<span class='notice'>You are no longer sitting on [buckled].</span>")
+		buckled.unbuckle_mob(src, TRUE)
+		emote("me", EMOTE_VISIBLE, "squawks and hops off of [buckled], flying away.")
+	buckled = null
+	buckled_to_human = FALSE
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
+
+/mob/living/simple_animal/parrot/Poly/proc/command_resume_speech(var/initial_chance) // Skyrat proc
+	speak_chance = initial_chance
 
 /mob/living/simple_animal/parrot/Poly/BiologicalLife(seconds, times_fired)
 	if(!(. = ..()))
