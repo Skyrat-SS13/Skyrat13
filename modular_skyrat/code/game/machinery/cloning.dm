@@ -41,7 +41,7 @@
 	var/max_biomass = 1000
 	var/biomass_per_clone = 400
 
-	var/pays_for_clone = TRUE
+	var/pays_for_clone = FALSE
 	var/cost_per_clone = 1000 //cost in credits for a clone, of course.
 	var/dep_id = ACCOUNT_MED
 	var/datum/bank_account/currently_linked_account

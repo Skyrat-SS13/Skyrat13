@@ -114,13 +114,13 @@
 		// And you have a 70% or 50% chance to actually land the blow, respectively
 		if(prob(70 - 20 * (severity - 1)))
 			to_chat(victim, "<span class='userdanger'>The fracture in your [limb.name] shoots with pain as you strike [target]!</span>")
-			limb.receive_damage(brute=rand(1,5))
+			limb.receive_damage(brute=rand(1,5), wound_bonus = CANT_WOUND)
 		else
 			victim.visible_message("<span class='danger'>[victim] weakly strikes [target] with [victim.p_their()] broken [limb.name], recoiling from pain!</span>", \
 			"<span class='userdanger'>You fail to strike [target] as the fracture in your [limb.name] lights up in unbearable pain!</span>", vision_distance=COMBAT_MESSAGE_RANGE)
 			victim.emote("scream")
 			victim.Stun(0.5 SECONDS)
-			limb.receive_damage(brute=rand(2,7))
+			limb.receive_damage(brute=rand(2,7), wound_bonus = CANT_WOUND)
 			return COMPONENT_NO_ATTACK_HAND
 
 /datum/wound/blunt/receive_damage(wounding_type, wounding_dmg, wound_bonus)
@@ -329,7 +329,7 @@
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] with a sickening crack!</span>", "<span class='danger'>You snap [victim]'s dislocated [limb.name] with a sickening crack!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=25, wound_bonus=30 + prob_mod * 3)
+		limb.receive_damage(brute=25, wound_bonus=30 + prob_mod * 3, wound_bonus = CANT_WOUND)
 	else
 		user.visible_message("<span class='danger'>[user] wrenches [victim]'s dislocated [limb.name] around painfully!</span>", "<span class='danger'>You wrench [victim]'s dislocated [limb.name] around painfully!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] wrenches your dislocated [limb.name] around painfully!</span>")

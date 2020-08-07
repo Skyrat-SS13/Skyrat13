@@ -101,12 +101,12 @@
 		// And you have a 70% or 50% chance to actually land the blow, respectively
 		if(prob(70 - 20 * (severity - 1)))
 			to_chat(victim, "<span class='userdanger'>Your [limb.name] malfunctions as you strike [target]!</span>")
-			limb.receive_damage(brute=rand(1,5))
+			limb.receive_damage(brute=rand(1,5), wound_bonus = CANT_WOUND)
 		else
 			victim.visible_message("<span class='danger'>[victim] weakly strikes [target] with [victim.p_their()] bent [limb.name]!</span>", \
 			"<span class='userdanger'>You fail to strike [target] as the frictioning metal in your [limb.name] causes it to spark!</span>", vision_distance=COMBAT_MESSAGE_RANGE)
 			victim.Stun(0.5 SECONDS)
-			limb.receive_damage(brute=rand(3,7))
+			limb.receive_damage(brute=rand(3,7), wound_bonus = CANT_WOUND)
 			return COMPONENT_NO_ATTACK_HAND
 
 /datum/wound/mechanical/blunt/receive_damage(wounding_type, wounding_dmg, wound_bonus)
@@ -304,7 +304,7 @@
 		user.visible_message("<span class='danger'>[user] torques [victim]'s disconnected [limb.name] actuators with a loud pop!</span>", "<span class='danger'>You torque [victim]'s disconnected [limb.name] actuators with a loud pop!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=12, wound_bonus=30 + prob_mod * 3)
+		limb.receive_damage(brute=12, wound_bonus=30 + prob_mod * 3, wound_bonus = CANT_WOUND)
 	else
 		user.visible_message("<span class='danger'>[user] grinds [victim]'s disconnected [limb.name] actuators around!</span>", "<span class='danger'>You grind [victim]'s disconnected [limb.name] actuators around painfully!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] grinds your dislocated [limb.name] actuators around!</span>")
