@@ -103,13 +103,14 @@ GLOBAL_LIST_EMPTY(explosions)
 	// 3/7/14 will calculate to 80 + 35
 
 	var/far_dist = 0
-	far_dist += heavy_impact_range * 5
-	far_dist += devastation_range * 20
+	far_dist += heavy_impact_range * 20
+	far_dist += devastation_range * 40
 
 	if(!silent)
 		var/frequency = get_rand_frequency()
 		var/sound/explosion_sound = sound(get_sfx("explosion"))
 		var/sound/far_explosion_sound = sound('sound/effects/explosionfar.ogg')
+		var/sound/explosion_echo_sound = sound('sound/effects/explosionecho.ogg')
 
 		for(var/mob/M in GLOB.player_list)
 			// Double check for client
@@ -126,11 +127,12 @@ GLOBAL_LIST_EMPTY(explosions)
 						shake_camera(M, 25, clamp(baseshakeamount, 0, 10))
 				// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 				else if(dist <= far_dist)
-					var/far_volume = clamp(far_dist, 30, 50) // Volume is based on explosion size and dist
-					far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
-					M.playsound_local(epicenter, null, far_volume, 1, frequency, falloff = 5, S = far_explosion_sound)
+					var/far_volume = clamp(far_dist/2, 30, 50) // Volume is based on explosion size and dist
+					M.playsound_local(epicenter, null, far_volume, 1, frequency, S = far_explosion_sound, distance_multiplier = 0)
 					if(baseshakeamount > 0)
 						shake_camera(M, 10, clamp(baseshakeamount*0.25, 0, 2.5))
+				else if(M.can_hear() && !isspaceturf(get_turf(M)))
+					M.playsound_local(epicenter, null, 30, 1, frequency, S = explosion_echo_sound, distance_multiplier = 0)
 			EX_PREPROCESS_CHECK_TICK
 
 	//postpone processing for a bit
