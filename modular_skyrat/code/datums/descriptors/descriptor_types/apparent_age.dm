@@ -16,8 +16,8 @@
 		"juvenile when compared to you",
 		)
 	comparative_value_descriptors_larger = list(
+		"barely older than you",
 		"slightly older than you",
 		"older than you",
 		"much older than you",
-		"dodging a coffin when compared to you",
 		)
