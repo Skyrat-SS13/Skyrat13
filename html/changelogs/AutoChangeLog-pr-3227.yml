@@ -1,0 +1,9 @@
+author: "jjpark-kb"
+delete-after: True
+changes: 
+  - rscadd: "Added kudzu turf that is created when kudzu spreads into space"
+  - rscadd: "Added thermal and xray to venus plants so they can see through their vines"
+  - rscadd: "Venus heal on all vines"
+  - balance: "halved the timer for the plant to spawn venus plants"
+  - balance: "changed venus plants stun to a knockdown"
+  - bugfix: "Venus no longer take damage from thorny"
