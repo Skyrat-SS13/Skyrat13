@@ -4,7 +4,11 @@
 	id = "jelly"
 	default_color = "00FF90"
 	say_mod = "chirps"
+<<<<<<< HEAD
 	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,WINGCOLOR)
+=======
+	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,WINGCOLOR,HAS_FLESH)
+>>>>>>> 60b93386a1... Merge pull request #13043 from Sishen1542/boneless
 	mutantlungs = /obj/item/organ/lungs/slime
 	mutant_heart = /obj/item/organ/heart/slime
 	mutant_bodyparts = list("mcolor" = "FFF", "mam_tail" = "None", "mam_ears" = "None", "mam_snouts" = "None", "taur" = "None", "deco_wings" = "None")
