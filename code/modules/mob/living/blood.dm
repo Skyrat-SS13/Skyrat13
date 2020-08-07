@@ -64,7 +64,14 @@
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")
+<<<<<<< HEAD
 		switch(blood_volume * INVERSE(blood_ratio))
+=======
+		switch(blood_volume)
+			if(BLOOD_VOLUME_MAXIMUM to BLOOD_VOLUME_EXCESS)
+				if(prob(10))
+					to_chat(src, "<span class='warning'>You feel terribly bloated.</span>")
+>>>>>>> 977db69e92... Merge pull request #13039 from timothyteakettle/ok-listen-its-an-accident
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(prob(5))
 					to_chat(src, "<span class='warning'>You feel [word].</span>")
