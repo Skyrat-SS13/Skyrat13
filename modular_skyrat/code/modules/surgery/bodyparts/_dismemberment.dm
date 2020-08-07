@@ -427,7 +427,7 @@
 		return
 	var/obj/item/bodypart/O = C.get_bodypart(body_zone)
 	if(O)
-		O.drop_limb(1)
+		O.drop_limb(special, TRUE, FALSE, FALSE)
 	attach_limb(C, special)
 
 /obj/item/bodypart/head/replace_limb(mob/living/carbon/C, special)
@@ -438,7 +438,7 @@
 		if(!special)
 			return
 		else
-			O.drop_limb(1)
+			O.drop_limb(special, TRUE, FALSE, FALSE)
 	attach_limb(C, special)
 
 /obj/item/bodypart/proc/attach_limb(mob/living/carbon/C, special, ignore_parent_restriction = FALSE)
