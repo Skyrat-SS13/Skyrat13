@@ -1,16 +1,35 @@
+<<<<<<< HEAD
 /datum/gear/bluetie
 	name = "Blue tie"
 	category = SLOT_NECK
+=======
+/datum/gear/neck
+	category = LOADOUT_CATEGORY_NECK
+	subcategory = LOADOUT_SUBCATEGORY_NECK_GENERAL
+	slot = SLOT_NECK
+
+/datum/gear/neck/bluetie
+	name = "Blue tie"
+	subcategory = LOADOUT_SUBCATEGORY_NECK_TIE
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	path = /obj/item/clothing/neck/tie/blue
 
 /datum/gear/redtie
 	name = "Red tie"
+<<<<<<< HEAD
 	category = SLOT_NECK
+=======
+	subcategory = LOADOUT_SUBCATEGORY_NECK_TIE
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	path = /obj/item/clothing/neck/tie/red
 
 /datum/gear/blacktie
 	name = "Black tie"
+<<<<<<< HEAD
 	category = SLOT_NECK
+=======
+	subcategory = LOADOUT_SUBCATEGORY_NECK_TIE
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	path = /obj/item/clothing/neck/tie/black
 
 /datum/gear/collar
@@ -30,7 +49,11 @@
 
 /datum/gear/scarf
 	name = "White scarf"
+<<<<<<< HEAD
 	category = SLOT_NECK
+=======
+	subcategory = LOADOUT_SUBCATEGORY_NECK_SCARVES
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	path = /obj/item/clothing/neck/scarf
 
 /datum/gear/blackscarf

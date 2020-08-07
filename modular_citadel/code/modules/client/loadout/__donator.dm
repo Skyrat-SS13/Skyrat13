@@ -4,6 +4,10 @@
 	name = "IF YOU SEE THIS, PING A CODER RIGHT NOW!"
 	category = SLOT_IN_BACKPACK
 	path = /obj/item/bikehorn/golden
+<<<<<<< HEAD
+=======
+	category = LOADOUT_CATEGORY_DONATOR
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	ckeywhitelist = list("This entry should never appear with this variable set.") //If it does, then that means somebody fucked up the whitelist system pretty hard
 
 /datum/gear/donortestingbikehorn

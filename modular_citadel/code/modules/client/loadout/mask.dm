@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 /datum/gear/balaclava
+=======
+/datum/gear/mask
+	category = LOADOUT_CATEGORY_MASK
+	slot = SLOT_WEAR_MASK
+
+/datum/gear/mask/balaclava
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	name = "Balaclava"
 	category = SLOT_WEAR_MASK
 	path = /obj/item/clothing/mask/balaclava

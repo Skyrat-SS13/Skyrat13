@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 /datum/gear/cane
+=======
+/datum/gear/hands
+	category = LOADOUT_CATEGORY_HANDS
+	slot = SLOT_HANDS
+
+/datum/gear/hands/cane
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	name = "Cane"
 	category = SLOT_HANDS
 	path = /obj/item/cane

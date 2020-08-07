@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 /datum/gear/fingerless
+=======
+/datum/gear/gloves
+	category = LOADOUT_CATEGORY_GLOVES
+	slot = SLOT_GLOVES
+
+/datum/gear/gloves/fingerless
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	name = "Fingerless Gloves"
 	category = SLOT_GLOVES
 	path = /obj/item/clothing/gloves/fingerless

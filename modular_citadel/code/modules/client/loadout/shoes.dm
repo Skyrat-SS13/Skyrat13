@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 /datum/gear/laceup
+=======
+/datum/gear/shoes
+	category = LOADOUT_CATEGORY_SHOES
+	slot = SLOT_SHOES
+
+/datum/gear/shoes/laceup
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	name = "Laceup shoes"
 	category = SLOT_SHOES
 	path = /obj/item/clothing/shoes/laceup

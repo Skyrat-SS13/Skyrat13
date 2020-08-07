@@ -1,7 +1,20 @@
+<<<<<<< HEAD
 /datum/gear/plushbox
+=======
+/datum/gear/backpack
+	category = LOADOUT_CATEGORY_BACKPACK
+	subcategory = LOADOUT_SUBCATEGORY_BACKPACK_GENERAL
+	slot = SLOT_IN_BACKPACK
+
+/datum/gear/backpack/plushbox
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	name = "Plushie Choice Box"
 	category = SLOT_IN_BACKPACK
 	path = /obj/item/choice_beacon/box/plushie
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_BACKPACK_TOYS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/toy/plush/borgplushie/secdrake
 	name = "SecDrake Plushie"
@@ -17,6 +30,10 @@
 	name = "Classic Tennis Ball"
 	category = SLOT_IN_BACKPACK
 	path = /obj/item/toy/tennis
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_BACKPACK_TOYS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/tennisred
 	name = "Red Tennis Ball"
@@ -52,11 +69,19 @@
 	name = "Customizable dildo"
 	category = SLOT_IN_BACKPACK
 	path = /obj/item/dildo/custom
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_BACKPACK_TOYS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/toykatana
 	name = "Toy Katana"
 	category = SLOT_IN_BACKPACK
 	path = /obj/item/toy/katana
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_BACKPACK_TOYS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	cost = 3
 
 /datum/gear/tapeplayer
@@ -78,6 +103,10 @@
 	name = "Box of crayons"
 	category = SLOT_IN_BACKPACK
 	path = /obj/item/storage/crayons
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_BACKPACK_TOYS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/multipen
 	name = "A multicolored pen"

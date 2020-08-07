@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 /datum/gear/baseball
+=======
+/datum/gear/head
+	category = LOADOUT_CATEGORY_HEAD
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_GENERAL
+	slot = SLOT_HEAD
+
+/datum/gear/head/baseball
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	name = "Ballcap"
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/soft/mime
@@ -74,18 +83,30 @@
 	name = "Federation Officer's Cap (White)"
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/caphat/formal/fedcover
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_roles = list("Captain","Head of Personnel")
 
 /datum/gear/trekcapcap
 	name = "Federation Officer's Cap (Black)"
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/caphat/formal/fedcover/black
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_roles = list("Captain","Head of Personnel")
 
 /datum/gear/trekcapmedisci
 	name = "Federation Officer's Cap (Blue)"
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/caphat/formal/fedcover/medsci
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Medical and Science"
 	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
@@ -93,6 +114,10 @@
 	name = "Federation Officer's Cap (Yellow)"
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/caphat/formal/fedcover/eng
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
 
@@ -100,6 +125,10 @@
 	name = "Federation Officer's Cap (Red)"
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/caphat/formal/fedcover/sec
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
 
@@ -109,6 +138,10 @@
 	description = "A visored cap. Intended to be used with ORV uniform."
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/kepi/orvi/command
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Heads of Staff"
 	restricted_roles = list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster")
 
@@ -117,6 +150,10 @@
 	description = "A visored cap. Intended to be used with ORV uniform."
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/kepi/orvi/engsec
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Engineering, Security and Cargo"
 	restricted_roles = list("Chief Engineer", "Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer", "Head of Security", "Cargo Technician", "Shaft Miner", "Quartermaster")
 
@@ -125,6 +162,10 @@
 	description = "A visored cap. Intended to be used with ORV uniform."
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/kepi/orvi/medsci
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Medical and Science"
 	restricted_roles = list("Chief Medical Officer", "Medical Doctor", "Chemist", "Virologist", "Paramedic", "Geneticist", "Research Director", "Scientist", "Roboticist")
 
@@ -133,6 +174,10 @@
 	description = "A visored cap. Intended to be used with ORV uniform."
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/kepi/orvi/service
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Service and Civilian, barring Clown, Mime and Lawyer"
 	restricted_roles = list("Assistant", "Bartender", "Botanist", "Cook", "Curator", "Janitor", "Chaplain")
 
@@ -141,6 +186,10 @@
 	description = "A visored cap. Intended to be used with ORV uniform."
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/kepi/orvi
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_roles = list("Assistant")
 
 /*Commenting out Until next Christmas or made automatic
@@ -180,6 +229,10 @@
 	name = "Cowboy Hat, Security"
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/cowboyhat/sec
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Security"
 	restricted_roles = list("Warden","Detective","Security Officer","Head of Security")
 

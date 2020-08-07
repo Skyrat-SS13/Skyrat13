@@ -1,7 +1,20 @@
+<<<<<<< HEAD
 /datum/gear/suitblack
+=======
+/datum/gear/uniform
+	category = LOADOUT_CATEGORY_UNIFORM
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_GENERAL
+	slot = SLOT_W_UNIFORM
+
+/datum/gear/uniform/suit
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	name = "Black suit"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/suit/black
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_SUITS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/suitgreen
 	name = "Green suit"
@@ -57,6 +70,10 @@
 	name = "Black skirt"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/dress/skirt
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_SKIRTS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/skirtblue
 	name = "Blue skirt"
@@ -102,6 +119,10 @@
 	name = "Striped Dress"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/dress/striped
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_DRESSES
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/sundresswhite
 	name = "White Sundress"
@@ -141,6 +162,10 @@
 	name = "Yoga Pants"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/pants/yoga
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_PANTS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/kilt
 	name = "Kilt"
@@ -156,6 +181,10 @@
 	name = "Athletic Shorts"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/shorts/red
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_SHORTS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/bjeans
 	name = "Black Jeans"
@@ -223,6 +252,10 @@
 	name = "Cream Commando Sweater"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/sweater
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_SWEATERS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/blacksweater
 	name = "Black Commando Sweater"
@@ -302,6 +335,10 @@
 	name = "TOS uniform, cmd"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Heads of Staff"
 	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster")
 
@@ -309,6 +346,10 @@
 	name = "TOS uniform, med/sci"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/medsci
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Medical and Science"
 	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
@@ -316,6 +357,10 @@
 	name = "TOS uniform, ops/sec"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/engsec
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
 
@@ -325,6 +370,10 @@
 	name = "TNG uniform, cmd"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command/next
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Heads of Staff"
 	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster")
 
@@ -332,6 +381,10 @@
 	name = "TNG uniform, med/sci"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/medsci/next
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Medical and Science"
 	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
@@ -339,6 +392,10 @@
 	name = "TNG uniform, ops/sec"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/engsec/next
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
 
@@ -347,6 +404,10 @@
 	name = "VOY uniform, cmd"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command/voy
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Heads of Staff"
 	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster")
 
@@ -354,6 +415,10 @@
 	name = "VOY uniform, med/sci"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/medsci/voy
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Medical and Science"
 	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
@@ -361,6 +426,10 @@
 	name = "VOY uniform, ops/sec"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/engsec/voy
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
 
@@ -369,6 +438,10 @@
 	name = "DS9 uniform, cmd"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command/ds9
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Heads of Staff"
 	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster")
 
@@ -376,6 +449,10 @@
 	name = "DS9 uniform, med/sci"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/medsci/ds9
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Medical and Science"
 	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
@@ -383,6 +460,10 @@
 	name = "DS9 uniform, ops/sec"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/engsec/ds9
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
 
@@ -391,6 +472,10 @@
 	name = "ENT uniform, cmd"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command/ent
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Heads of Staff"
 	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster")
 
@@ -398,6 +483,10 @@
 	name = "ENT uniform, med/sci"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/medsci/ent
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Medical and Science"
 	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
@@ -405,6 +494,10 @@
 	name = "ENT uniform, ops/sec"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/engsec/ent
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
 */
@@ -414,6 +507,10 @@
 	name = "TMP uniform"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/fedutil
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "All, barring Service and Civilian"
 	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster",
 							"Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Scientist", "Roboticist",
@@ -425,12 +522,20 @@
 	name = "TMP uniform, trainee"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/fedutil/trainee
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_roles = list("Assistant", "Janitor", "Cargo Technician")
 
 /datum/gear/trekfedservice
 	name = "TMP uniform, service"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/fedutil/service
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Service and Civilian, barring Clown, Mime and Lawyer"
 	restricted_roles = list("Assistant", "Bartender", "Botanist", "Cook", "Curator", "Janitor", "Chaplain")
 
@@ -439,12 +544,20 @@
 	name = "ORV uniform, cmd"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command/orv
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Heads of Staff"
 	restricted_roles = list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster")
 
 /datum/gear/orvcmd_capt
 	name = "ORV uniform, capt"
+<<<<<<< HEAD
 	category = SLOT_W_UNIFORM
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	path = /obj/item/clothing/under/trek/command/orv/captain
 	restricted_roles = list("Captain")
 
@@ -452,6 +565,10 @@
 	name = "ORV uniform, med/sci"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/medsci/orv
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Medical and Science"
 	restricted_roles = list("Chief Medical Officer", "Medical Doctor", "Chemist", "Virologist", "Paramedic", "Geneticist", "Research Director", "Scientist", "Roboticist")
 
@@ -459,12 +576,20 @@
 	name = "ORV uniform, med/sci, cmd"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command/orv/medsci
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_roles = list("Chief Medical Officer", "Research Director")
 
 /datum/gear/orvops
 	name = "ORV uniform, ops/sec"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/engsec/orv
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Engineering, Security and Cargo"
 	restricted_roles = list("Chief Engineer", "Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer", "Head of Security", "Cargo Technician", "Shaft Miner", "Quartermaster")
 
@@ -472,6 +597,10 @@
 	name = "ORV uniform, ops/sec, cmd"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command/orv/engsec
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_roles = list("Chief Engineer", "Head of Security")
 */
 
@@ -479,12 +608,20 @@
 	name = "ORV uniform, assistant"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/orv
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_roles = list("Assistant")
 
 /datum/gear/orvsrv
 	name = "ORV uniform, service"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/orv/service
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_roles = list("Assistant", "Bartender", "Botanist", "Cook", "Curator", "Janitor", "Chaplain")
 	restricted_desc = "Service and Civilian, barring Clown, Mime and Lawyer"
 
@@ -533,34 +670,91 @@
 	name = "Qipao, Black"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/costume/qipao
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_DRESSES
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	cost = 3
 
 /datum/gear/qipao/white
 	name = "Qipao, White"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/costume/qipao/white
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_DRESSES
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	cost = 3
 
 /datum/gear/qipao/red
 	name = "Qipao, Red"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/costume/qipao/red
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_DRESSES
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	cost = 3
 
 /datum/gear/cheongsam
 	name = "Cheongsam, Black"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/costume/cheongsam
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_DRESSES
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	cost = 3
 
 /datum/gear/cheongsam/white
 	name = "Cheongsam, White"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/costume/cheongsam/white
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_DRESSES
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	cost = 3
 
 /datum/gear/cheongsam/red
 	name = "Cheongsam, Red"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/costume/cheongsam/red
+<<<<<<< HEAD
 	cost = 3
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_DRESSES
+	cost = 3
+
+/datum/gear/uniform/dress/black
+	name = "Black dress"
+	path = /obj/item/clothing/under/misc/black_dress
+
+/datum/gear/uniform/skirt/pinktutu
+	name = "Pink tutu"
+	path = /obj/item/clothing/under/misc/pinktutu
+
+/datum/gear/uniform/bathrobe
+	name = "Bathrobe"
+	path = /obj/item/clothing/under/misc/bathrobe
+
+/datum/gear/uniform/kimono
+	name = "Kimono"
+	path = /obj/item/clothing/under/costume/kimono
+
+/datum/gear/uniform/kimono/black
+	name = "Black kimono"
+	path = /obj/item/clothing/under/costume/kimono/black
+
+/datum/gear/uniform/kimono/kamishimo
+	name = "Kamishimo"
+	path = /obj/item/clothing/under/costume/kimono/kamishimo
+
+/datum/gear/uniform/kimono/fancy
+	name = "Fancy kimono"
+	path = /obj/item/clothing/under/costume/kimono/fancy
+
+/datum/gear/uniform/kimono/sakura
+	name = "Sakura kimono"
+	path = /obj/item/clothing/under/costume/kimono/sakura
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix

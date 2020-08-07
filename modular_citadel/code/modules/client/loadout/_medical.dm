@@ -13,21 +13,33 @@
 
 /datum/gear/bluescrubs
 	name = "Blue Scrubs"
+<<<<<<< HEAD
 	category = SLOT_W_UNIFORM
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	path = /obj/item/clothing/under/rank/medical/doctor/blue
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Geneticist", "Chemist", "Virologist")
 	restricted_desc = "Medical"
 	
 /datum/gear/greenscrubs
 	name = "Green Scrubs"
+<<<<<<< HEAD
 	category = SLOT_W_UNIFORM
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	path = /obj/item/clothing/under/rank/medical/doctor/green
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Geneticist", "Chemist", "Virologist")
 	restricted_desc = "Medical"
 
 /datum/gear/purplescrubs
 	name = "Purple Scrubs"
+<<<<<<< HEAD
 	category = SLOT_W_UNIFORM
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	path = /obj/item/clothing/under/rank/medical/doctor/purple
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Geneticist", "Chemist", "Virologist")
 	restricted_desc = "Medical"
@@ -36,6 +48,10 @@
 	name = "Nurse Hat"
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/nursehat
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Geneticist", "Chemist", "Virologist")
 	restricted_desc = "Medical"
 
@@ -43,5 +59,9 @@
 	name = "Nurse Suit"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/rank/medical/doctor/nurse
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Geneticist", "Chemist", "Virologist")
 	restricted_desc = "Medical"

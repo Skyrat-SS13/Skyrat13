@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 /datum/gear/blindfold
+=======
+/datum/gear/glasses
+	category = LOADOUT_CATEGORY_GLASSES
+	slot = SLOT_GLASSES
+
+/datum/gear/glasses/blindfold
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	name = "Blindfold"
 	category = SLOT_GLASSES
 	path = /obj/item/clothing/glasses/sunglasses/blindfold

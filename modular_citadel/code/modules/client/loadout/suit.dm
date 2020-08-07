@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 /datum/gear/poncho
+=======
+/datum/gear/suit
+	category = LOADOUT_CATEGORY_SUIT
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_GENERAL
+	slot = SLOT_WEAR_SUIT
+
+/datum/gear/suit/poncho
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	name = "Poncho"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/poncho
@@ -23,46 +32,104 @@
 	name = "Bomber jacket"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/jacket
+<<<<<<< HEAD
 
 /datum/gear/jacketleather
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/jacketflannelblack // all of these are reskins of bomber jackets but with the vibe to make you look like a true lumberjack
+	name = "Black flannel jacket"
+	path = /obj/item/clothing/suit/jacket/flannel
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/jacketflannelred
+	name = "Red flannel jacket"
+	path = /obj/item/clothing/suit/jacket/flannel/red
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/jacketflannelaqua
+	name = "Aqua flannel jacket"
+	path = /obj/item/clothing/suit/jacket/flannel/aqua
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/jacketflannelbrown
+	name = "Brown flannel jacket"
+	path = /obj/item/clothing/suit/jacket/flannel/brown
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/jacketleather
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	name = "Leather jacket"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/jacket/leather
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/overcoatleather
 	name = "Leather overcoat"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/jacket/leather/overcoat
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/jacketpuffer
 	name = "Puffer jacket"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/jacket/puffer
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/vestpuffer
 	name = "Puffer vest"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/jacket/puffer/vest
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/jacketlettermanbrown
 	name = "Brown letterman jacket"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/jacket/letterman
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/jacketlettermanred
 	name = "Red letterman jacket"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/jacket/letterman_red
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/jacketlettermanNT
 	name = "Nanotrasen letterman jacket"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/jacket/letterman_nanotrasen
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/coat
 	name = "Winter coat"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/hooded/wintercoat
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_COATS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/coat/aformal
 	name = "Assistant's formal winter coat"
@@ -143,6 +210,10 @@
 	name = "Military Jacket"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/jacket/miljacket
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/ianshirt
 	name = "Ian Shirt"
@@ -153,12 +224,20 @@
 	name = "Flak Jacket"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/flakjack
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	cost = 2
 
 /datum/gear/trekds9_coat
 	name = "DS9 Overcoat (use uniform)"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/storage/trek/ds9
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "All, barring Service and Civilian"
 	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster",
 							"Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Scientist", "Roboticist",
@@ -169,12 +248,20 @@
 	name = "Fed (movie) uniform, Black"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/storage/fluff/fedcoat/capt
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_roles = list("Captain","Head of Personnel")
 
 /datum/gear/trekcmdmov
 	name = "Fed (movie) uniform, Red"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/storage/fluff/fedcoat
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Heads of Staff and Security"
 	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster","Warden","Detective","Security Officer")
 
@@ -182,6 +269,10 @@
 	name = "Fed (movie) uniform, Blue"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/storage/fluff/fedcoat/medsci
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Medical and Science"
 	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
@@ -189,6 +280,10 @@
 	name = "Fed (movie) uniform, Yellow"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/storage/fluff/fedcoat/eng
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Engineering and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Cargo Technician", "Shaft Miner", "Quartermaster")
 
@@ -202,6 +297,10 @@
 	name = "Fed (Modern) uniform, Red"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/storage/fluff/modernfedcoat/sec
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Heads of Staff and Security"
 	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster","Warden","Detective","Security Officer")
 
@@ -209,6 +308,10 @@
 	name = "Fed (Modern) uniform, Blue"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/storage/fluff/modernfedcoat/medsci
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Medical and Science"
 	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
@@ -216,6 +319,10 @@
 	name = "Fed (Modern) uniform, Yellow"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/storage/fluff/modernfedcoat/eng
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 	restricted_desc = "Engineering and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Cargo Technician", "Shaft Miner", "Quartermaster")
 
@@ -223,13 +330,29 @@
 	name = "Red Christmas Coat"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/hooded/wintercoat/christmascoatr
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_COATS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/christmascoatg
 	name = "Green Christmas Coat"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/hooded/wintercoat/christmascoatg
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_COATS
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
 
 /datum/gear/christmascoatrg
 	name = "Red and Green Christmas Coat"
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/hooded/wintercoat/christmascoatrg
+<<<<<<< HEAD
+=======
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_COATS
+
+/datum/gear/suit/samurai
+	name = "Samurai outfit"
+	path = /obj/item/clothing/suit/samurai
+>>>>>>> 1429c62329... Merge pull request #13056 from silicons/loadout_fix
