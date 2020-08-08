@@ -36,5 +36,7 @@
 					/obj/item/healthanalyzer/wound = 4,
 					/obj/item/stack/medical/ointment = 4,
 					/obj/item/stack/medical/suture = 4,
-					/obj/item/stack/medical/bone_gel = 5,
-					/obj/item/bonesetter = 3)
+					/obj/item/bonesetter = 4,
+					/obj/item/stack/medical/bone_gel = 4,
+					/obj/item/stack/medical/fixovein = 4,
+					)
