@@ -103,8 +103,8 @@ GLOBAL_LIST_EMPTY(explosions)
 	// 3/7/14 will calculate to 80 + 35
 
 	var/far_dist = 0
-	far_dist += heavy_impact_range * 20
-	far_dist += devastation_range * 40
+	far_dist += heavy_impact_range * 15
+	far_dist += devastation_range * 20
 
 	if(!silent)
 		var/frequency = get_rand_frequency()
@@ -128,11 +128,17 @@ GLOBAL_LIST_EMPTY(explosions)
 				// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 				else if(dist <= far_dist)
 					var/far_volume = clamp(far_dist/2, 30, 50) // Volume is based on explosion size and dist
-					M.playsound_local(epicenter, null, far_volume, 1, frequency, S = far_explosion_sound, distance_multiplier = 0)
+					if(prob(75)) // Sound variety during meteor storm/tesloose/other bad event
+						M.playsound_local(epicenter, null, far_volume, 1, frequency, S = far_explosion_sound, distance_multiplier = 0) // Far sound
+					else
+						M.playsound_local(epicenter, null, far_volume, 1, frequency, S = explosion_echo_sound, distance_multiplier = 0) // Echo sound
 					if(baseshakeamount > 0)
 						shake_camera(M, 10, clamp(baseshakeamount*0.25, 0, 2.5))
-				else if(M.can_hear() && !isspaceturf(get_turf(M)))
-					M.playsound_local(epicenter, null, 30, 1, frequency, S = explosion_echo_sound, distance_multiplier = 0)
+				else if(M.can_hear() && !isspaceturf(get_turf(M)) && heavy_impact_range) // Big enough explosions echo throughout the hull
+					var/echo_volume = 30
+					if(devastation_range)
+						echo_volume = 50
+					M.playsound_local(epicenter, null, echo_volume, 1, frequency, S = explosion_echo_sound, distance_multiplier = 0)
 			EX_PREPROCESS_CHECK_TICK
 
 	//postpone processing for a bit
