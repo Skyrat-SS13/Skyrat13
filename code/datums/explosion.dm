@@ -126,19 +126,24 @@ GLOBAL_LIST_EMPTY(explosions)
 					if(baseshakeamount > 0)
 						shake_camera(M, 25, clamp(baseshakeamount, 0, 10))
 				// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
+
+				// Skyrat change: Most of this sound code
 				else if(dist <= far_dist)
 					var/far_volume = clamp(far_dist/2, 30, 50) // Volume is based on explosion size and dist
 					if(prob(75)) // Sound variety during meteor storm/tesloose/other bad event
 						M.playsound_local(epicenter, null, far_volume, 1, frequency, S = far_explosion_sound, distance_multiplier = 0) // Far sound
 					else
 						M.playsound_local(epicenter, null, far_volume, 1, frequency, S = explosion_echo_sound, distance_multiplier = 0) // Echo sound
-					if(baseshakeamount > 0)
+					if(baseshakeamount > 0 || devastation_range)
+						if(!baseshakeamount) // Devastating explosions rock the station
+							baseshakeamount = devastation_range*3
 						shake_camera(M, 10, clamp(baseshakeamount*0.25, 0, 2.5))
 				else if(M.can_hear() && !isspaceturf(get_turf(M)) && heavy_impact_range) // Big enough explosions echo throughout the hull
 					var/echo_volume = 30
 					if(devastation_range)
 						echo_volume = 50
 					M.playsound_local(epicenter, null, echo_volume, 1, frequency, S = explosion_echo_sound, distance_multiplier = 0)
+				// End skyrat change
 			EX_PREPROCESS_CHECK_TICK
 
 	//postpone processing for a bit
