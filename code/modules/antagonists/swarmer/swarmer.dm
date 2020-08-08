@@ -399,13 +399,13 @@
 	return FALSE
 
 /obj/structure/lattice/catwalk/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
-	. = ..()
 	var/turf/here = get_turf(src)
 	for(var/A in here.contents)
 		var/obj/structure/cable/C = A
 		if(istype(C))
 			to_chat(S, "<span class='warning'>Disrupting the power grid would bring no benefit to us. Aborting.</span>")
 			return FALSE
+	return ..()
 
 /obj/item/deactivated_swarmer/IntegrateAmount()
 	return 50
@@ -486,7 +486,7 @@
 		var/obj/O = target
 		if(O.resistance_flags & INDESTRUCTIBLE)
 			return FALSE
-	for(var/mob/living/L in GetAllContents())
+	for(var/mob/living/L in target.GetAllContents())
 		if(!ispAI(L) && !isbrain(L))
 			to_chat(src, "<span class='warning'>An organism has been detected inside this object. Aborting.</span>")
 			return FALSE
@@ -646,7 +646,7 @@
 		var/mob/living/L = AM
 		if(!istype(L, /mob/living/simple_animal/hostile/swarmer))
 			playsound(loc,'sound/effects/snap.ogg',50, 1, -1)
-			L.electrocute_act(0, src, 1, flags = SHOCK_NOGLOVES|SHOCK_ILLUSION)
+			L.electrocute_act(100, src, 1, flags = SHOCK_NOGLOVES|SHOCK_ILLUSION) //skyrat edit even if before I did this it wouldn't stun at all
 			if(iscyborg(L))
 				L.DefaultCombatKnockdown(100)
 			qdel(src)

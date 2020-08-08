@@ -18,6 +18,7 @@
 	mutantrace_variation = STYLE_DIGITIGRADE
 	var/last_bloodtype = ""	//used to track the last bloodtype to have graced these shoes; makes for better performing footprint shenanigans
 	var/last_blood_DNA = ""	//same as last one
+	var/last_blood_color = ""
 
 /obj/item/clothing/shoes/ComponentInitialize()
 	. = ..()
@@ -48,6 +49,7 @@
 	if(blood_dna.len)
 		last_bloodtype = blood_dna[blood_dna[blood_dna.len]]//trust me this works
 		last_blood_DNA = blood_dna[blood_dna.len]
+		last_blood_color = blood_dna["color"]
 
 /obj/item/clothing/shoes/worn_overlays(isinhands = FALSE, icon_file, used_state, style_flags = NONE)
 	. = ..()
@@ -62,7 +64,7 @@
 			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
 		if(bloody)
 			var/file2use = style_flags & STYLE_DIGITIGRADE ? 'icons/mob/clothing/feet_digi.dmi' : 'icons/effects/blood.dmi'
-			. += mutable_appearance(file2use, "shoeblood", color = blood_DNA_to_color())
+			. += mutable_appearance(file2use, "shoeblood", color = last_blood_color)
 
 /obj/item/clothing/shoes/equipped(mob/user, slot)
 	. = ..()

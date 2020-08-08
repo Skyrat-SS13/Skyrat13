@@ -185,6 +185,7 @@
 	new /obj/item/clothing/suit/armor/vest/det_suit(src)
 	new /obj/item/storage/belt/holster/full(src)
 	new /obj/item/pinpointer/crew(src)
+	new /obj/item/storage/box/rxglasses/spyglasskit(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections"
@@ -282,8 +283,8 @@
 	icon_state = "tac"
 /obj/structure/closet/secure_closet/lethalshots/PopulateContents()
 	..()
-	new /obj/item/twohanded/electrostaff(src)
-	new /obj/item/twohanded/electrostaff(src)
+	new /obj/item/electrostaff(src)
+	new /obj/item/electrostaff(src)
 	for(var/i in 1 to 3)
 		new /obj/item/storage/box/lethalshot(src)
 

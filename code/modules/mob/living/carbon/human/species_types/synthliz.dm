@@ -18,10 +18,13 @@
 	mutanteyes = /obj/item/organ/eyes/ipc
 
 	exotic_bloodtype = "S"
+	exotic_blood_color = BLOOD_COLOR_OIL
 	//Skyrat change - blood
-	bloodtypes = list("S", "SY", "HF")
+	languagewhitelist = list("Encoded Audio Language")
+	bloodtypes = list("HF", "SY", "S")
+	bloodreagents = list("Synthetic Blood", "Oil")
+	rainbowblood = TRUE
 	//
-
 
 /datum/species/synthliz/qualifies_for_rank(rank, list/features)
 	return TRUE

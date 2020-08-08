@@ -18,6 +18,7 @@
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
 	exotic_bloodtype = "BHZ"
+	exotic_blood_color = BLOOD_COLOR_BIOHAZARD
 	//
 
 /datum/species/zombie/notspaceproof
@@ -37,7 +38,7 @@
 	limbs_id = "zombie"
 	mutanthands = /obj/item/zombie_hand
 	armor = 20 // 120 damage to KO a zombie, which kills it
-	speedmod = 1.6
+	//speedmod = 1.6      SKYRAT CHANGE - Fast Zombies
 	mutanteyes = /obj/item/organ/eyes/night_vision/zombie
 	var/heal_rate = 1
 	var/regen_cooldown = 0
