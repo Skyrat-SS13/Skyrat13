@@ -64,10 +64,15 @@
 				return
 			M.put_in_hand(src, H.held_index)
 
+<<<<<<< HEAD
 /obj/item/modular_computer/laptop/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
+=======
+/obj/item/modular_computer/laptop/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+	. = ..()
+>>>>>>> 13d94717f4... Merge pull request #13052 from Citadel-Station-13/silicons-patch-76
 	if(screen_on && isturf(loc))
 		return attack_self(user)
 
