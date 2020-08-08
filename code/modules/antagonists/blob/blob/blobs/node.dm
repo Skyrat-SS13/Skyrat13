@@ -34,3 +34,8 @@
 /obj/structure/blob/node/process()
 	if(overmind)
 		Pulse_Area(overmind, 10, 3, 2)
+	// SKYRAT EDIT START - BLOB
+	for(var/obj/structure/blob/normal/B in range(1, src))
+		if(prob(5))
+			B.change_to(/obj/structure/blob/shield/core, overmind)
+	// SKYRAT EDIT END - BLOB

@@ -92,7 +92,8 @@
 	movement_type = FLYING
 	del_on_death = 1
 	deathmessage = "explodes into a cloud of gas!"
-	var/death_cloud_size = 1 //size of cloud produced from a dying spore
+	//var/death_cloud_size = 1 //size of cloud produced from a dying spore
+	var/death_cloud_size = 2 //size of cloud produced from a dying spore SKYRAT EDIT - BLOB
 	var/mob/living/carbon/human/oldguy
 	var/is_zombie = 0
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -127,7 +128,8 @@
 	melee_damage_lower += 8
 	melee_damage_upper += 11
 	movement_type = GROUND
-	death_cloud_size = 0
+	//death_cloud_size = 0
+	death_cloud_size = 1 //SKYRAT EDIT - BLOB
 	icon = H.icon
 	icon_state = "zombie"
 	H.hair_style = null
