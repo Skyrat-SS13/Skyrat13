@@ -11,10 +11,16 @@
 /datum/symptom/undead_adaptation/OnAdd(datum/disease/advance/A)
 	A.process_dead = TRUE
 	A.infectable_biotypes |= MOB_UNDEAD
+	//Skyrat edit - Infect any humanoid
+	A.infectable_biotypes |= MOB_HUMANOID
+	//
 
 /datum/symptom/undead_adaptation/OnRemove(datum/disease/advance/A)
 	A.process_dead = FALSE
 	A.infectable_biotypes &= ~MOB_UNDEAD
+	//Skyrat edit - Disinfect any humanoid
+	A.infectable_biotypes &= ~MOB_HUMANOID
+	//
 
 /datum/symptom/inorganic_adaptation
 	name = "Inorganic Biology"
