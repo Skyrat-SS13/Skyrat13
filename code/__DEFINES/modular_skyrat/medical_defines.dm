@@ -8,6 +8,7 @@
 #define WOUND_MINIMUM_DAMAGE		5 // an attack must do this much damage after armor in order to roll for being a wound (incremental pressure damage need not apply)
 #define WOUND_MAX_CONSIDERED_DAMAGE	35 // any damage dealt over this is ignored for damage rolls unless the target has the frail quirk (35^1.4=145)
 #define DISMEMBER_MINIMUM_DAMAGE	10 // an attack must do this much damage after armor in order to be eliigible to dismember a suitably mushed bodypart
+#define DISEMBOWEL_MINIMUM_DAMAGE	18 // an attack must do this much damage after armor in order to be eliigible to disembowel a suitably mushed bodypart
 
 #define WOUND_SEVERITY_NONE		0
 #define WOUND_SEVERITY_TRIVIAL	1 // for jokey/meme wounds like stubbed toe, no standard messages/sounds or second winds

@@ -178,8 +178,13 @@
 	for(var/datum/wound/W in all_wounds)
 		if(W.try_handling(user))
 			return TRUE
+	
+	if((pulledby == user) && (pulledby.grab_state >= GRAB_AGGRESSIVE) && (user.a_intent == INTENT_HARM))
+		var/obj/item/bodypart/part = get_bodypart(user.zone_selected)
+		if(istype(part))
+			part.get_wrenched(user, src)
+			return TRUE
 	//
-
 
 /mob/living/carbon/attack_paw(mob/living/carbon/monkey/M)
 

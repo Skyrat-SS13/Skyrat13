@@ -268,16 +268,22 @@
 /obj/item/bodypart/proc/try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
 	if(!can_dismember() || !dismemberable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE))
 		return FALSE
-	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
+	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 45) // how much damage we dealt with this blow, + 40% of the damage percentage we already had on this bodypart
 	var/bio_state = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
-		if(((W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_BONE)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
+		if((W.wound_type in list(WOUND_LIST_INCISION, WOUND_LIST_INCISION_MECHANICAL)) && (bio_state & BIO_FLESH)) // incisions make you very vulnerable to dismemberment
+			base_chance += 20
+			break
+		else if(((W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_BONE)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
 			base_chance += 10
 			break
 		else if(((W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL,WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_FLESH)) // we only need a severe slash or pierce, but critical and we add 10%
 			base_chance += 10
 			break
+
+	// We multiply by our dismemberment mod (the leg is tougher than a foot, etc)
+	base_chance *= dismember_mod
 
 	if(!prob(base_chance))
 		return
@@ -291,22 +297,24 @@
 	dismembering.apply_dismember(src, wounding_type)
 
 /obj/item/bodypart/proc/try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
-	if(!can_disembowel() || !disembowable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE))
+	if(!can_disembowel() || !disembowable || (wounding_dmg < DISEMBOWEL_MINIMUM_DAMAGE))
 		return FALSE
-	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
+	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 35) // how much damage we dealt with this blow, + 35% of the damage percentage we already had on this bodypart
 	var/bio_state = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
-		if(istype(W, /datum/wound/slash/critical/incision) && (bio_state & BIO_FLESH)) // incisions make you very vulnerable to disembowelment
-			base_chance += 20
+		if((W.wound_type in list(WOUND_LIST_INCISION, WOUND_LIST_INCISION_MECHANICAL)) && (bio_state & BIO_FLESH)) // incisions make you very vulnerable to disembowelment
+			base_chance += 15
 			break
-		else if((istype(W, /datum/wound/slash/critical) || istype(W, /datum/wound/pierce/critical) || istype(W, /datum/wound/mechanical/slash/critical || istype(W, /datum/wound/mechanical/pierce/critical))) && (bio_state & BIO_FLESH)) // we only require a severe slash, but if we have an avulsion, it's easier for an organ to fall off
+		else if(((W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_BONE)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
 			base_chance += 10
 			break
-		else if((istype(W, /datum/wound/blunt/critical) || istype(W, /datum/wound/mechanical/blunt/critical)) && (bio_state & BIO_BONE)) // skeletons need to be disemboweled too because they have "organs"...?
+		else if(((W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL,WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_FLESH)) // we only need a severe slash or pierce, but critical and we add 10%
 			base_chance += 10
 			break
-
+	
+	// We multiply by our disembowel mod (the chest is tougher than a groin, etc)
+	base_chance *= disembowel_mod
 
 	if(!prob(base_chance))
 		return

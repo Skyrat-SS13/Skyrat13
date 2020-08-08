@@ -91,6 +91,10 @@
 	var/wound_resistance = 0
 	/// When this bodypart hits max damage, this number is added to all wound rolls. Obviously only relevant for bodyparts that have damage caps.
 	var/disabled_wound_penalty = 15
+	/// How much we multiply the dismemberment roll chance by, when rolling for dismemberment
+	var/dismember_mod = 1
+	/// How much we multiply the disembowelment roll chance by, when rolling for disembowelment
+	var/disembowel_mod = 1
 
 	/// A hat won't cover your face, but a shirt covering your chest will cover your... you know, chest
 	var/scars_covered_by_clothes = TRUE

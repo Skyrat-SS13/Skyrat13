@@ -162,24 +162,28 @@
 	healing_step_type = /datum/surgery_step/robot_heal/blunt
 	desc = "A surgical procedure that provides repairs to blunt wounds on synthetic patients."
 	replaced_by = null
+	targetable_wound = /datum/wound/mechanical/blunt
 
 /datum/surgery/robot_healing/burn
 	name = "Repair mechanical wounds (burn)"
 	healing_step_type = /datum/surgery_step/robot_heal/burn
 	desc = "A surgical procedure that provides repairs to burn wounds on synthetic patients."
 	replaced_by = null
+	targetable_wound = /datum/wound/mechanical/burn
 
 /datum/surgery/robot_healing/slash
 	name = "Repair mechanical wounds (slash)"
 	healing_step_type = /datum/surgery_step/robot_heal/slash
 	desc = "A surgical procedure that provides repairs to slash wounds on synthetic patients."
 	replaced_by = null
+	targetable_wound = /datum/wound/mechanical/slash
 
 /datum/surgery/robot_healing/pierce
 	name = "Repair mechanical wounds (pierce)"
 	healing_step_type = /datum/surgery_step/robot_heal/pierce
 	desc = "A surgical procedure that provides repairs to pierce wounds on synthetic patients."
 	replaced_by = null
+	targetable_wound = /datum/wound/mechanical/pierce
 
 /***************************STEPS***************************/
 

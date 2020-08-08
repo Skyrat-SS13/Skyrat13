@@ -15,3 +15,5 @@
 	children_zones = list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 	specific_locations = list("left buttock", "right buttock", "inner left thigh", "inner right thigh", "perineum")
 	max_cavity_size = WEIGHT_CLASS_NORMAL
+	dismember_mod = 0.7
+	disembowel_mod = 0.7

@@ -54,28 +54,6 @@
 			var/obj/item/grenade/sticky_bomb = I
 			sticky_bomb.sticky = TRUE
 
-//used for taping people's mouths shut
-/obj/item/stack/sticky_tape/proc/handle_speech(datum/source, list/speech_args)
-	if(ismob(source))
-		to_chat(source, "<span class='warning'>You try to speak, but \the [src] prevents you!</span>")
-	var/list/msg = splittext_char(speech_args[SPEECH_MESSAGE], " ")
-	for(var/i in msg)
-		i = ""
-		if(prob(50))
-			for(var/y in 1 to rand(1,5))
-				i += "m"
-		if(prob(50))
-			for(var/y in 1 to rand(1,3))
-				i += "h"
-		for(var/y in 1 to rand(1,3))
-			i += "m"
-		if(prob(50))
-			for(var/y in 1 to rand(1,2))
-				i += "h"
-	msg += pick("...", ".")
-	speech_args[SPEECH_SPANS] -= SPAN_YELL
-	speech_args[SPEECH_MESSAGE] = capitalize(jointext(msg, " "))
-
 /obj/item/stack/sticky_tape/infinite //endless tape that applies far faster, for maximum honks
 	name = "endless sticky tape"
 	desc = "This roll of sticky tape somehow has no end."

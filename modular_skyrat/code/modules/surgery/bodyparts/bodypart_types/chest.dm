@@ -15,6 +15,8 @@
 	dismember_bodyzone = null
 	specific_locations = list("upper chest", "lower abdomen", "midsection", "collarbone", "lower back")
 	max_cavity_size = WEIGHT_CLASS_BULKY
+	dismember_mod = 0.3
+	disembowel_mod = 0.6
 
 /obj/item/bodypart/chest/can_dismember(obj/item/I)
 	if(!((owner.stat == DEAD) || owner.InFullCritical()))
