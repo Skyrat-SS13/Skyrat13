@@ -103,14 +103,14 @@ GLOBAL_LIST_EMPTY(explosions)
 	// 3/7/14 will calculate to 80 + 35
 
 	var/far_dist = 0
-	far_dist += heavy_impact_range * 15
+	far_dist += heavy_impact_range * 15 // Skyrat edit: carry the sound further
 	far_dist += devastation_range * 20
 
 	if(!silent)
 		var/frequency = get_rand_frequency()
 		var/sound/explosion_sound = sound(get_sfx("explosion"))
 		var/sound/far_explosion_sound = sound('sound/effects/explosionfar.ogg')
-		var/sound/explosion_echo_sound = sound('sound/effects/explosionecho.ogg')
+		var/sound/explosion_echo_sound = sound('sound/effects/explosionecho.ogg') // Skyrat change
 
 		for(var/mob/M in GLOB.player_list)
 			// Double check for client
