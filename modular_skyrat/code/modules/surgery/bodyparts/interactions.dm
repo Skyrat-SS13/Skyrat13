@@ -5,9 +5,18 @@
 		return
 	if(!victim)
 		victim = owner
+	
+	var/bio_state = victim.get_biological_state()
 	for(var/datum/wound/W in wounds)
-		if(W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL))
-			return
+		if(bio_state & BIO_BONE)
+			if(W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL))
+				return
+		else if(bio_state & BIO_FLESH)
+			if(W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL))
+				return
+	if(!(bio_state & BIO_BONE) && !(bio_state & BIO_FLESH))
+		return
+	
 	var/time = 4 SECONDS
 	var/time_mod = 1
 	var/prob_mod = 20
@@ -29,15 +38,21 @@
 		to_chat(victim, "<span class='userdanger'>[user] dislocates your [name] with a sickening crack!</span>")
 		victim.emote("scream")
 		var/datum/wound/W
-		if(status & BODYPART_ORGANIC)
-			if(body_zone == BODY_ZONE_CHEST)
-				W = new /datum/wound/blunt/moderate/ribcage()
-			else if(body_zone == BODY_ZONE_PRECISE_GROIN)
-				W = new /datum/wound/blunt/moderate/hips()
+		if(bio_state & BIO_BONE)
+			if(status & BODYPART_ORGANIC)
+				if(body_zone == BODY_ZONE_CHEST)
+					W = new /datum/wound/blunt/moderate/ribcage()
+				else if(body_zone == BODY_ZONE_PRECISE_GROIN)
+					W = new /datum/wound/blunt/moderate/hips()
+				else
+					W = new /datum/wound/blunt/moderate()
 			else
-				W = new /datum/wound/blunt/moderate()
+				W = new /datum/wound/mechanical/blunt/moderate()
 		else
-			W = new /datum/wound/mechanical/blunt/moderate()
+			if(status & BODYPART_ORGANIC)
+				W = new /datum/wound/slash/moderate()
+			else
+				W = new /datum/wound/mechanical/slash/moderate()
 		if(istype(W))
 			W.apply_wound(src, FALSE)
 		receive_damage(brute=15)
