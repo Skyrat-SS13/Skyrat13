@@ -110,7 +110,16 @@ GLOBAL_LIST_EMPTY(explosions)
 		var/frequency = get_rand_frequency()
 		var/sound/explosion_sound = sound(get_sfx("explosion"))
 		var/sound/far_explosion_sound = sound('sound/effects/explosionfar.ogg')
-		var/sound/explosion_echo_sound = sound('sound/effects/explosionecho.ogg') // Skyrat change
+		// Skyrat changes
+		var/sound/creaking_explosion_sound = sound(get_sfx("explosion_creaking"))
+		var/sound/hull_creaking_sound = sound(get_sfx("hull_creaking"))
+		var/sound/explosion_echo_sound = sound('sound/effects/explosion_distant.ogg')
+		var/on_station = SSmapping.level_trait(epicenter.z, ZTRAIT_STATION) 
+		var/creaking_explosion = FALSE
+		
+		if(prob(devastation_range*30+heavy_impact_range*5) && on_station) // Huge explosions are near guaranteed to make the station creak and whine, smaller ones might.
+			creaking_explosion = TRUE // prob over 100 always returns true
+		// End skyrat changes
 
 		for(var/mob/M in GLOB.player_list)
 			// Double check for client
@@ -129,21 +138,28 @@ GLOBAL_LIST_EMPTY(explosions)
 
 				// Skyrat change: Most of this sound code
 				else if(dist <= far_dist)
-					var/far_volume = clamp(far_dist/2, 30, 50) // Volume is based on explosion size and dist
-					if(prob(75)) // Sound variety during meteor storm/tesloose/other bad event
+					var/far_volume = clamp(far_dist/2, 40, 60) // Volume is based on explosion size and dist
+					if(creaking_explosion)
+						M.playsound_local(epicenter, null, far_volume, 1, frequency, S = creaking_explosion_sound, distance_multiplier = 0)
+					else if(prob(75)) // Sound variety during meteor storm/tesloose/other bad event
 						M.playsound_local(epicenter, null, far_volume, 1, frequency, S = far_explosion_sound, distance_multiplier = 0) // Far sound
 					else
 						M.playsound_local(epicenter, null, far_volume, 1, frequency, S = explosion_echo_sound, distance_multiplier = 0) // Echo sound
+
 					if(baseshakeamount > 0 || devastation_range)
-						if(!baseshakeamount) // Devastating explosions rock the station
+						if(!baseshakeamount) // Devastating explosions rock the station and ground
 							baseshakeamount = devastation_range*3
 						shake_camera(M, 10, clamp(baseshakeamount*0.25, 0, 2.5))
+
 				else if(M.can_hear() && !isspaceturf(get_turf(M)) && heavy_impact_range) // Big enough explosions echo throughout the hull
-					var/echo_volume = 30
+					var/echo_volume = 40
 					if(devastation_range)
-						echo_volume = 50
+						echo_volume = 60
 					M.playsound_local(epicenter, null, echo_volume, 1, frequency, S = explosion_echo_sound, distance_multiplier = 0)
-				// End skyrat change
+
+				if(creaking_explosion) // 5 seconds after the bang, the station begins to creak
+					addtimer(CALLBACK(M, /mob/proc/playsound_local, epicenter, null, rand(25, 40), 1, frequency, null, null, FALSE, hull_creaking_sound, null, null, null, null, 0), 5 SECONDS)
+				// End skyrat changes
 			EX_PREPROCESS_CHECK_TICK
 
 	//postpone processing for a bit
