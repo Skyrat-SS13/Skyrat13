@@ -41,17 +41,18 @@
 		w_class = WEIGHT_CLASS_NORMAL
 		STOP_PROCESSING(SSobj,src)
 
-/obj/item/katana/goldbrand/afterattack(target, user)
-	..()
-	if(iscarbon(target))
-		var/mob/living/carbon/L = target
-		var/mob/living/carbon/ourman = user
-		L.apply_damage(damage = burn_force,damagetype = BURN, def_zone = L.get_bodypart(check_zone(ourman.zone_selected)), blocked = FALSE, forced = FALSE)
-		L.adjust_fire_stacks(firestacking)
-		L.IgniteMob()
-	else if(isliving(target))
-		var/mob/living/thetarget = target
-		thetarget.adjustBruteLoss(burn_force)
+/obj/item/katana/goldbrand/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. =..()
+	if(proximity_flag)
+		if(iscarbon(target))
+			var/mob/living/carbon/L = target
+			var/mob/living/carbon/ourman = user
+			L.apply_damage(damage = burn_force,damagetype = BURN, def_zone = L.get_bodypart(check_zone(ourman.zone_selected)), blocked = FALSE, forced = FALSE)
+			L.adjust_fire_stacks(firestacking)
+			L.IgniteMob()
+		else if(isliving(target))
+			var/mob/living/thetarget = target
+			thetarget.adjustBruteLoss(burn_force)
 
 /obj/effect/wrath
 	name = "Wrath's Wall"

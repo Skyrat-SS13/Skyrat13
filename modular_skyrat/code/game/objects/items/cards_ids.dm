@@ -51,7 +51,7 @@
 		return
 
 //charliestation stuff
-	/obj/item/card/id/away/old
+/obj/item/card/id/away/old
 	name = "a perfectly generic identification card"
 	desc = "A perfectly generic identification card. Looks like it could use some flavor."
 	icon_state = "centcom"
