@@ -658,13 +658,6 @@
 				I.pixel_x = px_x
 				I.pixel_y = px_y
 			standing |= subsubstanding
-			//the ride never ends
-			for(var/obj/item/bodypart/ggrandchild in grandchild)
-				var/list/subsubsubstanding = ggrandchild.get_limb_icon(1)
-				for(var/image/I in subsubsubstanding)
-					I.pixel_x = px_x
-					I.pixel_y = px_y
-				standing |= subsubsubstanding
 	if(!standing.len)
 		icon_state = initial(icon_state)//no overlays found, we default back to initial icon.
 		return
