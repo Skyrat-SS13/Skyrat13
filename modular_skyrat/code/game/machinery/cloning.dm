@@ -38,7 +38,7 @@
 	var/list/unattached_flesh
 	var/flesh_number = 0
 	var/biomass = 0
-	var/max_biomass = 1000
+	var/max_biomass = 1200
 	var/biomass_per_clone = 400
 
 	var/pays_for_clone = FALSE
