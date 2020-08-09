@@ -104,7 +104,7 @@
 					var/obj/item/bodypart/child = C.get_bodypart(bodypart)
 					if(!child)
 						continue
-					heal_carbon(C, user, brute, burn, FALSE, FALSE, child)
+					heal_carbon(C, user, brute, burn, TRUE, FALSE, child)
 					childcount++
 					if(childcount >= 2)
 						break
@@ -218,7 +218,7 @@
 			var/obj/item/bodypart/child = M.get_bodypart(bodypart)
 			if(!child)
 				continue
-			try_heal(M, user, silent, child)
+			try_heal(M, user, silent, child, TRUE)
 			childcount++
 			if(childcount >= 2)
 				break
