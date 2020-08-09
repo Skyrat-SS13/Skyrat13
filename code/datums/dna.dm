@@ -52,6 +52,7 @@
 	destination.dna.skin_tone_override = skin_tone_override
 	destination.dna.features = features.Copy()
 	destination.set_species(species.type, icon_update=0)
+	destination.dna.species.say_mod = species.say_mod
 	destination.dna.real_name = real_name
 	destination.dna.nameless = nameless
 	destination.dna.custom_species = custom_species
@@ -77,6 +78,7 @@
 	new_dna.skin_tone_override = skin_tone_override
 	new_dna.features = features.Copy()
 	new_dna.species = new species.type
+	new_dna.species.say_mod = species.say_mod
 	new_dna.real_name = real_name
 	new_dna.nameless = nameless
 	new_dna.custom_species = custom_species
