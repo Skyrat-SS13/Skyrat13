@@ -105,6 +105,7 @@
 
 /obj/item/stack/medical/gauze
 	name = "medical gauze"
+<<<<<<< HEAD
 	desc = "A roll of elastic cloth that is extremely effective at stopping bleeding, heals minor wounds."
 	gender = PLURAL
 	singular_name = "medical gauze"
@@ -112,6 +113,20 @@
 	var/stop_bleeding = 1800
 	var/heal_brute = 5
 	self_delay = 10
+=======
+	desc = "A roll of elastic cloth, perfect for stabilizing all kinds of wounds, from cuts and burns to broken bones."
+	gender = PLURAL
+	singular_name = "medical gauze"
+	icon_state = "gauze"
+	heal_brute = 5
+	self_delay = 50
+	other_delay = 20
+	amount = 10
+	max_amount = 10
+	absorption_rate = 0.25
+	absorption_capacity = 5
+	splint_factor = 0.35
+>>>>>>> 88cb61b08a... Merge pull request #13068 from Hatterhat/med-stack-buff
 	custom_price = PRICE_REALLY_CHEAP
 
 /obj/item/stack/medical/gauze/heal(mob/living/M, mob/user)
@@ -134,6 +149,14 @@
 					 "<span class='notice'>You cut [src] into pieces of cloth with [I].</span>", \
 					 "<span class='italics'>You hear cutting.</span>")
 		use(2)
+	else if(I.is_drainable() && I.reagents.has_reagent(/datum/reagent/space_cleaner/sterilizine))
+		if(!I.reagents.has_reagent(/datum/reagent/space_cleaner/sterilizine, 10))
+			to_chat(user, "<span class='warning'>There's not enough sterilizine in [I] to sterilize [src]!</span>")
+			return
+		user.visible_message("<span class='notice'>[user] pours the contents of [I] onto [src], sterilizing it.</span>", "<span class='notice'>You pour the contents of [I] onto [src], sterilizing it.</span>")
+		I.reagents.remove_reagent(/datum/reagent/space_cleaner/sterilizine, 10)
+		new /obj/item/stack/medical/gauze/adv/one(user.drop_location())
+		use(1)
 	else
 		return ..()
 
@@ -147,12 +170,24 @@
 	desc = "A roll of cloth roughly cut from something that can stop bleeding, but does not heal wounds."
 	stop_bleeding = 900
 	heal_brute = 0
+<<<<<<< HEAD
+=======
+	desc = "A roll of cloth roughly cut from something that does a decent job of stabilizing wounds, but less efficiently than real medical gauze."
+	self_delay = 60
+	other_delay = 30
+	absorption_rate = 0.15
+	absorption_capacity = 4
+>>>>>>> 88cb61b08a... Merge pull request #13068 from Hatterhat/med-stack-buff
 
 /obj/item/stack/medical/gauze/adv
 	name = "sterilized medical gauze"
-	desc = "A roll of elastic sterilized cloth that is extremely effective at stopping bleeding, heals minor wounds and cleans them."
 	singular_name = "sterilized medical gauze"
-	self_delay = 5
+	desc = "A roll of elastic sterilized cloth that is extremely effective at stopping bleeding and covering burns."
+	heal_brute = 6
+	self_delay = 45
+	other_delay = 15
+	absorption_rate = 0.4
+	absorption_capacity = 6
 
 /obj/item/stack/medical/gauze/adv/one
 	amount = 1
@@ -234,8 +269,40 @@
 			to_chat(user, "<span class='notice'>[M] is at full health.</span>")
 			return FALSE
 		user.visible_message("<span class='green'>[user] applies \the [src] on [M].</span>", "<span class='green'>You apply \the [src] on [M].</span>")
+<<<<<<< HEAD
 		M.heal_bodypart_damage(heal_brute)
 		return TRUE
+=======
+		return heal_carbon(M, user, heal_brute, heal_burn)
+
+	to_chat(user, "<span class='warning'>You can't heal [M] with \the [src]!</span>")
+
+/obj/item/stack/medical/ointment
+	name = "ointment"
+	desc = "Basic burn ointment, rated effective for second degree burns with proper bandaging, though it's still an effective stabilizer for worse burns. Not terribly good at outright healing burns though."
+	gender = PLURAL
+	singular_name = "ointment"
+	icon_state = "ointment"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	amount = 12
+	max_amount = 12
+	self_delay = 40
+	other_delay = 20
+
+	heal_burn = 5
+	flesh_regeneration = 2.5
+	sanitization = 0.3
+	grind_results = list(/datum/reagent/medicine/kelotane = 10)
+
+/obj/item/stack/medical/ointment/heal(mob/living/M, mob/user)
+	if(M.stat == DEAD)
+		to_chat(user, "<span class='warning'>[M] is dead! You can not help [M.p_them()].</span>")
+		return
+	if(iscarbon(M))
+		return heal_carbon(M, user, heal_brute, heal_burn)
+	to_chat(user, "<span class='warning'>You can't heal [M] with \the [src]!</span>")
+>>>>>>> 88cb61b08a... Merge pull request #13068 from Hatterhat/med-stack-buff
 
 	to_chat(user, "<span class='warning'>You can't heal [M] with the \the [src]!</span>")
 
@@ -249,6 +316,7 @@
 	other_delay = 10
 	amount = 15
 	max_amount = 15
+	heal_burn = 10
 	repeating = TRUE
 	var/heal_burn = 10
 	var/is_open = TRUE ///This var determines if the sterile packaging of the mesh has been opened.
