@@ -72,6 +72,10 @@
 		new /datum/data/mining_equipment("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,								2000),
 		new /datum/data/mining_equipment("Miner Full Replacement",		/obj/item/storage/backpack/duffelbag/mining_cloned,					3000),
 		new /datum/data/mining_equipment("Premium Accelerator",			/obj/item/gun/energy/kinetic_accelerator/premiumka,					8000),
+<<<<<<< HEAD
+=======
+		new /datum/data/mining_equipment("Kinetic Glaive",				/obj/item/kinetic_crusher/glaive,									2250),
+>>>>>>> cd18e3f4d3... Merge pull request #13085 from Hatterhat/glaive-parry-cont
 		)
 
 /datum/data/mining_equipment
