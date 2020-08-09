@@ -662,7 +662,8 @@
 			TH.existing_dirs += newdir
 			TH.add_overlay(image('icons/effects/blood.dmi', trail_type, dir = newdir))
 			TH.transfer_mob_blood_dna(src)
-	//warn the player occasionally about it
+	
+	//warn the player occasionally about dragging being bad
 	if(prob(8) && lying && bleed_amt && iscarbon(src))
 		var/mob/living/C = src
 		var/extra_message = (C.has_gauze() ? " and tearing into their gauze" : "")
