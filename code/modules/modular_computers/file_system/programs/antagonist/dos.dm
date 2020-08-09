@@ -4,6 +4,7 @@
 	program_icon_state = "hostile"
 	extended_desc = "This advanced script can perform denial of service attacks against NTNet quantum relays. The system administrator will probably notice this. Multiple devices can run this program together against same relay for increased effect"
 	size = 20
+<<<<<<< HEAD
 	requires_ntnet = 1
 	available_on_ntnet = 0
 	available_on_syndinet = 1
@@ -11,6 +12,12 @@
 	ui_style = "syndicate"
 	ui_x = 400
 	ui_y = 250
+=======
+	requires_ntnet = TRUE
+	available_on_ntnet = FALSE
+	available_on_syndinet = TRUE
+	tgui_id = "NtosNetDos"
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 	var/obj/machinery/ntnet_relay/target = null
 	var/dos_speed = 0

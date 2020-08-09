@@ -242,7 +242,15 @@
 
 	default_deconstruction_crowbar(I)
 
+<<<<<<< HEAD
 /obj/machinery/power/turbine/ui_interact(mob/user)
+=======
+/obj/machinery/power/turbine/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "TurbineComputer", name)
+		ui.open()
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 	if(!Adjacent(user)  || (stat & (NOPOWER|BROKEN)) && !issilicon(user))
 		user.unset_machine(src)
@@ -315,11 +323,14 @@
 	else
 		compressor = locate(/obj/machinery/power/compressor) in range(7, src)
 
-/obj/machinery/computer/turbine_computer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/turbine_computer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+<<<<<<< HEAD
 		ui = new(user, src, ui_key, "turbine_computer", name, 300, 200, master_ui, state)
+=======
+		ui = new(user, src, "TurbineComputer", name)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		ui.open()
 
 /obj/machinery/computer/turbine_computer/ui_data(mob/user)

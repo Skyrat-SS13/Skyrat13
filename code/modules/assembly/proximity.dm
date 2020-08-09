@@ -4,7 +4,10 @@
 	icon_state = "prox"
 	custom_materials = list(/datum/material/iron=800, /datum/material/glass=200)
 	attachable = TRUE
+<<<<<<< HEAD
 
+=======
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	var/scanning = FALSE
 	var/timing = FALSE
 	var/time = 10
@@ -114,6 +117,7 @@
 /obj/item/assembly/prox_sensor/ui_interact(mob/user)//TODO: Change this to the wires thingy
 	. = ..()
 	if(is_secured(user))
+<<<<<<< HEAD
 		var/second = time % 60
 		var/minute = (time - second) / 60
 		var/dat = "<TT><B>Proximity Sensor</B></TT>"
@@ -153,6 +157,28 @@
 
 	if(href_list["close"])
 		usr << browse(null, "window=prox")
+=======
+		return ..()
+	return UI_CLOSE
+
+/obj/item/assembly/prox_sensor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ProximitySensor", name)
+		ui.open()
+
+/obj/item/assembly/prox_sensor/ui_data(mob/user)
+	var/list/data = list()
+	data["seconds"] = round(time % 60)
+	data["minutes"] = round((time - data["seconds"]) / 60)
+	data["timing"] = timing
+	data["scanning"] = scanning
+	data["sensitivity"] = sensitivity
+	return data
+
+/obj/item/assembly/prox_sensor/ui_act(action, params)
+	if(..())
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		return
 
 	if(usr)

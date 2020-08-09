@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  /**
   * tgui
   *
@@ -7,6 +8,16 @@
  /**
   * tgui datum (represents a UI).
  **/
+=======
+/**
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+
+/**
+ * tgui datum (represents a UI).
+ */
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 /datum/tgui
 	/// The mob who opened/is using the UI.
 	var/mob/user
@@ -14,9 +25,8 @@
 	var/datum/src_object
 	/// The title of te UI.
 	var/title
-	/// The ui_key of the UI. This allows multiple UIs for one src_object.
-	var/ui_key
 	/// The window_id for browse() and onclose().
+<<<<<<< HEAD
 	var/window_id
 	/// The window width.
 	var/width = 0
@@ -24,20 +34,35 @@
 	var/height = 0
 	/// The style to be used for this UI.
 	var/style = "nanotrasen"
+=======
+	var/datum/tgui_window/window
+	/// Key that is used for remembering the window geometry.
+	var/window_key
+	/// Deprecated: Window size.
+	var/window_size
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	/// The interface (template) to be used for this UI.
 	var/interface
 	/// Update the UI every MC tick.
 	var/autoupdate = TRUE
 	/// If the UI has been initialized yet.
 	var/initialized = FALSE
+<<<<<<< HEAD
 	/// The data (and datastructure) used to initialize the UI.
 	var/list/initial_data
 	/// The static data used to initialize the UI.
 	var/list/initial_static_data
+=======
+	/// Time of opening the window.
+	var/opened_at
+	/// Stops further updates when close() was called.
+	var/closing = FALSE
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	/// The status/visibility of the UI.
 	var/status = UI_INTERACTIVE
 	/// Topic state used to determine status/interactability.
 	var/datum/ui_state/state = null
+<<<<<<< HEAD
 	/// The parent UI.
 	var/datum/tgui/master_ui
 	/// Children of this UI.
@@ -71,20 +96,35 @@
 
 	set_interface(interface)
 
+=======
+
+/**
+ * public
+ *
+ * Create a new UI.
+ *
+ * required user mob The mob who opened/is using the UI.
+ * required src_object datum The object or datum which owns the UI.
+ * required interface string The interface used to render the UI.
+ * optional title string The title of the UI.
+ * optional ui_x int Deprecated: Window width.
+ * optional ui_y int Deprecated: Window height.
+ *
+ * return datum/tgui The requested UI.
+ */
+/datum/tgui/New(mob/user, datum/src_object, interface, title, ui_x, ui_y)
+	log_tgui(user, "new [interface] fancy [user.client.prefs.tgui_fancy]")
+	src.user = user
+	src.src_object = src_object
+	src.window_key = "[REF(src_object)]-main"
+	src.interface = interface
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	if(title)
-		src.title = sanitize(title)
-	if(width)
-		src.width = width
-	if(height)
-		src.height = height
-
-	src.master_ui = master_ui
-	if(master_ui)
-		master_ui.children += src
-	src.state = state
-
-	var/datum/asset/assets = get_asset_datum(/datum/asset/group/tgui)
-	assets.send(user)
+		src.title = title
+	src.state = src_object.ui_state()
+	// Deprecated
+	if(ui_x && ui_y)
+		src.window_size = list(ui_x, ui_y)
 
  /**
   * public
@@ -93,10 +133,12 @@
  **/
 /datum/tgui/proc/open()
 	if(!user.client)
-		return // Bail if there is no client.
-
-	update_status(push = FALSE) // Update the window status.
+		return null
+	if(window)
+		return null
+	process_status()
 	if(status < UI_UPDATE)
+<<<<<<< HEAD
 		return // Bail if we're not supposed to open.
 
 	var/window_size
@@ -135,9 +177,73 @@
 		initial_data = src_object.ui_data(user)
 	if(!initial_static_data)
 		initial_static_data = src_object.ui_static_data(user)
-
+=======
+		return null
+	window = SStgui.request_pooled_window(user)
+	if(!window)
+		return null
+	opened_at = world.time
+	window.acquire_lock(src)
+	if(!window.is_ready())
+		window.initialize(inline_assets = list(
+			get_asset_datum(/datum/asset/simple/tgui),
+		))
+	else
+		window.send_message("ping")
+	window.send_asset(get_asset_datum(/datum/asset/simple/fontawesome))
+	for(var/datum/asset/asset in src_object.ui_assets(user))
+		window.send_asset(asset)
+	window.send_message("update", get_payload(
+		with_data = TRUE,
+		with_static_data = TRUE))
 	SStgui.on_open(src)
 
+/**
+ * public
+ *
+ * Close the UI.
+ *
+ * optional can_be_suspended bool
+ */
+/datum/tgui/proc/close(can_be_suspended = TRUE)
+	if(closing)
+		return
+	closing = TRUE
+	// If we don't have window_id, open proc did not have the opportunity
+	// to finish, therefore it's safe to skip this whole block.
+	if(window)
+		// Windows you want to keep are usually blue screens of death
+		// and we want to keep them around, to allow user to read
+		// the error message properly.
+		window.release_lock()
+		window.close(can_be_suspended)
+		src_object.ui_close(user)
+		SStgui.on_close(src)
+	state = null
+	qdel(src)
+
+/**
+ * public
+ *
+ * Enable/disable auto-updating of the UI.
+ *
+ * required value bool Enable/disable auto-updating.
+ */
+/datum/tgui/proc/set_autoupdate(autoupdate)
+	src.autoupdate = autoupdate
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
+
+/**
+ * public
+ *
+ * Replace current ui.state with a new one.
+ *
+ * required state datum/ui_state/state Next state
+ */
+/datum/tgui/proc/set_state(datum/ui_state/state)
+	src.state = state
+
+<<<<<<< HEAD
  /**
   * public
   *
@@ -211,14 +317,69 @@
   * return string The packaged JSON.
  **/
 /datum/tgui/proc/get_json(list/data, list/static_data)
-	var/list/json_data = list()
+=======
+/**
+ * public
+ *
+ * Makes an asset available to use in tgui.
+ *
+ * required asset datum/asset
+ */
+/datum/tgui/proc/send_asset(datum/asset/asset)
+	if(!window)
+		CRASH("send_asset() can only be called after open().")
+	window.send_asset(asset)
 
+/**
+ * public
+ *
+ * Send a full update to the client (includes static data).
+ *
+ * optional custom_data list Custom data to send instead of ui_data.
+ * optional force bool Send an update even if UI is not interactive.
+ */
+/datum/tgui/proc/send_full_update(custom_data, force)
+	if(!user.client || !initialized || closing)
+		return
+	var/should_update_data = force || status >= UI_UPDATE
+	window.send_message("update", get_payload(
+		custom_data,
+		with_data = should_update_data,
+		with_static_data = TRUE))
+
+/**
+ * public
+ *
+ * Send a partial update to the client (excludes static data).
+ *
+ * optional custom_data list Custom data to send instead of ui_data.
+ * optional force bool Send an update even if UI is not interactive.
+ */
+/datum/tgui/proc/send_update(custom_data, force)
+	if(!user.client || !initialized || closing)
+		return
+	var/should_update_data = force || status >= UI_UPDATE
+	window.send_message("update", get_payload(
+		custom_data,
+		with_data = should_update_data))
+
+/**
+ * private
+ *
+ * Package the data to send to the UI, as JSON.
+ *
+ * return list
+ */
+/datum/tgui/proc/get_payload(custom_data, with_data, with_static_data)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
+	var/list/json_data = list()
 	json_data["config"] = list(
 		"title" = title,
 		"status" = status,
 		"screen" = ui_screen,
 		"style" = style,
 		"interface" = interface,
+<<<<<<< HEAD
 		"fancy" = user.client.prefs.tgui_fancy,
 		"locked" = user.client.prefs.tgui_lock && !custom_browser_id,
 		"observer" = isobserver(user),
@@ -229,9 +390,27 @@
 	)
 	
 	if(!isnull(data))
+=======
+		"window" = list(
+			"key" = window_key,
+			"size" = window_size,
+			"fancy" = user.client.prefs.tgui_fancy,
+			"locked" = user.client.prefs.tgui_lock
+		),
+		"user" = list(
+			"name" = "[user]",
+			"ckey" = "[user.ckey]",
+			"observer" = isobserver(user)
+		)
+	)
+	var/data = custom_data || with_data && src_object.ui_data(user)
+	if(data)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		json_data["data"] = data
-	if(!isnull(static_data))
+	var/static_data = with_static_data && src_object.ui_static_data(user)
+	if(static_data)
 		json_data["static_data"] = static_data
+<<<<<<< HEAD
 
 	// Generate the JSON.
 	var/json = json_encode(json_data)
@@ -285,11 +464,27 @@
   *
   * optional force bool If the UI should be forced to update.
  **/
+=======
+	if(src_object.tgui_shared_states)
+		json_data["shared"] = src_object.tgui_shared_states
+	return json_data
+
+/**
+ * private
+ *
+ * Run an update cycle for this UI. Called internally by SStgui
+ * every second or so.
+ */
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 /datum/tgui/process(force = FALSE)
-	var/datum/host = src_object.ui_host(user)
-	if(!src_object || !host || !user) // If the object or user died (or something else), abort.
-		close()
+	if(closing)
 		return
+	var/datum/host = src_object.ui_host(user)
+	// If the object or user died (or something else), abort.
+	if(!src_object || !host || !user || !window)
+		close(can_be_suspended = FALSE)
+		return
+<<<<<<< HEAD
 
 	if(status && (force || autoupdate))
 		update() // Update the UI if the status and update settings allow it.
@@ -362,3 +557,66 @@
 /datum/tgui/proc/log_message(message)
 	log_tgui("[user] ([user.ckey]) using \"[title]\":\n[message]")
 
+=======
+	// Validate ping
+	if(!initialized && world.time - opened_at > TGUI_PING_TIMEOUT)
+		log_tgui(user, \
+			"Error: Zombie window detected, killing it with fire.\n" \
+			+ "window_id: [window.id]\n" \
+			+ "opened_at: [opened_at]\n" \
+			+ "world.time: [world.time]")
+		close(can_be_suspended = FALSE)
+		return
+	// Update through a normal call to ui_interact
+	if(status != UI_DISABLED && (autoupdate || force))
+		src_object.ui_interact(user, src)
+		return
+	// Update status only
+	var/needs_update = process_status()
+	if(status <= UI_CLOSE)
+		close()
+		return
+	if(needs_update)
+		window.send_message("update", get_payload())
+
+/**
+ * private
+ *
+ * Updates the status, and returns TRUE if status has changed.
+ */
+/datum/tgui/proc/process_status()
+	var/prev_status = status
+	status = src_object.ui_status(user, state)
+	return prev_status != status
+
+/**
+ * private
+ *
+ * Callback for handling incoming tgui messages.
+ */
+/datum/tgui/proc/on_message(type, list/payload, list/href_list)
+	// Pass act type messages to ui_act
+	if(type && copytext(type, 1, 5) == "act/")
+		process_status()
+		if(src_object.ui_act(copytext(type, 5), payload, src, state))
+			SStgui.update_uis(src_object)
+		return FALSE
+	switch(type)
+		if("ready")
+			initialized = TRUE
+		if("pingReply")
+			initialized = TRUE
+		if("suspend")
+			close(can_be_suspended = TRUE)
+		if("close")
+			close(can_be_suspended = FALSE)
+		if("log")
+			if(href_list["fatal"])
+				close(can_be_suspended = FALSE)
+		if("setSharedState")
+			if(status != UI_INTERACTIVE)
+				return
+			LAZYINITLIST(src_object.tgui_shared_states)
+			src_object.tgui_shared_states[href_list["key"]] = href_list["value"]
+			SStgui.update_uis(src_object)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4

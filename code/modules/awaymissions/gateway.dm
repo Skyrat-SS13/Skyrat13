@@ -182,12 +182,20 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 /obj/machinery/gateway/centeraway/update_icon_state()
 	icon_state = active ? "oncenter" : "offcenter"
 
+<<<<<<< HEAD
 /obj/machinery/gateway/centeraway/toggleon(mob/user)
 	if(!detect())
 		return
 	if(!stationgate)
 		to_chat(user, "<span class='notice'>Error: No destination found.</span>")
 		return
+=======
+/obj/machinery/computer/gateway_control/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Gateway", name)
+		ui.open()
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 	for(var/obj/machinery/gateway/G in linked)
 		G.active = 1

@@ -90,6 +90,7 @@
 /obj/item/assembly/timer/ui_interact(mob/user)//TODO: Have this use the wires
 	. = ..()
 	if(is_secured(user))
+<<<<<<< HEAD
 		var/second = time % 60
 		var/minute = (time - second) / 60
 		var/dat = "<TT><B>Timing Unit</B></TT>"
@@ -129,6 +130,27 @@
 
 	if(href_list["close"])
 		usr << browse(null, "window=timer")
+=======
+		return ..()
+	return UI_CLOSE
+
+/obj/item/assembly/timer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Timer", name)
+		ui.open()
+
+/obj/item/assembly/timer/ui_data(mob/user)
+	var/list/data = list()
+	data["seconds"] = round(time % 60)
+	data["minutes"] = round((time - data["seconds"]) / 60)
+	data["timing"] = timing
+	data["loop"] = loop
+	return data
+
+/obj/item/assembly/timer/ui_act(action, params)
+	if(..())
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		return
 
 	if(usr)

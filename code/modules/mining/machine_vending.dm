@@ -94,6 +94,7 @@
 	else
 		icon_state = "[initial(icon_state)]-off"
 
+<<<<<<< HEAD
 /obj/machinery/mineral/equipment_vendor/ui_interact(mob/user)
 	. = ..()
 	var/list/dat = list()
@@ -101,6 +102,47 @@
 	for(var/datum/data/mining_equipment/prize in prize_list)
 		dat += "<tr><td>[prize.equipment_name]</td><td>[prize.cost]</td><td><A href='?src=[REF(src)];purchase=[REF(prize)]'>Purchase</A></td></tr>"
 	dat += "</table>"
+=======
+/obj/machinery/mineral/equipment_vendor/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/vending),
+	)
+
+/obj/machinery/mineral/equipment_vendor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "MiningVendor", name)
+		ui.open()
+
+/obj/machinery/mineral/equipment_vendor/ui_static_data(mob/user)
+	. = list()
+	.["product_records"] = list()
+	for(var/datum/data/mining_equipment/prize in prize_list)
+		var/list/product_data = list(
+			path = replacetext(replacetext("[prize.equipment_path]", "/obj/item/", ""), "/", "-"),
+			name = prize.equipment_name,
+			price = prize.cost,
+			ref = REF(prize)
+		)
+		.["product_records"] += list(product_data)
+
+/obj/machinery/mineral/equipment_vendor/ui_data(mob/user)
+	. = list()
+	var/mob/living/carbon/human/H
+	var/obj/item/card/id/C
+	if(ishuman(user))
+		H = user
+		C = H.get_idcard(TRUE)
+		if(C)
+			.["user"] = list()
+			.["user"]["points"] = C.mining_points
+			if(C.registered_account)
+				.["user"]["name"] = C.registered_account.account_holder
+				if(C.registered_account.account_job)
+					.["user"]["job"] = C.registered_account.account_job.title
+				else
+					.["user"]["job"] = "No Job"
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 	var/datum/browser/popup = new(user, "miningvendor", "Mining Equipment Vendor", 400, 350)
 	popup.set_content(dat.Join())

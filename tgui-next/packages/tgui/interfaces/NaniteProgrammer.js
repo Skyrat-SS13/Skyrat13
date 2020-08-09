@@ -1,9 +1,16 @@
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Button, Dropdown, Grid, Input, LabeledList, NoticeBox, NumberInput, Section } from '../components';
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/NaniteProgrammer.js
 
 export const NaniteCodes = props => {
   const { act, data } = useBackend(props);
+=======
+import { Window } from '../layouts';
+
+export const NaniteCodes = (props, context) => {
+  const { act, data } = useBackend(context);
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/NaniteProgrammer.js
   return (
     <Section
       title="Codes"
@@ -220,8 +227,26 @@ export const NaniteExtraBoolean = props => {
   );
 };
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/NaniteProgrammer.js
 export const NaniteProgrammer = props => {
   const { act, data } = useBackend(props);
+=======
+export const NaniteProgrammer = (props, context) => {
+  return (
+    <Window
+      width={420}
+      height={550}
+      resizable>
+      <Window.Content scrollable>
+        <NaniteProgrammerContent />
+      </Window.Content>
+    </Window>
+  );
+};
+
+export const NaniteProgrammerContent = (props, context) => {
+  const { act, data } = useBackend(context);
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/NaniteProgrammer.js
   const {
     has_disk,
     has_program,
@@ -235,7 +260,6 @@ export const NaniteProgrammer = props => {
     has_extra_settings,
     extra_settings = {},
   } = data;
-
   if (!has_disk) {
     return (
       <NoticeBox textAlign="center">
@@ -243,7 +267,6 @@ export const NaniteProgrammer = props => {
       </NoticeBox>
     );
   }
-
   if (!has_program) {
     return (
       <Section
@@ -256,7 +279,6 @@ export const NaniteProgrammer = props => {
         )} />
     );
   }
-
   return (
     <Section
       title={name}

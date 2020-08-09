@@ -134,6 +134,59 @@ Stuff like `lighten`, `darken`, `luminance` are defined here.
 > Notice: This documentation might be out of date, so always check the source
 > code to see the most up-to-date information.
 
+<<<<<<< HEAD:tgui-next/README.md
+=======
+<!--
+This table of contents must be manually maintained.
+Make sure to add new items to this list if you document new components.
+-->
+
+- [General Concepts](#general-concepts)
+- [`tgui/components`](#tguicomponents)
+  - [`AnimatedNumber`](#animatednumber)
+  - [`BlockQuote`](#blockquote)
+  - [`Box`](#box)
+  - [`Button`](#button)
+  - [`Button.Checkbox`](#buttoncheckbox)
+  - [`Button.Confirm`](#buttonconfirm)
+  - [`Button.Input`](#buttoninput)
+  - [`ByondUi`](#byondui)
+  - [`Collapsible`](#collapsible)
+  - [`ColorBox`](#colorbox)
+  - [`Dimmer`](#dimmer)
+  - [`Divider`](#divider)
+  - [`Dropdown`](#dropdown)
+  - [`Flex`](#flex)
+  - [`Flex.Item`](#flexitem)
+  - [`Grid`](#grid)
+  - [`Grid.Column`](#gridcolumn)
+  - [`Icon`](#icon)
+  - [`Input`](#input)
+  - [`Knob`](#knob)
+  - [`LabeledControls`](#labeledcontrols)
+  - [`LabeledControls.Item`](#labeledcontrolsitem)
+  - [`LabeledList`](#labeledlist)
+  - [`LabeledList.Item`](#labeledlistitem)
+  - [`LabeledList.Divider`](#labeledlistdivider)
+  - [`Modal`](#modal)
+  - [`NoticeBox`](#noticebox)
+  - [`NumberInput`](#numberinput)
+  - [`ProgressBar`](#progressbar)
+  - [`Section`](#section)
+  - [`Slider`](#slider)
+  - [`Table`](#table)
+  - [`Table.Row`](#tablerow)
+  - [`Table.Cell`](#tablecell)
+  - [`Tabs`](#tabs)
+  - [`Tabs.Tab`](#tabstab)
+  - [`Tooltip`](#tooltip)
+- [`tgui/layouts`](#tguilayouts)
+  - [`Window`](#window)
+  - [`Window.Content`](#windowcontent)
+
+## General Concepts
+
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/docs/component-reference.md
 These are the components which you can use for interface construction.
 If you have trouble finding the exact prop you need on a component,
 please note, that most of these components inherit from other basic
@@ -317,7 +370,7 @@ Props:
 
 ### `Button.Confirm`
 
-A button with a an extra confirmation step, using native button component.
+A button with an extra confirmation step, using native button component.
 
 Props:
 
@@ -345,11 +398,11 @@ interface.
 
 Example (button):
 
-```
+```jsx
 <ByondUi
   params={{
     id: 'test_button', // optional, can be auto-generated
-    parent: config.window,
+    parent: 'some_container', // optional, defaults to the current window
     type: 'button',
     text: 'Hello, world!',
   }} />
@@ -357,11 +410,10 @@ Example (button):
 
 Example (map):
 
-```
+```jsx
 <ByondUi
   params={{
     id: 'test_map',
-    parent: config.window,
     type: 'map',
   }} />
 ```
@@ -584,6 +636,65 @@ Props:
 the text by either unfocusing the input box, or by pressing the Enter key.
 - `onInput: (e, value) => void` - An event, which fires on every keypress.
 
+<<<<<<< HEAD:tgui-next/README.md
+=======
+### `Knob`
+
+A radial control, which allows dialing in precise values by dragging it
+up and down.
+
+Single click opens an input box to manually type in a number.
+
+**Props:**
+
+- See inherited props: [Box](#box)
+- `animated: boolean` - Animates the value if it was changed externally.
+- `bipolar: boolean` - Knob can be bipolar or unipolar.
+- `size: number` - Relative size of the knob. `1` is normal size, `2` is two
+times bigger. Fractional numbers are supported.
+- `color: string` - Color of the outer ring around the knob.
+- `value: number` - Value itself, controls the position of the cursor.
+- `unit: string` - Unit to display to the right of value.
+- `minValue: number` - Lowest possible value.
+- `maxValue: number` - Highest possible value.
+- `fillValue: number` - If set, this value will be used to set the fill
+percentage of the outer ring independently of the main value.
+- `ranges: { color: [from, to] }` - Applies a `color` to the outer ring around
+the knob based on whether the value lands in the range between `from` and `to`.
+See an example of this prop in [ProgressBar](#progressbar).
+- `step: number` (default: 1) - Adjust value by this amount when
+dragging the input.
+- `stepPixelSize: number` (default: 1) - Screen distance mouse needs
+to travel to adjust value by one `step`.
+- `format: value => value` - Format value using this function before
+displaying it.
+- `suppressFlicker: number` - A number in milliseconds, for which the input
+will hold off from updating while events propagate through the backend.
+Default is about 250ms, increase it if you still see flickering.
+- `onChange: (e, value) => void` - An event, which fires when you release
+the input, or successfully enter a number.
+- `onDrag: (e, value) => void` - An event, which fires about every 500ms
+when you drag the input up and down, on release and on manual editing.
+
+### `LabeledControls`
+
+LabeledControls is a horizontal grid, that is designed to hold various
+controls, like [Knobs](#knob) or small [Buttons](#button). Every item in
+this grid is labeled at the bottom.
+
+**Props:**
+
+- See inherited props: [Box](#box)
+- `children: LabeledControls.Item` - Items to render.
+
+### `LabeledControls.Item`
+
+**Props:**
+
+- See inherited props: [Box](#box)
+- `label: string` - Item label.
+
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/docs/component-reference.md
 ### `LabeledList`
 
 LabeledList is a continuous, vertical list of text and other content, where
@@ -892,3 +1003,49 @@ Props:
 - `position: string` - Tooltip position.
 - `content/children: string` - Content of the tooltip. Must be a plain string.
 Fragments or other elements are **not** supported.
+<<<<<<< HEAD:tgui-next/README.md
+=======
+
+## `tgui/layouts`
+
+### `Window`
+
+A root-level component, which draws the window chrome, titlebar, resize
+handlers, and controls the UI theme. All tgui interfaces must implement
+it in one way or another.
+
+Example:
+
+```jsx
+<Window
+  theme="hackerman"
+  resizable>
+  <Window.Content scrollable>
+    Hello, world!
+  </Window.Content>
+</Window>
+```
+
+**Props:**
+
+- `className: string` - Applies a CSS class to the element.
+- `theme: string` - A name of the theme.
+  - For a list of themes, see `packages/tgui/styles/themes`.
+- `title: string` - Window title.
+- `resizable: boolean` - Controls resizability of the window.
+- `children: any` - Child elements, which are rendered directly inside the
+window. If you use a [Dimmer](#dimmer) or [Modal](#modal) in your UI,
+they should be put as direct childs of a Window, otherwise you should be
+putting your content into [Window.Content](#windowcontent).
+
+### `Window.Content`
+
+Canonical window content, which is usually the main target of window focus.
+Can be scrollable.
+
+**Props:**
+
+- `className: string` - Applies a CSS class to the element.
+- `scrollable: boolean` - Shows or hides the scrollbar.
+- `children: any` - Main content of your window.
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/docs/component-reference.md

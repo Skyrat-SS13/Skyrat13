@@ -6,6 +6,7 @@
 	transfer_access = ACCESS_HEADS
 	requires_ntnet = 0
 	size = 8
+<<<<<<< HEAD
 	tgui_id = "ntos_card"
 	ui_x = 600
 	ui_y = 700
@@ -91,6 +92,84 @@
 			"display_name" = replacetext(job, "&nbsp", " "),
 			"target_rank" = id_card && id_card.assignment ? id_card.assignment : "Unassigned",
 			"job" = job)))
+=======
+	tgui_id = "NtosCard"
+
+	var/is_centcom = FALSE
+	var/minor = FALSE
+	var/authenticated = FALSE
+	var/list/region_access
+	var/list/head_subordinates
+	///Which departments this computer has access to. Defined as access regions. null = all departments
+	var/target_dept
+
+	//For some reason everything was exploding if this was static.
+	var/list/sub_managers
+
+/datum/computer_file/program/card_mod/New(obj/item/modular_computer/comp)
+	. = ..()
+	sub_managers = list(
+		"[ACCESS_HOP]" = list(
+			"department" = list(CARDCON_DEPARTMENT_SERVICE, CARDCON_DEPARTMENT_COMMAND),
+			"region" = 1,
+			"head" = "Head of Personnel"
+		),
+		"[ACCESS_HOS]" = list(
+			"department" = CARDCON_DEPARTMENT_SECURITY,
+			"region" = 2,
+			"head" = "Head of Security"
+		),
+		"[ACCESS_CMO]" = list(
+			"department" = CARDCON_DEPARTMENT_MEDICAL,
+			"region" = 3,
+			"head" = "Chief Medical Officer"
+		),
+		"[ACCESS_RD]" = list(
+			"department" = CARDCON_DEPARTMENT_SCIENCE,
+			"region" = 4,
+			"head" = "Research Director"
+		),
+		"[ACCESS_CE]" = list(
+			"department" = CARDCON_DEPARTMENT_ENGINEERING,
+			"region" = 5,
+			"head" = "Chief Engineer"
+		)
+	)
+
+/datum/computer_file/program/card_mod/proc/authenticate(mob/user, obj/item/card/id/id_card)
+	if(!id_card)
+		return
+
+	region_access = list()
+	if(!target_dept && (ACCESS_CHANGE_IDS in id_card.access))
+		minor = FALSE
+		authenticated = TRUE
+		update_static_data(user)
+		return TRUE
+
+	var/list/head_types = list()
+	for(var/access_text in sub_managers)
+		var/list/info = sub_managers[access_text]
+		var/access = text2num(access_text)
+		if((access in id_card.access) && ((info["region"] in target_dept) || !length(target_dept)))
+			region_access += info["region"]
+			//I don't even know what I'm doing anymore
+			head_types += info["head"]
+
+	head_subordinates = list()
+	if(length(head_types))
+		for(var/j in SSjob.occupations)
+			var/datum/job/job = j
+			for(var/head in head_types)//god why
+				if(head in job.department_head)
+					head_subordinates += job.title
+
+	if(length(region_access))
+		minor = TRUE
+		authenticated = TRUE
+		update_static_data(user)
+		return TRUE
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 	return formatted
 
@@ -244,6 +323,7 @@
 				var/access_allowed = text2num(params["allowed"])
 				if(access_type in (is_centcom ? get_all_centcom_access() : get_all_accesses()))
 					id_card.access -= access_type
+<<<<<<< HEAD
 					if(!access_allowed)
 						id_card.access += access_type
 		if("PRG_open_job")
@@ -277,6 +357,98 @@
 				reg_ids -= regsel
 			else
 				reg_ids += regsel
+=======
+				else
+					id_card.access |= access_type
+				playsound(computer, "terminal_type", 50, FALSE)
+				return TRUE
+		if("PRG_grantall")
+			if(!computer || !authenticated || minor)
+				return
+			id_card.access |= (is_centcom ? get_all_centcom_access() : get_all_accesses())
+			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+			return TRUE
+		if("PRG_denyall")
+			if(!computer || !authenticated || minor)
+				return
+			id_card.access.Cut()
+			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+			return TRUE
+		if("PRG_grantregion")
+			if(!computer || !authenticated)
+				return
+			var/region = text2num(params["region"])
+			if(isnull(region))
+				return
+			id_card.access |= get_region_accesses(region)
+			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+			return TRUE
+		if("PRG_denyregion")
+			if(!computer || !authenticated)
+				return
+			var/region = text2num(params["region"])
+			if(isnull(region))
+				return
+			id_card.access -= get_region_accesses(region)
+			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+			return TRUE
+
+
+
+/datum/computer_file/program/card_mod/ui_static_data(mob/user)
+	var/list/data = list()
+	data["station_name"] = station_name()
+	data["centcom_access"] = is_centcom
+	data["minor"] = target_dept || minor ? TRUE : FALSE
+
+	var/list/departments = target_dept
+	if(is_centcom)
+		departments = list("CentCom" = get_all_centcom_jobs())
+	else if(isnull(departments))
+		departments = list(
+			CARDCON_DEPARTMENT_COMMAND = list("Captain"),//lol
+			CARDCON_DEPARTMENT_ENGINEERING = GLOB.engineering_positions,
+			CARDCON_DEPARTMENT_MEDICAL = GLOB.medical_positions,
+			CARDCON_DEPARTMENT_SCIENCE = GLOB.science_positions,
+			CARDCON_DEPARTMENT_SECURITY = GLOB.security_positions,
+			CARDCON_DEPARTMENT_SUPPLY = GLOB.supply_positions,
+			CARDCON_DEPARTMENT_SERVICE = GLOB.civilian_positions
+		)
+	data["jobs"] = list()
+	for(var/department in departments)
+		var/list/job_list = departments[department]
+		var/list/department_jobs = list()
+		for(var/job in job_list)
+			if(minor && !(job in head_subordinates))
+				continue
+			department_jobs += list(list(
+				"display_name" = replacetext(job, "&nbsp", " "),
+				"job" = job
+			))
+		if(length(department_jobs))
+			data["jobs"][department] = department_jobs
+
+	var/list/regions = list()
+	for(var/i in 1 to 7)
+		if((minor || target_dept) && !(i in region_access))
+			continue
+
+		var/list/accesses = list()
+		for(var/access in get_region_accesses(i))
+			if (get_access_desc(access))
+				accesses += list(list(
+					"desc" = replacetext(get_access_desc(access), "&nbsp", " "),
+					"ref" = access,
+				))
+
+		regions += list(list(
+			"name" = get_region_accesses_name(i),
+			"regid" = i,
+			"accesses" = accesses
+		))
+
+	data["regions"] = regions
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 	if(id_card)
 		id_card.name = text("[id_card.registered_name]'s ID Card ([id_card.assignment])")

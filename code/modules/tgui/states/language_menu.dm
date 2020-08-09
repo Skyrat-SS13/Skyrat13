@@ -1,6 +1,15 @@
+<<<<<<< HEAD
  /**
   * tgui state: language_menu_state
   */
+=======
+/**
+ * tgui state: language_menu_state
+ *
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 GLOBAL_DATUM_INIT(language_menu_state, /datum/ui_state/language_menu, new)
 

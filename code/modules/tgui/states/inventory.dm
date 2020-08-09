@@ -1,8 +1,20 @@
+<<<<<<< HEAD
  /**
   * tgui state: inventory_state
   *
   * Checks that the src_object is in the user's top-level (hand, ear, pocket, belt, etc) inventory.
  **/
+=======
+/**
+ * tgui state: inventory_state
+ *
+ * Checks that the src_object is in the user's top-level
+ * (hand, ear, pocket, belt, etc) inventory.
+ *
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 GLOBAL_DATUM_INIT(inventory_state, /datum/ui_state/inventory_state, new)
 

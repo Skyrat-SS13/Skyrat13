@@ -6,6 +6,7 @@ export const NtosNetDownloader = props => {
   const { state } = props;
   const { act, data } = useBackend(props);
   const {
+    PC_device_theme,
     disk_size,
     disk_used,
     downloadable_programs = [],
@@ -14,6 +15,7 @@ export const NtosNetDownloader = props => {
     hackedavailable,
   } = data;
   return (
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/NtosNetDownloader.js
     <Fragment>
       {!!error && (
         <NoticeBox>
@@ -50,6 +52,22 @@ export const NtosNetDownloader = props => {
           <NoticeBox mb={1}>
             Please note that Nanotrasen does not recommend download
             of software from non-official servers.
+=======
+    <NtosWindow
+      theme={PC_device_theme}
+      width={480}
+      height={735}
+      resizable>
+      <NtosWindow.Content scrollable>
+        {!!error && (
+          <NoticeBox>
+            <Box mb={1}>
+              {error}
+            </Box>
+            <Button
+              content="Reset"
+              onClick={() => act('PRG_reseterror')} />
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/NtosNetDownloader.js
           </NoticeBox>
           {hacked_programs.map(program => (
             <Program

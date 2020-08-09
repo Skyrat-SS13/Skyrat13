@@ -1,5 +1,5 @@
 import { classes, isFalsy, pureComponentHooks } from 'common/react';
-import { Box } from './Box';
+import { computeBoxClassName, computeBoxProps } from './Box';
 
 export const Section = props => {
   const {
@@ -7,20 +7,22 @@ export const Section = props => {
     title,
     level = 1,
     buttons,
-    content,
+    fill,
     children,
     ...rest
   } = props;
   const hasTitle = !isFalsy(title) || !isFalsy(buttons);
-  const hasContent = !isFalsy(content) || !isFalsy(children);
+  const hasContent = !isFalsy(children);
   return (
-    <Box
+    <div
       className={classes([
         'Section',
         'Section--level--' + level,
+        fill && 'Section--fill',
         className,
+        ...computeBoxClassName(rest),
       ])}
-      {...rest}>
+      {...computeBoxProps(rest)}>
       {hasTitle && (
         <div className="Section__title">
           <span className="Section__titleText">
@@ -33,11 +35,10 @@ export const Section = props => {
       )}
       {hasContent && (
         <div className="Section__content">
-          {content}
           {children}
         </div>
       )}
-    </Box>
+    </div>
   );
 };
 

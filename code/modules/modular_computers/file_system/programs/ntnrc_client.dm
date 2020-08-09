@@ -9,10 +9,14 @@
 	network_destination = "NTNRC server"
 	ui_header = "ntnrc_idle.gif"
 	available_on_ntnet = 1
+<<<<<<< HEAD
 	tgui_id = "ntos_net_chat"
 	ui_x = 900
 	ui_y = 675
 
+=======
+	tgui_id = "NtosNetChat"
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	var/last_message				// Used to generate the toolbar icon
 	var/username
 	var/active_channel

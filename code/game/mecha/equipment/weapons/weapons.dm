@@ -9,8 +9,14 @@
 	var/projectile_delay = 0
 	var/firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect	//the visual effect appearing when the weapon is fired.
 	var/kickback = TRUE //Will using this weapon in no grav push mecha back.
+<<<<<<< HEAD
 //SKYRAT EDIT - killdozer compatibility
 /obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/M)
+=======
+	mech_flags = EXOSUIT_MODULE_COMBAT
+
+/obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/combat/M)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	if(..())
 		if(istype(M) && M.weaponized)
 			return 1

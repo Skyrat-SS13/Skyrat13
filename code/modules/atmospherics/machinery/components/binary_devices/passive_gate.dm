@@ -26,6 +26,21 @@ Passive gate is similar to the regular pump except:
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "passivegate"
 
+<<<<<<< HEAD
+=======
+/obj/machinery/atmospherics/components/binary/passive_gate/CtrlClick(mob/user)
+	if(can_interact(user))
+		on = !on
+		update_icon()
+	return ..()
+
+/obj/machinery/atmospherics/components/binary/passive_gate/AltClick(mob/user)
+	if(can_interact(user))
+		target_pressure = MAX_OUTPUT_PRESSURE
+		update_icon()
+	return ..()
+
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 /obj/machinery/atmospherics/components/binary/passive_gate/Destroy()
 	SSradio.remove_object(src,frequency)
 	return ..()
@@ -87,11 +102,14 @@ Passive gate is similar to the regular pump except:
 	))
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
-/obj/machinery/atmospherics/components/binary/passive_gate/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-																		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/atmospherics/components/binary/passive_gate/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+<<<<<<< HEAD
 		ui = new(user, src, ui_key, "atmos_pump", name, 335, 115, master_ui, state)
+=======
+		ui = new(user, src, "AtmosPump", name)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		ui.open()
 
 /obj/machinery/atmospherics/components/binary/passive_gate/ui_data()

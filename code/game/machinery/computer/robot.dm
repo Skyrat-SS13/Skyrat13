@@ -25,6 +25,7 @@
 			return FALSE
 	return TRUE
 
+<<<<<<< HEAD
 /obj/machinery/computer/robotics/ui_interact(mob/user)
 	. = ..()
 	if (src.z > 6)
@@ -33,6 +34,26 @@
 	user.set_machine(src)
 	var/dat
 	var/robots = 0
+=======
+/obj/machinery/computer/robotics/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "RoboticsControlConsole", name)
+		ui.open()
+
+/obj/machinery/computer/robotics/ui_data(mob/user)
+	var/list/data = list()
+
+	data["can_hack"] = FALSE
+	if(issilicon(user))
+		var/mob/living/silicon/S = user
+		if(S.hack_software)
+			data["can_hack"] = TRUE
+	else if(IsAdminGhost(user))
+		data["can_hack"] = TRUE
+
+	data["cyborgs"] = list()
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	for(var/mob/living/silicon/robot/R in GLOB.silicon_mobs)
 		if(!can_control(user, R))
 			continue
@@ -153,6 +174,7 @@
 			if(D.hacked)
 				to_chat(usr, "<span class='danger'>ERROR: [D] is not responding to external commands.</span>")
 			else
+<<<<<<< HEAD
 				var/turf/T = get_turf(D)
 				message_admins("[ADMIN_LOOKUPFLW(usr)] detonated [key_name_admin(D)] at [ADMIN_VERBOSEJMP(T)]!")
 				log_game("[key_name(usr)] detonated [key_name(D)]!")
@@ -165,3 +187,28 @@
 
 	src.updateUsrDialog()
 	return
+=======
+				to_chat(usr, "<span class='danger'>Access Denied.</span>")
+		if("magbot")
+			var/mob/living/silicon/S = usr
+			if((istype(S) && S.hack_software) || IsAdminGhost(usr))
+				var/mob/living/silicon/robot/R = locate(params["ref"]) in GLOB.silicon_mobs
+				if(istype(R) && !R.emagged && (R.connected_ai == usr || IsAdminGhost(usr)) && !R.scrambledcodes && can_control(usr, R))
+					log_game("[key_name(usr)] emagged [key_name(R)] using robotic console!")
+					message_admins("[ADMIN_LOOKUPFLW(usr)] emagged cyborg [key_name_admin(R)] using robotic console!")
+					R.SetEmagged(TRUE)
+		if("killdrone")
+			if(allowed(usr))
+				var/mob/living/simple_animal/drone/D = locate(params["ref"]) in GLOB.mob_list
+				if(D.hacked)
+					to_chat(usr, "<span class='danger'>ERROR: [D] is not responding to external commands.</span>")
+				else
+					var/turf/T = get_turf(D)
+					message_admins("[ADMIN_LOOKUPFLW(usr)] detonated [key_name_admin(D)] at [ADMIN_VERBOSEJMP(T)]!")
+					log_game("[key_name(usr)] detonated [key_name(D)]!")
+					var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+					s.set_up(3, TRUE, D)
+					s.start()
+					D.visible_message("<span class='danger'>\the [D] self-destructs!</span>")
+					D.gib()
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4

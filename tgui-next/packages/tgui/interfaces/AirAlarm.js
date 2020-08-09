@@ -5,12 +5,14 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, NumberInput, Section } from '../components';
 import { getGasLabel } from '../constants';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
+import { Vent, Scrubber } from './common/AtmosControls';
 
 export const AirAlarm = props => {
   const { state } = props;
   const { act, data } = useBackend(props);
   const locked = data.locked && !data.siliconUser;
   return (
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/AirAlarm.js
     <Fragment>
       <InterfaceLockNoticeBox
         siliconUser={data.siliconUser}
@@ -21,6 +23,20 @@ export const AirAlarm = props => {
         <AirAlarmControl state={state} />
       )}
     </Fragment>
+=======
+    <Window
+      width={440}
+      height={650}
+      resizable>
+      <Window.Content scrollable>
+        <InterfaceLockNoticeBox />
+        <AirAlarmStatus />
+        {!locked && (
+          <AirAlarmControl />
+        )}
+      </Window.Content>
+    </Window>
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/AirAlarm.js
   );
 };
 
@@ -214,6 +230,7 @@ const AirAlarmControlVents = props => {
   ));
 };
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/AirAlarm.js
 const Vent = props => {
   const {
     id_tag,
@@ -315,6 +332,8 @@ const Vent = props => {
 };
 
 
+=======
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/AirAlarm.js
 //  Scrubbers
 // --------------------------------------------------------
 
@@ -333,6 +352,7 @@ const AirAlarmControlScrubbers = props => {
   ));
 };
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/AirAlarm.js
 const Scrubber = props => {
   const {
     long_name,
@@ -397,6 +417,8 @@ const Scrubber = props => {
 };
 
 
+=======
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/AirAlarm.js
 //  Modes
 // --------------------------------------------------------
 

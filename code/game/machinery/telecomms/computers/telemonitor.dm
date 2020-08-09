@@ -17,12 +17,15 @@
 
 	circuit = /obj/item/circuitboard/computer/comm_monitor
 
-/obj/machinery/computer/telecomms/monitor/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE,\
-														datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/telecomms/monitor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
+<<<<<<< HEAD
 		ui = new(user, src, ui_key, "telemonitor", name, 575, 400, master_ui, state)
+=======
+		ui = new(user, src, "TelecommsMonitor", name)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		ui.open()
 
 /obj/machinery/computer/telecomms/monitor/ui_data(mob/user)

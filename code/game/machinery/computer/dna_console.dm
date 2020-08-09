@@ -116,6 +116,7 @@
 	else
 		. += "<span class='notice'>JOKER algorithm available in about [round(0.00166666667 * (jokerready - world.time))] minutes."
 
+<<<<<<< HEAD
 /obj/machinery/computer/scan_consolenew/ui_interact(mob/user, last_change)
 	. = ..()
 	if(!user)
@@ -164,6 +165,16 @@
 				scanner_status += "<span class='bad'>(Locked)</span>"
 			else
 				scanner_status += "<span class='good'>(Unlocked)</span>"
+=======
+/obj/machinery/computer/scan_consolenew/ui_interact(mob/user, datum/tgui/ui)
+	// Most of ui_interact is spent setting variables for passing to the tgui
+	//  interface.
+	// We can also do some general state processing here too as it's a good
+	//  indication that a player is using the console.
+
+	var/scanner_op = scanner_operational()
+	var/can_modify_occ = can_modify_occupant()
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 
 	else
@@ -175,6 +186,7 @@
 	status += occupant_status
 
 
+<<<<<<< HEAD
 	status += "<div class='line'><h3>Radiation Emitter Status</h3></div>"
 	var/stddev = radstrength*RADIATION_STRENGTH_MULTIPLIER
 	status += "<div class='line'><div class='statusLabel'>Output Level:</div><div class='statusValue'>[radstrength]</div></div>"
@@ -191,6 +203,54 @@
 			chance_to_hit = "68-95 %"
 		if(0.5 to 0.75)
 			chance_to_hit = "55-68 %"
+=======
+	is_joker_ready = (jokerready < world.time)
+	time_to_joker = round((jokerready - world.time)/10)
+
+	is_injector_ready = (injectorready < world.time)
+	time_to_injector = round((injectorready - world.time)/10)
+
+	is_pulsing_rads = ((rad_pulse_index > 0) && (rad_pulse_timer > world.time))
+	time_to_pulse = round((rad_pulse_timer - world.time)/10)
+
+	// Attempt to update tgui ui, open and update if needed.
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "DnaConsole")
+		ui.open()
+
+/obj/machinery/computer/scan_consolenew/ui_data(mob/user)
+	var/list/data = list()
+
+	data["view"] = tgui_view_state
+	data["storage"] = list()
+
+	// This block of code generates the huge data structure passed to the tgui
+	// interface for displaying all the various bits of console/scanner data
+	// Should all be very self-explanatory
+	data["isScannerConnected"] = can_use_scanner
+	if(can_use_scanner)
+		data["scannerOpen"] = connected_scanner.state_open
+		data["scannerLocked"] = connected_scanner.locked
+		data["radStrength"] = radstrength
+		data["radDuration"] = radduration
+		data["stdDevStr"] = radstrength * RADIATION_STRENGTH_MULTIPLIER
+		switch(RADIATION_ACCURACY_MULTIPLIER / (radduration + (connected_scanner.precision_coeff ** 2)))	//hardcoded values from a z-table for a normal distribution
+			if(0 to 0.25)
+				data["stdDevAcc"] = ">95 %"
+			if(0.25 to 0.5)
+				data["stdDevAcc"] = "68-95 %"
+			if(0.5 to 0.75)
+				data["stdDevAcc"] = "55-68 %"
+			else
+				data["stdDevAcc"] = "<38 %"
+
+	data["isViableSubject"] = is_viable_occupant
+	if(is_viable_occupant)
+		data["subjectName"] = scanner_occupant.name
+		if(scanner_occupant.transformation_timer)
+			data["subjectStatus"] = STATUS_TRANSFORMING
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		else
 			chance_to_hit = "<38 %"
 	status += "<div class='line'><div class='statusLabel'>Pulse Duration:</div><div class='statusValue'>[radduration]</div></div>"

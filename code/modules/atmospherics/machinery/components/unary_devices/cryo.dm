@@ -322,11 +322,17 @@
 		return
 	return ..()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-																	datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_state(mob/user)
+	return GLOB.notcontained_state
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+<<<<<<< HEAD
 		ui = new(user, src, ui_key, "cryo", name, 400, 550, master_ui, state)
+=======
+		ui = new(user, src, "Cryo", name)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		ui.open()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/ui_data()

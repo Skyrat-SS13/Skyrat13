@@ -7,11 +7,17 @@
 	requires_ntnet = 0
 	usage_flags = PROGRAM_CONSOLE
 	transfer_access = ACCESS_HEADS
+<<<<<<< HEAD
 	available_on_ntnet = 1
 	tgui_id = "ntos_ai_restorer"
 	ui_x = 600
 	ui_y = 400
 
+=======
+	available_on_ntnet = TRUE
+	tgui_id = "NtosAiRestorer"
+	/// Variable dictating if we are in the process of restoring the AI in the inserted intellicard
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	var/restoring = FALSE
 
 /datum/computer_file/program/aidiag/proc/get_ai(cardcheck)
@@ -73,10 +79,17 @@
 		restoring = FALSE
 		return
 	ai_slot.locked =TRUE
+<<<<<<< HEAD
 	A.adjustOxyLoss(-1, 0)
 	A.adjustFireLoss(-1, 0)
 	A.adjustToxLoss(-1, 0)
 	A.adjustBruteLoss(-1, 0)
+=======
+	A.adjustOxyLoss(-5, 0)//, FALSE)
+	A.adjustFireLoss(-5, 0)//, FALSE)
+	A.adjustToxLoss(-5, 0)
+	A.adjustBruteLoss(-5, 0)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	A.updatehealth()
 	if(A.health >= 0 && A.stat == DEAD)
 		A.revive()
@@ -112,7 +125,11 @@
 				data["laws"] = AI.laws.get_law_list(include_zeroth = 1)
 				data["health"] = (AI.health + 100) / 2
 				data["isDead"] = AI.stat == DEAD
+<<<<<<< HEAD
 				data["ai_laws"] = AI.laws.get_law_list(include_zeroth = 1)
+=======
+				data["laws"] = AI.laws.get_law_list(include_zeroth = TRUE, render_html = FALSE)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 	return data
 

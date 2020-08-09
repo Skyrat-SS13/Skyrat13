@@ -2,10 +2,34 @@ import { Component, Fragment } from 'inferno';
 import { act } from '../byond';
 import { AnimatedNumber, Box, Button, ColorBox, LabeledList, NumberInput, Section, Table } from '../components';
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/ChemMaster.js
 export const ChemMaster = props => {
   const { state } = props;
   const { config, data } = state;
   const { ref } = config;
+=======
+export const ChemMaster = (props, context) => {
+  const { data } = useBackend(context);
+  const { screen } = data;
+  return (
+    <Window
+      width={465}
+      height={550}
+      resizable>
+      <Window.Content scrollable>
+        {screen === 'analyze' && (
+          <AnalysisResults />
+        ) || (
+          <ChemMasterContent />
+        )}
+      </Window.Content>
+    </Window>
+  );
+};
+
+const ChemMasterContent = (props, context) => {
+  const { act, data } = useBackend(context);
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/ChemMaster.js
   const {
     screen,
     beakerContents = [],
@@ -201,6 +225,7 @@ const PackagingControlsItem = props => {
   );
 };
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/ChemMaster.js
 class PackagingControls extends Component {
   constructor() {
     super();
@@ -373,6 +398,150 @@ class PackagingControls extends Component {
     );
   }
 }
+=======
+const PackagingControls = (props, context) => {
+  const { act, data } = useBackend(context);
+  const [
+    pillAmount,
+    setPillAmount,
+  ] = useSharedState(context, 'pillAmount', 1);
+  const [
+    patchAmount,
+    setPatchAmount,
+  ] = useSharedState(context, 'patchAmount', 1);
+  const [
+    bottleAmount,
+    setBottleAmount,
+  ] = useSharedState(context, 'bottleAmount', 1);
+  const [
+    packAmount,
+    setPackAmount,
+  ] = useSharedState(context, 'packAmount', 1);
+  const [
+    vialAmount,
+    setvialAmount,
+  ] = useSharedState(context, 'setvialAmount', 1);
+  const [
+    dartAmount,
+    setdartAmount,
+  ] = useSharedState(context, 'setdartAmount', 1);
+  const {
+    condi,
+    chosenPillStyle,
+    pillStyles = [],
+  } = data;
+  return (
+    <LabeledList>
+      {!condi && (
+        <LabeledList.Item label="Pill type">
+          {pillStyles.map(pill => (
+            <Button
+              key={pill.id}
+              width="30px"
+              selected={pill.id === chosenPillStyle}
+              textAlign="center"
+              color="transparent"
+              onClick={() => act('pillStyle', { id: pill.id })}>
+              <Box mx={-1} className={pill.className} />
+            </Button>
+          ))}
+        </LabeledList.Item>
+      )}
+      {!condi && (
+        <PackagingControlsItem
+          label="Pills"
+          amount={pillAmount}
+          amountUnit="pills"
+          sideNote="max 50u"
+          onChangeAmount={(e, value) => setPillAmount(value)}
+          onCreate={() => act('create', {
+            type: 'pill',
+            amount: pillAmount,
+            volume: 'auto',
+          })} />
+      )}
+      {!condi && (
+        <PackagingControlsItem
+          label="Patches"
+          amount={patchAmount}
+          amountUnit="patches"
+          sideNote="max 40u"
+          onChangeAmount={(e, value) => setPatchAmount(value)}
+          onCreate={() => act('create', {
+            type: 'patch',
+            amount: patchAmount,
+            volume: 'auto',
+          })} />
+      )}
+      {!condi && (
+        <PackagingControlsItem
+          label="Bottles"
+          amount={bottleAmount}
+          amountUnit="bottles"
+          sideNote="max 30u"
+          onChangeAmount={(e, value) => setBottleAmount(value)}
+          onCreate={() => act('create', {
+            type: 'bottle',
+            amount: bottleAmount,
+            volume: 'auto',
+          })} />
+      )}
+      {!condi && (
+        <PackagingControlsItem
+          label="Hypovials"
+          amount={vialAmount}
+          amountUnit="vials"
+          sideNote="max 60u"
+          onChangeAmount={(e, value) => setvialAmount(value)}
+          onCreate={() => act('create', {
+            type: 'hypoVial',
+            amount: vialAmount,
+            volume: 'auto',
+          })} />
+      )}
+      {!condi && (
+        <PackagingControlsItem
+          label="Smartdarts"
+          amount={dartAmount}
+          amountUnit="darts"
+          sideNote="max 20u"
+          onChangeAmount={(e, value) => setdartAmount(value)}
+          onCreate={() => act('create', {
+            type: 'smartDart',
+            amount: dartAmount,
+            volume: 'auto',
+          })} />
+      )}
+      {!!condi && (
+        <PackagingControlsItem
+          label="Packs"
+          amount={packAmount}
+          amountUnit="packs"
+          sideNote="max 10u"
+          onChangeAmount={(e, value) => setPackAmount(value)}
+          onCreate={() => act('create', {
+            type: 'condimentPack',
+            amount: packAmount,
+            volume: 'auto',
+          })} />
+      )}
+      {!!condi && (
+        <PackagingControlsItem
+          label="Bottles"
+          amount={bottleAmount}
+          amountUnit="bottles"
+          sideNote="max 50u"
+          onChangeAmount={(e, value) => setBottleAmount(value)}
+          onCreate={() => act('create', {
+            type: 'condimentBottle',
+            amount: bottleAmount,
+            volume: 'auto',
+          })} />
+      )}
+    </LabeledList>
+  );
+};
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/ChemMaster.js
 
 const AnalysisResults = props => {
   const { state } = props;
@@ -389,79 +558,56 @@ const AnalysisResults = props => {
             screen: 'home',
           })} />
       )}>
-      {!fermianalyze && (
-        <LabeledList>
-          <LabeledList.Item label="Name">
-            {analyzeVars.name}
-          </LabeledList.Item>
-          <LabeledList.Item label="State">
-            {analyzeVars.state}
-          </LabeledList.Item>
-          <LabeledList.Item label="Color">
-            <ColorBox color={analyzeVars.color} mr={1} />
-            {analyzeVars.color}
-          </LabeledList.Item>
-          <LabeledList.Item label="Description">
-            {analyzeVars.description}
-          </LabeledList.Item>
-          <LabeledList.Item label="Metabolization Rate">
-            {analyzeVars.metaRate} u/minute
-          </LabeledList.Item>
-          <LabeledList.Item label="Overdose Threshold">
-            {analyzeVars.overD}
-          </LabeledList.Item>
-          <LabeledList.Item label="Addiction Threshold">
-            {analyzeVars.addicD}
-          </LabeledList.Item>
-        </LabeledList>
-      )}
-      {!!fermianalyze && (
-        <LabeledList>
-          <LabeledList.Item label="Name">
-            {analyzeVars.name}
-          </LabeledList.Item>
-          <LabeledList.Item label="State">
-            {analyzeVars.state}
-          </LabeledList.Item>
-          <LabeledList.Item label="Color">
-            <ColorBox color={analyzeVars.color} mr={1} />
-            {analyzeVars.color}
-          </LabeledList.Item>
-          <LabeledList.Item label="Description">
-            {analyzeVars.description}
-          </LabeledList.Item>
-          <LabeledList.Item label="Metabolization Rate">
-            {analyzeVars.metaRate} u/minute
-          </LabeledList.Item>
-          <LabeledList.Item label="Overdose Threshold">
-            {analyzeVars.overD}
-          </LabeledList.Item>
-          <LabeledList.Item label="Addiction Threshold">
-            {analyzeVars.addicD}
-          </LabeledList.Item>
-          <LabeledList.Item label="Purity">
-            {analyzeVars.purityF}
-          </LabeledList.Item>
-          <LabeledList.Item label="Inverse Ratio">
-            {analyzeVars.inverseRatioF}
-          </LabeledList.Item>
-          <LabeledList.Item label="Purity E">
-            {analyzeVars.purityE}
-          </LabeledList.Item>
-          <LabeledList.Item label="Lower Optimal Temperature">
-            {analyzeVars.minTemp}
-          </LabeledList.Item>
-          <LabeledList.Item label="Upper Optimal Temperature">
-            {analyzeVars.maxTemp}
-          </LabeledList.Item>
-          <LabeledList.Item label="Explosive Temperature">
-            {analyzeVars.eTemp}
-          </LabeledList.Item>
-          <LabeledList.Item label="pH Peak">
-            {analyzeVars.pHpeak}
-          </LabeledList.Item>
-        </LabeledList>
-      )}
+
+      <LabeledList>
+        <LabeledList.Item label="Name">
+          {analyzeVars.name}
+        </LabeledList.Item>
+        <LabeledList.Item label="State">
+          {analyzeVars.state}
+        </LabeledList.Item>
+        <LabeledList.Item label="Color">
+          <ColorBox color={analyzeVars.color} mr={1} />
+          {analyzeVars.color}
+        </LabeledList.Item>
+        <LabeledList.Item label="Description">
+          {analyzeVars.description}
+        </LabeledList.Item>
+        <LabeledList.Item label="Metabolization Rate">
+          {analyzeVars.metaRate} u/minute
+        </LabeledList.Item>
+        <LabeledList.Item label="Overdose Threshold">
+          {analyzeVars.overD}
+        </LabeledList.Item>
+        <LabeledList.Item label="Addiction Threshold">
+          {analyzeVars.addicD}
+        </LabeledList.Item>
+        {!!fermianalyze && ( // why did you do that before? it's fucking bad.
+          <Fragment>
+            <LabeledList.Item label="Purity">
+              {analyzeVars.purityF}
+            </LabeledList.Item>
+            <LabeledList.Item label="Inverse Ratio">
+              {analyzeVars.inverseRatioF}
+            </LabeledList.Item>
+            <LabeledList.Item label="Purity E">
+              {analyzeVars.purityE}
+            </LabeledList.Item>
+            <LabeledList.Item label="Lower Optimal Temperature">
+              {analyzeVars.minTemp}
+            </LabeledList.Item>
+            <LabeledList.Item label="Upper Optimal Temperature">
+              {analyzeVars.maxTemp}
+            </LabeledList.Item>
+            <LabeledList.Item label="Explosive Temperature">
+              {analyzeVars.eTemp}
+            </LabeledList.Item>
+            <LabeledList.Item label="pH Peak">
+              {analyzeVars.pHpeak}
+            </LabeledList.Item>
+          </Fragment>
+        )}
+      </LabeledList>
     </Section>
   );
 };

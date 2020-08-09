@@ -42,7 +42,31 @@ Examples can be as simple or as complex as you would like. Let's start with a ve
     ui.open()
 ```
 
+<<<<<<< HEAD
 This is the proc that defines our interface. There's a bit going on here, so let's break it down. First, we override the ui_interact proc on our object. This will be called by `interact` for you, which is in turn called by `attack_hand` (or `attack_self` for items). `ui_interact` is also called to update a UI (hence the `try_update_ui`), so we accept an existing UI to update. The `state` is a default argument so that a caller can overload it with named arguments (`ui_interact(state = overloaded_state)`) if needed.
+=======
+- `bin/tgui` - build the project in production mode.
+- `bin/tgui --dev` - launch a development server.
+  - tgui development server provides you with incremental compilation,
+  hot module replacement and logging facilities in all running instances
+  of tgui. In short, this means that you will instantly see changes in the
+  game as you code it. Very useful, highly recommended.
+  - In order to use it, you should start the game server first, connect to it
+  and wait until the world has been properly loaded and you are no longer
+  in the lobby. Start tgui dev server, and once it has finished building,
+  press F5 on any tgui window. You'll know that it's hooked correctly if
+  you see a green bug icon in titlebar and data gets dumped to the console.
+- `bin/tgui --dev --reload` - reload byond cache once.
+- `bin/tgui --dev --debug` - run server with debug logging enabled.
+- `bin/tgui --dev --no-hot` - disable hot module replacement (helps when
+doing development on IE8).
+- `bin/tgui --lint` - show problems with the code.
+- `bin/tgui --lint --fix` - auto-fix problems with the code.
+- `bin/tgui --analyze` - run a bundle analyzer.
+- `bin/tgui --clean` - clean up project repo.
+- `bin/tgui [webpack options]` - build the project with custom webpack
+options.
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 Inside the `if(!ui)` block (which means we are creating a new UI), we choose our template, title, and size; we can also set various options like `style` (for themes), or autoupdate. These options will be elaborated on later (as will `ui_state`s).
 
@@ -125,6 +149,7 @@ We all do it, even the best of us. If you just want to make a tgui **fast**, her
   update_icon() // Not applicable to all objects.
 ```
 
+<<<<<<< HEAD
 And the template:
 
 ```html
@@ -137,3 +162,74 @@ And the template:
   </ui-section>
 </ui-display>
 ```
+=======
+Note that in Windows, you have to go through Advanced System Settings,
+System Properties and then open Environment Variables window to do the
+same thing. You may need to reboot after this.
+
+## Developer Tools
+
+When developing with `tgui-dev-server`, you will have access to certain
+development only features.
+
+**Debug Logs.**
+When running server via `bin/tgui --dev --debug`, server will print debug
+logs and time spent on rendering. Use this information to optimize your
+code, and try to keep re-renders below 16ms.
+
+**Kitchen Sink.**
+Press `F12` to open the KitchenSink interface. This interface is a
+playground to test various tgui components.
+
+**Layout Debugger.**
+Press `F11` to toggle the *layout debugger*. It will show outlines of
+all tgui elements, which makes it easy to understand how everything comes
+together, and can reveal certain layout bugs which are not normally visible.
+
+## Project Structure
+
+- `/packages` - Each folder here represents a self-contained Node module.
+- `/packages/common` - Helper functions
+- `/packages/tgui/index.js` - Application entry point.
+- `/packages/tgui/components` - Basic UI building blocks.
+- `/packages/tgui/interfaces` - Actual in-game interfaces.
+Interface takes data via the `state` prop and outputs an html-like stucture,
+which you can build using existing UI components.
+- `/packages/tgui/layouts` - Root level UI components, that affect the final
+look and feel of the browser window. They usually hold various window
+elements, like the titlebar and resize handlers, and control the UI theme.
+- `/packages/tgui/routes.js` - This is where tgui decides which interface to
+pull and render.
+- `/packages/tgui/layout.js` - A root-level component, holding the
+window elements, like the titlebar, buttons, resize handlers. Calls
+`routes.js` to decide which component to render.
+- `/packages/tgui/styles/main.scss` - CSS entry point.
+- `/packages/tgui/styles/functions.scss` - Useful SASS functions.
+Stuff like `lighten`, `darken`, `luminance` are defined here.
+- `/packages/tgui/styles/atomic` - Atomic CSS classes.
+These are very simple, tiny, reusable CSS classes which you can use and
+combine to change appearance of your elements. Keep them small.
+- `/packages/tgui/styles/components` - CSS classes which are used
+in UI components. These stylesheets closely follow the
+[BEM](https://en.bem.info/methodology/) methodology.
+- `/packages/tgui/styles/interfaces` - Custom stylesheets for your interfaces.
+Add stylesheets here if you really need a fine control over your UI styles.
+- `/packages/tgui/styles/layouts` - Layout-related styles.
+- `/packages/tgui/styles/themes` - Contains all the various themes you can
+use in tgui. Each theme must be registered in `webpack.config.js` file.
+
+## Component Reference
+
+See: [Component Reference](docs/component-reference.md).
+
+## License
+
+Source code is covered by /tg/station's parent license - **AGPL-3.0**
+(see the main [README](../README.md)), unless otherwise indicated.
+
+Some files are annotated with a copyright header, which explicitly states
+the copyright holder and license of the file. Most of the core tgui
+source code is available under the **MIT** license.
+
+The Authors retain all copyright to their respective work here submitted.
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4

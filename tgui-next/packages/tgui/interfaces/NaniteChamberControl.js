@@ -2,8 +2,26 @@ import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, Collapsible, Grid, LabeledList, NoticeBox, NumberInput, Section } from '../components';
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/NaniteChamberControl.js
 export const NaniteChamberControl = props => {
   const { act, data } = useBackend(props);
+=======
+export const NaniteChamberControl = (props, context) => {
+  return (
+    <Window
+      width={380}
+      height={570}
+      resizable>
+      <Window.Content scrollable>
+        <NaniteChamberControlContent />
+      </Window.Content>
+    </Window>
+  );
+};
+
+export const NaniteChamberControlContent = (props, context) => {
+  const { act, data } = useBackend(context);
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/NaniteChamberControl.js
   const {
     status_msg,
     locked,

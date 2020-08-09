@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @copyright 2020 Aleksej Komarov
+ * @license MIT
+ */
+
 const webpack = require('webpack');
 const path = require('path');
 const BuildNotifierPlugin = require('webpack-build-notifier');
@@ -145,8 +151,12 @@ module.exports = (env = {}, argv) => {
           // mangle: false,
           output: {
             ascii_only: true,
+<<<<<<< HEAD:tgui-next/packages/tgui/webpack.config.js
             // beautify: true,
             // indent_level: 2,
+=======
+            comments: false,
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/webpack.config.js
           },
         },
       }),

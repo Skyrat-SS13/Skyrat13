@@ -71,6 +71,7 @@ export const ScannerGate = props => {
   const { state } = props;
   const { act, data } = useBackend(props);
   return (
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/ScannerGate.js
     <Fragment>
       <InterfaceLockNoticeBox
         locked={data.locked}
@@ -79,6 +80,20 @@ export const ScannerGate = props => {
         <ScannerGateControl state={state} />
       )}
     </Fragment>
+=======
+    <Window
+      width={400}
+      height={300}
+      resizable>
+      <Window.Content scrollable>
+        <InterfaceLockNoticeBox
+          onLockedStatusChange={() => act('toggle_lock')} />
+        {!data.locked && (
+          <ScannerGateControl />
+        )}
+      </Window.Content>
+    </Window>
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/ScannerGate.js
   );
 };
 

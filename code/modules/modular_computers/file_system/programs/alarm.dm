@@ -7,10 +7,14 @@
 	requires_ntnet = 1
 	network_destination = "alarm monitoring network"
 	size = 5
+<<<<<<< HEAD
 	tgui_id = "ntos_station_alert"
 	ui_x = 315
 	ui_y = 500
 
+=======
+	tgui_id = "NtosStationAlertConsole"
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	var/has_alert = 0
 	var/alarms = list("Fire" = list(), "Atmosphere" = list(), "Power" = list())
 

@@ -8,10 +8,14 @@
 	transfer_access = ACCESS_CONSTRUCTION
 	network_destination = "supermatter monitoring system"
 	size = 5
+<<<<<<< HEAD
 	tgui_id = "ntos_supermatter_monitor"
 	ui_style = "ntos"
 	ui_x = 600
 	ui_y = 350
+=======
+	tgui_id = "NtosSupermatterMonitor"
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	var/last_status = SUPERMATTER_INACTIVE
 	var/list/supermatters
 	var/obj/machinery/power/supermatter_crystal/active		// Currently selected supermatter crystal.

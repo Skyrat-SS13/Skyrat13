@@ -34,11 +34,14 @@
 			break
 	return power_station
 
-obj/machinery/computer/teleporter/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/teleporter/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+<<<<<<< HEAD
 		ui = new(user, src, ui_key, "teleporter", name, ui_x, ui_y, master_ui, state)
+=======
+		ui = new(user, src, "Teleporter", name)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		ui.open()
 
 /obj/machinery/computer/teleporter/ui_data(mob/user)
@@ -55,7 +58,6 @@ obj/machinery/computer/teleporter/ui_interact(mob/user, ui_key = "main", datum/t
 		data["calibrated"] = FALSE
 
 	return data
-
 
 /obj/machinery/computer/teleporter/ui_act(action, params)
 	if(..())
@@ -92,15 +94,17 @@ obj/machinery/computer/teleporter/ui_interact(mob/user, ui_key = "main", datum/t
 			say("Processing hub calibration to target...")
 			calibrating = TRUE
 			power_station.update_icon()
-			spawn(50 * (3 - power_station.teleporter_hub.accuracy)) //Better parts mean faster calibration
-				calibrating = FALSE
-				if(check_hub_connection())
-					power_station.teleporter_hub.calibrated = TRUE
-					say("Calibration complete.")
-				else
-					say("Error: Unable to detect hub.")
-				power_station.update_icon()
+			addtimer(CALLBACK(src, .proc/finish_calibration), 50 * (3 - power_station.teleporter_hub.accuracy)) //Better parts mean faster calibration
 			. = TRUE
+
+/obj/machinery/computer/teleporter/proc/finish_calibration()
+	calibrating = FALSE
+	if(check_hub_connection())
+		power_station.teleporter_hub.calibrated = TRUE
+		say("Calibration complete.")
+	else
+		say("Error: Unable to detect hub.")
+	power_station.update_icon()
 
 /obj/machinery/computer/teleporter/proc/check_hub_connection()
 	if(!power_station)

@@ -3,18 +3,21 @@ import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, Collapsible, Grid, Input, LabeledList, NoticeBox, Section } from '../components';
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/Pandemic.js
 export const PandemicBeakerDisplay = props => {
   const { act, data } = useBackend(props);
 
+=======
+export const PandemicBeakerDisplay = (props, context) => {
+  const { act, data } = useBackend(context);
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/Pandemic.js
   const {
     has_beaker,
     beaker_empty,
     has_blood,
     blood,
   } = data;
-
   const cant_empty = !has_beaker || beaker_empty;
-
   return (
     <Section
       title="Beaker"
@@ -37,7 +40,7 @@ export const PandemicBeakerDisplay = props => {
             disabled={!has_beaker}
             onClick={() => act('eject_beaker')} />
         </Fragment>
-      )} >
+      )}>
       {has_beaker ? (
         !beaker_empty ? (
           has_blood ? (
@@ -68,15 +71,18 @@ export const PandemicBeakerDisplay = props => {
   );
 };
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/Pandemic.js
 export const PandemicDiseaseDisplay = props => {
   const { act, data } = useBackend(props);
 
+=======
+export const PandemicDiseaseDisplay = (props, context) => {
+  const { act, data } = useBackend(context);
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/Pandemic.js
   const {
     is_ready,
   } = data;
-
   const viruses = data.viruses || [];
-
   return (
     viruses.map(virus => {
       const symptoms = virus.symptoms || [];
@@ -101,7 +107,7 @@ export const PandemicDiseaseDisplay = props => {
               onClick={() => act('create_culture_bottle', {
                 index: virus.index,
               })} />
-          )} >
+          )}>
           <Grid>
             <Grid.Column>
               {virus.description}
@@ -124,7 +130,7 @@ export const PandemicDiseaseDisplay = props => {
             <Fragment>
               <Section
                 title="Statistics"
-                level={2} >
+                level={2}>
                 <Grid>
                   <Grid.Column>
                     <LabeledList>
@@ -150,11 +156,11 @@ export const PandemicDiseaseDisplay = props => {
               </Section>
               <Section
                 title="Symptoms"
-                level={2} >
+                level={2}>
                 {symptoms.map(symptom => (
                   <Collapsible
                     key={symptom.name}
-                    title={symptom.name} >
+                    title={symptom.name}>
                     <Section>
                       <PandemicSymptomDisplay symptom={symptom} />
                     </Section>
@@ -181,10 +187,8 @@ export const PandemicSymptomDisplay = props => {
     level,
     neutered,
   } = symptom;
-
   const thresholds = map((desc, label) => ({ desc, label }))(
     symptom.threshold_desc || {});
-
   return (
     <Section
       title={name}
@@ -192,10 +196,10 @@ export const PandemicSymptomDisplay = props => {
       buttons={!!neutered && (
         <Box
           bold
-          color="bad" >
+          color="bad">
           Neutered
         </Box>
-      )} >
+      )}>
       <Grid>
         <Grid.Column size={2}>
           {desc}
@@ -223,13 +227,13 @@ export const PandemicSymptomDisplay = props => {
       {thresholds.length > 0 && (
         <Section
           title="Thresholds"
-          level={3} >
+          level={3}>
           <LabeledList>
             {thresholds.map(threshold => {
               return (
                 <LabeledList.Item
                   key={threshold.label}
-                  label={threshold.label} >
+                  label={threshold.label}>
                   {threshold.desc}
                 </LabeledList.Item>
               );
@@ -239,14 +243,17 @@ export const PandemicSymptomDisplay = props => {
       )}
     </Section>
   );
-
 };
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/Pandemic.js
 export const PandemicAntibodyDisplay = props => {
   const { act, data } = useBackend(props);
 
+=======
+export const PandemicAntibodyDisplay = (props, context) => {
+  const { act, data } = useBackend(context);
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/Pandemic.js
   const resistances = data.resistances || [];
-
   return (
     <Section title="Antibodies">
       {resistances.length > 0 ? (
@@ -254,7 +261,7 @@ export const PandemicAntibodyDisplay = props => {
           {resistances.map(resistance => (
             <LabeledList.Item
               key={resistance.name}
-              label={resistance.name} >
+              label={resistance.name}>
               <Button
                 icon="eye-dropper"
                 content="Create vaccine bottle"
@@ -269,7 +276,7 @@ export const PandemicAntibodyDisplay = props => {
         <Box
           bold
           color="bad"
-          mt={1} >
+          mt={1}>
           No antibodies detected.
         </Box>
       )}
@@ -277,6 +284,7 @@ export const PandemicAntibodyDisplay = props => {
   );
 };
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/Pandemic.js
 export const Pandemic = props => {
   const { data } = useBackend(props);
 
@@ -290,5 +298,24 @@ export const Pandemic = props => {
         </Fragment>
       )}
     </Fragment>
+=======
+export const Pandemic = (props, context) => {
+  const { data } = useBackend(context);
+  return (
+    <Window
+      width={520}
+      height={550}
+      resizable>
+      <Window.Content scrollable>
+        <PandemicBeakerDisplay />
+        {!!data.has_blood && (
+          <Fragment>
+            <PandemicDiseaseDisplay />
+            <PandemicAntibodyDisplay />
+          </Fragment>
+        )}
+      </Window.Content>
+    </Window>
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/Pandemic.js
   );
 };

@@ -3,6 +3,7 @@ import { useBackend } from '../backend';
 import { AnimatedNumber, Button, LabeledList, ProgressBar, Section } from '../components';
 import { BeakerContents } from './common/BeakerContents';
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/Cryo.js
 export const Cryo = props => {
   const { act, data } = useBackend(props);
   const damageTypes = [
@@ -23,6 +24,42 @@ export const Cryo = props => {
       type: "fireLoss",
     },
   ];
+=======
+const damageTypes = [
+  {
+    label: "Brute",
+    type: "bruteLoss",
+  },
+  {
+    label: "Respiratory",
+    type: "oxyLoss",
+  },
+  {
+    label: "Toxin",
+    type: "toxLoss",
+  },
+  {
+    label: "Burn",
+    type: "fireLoss",
+  },
+];
+
+export const Cryo = () => {
+  return (
+    <Window
+      width={400}
+      height={550}
+      resizable>
+      <Window.Content scrollable>
+        <CryoContent />
+      </Window.Content>
+    </Window>
+  );
+};
+
+const CryoContent = (props, context) => {
+  const { act, data } = useBackend(context);
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/Cryo.js
   return (
     <Fragment>
       <Section title="Occupant">

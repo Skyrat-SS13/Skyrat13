@@ -53,8 +53,27 @@ export class FakeTerminal extends Component {
   }
 }
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/SyndContractor.js
 export const SyndContractor = props => {
   const { data, act } = useBackend(props);
+=======
+export const SyndContractor = (props, context) => {
+  return (
+    <NtosWindow
+      width={500}
+      height={600}
+      theme="syndicate"
+      resizable>
+      <NtosWindow.Content scrollable>
+        <SyndContractorContent />
+      </NtosWindow.Content>
+    </NtosWindow>
+  );
+};
+
+export const SyndContractorContent = (props, context) => {
+  const { data, act } = useBackend(context);
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/SyndContractor.js
 
   const terminalMessages = [
     "Recording biometric data...",
@@ -274,10 +293,28 @@ export const SyndPane = props => {
           <Section
             title="Availible Contracts"
             buttons={(
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/SyndContractor.js
               <Button
                 content="Call Extraction"
                 disabled={!data.ongoing_contract || data.extraction_enroute}
                 onClick={() => act('PRG_call_extraction')} />
+=======
+              <Fragment>
+                {limited && (
+                  <Box inline bold mr={1}>
+                    {item.limited} remaining
+                  </Box>
+                )}
+                <Button
+                  content="Purchase"
+                  disabled={data.contract_rep < item.cost
+                    || (limited && item.limited <= 0)}
+                  onClick={() => act('buy_hub', {
+                    item: item.name,
+                    cost: item.cost,
+                  })} />
+              </Fragment>
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/SyndContractor.js
             )}>
             {contracts.map(contract => {
               const active = (contract.status > 1);

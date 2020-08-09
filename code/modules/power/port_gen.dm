@@ -209,6 +209,7 @@
 /obj/machinery/power/port_gen/pacman/attack_paw(mob/user)
 	interact(user)
 
+<<<<<<< HEAD
 /obj/machinery/power/port_gen/pacman/ui_interact(mob/user)
 	. = ..()
 	if (get_dist(src, user) > 1 )
@@ -233,6 +234,32 @@
 	onclose(user, "port_gen")
 
 /obj/machinery/power/port_gen/pacman/Topic(href, href_list)
+=======
+/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PortableGenerator", name)
+		ui.open()
+
+/obj/machinery/power/port_gen/pacman/ui_data()
+	var/data = list()
+
+	data["active"] = active
+	data["sheet_name"] = capitalize(sheet_name)
+	data["sheets"] = sheets
+	data["stack_percent"] = round(sheet_left * 100, 0.1)
+
+	data["anchored"] = anchored
+	data["connected"] = (powernet == null ? 0 : 1)
+	data["ready_to_boot"] = anchored && HasFuel()
+	data["power_generated"] = DisplayPower(power_gen)
+	data["power_output"] = DisplayPower(power_gen * power_output)
+	data["power_available"] = (powernet == null ? 0 : DisplayPower(avail()))
+	data["current_heat"] = current_heat
+	. =  data
+
+/obj/machinery/power/port_gen/pacman/ui_act(action, params)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	if(..())
 		return
 

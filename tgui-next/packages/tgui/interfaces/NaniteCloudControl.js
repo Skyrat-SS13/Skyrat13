@@ -10,7 +10,6 @@ export const NaniteDiskBox = props => {
     has_program,
     disk,
   } = data;
-
   if (!has_disk) {
     return (
       <NoticeBox>
@@ -18,7 +17,6 @@ export const NaniteDiskBox = props => {
       </NoticeBox>
     );
   }
-
   if (!has_program) {
     return (
       <NoticeBox>
@@ -26,7 +24,6 @@ export const NaniteDiskBox = props => {
       </NoticeBox>
     );
   }
-
   return (
     <NaniteInfoBox program={disk} />
   );
@@ -34,7 +31,6 @@ export const NaniteDiskBox = props => {
 
 export const NaniteInfoBox = props => {
   const { program } = props;
-
   const {
     name,
     desc,
@@ -52,9 +48,7 @@ export const NaniteInfoBox = props => {
     timer_trigger,
     timer_trigger_delay,
   } = program;
-
   const extra_settings = program.extra_settings || [];
-
   return (
     <Section
       title={name}
@@ -165,18 +159,16 @@ export const NaniteInfoBox = props => {
 export const NaniteCloudBackupList = props => {
   const { act, data } = useBackend(props);
   const cloud_backups = data.cloud_backups || [];
-  return (
-    cloud_backups.map(backup => (
-      <Button
-        fluid
-        key={backup.cloud_id}
-        content={"Backup #" + backup.cloud_id}
-        textAlign="center"
-        onClick={() => act('set_view', {
-          view: backup.cloud_id,
-        })} />
-    ))
-  );
+  return cloud_backups.map(backup => (
+    <Button
+      fluid
+      key={backup.cloud_id}
+      content={"Backup #" + backup.cloud_id}
+      textAlign="center"
+      onClick={() => act('set_view', {
+        view: backup.cloud_id,
+      })} />
+  ));
 };
 
 export const NaniteCloudBackupDetails = props => {
@@ -187,9 +179,7 @@ export const NaniteCloudBackupDetails = props => {
     has_program,
     cloud_backup,
   } = data;
-
   const can_rule = (disk && disk.can_rule) || false;
-
   if (!cloud_backup) {
     return (
       <NoticeBox>
@@ -197,9 +187,7 @@ export const NaniteCloudBackupDetails = props => {
       </NoticeBox>
     );
   }
-
   const cloud_programs = data.cloud_programs || [];
-
   return (
     <Section
       title={"Backup #" + current_view}
@@ -229,13 +217,13 @@ export const NaniteCloudBackupDetails = props => {
             )}>
             <Section>
               <NaniteInfoBox program={program} />
-              {!!can_rule && (
+              {(!!can_rule || !!program.has_rules) && (
                 <Section
                   mt={-2}
                   title="Rules"
                   level={2}
-                  buttons={(
-                    <Button
+                  buttons={(!!can_rule
+                    && <Button
                       icon="plus"
                       content="Add Rule from Disk"
                       color="good"
@@ -245,7 +233,7 @@ export const NaniteCloudBackupDetails = props => {
                   )}>
                   {program.has_rules ? (
                     rules.map(rule => (
-                      <Fragment key={rule.display}>
+                      <Box key={rule.display}>
                         <Button
                           icon="minus-circle"
                           color="bad"
@@ -253,8 +241,8 @@ export const NaniteCloudBackupDetails = props => {
                             program_id: program.id,
                             rule_id: rule.id,
                           })} />
-                        {rule.display}
-                      </Fragment>
+                        {` ${rule.display}`}
+                      </Box>
                     ))
                   ) : (
                     <Box color="bad">
@@ -279,8 +267,8 @@ export const NaniteCloudControl = props => {
     current_view,
     new_backup_id,
   } = data;
-
   return (
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/NaniteCloudControl.js
     <Fragment>
       <Section
         title="Program Disk"
@@ -297,6 +285,16 @@ export const NaniteCloudControl = props => {
         title="Cloud Storage"
         buttons={(
           current_view ? (
+=======
+    <Window
+      width={375}
+      height={700}
+      resizable>
+      <Window.Content scrollable>
+        <Section
+          title="Program Disk"
+          buttons={(
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/NaniteCloudControl.js
             <Button
               icon="arrow-left"
               content="Return"

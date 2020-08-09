@@ -1,6 +1,9 @@
 import { classes, pureComponentHooks } from 'common/react';
 import { Component, createRef } from 'inferno';
+<<<<<<< HEAD:tgui-next/packages/tgui/components/Button.js
 import { tridentVersion } from '../byond';
+=======
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/components/Button.js
 import { KEY_ENTER, KEY_ESCAPE, KEY_SPACE } from '../hotkeys';
 import { createLogger } from '../logging';
 import { refocusLayout } from '../refocus';
@@ -55,7 +58,11 @@ export const Button = props => {
         className,
       ])}
       tabIndex={!disabled && '0'}
+<<<<<<< HEAD:tgui-next/packages/tgui/components/Button.js
       unselectable={tridentVersion <= 4}
+=======
+      unselectable={Byond.IS_LTE_IE8}
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/components/Button.js
       onclick={e => {
         refocusLayout();
         if (!disabled && onClick) {
@@ -81,7 +88,10 @@ export const Button = props => {
       }}
       {...rest}>
       {icon && (
-        <Icon name={icon} rotation={iconRotation} spin={iconSpin} />
+        <Icon
+          name={icon}
+          rotation={iconRotation}
+          spin={iconSpin} />
       )}
       {content}
       {children}

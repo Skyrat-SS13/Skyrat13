@@ -10,6 +10,10 @@
 	idle_power_usage = 20
 	active_power_usage = 100
 	circuit = /obj/item/circuitboard/computer/powermonitor
+<<<<<<< HEAD
+=======
+	tgui_id = "PowerMonitor"
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 	var/obj/structure/cable/attached_wire
 	var/obj/machinery/power/apc/local_apc
@@ -83,11 +87,14 @@
 		if(demand.len > record_size)
 			demand.Cut(1, 2)
 
-/obj/machinery/computer/monitor/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/monitor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+<<<<<<< HEAD
 		ui = new(user, src, ui_key, tgui_id, name, 550, 700, master_ui, state)
+=======
+		ui = new(user, src, "PowerMonitor", name)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		ui.open()
 
 /obj/machinery/computer/monitor/ui_data()

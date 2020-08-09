@@ -5,8 +5,6 @@
 	icon_keyboard = "security_key"
 	circuit = /obj/item/circuitboard/computer/security
 	light_color = LIGHT_COLOR_RED
-	ui_x = 870
-	ui_y = 708
 
 	var/list/network = list("ss13")
 	var/obj/machinery/camera/active_camera
@@ -53,11 +51,20 @@
 	qdel(cam_background)
 	return ..()
 
+<<<<<<< HEAD
 /obj/machinery/computer/security/ui_interact(\
 		mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+=======
+/obj/machinery/computer/security/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
+	for(var/i in network)
+		network -= i
+		network += "[idnum][i]"
+
+/obj/machinery/computer/security/ui_interact(mob/user, datum/tgui/ui)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	// Update UI
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	// Show static if can't use the camera
 	if(!active_camera?.can_use())
 		show_camera_static()
@@ -74,11 +81,19 @@
 			use_power(active_power_usage)
 		// Register map objects
 		user.client.register_map_obj(cam_screen)
+<<<<<<< HEAD
 		for(var/plane in cam_plane_masters)
 			user.client.register_map_obj(plane)
 		user.client.register_map_obj(cam_background)
 		// Open UI
 		ui = new(user, src, ui_key, "camera_console", name, ui_x, ui_y, master_ui, state)
+=======
+		for(var/plane in cam_plane_master)
+			user.client.register_map_obj(plane)
+		user.client.register_map_obj(cam_background)
+		// Open UI
+		ui = new(user, src, "CameraConsole", name)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		ui.open()
 
 /obj/machinery/computer/security/ui_data()

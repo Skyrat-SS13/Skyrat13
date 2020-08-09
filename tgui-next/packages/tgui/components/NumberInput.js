@@ -1,7 +1,10 @@
 import { clamp } from 'common/math';
 import { classes, pureComponentHooks } from 'common/react';
 import { Component, createRef } from 'inferno';
+<<<<<<< HEAD:tgui-next/packages/tgui/components/NumberInput.js
 import { tridentVersion } from '../byond';
+=======
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/components/NumberInput.js
 import { AnimatedNumber } from './AnimatedNumber';
 import { Box } from './Box';
 
@@ -160,7 +163,11 @@ export class NumberInput extends Component {
     const renderContentElement = value => (
       <div
         className="NumberInput__content"
+<<<<<<< HEAD:tgui-next/packages/tgui/components/NumberInput.js
         unselectable={tridentVersion <= 4}>
+=======
+        unselectable={Byond.IS_LTE_IE8}>
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/components/NumberInput.js
         {value + (unit ? ' ' + unit : '')}
       </div>
     );

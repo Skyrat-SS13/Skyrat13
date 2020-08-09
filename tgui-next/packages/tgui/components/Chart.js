@@ -117,5 +117,9 @@ const Stub = props => null;
 
 // IE8: No inline svg support
 export const Chart = {
+<<<<<<< HEAD:tgui-next/packages/tgui/components/Chart.js
   Line: tridentVersion <= 4 ? Stub : LineChart,
+=======
+  Line: Byond.IS_LTE_IE8 ? Stub : LineChart,
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/components/Chart.js
 };

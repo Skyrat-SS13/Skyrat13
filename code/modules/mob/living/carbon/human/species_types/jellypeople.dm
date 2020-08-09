@@ -318,11 +318,20 @@
 	else
 		ui_interact(owner)
 
-/datum/action/innate/swap_body/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
+/datum/action/innate/swap_body/ui_host(mob/user)
+	return owner
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/action/innate/swap_body/ui_state(mob/user)
+	return GLOB.not_incapacitated_state
+
+/datum/action/innate/swap_body/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+<<<<<<< HEAD
 		ui = new(user, src, ui_key, "slime_swap_body", name, 400, 400, master_ui, state)
+=======
+		ui = new(user, src, "SlimeBodySwapper", name)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		ui.open()
 
 /datum/action/innate/swap_body/ui_data(mob/user)
@@ -392,7 +401,8 @@
 		return
 	switch(action)
 		if("swap")
-			var/mob/living/carbon/human/selected = locate(params["ref"])
+			var/datum/species/jelly/slime/SS = H.dna.species
+			var/mob/living/carbon/human/selected = locate(params["ref"]) in SS.bodies
 			if(!can_swap(selected))
 				return
 			SStgui.close_uis(src)

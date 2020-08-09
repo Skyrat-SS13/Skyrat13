@@ -11,10 +11,14 @@
 	requires_ntnet = 0
 	network_destination = "power monitoring system"
 	size = 9
+<<<<<<< HEAD
 	tgui_id = "ntos_power_monitor"
 	ui_style = "ntos"
 	ui_x = 550
 	ui_y = 700
+=======
+	tgui_id = "NtosPowerMonitor"
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 	var/has_alert = 0
 	var/obj/structure/cable/attached_wire

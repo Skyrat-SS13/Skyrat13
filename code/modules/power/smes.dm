@@ -21,6 +21,10 @@
 	density = TRUE
 	use_power = NO_POWER_USE
 	circuit = /obj/item/circuitboard/machine/smes
+<<<<<<< HEAD
+=======
+
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	var/capacity = 5e6 // maximum charge
 	var/charge = 0 // actual charge
 
@@ -198,7 +202,7 @@
 
 /obj/machinery/power/smes/update_overlays()
 	. = ..()
-	if((stat & BROKEN) || panel_open)
+	if(stat & BROKEN)
 		return
 
 	if(outputting)
@@ -311,11 +315,14 @@
 	return
 
 
-/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/power/smes/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+<<<<<<< HEAD
 		ui = new(user, src, ui_key, "smes", name, 340, 440, master_ui, state)
+=======
+		ui = new(user, src, "Smes", name)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		ui.open()
 
 /obj/machinery/power/smes/ui_data()

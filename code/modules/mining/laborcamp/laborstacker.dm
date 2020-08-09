@@ -8,6 +8,10 @@ GLOBAL_LIST(labor_sheet_values)
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 	density = FALSE
+<<<<<<< HEAD
+=======
+
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	var/obj/machinery/mineral/stacking_machine/laborstacker/stacking_machine = null
 	var/machinedir = SOUTH
 	var/obj/machinery/door/airlock/release_door
@@ -32,11 +36,14 @@ GLOBAL_LIST(labor_sheet_values)
 /proc/cmp_sheet_list(list/a, list/b)
 	return a["value"] - b["value"]
 
-/obj/machinery/mineral/labor_claim_console/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/mineral/labor_claim_console/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+<<<<<<< HEAD
 		ui = new(user, src, ui_key, "labor_claim_console", name, 315, 430, master_ui, state)
+=======
+		ui = new(user, src, "LaborClaimConsole", name)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		ui.open()
 
 /obj/machinery/mineral/labor_claim_console/ui_data(mob/user)
@@ -122,7 +129,7 @@ GLOBAL_LIST(labor_sheet_values)
 /obj/machinery/mineral/stacking_machine/laborstacker
 	force_connect = TRUE
 	var/points = 0 //The unclaimed value of ore stacked.
-
+	//damage_deflection = 21
 /obj/machinery/mineral/stacking_machine/laborstacker/process_sheet(obj/item/stack/sheet/inp)
 	points += inp.point_value * inp.amount
 	..()

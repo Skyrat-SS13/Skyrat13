@@ -36,6 +36,11 @@
 	speed_multiplier = 0
 	no_cost = TRUE
 
+/obj/item/clockwork/slab/debug/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+	if(!is_servant_of_ratvar(user))
+		add_servant_of_ratvar(user)
+	return ..()
+
 /obj/item/clockwork/slab/traitor
 	var/spent = FALSE
 
@@ -54,12 +59,15 @@
 			to_chat(user, "<span class='userdanger'>[src] falls dark. It appears you weren't worthy.</span>")
 	return ..()
 
+<<<<<<< HEAD
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clockwork/slab/debug/attack_hand(mob/living/user)
 	if(!is_servant_of_ratvar(user))
 		add_servant_of_ratvar(user)
 	return ..()
 
+=======
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 /obj/item/clockwork/slab/cyborg //three scriptures, plus a spear and fabricator
 	clockwork_desc = "A divine link to the Celestial Derelict, allowing for limited recital of scripture."
 	quickbound = list(/datum/clockwork_scripture/ranged_ability/judicial_marker, /datum/clockwork_scripture/ranged_ability/linked_vanguard, \
@@ -140,6 +148,7 @@
 
 /obj/item/clockwork/slab/examine(mob/user)
 	. = ..()
+<<<<<<< HEAD
 	if(is_servant_of_ratvar(user) || isobserver(user))
 		if(LAZYLEN(quickbound))
 			for(var/i in 1 to quickbound.len)
@@ -148,6 +157,17 @@
 				var/datum/clockwork_scripture/quickbind_slot = quickbound[i]
 				. += "<b>Quickbind</b> button: <span class='[get_component_span(initial(quickbind_slot.primary_component))]'>[initial(quickbind_slot.name)]</span>."
 		. += "<b>Available power:</b> <span class='bold brass'>[DisplayPower(get_clockwork_power())].</span>"
+=======
+	if(!is_servant_of_ratvar(user) || !isobserver(user))
+		return
+	if(LAZYLEN(quickbound))
+		for(var/i in 1 to quickbound.len)
+			if(!quickbound[i])
+				continue
+			var/datum/clockwork_scripture/quickbind_slot = quickbound[i]
+			. += "Quickbind button: <span class='[get_component_span(initial(quickbind_slot.primary_component))]'>[initial(quickbind_slot.name)]</span>."
+	. += "Available power: <span class='bold brass'>[DisplayPower(get_clockwork_power())].</span>"
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 //Slab actions; Hierophant, Quickbind
 /obj/item/clockwork/slab/ui_action_click(mob/user, action)
@@ -192,6 +212,7 @@
 	ui_interact(user)
 	return TRUE
 
+<<<<<<< HEAD
 /obj/item/clockwork/slab/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.inventory_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
@@ -200,6 +221,8 @@
 		ui.set_style("clockwork")
 		ui.open()
 
+=======
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 /obj/item/clockwork/slab/proc/recite_scripture(datum/clockwork_scripture/scripture, mob/living/user)
 	if(!scripture || !user || !user.canUseTopic(src) || (!no_cost && !can_recite_scripture(user)))
 		return FALSE
@@ -217,7 +240,47 @@
 	scripture_to_recite.run_scripture()
 	return TRUE
 
+/*
+ * Gets text for a certain section. "Default" is used for when you first open Recollection.
+ * Current sections (make sure to update this if you add one:
+ * Basics
+ * Terminology
+ * Components
+ * Scripture
+ * Power
+ * Conversion
+ * * what - What section?
+ */
+/obj/item/clockwork/slab/proc/get_recollection(what) //Now DMDOC compliant!*
+	. = list()
+	switch(what) //need someone to rewrite info for this.
+		if("Default")
+			.["title"] = "Default"
+			.["info"] = "Hello servant! Currently these categories dosen't work!"
+		/*
+		if("Basics")
+			.["title"] = "Basics"
+			.["info"] = "# MARKDOWN WITH HTML?"
+		if("Terminology")
+			.["title"] = "Terminology"
+			.["info"] = "# MARKDOWN WITH HTML?"
+		if("Components")
+			.["title"] = "Default"
+			.["info"] = "# MARKDOWN WITH HTML?"
+		if("Scripture")
+			.["title"] = "Default"
+			.["info"] = "# MARKDOWN WITH HTML?"
+		if("Power")
+			.["title"] = "Power"
+			.["info"] = "# MARKDOWN WITH HTML?"
+		if("Conversion")
+			.["title"] = "Conversion"
+			.["info"] = "# MARKDOWN WITH HTML?"
+		*/
+		else
+			return null //error text handled tgui side. should not cause BSOD
 
+<<<<<<< HEAD
 //Guide to Serving Ratvar
 /obj/item/clockwork/slab/proc/recollection()
 	var/list/textlist = list("If you're seeing this, file a bug report.")
@@ -484,6 +547,94 @@
 		data["rec_section"] = GLOB.ratvar_awakens ? "" : get_recollection_text(recollection_category)
 		data["rec_binds"] = GLOB.ratvar_awakens ? "" : get_recollection_quickbinds()
 	return data
+=======
+/obj/item/clockwork/slab/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ClockworkSlab", name)
+		ui.open()
+
+/obj/item/clockwork/slab/ui_data(mob/user) //we display a lot of data via TGUI
+	. = list()
+	.["recollection"] = recollecting
+	.["power"] = DisplayPower(get_clockwork_power())
+	.["power_unformatted"] = get_clockwork_power()
+	.["HONOR_RATVAR"] = GLOB.ratvar_awakens
+	.["scripture"] = list()
+	for(var/s in GLOB.all_scripture) //don't block this, even when ratvar spawns for roundend griff.
+		var/datum/clockwork_scripture/S = GLOB.all_scripture[s]
+		if(S.tier == SCRIPTURE_PERIPHERAL) // This tier is skiped because this contains basetype stuff
+			continue
+
+		var/list/data = list()
+		data["name"] = S.name
+		data["descname"] = S.descname
+		data["tip"] = "[S.desc]\n[S.usage_tip]"
+		data["required"] = "([DisplayPower(S.power_cost)][S.special_power_text ? "+ [replacetext(S.special_power_text, "POWERCOST", "[DisplayPower(S.special_power_cost)]")]" : ""])"
+		data["required_unformatted"] = S.power_cost
+		data["type"] = "[S.type]"
+		data["quickbind"] = S.quickbind //this is if it cant quickbind (bool)
+		data["fontcolor"] = get_component_color_bright(S.primary_component)
+		data["important"] = S.important //italic!
+
+		var/found = quickbound.Find(S.type)
+		if(found)
+			data["bound"] = found //number (pos) on where is it on the list
+		if(S.invokers_required > 1)
+			data["invokers"] = "Invokers: [S.invokers_required]"
+
+		.["rec_binds"] = list()
+		for(var/i in 1 to maximum_quickbound)
+			if(LAZYLEN(quickbound) < i || !quickbound[i])
+				.["rec_binds"] += list(list()) //a blank json.
+			else
+				var/datum/clockwork_scripture/quickbind_slot = quickbound[i]
+				.["rec_binds"] += list(list(
+					"name" = initial(quickbind_slot.name),
+					"color" = get_component_color_bright(initial(quickbind_slot.primary_component))
+				))
+
+		.["scripture"][S.tier] += list(data)
+
+/obj/item/clockwork/slab/ui_static_data(mob/user)
+	. = list()
+	.["tier_infos"] = list() //HEY!! WHEN ADDING NEW TIER, ADD IT HERE
+	.["tier_infos"][SCRIPTURE_PERIPHERAL] = list(
+		"requirement" = "Breaking the code DM side. Report to coggerbus if this appears!!",
+		"ready" = FALSE //just in case. Should NOT exist at all
+	)
+	.["tier_infos"][SCRIPTURE_DRIVER] = list(
+		"requirement" = "None, this is already unlocked",
+		"ready" = TRUE //to bold it on JS side, and to say "These scriptures are permanently unlocked."
+	)
+	.["tier_infos"][SCRIPTURE_SCRIPT] = list(
+		"requirement" = "These scriptures will automatically unlock when the Ark is halfway ready or if [DisplayPower(SCRIPT_UNLOCK_THRESHOLD)] of power is reached.",
+		"ready" = SSticker.scripture_states[SCRIPTURE_SCRIPT] //huh, on the gamemode ticker? okay...
+	)
+	.["tier_infos"][SCRIPTURE_APPLICATION] = list(
+		"requirement" = "Unlock these optional scriptures by converting another servant or if [DisplayPower(APPLICATION_UNLOCK_THRESHOLD)] of power is reached..",
+		"ready" = SSticker.scripture_states[SCRIPTURE_APPLICATION]
+	)
+	.["tier_infos"][SCRIPTURE_JUDGEMENT] = list(
+		"requirement" = "Unlock powerful equipment and structures by converting five servants or if [DisplayPower(JUDGEMENT_UNLOCK_THRESHOLD)] of power is reached..",
+		"ready" = SSticker.scripture_states[SCRIPTURE_JUDGEMENT]
+	)
+	.["recollection_categories"] = list()
+	if(GLOB.ratvar_awakens)
+		return
+	.["recollection_categories"] = list(
+		list("name" = "Getting Started", "desc" = "First-time servant? Read this first."),
+		list("name" = "Basics", "desc" = "A primer on how to play as a servant."),
+		list("name" = "Terminology", "desc" = "Common acronyms, words, and terms."),
+		list("name" = "Components", "desc" = "Information on components, your primary resource."),
+		list("name" = "Scripture", "desc" = "Information on scripture, ancient tools used by the cult."),
+		list("name" = "Power", "desc" = "The power system that certain objects use to function."),
+		list("name" = "Conversion", "desc" = "Converting the crew, cyborgs, and very walls to your cause.")
+	)
+	.["rec_section"] = get_recollection(recollection_category)
+	generate_all_scripture()
+	//needs a new place to live, preferably when clockcult unlocks/downgrades a tier. Smart enough to earlyreturn.
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 /obj/item/clockwork/slab/ui_act(action, params)
 	switch(action)

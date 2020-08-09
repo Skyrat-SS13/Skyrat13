@@ -5,6 +5,8 @@ import { Component, createRef } from 'inferno';
 import { pureComponentHooks } from 'common/react';
 
 
+const PX_PER_UNIT = 28;
+
 class PaintCanvas extends Component {
   constructor(props) {
     super(props);
@@ -61,16 +63,14 @@ class PaintCanvas extends Component {
     const {
       res = 1,
       value,
-      px_per_unit = 28,
       ...rest
     } = this.props;
-    const x_size = value.length * px_per_unit;
-    const y_size = x_size !== 0 ? value[0].length * px_per_unit : 0;
+    const [width, height] = getImageSize(value);
     return (
       <canvas
         ref={this.canvasRef}
-        width={x_size || 300}
-        height={y_size || 300}
+        width={(width * PX_PER_UNIT) || 300}
+        height={(height * PX_PER_UNIT) || 300}
         {...rest}
         onClick={e => this.clickwrapper(e)}>
         Canvas failed to render.
@@ -78,6 +78,7 @@ class PaintCanvas extends Component {
     );
   }
 }
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/Canvas.js
 export const Canvas = props => {
   const { act, data } = useBackend(props);
   return (
@@ -93,4 +94,38 @@ export const Canvas = props => {
         {data.name}
       </Box>
     </Box>);
+=======
+
+const getImageSize = value => {
+  const width = value.length;
+  const height = width !== 0 ? value[0].length : 0;
+  return [width, height];
+};
+
+export const Canvas = (props, context) => {
+  const { act, data } = useBackend(context);
+  const [width, height] = getImageSize(data.grid);
+  return (
+    <Window
+      width={Math.min(400, width * PX_PER_UNIT * 32 + 24)}
+      height={Math.min(400, height * PX_PER_UNIT * 32 + 24)}
+      resizable>
+      <Window.Content scrollable>
+        <Box textAlign="center">
+          <PaintCanvas
+            value={data.grid}
+            onCanvasClick={(x, y) => act("paint", { x, y })} />
+          <Box>
+            {!data.finalized && (
+              <Button.Confirm
+                onClick={() => act("finalize")}
+                content="Finalize" />
+            )}
+            {data.name}
+          </Box>
+        </Box>
+      </Window.Content>
+    </Window>
+  );
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/Canvas.js
 };

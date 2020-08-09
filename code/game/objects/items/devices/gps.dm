@@ -1,4 +1,4 @@
-GLOBAL_LIST_EMPTY(GPS_list)
+
 /obj/item/gps
 	name = "global positioning system"
 	desc = "Helping lost spacemen find their way through the planets since 2016."
@@ -8,19 +8,10 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	slot_flags = ITEM_SLOT_BELT
 	obj_flags = UNIQUE_RENAME
 	var/gpstag = "COM0"
-	var/emped = FALSE
-	var/tracking = TRUE
-	var/updating = TRUE //Automatic updating of GPS list. Can be set to manual by user.
-	var/global_mode = TRUE //If disabled, only GPS signals of the same Z level are shown
-
-/obj/item/gps/examine(mob/user)
-	. = ..()
-	var/turf/curr = get_turf(src)
-	. += "The screen says: [get_area_name(curr, TRUE)] ([curr.x], [curr.y], [curr.z])"
-	. += "<span class='notice'>Alt-click to switch it [tracking ? "off":"on"].</span>"
 
 /obj/item/gps/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	GLOB.GPS_list += src
 	name = "global positioning system ([gpstag])"
 	add_overlay("working")
@@ -140,6 +131,9 @@ GLOBAL_LIST_EMPTY(GPS_list)
 			global_mode = !global_mode
 			. = TRUE
 
+=======
+	AddComponent(/datum/component/gps/item, gpstag)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 /obj/item/gps/science
 	icon_state = "gps-s"

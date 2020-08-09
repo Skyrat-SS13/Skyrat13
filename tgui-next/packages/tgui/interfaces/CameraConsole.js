@@ -52,7 +52,14 @@ export const CameraConsoleWrapper = props => {
     nextCameraName,
   ] = prevNextCamera(cameras, activeCamera);
   return (
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/CameraConsole.js
     <Fragment>
+=======
+    <Window
+      width={870}
+      height={708}
+      resizable>
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/CameraConsole.js
       <div className="CameraConsole__left">
         {children}
       </div>
@@ -81,7 +88,6 @@ export const CameraConsoleWrapper = props => {
           className="CameraConsole__map"
           params={{
             id: mapRef,
-            parent: config.window,
             type: 'map',
           }} />
       </div>

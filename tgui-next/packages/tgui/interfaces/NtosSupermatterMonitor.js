@@ -7,9 +7,27 @@ import { getGasColor, getGasLabel } from '../constants';
 
 const logScale = value => Math.log2(16 + Math.max(0, value)) - 4;
 
+<<<<<<< HEAD:tgui-next/packages/tgui/interfaces/NtosSupermatterMonitor.js
 export const NtosSupermatterMonitor = props => {
   const { state } = props;
   const { act, data } = useBackend(props);
+=======
+export const NtosSupermatterMonitor = (props, context) => {
+  return (
+    <NtosWindow
+      width={600}
+      height={350}
+      resizable>
+      <NtosWindow.Content scrollable>
+        <NtosSupermatterMonitorContent />
+      </NtosWindow.Content>
+    </NtosWindow>
+  );
+};
+
+export const NtosSupermatterMonitorContent = (props, context) => {
+  const { act, data } = useBackend(context);
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/interfaces/NtosSupermatterMonitor.js
   const {
     active,
     SM_integrity,

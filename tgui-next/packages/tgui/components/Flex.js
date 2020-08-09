@@ -1,5 +1,9 @@
 import { classes, pureComponentHooks } from 'common/react';
+<<<<<<< HEAD:tgui-next/packages/tgui/components/Flex.js
 import { Box } from './Box';
+=======
+import { Box, unit } from './Box';
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/components/Flex.js
 
 export const computeFlexProps = props => {
   const {
@@ -14,6 +18,15 @@ export const computeFlexProps = props => {
   return {
     className: classes([
       'Flex',
+<<<<<<< HEAD:tgui-next/packages/tgui/components/Flex.js
+=======
+      Byond.IS_LTE_IE10 && (
+        direction === 'column'
+          ? 'Flex--iefix--column'
+          : 'Flex--iefix'
+      ),
+      inline && 'Flex--inline',
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/components/Flex.js
       spacing > 0 && 'Flex--spacing--' + spacing,
       className,
     ]),
@@ -45,6 +58,10 @@ export const computeFlexItemProps = props => {
   return {
     className: classes([
       'Flex__item',
+<<<<<<< HEAD:tgui-next/packages/tgui/components/Flex.js
+=======
+      Byond.IS_LTE_IE10 && 'Flex__item--iefix',
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4:tgui/packages/tgui/components/Flex.js
       className,
     ]),
     style: {

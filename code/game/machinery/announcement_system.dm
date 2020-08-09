@@ -101,6 +101,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		for(var/channel in channels)
 			radio.talk_into(src, message, channel)
 
+<<<<<<< HEAD
 //config stuff
 
 /obj/machinery/announcement_system/ui_interact(mob/user)
@@ -122,6 +123,25 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 
 /obj/machinery/announcement_system/Topic(href, href_list)
 	if(..())
+=======
+/obj/machinery/announcement_system/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AutomatedAnnouncement")
+		ui.open()
+
+/obj/machinery/announcement_system/ui_data()
+	var/list/data = list()
+	data["arrival"] = arrival
+	data["arrivalToggle"] = arrivalToggle
+	data["newhead"] = newhead
+	data["newheadToggle"] = newheadToggle
+	return data
+
+/obj/machinery/announcement_system/ui_act(action, param)
+	. = ..()
+	if(.)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		return
 	if(!usr.canUseTopic(src, !hasSiliconAccessInArea(usr)))
 		return

@@ -1,6 +1,7 @@
 // /program/ files are executable programs that do things.
 /datum/computer_file/program
 	filetype = "PRG"
+<<<<<<< HEAD
 	filename = "UnknownProgram"				// File name. FILE NAME MUST BE UNIQUE IF YOU WANT THE PROGRAM TO BE DOWNLOADABLE FROM NTNET!
 	var/required_access = null				// List of required accesses to *run* the program.
 	var/transfer_access = null				// List of required access to download or file host the program
@@ -21,6 +22,42 @@
 	var/ui_x = 575							// Default size of TGUI window, in pixels
 	var/ui_y = 700
 	var/ui_header = null					// Example: "something.gif" - a header image that will be rendered in computer's UI when this program is running at background. Images are taken from /icons/program_icons. Be careful not to use too large images!
+=======
+	/// File name. FILE NAME MUST BE UNIQUE IF YOU WANT THE PROGRAM TO BE DOWNLOADABLE FROM NTNET!
+	filename = "UnknownProgram"
+	/// List of required accesses to *run* the program.
+	var/required_access = null
+	/// List of required access to download or file host the program
+	var/transfer_access = null
+	/// PROGRAM_STATE_KILLED or PROGRAM_STATE_BACKGROUND or PROGRAM_STATE_ACTIVE - specifies whether this program is running.
+	var/program_state = PROGRAM_STATE_KILLED
+	/// Device that runs this program.
+	var/obj/item/modular_computer/computer
+	/// User-friendly name of this program.
+	var/filedesc = "Unknown Program"
+	/// Short description of this program's function.
+	var/extended_desc = "N/A"
+	/// Program-specific screen icon state
+	var/program_icon_state = null
+	/// Set to 1 for program to require nonstop NTNet connection to run. If NTNet connection is lost program crashes.
+	var/requires_ntnet = FALSE
+	/// Optional, if above is set to 1 checks for specific function of NTNet (currently NTNET_SOFTWAREDOWNLOAD, NTNET_PEERTOPEER, NTNET_SYSTEMCONTROL and NTNET_COMMUNICATION)
+	var/requires_ntnet_feature = 0
+	/// NTNet status, updated every tick by computer running this program. Don't use this for checks if NTNet works, computers do that. Use this for calculations, etc.
+	var/ntnet_status = 1
+	/// Bitflags (PROGRAM_CONSOLE, PROGRAM_LAPTOP, PROGRAM_TABLET combination) or PROGRAM_ALL
+	var/usage_flags = PROGRAM_ALL
+	/// Optional string that describes what NTNet server/system this program connects to. Used in default logging.
+	var/network_destination = null
+	/// Whether the program can be downloaded from NTNet. Set to 0 to disable.
+	var/available_on_ntnet = 1
+	/// Whether the program can be downloaded from SyndiNet (accessible via emagging the computer). Set to 1 to enable.
+	var/available_on_syndinet = 0
+	/// Name of the tgui interface
+	var/tgui_id
+	/// Example: "something.gif" - a header image that will be rendered in computer's UI when this program is running at background. Images are taken from /icons/program_icons. Be careful not to use too large images!
+	var/ui_header = null
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 
 /datum/computer_file/program/New(obj/item/modular_computer/comp = null)
 	..()
@@ -55,7 +92,11 @@
 /datum/computer_file/program/proc/is_supported_by_hardware(hardware_flag = 0, loud = 0, mob/user = null)
 	if(!(hardware_flag & usage_flags))
 		if(loud && computer && user)
+<<<<<<< HEAD
 			to_chat(user, "<span class='danger'>\The [computer] flashes an \"Hardware Error - Incompatible software\" warning.</span>")
+=======
+			to_chat(user, "<span class='danger'>\The [computer] flashes a \"Hardware Error - Incompatible software\" warning.</span>")
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		return 0
 	return 1
 
@@ -111,7 +152,7 @@
 				return TRUE
 		if(loud)
 			to_chat(user, "<span class='danger'>\The [computer] flashes an \"Access Denied\" warning.</span>")
-	return FALSE
+	return 0
 
 // This attempts to retrieve header data for UIs. If implementing completely new device of different type than existing ones
 // always include the device here in this proc. This proc basically relays the request to whatever is running the program.
@@ -127,7 +168,21 @@
 		if(requires_ntnet && network_destination)
 			generate_network_log("Connection opened to [network_destination].")
 		program_state = PROGRAM_STATE_ACTIVE
-		return TRUE
+		return 1
+	return 0
+
+/**
+  *
+  *Called by the device when it is emagged.
+  *
+  *Emagging the device allows certain programs to unlock new functions. However, the program will
+  *need to be downloaded first, and then handle the unlock on their own in their run_emag() proc.
+  *The device will allow an emag to be run multiple times, so the user can re-emag to run the
+  *override again, should they download something new. The run_emag() proc should return TRUE if
+  *the emagging affected anything, and FALSE if no change was made (already emagged, or has no
+  *emag functions).
+**/
+/datum/computer_file/program/proc/run_emag()
 	return FALSE
 
 // Use this proc to kill the program. Designed to be implemented by each program if it requires on-quit logic, such as the NTNRC client.
@@ -135,12 +190,12 @@
 	program_state = PROGRAM_STATE_KILLED
 	if(network_destination)
 		generate_network_log("Connection to [network_destination] closed.")
-	return TRUE
+	return 1
 
-
-/datum/computer_file/program/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/computer_file/program/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui && tgui_id)
+<<<<<<< HEAD
 		var/datum/asset/assets = get_asset_datum(/datum/asset/simple/headers)
 		assets.send(user)
 
@@ -149,7 +204,11 @@
 		if(ui_style)
 			ui.set_style(ui_style)
 		ui.set_autoupdate(state = 1)
+=======
+		ui = new(user, src, tgui_id, filedesc)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		ui.open()
+		ui.send_asset(get_asset_datum(/datum/asset/simple/headers))
 
 // CONVENTIONS, READ THIS WHEN CREATING NEW PROGRAM AND OVERRIDING THIS PROC:
 // Topic calls are automagically forwarded from NanoModule this program contains.
@@ -158,17 +217,17 @@
 // ALWAYS INCLUDE PARENT CALL ..() OR DIE IN FIRE.
 /datum/computer_file/program/ui_act(action,params,datum/tgui/ui)
 	if(..())
-		return TRUE
+		return 1
 	if(computer)
 		switch(action)
 			if("PC_exit")
 				computer.kill_program()
 				ui.close()
-				return TRUE
+				return 1
 			if("PC_shutdown")
 				computer.shutdown_computer()
 				ui.close()
-				return TRUE
+				return 1
 			if("PC_minimize")
 				var/mob/user = usr
 				if(!computer.active_program || !computer.all_components[MC_CPU])

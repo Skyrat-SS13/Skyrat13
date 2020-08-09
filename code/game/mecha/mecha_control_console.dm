@@ -5,6 +5,7 @@
 	icon_keyboard = "tech_key"
 	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/computer/mecha_control
+<<<<<<< HEAD
 	var/list/located = list()
 	var/screen = 0
 	var/stored_data
@@ -37,6 +38,49 @@
 	onclose(user, "computer")
 
 /obj/machinery/computer/mecha/Topic(href, href_list)
+=======
+
+/obj/machinery/computer/mecha/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ExosuitControlConsole", name)
+		ui.open()
+
+/obj/machinery/computer/mecha/ui_data(mob/user)
+	var/list/data = list()
+
+	var/list/trackerlist = list()
+	for(var/obj/mecha/MC in GLOB.mechas_list)
+		trackerlist += MC.trackers
+
+	data["mechs"] = list()
+	for(var/obj/item/mecha_parts/mecha_tracking/MT in trackerlist)
+		if(!MT.chassis)
+			continue
+		var/obj/mecha/M = MT.chassis
+		var/list/mech_data = list(
+			name = M.name,
+			integrity = round((M.obj_integrity / M.max_integrity) * 100),
+			charge = M.cell ? round(M.cell.percent()) : null,
+			airtank = M.internal_tank ? M.return_pressure() : null,
+			pilot = M.occupant,
+			location = get_area_name(M, TRUE),
+			active_equipment = M.selected,
+			emp_recharging = MT.recharging,
+			tracker_ref = REF(MT)
+		)
+		if(istype(M, /obj/mecha/working/ripley))
+			var/obj/mecha/working/ripley/RM = M
+			mech_data += list(
+				cargo_space = round((RM.cargo.len / RM.cargo_capacity) * 100)
+		)
+
+		data["mechs"] += list(mech_data)
+
+	return data
+
+/obj/machinery/computer/mecha/ui_act(action, params)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	if(..())
 		return
 	if(href_list["send_message"])

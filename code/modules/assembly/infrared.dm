@@ -4,7 +4,10 @@
 	icon_state = "infrared"
 	custom_materials = list(/datum/material/iron=1000, /datum/material/glass=500)
 	is_position_sensitive = TRUE
+<<<<<<< HEAD
 
+=======
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	var/on = FALSE
 	var/visible = FALSE
 	var/maxlength = 8
@@ -133,7 +136,11 @@
 	. = ..()
 	setDir(t)
 
+<<<<<<< HEAD
 /obj/item/assembly/infra/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback)
+=======
+/obj/item/assembly/infra/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, gentle = FALSE, quickstart = TRUE)
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 	. = ..()
 	olddir = dir
 
@@ -179,6 +186,7 @@
 /obj/item/assembly/infra/ui_interact(mob/user)//TODO: change this this to the wire control panel
 	. = ..()
 	if(is_secured(user))
+<<<<<<< HEAD
 		user.set_machine(src)
 		var/dat = "<TT><B>Infrared Laser</B></TT>"
 		dat += "<BR><B>Status</B>: [on ? "<A href='?src=[REF(src)];state=0'>On</A>" : "<A href='?src=[REF(src)];state=1'>Off</A>"]"
@@ -187,6 +195,25 @@
 		dat += "<BR><BR><A href='?src=[REF(src)];close=1'>Close</A>"
 		user << browse(dat, "window=infra")
 		onclose(user, "infra")
+=======
+		return ..()
+	return UI_CLOSE
+
+/obj/item/assembly/infra/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "InfraredEmitter", name)
+		ui.open()
+
+/obj/item/assembly/infra/ui_data(mob/user)
+	var/list/data = list()
+	data["on"] = on
+	data["visible"] = visible
+	return data
+
+/obj/item/assembly/infra/ui_act(action, params)
+	if(..())
+>>>>>>> f20f01cc6b... Merge pull request #12853 from LetterN/TGUI-4
 		return
 
 /obj/item/assembly/infra/Topic(href, href_list)
