@@ -630,7 +630,7 @@
 	rank = "Gunner"
 
 /obj/effect/mob_spawn/human/ghostcafe
-	name = "Ghost Cafe Sleeper"
+	name = "Cafe Sleeper"
 	uses = -1
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
@@ -702,7 +702,7 @@
 			uniform = suited ? /obj/item/clothing/under/color/random : /obj/item/clothing/under/color/jumpskirt/random
 
 /obj/item/storage/box/syndie_kit/chameleon/ghostcafe
-	name = "ghost cafe costuming kit"
+	name = "cafe costuming kit"
 	desc = "Look just the way you did in life - or better!"
 
 /obj/item/storage/box/syndie_kit/chameleon/ghostcafe/PopulateContents() // Doesn't contain a PDA, for isolation reasons.
