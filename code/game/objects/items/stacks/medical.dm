@@ -166,7 +166,7 @@
 	other_delay = 20
 	amount = 15
 	max_amount = 15
-	custom_price = 100
+	custom_price = PRICE_EXPENSIVE
 	absorption_rate = 0.25
 	absorption_capacity = 5
 	splint_factor = 0.35
@@ -236,6 +236,14 @@
 					 "<span class='notice'>You cut [src] into pieces of cloth with [I].</span>", \
 					 "<span class='hear'>You hear cutting.</span>")
 		use(2)
+	else if(I.is_drainable() && I.reagents.has_reagent(/datum/reagent/space_cleaner/sterilizine))
+		if(!I.reagents.has_reagent(/datum/reagent/space_cleaner/sterilizine, 5))
+			to_chat(user, "<span class='warning'>There's not enough sterilizine in [I] to sterilize [src]!</span>")
+			return
+		user.visible_message("<span class='notice'>[user] pours the contents of [I] onto [src], sterilizing it.</span>", "<span class='notice'>You pour the contents of [I] onto [src], sterilizing it.</span>")
+		I.reagents.remove_reagent(/datum/reagent/space_cleaner/sterilizine, 5)
+		new /obj/item/stack/medical/gauze/adv/one(user.drop_location())
+		use(1)
 	else
 		return ..()
 
@@ -261,7 +269,11 @@
 	name = "sterilized medical gauze"
 	desc = "A roll of elastic sterilized cloth that is extremely effective at stopping bleeding, heals minor wounds and cleans them."
 	singular_name = "sterilized medical gauze"
-	self_delay = 5
+	heal_brute = 6
+	self_delay = 40
+	other_delay = 15
+	absorption_rate = 0.4
+	absorption_capacity = 6
 
 /obj/item/stack/medical/gauze/adv/one
 	amount = 1
