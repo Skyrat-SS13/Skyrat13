@@ -664,7 +664,7 @@
 			TH.transfer_mob_blood_dna(src)
 	
 	//warn the player occasionally about dragging being bad
-	if(prob(8) && lying && bleed_amt && iscarbon(src))
+	if(prob(5) && lying && bleed_amt && iscarbon(src))
 		var/mob/living/C = src
 		var/extra_message = (C.has_gauze() ? " and tearing into their gauze" : "")
 		C.visible_message("<span class='danger'>\The [C]'s wounds scrape against \the [target_turf], worsening their situation[extra_message]!</span>", "<span class='bolddanger'><b>Your wounds scrape against \the [target_turf], worsening their situation[extra_message]!<b></span>")
