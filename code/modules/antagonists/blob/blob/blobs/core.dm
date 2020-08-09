@@ -18,7 +18,8 @@
 		return INITIALIZE_HINT_QDEL
 	if(overmind)
 		update_icon()
-	addtimer(CALLBACK(src, .proc/generate_announcement), 1800)
+	//addtimer(CALLBACK(src, .proc/generate_announcement), 1800) // this is 3 minutes
+	addtimer(CALLBACK(src, .proc/generate_announcement), 5 MINUTES) // this is 5 minutes SKYRAT EDIT - BLOB
 	. = ..()
 
 /obj/structure/blob/core/proc/generate_announcement()
@@ -65,7 +66,8 @@
 		overmind.update_health_hud()
 	Pulse_Area(overmind, 12, 4, 3)
 	for(var/obj/structure/blob/normal/B in range(1, src))
-		if(prob(5))
+		//if(prob(5))
+		if(prob(10)) //SKYRAT EDIT - BLOB
 			B.change_to(/obj/structure/blob/shield/core, overmind)
 	..()
 
