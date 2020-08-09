@@ -533,6 +533,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	owner.adjustOxyLoss(-5)
 
 /datum/status_effect/horse_stance/on_remove()
+	..()
 	owner.visible_message("<span class='warning'>[owner] resumes a normal stance!</span>", "<span class='warning'>The Horse Stance ends...</span>")
 	playsound(owner, 'modular_skyrat/sound/weapons/armstrong_horse.ogg', 75, 1)
 
