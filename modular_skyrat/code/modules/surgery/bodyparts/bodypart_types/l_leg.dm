@@ -13,6 +13,7 @@
 	stam_heal_tick = STAM_RECOVERY_LIMB
 	max_stamina_damage = 50
 	dismember_bodyzone = BODY_ZONE_PRECISE_GROIN
+	parent_bodyzone = BODY_ZONE_PRECISE_GROIN
 	amputation_point = "groin"
 	children_zones = list(BODY_ZONE_PRECISE_L_FOOT)
 	heal_zones = list(BODY_ZONE_PRECISE_L_FOOT)

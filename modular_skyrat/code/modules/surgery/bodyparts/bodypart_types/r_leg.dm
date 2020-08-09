@@ -15,6 +15,7 @@
 	stam_heal_tick = 4
 	amputation_point = "groin"
 	dismember_bodyzone = BODY_ZONE_PRECISE_GROIN
+	parent_bodyzone = BODY_ZONE_PRECISE_GROIN
 	children_zones = list(BODY_ZONE_PRECISE_R_FOOT)
 	heal_zones = list(BODY_ZONE_PRECISE_R_FOOT)
 	specific_locations = list("inner right thigh", "outer right calf", "outer right hip", "right kneecap", "lower right shin")
