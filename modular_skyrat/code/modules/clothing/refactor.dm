@@ -947,7 +947,7 @@
 
 //Cargo Utilitarian reskins
 /obj/item/clothing/under/rank/cargo/qm
- unique_reskin_icons = list(
+	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/uniforms.dmi',
 	"Gorka" = 'modular_skyrat/icons/obj/clothing/cargoutilit.dmi',
 	"Turtleneck" = 'modular_skyrat/icons/obj/clothing/cargoutilit.dmi',
