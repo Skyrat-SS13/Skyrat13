@@ -8,6 +8,7 @@
 	px_x = 0
 	px_y = -3
 	stam_damage_coeff = 1
+	stam_heal_tick = 2
 	max_stamina_damage = 100
 	amputation_point = "lumbar"
 	parent_bodyzone = BODY_ZONE_CHEST
