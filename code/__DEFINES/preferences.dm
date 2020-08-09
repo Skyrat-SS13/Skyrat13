@@ -18,6 +18,7 @@
 #define VERB_CONSENT			(1<<15) // Skyrat - ERP Mechanic Addition
 #define LEWD_VERB_SOUNDS		(1<<16) // Skyrat - ERP Mechanic Addition
 #define ASYNCHRONOUS_SAY		(1<<17) // Skyrat - Asynchronous say/me verb for speech indicator
+#define SOUND_BOSS				(1<<18) // Skyrat - Megafauna boss music
 
 #define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|MEMBER_PUBLIC|INTENT_STYLE|MIDROUND_ANTAG|SOUND_INSTRUMENTS|SOUND_SHIP_AMBIENCE|SOUND_PRAYERS|SOUND_ANNOUNCEMENTS|ASYNCHRONOUS_SAY) //Skyrat change - added ASYNCHRONOUS_SAY
 
