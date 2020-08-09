@@ -56,7 +56,7 @@
 				chosenlength = text2num(chosenlengthstring)
 				chosensong = songs[chosenlengthstring]
 				if(chosensong && !songend)
-					if(L.client.prefs?.toggles & SOUND_MEGAFAUNA)
+					if(M.client.prefs?.toggles & SOUND_MEGAFAUNA)
 						M.stop_sound_channel(CHANNEL_JUKEBOX)
 						songend = chosenlength + world.time
 						SEND_SOUND(M, chosensong) // so silence ambience will mute moosic for people who don't want that, or it just doesn't play at all if prefs disable it
