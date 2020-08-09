@@ -33,6 +33,7 @@
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/replace_limb)
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = ALL_BODYPARTS //skyrat edit
+	requires_bodypart_type = 0
 	requires_real_bodypart = TRUE
 
 //SURGERY STEP SUCCESSES
