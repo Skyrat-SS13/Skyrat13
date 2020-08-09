@@ -981,7 +981,7 @@
 	"Utility" = 'modular_skyrat/icons/mob/clothing/cargoutil.dmi',
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
+	"Default" = 'icons/mob/clothing/under.dmi',
 	"Gorka" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
 	"Turtleneck" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
 	"Utility" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
