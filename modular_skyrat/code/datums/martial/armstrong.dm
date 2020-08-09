@@ -20,9 +20,6 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 
 // rest of the file
 
-/datum/martial_art/proc/help_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	return 0
-
 /datum/martial_art/armstrong
 	name = "Armstrong Style"
 	help_verb = /mob/living/carbon/human/proc/armstrong_help
