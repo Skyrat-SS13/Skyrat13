@@ -94,6 +94,7 @@
 		"@pick(semicolon)*awoo",
 		"@pick(semicolon)*merp",
 		"@pick(semicolon)*weh",
+<<<<<<< HEAD
 		"@pick(semicolon)I'm a fucking factory worker, i don't care about the quality of my work i just want to get shit done!",
 		"@pick(semicolon)What the fuck is a blueshield again?!1!",
 		"@pick(semicolon)I WANTED ORANGE, IT GAVE ME LEMON-LIME!!",
@@ -126,6 +127,11 @@
 		"@pick(semicolon)sukc my fucc you harloet!",
 		"@pick(semicolon)REMOVE THE COMMENT!11!!",
 		"@pick(semicolon)My balls finally feel full, again."
+=======
+		"@pick(semicolon)My balls finally feel full, again.",
+		"@pick(semicolon)Assaltign a sec osficer aren't crime if ur @pick(roles)",
+		";SEC I SPILED MU JICE HELELPH HELPJ JLEP HELP"
+>>>>>>> 70c22d55af... Merge pull request #13051 from kappa-sama/patch-38
     ],
 
     "mutations": [
