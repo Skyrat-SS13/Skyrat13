@@ -15,6 +15,7 @@
 	children_zones = list()
 	amputation_point = "right leg"
 	parent_bodyzone = BODY_ZONE_L_LEG
+	heal_zones = list(BODY_ZONE_L_LEG)
 	specific_locations = list("left sole", "left ankle", "left heel")
 	max_cavity_size = WEIGHT_CLASS_TINY
 

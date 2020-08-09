@@ -14,6 +14,7 @@
 	stam_heal_tick = 4
 	parent_bodyzone = BODY_ZONE_R_ARM
 	dismember_bodyzone = BODY_ZONE_R_ARM
+	heal_zones = list(BODY_ZONE_R_ARM)
 	amputation_point = "right arm"
 	children_zones = list()
 	specific_locations = list("right palm", "right back palm")

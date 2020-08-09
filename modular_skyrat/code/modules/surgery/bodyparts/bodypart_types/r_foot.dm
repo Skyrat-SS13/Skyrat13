@@ -15,6 +15,7 @@
 	amputation_point = "right leg"
 	parent_bodyzone = BODY_ZONE_R_LEG
 	dismember_bodyzone = BODY_ZONE_R_LEG
+	heal_zones = list(BODY_ZONE_R_LEG)
 	specific_locations = list("right sole", "right ankle", "right heel")
 	max_cavity_size = WEIGHT_CLASS_TINY
 

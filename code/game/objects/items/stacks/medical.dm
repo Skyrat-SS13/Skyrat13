@@ -108,10 +108,6 @@
 					childcount++
 					if(childcount >= 2)
 						break
-			else if(affecting.parent_bodyzone)
-				var/obj/item/bodypart/parent = C.get_bodypart(affecting.parent_bodyzone)
-				if(parent)
-					heal_carbon(C, user, brute, burn, FALSE, FALSE, parent)
 		return TRUE
 	if(!silent)
 		to_chat(user, "<span class='warning'>[C]'s [affecting.name] can not be healed with \the [src]!</span>")
