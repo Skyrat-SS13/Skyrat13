@@ -55,7 +55,7 @@
 	melee_damage_upper = 15
 	wound_bonus = 0
 	bare_wound_bonus = 0
-	sharpness = TRUE
+	sharpness = SHARP_EDGED
 	/// How long it takes for the alt-click slam attack to come off cooldown
 	var/slam_cooldown_time = 45 SECONDS
 	/// The actual instance var for the cooldown
