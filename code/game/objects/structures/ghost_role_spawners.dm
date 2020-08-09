@@ -634,14 +634,14 @@
 	uses = -1
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	mob_name = "a ghost cafe visitor"
+	mob_name = "a cafe visitor"
 	roundstart = FALSE
 	anchored = TRUE
 	density = FALSE
 	death = FALSE
-	assignedrole = "Ghost Cafe Visitor"
-	short_desc = "You are a Ghost Cafe Visitor!"
-	flavour_text = "You know one thing for sure. You arent actually alive. Are you in a simulation?"
+	assignedrole = "Cafe Visitor"
+	short_desc = "You are a Cafe Visitor!"
+	flavour_text = "You are off-duty and have decided to visit your favourite cafe. Enjoy yourself."
 	skip_reentry_check = TRUE
 	banType = ROLE_GHOSTCAFE
 
