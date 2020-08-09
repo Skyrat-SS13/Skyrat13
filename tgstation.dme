@@ -3545,7 +3545,6 @@
 #include "modular_skyrat\code\datums\components\crafting\recipes\recipes_weapon_and_ammo.dm"
 #include "modular_skyrat\code\datums\components\crafting\recipes\recipeswhat.dm"
 #include "modular_skyrat\code\datums\descriptors\_descriptor.dm"
-#include "modular_skyrat\code\datums\descriptors\descriptor_types\apparent_age.dm"
 #include "modular_skyrat\code\datums\descriptors\descriptor_types\build.dm"
 #include "modular_skyrat\code\datums\descriptors\descriptor_types\height.dm"
 #include "modular_skyrat\code\datums\descriptors\descriptor_types\species_based\nabber.dm"

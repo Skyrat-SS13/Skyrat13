@@ -9,7 +9,6 @@
 	var/icon_eyes = 'icons/mob/human_face.dmi'
 	var/list/languagewhitelist = list()
 	var/list/descriptors = list(
-		/datum/mob_descriptor/apparent_age = "default",
 		/datum/mob_descriptor/height = "default",
 		/datum/mob_descriptor/build = "default",
 	)
