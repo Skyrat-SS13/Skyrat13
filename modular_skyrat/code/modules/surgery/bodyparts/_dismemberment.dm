@@ -486,7 +486,7 @@
 	//Remove the dismemberment wound from the parent, if there is one at all
 	var/obj/item/bodypart/parent = C.get_bodypart(parent_bodyzone)
 	if(parent)
-		for(var/datum/wound/woundie in parent)
+		for(var/datum/wound/woundie in parent.wounds)
 			if((woundie.fake_body_zone == body_zone) && (woundie.severity == WOUND_SEVERITY_LOSS))
 				woundie.remove_wound()
 	
