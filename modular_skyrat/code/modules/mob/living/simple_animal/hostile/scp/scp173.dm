@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/scp173
 	name = "SCP 173"
-	desc = "An SCP that is known to snap your neck if you look away."
+	desc = "Do not blink. Blink and you're dead."
 	icon = 'modular_skyrat/icons/mob/scp/scp173.dmi'
 	icon_state = "scp173"
 	icon_living = "scp173"
