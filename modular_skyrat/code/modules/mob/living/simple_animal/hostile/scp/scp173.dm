@@ -11,15 +11,11 @@
 
 	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
 
-	ventcrawler = VENTCRAWLER_ALWAYS
-
 	var/blink_cooldown
 
 /mob/living/simple_animal/hostile/scp173/Life(seconds, times_fired)
 	. = ..()
 	forceBlink()
-	bloodSpawn()
-	ventCrawlCheck()
 	aiSnapNecks()
 	
 /mob/living/simple_animal/hostile/scp173/proc/forceBlink()
@@ -31,19 +27,6 @@
 		H.blind_eyes(2)
 		H.blur_eyes(4)
 	blink_cooldown = world.time + 15 SECONDS
-
-/mob/living/simple_animal/hostile/scp173/proc/bloodSpawn()
-	var/turf/T = get_turf(src)
-	var/obj/effect/decal/cleanable/blood/B = locate(/obj/effect/decal/cleanable/blood, T)
-	if(B)
-		return
-	new /obj/effect/decal/cleanable/blood(T)
-
-/mob/living/simple_animal/hostile/scp173/proc/ventCrawlCheck()
-	if(beingWatched())
-		ventcrawler = VENTCRAWLER_NONE
-	else
-		ventcrawler = VENTCRAWLER_ALWAYS
 	
 /mob/living/simple_animal/hostile/scp173/proc/aiSnapNecks()
 	if(ckey && mind)
