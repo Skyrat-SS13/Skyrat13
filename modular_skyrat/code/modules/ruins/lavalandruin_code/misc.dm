@@ -20,14 +20,19 @@
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/katana/goldbrand/Initialize()
-	..()
+	. = ..()
 	START_PROCESSING(SSobj,src)
+
+/obj/item/katana/goldbrand/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSobj,src)
 
 /obj/item/katana/goldbrand/process()
 	ourmegafauna = list()
 	for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
-		ourmegafauna += M
-	if(!ourmegafauna.len)
+		if(M.stat != DEAD)
+			ourmegafauna |= M
+	if(!length(ourmegafauna))
 		visible_message("<span class='warning'>[src] shines brightly, turning into [upgradedname]!</span>")
 		name = upgradedname
 		desc = upgradeddesc
