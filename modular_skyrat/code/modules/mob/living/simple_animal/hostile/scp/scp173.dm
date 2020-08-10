@@ -88,9 +88,12 @@
 /mob/living/simple_animal/hostile/scp173/UnarmedAttack(atom/A)
 	if(beingWatched())
 		return
-	if(isstructure(A))
-		var/obj/structure/S = A
-		S.obj_integrity -= 10
+	if(A == src)
+		return
+	if(istype(A, /obj/structure/window) || istype(A, /obj/structure/grille))
+		if(!do_after(src, 5 SECONDS, FALSE, A))
+			return
+		qdel(A)
 	else if(istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
 		if(!D.density)
