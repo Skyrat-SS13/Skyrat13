@@ -24,8 +24,8 @@
 	START_PROCESSING(SSobj,src)
 
 /obj/item/katana/goldbrand/Destroy()
-	. = ..()
 	STOP_PROCESSING(SSobj,src)
+	. = ..()
 
 /obj/item/katana/goldbrand/process()
 	ourmegafauna = list()
