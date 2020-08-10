@@ -266,7 +266,7 @@
   * * bare_wound_bonus: ditto above
   */
 /obj/item/bodypart/proc/try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
-	if(!can_dismember() || !dismemberable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE))
+	if(!can_dismember() || !dismemberable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE) || ((wounding_dmg + wound_bonus)< DISMEMBER_MINIMUM_DAMAGE) || ((wounding_dmg + bare_wound_bonus)< DISMEMBER_MINIMUM_DAMAGE))
 		return FALSE
 	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 45) // how much damage we dealt with this blow, + 40% of the damage percentage we already had on this bodypart
 	var/bio_state = owner.get_biological_state()
