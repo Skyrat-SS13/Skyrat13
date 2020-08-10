@@ -231,9 +231,9 @@
 
 /// Remove the wound from whatever it's afflicting, and cleans up whateverstatus effects it had or modifiers it had on interaction times. ignore_limb is used for detachments where we only want to forget the victim
 /datum/wound/proc/remove_wound(ignore_limb, replaced = FALSE, forced = FALSE)
-	//TODO: have better way to tell if we're getting removed without replacement (full heal) scar stuff
 	if(severity == WOUND_SEVERITY_PERMANENT && !forced)
 		return FALSE
+	//TODO: have better way to tell if we're getting removed without replacement (full heal) scar stuff
 	wound_alert(TRUE)
 	if(limb && !already_scarred && !replaced)
 		already_scarred = TRUE
