@@ -134,6 +134,15 @@
 	static_inventory += using
 	//END OF CITADEL CHANGES
 
+	//SKYRAT CHANGES - Wield button
+	using = new /obj/screen/wield
+	using.icon = ui_style_modular_skyrat(ui_style)
+	using.icon_state = "act_wield"
+	using.screen_loc = ui_wield
+	using.hud = src
+	static_inventory += using
+	//END OF SKYRAT CHANGES
+
 	//same as above but buffer.
 	sprint_buffer = new /obj/screen/sprint_buffer
 	sprint_buffer.screen_loc = ui_sprintbufferloc

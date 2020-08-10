@@ -180,18 +180,18 @@
 
 /obj/item/ebonyblade/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/wield)
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/unwield)
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
 
 /obj/item/ebonyblade/ComponentInitialize()
 	AddComponent(/datum/component/butchering, 100, 110)
 	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=13, icon_wielded="ebonyblade1")
 
-/obj/item/ebonyblade/proc/unwield(mob/living/carbon/user, show_message = TRUE)
+/obj/item/ebonyblade/proc/on_unwield(mob/living/carbon/user, show_message = TRUE)
 	block_chance = initial(block_chance)
 	lifesteal = initial(current_lifesteal)
 
-/obj/item/ebonyblade/proc/wield(mob/living/carbon/user, show_message = TRUE)
+/obj/item/ebonyblade/proc/on_wield(mob/living/carbon/user, show_message = TRUE)
 	block_chance = block_chance_wielded
 	current_lifesteal = lifesteal
 
