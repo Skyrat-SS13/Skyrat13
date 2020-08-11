@@ -219,7 +219,7 @@
 
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
-	flags_1 = ON_BORDER_1
+	flags_1 = ON_BORDER_1|DEFAULT_RICOCHET_1
 	CanAtmosPass = ATMOS_PASS_PROC
 
 /obj/machinery/door/firedoor/border_only/closed
@@ -227,6 +227,62 @@
 	opacity = TRUE
 	density = TRUE
 
+<<<<<<< HEAD
+=======
+/obj/machinery/door/firedoor/border_only/close()
+	if(density)
+		return TRUE
+	if(operating || welded)
+		return
+	var/turf/T1 = get_turf(src)
+	var/turf/T2 = get_step(T1, dir)
+	for(var/mob/living/M in T1)
+		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T2 && !M.pulling.anchored && M.pulling.move_resist <= M.move_force)
+			var/mob/living/M2 = M.pulling
+			if(!istype(M2) || !M2.buckled || !M2.buckled.buckle_prevents_pull)
+				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
+				M.pulling.forceMove(T1)
+				M.start_pulling(M2)
+
+	for(var/mob/living/M in T2)
+		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T1 && !M.pulling.anchored && M.pulling.move_resist <= M.move_force)
+			var/mob/living/M2 = M.pulling
+			if(!istype(M2) || !M2.buckled || !M2.buckled.buckle_prevents_pull)
+				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
+				M.pulling.forceMove(T2)
+				M.start_pulling(M2)
+	. = ..()
+
+/obj/machinery/door/firedoor/border_only/allow_hand_open(mob/user)
+	var/area/A = get_area(src)
+	if((!A || !A.fire) && !is_holding_pressure())
+		return TRUE
+	whack_a_mole(TRUE) // WOOP WOOP SIDE EFFECTS
+	var/turf/T = loc
+	var/turf/T2 = get_step(T, dir)
+	if(!T || !T2)
+		return
+	var/status1 = check_door_side(T)
+	var/status2 = check_door_side(T2)
+	if((status1 == 1 && status2 == -1) || (status1 == -1 && status2 == 1))
+		to_chat(user, "<span class='warning'>Access denied. Try closing another firedoor to minimize decompression, or using a crowbar.</span>")
+		return FALSE
+	return TRUE
+
+/obj/machinery/door/firedoor/border_only/proc/check_door_side(turf/open/start_point)
+	var/list/turfs = list()
+	turfs[start_point] = 1
+	for(var/i = 1; (i <= turfs.len && i <= 11); i++) // check up to 11 turfs.
+		var/turf/open/T = turfs[i]
+		if(istype(T, /turf/open/space))
+			return -1
+		for(var/T2 in T.atmos_adjacent_turfs)
+			turfs[T2] = 1
+	if(turfs.len <= 10)
+		return 0 // not big enough to matter
+	return start_point.air.return_pressure() < 20 ? -1 : 1
+
+>>>>>>> a8d61b60ef... Merge pull request #13011 from timothyteakettle/insane-shot-eyepatch
 /obj/machinery/door/firedoor/border_only/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE

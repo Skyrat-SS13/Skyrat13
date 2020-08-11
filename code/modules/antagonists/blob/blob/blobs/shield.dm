@@ -45,10 +45,12 @@
 	desc = "A solid wall of slightly twitching tendrils with a reflective glow."
 	damaged_desc = "A wall of twitching tendrils with a reflective glow."
 	icon_state = "blob_glow"
+	flags_ricochet = RICOCHET_SHINY
 	point_return = 8
 	max_integrity = 100
 	brute_resist = 1
 	explosion_block = 2
+<<<<<<< HEAD
 	//SKYRAT EDIT START - BLOB
 	ricochet_chance_mod = 2
 	ricochet_damage_mod = 0.2
@@ -56,3 +58,5 @@
 
 /obj/structure/blob/shield/reflective/check_projectile_ricochet(obj/item/projectile/P)
 	return PROJECTILE_RICOCHET_FORCE
+=======
+>>>>>>> a8d61b60ef... Merge pull request #13011 from timothyteakettle/insane-shot-eyepatch
