@@ -1,5 +1,7 @@
-//fuck you citadel maintainers for removing all this cool shit _|_ (this is still a middle finger)
-//yeah f you citadel!
+//Reminders-
+// If you add something to this list, please group it by type and sort it alphabetically instead of just jamming it in like an animal
+// cost = 700- Minimum cost, or infinite points are possible.
+
 /datum/supply_pack/security/armory/riotshotguns
 	name = "Riot Shotgun Crate"
 	desc = "For when the greytide gets really uppity. Contains three riot shotguns, seven rubber shot and beanbag shells. Requires Armory access to open."
