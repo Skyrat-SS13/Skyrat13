@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - tweak: "replaces box whiteship tbaton with truncheon"
