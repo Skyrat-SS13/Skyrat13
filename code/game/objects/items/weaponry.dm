@@ -249,6 +249,23 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	playsound(src, 'sound/weapons/bladeslice.ogg', 50, 1)
 	return(BRUTELOSS)
 
+<<<<<<< HEAD
+=======
+/obj/item/katana/timestop
+	name = "temporal katana"
+	desc = "Delicately balanced, this finely-crafted blade hums with barely-restrained potential."
+	block_chance = 0 // oops
+	force = 27.5 // oops
+	item_flags = ITEM_CAN_PARRY
+	block_parry_data = /datum/block_parry_data/bokken/quick_parry/proj
+
+/obj/item/katana/timestop/on_active_parry(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, list/block_return, parry_efficiency, parry_time)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/flynn = owner
+		flynn.emote("smirk")
+	new /obj/effect/timestop/magic(get_turf(owner), 1, 50, list(owner)) // null roddies counter
+
+>>>>>>> 5814eba033... Merge pull request #13103 from Hatterhat/oops-all-parries
 /obj/item/melee/bokken // parrying stick
 	name = "bokken"
 	desc = "A space-Japanese training sword made of wood and shaped like a katana."
