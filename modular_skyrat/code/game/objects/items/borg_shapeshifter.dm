@@ -502,12 +502,15 @@
 					if("(Service) DarkK9")
 						disguise = "k50"
 						disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+						disguise_pixel_offset = -16
 					if("(Service) Vale")
 						disguise = "valeserv"
 						disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+						disguise_pixel_offset = -16
 					if("(Service) ValeDark")
 						disguise = "valeservdark"
 						disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+						disguise_pixel_offset = -16
 					if("(Service) Bootyborg")
 						disguise = "bootyservice"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -538,6 +541,7 @@
 					if("(Janitor) Scrubpuppy")
 						disguise = "scrubpup"
 						disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+						disguise_pixel_offset = -16
 					if("(Janitor) Bootyborg")
 						disguise = "bootyjanitor"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
