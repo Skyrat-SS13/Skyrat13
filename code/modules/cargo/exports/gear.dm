@@ -672,19 +672,13 @@ datum/export/gear/glasses //glasses are not worth selling
 	unit_name = "swat mki armor"
 	export_types = list(/obj/item/clothing/suit/space/swat)
 	include_subtypes = TRUE
-// Skyrat Change
+
 /datum/export/gear/dragon_armor
-	cost = 2500 //tripled value for a rare armor that is highly, highly sought after from a mythical beast.There are exactly two of these. They should be valuable.
+	cost = 750
 	unit_name = "drake bone armor"
 	export_types = list(/obj/item/clothing/suit/hooded/cloak/drake)
 	include_subtypes = TRUE
 
-/datum/export/gear/lavamedal
-	cost = 1000
-	unit_name = "enchanted medal"
-	export_types = list(/obj/item/clothing/accessory/fireresist)
-
-// End Skyrat change
 /datum/export/gear/commandamor
 	cost = 480
 	unit_name = "command armor"

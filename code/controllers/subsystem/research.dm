@@ -34,20 +34,9 @@ SUBSYSTEM_DEF(research)
 	var/problem_computer_next_charge_time = 0
 
 	var/list/techweb_point_items = list(		//path = list(point type = value)
-
-
 	/obj/item/assembly/signaler/anomaly            = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
-	/obj/item/stock_parts/cell/high/plus/argent    = list(TECHWEB_POINT_TYPE_GENERIC = 7500), //Reduced this because there is more loot you can decon
-	/obj/item/crucible   						   = list(TECHWEB_POINT_TYPE_GENERIC = 20000),
-	/obj/item/melee/sword_of_the_forsaken 		   = list(TECHWEB_POINT_TYPE_GENERIC = 20000),
-	/obj/item/gun/magic/staff/spellblade		   = list(TECHWEB_POINT_TYPE_GENERIC = 15000),
-	/obj/item/melee/ghost_sword   				   = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
-	/obj/item/soulstone/anybody  			       = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
-	/obj/item/voodoo    						   = list(TECHWEB_POINT_TYPE_GENERIC = 7500),
-	/obj/item/gun/magic/wand/fireball  			   = list(TECHWEB_POINT_TYPE_GENERIC = 5000), //lower value because this item has charges
 
-
-
+	/obj/item/stock_parts/cell/high/plus/argent    = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
 	//END SKYRAT CHANGE
 	//   -   Slime Extracts!   - Basics
 	/obj/item/slime_extract/grey                   = list(TECHWEB_POINT_TYPE_GENERIC = 500),
