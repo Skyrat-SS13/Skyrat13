@@ -31503,6 +31503,9 @@
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/foyer)
 "blD" = (
@@ -33208,10 +33211,7 @@
 /obj/item/storage/toolbox/artistic{
 	pixel_y = 5
 	},
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = 0;
-	pixel_y = 0
-	},
+/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "boU" = (
@@ -34871,7 +34871,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "bsf" = (
-/obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -36308,15 +36307,12 @@
 /turf/open/space,
 /area/aisat)
 "bvu" = (
-/obj/structure/table/wood,
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/item/radio/off{
-	pixel_y = 4
-	},
-/obj/item/screwdriver{
-	pixel_y = 10
+/obj/structure/table/wood,
+/obj/machinery/microwave{
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
@@ -36351,34 +36347,29 @@
 /obj/structure/showcase/cyborg/old{
 	pixel_y = 20
 	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
-"bvz" = (
-/obj/structure/table/wood,
-/obj/machinery/status_display/ai{
-	pixel_y = 31
-	},
-/obj/item/flashlight/lamp,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
-"bvA" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
 /obj/item/radio/intercom{
 	dir = 8;
 	freerange = 1;
 	name = "Station Intercom (Telecomms)";
 	pixel_y = 30
 	},
-/obj/structure/table/wood,
-/obj/item/phone{
-	pixel_x = -3;
-	pixel_y = 3
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
+"bvz" = (
+/obj/machinery/status_display/ai{
+	pixel_y = 31
 	},
-/obj/item/cigbutt/cigarbutt{
-	pixel_x = 5;
-	pixel_y = -1
+/obj/machinery/computer/message_monitor,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
+"bvA" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/kirbyplants{
+	icon_state = "plant-22";
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
@@ -37245,9 +37236,6 @@
 "bxn" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
-	},
-/obj/structure/chair/office/dark{
-	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
@@ -38149,30 +38137,28 @@
 	dir = 1;
 	layer = 2.9
 	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
 "bzn" = (
-/obj/machinery/computer/message_monitor{
-	dir = 4
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/hatch{
+	name = "MiniSat Foyer";
+	req_one_access_txt = "32;19"
 	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -23
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/foyer)
 "bzo" = (
-/obj/structure/chair/office/dark{
+/obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/foyer)
 "bzp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -38229,13 +38215,14 @@
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bzu" = (
-/obj/structure/lattice,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Port Aft";
-	dir = 8;
-	network = list("minisat")
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Control Room";
+	req_one_access_txt = "19; 61"
 	},
-/turf/open/space,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/aisat)
 "bzv" = (
 /obj/structure/window/reinforced{
@@ -38844,26 +38831,26 @@
 /turf/open/space,
 /area/space/nearstation)
 "bAU" = (
-/obj/machinery/microwave{
-	pixel_y = 4
+/obj/machinery/announcement_system,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
 	},
-/obj/structure/table/wood,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bAV" = (
 /obj/machinery/light/small,
-/obj/item/storage/box/donkpockets,
-/obj/structure/table/wood,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bAW" = (
-/obj/structure/table/wood,
-/obj/item/folder/blue,
 /obj/machinery/status_display/evac{
 	pixel_y = 31
 	},
-/obj/item/folder/blue,
-/obj/item/pen,
+/obj/structure/table/wood,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bAX" = (
@@ -41046,9 +41033,14 @@
 /turf/open/floor/wood,
 /area/maintenance/bar)
 "bGh" = (
-/obj/machinery/announcement_system,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Port Aft";
+	dir = 8;
+	network = list("minisat")
+	},
+/obj/structure/window/reinforced,
+/turf/open/space/basic,
+/area/space)
 "bGi" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/light/small{
@@ -45639,13 +45631,11 @@
 /turf/open/floor/engine/plasma,
 /area/engine/atmos)
 "bRa" = (
-/obj/structure/lattice,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Starboard Aft";
-	dir = 4;
-	network = list("minisat")
+/obj/structure/window/reinforced{
+	dir = 1
 	},
-/turf/open/space,
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
 /area/aisat)
 "bRb" = (
 /obj/structure/closet/emcloset,
@@ -60489,8 +60479,7 @@
 /area/crew_quarters/heads/hor)
 "ctV" = (
 /obj/machinery/modular_computer/console/preset/research{
-	dir = 4;
-	icon_state = "console"
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hor)
@@ -63337,8 +63326,7 @@
 	name = "Robotics Operating Table"
 	},
 /obj/machinery/light/small{
-	dir = 1;
-	icon_state = "bulb"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
@@ -63359,7 +63347,6 @@
 /area/science/robotics/mechbay)
 "cAp" = (
 /obj/machinery/computer/operating{
-	dir = 2;
 	name = "Robotics Operating Computer"
 	},
 /turf/open/floor/plasteel/dark,
@@ -63741,9 +63728,7 @@
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "cBj" = (
-/obj/machinery/mecha_part_fabricator{
-	dir = 2
-	},
+/obj/machinery/mecha_part_fabricator,
 /obj/effect/turf_decal/bot,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -63844,7 +63829,6 @@
 	pixel_y = -7
 	},
 /obj/item/assembly/signaler{
-	pixel_x = 0;
 	pixel_y = -7
 	},
 /obj/item/assembly/signaler{
@@ -63860,7 +63844,6 @@
 	pixel_y = 3
 	},
 /obj/item/assembly/prox_sensor{
-	pixel_x = 0;
 	pixel_y = 3
 	},
 /obj/item/assembly/prox_sensor{
@@ -63928,7 +63911,6 @@
 /area/science/mixing)
 "cBG" = (
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = 0;
 	pixel_y = 5
 	},
 /obj/item/storage/toolbox/electrical{
@@ -76943,6 +76925,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"fZb" = (
+/obj/structure/lattice,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Starboard Aft";
+	dir = 4;
+	network = list("minisat")
+	},
+/turf/open/space,
+/area/aisat)
 "gca" = (
 /obj/structure/reagent_dispensers/keg/milk,
 /turf/open/floor/wood,
@@ -77010,6 +77004,16 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/port)
+"gju" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Control Room";
+	req_one_access_txt = "19; 61"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "gkD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -77120,6 +77124,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
+"gDL" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/space,
+/area/space/nearstation)
 "gEk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -78153,8 +78166,7 @@
 	layer = 4;
 	name = "Test Chamber Telescreen";
 	network = list("toxins");
-	pixel_x = -32;
-	pixel_y = 0
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
@@ -78376,7 +78388,6 @@
 	},
 /obj/item/stack/sheet/plasteel/fifty{
 	amount = 20;
-	pixel_x = 0;
 	pixel_y = 1
 	},
 /obj/effect/turf_decal/bot,
@@ -79659,7 +79670,6 @@
 /obj/effect/turf_decal/bot,
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = 0;
 	pixel_y = 5
 	},
 /obj/item/storage/toolbox/electrical{
@@ -79907,9 +79917,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "xem" = (
-/obj/machinery/mecha_part_fabricator{
-	dir = 2
-	},
+/obj/machinery/mecha_part_fabricator,
 /obj/effect/turf_decal/bot,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -133142,9 +133150,9 @@ bpI
 brV
 aRy
 aaa
-aaa
-aTT
-aOY
+bGh
+bRa
+gDL
 aOY
 aOY
 aOY
@@ -133399,9 +133407,9 @@ bpJ
 brW
 aRy
 aRy
-aaa
+aRy
 bzu
-aaa
+aRy
 aaa
 aaa
 aaa
@@ -133654,10 +133662,10 @@ blC
 bnx
 bpK
 bsf
-aRy
-aRy
-aRy
-aRy
+bzn
+bzo
+bzo
+bzo
 aRy
 aRy
 aRy
@@ -133914,7 +133922,7 @@ brY
 btL
 btL
 btL
-btL
+gju
 btL
 bCD
 bEf
@@ -134170,8 +134178,8 @@ bpM
 brZ
 btL
 bvu
-bGh
-bzn
+bxq
+bxq
 bAU
 bCD
 bEg
@@ -134428,7 +134436,7 @@ bsa
 btL
 bAW
 bxn
-bzo
+bxq
 bAV
 bCD
 bEh
@@ -136483,9 +136491,9 @@ bpV
 bsh
 aRy
 aRy
-aaa
-bRa
-aaa
+aRy
+aRy
+aRy
 aaa
 aaa
 aaa
@@ -136741,7 +136749,7 @@ bsi
 aRy
 aaa
 aaa
-aTY
+fZb
 aNw
 aNw
 aNw
