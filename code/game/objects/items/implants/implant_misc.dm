@@ -38,8 +38,6 @@
 	if(!uses)
 		qdel(src)
 
-<<<<<<< HEAD
-=======
 /obj/item/implant/warp
 	name = "warp implant"
 	desc = "Saves your position somewhere, and then warps you back to it after five seconds."
@@ -57,7 +55,6 @@
 /obj/item/implanter/warp
 	name = "implanter (warp)"
 	imp_type = /obj/item/implant/warp
->>>>>>> ef2c024fbe... Merge pull request #13093 from kappa-sama/patch-41
 
 /obj/item/implant/emp
 	name = "emp implant"
