@@ -12,8 +12,7 @@
 /obj/item/wrench/power/get_belt_overlay()
 	return mutable_appearance('modular_skyrat/icons/obj/clothing/belt_overlays.dmi', "drill")
 
-
-// Gren Power Drill (For Non-Engineers; it's a reskin)
+// Green Power Drill (For Non-Engineers; it's a reskin)
 
 /obj/item/screwdriver/power/green
 	icon = 'modular_skyrat/icons/obj/tools.dmi'
