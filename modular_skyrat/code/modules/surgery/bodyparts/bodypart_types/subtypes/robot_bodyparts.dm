@@ -391,7 +391,7 @@
 
 
 
-// Surplus lims
+// Surplus limbs
 /obj/item/bodypart/l_arm/robot/surplus
 	name = "surplus prosthetic left arm"
 	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
@@ -399,6 +399,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	status = BODYPART_ROBOTIC
 	//skyrat vars
 	starting_children = list(/obj/item/bodypart/l_hand/robot/surplus)
 	//
@@ -411,6 +412,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	status = BODYPART_ROBOTIC
 //
 
 /obj/item/bodypart/r_arm/robot/surplus
@@ -420,6 +422,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	status = BODYPART_ROBOTIC
 	//skyrat vars
 	starting_children = list(/obj/item/bodypart/r_hand/robot/surplus)
 	//
@@ -432,6 +435,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	status = BODYPART_ROBOTIC
 //
 
 /obj/item/bodypart/l_leg/robot/surplus
@@ -441,6 +445,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	status = BODYPART_ROBOTIC
 	//skyrat vars
 	starting_children = list(/obj/item/bodypart/l_foot/robot/surplus)
 	//
@@ -453,6 +458,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	status = BODYPART_ROBOTIC
 //
 
 /obj/item/bodypart/r_leg/robot/surplus
@@ -462,6 +468,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	status = BODYPART_ROBOTIC
 	//skyrat vars
 	starting_children = list(/obj/item/bodypart/r_foot/robot/surplus)
 	//
@@ -474,6 +481,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	status = BODYPART_ROBOTIC
 //
 
 // Upgraded Surplus limbs - Better then robotic limbs
@@ -484,6 +492,7 @@
 	brute_reduction = 3
 	burn_reduction = 2
 	max_damage = 55
+	status = BODYPART_ROBOTIC
 	//skyrat vars
 	starting_children = list(/obj/item/bodypart/l_hand/robot/surplus_upgraded)
 	//

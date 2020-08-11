@@ -456,6 +456,13 @@
 		return FALSE
 	. = TRUE
 	moveToNullspace()
+
+	// We check if there is another limb like us before attaching. If so, we kindly delete them.
+	var/obj/item/bodypart/rival = C.get_bodypart(body_zone)
+	if(rival)
+		rival.drop_limb()
+		qdel(rival)
+	
 	owner = C
 	C.bodyparts += src
 	if(held_index)
