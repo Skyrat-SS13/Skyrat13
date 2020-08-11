@@ -1,3 +1,6 @@
+#define MODE_MULTIPLE "multiple limbs"
+#define MODE_SINGULAR "single limb"
+
 /obj/item/stack/medical/gauze/splint
 	name = "medical splints"
 	singular_name = "medical splint"
@@ -102,3 +105,6 @@
 	custom_materials = null
 	is_cyborg = 1
 	cost = 300
+
+#undef MODE_MULTIPLE
+#undef MODE_SINGULAR
