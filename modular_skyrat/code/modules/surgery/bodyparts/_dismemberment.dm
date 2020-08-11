@@ -438,21 +438,10 @@
 		O.drop_limb(special, TRUE, FALSE, FALSE)
 	attach_limb(C, special)
 
-/obj/item/bodypart/head/replace_limb(mob/living/carbon/C, special)
-	if(!istype(C))
-		return
-	var/obj/item/bodypart/head/O = C.get_bodypart(body_zone)
-	if(O)
-		if(!special)
-			return
-		else
-			O.drop_limb(special, TRUE, FALSE, FALSE)
-	attach_limb(C, special)
-
 /obj/item/bodypart/proc/attach_limb(mob/living/carbon/C, special, ignore_parent_restriction = FALSE)
 	if(SEND_SIGNAL(C, COMSIG_CARBON_ATTACH_LIMB, src, special) & COMPONENT_NO_ATTACH)
 		return FALSE
-	if(!ignore_parent_restriction && !C.get_bodypart(parent_bodyzone))
+	if(parent_bodyzone && !ignore_parent_restriction && !C.get_bodypart(parent_bodyzone))
 		return FALSE
 	. = TRUE
 	moveToNullspace()
@@ -460,7 +449,7 @@
 	// We check if there is another limb like us before attaching. If so, we kindly delete them.
 	var/obj/item/bodypart/rival = C.get_bodypart(body_zone)
 	if(rival)
-		rival.drop_limb()
+		rival.drop_limb(special = TRUE, ignore_children = TRUE)
 		qdel(rival)
 	
 	owner = C

@@ -238,3 +238,14 @@
 	var/mob/living/og_owner = owner
 	if(.)
 		REMOVE_TRAIT(og_owner, TRAIT_MUTE, "tape")
+
+/obj/item/bodypart/head/replace_limb(mob/living/carbon/C, special)
+	if(!istype(C))
+		return
+	var/obj/item/bodypart/head/O = C.get_bodypart(body_zone)
+	if(O)
+		if(!special)
+			return
+		else
+			O.drop_limb(special, TRUE, FALSE, FALSE)
+	attach_limb(C, special)
