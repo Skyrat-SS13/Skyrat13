@@ -1,0 +1,4 @@
+author: "IrkallaEpsilon"
+delete-after: True
+changes: 
+  - bugfix: "Donor hair from monkey spawn removed. Dunno why this was added in the first place."
