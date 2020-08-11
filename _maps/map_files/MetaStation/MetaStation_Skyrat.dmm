@@ -41033,14 +41033,9 @@
 /turf/open/floor/wood,
 /area/maintenance/bar)
 "bGh" = (
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Port Aft";
-	dir = 8;
-	network = list("minisat")
-	},
 /obj/structure/window/reinforced,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "bGi" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/light/small{
@@ -45635,6 +45630,10 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Port Aft";
+	network = list("minisat")
+	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
 "bRb" = (
@@ -75723,6 +75722,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"dwp" = (
+/obj/structure/lattice,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Starboard Aft";
+	dir = 4;
+	network = list("minisat")
+	},
+/turf/open/space,
+/area/aisat)
 "dwv" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -76925,18 +76936,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
-"fZb" = (
-/obj/structure/lattice,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Starboard Aft";
-	dir = 4;
-	network = list("minisat")
-	},
-/turf/open/space,
-/area/aisat)
 "gca" = (
 /obj/structure/reagent_dispensers/keg/milk,
 /turf/open/floor/wood,
@@ -77004,16 +77003,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/port)
-"gju" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Telecomms Control Room";
-	req_one_access_txt = "19; 61"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "gkD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -77124,15 +77113,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
-"gDL" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/space,
-/area/space/nearstation)
 "gEk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -78324,6 +78304,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"nne" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Control Room";
+	req_one_access_txt = "19; 61"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "nnw" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -78519,6 +78509,15 @@
 /obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"oDj" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/space,
+/area/space/nearstation)
 "oEb" = (
 /obj/machinery/shower{
 	dir = 8
@@ -133152,7 +133151,7 @@ aRy
 aaa
 bGh
 bRa
-gDL
+oDj
 aOY
 aOY
 aOY
@@ -133922,7 +133921,7 @@ brY
 btL
 btL
 btL
-gju
+nne
 btL
 bCD
 bEf
@@ -136749,7 +136748,7 @@ bsi
 aRy
 aaa
 aaa
-fZb
+dwp
 aNw
 aNw
 aNw
