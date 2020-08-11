@@ -9431,6 +9431,38 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+<<<<<<< HEAD
+=======
+"asL" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/crowbar,
+/obj/item/clothing/neck/stethoscope,
+/obj/item/storage/box/gloves{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/item/storage/box/masks,
+/obj/structure/table,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
+"asM" = (
+/obj/structure/table,
+/obj/item/crowbar,
+/obj/item/clothing/neck/stethoscope,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/structure/sign/warning/nosmoking{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
+>>>>>>> aede820e14... Merge pull request #13126 from Detective-Google/t-a-b-l-e
 "asN" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -9466,6 +9498,26 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+<<<<<<< HEAD
+=======
+"asX" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/medical/glass{
+	id_tag = "MedbayFoyer";
+	name = "Medbay";
+	req_access_txt = "5"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
+"asY" = (
+/obj/structure/sign/warning/nosmoking{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+>>>>>>> aede820e14... Merge pull request #13126 from Detective-Google/t-a-b-l-e
 "ata" = (
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -95734,7 +95786,7 @@ bEe
 bBL
 bwA
 bvj
-bAl
+asM
 bAl
 bvh
 bzS
