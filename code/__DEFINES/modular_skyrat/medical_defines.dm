@@ -109,6 +109,7 @@
 #define BODYPART_ORGANIC   (1<<0)
 #define BODYPART_ROBOTIC   (1<<1)
 #define BODYPART_NOBLEED	(1<<2)
+#define BODYPART_HARDDISMEMBER	(1<<3)
 
 //Bodypart disabling defines
 #define BODYPART_NOT_DISABLED 0

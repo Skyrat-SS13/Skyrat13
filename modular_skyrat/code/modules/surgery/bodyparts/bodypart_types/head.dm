@@ -43,16 +43,6 @@
 	dismember_mod = 0.7
 	disembowel_mod = 0.7
 
-/obj/item/bodypart/head/can_dismember(obj/item/I)
-	if(owner && brain && !((owner.stat == DEAD) || owner.InFullCritical()))
-		return FALSE
-	return ..()
-
-/obj/item/bodypart/head/can_disembowel(obj/item/I)
-	if(owner && brain && !((owner.stat == DEAD) || owner.InFullCritical()))
-		return FALSE
-	return ..()
-
 /obj/item/bodypart/head/update_limb(dropping_limb, mob/living/carbon/source)
 	var/mob/living/carbon/C
 	if(source)
