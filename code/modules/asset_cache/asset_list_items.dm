@@ -421,3 +421,23 @@
 	assets = list(
 		"view_variables.css" = 'html/admin/view_variables.css'
 	)
+<<<<<<< HEAD
+=======
+
+/datum/asset/spritesheet/sheetmaterials
+	name = "sheetmaterials"
+
+/datum/asset/spritesheet/sheetmaterials/register()
+	InsertAll("", 'icons/obj/stack_objects.dmi')
+
+	// Special case to handle Bluespace Crystals
+	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
+	..()
+
+/datum/asset/spritesheet/mafia
+	name = "mafia"
+
+/datum/asset/spritesheet/mafia/register()
+	InsertAll("", 'icons/obj/mafia.dmi')
+	..()
+>>>>>>> 035422ed7f... Merge pull request #13098 from LetterN/ToS-component
