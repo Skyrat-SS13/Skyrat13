@@ -93,19 +93,6 @@
 	mob_trait = TRAIT_ASTHMATIC
 	medical_record_text = "Patient exhibits asthmatic symptoms."
 
-/datum/quirk/paper_skin
-	name = "Paper skin"
-	desc = "Your skin and body are fragile. Damage from most sources is increased by 10%."
-	value = -1
-	medical_record_text = "Patient gets hurt more easily than others."
-
-/datum/quirk/paper_skin/add()
-	. = ..()
-	if(.)
-		var/mob/living/carbon/human/H = quirk_holder
-		if(H && istype(H))
-			H.physiology.armor -= 10
-
 /datum/quirk/allergic
 	name = "Allergic"
 	desc = "You have had terrible allergies for as long as you can remember. Some foods will become toxic to your palate and cause unforeseen consequences."
