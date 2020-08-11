@@ -238,6 +238,7 @@
 /obj/item/organ/genital/proc/get_features(mob/living/carbon/human/H)
 	return
 
+<<<<<<< HEAD
 
 //procs to handle sprite overlays being applied to humans
 
@@ -255,6 +256,8 @@
 		return
 	update_genitals()
 
+=======
+>>>>>>> df05c5ee4d... Merge pull request #13089 from Putnam3145/fix-sprite-display
 /mob/living/carbon/human/proc/update_genitals()
 	if(QDELETED(src))
 		return
