@@ -35,10 +35,19 @@
 /datum/interaction/lewd/evaluate_user(mob/living/user, silent)
 	. = ..()
 	if(.)
-		if((user.stat == DEAD) || (stat == DEAD))
+		if((user.stat == DEAD))
 			return FALSE
 		for(var/check in blacklisted_mobs)
-			if(istype(user, check) || istype(src, check))
+			if(istype(user, check))
+				return FALSE
+
+/datum/interaction/lewd/evaluate_target(mob/living/user, mob/living/target, silent = TRUE)
+	. = ..()
+	if(.)
+		if((target.stat == DEAD))
+			return FALSE
+		for(var/check in blacklisted_mobs)
+			if(istype(target, check))
 				return FALSE
 
 /proc/playlewdinteractionsound(turf/turf_source, soundin, vol as num, vary, extrarange as num ,frequency, falloff, channel = 0, pressure_affected = TRUE, sound/S, envwet = -10000, envdry = 0, manual_x, manual_y)
