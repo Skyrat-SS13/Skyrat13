@@ -3653,7 +3653,6 @@
 #include "modular_skyrat\code\game\objects\items\circuitboards\computer_circuitboards.dm"
 #include "modular_skyrat\code\game\objects\items\circuitboards\machine_circuitboards.dm"
 #include "modular_skyrat\code\game\objects\items\devices\multitool.dm"
-#include "modular_skyrat\code\game\objects\items\devices\ttsdevice.dm"
 #include "modular_skyrat\code\game\objects\items\devices\traitordevices.dm"
 #include "modular_skyrat\code\game\objects\items\devices\ttsdevice.dm"
 #include "modular_skyrat\code\game\objects\items\devices\radio\electropack.dm"
