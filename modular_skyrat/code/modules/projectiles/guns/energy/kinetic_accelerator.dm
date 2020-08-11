@@ -114,19 +114,23 @@
 	denied_type = /obj/item/borg/upgrade/modkit/aoe
 	cost = 40
 	modifier = 3
+	var/penalty = 13
 
 /obj/item/borg/upgrade/modkit/shotgun/modify_projectile(obj/item/projectile/kinetic/K)
 	..()
 	if(K.kinetic_gun)
+		K.damage -= penalty
 		var/obj/item/gun/energy/kinetic_accelerator/KA = K.kinetic_gun
 		var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1]
 		C.pellets = src.modifier
-		C.variance = 45
+		C.variance = modifier * 15
 		KA.chambered = C
 
 /obj/item/borg/upgrade/modkit/shotgun/uninstall(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
 	..()
 	var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1]
+	if(C.BB)
+		C.BB.damage = initial(C.BB.damage)
 	C.pellets = initial(C.pellets)
 	C.variance = initial(C.variance)
 	KA.chambered = C
