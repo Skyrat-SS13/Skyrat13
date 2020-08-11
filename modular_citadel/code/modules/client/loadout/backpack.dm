@@ -120,3 +120,9 @@
 	path = /obj/item/storage/fancy/ringbox/diamond
 	cost = 5
 
+<<<<<<< HEAD
+=======
+/datum/gear/backpack/necklace//this is here because loadout doesn't support proper accessories
+	name = "A renameable necklace"
+	path = /obj/item/clothing/accessory/necklace
+>>>>>>> 5694923d89... Merge pull request #13095 from lolman360/liver
