@@ -1,0 +1,8 @@
+author: "Strazyplus"
+delete-after: True
+changes: 
+  - rscadd: "Added Otieborgs! (made by @Verkister )"
+  - rscadd: "Added Engihounds!"
+  - bugfix: "fixed hound wreck animations!"
+  - imageadd: "added Otie Janitor & Otie Security"
+  - imageadd: "added Engihounds"
