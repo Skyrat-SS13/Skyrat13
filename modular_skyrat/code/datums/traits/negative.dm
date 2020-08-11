@@ -96,8 +96,8 @@
 /datum/quirk/paper_skin
 	name = "Paper skin"
 	desc = "Your skin and body are fragile. Damage from most sources is increased by 10%."
-	value = -3
-	medical_record_text = "Patient is frail and  tends to be damaged quite easily."
+	value = -1
+	medical_record_text = "Patient gets hurt more easily than others."
 
 /datum/quirk/paper_skin/add()
 	. = ..()
