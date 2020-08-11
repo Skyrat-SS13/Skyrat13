@@ -35,6 +35,8 @@
 /datum/interaction/lewd/evaluate_user(mob/living/user, silent)
 	. = ..()
 	if(.)
+		if((user.stat == DEAD) || (stat == DEAD))
+			return FALSE
 		for(var/check in blacklisted_mobs)
 			if(istype(user, check) || istype(src, check))
 				return FALSE
