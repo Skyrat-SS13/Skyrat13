@@ -101,22 +101,22 @@
 		if(wound_heal_blunt > WOUND_SEVERITY_NONE)	
 			for(var/i in affected.wounds)
 				var/datum/wound/W = i
-				if((W.wound_type = WOUND_LIST_BLUNT_MECHANICAL) && (wound_heal_blunt >= W.severity))
+				if((W.wound_type == WOUND_LIST_BLUNT_MECHANICAL) && (wound_heal_blunt >= W.severity))
 					woundies += W
 		if(wound_heal_burn > WOUND_SEVERITY_NONE)	
 			for(var/i in affected.wounds)
 				var/datum/wound/W = i
-				if((W.wound_type = WOUND_LIST_BURN_MECHANICAL) && (wound_heal_burn >= W.severity))
+				if((W.wound_type == WOUND_LIST_BURN_MECHANICAL) && (wound_heal_burn >= W.severity))
 					woundies += W
 		if(wound_heal_slash > WOUND_SEVERITY_NONE)
 			for(var/i in affected.wounds)
 				var/datum/wound/W = i
-				if((W.wound_type = WOUND_LIST_SLASH_MECHANICAL) && (wound_heal_slash >= W.severity))
+				if((W.wound_type == WOUND_LIST_SLASH_MECHANICAL) && (wound_heal_slash >= W.severity))
 					woundies += W
 		if(wound_heal_pierce > WOUND_SEVERITY_NONE)
 			for(var/i in affected.wounds)
 				var/datum/wound/W = i
-				if((W.wound_type = WOUND_LIST_PIERCE_MECHANICAL) && (wound_heal_pierce >= W.severity))
+				if((W.wound_type == WOUND_LIST_PIERCE_MECHANICAL) && (wound_heal_pierce >= W.severity))
 					woundies += W
 		if(length(woundies))
 			Y = pick_n_take(woundies)

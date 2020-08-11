@@ -423,6 +423,7 @@ GENETICS SCANNER
 					msg += "\n"
 			else
 				msg += "\n"
+	
 	//skyrat edit
 	// Wounds
 	if(iscarbon(M))
@@ -433,8 +434,10 @@ GENETICS SCANNER
 			msg += "<span class='alert ml-1'><b>Warning: Physical trauma[LAZYLEN(wounded_part.wounds) > 1? "s" : ""] detected in [wounded_part.name]</b>"
 			for(var/k in wounded_part.wounds)
 				var/datum/wound/W = k
+				msg += "\n"
 				msg += "<div class='ml-2'>Type: [W.name]\nSeverity: [W.severity_text()]\nRecommended Treatment: [W.treat_text]</div>" // less lines than in woundscan() so we don't overload people trying to get basic med info
-			msg += "</span>\n<br>"
+			msg += "</span>"
+			msg += "\n"
 	//
 
 	for(var/thing in M.diseases)

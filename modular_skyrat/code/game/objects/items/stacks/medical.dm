@@ -48,6 +48,35 @@
 	required_status = BODYPART_ROBOTIC
 	merge_type = /obj/item/stack/medical/nanopaste
 
+/obj/item/stack/medical/nanopaste/heal(mob/living/M, mob/user, silent, obj/item/bodypart/specific_part) //lmao i stole bruise pack code
+	if(M.stat == DEAD)
+		if(!silent)
+			to_chat(user, "<span class='warning'>[M] is dead! You can not help [M.p_them()].</span>")
+		return
+	if(isanimal(M))
+		var/mob/living/simple_animal/critter = M
+		if (!(critter.healable))
+			if(!silent)
+				to_chat(user, "<span class='warning'>You cannot use \the [src] on [M]!</span>")
+			return FALSE
+		else if (critter.health >= critter.maxHealth)
+			if(!silent)
+				to_chat(user, "<span class='notice'>[M] is at full health.</span>")
+			return FALSE
+		else if(!(critter.mob_biotypes & MOB_ROBOTIC))
+			if(!silent)
+				to_chat(user, "<span class='warning'>[M] is not robotic!</span>")
+			return FALSE
+		if(!silent)
+			user.visible_message("<span class='green'>[user] applies \the [src] on [M].</span>", "<span class='green'>You apply \the [src] on [M].</span>")
+		M.heal_bodypart_damage(heal_brute)
+		use(stackperlimb)
+		return TRUE
+	if(iscarbon(M))
+		return heal_carbon(M, user, heal_brute, heal_burn, FALSE, (mode == MODE_MULTIPLE ? TRUE : FALSE))
+	if(!silent)
+		to_chat(user, "<span class='warning'>You can't heal [M] with \the [src]!</span>")
+
 /obj/item/stack/medical/nanopaste/cyborg
 	custom_materials = null
 	is_cyborg = 1
