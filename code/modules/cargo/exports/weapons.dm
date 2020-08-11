@@ -237,7 +237,7 @@
 	cost = 200
 	unit_name = "large handgun"
 	export_types = list(/obj/item/gun/ballistic/revolver)
-	exclude_types = list(/obj/item/gun/ballistic/revolver/russian, /obj/item/gun/ballistic/revolver/doublebarrel)
+	exclude_types = list(/obj/item/gun/ballistic/revolver/russian, /obj/item/gun/ballistic/revolver/doublebarrel, /obj/item/gun/ballistic/revolver/doublebarrel/super)
 
 /datum/export/weapon/rocketlauncher
 	cost = 1000
@@ -368,6 +368,47 @@
 	cost = 600
 	unit_name = "golden toolbox"
 	export_types = list(/obj/item/storage/toolbox/plastitanium/gold_real)
+
+
+//Skyrat Change
+//Lavaland Weapons - High value, unique items. Highly sought after due to rarity. At least as valuable as a bounty
+
+/datum/export/weapon/super_shotty
+	cost = 10000 //Unique, hard to aquire weapons are valuable
+	unit_name = "heirloom shotgun"
+	export_types = list(/obj/item/gun/ballistic/revolver/doublebarrel/super)
+
+/datum/export/weapon/crucible
+	cost = 10000
+	unit_name = "heirloom blade"
+	export_types = list(/obj/item/crucible)
+
+/datum/export/weapon/ghostblade
+	cost = 2500
+	unit_name = "haunted blade"
+	export_types = list(/obj/item/melee/ghost_sword)
+
+/datum/export/weapon/spellblade
+	cost = 5000
+	unit_name = "magical blade"
+	export_types = list(/obj/item/gun/magic/staff/spellblade)
+
+/datum/export/weapon/sifblade
+	cost = 10000
+	unit_name = "superb blade"
+	export_types = list(/obj/item/melee/sword_of_the_forsaken)
+
+/datum/export/weapon/hook
+	cost = 1200
+	unit_name = "unique weapon"
+	export_types = list(/obj/item/gun/magic/hook)
+
+/datum/export/weapon/saw
+	cost = 1200
+	unit_name = "cleaving saw"
+	export_types = list(/obj/item/melee/transforming/cleaving_saw)
+
+//end Skyrat change
 
 /datum/export/weapon/melee
 	cost = 50

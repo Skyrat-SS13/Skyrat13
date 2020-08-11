@@ -3653,7 +3653,6 @@
 #include "modular_skyrat\code\game\objects\items\circuitboards\computer_circuitboards.dm"
 #include "modular_skyrat\code\game\objects\items\circuitboards\machine_circuitboards.dm"
 #include "modular_skyrat\code\game\objects\items\devices\multitool.dm"
-#include "modular_skyrat\code\game\objects\items\devices\ttsdevice.dm"
 #include "modular_skyrat\code\game\objects\items\devices\traitordevices.dm"
 #include "modular_skyrat\code\game\objects\items\devices\ttsdevice.dm"
 #include "modular_skyrat\code\game\objects\items\devices\radio\electropack.dm"
@@ -4103,4 +4102,5 @@
 #include "modular_skyrat\code\modules\zombie\items.dm"
 #include "modular_skyrat\code\modules\zombie\organs.dm"
 #include "modular_skyrat\tools\Redirector\textprocs.dm"
+#include "Z:\home\jamini\Desktop\Skyrat Git\Skyrat13-1\modular_skyrat\code\game\objects\items\devices\anomalydevice.dm"
 // END_INCLUDE
