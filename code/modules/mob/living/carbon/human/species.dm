@@ -1439,7 +1439,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 //////////////////
 
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(attacker_style && attacker_style.help_act(user,target)) // thank you hippiestation, bless.
+	if(attacker_style && attacker_style.help_act(user,target)) // SKYRAT-EDIT: bless you hippiestation(code improvement to allow help intent attacks)
 		return 1
 
 	if(target.health >= 0 && !HAS_TRAIT(target, TRAIT_FAKEDEATH))
