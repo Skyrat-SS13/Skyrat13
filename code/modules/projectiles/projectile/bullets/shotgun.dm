@@ -117,3 +117,23 @@
 	name = "incapacitating pellet"
 	damage = 1
 	stamina = 6
+
+//Kinetic Shotgun Bullets
+
+/obj/item/projectile/bullet/pellet/kinetic_b
+	name = "kinetic tracer"
+	icon_state = "ka_tracer"
+	damage = 20
+	damage_type = BRUTE
+	flag = "bomb"
+	range = 4
+	spread = 3
+
+/obj/item/projectile/bullet/kinetic_s
+	name = "kinetic tracer"
+	icon_state = "ka_tracer"
+	damage = 60
+	damage_type = BRUTE
+	flag = "bomb"
+	range = 3
+	spread = 0

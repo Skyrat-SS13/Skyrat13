@@ -152,3 +152,23 @@
 	pellets = 12//double the pellets, but half the stun power of each, which makes this best for just dumping right in someone's face.
 	variance = 25
 	custom_materials = list(/datum/material/iron=4000)
+
+/obj/item/ammo_casing/shotgun/k_buck
+	name = "kinetic buckshot shell"
+	desc = "A shell for your Kinetic Shotgun. Fires a massive amount of kinetic force in an arc."
+	icon_state = "cshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/kinetic_b
+	pellets = 4
+	variance = 15
+	caliber = "kinetic"
+	custom_materials = list(/datum/material/iron=500)
+
+/obj/item/ammo_casing/shotgun/k_slug
+	name = "kinetic slug shell"
+	desc = "A shell for your Kinetic Shotgun. Fires a massive amount of kinetic force in a very small area, but at a closer range."
+	icon_state = "cshell"
+	projectile_type = /obj/item/projectile/bullet/kinetic_s
+	pellets = 1
+	variance = 0
+	caliber = "kinetic"
+	custom_materials = list(/datum/material/iron=500)

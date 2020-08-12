@@ -58,5 +58,7 @@
 
 obj/item/ammo_box/magazine/internal/shot/kinetic
 	name = "kinetic shotgun internal magazine"
-	ammo_type = obj/item/ammo_casing/shotgun/kinetic
+	ammo_type = /obj/item/ammo_casing/shotgun
+	caliber = "kinetic"
 	max_ammo = 7
+

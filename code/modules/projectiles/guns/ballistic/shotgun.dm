@@ -341,3 +341,15 @@
 	//our hook gun!
 	var/obj/item/gun/magic/hook/bounty/hook
 	var/toggled = FALSE
+
+//THE kinetic shotgun
+
+/obj/item/gun/ballistic/shotgun/kinetic_shotgun
+	name = "Kinetic Shotgun"
+	desc = "A popular alternative to the Kinetic Accelerator. This one relies on more powerful kinetic blasts being stored within shells, then loaded into the gun by hand. Of course, the falloff is more immense than an Accelerator, and it also has a wider spread to boot. Even still, it finds its niche market among the most foolhardy miners."
+	icon_state = "shotgun"
+	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/64x_guns_right.dmi'
+	force = 10
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/kinetic
+

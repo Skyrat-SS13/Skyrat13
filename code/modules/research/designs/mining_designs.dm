@@ -148,7 +148,7 @@
 	id = "k_buck"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(/datum/material/iron = 500)
-	build_path = /obj/item/ammo_casing/shotgun/kinetic/buckshot
+	build_path = /obj/item/ammo_casing/shotgun/k_buck
 	category = list("Mining Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
@@ -158,7 +158,7 @@
 	id = "k_slug"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(/datum/material/iron = 500)
-	build_path = /obj/item/ammo_casing/shotgun/kinetic/slug
+	build_path = /obj/item/ammo_casing/shotgun/k_slug
 	category = list("Mining Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
