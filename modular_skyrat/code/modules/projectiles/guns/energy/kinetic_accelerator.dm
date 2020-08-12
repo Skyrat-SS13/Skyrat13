@@ -111,24 +111,24 @@
 /obj/item/borg/upgrade/modkit/shotgun
 	name = "shotgun blast modification kit"
 	desc = "Makes you fire 3 kinetic shots instead of one."
-	denied_type = /obj/item/borg/upgrade/modkit/aoe
+	denied_type = /obj/item/borg/upgrade/modkit/shotgun
 	cost = 40
-	modifier = 3
+	modifier = 2
 
 /obj/item/borg/upgrade/modkit/shotgun/modify_projectile(obj/item/projectile/kinetic/K)
 	..()
 	if(K.kinetic_gun)
 		var/obj/item/gun/energy/kinetic_accelerator/KA = K.kinetic_gun
 		var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1]
-		C.pellets = src.modifier
-		C.variance = 45
+		C.variance += 15 * (modifier + 1)
+		C.pellets += modifier
 		KA.chambered = C
 
 /obj/item/borg/upgrade/modkit/shotgun/uninstall(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
 	..()
 	var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1]
-	C.pellets = initial(C.pellets)
-	C.variance = initial(C.variance)
+	C.variance -= 15 * (modifier + 1)
+	C.pellets -= modifier
 	KA.chambered = C
 
 //drake
@@ -257,9 +257,10 @@
 /obj/item/borg/upgrade/modkit/lifesteal/miner
 	name = "resonant lifesteal crystal"
 	desc = "Causes kinetic accelerator shots to heal the firer on striking a living target."
-	modifier = 3
-	cost = 20
-	denied_type = /obj/item/borg/upgrade/modkit/lifesteal
+	modifier = 4
+	cost = 30
+	denied_type = /obj/item/borg/upgrade/modkit/lifesteal/miner
+	maximum_of_type = 2
 
 //drakeling
 /obj/item/borg/upgrade/modkit/fire
