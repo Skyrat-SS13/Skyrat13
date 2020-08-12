@@ -146,7 +146,7 @@
 		playsound(T, 'sound/magic/fireball.ogg', 20, 1)
 		new /obj/effect/temp_visual/fire(T.loc)
 		step(target, get_dir(K, T))
-		T.adjustFireLoss(burndam, forced = TRUE)
+		T.adjustFireLoss(burndam)
 
 //hierophant
 
