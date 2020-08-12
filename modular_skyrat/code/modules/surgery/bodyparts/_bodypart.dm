@@ -853,8 +853,7 @@
 	if(isnull(wounds))
 		return
 
-	for(var/thing in wounds)
-		var/datum/wound/W = thing
+	for(var/datum/wound/W in wounds)
 		if(istype(W, checking_type))
 			return W
 
