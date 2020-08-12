@@ -75,7 +75,7 @@
 			bloody = BLOOD_COLOR_HUMAN
 		dam_colors = bloody
 
-	var/mutable_appearance/damage_overlay = mutable_appearance('icons/mob/dam_mob.dmi', "blank", -DAMAGE_LAYER, color = dam_colors)
+	var/mutable_appearance/damage_overlay = mutable_appearance('modular_skyrat/icons/mob/dam_mob.dmi', "blank", -DAMAGE_LAYER, color = dam_colors)
 	overlays_standing[DAMAGE_LAYER] = damage_overlay
 
 	for(var/X in bodyparts)
@@ -224,7 +224,7 @@
 		return
 
 	//GENERATE NEW LIMBS
-	var/static/list/leg_day = typecacheof(list(/obj/item/bodypart/r_leg, /obj/item/bodypart/l_leg))
+	var/static/list/leg_day = typecacheof(list(/obj/item/bodypart/r_leg, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_foot, /obj/item/bodypart/l_foot))
 	var/list/new_limbs = list()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X

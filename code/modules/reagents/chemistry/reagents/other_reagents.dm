@@ -144,6 +144,7 @@
 	taste_description = "oil"
 	color = BLOOD_COLOR_SYNTHETIC // rgb: 11, 7, 48
 	value = REAGENT_VALUE_NONE
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 
 /datum/reagent/blood/jellyblood
 	data = list("donor"=null,"viruses"=null,"blood_DNA"=null, "bloodcolor" = BLOOD_COLOR_SLIME, "blood_type"="GEL","resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null)
@@ -241,6 +242,15 @@
 	glass_desc = "The father of all refreshments."
 	shot_glass_icon_state = "shotglassclear"
 
+/datum/reagent/water/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(M.blood_volume)
+		M.blood_volume += 0.1 // water is good for you!
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(isslimeperson(H))
+			M.blood_volume += 0.5 // water is REALLY good for you!
+
 /*
  *	Water reaction to turf
  */
@@ -316,6 +326,8 @@
 
 /datum/reagent/water/holywater/on_mob_metabolize(mob/living/L)
 	. = ..()
+	if(L.blood_volume)
+		L.blood_volume += 0.1 // water is good for you!
 	ADD_TRAIT(L, TRAIT_HOLY, type)
 
 	if(is_servant_of_ratvar(L))
@@ -2306,3 +2318,40 @@
 	color = "#E6E6DA"
 	taste_mult = 0
 
+//skyrat edit
+/datum/reagent/determination
+	name = "Determination"
+	description = "For when you need to push on a little more. Do NOT allow near plants."
+	reagent_state = LIQUID
+	color = "#D2FFFA"
+	metabolization_rate = 0.75 * REAGENTS_METABOLISM // 5u (WOUND_DETERMINATION_CRITICAL) will last for ~17 ticks
+	/// Whether we've had at least WOUND_DETERMINATION_SEVERE (2.5u) of determination at any given time. No damage slowdown immunity or indication we're having a second wind if it's just a single moderate wound
+	var/significant = FALSE
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
+
+/datum/reagent/determination/on_mob_end_metabolize(mob/living/carbon/M)
+	if(significant)
+		var/stam_crash = 0
+		for(var/thing in M.all_wounds)
+			var/datum/wound/W = thing
+			if(istype(W))
+				stam_crash += (W.severity + 1) * 3 // spike of 3 stam damage per wound severity (moderate = 6, severe = 9, critical = 12) when the determination wears off if it was a combat rush
+		M.adjustStaminaLoss(stam_crash)
+	M.remove_status_effect(STATUS_EFFECT_DETERMINED)
+	..()
+
+/datum/reagent/determination/on_mob_life(mob/living/carbon/M)
+	if(!significant && volume >= WOUND_DETERMINATION_SEVERE)
+		significant = TRUE
+		M.apply_status_effect(STATUS_EFFECT_DETERMINED) // in addition to the slight healing, limping cooldowns are divided by 4 during the combat high
+
+	volume = min(volume, WOUND_DETERMINATION_MAX)
+
+	for(var/thing in M.all_wounds)
+		var/datum/wound/W = thing
+		if(istype(W))
+			var/obj/item/bodypart/wounded_part = W.limb
+			if(istype(wounded_part))
+				wounded_part.heal_damage(0.25, 0.25)
+			M.adjustStaminaLoss(-0.25*REM) // the more wounds, the more stamina regen
+	..()

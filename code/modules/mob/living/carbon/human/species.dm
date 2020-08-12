@@ -115,7 +115,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 // PROCS //
 ///////////
 
-
 /datum/species/New()
 	//if we havent set a limbs id to use, just use our own id
 	if(!limbs_id)
@@ -1097,9 +1096,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	if(slot in no_equip)
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
 			return FALSE
-
+	/* skyrat edit
 	var/num_arms = H.get_num_arms(FALSE)
 	var/num_legs = H.get_num_legs(FALSE)
+	*/
+	//skyrat edit
+	var/num_hands = H.get_num_hands(FALSE)
+	var/num_feet = H.get_num_feet(FALSE)
+	//
 
 	switch(slot)
 		if(SLOT_HANDS)
@@ -1137,7 +1141,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_GLOVES) )
 				return FALSE
-			if(num_arms < 2)
+			if(num_hands < 2) //skyrat edit
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_SHOES)
@@ -1145,7 +1149,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_FEET) )
 				return FALSE
-			if(num_legs < 2)
+			if(num_feet < 2) //skyrat edit
 				return FALSE
 			if(DIGITIGRADE in species_traits)
 				if(!is_species(H, /datum/species/lizard/ashwalker))
@@ -1265,7 +1269,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				return FALSE
 			if(!istype(I, /obj/item/restraints/handcuffs))
 				return FALSE
-			if(num_arms < 2)
+			if(num_hands < 2) //skyrat edit
 				return FALSE
 			return TRUE
 		if(SLOT_LEGCUFFED)
@@ -1273,7 +1277,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				return FALSE
 			if(!istype(I, /obj/item/restraints/legcuffs))
 				return FALSE
-			if(num_legs < 2)
+			if(num_feet < 2) //skyrat edit
 				return FALSE
 			return TRUE
 		if(SLOT_IN_BACKPACK)
@@ -1384,16 +1388,28 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				H.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/hunger, multiplicative_slowdown = (hungry / 50))
 			else
 				H.remove_movespeed_modifier(/datum/movespeed_modifier/hunger)
-
-	switch(H.nutrition)
-		if(NUTRITION_LEVEL_FULL to INFINITY)
-			H.throw_alert("nutrition", /obj/screen/alert/fat)
-		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FULL)
-			H.clear_alert("nutrition")
-		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-			H.throw_alert("nutrition", /obj/screen/alert/hungry)
-		if(0 to NUTRITION_LEVEL_STARVING)
-			H.throw_alert("nutrition", /obj/screen/alert/starving)
+	
+	var/obj/item/organ/O = H.getorganslot(ORGAN_SLOT_STOMACH)
+	if(O.organ_flags & ORGAN_ROBOTIC)
+		switch(H.nutrition)
+			if(NUTRITION_LEVEL_FULL to INFINITY)
+				H.throw_alert("nutrition", /obj/screen/alert/fat/synth)
+			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FULL)
+				H.clear_alert("nutrition")
+			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+				H.throw_alert("nutrition", /obj/screen/alert/hungry/synth)
+			if(0 to NUTRITION_LEVEL_STARVING)
+				H.throw_alert("nutrition", /obj/screen/alert/starving/synth)
+	else
+		switch(H.nutrition)
+			if(NUTRITION_LEVEL_FULL to INFINITY)
+				H.throw_alert("nutrition", /obj/screen/alert/fat)
+			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FULL)
+				H.clear_alert("nutrition")
+			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+				H.throw_alert("nutrition", /obj/screen/alert/hungry)
+			if(0 to NUTRITION_LEVEL_STARVING)
+				H.throw_alert("nutrition", /obj/screen/alert/starving)
 
 /datum/species/proc/update_health_hud(mob/living/carbon/human/H)
 	return 0
@@ -1748,37 +1764,43 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/def_zone = affecting.body_zone
 
 	var/armor_block = H.run_armor_check(affecting, "melee", "<span class='notice'>Your armor has protected your [hit_area].</span>", "<span class='notice'>Your armor has softened a hit to your [hit_area].</span>",I.armour_penetration)
-	armor_block = min(90,armor_block) //cap damage reduction at 90%
 	var/Iforce = I.force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
+	//skyrat edit
+	armor_block = min(95,armor_block) //cap damage reduction at 95%
+	var/Iwound_bonus = I.wound_bonus
 
+	// this way, you can't wound with a surgical tool on help intent if they have a surgery active, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
+	if((I.item_flags & SURGICAL_TOOL) && (user.a_intent == INTENT_HELP) && (LAZYLEN(H.surgeries) > 0))
+		Iwound_bonus = CANT_WOUND
+	//
 	var/weakness = H.check_weakness(I, user)
-	apply_damage(totitemdamage * weakness, I.damtype, def_zone, armor_block, H) //CIT CHANGE - replaces I.force with totitemdamage
 
-	H.send_item_attack_message(I, user, hit_area, totitemdamage)
+	H.send_item_attack_message(I, user, hit_area, totitemdamage, affecting)
+	
+	apply_damage(totitemdamage * weakness, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
 
 	I.do_stagger_action(H, user, totitemdamage)
 
 	if(!totitemdamage)
 		return 0 //item force is zero
-
-	//dismemberment
-	var/probability = I.get_dismemberment_chance(affecting)
-	if(prob(probability) || (HAS_TRAIT(H, TRAIT_EASYDISMEMBER) && prob(probability))) //try twice
-		if(affecting.dismember(I.damtype))
-			I.add_mob_blood(H)
-			playsound(get_turf(H), I.get_dismember_sound(), 80, 1)
-
+	
 	var/bloody = 0
 	if(((I.damtype == BRUTE) && I.force && prob(25 + (I.force * 2))))
 		if(affecting.status == BODYPART_ORGANIC)
 			I.add_mob_blood(H)	//Make the weapon bloody, not the person.
 			if(prob(I.force * 2))	//blood spatter!
 				bloody = 1
-				var/turf/location = H.loc
-				if(istype(location))
-					H.add_splatter_floor(location)
 				if(get_dist(user, H) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(H)
+				var/dist = rand(0,max(min(round(totitemdamage/5, 1),3), 1))
+				var/turf/location = get_turf(H)
+				if(istype(location))
+					H.add_splatter_floor(location)
+				var/turf/targ = get_ranged_target_turf(user, get_dir(user, H), dist)
+				if(istype(targ) && dist > 0 && ((inherent_biotypes & MOB_ORGANIC) || (inherent_biotypes & MOB_HUMANOID)))
+					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(H.loc, H.get_blood_dna_list())
+					B.add_blood_DNA(H.get_blood_dna_list())
+					B.GoTo(targ, dist)
 
 		switch(hit_area)
 			if(BODY_ZONE_HEAD)
@@ -1790,14 +1812,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 											"<span class='userdanger'>You have been knocked senseless!</span>")
 							H.confused = max(H.confused, 20)
 							H.adjust_blurriness(10)
-						if(prob(10))
+						if(prob(5))
 							H.gain_trauma(/datum/brain_trauma/mild/concussion)
 					else
 						H.adjustOrganLoss(ORGAN_SLOT_BRAIN, I.force * 0.2)
 
 					if(H.stat == CONSCIOUS && H != user && prob(I.force + ((100 - H.health) * 0.5))) // rev deconversion through blunt trauma.
-						var/datum/antagonist/rev/rev = H.mind.has_antag_datum(/datum/antagonist/rev)
-						var/datum/antagonist/gang/gang = H.mind.has_antag_datum(/datum/antagonist/gang && !/datum/antagonist/gang/boss)
+						var/datum/antagonist/rev/rev = H.mind?.has_antag_datum(/datum/antagonist/rev)
+						var/datum/antagonist/gang/gang = H.mind?.has_antag_datum(/datum/antagonist/gang && !/datum/antagonist/gang/boss)
 						if(rev)
 							rev.remove_revolutionary(FALSE, user)
 						if(gang)
@@ -2269,3 +2291,17 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 /datum/species/proc/start_wagging_tail(mob/living/carbon/human/H)
 
 /datum/species/proc/stop_wagging_tail(mob/living/carbon/human/H)
+
+//skyrat edit
+
+/**
+  * The human species version of [/mob/living/carbon/proc/get_biological_state]. Depends on the HAS_SKIN, HAS_FLESH and HAS_BONE species traits, having bones lets you have bone wounds, having flesh lets you have burn, slash, and piercing wounds, skin is currently unused
+  */
+/datum/species/proc/get_biological_state()
+	. = BIO_INORGANIC
+	if(HAS_SKIN in species_traits)
+		. |= BIO_SKIN
+	if(HAS_FLESH in species_traits)
+		. |= BIO_FLESH
+	if(HAS_BONE in species_traits)
+		. |= BIO_BONE

@@ -53,3 +53,9 @@
 #define ORGAN_NO_SPOIL			(1<<5)	//Do not spoil under any circumstances
 #define ORGAN_NO_DISMEMBERMENT	(1<<6)	//Immune to disembowelment.
 #define ORGAN_EDIBLE			(1<<7)	//is a snack? :D
+
+//skyrat flags
+/// Integrity defines for clothing (not flags but close enough)
+#define CLOTHING_PRISTINE	0 // We have no damage on the clothing
+#define CLOTHING_DAMAGED	1 // There's some damage on the clothing but it still has at least one functioning bodypart and can be equipped
+#define CLOTHING_SHREDDED	2 // The clothing is useless and cannot be equipped unless repaired first

@@ -2,7 +2,7 @@
 // Oh okay BobJoga. I'll switch name back to DAB, just 4u -Nopeman
 /obj/item/clothing/suit/assu_suit
 	desc = "A cheap replica of old SWAT armor. On its back, it is written: \"<i>Desperate Assistance Battleforce</i>\". Tacticool-ish, but not protective."
-	armor = list("melee" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 1, "bio" = 1, "rad" = 1, "fire" = 1, "acid" = 1)
+	armor = list("melee" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 1, "bio" = 1, "rad" = 1, "fire" = 1, "acid" = 1, "wound" = 2)
 	mutantrace_variation = STYLE_DIGITIGRADE
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy)
 	unique_reskin_icons = list(
@@ -49,7 +49,7 @@
 	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	icon_state = "ablativehood"
 	item_state = "ablativehood"
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 60, "energy" = 50, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 60, "energy" = 50, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100, "wound" = 20)
 	strip_delay = 30
 	var/hit_reflect_chance = 50
 	var/hud_type = DATA_HUD_SECURITY_ADVANCED
@@ -88,7 +88,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 60, "energy" = 65, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 60, "energy" = 65, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100, "wound" = 20)
 	hoodtype = /obj/item/clothing/head/hooded/ablative
 	strip_delay = 30
 	equip_delay_other = 40

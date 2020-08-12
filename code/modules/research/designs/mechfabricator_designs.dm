@@ -8,21 +8,21 @@
 	construction_time = 500
 	category = list("Cyborg")
 
-/datum/design/borg_chest
-	name = "Cyborg Torso"
-	id = "borg_chest"
-	build_type = MECHFAB
-	build_path = /obj/item/bodypart/chest/robot
-	materials = list(/datum/material/iron=40000)
-	construction_time = 350
-	category = list("Cyborg")
-
 /datum/design/borg_head
 	name = "Cyborg Head"
 	id = "borg_head"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/head/robot
 	materials = list(/datum/material/iron=5000)
+	construction_time = 350
+	category = list("Cyborg")
+
+/datum/design/borg_chest
+	name = "Cyborg Chest"
+	id = "borg_chest"
+	build_type = MECHFAB
+	build_path = /obj/item/bodypart/chest/robot
+	materials = list(/datum/material/iron=40000)
 	construction_time = 350
 	category = list("Cyborg")
 
@@ -35,12 +35,30 @@
 	construction_time = 200
 	category = list("Cyborg")
 
+/datum/design/borg_l_hand
+	name = "Cyborg Left Hand"
+	id = "borg_l_hand"
+	build_type = MECHFAB
+	build_path = /obj/item/bodypart/l_hand/robot
+	materials = list(/datum/material/iron=3000)
+	construction_time = 200
+	category = list("Cyborg")
+
 /datum/design/borg_r_arm
 	name = "Cyborg Right Arm"
 	id = "borg_r_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/r_arm/robot
 	materials = list(/datum/material/iron=10000)
+	construction_time = 200
+	category = list("Cyborg")
+
+/datum/design/borg_r_hand
+	name = "Cyborg Right Hand"
+	id = "borg_r_hand"
+	build_type = MECHFAB
+	build_path = /obj/item/bodypart/r_hand/robot
+	materials = list(/datum/material/iron=3000)
 	construction_time = 200
 	category = list("Cyborg")
 
@@ -53,12 +71,30 @@
 	construction_time = 200
 	category = list("Cyborg")
 
+/datum/design/borg_l_foot
+	name = "Cyborg Left Foot"
+	id = "borg_l_foot"
+	build_type = MECHFAB
+	build_path = /obj/item/bodypart/l_foot/robot
+	materials = list(/datum/material/iron=3000)
+	construction_time = 200
+	category = list("Cyborg")
+
 /datum/design/borg_r_leg
 	name = "Cyborg Right Leg"
 	id = "borg_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/r_leg/robot
 	materials = list(/datum/material/iron=10000)
+	construction_time = 200
+	category = list("Cyborg")
+
+/datum/design/borg_r_foot
+	name = "Cyborg Right Foot"
+	id = "borg_r_foot"
+	build_type = MECHFAB
+	build_path = /obj/item/bodypart/r_foot/robot
+	materials = list(/datum/material/iron=3000)
 	construction_time = 200
 	category = list("Cyborg")
 
@@ -805,6 +841,7 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 */
+
 /datum/design/boris_ai_controller
 	name = "B.O.R.I.S. AI-Cyborg Remote Control Module"
 	id = "borg_ai_control"

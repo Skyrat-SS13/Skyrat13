@@ -208,7 +208,6 @@
 	materials = list(/datum/material/iron=20000, /datum/material/plasma=10000, /datum/material/titanium=5000,)
 	construction_time = 500
 	category = list("Misc")
-///End of Power Armor
 
 //Clarke
 /datum/design/clarke_chassis
@@ -372,3 +371,147 @@
 	construction_time = 100
 	category = list("Exosuit Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/*
+	IPC/SYNTHLIZ/SYNTH CONSTRUCTION
+	HELL YEAH LETS GET THIS BREAD
+*/
+
+/datum/design/power_cord
+	name = "Arm Power Cord"
+	id = "arm_cord"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/cyberimp/arm/power_cord
+	materials = list(/datum/material/iron = 1200, /datum/material/gold = 200, /datum/material/glass = 500)
+	construction_time = 25
+	category = list("IPC")
+
+/datum/design/ipc_chassis
+	name = "IPC chassis"
+	id = "ipc_chassis"
+	build_type = MECHFAB
+	research_icon = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	research_icon_state = "synth_chest"
+	build_path = /mob/living/carbon/human/species/ipc/mangled
+	materials = list(/datum/material/iron = 5000, /datum/material/titanium = 10000, /datum/material/gold = 5000, /datum/material/glass = 1000)
+	construction_time = 150
+	category = list("IPC")
+
+/datum/design/synth_chassis
+	name = "Synth chassis"
+	id = "synth_chassis"
+	build_type = MECHFAB
+	research_icon = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	research_icon_state = "synth_chest"
+	build_path = /mob/living/carbon/human/species/synth/mangled
+	materials = list(/datum/material/iron = 7000, /datum/material/titanium = 10000, /datum/material/plasma = 5000, /datum/material/gold = 5000, /datum/material/glass = 1000)
+	construction_time = 150
+	category = list("IPC")
+
+/datum/design/synthliz_chassis
+	name = "Synth lizard chassis"
+	id = "synthliz_chassis"
+	build_type = MECHFAB
+	research_icon = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	research_icon_state = "synth_chest"
+	build_path = /mob/living/carbon/human/species/synthliz/mangled
+	materials = list(/datum/material/iron = 7000, /datum/material/titanium = 10000, /datum/material/plasma = 5000, /datum/material/gold = 5000, /datum/material/glass = 1000)
+	construction_time = 150
+	category = list("IPC")
+
+/datum/design/android_chassis
+	name = "Android chassis"
+	id = "android_chassis"
+	build_type = MECHFAB
+	research_icon = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	research_icon_state = "synth_chest"
+	build_path = /mob/living/carbon/human/species/android/mangled
+	materials = list(/datum/material/iron = 10000, /datum/material/titanium = 30000, /datum/material/plasma = 5000, /datum/material/gold = 5000, /datum/material/glass = 1000, /datum/material/silver = 5000)
+	construction_time = 150
+	category = list("IPC")
+
+/datum/design/military_synth_chassis
+	name = "Military synth chassis"
+	id = "military_synth_chassis"
+	build_type = MECHFAB
+	research_icon = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	research_icon_state = "synth_chest"
+	build_path = /mob/living/carbon/human/species/synth/military/mangled
+	materials = list(/datum/material/iron = 25000, /datum/material/titanium = 30000, /datum/material/plasma = 15000, /datum/material/gold = 15000, /datum/material/glass = 10000, /datum/material/silver = 5000)
+	construction_time = 150
+	category = list("IPC")
+
+/datum/design/corporate_chassis
+	name = "Corporate synth chassis"
+	id = "corporate_chassis"
+	build_type = MECHFAB
+	research_icon = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	research_icon_state = "synth_chest"
+	build_path = /mob/living/carbon/human/species/corporate/mangled
+	materials = list(/datum/material/iron = 25000, /datum/material/titanium = 30000, /datum/material/plasma = 30000, /datum/material/gold = 30000, /datum/material/glass = 10000, /datum/material/silver = 20000)
+	construction_time = 150
+	category = list("IPC")
+
+//ipc organs
+/datum/design/ipc_heart
+	name = "IPC heart"
+	id = "ipc_heart"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/heart/robot_ipc
+	materials = list(/datum/material/iron = 3000, /datum/material/gold = 1000, /datum/material/titanium = 500)
+	construction_time = 150
+	category = list("IPC")
+
+/datum/design/ipc_lungs
+	name = "IPC lungs"
+	id = "ipc_lungs"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/lungs/robot_ipc
+	materials = list(/datum/material/iron = 1500, /datum/material/gold = 500)
+	construction_time = 150
+	category = list("IPC")
+
+/datum/design/ipc_tongue
+	name = "IPC tongue"
+	id = "ipc_tongue"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/tongue/robot_ipc
+	materials = list(/datum/material/iron = 1000, /datum/material/gold = 1000)
+	construction_time = 100
+	category = list("IPC")
+
+/datum/design/ipc_stomach
+	name = "IPC stomach cell"
+	id = "ipc_stomach"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/stomach/robot_ipc
+	materials = list(/datum/material/iron = 1000, /datum/material/gold = 1000, /datum/material/uranium = 2500)
+	construction_time = 100
+	category = list("IPC")
+
+/datum/design/ipc_liver
+	name = "IPC liver processor"
+	id = "ipc_liver"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/liver/robot_ipc
+	materials = list(/datum/material/iron = 1000, /datum/material/gold = 1000, /datum/material/uranium = 2500)
+	construction_time = 100
+	category = list("IPC")
+
+/datum/design/ipc_eyes
+	name = "IPC eyes"
+	id = "ipc_eyes"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/eyes/robot_ipc
+	materials = list(/datum/material/iron = 1000, /datum/material/gold = 1000, /datum/material/uranium = 2500, /datum/material/glass = 1000)
+	construction_time = 100
+	category = list("IPC")
+
+/datum/design/ipc_ears
+	name = "IPC ears"
+	id = "ipc_ears"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/ears/robot_ipc
+	materials = list(/datum/material/iron = 3000, /datum/material/silver = 1000, /datum/material/titanium = 2000)
+	construction_time = 100
+	category = list("IPC")

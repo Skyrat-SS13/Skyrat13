@@ -44,6 +44,7 @@
 		for(var/obj/item/organ/O in H)
 			O.damage = 0
 	else
+		H.reagents.remove_reagent(/datum/reagent/determination, 2000, TRUE, TRUE)
 		H.revive(full_heal = 1)
 	qdel(src)
 	user.log_message("[user] used [src] to heal [H == user ? "[H.p_them()]self" : H]! Wake the fuck up, Samurai!", LOG_ATTACK, color="green") //Logging for 'old' style legion core use, when clicking on a sprite of yourself or another.

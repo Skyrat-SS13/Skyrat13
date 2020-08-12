@@ -1,6 +1,6 @@
 //cut wires
 /datum/surgery_step/cut_wires
-	name = "cut wires"
+	name = "Cut wires"
 	implements = list(
 		TOOL_WIRECUTTER		= 100,
 		TOOL_SCALPEL 		= 75,
@@ -13,20 +13,27 @@
 			"[user] begins to cut loose wires in [target]'s [parse_zone(target_zone)].",
 			"[user] begins to cut loose wires in [target]'s [parse_zone(target_zone)].")
 
-/datum/surgery_step/cut_wires/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/cut_wires/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == /obj/item && !tool.get_sharpness())
 		return FALSE
 	return TRUE
 
 //pry off plating
 /datum/surgery_step/pry_off_plating
-	name = "pry off plating"
+	name = "Pry off plating"
 	implements = list(
 		TOOL_CROWBAR = 100,
 		TOOL_HEMOSTAT = 10)
 	time = 24
 
 /datum/surgery_step/pry_off_plating/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	//skyrat edit
+	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
+	if(istype(BP))
+		var/datum/wound/slash/critical/incision/inch = new()
+		inch.apply_wound(BP, TRUE)
+		BP.generic_bleedstacks += 5
+	//
 	do_sparks(rand(5, 9), FALSE, target.loc)
 	return TRUE
 
@@ -37,12 +44,12 @@
 
 //weld plating
 /datum/surgery_step/weld_plating
-	name = "weld plating"
+	name = "Weld plating"
 	implements = list(
 		TOOL_WELDER = 100)
 	time = 24
 
-/datum/surgery_step/weld_plating/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/weld_plating/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == TOOL_WELDER && !tool.use_tool(user, user, 0, volume=50, amount=1))
 		return FALSE
 	return TRUE
@@ -54,12 +61,12 @@
 
 //replace wires
 /datum/surgery_step/replace_wires
-	name = "replace wires"
+	name = "Replace wires"
 	implements = list(/obj/item/stack/cable_coil = 100)
 	time = 24
 	var/cableamount = 5
 
-/datum/surgery_step/replace_wires/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/replace_wires/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	var/obj/item/stack/cable_coil/coil = tool
 	if(coil.get_amount() < cableamount)
 		to_chat(user, "<span class='warning'>Not enough cable!</span>")
@@ -79,12 +86,12 @@
 
 //add plating
 /datum/surgery_step/add_plating
-	name = "add plating"
+	name = "Add plating"
 	implements = list(/obj/item/stack/sheet/metal = 100)
 	time = 24
 	var/metalamount = 5
 
-/datum/surgery_step/add_plating/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/add_plating/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	var/obj/item/stack/sheet/metal/plat = tool
 	if(plat.get_amount() < metalamount)
 		to_chat(user, "<span class='warning'>Not enough metal!</span>")

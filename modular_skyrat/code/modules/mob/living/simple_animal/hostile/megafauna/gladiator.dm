@@ -73,7 +73,7 @@ They deal 35 brute (armor is considered).
 			if(!(M in introduced) && (stat != DEAD))
 				introduction(M)
 
-/mob/living/simple_animal/hostile/megafauna/gladiator/apply_damage(damage, damagetype, def_zone, blocked, forced)
+/mob/living/simple_animal/hostile/megafauna/gladiator/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE) //skyrat edit
 	if(speen)
 		visible_message("<span class='danger'>[src] brushes off all incoming attacks!")
 		return FALSE
@@ -262,7 +262,7 @@ They deal 35 brute (armor is considered).
 			for(var/mob/living/M in U)
 				if(!faction_check(faction, M.faction) && !(M in hit_things))
 					playsound(src, 'sound/weapons/slash.ogg', 75, 0)
-					if(M.apply_damage(40, BRUTE, BODY_ZONE_CHEST))
+					if(M.apply_damage(40, BRUTE, BODY_ZONE_CHEST, M.run_armor_check(BODY_ZONE_CHEST), null, null, CANT_WOUND))
 						visible_message("<span class = 'userdanger'>[src] slashes [M] with his spinning zweihander!</span>")
 					else
 						visible_message("<span class = 'userdanger'>[src]'s spinning zweihander is stopped by [M]!</span>")
