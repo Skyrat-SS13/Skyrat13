@@ -15,13 +15,13 @@ GLOBAL_LIST_INIT(engineering_positions, list(
 // Added Brig Phys SKYRAT CHANGE
 // People were AFKing as Brig Phys in order to get blueshield
 // Well fuck you. It's in medical now.
+// well fuck you its back as sec you 4head
 GLOBAL_LIST_INIT(medical_positions, list(
 	"Chief Medical Officer",
 	"Medical Doctor",
 	"Geneticist",
 	"Virologist",
 	"Paramedic",
-	"Brig Physician",
 	"Psychologist",  //Skyrat change
 	"Chemist"))
 
@@ -54,6 +54,7 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Head of Security",
 	"Warden",
 	"Detective",
+	"Brig Physician",
 	"Security Officer",
 	"Blueshield"))
 
