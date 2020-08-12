@@ -3,7 +3,7 @@
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 20
-	light_range = 2
+	//light_range = 2 //Skyrat change
 	damage_type = BURN
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
@@ -14,6 +14,10 @@
 	ricochets_max = 50	//Honk!
 	ricochet_chance = 80
 	is_reflectable = TRUE
+
+/obj/item/projectile/beam/Initialize()
+	 . = ..()
+	 AddComponent(/datum/component/overlay_lighting, light_color, 2, 1)
 
 /obj/item/projectile/beam/laser
 	tracer_type = /obj/effect/projectile/tracer/laser

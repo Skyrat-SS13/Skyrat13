@@ -299,11 +299,14 @@
 		var/obj/item/flashlight/seclite/S = I
 		if(can_flashlight)
 			if(!F)
+				var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+				if(!OL)
+					AddComponent(/datum/component/overlay_lighting, S.light_color, S.brightness_on, S.flashlight_power, FALSE)
 				if(!user.transferItemToLoc(S, src))
 					return
 				to_chat(user, "<span class='notice'>You click [S] into place on [src].</span>")
-				if(S.on)
-					set_light(0)
+				/*if(S.on)
+					set_light(0)*/
 				F = S
 				update_icon()
 				update_helmlight(user)
@@ -348,15 +351,16 @@
 	update_helmlight(user)
 
 /obj/item/clothing/head/helmet/proc/update_helmlight(mob/user = null)
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 	if(F)
 		if(F.on)
-			set_light(F.brightness_on, F.flashlight_power, F.light_color)
+			OL.turn_on()
 		else
-			set_light(0)
+			OL.turn_off()
 		update_icon()
-
 	else
-		set_light(0)
+		OL.turn_off()
+
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
