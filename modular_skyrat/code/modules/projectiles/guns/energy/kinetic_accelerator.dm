@@ -119,16 +119,16 @@
 	..()
 	if(K.kinetic_gun)
 		var/obj/item/gun/energy/kinetic_accelerator/KA = K.kinetic_gun
-		var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1]
-		C.variance += 15 * (modifier + 1)
+		var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1] 
 		C.pellets += modifier
+		C.variance = (C.pellets * 15) + initial(C.variance)
 		KA.chambered = C
 
 /obj/item/borg/upgrade/modkit/shotgun/uninstall(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
 	..()
 	var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1]
-	C.variance -= 15 * (modifier + 1)
 	C.pellets -= modifier
+	C.variance = ((C.pellets - 1) * 15) + initial(C.variance)
 	KA.chambered = C
 
 //drake
