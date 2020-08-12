@@ -56212,6 +56212,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
+"kEm" = (
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "kEY" = (
 /obj/effect/landmark/stationroom/box/engine,
 /turf/open/space/basic,
@@ -58341,6 +58345,10 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"rtU" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "ruo" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -85528,7 +85536,7 @@ bVI
 bTA
 xgk
 bHE
-bHE
+kEm
 bHE
 bHE
 bHE
@@ -104473,7 +104481,7 @@ anf
 anf
 alP
 alP
-anf
+rtU
 alP
 alP
 alP
