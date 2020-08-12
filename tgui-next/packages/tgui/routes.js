@@ -41,6 +41,7 @@ import { DnaVault } from './interfaces/DnaVault';
 import { EightBallVote } from './interfaces/EightBallVote';
 import { EmergencyShuttleConsole } from './interfaces/EmergencyShuttleConsole';
 import { EngravedMessage } from './interfaces/EngravedMessage';
+import { Gateway } from './interfaces/Gateway';
 import { Gps } from './interfaces/Gps';
 import { GravityGenerator } from './interfaces/GravityGenerator';
 import { GulagTeleporterConsole } from './interfaces/GulagTeleporterConsole';
@@ -82,6 +83,7 @@ import { RapidPipeDispenser } from './interfaces/RapidPipeDispenser';
 import { SatelliteControl } from './interfaces/SatelliteControl';
 import { ScannerGate } from './interfaces/ScannerGate';
 import { ShuttleManipulator } from './interfaces/ShuttleManipulator';
+import { SkillPanel } from './interfaces/SkillPanel';
 import { Sleeper } from './interfaces/Sleeper';
 import { SlimeBodySwapper } from './interfaces/SlimeBodySwapper';
 import { Signaler } from './interfaces/Signaler';
@@ -287,6 +289,10 @@ const ROUTES = {
     component: () => EngravedMessage,
     scrollable: false,
   },
+  gateway: {
+    component: () => Gateway,
+    scrollable: false,
+  },
   gps: {
     component: () => Gps,
     scrollable: true,
@@ -477,6 +483,10 @@ const ROUTES = {
   },
   shuttle_manipulator: {
     component: () => ShuttleManipulator,
+    scrollable: true,
+  },
+  skillpanel: {
+    component: () => SkillPanel,
     scrollable: true,
   },
   sleeper: {

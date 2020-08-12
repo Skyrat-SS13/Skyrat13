@@ -1,3 +1,4 @@
+// Drakeborg sprites by Mizartz. drakeborg are licensed under the CC BY-NC-SA 3.0 license.
 /obj/item/robot_module
 	name = "Default"
 	icon = 'icons/obj/module.dmi'
@@ -129,7 +130,7 @@
 			S.source = get_or_create_estorage(/datum/robot_energy_storage/wrapping_paper)
 
 		if(S && S.source)
-			S.custom_materials = null
+			S.set_custom_materials(null)
 			S.is_cyborg = 1
 
 	if(I.loc != src)
@@ -264,7 +265,7 @@
 	var/prev_locked_down = R.locked_down
 	sleep(1)
 	flick("[cyborg_base_icon]_transform", R)
-	R.notransform = TRUE
+	R.mob_transforming = TRUE
 	R.SetLockdown(1)
 	R.anchored = TRUE
 	sleep(1)
@@ -275,7 +276,7 @@
 		R.SetLockdown(0)
 	R.setDir(SOUTH)
 	R.anchored = FALSE
-	R.notransform = FALSE
+	R.mob_transforming = FALSE
 	R.update_headlamp()
 	R.notify_ai(NEW_MODULE)
 	if(R.hud_used)
@@ -329,7 +330,7 @@
 		/obj/item/crowbar/cyborg,
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/borghypo,
-		/obj/item/reagent_containers/glass/beaker/large,
+		/obj/item/weapon/gripper/medical,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/surgical_drapes,
@@ -345,7 +346,7 @@
 		/obj/item/organ_storage,
 		/obj/item/borg/lollipop,
 		/obj/item/sensor_device,
-		/obj/item/twohanded/shockpaddles/cyborg)
+		/obj/item/shockpaddles/cyborg)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/hacked)
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/medical,
@@ -367,14 +368,16 @@
 		"Eyebot" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "eyebotmed"),
 		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymed"),
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootymedical"), //Skyrat change
+		"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootymedical"), //Skyrat change
 		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_medical"),
 		"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_med"),
 		"Qualified Doctor" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "qualified_doctor"),
-		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_med")
+		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_med"),
+		"Drake" = image(icon = 'icons/mob/cyborg/drakemech.dmi', icon_state = "drakemedbox")
 		)
 		var/list/L = list("Medihound" = "medihound", "Medihound Dark" = "medihounddark", "Vale" = "valemed")
 		for(var/a in L)
-			var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+			var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a]) //skyrat change
 			wide.pixel_x = -16
 			med_icons[a] = wide
 		if(R.client && R.client.ckey == "nezuli")
@@ -439,6 +442,9 @@
 		if("Bootyborg") //Skyrat change
 			cyborg_base_icon = "bootymedical"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi' 
+		if("Male Bootyborg") //Skyrat change
+			cyborg_base_icon = "male_bootymedical"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi' 
 		if("Protectron")
 			cyborg_base_icon = "protectron_medical"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -451,6 +457,13 @@
 		if("RoboMaid") //skyrat change
 			cyborg_base_icon = "robomaid_med"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'
+		if("Drake") // Dergborg brought to you by Navier#1236 | Skyrat | Commissioned Artist: deviantart.com/mizartz
+			cyborg_base_icon = "drakemed"
+			cyborg_icon_override = 'icons/mob/cyborg/drakemech.dmi'
+			sleeper_overlay = "drakemedsleeper"
+			moduleselect_icon = "medihound"
+			moduleselect_alternate_icon = 'modular_citadel/icons/ui/screen_cyborg.dmi'
+			dogborg = TRUE
 		else
 			return FALSE
 	return ..()
@@ -472,7 +485,7 @@
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/storage/part_replacer/cyborg,
-		/obj/item/holosign_creator/atmos,
+		/obj/item/holosign_creator/combifan,
 		/obj/item/weapon/gripper,
 		/obj/item/lightreplacer/cyborg,
 		/obj/item/geiger_counter/cyborg,
@@ -510,13 +523,15 @@
 		"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidereng"),
 		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyeng"),
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyeng"), //Skyrat change
+		"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootyeng"), //Skyrat change
 		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_eng"),
 		"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_eng"),
-		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_engi")
+		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_engi"),
+		"Drake" = image(icon = 'icons/mob/cyborg/drakemech.dmi', icon_state = "drakeengbox")
 		)
-		var/list/L = list("Pup Dozer" = "pupdozer", "Vale" = "valeeng")
+		var/list/L = list("Pup Dozer" = "pupdozer", "Vale" = "valeeng", "Hound" = "engihound", "Darkhound" = "engihounddark") //skyrat change
 		for(var/a in L)
-			var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+			var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a]) //skyrat change
 			wide.pixel_x = -16
 			engi_icons[a] = wide
 		if(R.client && R.client.ckey == "nezuli")
@@ -569,6 +584,16 @@
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			sleeper_overlay = "valeengsleeper"
 			dogborg = TRUE
+		if("Hound") //Skyrat change
+			cyborg_base_icon = "engihound"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+			sleeper_overlay = "engihoundsleeper"
+			dogborg = TRUE
+		if("Darkhound") //Skyrat change
+			cyborg_base_icon = "engihounddark"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+			sleeper_overlay = "engihounddarksleeper"
+			dogborg = TRUE
 		if("Alina")
 			cyborg_base_icon = "alina-eng"
 			special_light_key = "alina"
@@ -577,6 +602,9 @@
 			dogborg = TRUE
 		if("Bootyborg") //Skyrat change
 			cyborg_base_icon = "bootyeng"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("Male Bootyborg") //Skyrat change
+			cyborg_base_icon = "male_bootyeng"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 		if("Protectron")
 			cyborg_base_icon = "protectron_eng"
@@ -587,6 +615,11 @@
 		if("RoboMaid") //skyrat change
 			cyborg_base_icon = "robomaid_eng"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'
+		if("Drake") // Dergborg brought to you by Navier#1236 | Skyrat | Commissioned Artist: deviantart.com/mizartz
+			cyborg_base_icon = "drakeeng"
+			cyborg_icon_override = 'icons/mob/cyborg/drakemech.dmi'
+			sleeper_overlay = "drakesecsleeper"
+			dogborg = TRUE
 		else
 			return FALSE
 	return ..()
@@ -613,7 +646,7 @@
 /obj/item/robot_module/security/do_transform_animation()
 	..()
 	to_chat(loc, "<span class='userdanger'>While you have picked the security module, you still have to follow your laws, NOT Space Law. \
-	For Crewsimov, this means you must follow criminals' orders unless there is a law 1 reason not to.</span>")
+	For Crewsimov, you must not free prisoners, or obey their requests, unless there is a law 1 threat to them.</span>") //Skyrat Change. Law 2: FREE crewmembers.
 
 /obj/item/robot_module/security/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
@@ -628,13 +661,15 @@
 		"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidersec"),
 		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavysec"),
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootysecurity"), //Skyrat change
+		"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootysecurity"), //Skyrat change
 		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_security"),
 		"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_security"),
-		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_sec")
+		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_sec"),
+		"Drake" = image(icon = 'icons/mob/cyborg/drakemech.dmi', icon_state = "drakesecbox")
 		)
-		var/list/L = list("K9" = "k9", "Vale" = "valesec", "K9 Dark" = "k9dark")
+		var/list/L = list("K9" = "k9", "Vale" = "valesec", "K9 Dark" = "k9dark", "Otie" = "oties") //skyrat change
 		for(var/a in L)
-			var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+			var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a]) //skyrat change
 			wide.pixel_x = -16
 			sec_icons[a] = wide
 		if(R.client && R.client.ckey == "nezuli")
@@ -675,6 +710,11 @@
 			sleeper_overlay = "ksleeper"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			dogborg = TRUE
+		if("Otie")
+			cyborg_base_icon = "oties"
+			sleeper_overlay = "otiessleeper"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+			dogborg = TRUE
 		if("Alina")
 			cyborg_base_icon = "alina-sec"
 			special_light_key = "alina"
@@ -694,6 +734,9 @@
 		if("Bootyborg") //Skyrat change
 			cyborg_base_icon = "bootysecurity"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("Male Bootyborg") //Skyrat change
+			cyborg_base_icon = "male_bootysecurity"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 		if("Protectron")
 			cyborg_base_icon = "protectron_security"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -703,6 +746,11 @@
 		if("RoboMaid") //skyrat change
 			cyborg_base_icon = "robomaid_sec"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'
+		if("Drake") // Dergborg brought to you by Navier#1236 | Skyrat | Commissioned Artist: deviantart.com/mizartz
+			cyborg_base_icon = "drakesec"
+			sleeper_overlay = "drakesecsleeper"
+			cyborg_icon_override = 'icons/mob/cyborg/drakemech.dmi'
+			dogborg = TRUE
 		else
 			return FALSE
 	return ..()
@@ -909,6 +957,7 @@
 		"(Service) Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekserv"),
 		"(Service) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyserv"),
 		"(Service) Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyservice"), //Skyrat change
+		"(Service) Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootyservice"), //Skyrat change
 		"(Service) Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_service"),
 		"(Service) Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_service"),
 		"(Janitor) Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "janitor"),
@@ -916,15 +965,17 @@
 		"(Janitor) Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekjan"),
 		"(Janitor) Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "canjan"),
 		"(Janitor) Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyjanitor"), //Skyrat change
+		"(Janitor) Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootyjanitor"), //Skyrat change
 		"(Janitor) Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_janitor"),
 		"(Janitor) Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_janitor"),
 		"(Janitor) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyres"),
-		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_jani")
+		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_jani"),
+		"(Janitor) Drake" = image(icon = 'icons/mob/cyborg/drakemech.dmi', icon_state = "drakejanitbox") 
 		)
-		var/list/L = list("(Service) DarkK9" = "k50", "(Service) Vale" = "valeserv", "(Service) ValeDark" = "valeservdark",
-						"(Janitor) Scrubpuppy" = "scrubpup")
+		var/list/L = list("(Service) DarkK9" = "k50", "(Service) Vale" = "valeserv", "(Service) ValeDark" = "valeservdark", "(Janitor) Otie" = "otiej",
+						"(Janitor) Scrubpuppy" = "scrubpup") //Skyrat change
 		for(var/a in L)
-			var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+			var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a]) //skyrat change
 			wide.pixel_x = -16
 			service_icons[a] = wide
 		if(R.client && R.client.ckey == "nezuli")
@@ -980,6 +1031,9 @@
 		if("(Service) Bootyborg") //Skyrat change
 			cyborg_base_icon = "bootyservice"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("(Service) Male Bootyborg") //Skyrat change
+			cyborg_base_icon = "male_bootyservice"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 		if("(Service) Protectron")
 			cyborg_base_icon = "protectron_service"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -1005,8 +1059,16 @@
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			sleeper_overlay = "jsleeper"
 			dogborg = TRUE
+		if("(Janitor) Otie") //Skyrat change
+			cyborg_base_icon = "otiej"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+			sleeper_overlay = "otiejsleeper"
+			dogborg = TRUE
 		if("(Janitor) Bootyborg") //Skyrat change
 			cyborg_base_icon = "bootyjanitor"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("(Janitor) Male Bootyborg") //Skyrat change
+			cyborg_base_icon = "male_bootyjanitor"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 		if("(Janitor) Protectron")
 			cyborg_base_icon = "protectron_janitor"
@@ -1017,7 +1079,11 @@
 		if("RoboMaid") //skyrat change
 			cyborg_base_icon = "robomaid_jan"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'
-
+		if("(Janitor) Drake") // Dergborg brought to you by Navier#1236 | Skyrat | Commissioned Artist: deviantart.com/mizartz
+			cyborg_base_icon = "drakejanit"
+			cyborg_icon_override = 'icons/mob/cyborg/drakemech.dmi'
+			sleeper_overlay = "drakesecsleeper"
+			dogborg = TRUE
 		else
 			return FALSE
 	return ..()
@@ -1031,7 +1097,7 @@
 		/obj/item/borg/sight/meson,
 		/obj/item/storage/bag/ore/cyborg,
 		/obj/item/pickaxe/drill/cyborg,
-		/obj/item/twohanded/kinetic_crusher/cyborg,
+		/obj/item/kinetic_crusher/cyborg,
 		/obj/item/weldingtool/mini,
 		/obj/item/storage/bag/sheetsnatcher/borg,
 		/obj/item/t_scanner/adv_mining_scanner,
@@ -1066,13 +1132,15 @@
 		"Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "canmin"),
 		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymin"),
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyminer"), //Skyrat change
+		"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootyminer"), //Skyrat change
 		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_miner"),
 		"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_miner"),
-		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_miner")
+		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_miner"),
+		"Drake" = image(icon = 'icons/mob/cyborg/drakemech.dmi', icon_state = "drakeminebox")
 		)
 		var/list/L = list("Blade" = "blade", "Vale" = "valemine")
 		for(var/a in L)
-			var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+			var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a]) //skyrat change
 			wide.pixel_x = -16
 			mining_icons[a] = wide
 		if(R.client && R.client.ckey == "banangarang") //skyrat change
@@ -1118,6 +1186,9 @@
 		if("Bootyborg") //Skyrat change
 			cyborg_base_icon = "bootyminer"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("Male Bootyborg") //Skyrat change
+			cyborg_base_icon = "male_bootyminer"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 		if("Protectron")
 			cyborg_base_icon = "protectron_miner"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -1129,6 +1200,11 @@
 		if("RoboMaid") //skyrat change
 			cyborg_base_icon = "robomaid_miner"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'
+		if("Drake") // Dergborg brought to you by Navier#1236 | Skyrat | Commissioned Artist: deviantart.com/mizartz
+			cyborg_base_icon = "drakemine"
+			cyborg_icon_override = 'icons/mob/cyborg/drakemech.dmi'
+			sleeper_overlay = "drakeminesleeper"
+			dogborg = TRUE
 		else
 			return FALSE
 	return ..()
@@ -1171,7 +1247,7 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/crowbar/cyborg,
 		/obj/item/reagent_containers/borghypo/syndicate,
-		/obj/item/twohanded/shockpaddles/syndicate,
+		/obj/item/shockpaddles/syndicate,
 		/obj/item/healthanalyzer/advanced,
 		/obj/item/surgical_drapes/advanced,
 		/obj/item/retractor,

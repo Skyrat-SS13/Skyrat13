@@ -212,6 +212,11 @@
 	desc = "A heretical poster depicting the titular star of an equally heretical book."
 	icon_state = "poster4"
 
+/obj/structure/sign/poster/contraband/post_ratvar
+	name = "Post This Ratvar"
+	desc = "Oh what in the hell? Those cultists have animated paper technology and they use it for a meme?"
+	icon_state = "postvar"
+
 /obj/structure/sign/poster/contraband/syndicate_recruitment
 	name = "Syndicate Recruitment"
 	desc = "See the galaxy! Shatter corrupt megacorporations! Join today!"
@@ -427,6 +432,11 @@
 	name = "Syndicate"
 	desc = "A poster decipting a snake shaped into an ominous 'S'!"
 	icon_state = "poster47"
+
+/obj/structure/sign/poster/contraband/bountyhunters
+	name = "Bounty Hunters"
+	desc = "A poster advertising bounty hunting services. \"I hear you got a problem.\""
+	icon_state = "poster48"
 
 /obj/structure/sign/poster/official
 	poster_item_name = "motivational poster"

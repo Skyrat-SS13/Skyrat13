@@ -95,7 +95,7 @@
 	ignore_flags = 1 //so you can medipen through hardsuits
 	reagent_flags = DRAWABLE
 	flags_1 = null
-	list_reagents = list(/datum/reagent/medicine/epinephrine = 10, /datum/reagent/preservahyde = 3)
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 10, /datum/reagent/medicine/preservahyde = 3) // Skyrat Edit - repaths preservahyde
 	custom_premium_price = PRICE_ALMOST_EXPENSIVE
 
 /obj/item/reagent_containers/hypospray/medipen/suicide_act(mob/living/carbon/user)
@@ -198,6 +198,7 @@
 /obj/item/reagent_containers/hypospray/medipen/empty
 	name = "medipen"
 	desc = "An empty medipen."
+	icon_state = "lepopen"
 	volume = 10
 	list_reagents = null
 	amount_per_transfer_from_this = 10

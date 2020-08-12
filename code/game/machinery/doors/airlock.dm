@@ -95,6 +95,7 @@
 
 	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
+	var/pried_so_hard = FALSE // Skyrat change
 
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	rad_insulation = RAD_MEDIUM_INSULATION
@@ -188,7 +189,7 @@
 /obj/machinery/door/airlock/vv_edit_var(var_name)
 	. = ..()
 	switch (var_name)
-		if ("cyclelinkeddir")
+		if (NAMEOF(src, cyclelinkeddir))
 			cyclelinkairlock()
 
 /obj/machinery/door/airlock/check_access_ntnet(datum/netdata/data)
@@ -413,8 +414,8 @@
 // shock user with probability prb (if all connections & power are working)
 // returns TRUE if shocked, FALSE otherwise
 // The preceding comment was borrowed from the grille's shock script
-/obj/machinery/door/airlock/proc/shock(mob/user, prb)
-	if(!hasPower())		// unpowered, no shock
+/obj/machinery/door/airlock/proc/shock(mob/living/user, prb)
+	if(!istype(user) || !hasPower())		// unpowered, no shock
 		return FALSE
 	if(shockCooldown > world.time)
 		return FALSE	//Already shocked someone recently?
@@ -653,6 +654,8 @@
 		. += "<span class='warning'>The maintenance panel seems haphazardly fastened.</span>"
 	if(charge && panel_open)
 		. += "<span class='warning'>Something is wired up to the airlock's electronics!</span>"
+	if(pried_so_hard) // Skyrat change
+		. += "<span class='warning'>There are signs of forced entry where the halves meet, dents and scratches in the airlock's metal.</span>"
 	if(note)
 		if(!in_range(user, src))
 			. += "There's a [note.name] pinned to the front. You can't read it from here."
@@ -1018,6 +1021,7 @@
 								"<span class='italics'>You hear welding.</span>")
 				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, .proc/weld_checks, W, user)))
 					obj_integrity = max_integrity
+					pried_so_hard = FALSE // Skyrat
 					stat &= ~BROKEN
 					user.visible_message("[user.name] has repaired [src].", \
 										"<span class='notice'>You finish repairing the airlock.</span>")
@@ -1058,11 +1062,11 @@
 		to_chat(user, "<span class='warning'>The airlock's bolts prevent it from being forced!</span>")
 	else if( !welded && !operating)
 		if(!beingcrowbarred) //being fireaxe'd
-			var/obj/item/twohanded/fireaxe/F = I
-			if(F.wielded)
-				INVOKE_ASYNC(src, (density ? .proc/open : .proc/close), 2)
-			else
-				to_chat(user, "<span class='warning'>You need to be wielding the fire axe to do that!</span>")
+			var/obj/item/fireaxe/axe = I
+			if(!axe.wielded)
+				to_chat(user, "<span class='warning'>You need to be wielding \the [axe] to do that!</span>")
+				return
+			INVOKE_ASYNC(src, (density ? .proc/open : .proc/close), 2)
 		else
 			INVOKE_ASYNC(src, (density ? .proc/open : .proc/close), 2)
 
@@ -1091,6 +1095,8 @@
 			prying_so_hard = FALSE
 			if(result)
 				open(2)
+				take_damage(25, BRUTE, 0, 0) // Skyrat change
+				pried_so_hard = TRUE // Skyrat change
 				if(density && !open(2))
 					to_chat(user, "<span class='warning'>Despite your attempts, [src] refuses to open.</span>")
 
@@ -1109,7 +1115,6 @@
 		detonated = 1
 		charge = null
 		for(var/mob/living/carbon/human/H in orange(2,src))
-			H.Unconscious(160)
 			H.adjust_fire_stacks(20)
 			H.IgniteMob() //Guaranteed knockout and ignition for nearby people
 			H.apply_damage(40, BRUTE, BODY_ZONE_CHEST)

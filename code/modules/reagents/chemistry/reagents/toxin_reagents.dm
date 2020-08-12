@@ -368,6 +368,14 @@
 	pH = 4.9
 	value = REAGENT_VALUE_VERY_COMMON
 
+/datum/reagent/toxin/teapowder/red
+	name = "Ground Red Tea Leaves"
+	toxpwr = 0.4
+
+/datum/reagent/toxin/teapowder/green
+	name = "Ground Green Tea Leaves"
+	toxpwr = 0.6
+
 /datum/reagent/toxin/mutetoxin //the new zombie powder.
 	name = "Mute Toxin"
 	description = "A nonlethal poison that inhibits speech in its victim."
@@ -519,25 +527,6 @@
 	toxpwr = 0.5
 	taste_description = "bad cooking"
 	value = REAGENT_VALUE_NONE
-
-/datum/reagent/toxin/condensed_cooking_oil
-	name = "Condensed Cooking Oil"
-	description = "Taste the consequences of your mistakes."
-	reagent_state = LIQUID
-	color = "#d6d6d8"
-	metabolization_rate = 0.25 * REAGENTS_METABOLISM
-	toxpwr = 0
-	taste_mult = -2
-	taste_description = "awful cooking"
-	value = REAGENT_VALUE_NONE
-
-/datum/reagent/toxin/condensed_cooking_oil/on_mob_life(mob/living/carbon/M)
-	if(prob(5))
-		M.vomit()
-	else
-		if(prob(40))
-			M.adjustOrganLoss(ORGAN_SLOT_HEART, 0.5) //For reference, bungotoxin does 3
-	..()
 
 /datum/reagent/toxin/itching_powder
 	name = "Itching Powder"

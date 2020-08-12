@@ -76,6 +76,7 @@
 
 /obj/item/clothing/head/hooded
 	var/obj/item/clothing/suit/hooded/suit
+	//dynamic_hair_suffix = "" //Skyrat change
 
 /obj/item/clothing/head/hooded/Destroy()
 	suit = null

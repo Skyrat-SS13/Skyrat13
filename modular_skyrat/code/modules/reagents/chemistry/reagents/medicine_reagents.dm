@@ -1,3 +1,8 @@
+/datum/reagent/medicine/mine_salve/on_mob_metabolize(mob/living/M) //modularisation for miners salve painkiller.
+	..()
+	if(iscarbon(M))
+		ADD_TRAIT(M, TRAIT_PAINKILLER, PAINKILLER_MINERSSALVE)
+
 /datum/reagent/medicine/strange_reagent
 	description = "A miracle drug that can bring people back from the dead based on the dosage. For every 20 units of brute or burn damage, 1u of this reagent is required. Deals a small amount of damage on metabolism."
 
@@ -177,3 +182,10 @@
 	C.heal_bodypart_damage(0.5*REM, 0.5*REM, stamina = 0, updating_health = TRUE, only_robotic = TRUE, only_organic = FALSE)
 	..()
 	. = 1
+
+/datum/reagent/medicine/preservahyde
+	name = "Preservahyde"
+	description = "A powerful preservation agent, utilizing the preservative effects of formaldehyde with significantly less of the histamine."
+	reagent_state = LIQUID
+	color = "#f7685e"
+	metabolization_rate = REAGENTS_METABOLISM * 0.25

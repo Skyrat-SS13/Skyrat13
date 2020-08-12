@@ -15,7 +15,7 @@
 
 /datum/hud/ghost/New(mob/owner)
 	..()
-	
+
 	var/obj/screen/using
 
 	using = new /obj/screen/ghost/eventsignup()

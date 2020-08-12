@@ -194,7 +194,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 31)
 		S["wing_color"]			>> features["wings_color"]
 		S["horn_color"]			>> features["horns_color"]
-	
+
 	if(current_version < 33)
 		//Skyrat changes
 		features["flavor_text"]			= strip_html_simple(features["flavor_text"], MAX_FLAVOR_LEN, TRUE)
@@ -233,6 +233,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/needs_update = savefile_needs_update(S)
 	if(needs_update == -2)		//fatal, can't load any data
 		return 0
+	
+	. = TRUE
 
 	//general preferences
 	S["ooccolor"]			>> ooccolor
@@ -475,15 +477,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(needs_update == -2)		//fatal, can't load any data
 		return 0
 
+	. = TRUE
+	
 	//Species
 	var/species_id
 	S["species"]			>> species_id
 	if(species_id)
-		if(species_id == "avian" || species_id == "aquatic")
-			species_id = "mammal"
-		else if(species_id == "moth")
-			species_id = "insect"
-
 		var/newtype = GLOB.species_list[species_id]
 		if(newtype)
 			pref_species = new newtype
@@ -515,6 +514,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["backbag"]				>> backbag
 	S["jumpsuit_style"]			>> jumpsuit_style
 	S["uplink_loc"]				>> uplink_spawn_loc
+	/*S["custom_speech_verb"]		>> custom_speech_verb SKYRAT EDIT
+	S["custom_tongue"]			>> custom_tongue*/
 	S["feature_mcolor"]					>> features["mcolor"]
 	S["feature_lizard_tail"]			>> features["tail_lizard"]
 	S["feature_lizard_snout"]			>> features["snout"]
@@ -533,6 +534,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["feature_wings_color"]			>> features["wings_color"]
 	//SKYRAT CHANGES
 	S["bloodtype"]			>> bloodtype
+	S["bloodreagent"]		>> bloodreagent
+	S["bloodcolor"]			>> bloodcolor
 	//
 
 	//Custom names
@@ -547,12 +550,18 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["joblessrole"]		>> joblessrole
 	//Load prefs
 	S["job_preferences"]	>> job_preferences
-	job_preferences		= SANITIZE_LIST(job_preferences) //Skyrat edit - lack of this could cause game-mode failure
+	job_preferences	= SANITIZE_LIST(job_preferences) //Skyrat edit - lack of this could cause game-mode failure
 
 	//Quirks
 	S["all_quirks"]			>> all_quirks
-	//SKYRAT ADDITION - additional language
+	//SKYRAT EDIT
 	S["language"]			>> language
+	S["body_descriptors"]	>> body_descriptors
+	body_descriptors = SANITIZE_LIST(body_descriptors)
+	if(!length(body_descriptors)) //if we have a null descriptor list, we just force load it from the species
+		for(var/i in pref_species.descriptors) //of course some species might not have descriptors and this is uneccessary for them but
+			var/datum/mob_descriptor/md = pref_species.descriptors[i] //the hardest coding requires the strongest wills
+			body_descriptors[i] = md.current_value
 	//
 
 	//Citadel code
@@ -802,6 +811,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["jumpsuit_style"]			, jumpsuit_style)
 	WRITE_FILE(S["uplink_loc"]				, uplink_spawn_loc)
 	WRITE_FILE(S["species"]					, pref_species.id)
+	/*WRITE_FILE(S["custom_speech_verb"]		, custom_speech_verb) SKYRAT EDIT
+	WRITE_FILE(S["custom_tongue"]			, custom_tongue)*/
 	WRITE_FILE(S["feature_mcolor"]					, features["mcolor"])
 	WRITE_FILE(S["feature_lizard_tail"]				, features["tail_lizard"])
 	WRITE_FILE(S["feature_human_tail"]				, features["tail_human"])
@@ -820,7 +831,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_insect_markings"]			, features["insect_markings"])
 	WRITE_FILE(S["feature_meat"]					, features["meat_type"])
 	//SKYRAT CHANGE - Blood
+	WRITE_FILE(S["bloodcolor"]						, bloodcolor)
 	WRITE_FILE(S["bloodtype"]						, bloodtype)
+	WRITE_FILE(S["bloodreagent"]					, bloodreagent)
 	//
 
 	WRITE_FILE(S["feature_has_cock"], features["has_cock"])
@@ -868,6 +881,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["all_quirks"]			, all_quirks)
 	//SKYRAT ADDITION - additional language
 	WRITE_FILE(S["language"]			, language)
+	WRITE_FILE(S["body_descriptors"]	, body_descriptors)
 	//
 
 	WRITE_FILE(S["vore_flags"]			, vore_flags)
