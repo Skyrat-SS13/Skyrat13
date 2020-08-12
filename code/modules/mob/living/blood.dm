@@ -88,7 +88,7 @@
 			if(BLOOD_VOLUME_EXCESS to BLOOD_VOLUME_MAX_LETHAL)
 				if(prob(15))
 					to_chat(src, "<span class='userdanger'>Blood starts to tear your skin apart. You're going to burst!</span>")
-					var/severity = rand(20, 50)
+					var/severity = rand(15, 50)
 					adjustStaminaLoss(severity)
 					if(severity >= 40)
 						AdjustUnconscious(severity)
