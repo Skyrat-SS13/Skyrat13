@@ -1,0 +1,4 @@
+author: "Linuxtesting"
+delete-after: True
+changes: 
+  - bugfix: "fixed broken Exosuit, Explorer Suit, and SEVA sprites."
