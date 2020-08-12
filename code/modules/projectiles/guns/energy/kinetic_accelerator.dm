@@ -504,7 +504,7 @@
 		if(L.stat == DEAD)
 			return
 		L = K.firer
-		L.heal_ordered_damage(modifier/K.pellets, damage_heal_order) //skyrat edit - healing is divided by pellets to prevent shotgun mod memes
+		L.heal_ordered_damage(modifier/(KA?.chambered?.pellets ? KA.chambered.pellets : 1), damage_heal_order) //skyrat edit - healing is divided by pellets to prevent shotgun mod memes
 
 /obj/item/borg/upgrade/modkit/resonator_blasts
 	name = "resonator blast"
