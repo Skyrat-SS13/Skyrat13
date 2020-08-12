@@ -142,6 +142,26 @@
 	category = list("Mining Designs", "Cyborg Upgrade Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
+/datum/design/kinetic_buckshot
+	name = "Kinetic Buckshot Shell"
+	desc = "A shell for your Kinetic Shotgun. Fire a massive amount of kinetic force in an arc."
+	id = "k_buck"
+	build_type = PROTOLATHE | MECHFAB
+	materials = list(/datum/material/iron = 500)
+	build_path = /obj/item/ammo_casing/shotgun/kinetic/buckshot
+	category = list("Mining Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+
+/datum/design/kinetic_slug
+	name = "Kinetic Slug Shell"
+	desc = "A shell for your Kinetic Shotgun. Fires a massive amount of force in a very small area, but at a close range."
+	id = "k_slug"
+	build_type = PROTOLATHE | MECHFAB
+	materials = list(/datum/material/iron = 500)
+	build_path = /obj/item/ammo_casing/shotgun/kinetic/slug
+	category = list("Mining Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+
 /datum/design/hyperaccelerator
 	name = "Kinetic Accelerator Mining AoE Mod"
 	desc = "A modification kit for Kinetic Accelerators which causes it to fire AoE blasts that destroy rock."

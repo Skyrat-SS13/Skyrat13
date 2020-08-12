@@ -21,7 +21,7 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 /obj/item/ammo_casing/shotgun/kinetic/buckshot
 	name = "kinetic buckshot shell"
 	desc = "A shell for your Kinetic Shotgun. Fires a massive amount of kinetic force in an arc."
-	icon_state =
+	icon_state = "cshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/kinetic_buck
 
 	//buckshot projectile
@@ -45,11 +45,19 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 		else()
 			pressure_decrease_active = FALSE
 
+	//mining effect
+/obj/item/projectile/bullet/pellet/kinetic_buck/proc/strike_thing(atom/target)
+	if(!target_turf)
+		target_turf = get_turf(src)
+	if(ismineralturf(target_turf))
+		var/turf/closed/mineral/M = target_turf
+		M.gets_drilled(firer)
+
 	//slug
 /obj/item/ammo_casing/shotgun/kinetic/slug
 	name = "kinetic slug shell"
 	desc = "A shell for your Kinetic Shotgun. Fires a massive amount of kinetic force in a very small area, but at a closer range."
-	icon_state =
+	icon_state = "cshell"
 	projectile_type = /obj/item/projectile/bullet/kinetic_slug
 
 	//atmos check
@@ -73,5 +81,12 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	range = 3
 	spread = 0
 
+	//mining effect
+/obj/item/projectile/bullet/kinetic_slug/proc/strike_thing(atom/target)
+	if(!target_turf)
+		target_turf = get_turf(src)
+	if(ismineralturf(target_turf))
+		var/turf/closed/mineral/M = target_turf
+		M.gets_drilled(firer)
 
 //drops for gun to be made
