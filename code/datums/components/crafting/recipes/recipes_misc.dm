@@ -126,7 +126,7 @@
 
 /datum/crafting_recipe/brute_pack
 	name = "Suture Pack"
-	result = /obj/item/stack/medical/suture/five
+	result = /obj/item/stack/medical/suture/emergency
 	time = 1
 	reqs = list(/obj/item/stack/medical/gauze = 1,
 				/datum/reagent/medicine/styptic_powder = 10)
