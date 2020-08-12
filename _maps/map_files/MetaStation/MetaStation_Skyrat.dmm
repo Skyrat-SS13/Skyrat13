@@ -49768,6 +49768,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/mob/living/simple_animal/opossum,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "bZy" = (
@@ -72203,6 +72204,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"cZr" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "cZv" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -77876,6 +77881,10 @@
 /obj/item/circuitboard/machine/dish_drive,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"kZq" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "kZw" = (
 /obj/structure/bed,
 /obj/item/tank/internals/anesthetic,
@@ -78383,6 +78392,11 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
+"nDM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plasteel,
+/area/engine/break_room)
 "nIb" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining{
@@ -79626,6 +79640,16 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plasteel,
 /area/science/research)
+"uXu" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "uYS" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/computer/rdconsole/robotics{
@@ -97903,7 +97927,7 @@ anY
 ahp
 dhu
 doJ
-atu
+uXu
 dnk
 fNY
 doJ
@@ -98236,7 +98260,7 @@ cia
 ndm
 dyg
 dvt
-bXE
+kZq
 dvE
 dux
 aaf
@@ -116686,7 +116710,7 @@ aRd
 aSl
 aJh
 avB
-dnS
+cZr
 tuk
 aZw
 bbl
@@ -122093,7 +122117,7 @@ bfW
 bic
 bjK
 blq
-blq
+nDM
 bpk
 brI
 btB
