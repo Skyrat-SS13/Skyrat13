@@ -114,7 +114,7 @@
 	denied_type = /obj/item/borg/upgrade/modkit/aoe
 	cost = 40
 	modifier = 3
-	var/penalty = 13
+	var/penalty = 6
 
 /obj/item/borg/upgrade/modkit/shotgun/modify_projectile(obj/item/projectile/kinetic/K)
 	..()
