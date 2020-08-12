@@ -503,9 +503,10 @@
 	if(owner && updating_health)
 		owner.updatehealth()
 	if(owner.dna && owner.dna.species && (REVIVESBYHEALING in owner.dna.species.species_traits))
-		if((owner.health > owner.dna.species.revivesbyhealreq) && !owner.hellbound && (owner.blood_volume >= BLOOD_VOLUME_OKAY))
-			owner.revive(0)
-			owner.cure_husk(0) // If it has REVIVESBYHEALING, it probably can't be cloned. No husk cure.
+		if((owner.health > owner.dna.species.revivesbyhealreq) && !owner.hellbound)
+			if((NOBLOOD in owner.dna.species.species_traits) || (owner.blood_volume >= BLOOD_VOLUME_OKAY))
+				owner.revive(0)
+				owner.cure_husk(0) // If it has REVIVESBYHEALING, it probably can't be cloned. No husk cure.
 	consider_processing()
 	update_disabled()
 	return update_bodypart_damage_state() 
