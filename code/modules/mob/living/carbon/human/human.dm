@@ -1270,43 +1270,6 @@
 /mob/living/carbon/human/species/ipc
 	race = /datum/species/ipc
 
-/mob/living/carbon/human/species/synthliz/mangled/Initialize()
-	..()
-	mangle()
-
-/mob/living/carbon/human/species/synth/mangled/Initialize()
-	..()
-	mangle()
-
-/mob/living/carbon/human/species/synth/military/mangled/Initialize()
-	..()
-	mangle()
-
-/mob/living/carbon/human/species/ipc/mangled/Initialize()
-	..()
-	mangle()
-
-/mob/living/carbon/human/species/android/mangled/Initialize()
-	..()
-	mangle()
-
-/mob/living/carbon/human/species/corporate/mangled/Initialize()
-	..()
-	mangle()
-
-/mob/living/carbon/human/proc/mangle()
-	stat = DEAD
-	socks = ""
-	undershirt = ""
-	underwear = ""
-	for(var/obj/item/organ/O in internal_organs)
-		O.Remove()
-		qdel(O)
-	for(var/obj/item/bodypart/BP in bodyparts)
-		if(BP.body_zone != BODY_ZONE_CHEST)
-			BP.drop_limb(TRUE, TRUE, FALSE, TRUE)
-	return TRUE
-
 /mob/living/carbon/human/species/roundstartslime
 	race = /datum/species/jelly/roundstartslime
 
