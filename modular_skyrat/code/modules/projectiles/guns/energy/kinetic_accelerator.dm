@@ -155,9 +155,9 @@
 /obj/item/borg/upgrade/modkit/wall
 	name = "wall modification kit"
 	desc = "Makes a wall on impact on a living being."
-	cost = 60
+	cost = 50
 	var/cooldown = 0
-	var/cdmultiplier = 1.75
+	var/cdmultiplier = 2.25
 
 /obj/item/borg/upgrade/modkit/wall/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	..()
