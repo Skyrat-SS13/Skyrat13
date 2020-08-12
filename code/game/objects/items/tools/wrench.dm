@@ -70,6 +70,7 @@
 /obj/item/wrench/power/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	var/obj/item/wirecutters/power/s_drill = new /obj/item/screwdriver/power(drop_location())
+	s_drill.name = name // Skyrat fix
 	to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
 	qdel(src)
 	user.put_in_active_hand(s_drill)
