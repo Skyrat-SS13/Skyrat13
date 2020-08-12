@@ -77,7 +77,7 @@
 
 //Lower right, persistent menu
 //SKYRAT CHANGE - wield button
-#define ui_wield "EAST-1:28,SOUTH+2:7"
+#define ui_wield "EAST-2:26,SOUTH+1:7"
 //END OF SKYRAT CHANGES
 #define ui_drop_throw "EAST-1:28,SOUTH+1:7"
 #define ui_pull_resist "EAST-2:26,SOUTH+1:7"
