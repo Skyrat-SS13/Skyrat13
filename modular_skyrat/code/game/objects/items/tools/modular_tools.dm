@@ -102,6 +102,7 @@
 	to_chat(user, "<span class='notice'>You attach the cutting jaws to [src].</span>")
 	qdel(src)
 	user.put_in_active_hand(cutjaws)
+
 /obj/item/wirecutters/electric/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
 	var/obj/item/crowbar/electric/pryjaws = new /obj/item/crowbar/electric(drop_location())
@@ -109,18 +110,23 @@
 	to_chat(user, "<span class='notice'>You attach the pry jaws to [src].</span>")
 	qdel(src)
 	user.put_in_active_hand(pryjaws)
+
 /obj/item/screwdriver/power/green/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	var/obj/item/wrench/power/b_drill = new /obj/item/wrench/power/green(drop_location())
+	b_drill.name = name // Skyrat fix
 	to_chat(user, "<span class='notice'>You attach the bolt driver bit to [src].</span>")
 	qdel(src)
 	user.put_in_active_hand(b_drill)
+
 /obj/item/wrench/power/green/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	var/obj/item/screwdriver/power/green/s_drill = new /obj/item/screwdriver/power/green(drop_location())
+	s_drill.name = name // Skyrat fix
 	to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
 	qdel(src)
 	user.put_in_active_hand(s_drill)
+
 /obj/item/wirecutters/electric/attack(mob/living/carbon/C, mob/user)
 	if(istype(C))
 		if(C.handcuffed)
