@@ -153,7 +153,8 @@
 						"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
 						"Extraction and Rescue Kit" = image(icon = 'icons/obj/fulton.dmi', icon_state = "extraction_pack"),
 						"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "crusher"),
-						"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel"))
+						"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel"),
+						"Shotgun Kit" = image(icon = 'icons/obj/guns/projectile.dmi', icon_state = "shotgun"))
 
 	var/selection = show_radial_menu(redeemer, src, items, require_near = TRUE, tooltips = TRUE)
 	if(!selection || !Adjacent(redeemer) || QDELETED(voucher) || voucher.loc != redeemer)
@@ -179,6 +180,9 @@
 			new /obj/item/kinetic_crusher(drop_location)
 		if("Mining Conscription Kit")
 			new /obj/item/storage/backpack/duffelbag/mining_conscript(drop_location)
+		if("Shotgun Kit")
+			new /obj/item/gun/ballistic/shotgun/kinetic_shotgun(drop_location)
+			new /obj/item/storage/belt/bandolier(drop_location)
 
 	SSblackbox.record_feedback("tally", "mining_voucher_redeemed", 1, selection)
 	qdel(voucher)
