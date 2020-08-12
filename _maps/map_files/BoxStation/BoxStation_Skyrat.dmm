@@ -1088,8 +1088,7 @@
 /area/security/prison)
 "acI" = (
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
+	id = "executionfireblast"
 	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /obj/machinery/door/firedoor,
@@ -1224,8 +1223,7 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
+	id = "executionfireblast"
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -1242,8 +1240,7 @@
 "acZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
+	id = "executionfireblast"
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -49098,11 +49095,9 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cjb" = (
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel{
-	name = "floor"
-	},
-/area/engine/engineering)
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "cjc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -58499,6 +58494,13 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/space/nearstation)
+"jcw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "jcN" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -58774,6 +58776,10 @@
 	dir = 1
 	},
 /area/crew_quarters/fitness)
+"jEf" = (
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "jEU" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
@@ -60382,6 +60388,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
 /area/lawoffice)
+"nmw" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "noy" = (
 /obj/structure/sign/poster/contraband/smoke{
 	desc = "This poster reminds us all that the Detective is a parasite. Year after year, they must get replacement lungs because of their addiction. ";
@@ -61548,6 +61558,13 @@
 	},
 /turf/open/floor/wood,
 /area/library)
+"pKc" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "pKR" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
@@ -65127,7 +65144,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance/abandoned{
-	name = "maintenance access";
 	req_access_txt = "12"
 	},
 /obj/structure/barricade/wooden/crude,
@@ -81112,7 +81128,7 @@ bbI
 bcK
 aPz
 bdB
-aWv
+jcw
 bfh
 aPz
 aPz
@@ -90908,7 +90924,7 @@ aaa
 aaf
 aaf
 bCq
-bTE
+pKc
 bAx
 bVI
 bWC
@@ -92209,8 +92225,8 @@ bVJ
 cay
 ccw
 cig
-cjb
-cjb
+cSV
+cSV
 cig
 cig
 cmG
@@ -103761,7 +103777,7 @@ bMa
 bTZ
 bKH
 bzs
-bAw
+jEf
 bXZ
 bHX
 bZN
@@ -108841,7 +108857,7 @@ anf
 anf
 avE
 anf
-anf
+cjb
 anf
 anf
 aty
@@ -114311,7 +114327,7 @@ lZl
 cNW
 chC
 ciL
-cOe
+nmw
 cOe
 clv
 cQw
