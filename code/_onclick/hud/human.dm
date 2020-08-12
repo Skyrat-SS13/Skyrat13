@@ -135,12 +135,12 @@
 	//END OF CITADEL CHANGES
 
 	//SKYRAT CHANGES - Wield button
-	using = new /obj/screen/wield
-	using.icon = ui_style_modular_skyrat(ui_style)
-	using.icon_state = "act_wield"
-	using.screen_loc = ui_wield
-	using.hud = src
-	static_inventory += using
+	wielded = new /obj/screen/wield
+	wielded.icon = ui_style_modular_skyrat(ui_style)
+	wielded.icon_state = "act_wield"
+	wielded.screen_loc = ui_wield
+	wielded.hud = src
+	static_inventory += wielded
 	//END OF SKYRAT CHANGES
 
 	//same as above but buffer.

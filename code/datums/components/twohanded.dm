@@ -171,6 +171,10 @@
 	// Play sound if one is set
 	if(wieldsound)
 		playsound(parent_item.loc, wieldsound, 50, TRUE)
+	
+	//skyrat edit - update the wield ui button
+	user.wield_ui_on()
+	//
 
 	// Let's reserve the other hand
 	offhand_item = new(user)
@@ -242,6 +246,10 @@
 		qdel(offhand_item)
 	// Clear any old refrence to an item that should be gone now
 	offhand_item = null
+
+	//skyrat edit - update the wield ui button
+	user.wield_ui_off()
+	//
 
 /**
  * on_attack triggers on attack with the parent item
