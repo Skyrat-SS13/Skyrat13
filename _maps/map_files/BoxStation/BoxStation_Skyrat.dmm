@@ -1088,7 +1088,8 @@
 /area/security/prison)
 "acI" = (
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast"
+	id = "executionfireblast";
+	name = "blast door"
 	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /obj/machinery/door/firedoor,
@@ -1223,7 +1224,8 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast"
+	id = "executionfireblast";
+	name = "blast door"
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -1240,7 +1242,8 @@
 "acZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast"
+	id = "executionfireblast";
+	name = "blast door"
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -30223,19 +30226,11 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bqM" = (
+/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/medical/glass{
-	id_tag = "MedbayFoyer1";
-	name = "Medbay";
-	req_access_txt = "5"
-	},
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plating,
 /area/medical/medbay/central)
 "bqN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -30270,6 +30265,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bqR" = (
+/obj/structure/table,
+/obj/item/crowbar,
+/obj/item/clothing/neck/stethoscope,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 30
 	},
@@ -30278,14 +30277,6 @@
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
-	},
-/obj/machinery/button/door{
-	desc = "A remote control switch for the medbay foyer.";
-	id = "MedbayFoyer1";
-	name = "Medbay Exit Button";
-	normaldoorcontrol = 1;
-	pixel_x = -25;
-	pixel_y = 24
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -30799,19 +30790,11 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "brV" = (
+/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/medical/glass{
-	id_tag = "MedbayFoyer1";
-	name = "Medbay";
-	req_access_txt = "5"
-	},
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plating,
 /area/medical/medbay/central)
 "brW" = (
 /obj/structure/cable{
@@ -30820,6 +30803,18 @@
 /obj/machinery/vending/cart,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
+"brX" = (
+/obj/structure/table,
+/obj/item/storage/box/masks,
+/obj/item/storage/box/gloves{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "brY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -32933,7 +32928,7 @@
 /area/medical/sleeper)
 "bwC" = (
 /obj/machinery/computer/med_data{
-	dir = 4
+	dir = 3
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
@@ -35009,7 +35004,6 @@
 	dir = 6
 	},
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/medspray/sterilizine,
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
@@ -35850,27 +35844,18 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bCL" = (
+/obj/structure/closet/secure_closet/medical3,
 /obj/machinery/camera{
 	c_tag = "Medbay Storage";
 	network = list("ss13","medbay")
 	},
-/obj/structure/closet/secure_closet/medical3,
-/obj/item/sensor_device,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/storage/box/medipens,
-/obj/item/storage/box/gloves,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bCM" = (
+/obj/structure/closet/secure_closet/medical3,
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/structure/closet/secure_closet/medical3,
-/obj/item/sensor_device,
-/obj/item/clothing/neck/stethoscope,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/storage/box/medipens,
-/obj/item/storage/box/masks,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bCN" = (
@@ -37082,7 +37067,7 @@
 "bFA" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 12
+	pixel_x = 11
 	},
 /obj/machinery/requests_console{
 	department = "Medbay";
@@ -37094,9 +37079,6 @@
 /area/medical/sleeper)
 "bFB" = (
 /obj/structure/closet/secure_closet/medical2,
-/obj/item/reagent_containers/medspray/sterilizine,
-/obj/item/tank/internals/anesthetic,
-/obj/item/tank/internals/anesthetic,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bFC" = (
@@ -38400,8 +38382,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bIw" = (
-/obj/item/sensor_device,
-/obj/item/vending_refill/medical,
 /obj/structure/closet/secure_closet/CMO,
 /obj/machinery/light{
 	dir = 4
@@ -49116,6 +49096,12 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"cjb" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel{
+	name = "floor"
+	},
 /area/engine/engineering)
 "cjc" = (
 /obj/effect/turf_decal/stripes/line{
@@ -65141,6 +65127,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance/abandoned{
+	name = "maintenance access";
 	req_access_txt = "12"
 	},
 /obj/structure/barricade/wooden/crude,
@@ -92222,8 +92209,8 @@ bVJ
 cay
 ccw
 cig
-cSV
-cSV
+cjb
+cjb
 cig
 cig
 cmG
@@ -99381,7 +99368,7 @@ bob
 bnB
 bfF
 bqR
-bqQ
+brX
 bof
 bwx
 bvj
