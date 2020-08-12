@@ -160,14 +160,11 @@
 	desc = "A roll of cloth roughly cut from something that can stop bleeding, but does not heal wounds."
 	stop_bleeding = 900
 	heal_brute = 0
-<<<<<<< HEAD
-=======
 	desc = "A roll of cloth roughly cut from something that does a decent job of stabilizing wounds, but less efficiently than real medical gauze."
 	self_delay = 60
 	other_delay = 30
 	absorption_rate = 0.15
 	absorption_capacity = 4
->>>>>>> 88cb61b08a... Merge pull request #13068 from Hatterhat/med-stack-buff
 
 /obj/item/stack/medical/gauze/adv
 	name = "sterilized medical gauze"
