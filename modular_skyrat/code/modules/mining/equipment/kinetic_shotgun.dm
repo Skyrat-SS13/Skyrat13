@@ -21,7 +21,7 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	desc = "A shell for your Kinetic Shotgun. Fires a massive amount of kinetic force in an arc."
 	icon_state = "cshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/kinetic_b
-	pellets = 5
+	pellets = 4
 	variance = 15
 	caliber = "kinetic"
 	custom_materials = list(/datum/material/iron=500)
@@ -36,8 +36,6 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	caliber = "kinetic"
 	custom_materials = list(/datum/material/iron=500)
 
-
-
 //Kinetic Shotgun Starting "Bullets"
 
 /obj/item/projectile/bullet/pellet/kinetic_b
@@ -49,6 +47,7 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	range = 4
 	spread = 5
 
+
 /obj/item/projectile/bullet/kinetic_s
 	name = "kinetic tracer"
 	icon_state = "ka_tracer"
@@ -58,7 +57,112 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	range = 3
 	spread = 0
 
-//Augments
+
+//Augments (Very WIP)
 
 
-//Shells from Megafauna
+
+
+//Megafauna shells/projectiles
+
+//BDM slug
+/obj/item/ammo_casing/shotgun/k_bdm_slug
+	name = "beastblood slug"
+	desc = "A shell for your kinetic shotgun. This one is a finely crafted, single slug, soaked in the blood of Goliaths. This one is very close ranged, but very high damage."
+	icon_state = "cshell"
+	projectile_type = /obj/item/projectile/bullet/kinetic_bdm_s
+	pellets = 1
+	variance = 0
+	caliber = "kinetic"
+	custom_materials = list(/datum/material/iron = 500, /datum/material/silver = 500)
+
+/obj/item/projectile/bullet/kinetic_bdm_s
+	name = "bloody tracer"
+	icon_state = "ka_tracer"
+	damage = 80
+	damage_type = BRUTE
+	flag = "bomb"
+	range = 2
+	spread = 0
+
+//Ash Drake shell
+/obj/item/ammo_casing/shotgun/k_ash_buck
+	name = "bone shard shell"
+	desc = "A shell for your kinetic shotgun. This one is loaded with shards of bone within the hollow canister, giving it an extra punch against whatever unlucky foe is on the other side."
+	icon_state = "cshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/kinetic_ash_b
+	pellets = 4
+	variance = 6
+	caliber = "kinetic"
+	custom_materials = list(/datum/material/iron = 1000)
+
+/obj/item/projectile/bullet/pellet/kinetic_ash_b
+	name = "bony tracer"
+	icon_state = "ka_tracer"
+	damage = 25
+	damage_type = BRUTE
+	flag = "bomb"
+	range = 4
+	spread = 4
+
+//Rogue Process shell
+/obj/item/ammo_casing/shotgun/k_rogue_buck
+	name = "plasma shell"
+	desc = "A shell for your kinetic shotgun. This one has been loaded with modified, close range plasma bursts. It seems to do less damage, but makes for a good mining tool."
+	icon_state = "cshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/kinetic_rogue_b
+	pellets = 5
+	variance = 1
+	caliber = "kinetic"
+	custom_materials = list(/datum/material/plasma = 1000)
+
+
+/obj/item/projectile/bullet/pellet/kinetic_rogue_b
+	name = "plasma burst"
+	icon_state = "plasma"
+	damage = 15
+	damage_type = BURN
+	range = 5
+	spread = 3
+
+//Collosus shell
+/obj/item/ammo_casing/shotgun/k_colly_buck
+	name = "bolter casing"
+	desc = "A shell for your kinetic shotgun. This one is huge! It barely even fits in the magwell. This thing would rip through just about anything on Lavaland. Hope you invested in a good stock."
+	icon_state = "cshell"
+	projectile_type = /obj/item/projectile/bullet/kinetic_colly_s
+	pellets = 1
+	variance = 0
+	caliber = "kinetic"
+	custom_materials = list(/datum/material/iron = 1500)
+
+/obj/item/projectile/bullet/kinetic_colly_s
+	name = "bolt"
+	icon_state = "pulse1"
+	damage = 100
+	damage_type = BRUTE
+	flag = "bomb"
+	range = 4
+	spread = 0
+
+//Legion shell
+/obj/item/ammo_casing/shotgun/k_legion_buck
+	name = "ash shell"
+	desc = "A shell for your kinetic shotgun. This one burns your hand just holding it. You can hear the sound of an angry wind from within it, radiating heat. One could only imagine what this does."
+	icon_state = "cshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/kinetic_legion_b
+	pellets = 4
+	variance = 15
+	caliber = "kinetic"
+	custom_materials = list(/datum/material/iron = 2000)
+
+/obj/item/projectile/bullet/pellet/kinetic_legion_b
+	name = "burning tracer"
+	icon_state = "ka_tracer"
+	damage_type = BURN
+	damage = 20
+	range = 5
+	spread = 6
+
+
+
