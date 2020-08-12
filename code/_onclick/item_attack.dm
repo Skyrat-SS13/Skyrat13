@@ -61,6 +61,17 @@
 	if(!I.attack_delay_done) //Otherwise, pre_attacked_by() should handle it.
 		user.changeNext_move(I.click_delay)
 
+/**
+  * Called when someone uses us to attack a mob in melee combat.
+  *
+  * This proc respects CheckAttackCooldown() default clickdelay handling.
+  *
+  * @params
+  * * mob/living/M - target
+  * * mob/living/user - attacker
+  * * attackchain_Flags - see [code/__DEFINES/_flags/return_values.dm]
+  * * damage_multiplier - what to multiply the damage by
+  */
 /obj/item/proc/attack(mob/living/M, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
 		return
@@ -192,9 +203,9 @@
 		if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
 			bad_trait = SKILL_COMBAT_MODE //blacklist combat skills.
 			if(SEND_SIGNAL(src, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))
-				. *= 0.5
+				. *= 0.8
 		else if(SEND_SIGNAL(src, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
-			. *= 1.5
+			. *= 1.2
 
 	if(!user.mind || !I.used_skills)
 		return
@@ -205,8 +216,20 @@
 			continue
 		user.mind.auto_gain_experience(skill, I.skill_gain)
 
-// Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
-// Click parameters is the params string from byond Click() code, see that documentation.
+// Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.		//Skyrat Edit
+// Click parameters is the params string from byond Click() code, see that documentation.		//Skyrat Edit
+/**
+  * Called after attacking something if the melee attack chain isn't interrupted before.
+  * Also called when clicking on something with an item without being in melee range
+  *
+  * WARNING: This does not automatically check clickdelay if not in a melee attack! Be sure to account for this!
+  *
+  * @params
+  * * target - The thing we clicked
+  * * user - mob of person clicking
+  * * proximity_flag - are we in melee range/doing it in a melee attack
+  * * click_parameters - mouse control parameters, check BYOND ref.
+  */
 /obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)

@@ -272,12 +272,14 @@
 		new/obj/structure/alien/resin/flower_bud_enemy(get_turf(holder))
 
 /datum/spacevine_mutation/flowering/on_cross(obj/structure/spacevine/holder, mob/living/crosser)
+	/* SKYRAT EDIT - VINES
 	if(istype(crosser, /mob/living/simple_animal/hostile/venus_human_trap)) //skyrat change: flowering vines heal flytraps 10% on cross
 		if(crosser.health == crosser.maxHealth)
 			return
 		crosser.health = clamp((crosser.health + crosser.maxHealth * 0.1), crosser.health, crosser.maxHealth)
 		to_chat(crosser, "<span class='notice'>The flowering vines attempt to regenerate some of your wounds!</span>")
 		return
+	SKYRAT EDIT - VINES */
 	if(prob(25))
 		holder.entangle(crosser)
 //SKYRAT EDIT - VINES - START
@@ -379,6 +381,15 @@
 		return
 	for(var/datum/spacevine_mutation/SM in mutations)
 		SM.on_cross(src, AM)
+	//SKYRAT EDIT START - VINES
+	if(istype(AM, /mob/living/simple_animal/hostile/venus_human_trap)) //skyrat change: vines heal flytraps 10% on cross
+		var/mob/living/simple_animal/hostile/venus_human_trap/VS = AM
+		if(VS.health == VS.maxHealth)
+			return
+		VS.health = clamp((VS.health + VS.maxHealth * 0.1), VS.health, VS.maxHealth)
+		to_chat(VS, "<span class='notice'>The vines attempt to regenerate some of your wounds!</span>")
+		return
+	//SKYRAT EDIT END - VINES
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/spacevine/attack_hand(mob/user)
@@ -541,7 +552,7 @@
 			D.open()
 	//if (!isspaceturf(stepturf) && stepturf.Enter(src)) // SKYRAT EDIT - VINES (ORIGINAL)
 	if (stepturf.Enter(src)) //SKYRAT EDIT - VINES
-		if(isspaceturf(stepturf) && istype(steparea, /area/space/station_ruins))
+		if(istype(steparea, /area/space/station_ruins))
 			return
 	//SKYRAT EDIT END - VINES
 		for(var/datum/spacevine_mutation/SM in mutations)
@@ -550,6 +561,10 @@
 		if(!locate(/obj/structure/spacevine, stepturf))
 			if(master)
 				master.spawn_spacevine_piece(stepturf, src)
+				//SKYRAT EDIT START - VINES
+				if(istype(stepturf, /turf/open/space))
+					stepturf.ChangeTurf(/turf/open/floor/plating/airless/kudzu)
+				//SKYRAT EDIT END - VINES
 
 /obj/structure/spacevine/ex_act(severity, target)
 	if(istype(target, type)) //if its agressive spread vine dont do anything
@@ -577,4 +592,17 @@
 		var/mob/living/M = A
 		if(("vines" in M.faction) || ("plants" in M.faction))
 			return TRUE
+		if(istype(M, /mob/living/simple_animal/hostile/venus_human_trap))
+			return TRUE
 	return FALSE
+
+/turf/open/floor/plating/airless/kudzu
+	name = "kudzu flooring"
+	icon = 'modular_skyrat/icons/turf/smooth/_smooth.dmi'
+	icon_state = "grass"
+
+/turf/open/floor/plating/airless/kudzu/attackby(obj/item/C, mob/user, params)
+	if(istype(C, /obj/item/wirecutters))
+		ChangeTurf(/turf/open/space)
+	else
+		return ..()

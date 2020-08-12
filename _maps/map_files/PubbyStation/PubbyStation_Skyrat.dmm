@@ -2025,8 +2025,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
+	id = "executionfireblast"
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor/plating,
@@ -53354,6 +53353,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"dVH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/department/security/brig)
 "dVI" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
@@ -58426,8 +58433,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
+	id = "executionfireblast"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
@@ -61107,8 +61113,7 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
+	id = "executionfireblast"
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
@@ -63131,6 +63136,12 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"uwH" = (
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/maintenance/department/engine)
 "uwX" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
@@ -64882,6 +64893,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"xjU" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "xlA" = (
 /obj/machinery/door/airlock/maintenance/abandoned,
 /turf/open/floor/plating,
@@ -64936,6 +64951,10 @@
 	luminosity = 2
 	},
 /area/maintenance/department/science)
+"xud" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/department/cargo)
 "xuv" = (
 /obj/item/broken_bottle,
 /turf/open/floor/plating,
@@ -65263,6 +65282,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"xYR" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/maintenance/department/science)
 "xYV" = (
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
@@ -83944,7 +83969,7 @@ aaa
 aiu
 nyO
 ezJ
-ujI
+dVH
 dgI
 ujI
 ujI
@@ -87589,7 +87614,7 @@ byb
 bzC
 bzC
 bBY
-bDi
+xjU
 bEn
 bva
 bGM
@@ -90693,7 +90718,7 @@ bPC
 bDi
 bva
 bPA
-bSw
+uwH
 bSw
 nNJ
 bDi
@@ -110438,7 +110463,7 @@ aEj
 aTx
 aGO
 bcI
-aFi
+xud
 aFi
 aFi
 bfM
@@ -114063,7 +114088,7 @@ bkF
 doo
 efU
 eMC
-cDB
+xYR
 dVJ
 jDA
 rNB

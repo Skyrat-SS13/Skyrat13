@@ -55712,8 +55712,7 @@
 /area/engine/atmos)
 "ciz" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
-	dir = 8;
-	name = "scrubbers pipe"
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -67132,6 +67131,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"hqc" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "hxn" = (
 /turf/open/space/basic,
 /area/hallway/secondary/entry)
@@ -67467,6 +67470,10 @@
 /obj/item/pickaxe,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"mcY" = (
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "mmZ" = (
 /obj/machinery/cryopod,
 /obj/structure/cable{
@@ -67535,6 +67542,10 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
+"oBT" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "oKR" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -67595,6 +67606,10 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
+"qpP" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "qvS" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=W CPH";
@@ -67753,6 +67768,12 @@
 /obj/effect/decal/cleanable/ash,
 /turf/closed/mineral/random/labormineral,
 /area/space/nearstation)
+"uyS" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/maintenance/port/fore)
 "vgG" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -80323,7 +80344,7 @@ boN
 bpS
 bry
 amA
-csT
+oBT
 cuB
 ajd
 akh
@@ -81836,7 +81857,7 @@ aeU
 aeU
 cwp
 cwp
-kIJ
+uyS
 kIJ
 cxc
 tCi
@@ -93130,7 +93151,7 @@ aeu
 aeu
 adH
 cAq
-ieA
+qpP
 ieA
 cAH
 ieA
@@ -97313,7 +97334,7 @@ bFa
 czv
 bFa
 cnz
-cnz
+mcY
 awu
 cgF
 chx
@@ -101363,7 +101384,7 @@ cEg
 cFH
 baH
 apo
-cJQ
+hqc
 cEg
 azz
 aAn

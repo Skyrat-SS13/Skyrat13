@@ -178,7 +178,7 @@
 	aggressive = TRUE
 	verb_say = "criticizes"
 
-/mob/living/carbon/monkey/coder/Initialize()
+/mob/living/carbon/monkey/coder/Initialize() //Skyrats edit, donor hair removed.
 	. = ..()
 	var/list/possible_hats = list(
 		/obj/item/clothing/head/cone = 2,
@@ -187,7 +187,6 @@
 		//obj/item/clothing/head/foilhat = 1, SKYRAT EDIT: This shit creates errors
 		/obj/item/clothing/head/hardhat/cakehat = 1,
 		/obj/item/clothing/head/helmet/justice = 2,
-		/obj/item/clothing/head/mikuhair = 2,
 		/obj/item/clothing/head/papersack = 2,
 		/obj/item/clothing/head/sombrero/shamebrero = 1
 	)

@@ -14,7 +14,7 @@
 	if(NOBLOOD in H.dna.species.species_traits) //can't lose blood if your species doesn't have any
 		return
 	else
-		quirk_holder.blood_volume -= 0.275
+		quirk_holder.blood_volume -= 0.2
 
 /datum/quirk/depression
 	name = "Depression"
@@ -54,9 +54,9 @@ GLOBAL_LIST_EMPTY(family_heirlooms)
 		if("Botanist")
 			heirloom_type = pick(/obj/item/cultivator, /obj/item/reagent_containers/glass/bucket, /obj/item/storage/bag/plants, /obj/item/toy/plush/beeplushie)
 		if("Medical Doctor")
-			heirloom_type = /obj/item/healthanalyzer/advanced
+			heirloom_type = /obj/item/healthanalyzer
 		if("Paramedic")
-			heirloom_type = pick(/obj/item/clothing/neck/stethoscope, /obj/item/bodybag)
+			heirloom_type = /obj/item/lighter
 		if("Station Engineer")
 			heirloom_type = /obj/item/wirecutters/brass
 		if("Atmospheric Technician")

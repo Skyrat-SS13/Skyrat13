@@ -296,6 +296,9 @@
 /obj/item/stack/medical/suture/one
 	amount = 1
 
+/obj/item/stack/medical/suture/five
+	amount = 5
+
 /obj/item/stack/medical/suture/emergency
 	name = "emergency suture"
 	desc = "A value pack of cheap sutures, not very good at repairing damage, but still decent at stopping bleeding."
@@ -394,6 +397,9 @@
 
 /obj/item/stack/medical/mesh/one
 	amount = 1
+
+/obj/item/stack/medical/mesh/five
+	amount = 5
 
 /obj/item/stack/medical/mesh/advanced
 	name = "advanced regenerative mesh"
