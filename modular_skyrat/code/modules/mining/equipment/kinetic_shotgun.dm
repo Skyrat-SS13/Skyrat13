@@ -14,6 +14,11 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	caliber = "kinetic"
 	max_ammo = 5
 
+
+
+
+
+
 //Starting Shells
 
 /obj/item/ammo_casing/shotgun/k_buck
@@ -47,6 +52,12 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	range = 4
 	spread = 5
 
+/obj/item/projectile/bullet/pellet/kinetic_b/on_hit(atom/target)
+	. = ..()
+	if(ismineralturf(target))
+		var/turf/closed/mineral/M = target
+		M.gets_drilled(firer)
+
 
 /obj/item/projectile/bullet/kinetic_s
 	name = "kinetic tracer"
@@ -56,6 +67,12 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	flag = "bomb"
 	range = 3
 	spread = 0
+
+/obj/item/projectile/bullet/kinetic_s/on_hit(atom/target)
+	. = ..()
+	if(ismineralturf(target))
+		var/turf/closed/mineral/M = target
+		M.gets_drilled(firer)
 
 
 //Augments (Very WIP)
@@ -85,6 +102,12 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	range = 2
 	spread = 0
 
+/obj/item/projectile/bullet/kinetic_bdm_s/on_hit(atom/target)
+	. = ..()
+	if(ismineralturf(target))
+		var/turf/closed/mineral/M = target
+		M.gets_drilled(firer)
+
 //Ash Drake shell
 /obj/item/ammo_casing/shotgun/k_ash_buck
 	name = "bone shard shell"
@@ -104,6 +127,12 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	flag = "bomb"
 	range = 4
 	spread = 4
+
+/obj/item/projectile/bullet/pellet/kinetic_ash_b/on_hit(atom/target)
+	. = ..()
+	if(ismineralturf(target))
+		var/turf/closed/mineral/M = target
+		M.gets_drilled(firer)
 
 //Rogue Process shell
 /obj/item/ammo_casing/shotgun/k_rogue_buck
@@ -125,8 +154,15 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	range = 5
 	spread = 3
 
+/obj/item/projectile/bullet/pellet/kinetic_rogue_b/on_hit(atom/target)
+	. = ..()
+	if(ismineralturf(target))
+		var/turf/closed/mineral/M = target
+		M.gets_drilled(firer)
+
+
 //Collosus shell
-/obj/item/ammo_casing/shotgun/k_colly_buck
+/obj/item/ammo_casing/shotgun/k_colly_slug
 	name = "bolter casing"
 	desc = "A shell for your kinetic shotgun. This one is huge! It barely even fits in the magwell. This thing would rip through just about anything on Lavaland. Hope you invested in a good stock."
 	icon_state = "cshell"
@@ -144,6 +180,12 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	flag = "bomb"
 	range = 4
 	spread = 0
+
+/obj/item/projectile/bullet/kinetic_colly_s/on_hit(atom/target)
+	. = ..()
+	if(ismineralturf(target))
+		var/turf/closed/mineral/M = target
+		M.gets_drilled(firer)
 
 //Legion shell
 /obj/item/ammo_casing/shotgun/k_legion_buck
@@ -163,6 +205,15 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	damage = 20
 	range = 5
 	spread = 6
+
+/obj/item/projectile/bullet/pellet/kinetic_legion_b/on_hit(atom/target)
+	. = ..()
+	if(ismineralturf(target))
+		var/turf/closed/mineral/M = target
+		M.gets_drilled(firer)
+
+
+
 
 
 
