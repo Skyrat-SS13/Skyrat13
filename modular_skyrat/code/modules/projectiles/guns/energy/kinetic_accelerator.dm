@@ -155,7 +155,7 @@
 /obj/item/borg/upgrade/modkit/wall
 	name = "wall modification kit"
 	desc = "Makes a wall on impact on a living being."
-	cost = 50
+	cost = 40
 	var/cooldown = 0
 	var/cdmultiplier = 2.25
 
