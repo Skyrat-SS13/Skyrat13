@@ -105,15 +105,6 @@
 
 /obj/item/stack/medical/gauze
 	name = "medical gauze"
-<<<<<<< HEAD
-	desc = "A roll of elastic cloth that is extremely effective at stopping bleeding, heals minor wounds."
-	gender = PLURAL
-	singular_name = "medical gauze"
-	icon_state = "gauze"
-	var/stop_bleeding = 1800
-	var/heal_brute = 5
-	self_delay = 10
-=======
 	desc = "A roll of elastic cloth, perfect for stabilizing all kinds of wounds, from cuts and burns to broken bones."
 	gender = PLURAL
 	singular_name = "medical gauze"
@@ -126,7 +117,6 @@
 	absorption_rate = 0.25
 	absorption_capacity = 5
 	splint_factor = 0.35
->>>>>>> 88cb61b08a... Merge pull request #13068 from Hatterhat/med-stack-buff
 	custom_price = PRICE_REALLY_CHEAP
 
 /obj/item/stack/medical/gauze/heal(mob/living/M, mob/user)
