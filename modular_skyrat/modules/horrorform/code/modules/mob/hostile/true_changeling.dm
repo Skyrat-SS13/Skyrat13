@@ -176,6 +176,10 @@
 		lunch = input(T, "Choose a human to devour.", "Lunch") as null|anything in potential_targets
 	if(!lunch && !ishuman(lunch))
 		return 0
+	if(lunch.getBruteLoss() + lunch.getFireLoss() >= 200) //Overall physical damage, basically
+		T.visible_message("<span class='warning'>[lunch] provides no further nutrients for [T]!</span>", \
+						"<span class='danger'>[lunch] has no more useful flesh for us to consume!!</span>")
+		return 0
 	T.devouring = TRUE
 	T.visible_message("<span class='warning'>[T] begins ripping apart and feasting on [lunch]!</span>", \
 					"<span class='danger'>We begin to feast upon [lunch]...</span>")
@@ -183,26 +187,22 @@
 		T.devouring = FALSE
 		return 0
 	T.devouring = FALSE
-	if(lunch.getBruteLoss() + lunch.getFireLoss() >= 200) //Overall physical damage, basically
-		T.visible_message("<span class='warning'>[lunch] is completely devoured by [T]!</span>", \
-						"<span class='danger'>You completely devour [lunch]!</span>")
-		lunch.gib()
-	else
-		lunch.adjustBruteLoss(60)
-		T.visible_message("<span class='warning'>[T] tears a chunk from [lunch]'s flesh!</span>", \
+
+	lunch.adjustBruteLoss(60)
+	T.visible_message("<span class='warning'>[T] tears a chunk from [lunch]'s flesh!</span>", \
 						"<span class='danger'>We tear a chunk of flesh from [lunch] and devour it!</span>")
-		lunch << "<span class='userdanger'>[T] takes a huge bite out of you!</span>"
-		lunch.spawn_gibs()
-		var/dismembered = FALSE
-		for(var/obj/item/bodypart/BP in lunch.bodyparts)
-			if(prob(40) && !dismembered)
-				if(BP.name == "chest" || BP.name == "head")
-					continue
-				BP.dismember()
-				dismembered = TRUE
-		playsound(lunch, 'sound/effects/splat.ogg', 50, 1)
-		playsound(lunch, 'modular_skyrat/master_files/sound/misc/tear.ogg', 50, 1)
-		lunch.emote("scream")
+	lunch << "<span class='userdanger'>[T] takes a huge bite out of you!</span>"
+	lunch.spawn_gibs()
+	var/dismembered = FALSE
+	for(var/obj/item/bodypart/BP in lunch.bodyparts)
+		if(prob(40) && !dismembered)
+			if(BP.name == "chest" || BP.name == "head")
+				continue
+			BP.dismember()
+			dismembered = TRUE
+	playsound(lunch, 'sound/effects/splat.ogg', 50, 1)
+	playsound(lunch, 'modular_skyrat/master_files/sound/misc/tear.ogg', 50, 1)
+	lunch.emote("scream")
 	if(lunch.nutrition >= NUTRITION_LEVEL_FAT)
 		T.adjustBruteLoss(-100) //Tasty leetle peegy
 	else
