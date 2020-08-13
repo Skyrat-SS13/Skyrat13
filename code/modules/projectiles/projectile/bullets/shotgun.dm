@@ -54,6 +54,7 @@
 	damage = 20
 	knockdown = 80
 	hitsound = 'sound/effects/meteorimpact.ogg'
+	embedding = EMBED_NONE
 
 /obj/item/projectile/bullet/shotgun_meteorslug/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -92,7 +93,7 @@
 	name = "rubbershot pellet"
 	wound_bonus = 5
 	sharpness = SHARP_NONE
-	embedding = list(embed_chance=15, fall_chance=20, jostle_chance=0, ignore_throwspeed_threshold=TRUE, pain_stam_pct=1, pain_mult=6, rip_time=60)
+	embedding = list(embed_chance=10, fall_chance=25, jostle_chance=0, ignore_throwspeed_threshold=TRUE, pain_stam_pct=5, pain_mult=1, rip_time=30)
 	damage = 2
 	stamina = 15
 

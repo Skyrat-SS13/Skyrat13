@@ -73,4 +73,5 @@
 	eyeblur = 1
 	stamina = 20
 	wound_bonus = 5
+	embedding = EMBED_NONE
 

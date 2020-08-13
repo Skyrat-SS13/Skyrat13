@@ -106,10 +106,11 @@
 #define ORGAN_NODAMAGE  (1<<2) //not yet implemented
 
 //Bodypart status flags
-#define BODYPART_ORGANIC   (1<<0)
-#define BODYPART_ROBOTIC   (1<<1)
+#define BODYPART_ORGANIC	(1<<0)
+#define BODYPART_ROBOTIC	(1<<1)
 #define BODYPART_NOBLEED	(1<<2)
-#define BODYPART_HARDDISMEMBER	(1<<3)
+#define BODYPART_NOEMBED	(1<<3)
+#define BODYPART_HARDDISMEMBER	(1<<4)
 
 //Bodypart disabling defines
 #define BODYPART_NOT_DISABLED 0
