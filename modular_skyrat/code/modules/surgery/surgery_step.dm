@@ -13,8 +13,8 @@
 			
 	if(do_after(user, time * speed_mod, target = target))
 		var/prob_chance = 100
-		if(target == user) //self-surgery is VERY hard
-			prob_chance *= 0.75
+		if(target == user) //self-surgery is hard
+			prob_chance *= 0.7
 		if(!target.lying) //doing surgery on someone who's not even lying down is VERY hard
 			prob_chance *= 0.65
 		if(implement_type)	//this means it isn't a require hand or any item step.
