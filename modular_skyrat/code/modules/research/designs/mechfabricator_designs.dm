@@ -515,3 +515,59 @@
 	materials = list(/datum/material/iron = 3000, /datum/material/silver = 1000, /datum/material/titanium = 2000)
 	construction_time = 100
 	category = list("IPC")
+
+//cybernetic genitals
+/datum/design/cybernetic_penis
+	name = "Cybernetic Penis"
+	id = "cyborg_penis"
+	build_type = MECHFAB
+	research_icon_state = "penis_human_3_s"
+	research_icon = 'icons/obj/genitals/penis.dmi'
+	build_path = /obj/item/organ/genital/penis/robotic
+	materials = list(/datum/material/iron = 2000, /datum/material/titanium = 500)
+	construction_time = 75
+	category = list("IPC")
+
+/datum/design/cybernetic_testicles
+	name = "Cybernetic Testicles"
+	id = "cyborg_testicles"
+	build_type = MECHFAB
+	research_icon_state = "testicles_single_3_s"
+	research_icon = 'icons/obj/genitals/testicles.dmi'
+	build_path = /obj/item/organ/genital/testicles/robotic
+	materials = list(/datum/material/iron = 2000, /datum/material/titanium = 500)
+	construction_time = 75
+	category = list("IPC")
+
+/datum/design/cybernetic_breasts
+	name = "Cybernetic Breasts"
+	id = "cyborg_breasts"
+	build_type = MECHFAB
+	research_icon_state = "breasts_pair_e_s"
+	research_icon = 'icons/obj/genitals/breasts.dmi'
+	build_path = /obj/item/organ/genital/breasts/robotic
+	materials = list(/datum/material/iron = 2000, /datum/material/titanium = 500)
+	construction_time = 75
+	category = list("IPC")
+
+/datum/design/cybernetic_vagina
+	name = "Cybernetic Vagina"
+	id = "cyborg_vagina"
+	build_type = MECHFAB
+	research_icon_state = "vagina-s"
+	research_icon = 'icons/obj/genitals/vagina.dmi'
+	build_path = /obj/item/organ/genital/vagina/robotic
+	materials = list(/datum/material/iron = 2000, /datum/material/titanium = 500)
+	construction_time = 75
+	category = list("IPC")
+
+/datum/design/cybernetic_womb
+	name = "Cybernetic Womb"
+	id = "cyborg_womb"
+	build_type = MECHFAB
+	research_icon_state = "womb"
+	research_icon = 'icons/obj/genitals/vagina.dmi'
+	build_path = /obj/item/organ/genital/womb/robotic
+	materials = list(/datum/material/iron = 2000, /datum/material/titanium = 500)
+	construction_time = 75
+	category = list("IPC")
