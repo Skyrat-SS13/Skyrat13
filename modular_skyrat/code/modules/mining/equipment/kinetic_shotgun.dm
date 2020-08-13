@@ -15,6 +15,8 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	max_ammo = 5
 	start_empty = TRUE
 
+
+
 //Parent Shell
 /obj/item/ammo_casing/shotgun/k_shotgun
 	name = "parent kinetic shell"
@@ -22,6 +24,7 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	icon_state = "cshell"
 	caliber = "kinetic"
 	custom_materials = list(/datum/material/iron=500)
+
 
 //Starting Shells
 
@@ -48,10 +51,11 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	damage_type = BRUTE
 	flag = "bomb"
 	var/pressure_decrease_active = FALSE
-	var/pressure_decrease = 0.6
+	var/pressure_decrease = 0.4
 	var/mineral_piercing = FALSE
 
 /obj/item/projectile/bullet/pellet/k_shotgun/on_hit(atom/target)
+	. = ..()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
 		M.gets_drilled(firer)
@@ -60,11 +64,11 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	return ..()
 
 /obj/item/projectile/bullet/pellet/k_shotgun/prehit(atom/target)
-	. = ..()
 	if(!lavaland_equipment_pressure_check(get_turf(target)))
 		name = "weakened [name]"
 		damage = damage * pressure_decrease
 		pressure_decrease_active = TRUE
+
 
 //Kinetic Shotgun Starting "Bullets"
 
@@ -73,12 +77,20 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	range = 4
 	spread = 5
 
+
+
 /obj/item/projectile/bullet/pellet/k_shotgun/slug
 	damage = 60
 	range = 3
 	spread = 0
 
+
+
+
 //Augments (Very WIP)
+
+
+
 
 //Megafauna shells/projectiles
 
@@ -114,6 +126,7 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	range = 4
 	spread = 4
 
+
 //Rogue Process shell
 /obj/item/ammo_casing/shotgun/k_shotgun/rogue
 	name = "plasma shell"
@@ -124,6 +137,8 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	variance = 1
 	custom_materials = list(/datum/material/plasma = 1000)
 
+
+
 /obj/item/projectile/bullet/pellet/k_shotgun/rogue
 	name = "plasma burst"
 	icon_state = "plasma"
@@ -131,7 +146,8 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	damage_type = BURN
 	range = 5
 	spread = 3
-	mineral_piercing = FALSE
+	mineral_piercing = TRUE
+
 
 //Collosus shell
 /obj/item/ammo_casing/shotgun/k_shotgun/bolter
@@ -147,9 +163,10 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 /obj/item/projectile/bullet/pellet/k_shotgun/bolter
 	name = "bolt"
 	icon_state = "pulse1"
-	damage = 100
+	damage = 80
 	range = 3
 	spread = 0
+
 
 //Legion shell
 /obj/item/ammo_casing/shotgun/k_shotgun/legion
@@ -167,3 +184,10 @@ obj/item/ammo_box/magazine/internal/shot/kinetic
 	damage = 20
 	range = 5
 	spread = 6
+
+
+
+
+
+
+
