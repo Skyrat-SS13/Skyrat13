@@ -26,19 +26,22 @@
 						"<span class='userdanger'>We cast off our petty shell and enter our true form!</span>")
 	if(user.handcuffed)
 		var/obj/O = user.get_item_by_slot(SLOT_HANDCUFFED)
-		if(!istype(O))
-			return 0
-		qdel(O)
+		if(istype(O))
+			qdel(O)
 	if(istype(user.loc, /obj/structure/closet))
 		var/obj/structure/closet/C = user.loc
-		if(!istype(C))
-			return 0
-		qdel(C)
+		if(istype(C))
+			if(C && user.loc == C)
+				C.visible_message("<span class='warning'>[C]'s door breaks and opens!</span>")
+				new /obj/effect/decal/cleanable/greenglow(C.drop_location())
+				C.welded = FALSE
+				C.locked = FALSE
+				C.broken = TRUE
+				C.open()
 	if(user.wear_suit && user.wear_suit.breakouttime)
 		var/obj/item/clothing/suit/S = user.get_item_by_slot(SLOT_WEAR_SUIT)
-		if(!istype(S))
-			return 0
-		qdel(S)
+		if(istype(S))
+			qdel(S)
 
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	var/mob/living/simple_animal/hostile/true_changeling/new_mob = new(get_turf(user))
