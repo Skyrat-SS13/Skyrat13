@@ -17867,14 +17867,6 @@
 /obj/structure/table/wood/fancy,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
-"Om" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/table/wood,
-/obj/item/storage/fancy,
-/turf/open/indestructible/hotelwood,
-/area/centcom/holding)
 "On" = (
 /obj/machinery/rnd/production/cafe_circuit_imprinter,
 /turf/open/indestructible/hotelwood,
@@ -18684,8 +18676,6 @@
 /area/centcom/holding)
 "QK" = (
 /obj/structure/rack,
-/obj/item/melee/transforming/butterfly,
-/obj/item/melee/transforming/butterfly,
 /obj/item/melee/transforming/energy/sword,
 /obj/item/melee/transforming/energy/sword,
 /turf/open/indestructible/clock_spawn_room,
@@ -47897,7 +47887,7 @@ Nd
 Nd
 Hj
 Fa
-Om
+KT
 Sd
 Sd
 zw
