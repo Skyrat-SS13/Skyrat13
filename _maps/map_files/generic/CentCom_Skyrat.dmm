@@ -7083,6 +7083,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
+"pY" = (
+/obj/machinery/vending/cola/random,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "pZ" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/freezer,
@@ -13413,12 +13417,11 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
 "Dw" = (
+/obj/item/storage/belt/utility/servant,
 /obj/machinery/light{
-	dir = 8;
-	light_color = "#e8eaff"
+	dir = 8
 	},
-/obj/machinery/vending/cigarette/syndicate,
-/turf/open/indestructible/hotelwood,
+/turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "Dx" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
@@ -14230,6 +14233,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
+"Fx" = (
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
+	},
+/obj/machinery/vending/cigarette/syndicate,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "Fy" = (
 /mob/living/simple_animal/pet/fox,
 /turf/open/floor/plating/smooth/dirt,
@@ -16031,6 +16042,9 @@
 /obj/item/ammo_box/c10mm,
 /obj/item/ammo_box/c10mm,
 /obj/item/ammo_box/c10mm,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "Jk" = (
@@ -16972,8 +16986,11 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "Lq" = (
-/obj/machinery/vending/cola/random,
-/turf/open/indestructible/hotelwood,
+/obj/item/storage/belt/utility/servant,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "Lr" = (
 /obj/structure/mopbucket,
@@ -18461,6 +18478,11 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
+"Qg" = (
+/obj/machinery/light,
+/obj/machinery/vending/custom,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "Qi" = (
 /obj/item/paicard,
 /obj/structure/table/wood,
@@ -18786,6 +18808,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
+"Rg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/indestructible/clock_spawn_room,
+/area/centcom/holding)
 "Rh" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -20115,9 +20143,10 @@
 /turf/open/floor/plasteel/dark,
 /area/syndicate_mothership)
 "Vc" = (
-/obj/machinery/light,
-/obj/machinery/vending/custom,
-/turf/open/indestructible/hotelwood,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "Vd" = (
 /mob/living/simple_animal/kiwi,
@@ -52255,10 +52284,10 @@ Sd
 Sd
 MP
 yQ
-Dw
+Fx
 AE
-Lq
-Vc
+pY
+Qg
 Nd
 Zl
 Zl
@@ -54034,13 +54063,13 @@ Np
 Sd
 Sd
 Sd
+MR
 Sd
+MR
 Sd
+MR
 Sd
-Sd
-Sd
-Sd
-Sd
+MR
 Sd
 Sd
 Sd
@@ -54803,13 +54832,13 @@ aa
 aa
 OY
 OA
-MK
+Dw
 qG
 Xp
 HI
+Vc
 HI
-HI
-HI
+Vc
 HI
 OY
 pC
@@ -56096,11 +56125,11 @@ HI
 HI
 HI
 HI
-HI
+Vc
 HI
 SS
 HI
-HI
+Vc
 HI
 UZ
 OY
@@ -57630,7 +57659,7 @@ aa
 aa
 OY
 Se
-MK
+Lq
 tS
 Pv
 UU
@@ -57639,10 +57668,10 @@ ri
 SL
 HI
 HI
-HI
+Rg
 JY
 HI
-HI
+Rg
 HI
 NL
 OY
@@ -58153,7 +58182,7 @@ HI
 HI
 HI
 HI
-HI
+Vc
 Br
 OY
 aa
@@ -60980,7 +61009,7 @@ HI
 HI
 HI
 HI
-HI
+Rg
 Br
 Ep
 FH
