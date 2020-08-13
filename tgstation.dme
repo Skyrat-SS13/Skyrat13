@@ -4102,5 +4102,7 @@
 #include "modular_skyrat\code\modules\vending\wardrobes.dm"
 #include "modular_skyrat\code\modules\zombie\items.dm"
 #include "modular_skyrat\code\modules\zombie\organs.dm"
+#include "modular_skyrat\modules\horrorform\code\modules\antagonists\changeling\powers\horror_form.dm"
+#include "modular_skyrat\modules\horrorform\code\modules\mob\hostile\true_changeling.dm"
 #include "modular_skyrat\tools\Redirector\textprocs.dm"
 // END_INCLUDE
