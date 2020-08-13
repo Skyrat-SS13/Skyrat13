@@ -22,10 +22,10 @@
 /datum/surgery/robotic_mechanic_repair_bone_compound
 	name = "Repair endoskeleton damage (broken)"
 	steps = list(/datum/surgery_step/mechanic_open,
-				/datum/surgery_step/mechanic_wrench,
+				/datum/surgery_step/mechanic_unwrench,
 				/datum/surgery_step/mechanic_reset_compound_fracture,
 				/datum/surgery_step/mechanic_repair_bone_compound,
-				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/mechanic_wrench,
 				/datum/surgery_step/mechanic_close)
 	target_mobtypes = list(/mob/living/carbon)
 	possible_locs = ALL_BODYPARTS
