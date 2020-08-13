@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/changeling/horror_form //Horror Form: turns the changeling into a terrifying abomination
 	name = "Horror Form"
 	desc = "We tear apart our human disguise, revealing our true form."
-	helptext = "We will become an unstoppable force of destruction. We will be able to turn back into a human after some time."
+	helptext = "We will become an unstoppable force of destruction. We will be able to turn back into a human after some time. We require the absorption of at least one other human, and 15 extracts of DNA."
 	action_icon = 'modular_skyrat/modules/horrorform/icons/mob/actions/actions_changeling.dmi'
 	action_icon_state = "horror_form"
 	action_background_icon_state = "bg_changeling"
