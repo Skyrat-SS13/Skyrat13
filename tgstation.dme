@@ -4102,6 +4102,7 @@
 #include "modular_skyrat\code\modules\surgery\mechanic_steps.dm"
 #include "modular_skyrat\code\modules\surgery\organ_manipulation.dm"
 #include "modular_skyrat\code\modules\surgery\repair_puncture.dm"
+#include "modular_skyrat\code\modules\surgery\robot_bone_mending.dm"
 #include "modular_skyrat\code\modules\surgery\robot_brain_surgery.dm"
 #include "modular_skyrat\code\modules\surgery\robot_chassis_restoration.dm"
 #include "modular_skyrat\code\modules\surgery\robot_healing.dm"
