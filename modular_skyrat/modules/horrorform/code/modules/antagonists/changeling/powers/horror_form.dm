@@ -42,7 +42,6 @@
 		var/obj/item/clothing/suit/S = user.get_item_by_slot(SLOT_WEAR_SUIT)
 		if(istype(S))
 			qdel(S)
-
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	var/mob/living/simple_animal/hostile/true_changeling/new_mob = new(get_turf(user))
 
@@ -52,5 +51,6 @@
 	user.loc = new_mob
 	user.status_flags |= GODMODE
 	user.mind.transfer_to(new_mob)
+	user.spawn_gibs()
 	//feedback_add_details("changeling_powers","HF")
 	return 1
