@@ -4106,6 +4106,7 @@
 #include "modular_skyrat\code\modules\surgery\robot_brain_surgery.dm"
 #include "modular_skyrat\code\modules\surgery\robot_chassis_restoration.dm"
 #include "modular_skyrat\code\modules\surgery\robot_healing.dm"
+#include "modular_skyrat\code\modules\surgery\robot_plastic_surgery.dm"
 #include "modular_skyrat\code\modules\surgery\robot_restore_looks.dm"
 #include "modular_skyrat\code\modules\surgery\robotic_burn_dressing.dm"
 #include "modular_skyrat\code\modules\surgery\robotic_repair_puncture.dm"

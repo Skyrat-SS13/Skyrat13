@@ -472,6 +472,10 @@
 	var/list/blood_dna = list()
 	if(dna)
 		blood_dna["color"] = dna.species.exotic_blood_color //so when combined, the list grows with the number of colors
+		//skyrat edit - dna blood color
+		if(dna.blood_color)
+			blood_dna["color"] = dna.blood_color
+		//
 		blood_dna[dna.unique_enzymes] = dna.blood_type
 	else
 		blood_dna["color"] = BLOOD_COLOR_HUMAN
