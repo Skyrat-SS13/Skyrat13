@@ -988,7 +988,7 @@
 	)
 	unique_reskin = list(
 	"Default" = "cargo",
-	"Gorka" = "gorka_cargo",
+	"Gorka" = "gorka_cargo", //da
 	"Turtleneck" = "turtleneck_cargo",
 	"Utility" = "utility_cargo",
 	)
