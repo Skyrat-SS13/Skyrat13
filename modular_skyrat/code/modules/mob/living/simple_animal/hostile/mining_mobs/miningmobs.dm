@@ -4,6 +4,7 @@
 	var/list/glorymessagescrusher = list() //SAME AS ABOVE BUT CRUSHER
 	var/list/glorymessagespka = list() //SAME AS ABOVE THE ABOVE BUT PKA
 	var/list/glorymessagespkabayonet = list() //SAME AS ABOVE BUT WITH A HONKING KNIFE ON THE FUCKING THING
+	var/list/glorymessageskshotgun = list() //SAME AS ABOVE BUT WITH SHOTGUNB
 	var/gloryhealth = 7.5
 	var/glorymodifier = 1.5
 
@@ -48,6 +49,8 @@
 				var/obj/item/gun/energy/kinetic_accelerator/KA = get_active_held_item()
 				if(KA && KA.bayonet)
 					message = pick(glorymessagespka | glorymessagespkabayonet)
+			else if(istype(slayer.get_active_held_item(), /obj/item/gun/ballistic/shotgun))
+				message = pick(glorymessageskshotgun)
 			if(message)
 				visible_message("<span class='danger'><b>[slayer] [message]</b></span>")
 			else
