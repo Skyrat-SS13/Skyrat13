@@ -1,0 +1,6 @@
+author: "NotRanged"
+delete-after: True
+changes: 
+  - rscadd: "Poly now listens to basic voice commands, but she only recognizes the CE's authority!"
+  - rscadd: "There's three keywords: Perch, hop (off), shut (silences for a while). You need to adress the bird for her to listen."
+  - rscadd: "Example command sentences: \"Poly, perch on me.\", \"Poly, shut.\" \"Poly, hop off.\" \"Get on my shoulder, Poly.\""
