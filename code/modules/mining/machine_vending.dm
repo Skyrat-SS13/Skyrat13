@@ -154,7 +154,7 @@
 						"Extraction and Rescue Kit" = image(icon = 'icons/obj/fulton.dmi', icon_state = "extraction_pack"),
 						"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "crusher"),
 						"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel"),
-						"Shotgun Kit" = image(icon = 'icons/obj/guns/projectile.dmi', icon_state = "shotgun"))
+						"Shotgun Kit" = image(icon = 'modular_skyrat/icons/obj/kshot.dmi', icon_state = "kshotgun"))
 
 	var/selection = show_radial_menu(redeemer, src, items, require_near = TRUE, tooltips = TRUE)
 	if(!selection || !Adjacent(redeemer) || QDELETED(voucher) || voucher.loc != redeemer)
