@@ -13413,8 +13413,12 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
 "Dw" = (
-/obj/machinery/vending/magivend,
-/turf/open/floor/material,
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
+	},
+/obj/machinery/vending/cigarette/syndicate,
+/turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Dx" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
@@ -16968,11 +16972,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "Lq" = (
-/obj/machinery/light{
-	dir = 8;
-	light_color = "#e8eaff"
-	},
-/obj/machinery/vending/cigarette/syndicate,
+/obj/machinery/vending/cola/random,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Lr" = (
@@ -19787,11 +19787,6 @@
 /obj/vehicle/ridden/janicart,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
-"TZ" = (
-/obj/machinery/light,
-/obj/machinery/vending/custom,
-/turf/open/indestructible/hotelwood,
-/area/centcom/holding)
 "Ua" = (
 /obj/machinery/light{
 	dir = 8
@@ -19954,10 +19949,6 @@
 /obj/structure/table,
 /obj/machinery/dish_drive,
 /turf/open/floor/plasteel/cafeteria,
-/area/centcom/holding)
-"UA" = (
-/obj/machinery/vending/cola/random,
-/turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "UC" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line{
@@ -20124,11 +20115,9 @@
 /turf/open/floor/plasteel/dark,
 /area/syndicate_mothership)
 "Vc" = (
-/obj/structure/window/paperframe{
-	CanAtmosPass = 0
-	},
-/obj/machinery/vending/magivend,
-/turf/closed/indestructible/fakeglass,
+/obj/machinery/light,
+/obj/machinery/vending/custom,
+/turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Vd" = (
 /mob/living/simple_animal/kiwi,
@@ -49690,10 +49679,10 @@ NT
 Sd
 Sd
 Sd
-Vc
+SJ
 YU
 PA
-Dw
+ZU
 ZU
 ZU
 FY
@@ -52266,10 +52255,10 @@ Sd
 Sd
 MP
 yQ
-Lq
+Dw
 AE
-UA
-TZ
+Lq
+Vc
 Nd
 Zl
 Zl
