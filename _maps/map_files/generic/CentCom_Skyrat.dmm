@@ -11264,10 +11264,6 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/smooth/grass,
 /area/centcom/holding)
-"yO" = (
-/obj/machinery/vending/cola/random,
-/turf/open/indestructible/hotelwood,
-/area/centcom/holding)
 "yP" = (
 /obj/machinery/light{
 	dir = 4
@@ -16972,10 +16968,11 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "Lq" = (
-/obj/structure/chair/stool,
-/obj/structure/window/plasma/reinforced/spawner/west,
-/obj/structure/window/plasma/reinforced/spawner/east,
-/obj/machinery/vending/magivend,
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
+	},
+/obj/machinery/vending/cigarette/syndicate,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Lr" = (
@@ -18966,14 +18963,6 @@
 	name = "Thunderdome Admin"
 	},
 /area/tdome/tdomeadmin)
-"RI" = (
-/obj/machinery/light{
-	dir = 8;
-	light_color = "#e8eaff"
-	},
-/obj/machinery/vending/cigarette/syndicate,
-/turf/open/indestructible/hotelwood,
-/area/centcom/holding)
 "RJ" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -19798,6 +19787,11 @@
 /obj/vehicle/ridden/janicart,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
+"TZ" = (
+/obj/machinery/light,
+/obj/machinery/vending/custom,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "Ua" = (
 /obj/machinery/light{
 	dir = 8
@@ -19960,6 +19954,10 @@
 /obj/structure/table,
 /obj/machinery/dish_drive,
 /turf/open/floor/plasteel/cafeteria,
+/area/centcom/holding)
+"UA" = (
+/obj/machinery/vending/cola/random,
+/turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "UC" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line{
@@ -21171,11 +21169,6 @@
 /area/centcom/evac)
 "Ym" = (
 /obj/machinery/computer/arcade/orion_trail,
-/turf/open/indestructible/hotelwood,
-/area/centcom/holding)
-"Yn" = (
-/obj/machinery/light,
-/obj/machinery/vending/custom,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Yo" = (
@@ -48148,7 +48141,7 @@ Sd
 Sd
 Nh
 tw
-Lq
+UY
 Sd
 Sd
 Re
@@ -52273,10 +52266,10 @@ Sd
 Sd
 MP
 yQ
-RI
+Lq
 AE
-yO
-Yn
+UA
+TZ
 Nd
 Zl
 Zl
