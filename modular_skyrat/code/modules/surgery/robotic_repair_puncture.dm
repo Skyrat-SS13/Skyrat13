@@ -6,11 +6,11 @@
 #define WELD_VEINS		2
 
 ///// Repair puncture wounds
-/datum/surgery/robotic_repair_puncture
+/datum/surgery/robot_repair_puncture
 	name = "Repair mechanical dents"
 	steps = list(/datum/surgery_step/mechanic_open,
-				/datum/surgery_step/robotic_repair_innards,
-				/datum/surgery_step/robotic_seal_veins,
+				/datum/surgery_step/mechanic_repair_innards,
+				/datum/surgery_step/mechanic_seal_veins,
 				/datum/surgery_step/mechanic_close) // repeat between steps 2 and 3 until healed
 	target_mobtypes = list(/mob/living/carbon)
 	possible_locs = ALL_BODYPARTS
@@ -20,11 +20,11 @@
 	var/puncture_or_slash = "puncture"
 
 //// Repair slash wounds
-/datum/surgery/robotic_repair_puncture/robotic_repair_slash
+/datum/surgery/robot_repair_puncture/robotic_repair_slash
 	name = "Repair mechanical tearing"
 	steps = list(/datum/surgery_step/mechanic_open,
-				/datum/surgery_step/robotic_repair_innards,
-				/datum/surgery_step/robotic_seal_veins,
+				/datum/surgery_step/mechanic_repair_innards,
+				/datum/surgery_step/mechanic_seal_veins,
 				/datum/surgery_step/mechanic_close) // repeat between steps 2 and 3 until healed
 	target_mobtypes = list(/mob/living/carbon)
 	possible_locs = ALL_BODYPARTS
@@ -43,18 +43,18 @@
 //SURGERY STEPS
 
 ///// realign the hydraulics so we can reweld them
-/datum/surgery_step/robotic_repair_innards
+/datum/surgery_step/mechanic_repair_innards
 	name = "realign hydraulics"
 	implements = list(/obj/item/stack/cable_coil = 100, /obj/item/stack/medical/nanopaste = 100, /obj/item/pipe = 60)
 	time = 3 SECONDS
 	var/puncture_or_slash = "puncture"
 
-/datum/surgery_step/robotic_repair_innards/initiate(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail)
+/datum/surgery_step/mechanic_repair_innards/initiate(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail)
 	. = ..()
 	if(istype(surgery.operated_wound, /datum/wound/mechanical/slash))
 		puncture_or_slash = "slash"
 
-/datum/surgery_step/robotic_repair_innards/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_repair_innards/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/datum/wound/slash_or_pierce = surgery.operated_wound
 	if(!slash_or_pierce)
 		user.visible_message("<span class='notice'>[user] looks for [target]'s [puncture_or_slash]...</span>", "<span class='notice'>You look for [target]'s [puncture_or_slash]...</span>")
@@ -69,7 +69,7 @@
 		"<span class='notice'>[user] begins to realign the torn cables in [target]'s [parse_zone(user.zone_selected)] with [tool].</span>",
 		"<span class='notice'>[user] begins to realign the torn cables in [target]'s [parse_zone(user.zone_selected)].</span>")
 
-/datum/surgery_step/robotic_repair_innards/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
+/datum/surgery_step/mechanic_repair_innards/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/datum/wound/slash_or_pierce = surgery.operated_wound
 	if(!slash_or_pierce)
 		to_chat(user, "<span class='warning'>[target] has no [puncture_or_slash] wound there!</span>")
@@ -90,24 +90,24 @@
 	surgery.operated_bodypart.receive_damage(brute=rand(4,8), sharpness=SHARP_EDGED, wound_bonus = 10)
 
 ///// Sealing the cables back together
-/datum/surgery_step/robotic_seal_veins
+/datum/surgery_step/mechanic_seal_veins
 	name = "weld cable"
 	implements = list(TOOL_WELDER = 100, /obj/item/gun/energy/laser = 80, TOOL_CAUTERY = 60, /obj/item = 30)
 	time = 4 SECONDS
 	var/puncture_or_slash = "puncture"
 
-/datum/surgery_step/robotic_seal_veins/initiate(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail)
+/datum/surgery_step/mechanic_seal_veins/initiate(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail)
 	. = ..()
 	if(istype(surgery.operated_wound, /datum/wound/slash))
 		puncture_or_slash = "slash"
 
-/datum/surgery_step/robotic_seal_veins/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/mechanic_seal_veins/tool_check(mob/user, obj/item/tool)
 	if(implement_type == TOOL_WELDER || implement_type == /obj/item)
 		return tool.get_temperature()
 
 	return TRUE
 
-/datum/surgery_step/robotic_seal_veins/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_seal_veins/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/datum/wound/slash_or_pierce = surgery.operated_wound
 	if(!slash_or_pierce)
 		user.visible_message("<span class='notice'>[user] looks for [target]'s [puncture_or_slash]...</span>", "<span class='notice'>You look for [target]'s [puncture_or_slash]...</span>")
@@ -116,7 +116,7 @@
 		"<span class='notice'>[user] begins to meld some of the split hydraulics in [target]'s [parse_zone(user.zone_selected)] with [tool].</span>",
 		"<span class='notice'>[user] begins to meld some of the split hydraulics in [target]'s [parse_zone(user.zone_selected)].</span>")
 
-/datum/surgery_step/robotic_seal_veins/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
+/datum/surgery_step/mechanic_seal_veins/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/datum/wound/slash_or_pierce = surgery.operated_wound
 	if(!slash_or_pierce)
 		to_chat(user, "<span class='warning'>[target] has no [puncture_or_slash] there!</span>")

@@ -2,7 +2,7 @@
 /////ROBOTIC BURN FIXING SURGERIES//////
 
 ///// Pry warped metal
-/datum/surgery/debride
+/datum/surgery/robot_debride
 	name = "Pry off warped metal"
 	steps = list(/datum/surgery_step/robotic_debride,
 				/datum/surgery_step/robotic_dress)

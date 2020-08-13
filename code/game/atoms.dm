@@ -580,10 +580,16 @@
 	return TRUE
 //Skyrat changes - snowflake blood color
 /atom/proc/blood_DNA_to_color()
-	return blood_DNA["color"] || BLOOD_COLOR_HUMAN
+	if(!isnull(blood_DNA["color"]))
+		return blood_DNA["color"]
+	else
+		return BLOOD_COLOR_HUMAN
 
 /proc/blood_DNA_list_to_color(list/dna)
-	return dna["color"] || BLOOD_COLOR_HUMAN
+	if(!isnull(dna["color"]))
+		return dna["color"]
+	else
+		return BLOOD_COLOR_HUMAN
 //
 /atom/proc/clean_blood()
 	. = blood_DNA ? TRUE : FALSE

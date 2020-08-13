@@ -1,13 +1,22 @@
 /datum/surgery/robot_restore_looks
-	name = "Restore chassis looks"
+	name = "Restore robotic limb looks"
 	steps = list(
 	/datum/surgery_step/weld_plating,
 	/datum/surgery_step/restore_paintjob)
 
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
-	requires_bodypart_type = BODYPART_ROBOTIC
+	requires_bodypart_type = 0
 	desc = "A procedure that welds the robotic limbs back into the patient's preferred state aswell as re-applying their paintjob."
+
+/datum/surgery/robot_restore_looks/can_start(mob/user, mob/living/patient, obj/item/tool)
+	. = ..()
+	if(.)
+		var/mob/living/carbon/C = patient
+		for(var/obj/item/bodypart/BP in C.bodyparts)
+			if(BP.status & BODYPART_ROBOTIC)
+				return TRUE
+		return FALSE
 
 /datum/surgery_step/restore_paintjob
 	name = "Spray paint"
