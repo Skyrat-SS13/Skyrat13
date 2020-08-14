@@ -56,8 +56,8 @@
 	parrot_state = PARROT_WANDER
 	if(buckled)
 		to_chat(src, "<span class='notice'>You are no longer sitting on [buckled].</span>")
-		buckled.unbuckle_mob(src, TRUE)
 		emote("me", EMOTE_VISIBLE, "squawks and hops off of [buckled], flying away.")
+		buckled.unbuckle_mob(src, TRUE)
 	buckled = null
 	buckled_to_human = FALSE
 	pixel_x = initial(pixel_x)
