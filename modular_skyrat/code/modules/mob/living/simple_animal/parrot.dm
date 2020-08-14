@@ -2,6 +2,12 @@
 /mob/living/simple_animal/parrot/proc/check_command() // Skyrat - Poly listens to some of the CE's commands!
 	return FALSE // Simply return false for non-Poly parrots
 
+/mob/living/simple_animal/parrot/Poly/post_unbuckle_mob(mob/living/M)
+	buckled_to_human = FALSE
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
+	parrot_state = PARROT_WANDER
+
 /mob/living/simple_animal/parrot/Poly/check_command(message, speaker) // Skyrat - Poly listens to some of the CE's commands!
 	var/mob/living/carbon/human/H = speaker
 	if(!istype(H))
