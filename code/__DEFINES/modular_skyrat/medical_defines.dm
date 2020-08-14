@@ -106,10 +106,11 @@
 #define ORGAN_NODAMAGE  (1<<2) //not yet implemented
 
 //Bodypart status flags
-#define BODYPART_ORGANIC   (1<<0)
-#define BODYPART_ROBOTIC   (1<<1)
+#define BODYPART_ORGANIC	(1<<0)
+#define BODYPART_ROBOTIC	(1<<1)
 #define BODYPART_NOBLEED	(1<<2)
-#define BODYPART_HARDDISMEMBER	(1<<3)
+#define BODYPART_NOEMBED	(1<<3)
+#define BODYPART_HARDDISMEMBER	(1<<4)
 
 //Bodypart disabling defines
 #define BODYPART_NOT_DISABLED 0
@@ -136,3 +137,10 @@
 #define BODYPARTS_PATH list(/obj/item/bodypart/chest, /obj/item/bodypart/groin, /obj/item/bodypart/head, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_hand, /obj/item/bodypart/r_arm, /obj/item/bodypart/r_hand,/obj/item/bodypart/l_leg, /obj/item/bodypart/l_foot, /obj/item/bodypart/r_leg, /obj/item/bodypart/r_foot)
 #define MONKEY_BODYPARTS_PATH list(/obj/item/bodypart/head/monkey, /obj/item/bodypart/chest/monkey, /obj/item/bodypart/groin/monkey, /obj/item/bodypart/l_arm/monkey, /obj/item/bodypart/l_hand/monkey, /obj/item/bodypart/r_arm/monkey, /obj/item/bodypart/r_hand/monkey, /obj/item/bodypart/l_leg/monkey, /obj/item/bodypart/l_foot/monkey, /obj/item/bodypart/r_leg/monkey, /obj/item/bodypart/r_foot/monkey)
 #define LARVA_BODYPARTS_PATH list(/obj/item/bodypart/chest/larva, /obj/item/bodypart/head/larva)
+
+//Defines related to apparent consciousness, when you examine someone
+#define LOOKS_CONSCIOUS	0
+#define LOOKS_SLEEPY	1
+#define LOOKS_UNCONSCIOUS 2
+#define LOOKS_VERYUNCONSCIOUS 3
+#define LOOKS_DEAD		4

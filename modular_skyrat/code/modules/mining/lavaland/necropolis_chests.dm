@@ -1075,7 +1075,7 @@
 	tool_behaviour = TOOL_MINING
 	toolspeed = 0.1
 	slot_flags = ITEM_SLOT_BELT
-	custom_materials = list(/datum/material/diamond=2000, /datum/material/titanium=20000, /datum/material/plasma=20000)
+	custom_materials = list(/datum/material/diamond=10000, /datum/material/titanium=20000, /datum/material/plasma=20000)
 	usesound = 'sound/weapons/drill.ogg'
 	hitsound = 'sound/weapons/drill.ogg'
 	attack_verb = list("drilled")
@@ -1091,11 +1091,11 @@
 	. = ..()
 	if(user.a_intent == INTENT_HARM)
 		var/datum/component/two_handed/TH = GetComponent(/datum/component/two_handed)
-		if(isliving(target) && TH.wielded && proximity_flag && cooldown <= world.time)
-			cooldown = world.time + (cooldowntime * 0.75)
+		if(TH.wielded && isliving(target) && proximity_flag && cooldown <= world.time)
+			cooldown = world.time + (cooldowntime * 0.5)
 			playsound(src,'sound/misc/crunch.ogg', 200, 1)
 			var/mob/living/M = target
-			M.DefaultCombatKnockdown(30)
+			M.DefaultCombatKnockdown(40)
 			M.adjustStaminaLoss(20)
 		else if(TH.wielded)
 			if(cooldown < world.time)

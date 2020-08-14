@@ -13,10 +13,10 @@
 			
 	if(do_after(user, time * speed_mod, target = target))
 		var/prob_chance = 100
-		if(target == user) //self-surgery is VERY hard
+		if(target == user) //self-surgery is hard
 			prob_chance *= 0.7
-		if(!target.lying) //doing surgery on someone who's not even lying down is hard
-			prob_chance *= 0.8
+		if(!target.lying) //doing surgery on someone who's not even lying down is VERY hard
+			prob_chance *= 0.65
 		if(implement_type)	//this means it isn't a require hand or any item step.
 			prob_chance = implements[implement_type]
 		prob_chance *= surgery.get_probability_multiplier()
@@ -28,6 +28,7 @@
 			"<span class='warning'>You[pick(" writhe as agonizing pain surges throught your entire body", " feel burning pain sending your body into a convulsion", "r body squirms as sickening pain fills every part of it")]!</span>")
 			target.emote("scream")
 			target.blood_volume -= 5
+			target.add_splatter_floor(get_turf(target))
 			target.apply_damage(rand(3,6), damagetype = BRUTE, def_zone = target_zone, blocked = FALSE, forced = FALSE)
 
 		if((prob(prob_chance) || (iscyborg(user) && !silicons_obey_prob)) && chem_check(target) && !try_to_fail)

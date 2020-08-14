@@ -472,6 +472,10 @@
 	var/list/blood_dna = list()
 	if(dna)
 		blood_dna["color"] = dna.species.exotic_blood_color //so when combined, the list grows with the number of colors
+		//skyrat edit - dna blood color
+		if(dna.blood_color)
+			blood_dna["color"] = dna.blood_color
+		//
 		blood_dna[dna.unique_enzymes] = dna.blood_type
 	else
 		blood_dna["color"] = BLOOD_COLOR_HUMAN
@@ -491,13 +495,9 @@
 	var/old_length = blood_DNA.len
 	blood_DNA |= new_blood_dna
 	var/changed = FALSE
-	if(!blood_DNA["color"])
-		blood_DNA["color"] = new_blood_dna["color"]
-		changed = TRUE
-	else
-		var/old = blood_DNA["color"]
-		blood_DNA["color"] = BlendRGB(blood_DNA["color"], new_blood_dna["color"])
-		changed = old != blood_DNA["color"]
+	var/old = blood_DNA["color"]
+	blood_DNA["color"] = new_blood_dna["color"]
+	changed = (old != blood_DNA["color"])
 	if(blood_DNA.len == old_length)
 		return FALSE
 	return changed
@@ -580,10 +580,12 @@
 	return TRUE
 //Skyrat changes - snowflake blood color
 /atom/proc/blood_DNA_to_color()
-	return blood_DNA["color"] || BLOOD_COLOR_HUMAN
+	blood_DNA |= list("color" = BLOOD_COLOR_HUMAN)
+	return blood_DNA["color"]
 
 /proc/blood_DNA_list_to_color(list/dna)
-	return dna["color"] || BLOOD_COLOR_HUMAN
+	dna |= list("color" = BLOOD_COLOR_HUMAN)
+	return dna["color"]
 //
 /atom/proc/clean_blood()
 	. = blood_DNA ? TRUE : FALSE

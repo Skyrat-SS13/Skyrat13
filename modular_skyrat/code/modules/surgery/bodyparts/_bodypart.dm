@@ -124,6 +124,8 @@
 	// (IPCs have their brain in da chest)
 	var/mob/living/brain/brainmob = null
 	var/obj/item/organ/brain/brain = null
+	// Overlays related to medicine, like applied gauze
+	var/list/medicine_overlays = list()
 
 /obj/item/bodypart/Initialize()
 	. = ..()
@@ -136,11 +138,11 @@
 	for(var/woundie in wounds)
 		var/datum/wound/W = woundie
 		if(istype(W))
-			. += "[W.get_examine_description(user)]"
+			. += "[W.get_examine_description(user, FALSE)]"
 	for(var/scarrie in scars)
 		var/datum/scar/S = scarrie
 		if(istype(S))
-			. += "[S.get_examine_description(user)]"
+			. += "[S.get_examine_description(user, FALSE)]"
 	if(brute_dam > DAMAGE_PRECISION)
 		. += "<span class='warning'>This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.</span>"
 	if(burn_dam > DAMAGE_PRECISION)
@@ -503,9 +505,10 @@
 	if(owner && updating_health)
 		owner.updatehealth()
 	if(owner.dna && owner.dna.species && (REVIVESBYHEALING in owner.dna.species.species_traits))
-		if(owner.health > owner.dna.species.revivesbyhealreq && !owner.hellbound && (owner.blood_volume >= BLOOD_VOLUME_NORMAL * 0.6))
-			owner.revive(0)
-			owner.cure_husk(0) // If it has REVIVESBYHEALING, it probably can't be cloned. No husk cure.
+		if((owner.health > owner.dna.species.revivesbyhealreq) && !owner.hellbound)
+			if((NOBLOOD in owner.dna.species.species_traits) || (owner.blood_volume >= BLOOD_VOLUME_OKAY))
+				owner.revive(0)
+				owner.cure_husk(0) // If it has REVIVESBYHEALING, it probably can't be cloned. No husk cure.
 	consider_processing()
 	update_disabled()
 	return update_bodypart_damage_state() 
@@ -622,6 +625,7 @@
 		owner.update_body() //if our head becomes robotic, we remove the lizard horns and human hair.
 		owner.update_hair()
 		owner.update_damage_overlays()
+		owner.update_medicine_overlays()
 
 //Status related procs
 /obj/item/bodypart/proc/is_organic_limb()
@@ -725,11 +729,13 @@
 				R.desc = "Pretty worthless for medicine now..."
 				R.add_mob_blood(owner)
 				QDEL_NULL(current_gauze)
+				owner.update_medicine_overlays()
 			else
-				owner.visible_message("<span class='danger'>\The [current_gauze] on [owner] falls off from [lowertext(owner.p_their())] [src.name]!</span>", "<span class='userdanger'>\The [current_gauze] on your [src.name] falls off!</span>")
+				owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [src.name] falls off!</span>", "<span class='userdanger'>\The [current_gauze] on your [src.name] falls off!</span>")
 				current_gauze.forceMove(owner.loc)
 				current_gauze.add_mob_blood(owner)
 				current_gauze = null
+				owner.update_medicine_overlays()
 		
 		else if(prob(base_roll))
 			owner.visible_message("<span class='boldwarning'>\The [current_gauze] on [owner]'s [src.name] tears up a bit!</span>", "<span class='danger'>\The [current_gauze] on your [src.name] tears up a bit!</span>")
@@ -853,8 +859,7 @@
 	if(isnull(wounds))
 		return
 
-	for(var/thing in wounds)
-		var/datum/wound/W = thing
+	for(var/datum/wound/W in wounds)
 		if(istype(W, checking_type))
 			return W
 
@@ -914,6 +919,10 @@
 	current_gauze = new I.type(src)
 	current_gauze.amount = 1
 	I.use(1)
+	if(!owner)
+		update_icon_dropped()
+	else
+		owner.update_medicine_overlays()
 
 /**
   * seep_gauze() is for when a gauze wrapping absorbs blood or pus from wounds, lowering its absorption capacity.
@@ -930,6 +939,7 @@
 	if(current_gauze.absorption_capacity < 0)
 		owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [name] fall away in rags.</span>", "<span class='warning'>\The [current_gauze] on your [name] fall away in rags.</span>", vision_distance=COMBAT_MESSAGE_RANGE)
 		QDEL_NULL(current_gauze)
+		owner.update_medicine_overlays()
 
 //Update_limb() changes because synths
 /obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source)
@@ -1144,7 +1154,7 @@
 			. += aux
 			. += auxmarking
 		
-		if(body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_CHEST))
+		if((body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_CHEST)) && (!owner || dropped))
 			for(var/obj/item/organ/genital/G in src)
 				var/datum/sprite_accessory/S
 				var/size = G.size
@@ -1209,7 +1219,7 @@
 				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
 			. += marking
 		
-		if(body_zone == BODY_ZONE_PRECISE_GROIN)
+		if((body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_CHEST)) && (!owner || dropped))
 			for(var/obj/item/organ/genital/G in src)
 				var/datum/sprite_accessory/S
 				var/size = G.size
@@ -1239,7 +1249,6 @@
 
 				genital_overlay.icon_state = "[G.slot]_[S.icon_state]_[size][(original_owner?.dna?.species?.use_skintones && !original_owner?.dna?.skin_tone_override) ? "_s" : ""]_[aroused_state]_FRONT"
 				. += genital_overlay
-		return
 
 	if(color_src) //TODO - add color matrix support for base species limbs
 		var/draw_color = mutation_color || species_color
@@ -1272,3 +1281,5 @@
 					marking.color = "#141414"
 				else
 					marking.color = list(markings_color)
+	
+	return

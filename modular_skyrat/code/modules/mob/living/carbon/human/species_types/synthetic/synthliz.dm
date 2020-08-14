@@ -27,7 +27,7 @@
 	mutantliver = /obj/item/organ/liver/robot_ipc
 	//exotic_blood = /datum/reagent/oil
 	exotic_bloodtype = "S"
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE, TRAIT_CLONEIMMUNE)
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE, TRAIT_CLONEIMMUNE,TRAIT_NODEFIB)
 	languagewhitelist = list("Encoded Audio Language")
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc/synthliz
 

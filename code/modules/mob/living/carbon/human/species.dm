@@ -1303,6 +1303,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	if(chem.type == exotic_blood && !istype(exotic_blood, /datum/reagent/blood))
 		H.blood_volume = min(H.blood_volume + round(chem.volume, 0.1), BLOOD_VOLUME_MAXIMUM)
 		H.reagents.del_reagent(chem.type)
+		//skyrat edit - we try to revive the carbon mob if it happens to be a synthetic
+		if(length(species_traits) && (ROBOTIC_LIMBS in species_traits) && length(H.bodyparts))
+			var/obj/item/bodypart/affecting = H.bodyparts[1]
+			if(istype(affecting))
+				affecting.heal_damage(0, 0, 0, TRUE, FALSE, FALSE)
+		//skyrat edit end
 		return TRUE
 	return FALSE
 

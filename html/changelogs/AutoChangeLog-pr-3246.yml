@@ -1,0 +1,4 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "Rail guns no longer spawn bullet casings when unloaded"

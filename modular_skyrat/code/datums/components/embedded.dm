@@ -65,6 +65,8 @@
 
 	if(part)
 		limb = part
+		if(limb.status & BODYPART_NOEMBED)
+			return COMPONENT_INCOMPATIBLE
 	src.embed_chance = embed_chance
 	src.fall_chance = fall_chance
 	src.pain_chance = pain_chance
@@ -88,7 +90,11 @@
 	limb.embedded_objects |= weapon // on the inside... on the inside...
 	weapon.forceMove(victim)
 	RegisterSignal(weapon, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING), .proc/weaponDeleted)
-	victim.visible_message("<span class='danger'>[weapon] [harmful ? "embeds" : "sticks"] itself [harmful ? "in" : "to"] [victim]'s [limb.name]!</span>", "<span class='userdanger'>[weapon] [harmful ? "embeds" : "sticks"] itself [harmful ? "in" : "to"] your [limb.name]!</span>")
+	victim.recent_embeds[weapon] = "[limb.name]"
+	if(victim.embed_timer)
+		deltimer(victim.embed_timer)
+		victim.embed_timer = null
+	victim.embed_timer = addtimer(CALLBACK(src, .proc/embedding_message, victim), EMBED_WAIT_TIME, TIMER_STOPPABLE)
 
 	var/damage = weapon.throwforce
 	if(harmful)
@@ -111,6 +117,44 @@
 	weapon = null
 	limb = null
 	return ..()
+
+/datum/component/embedded/proc/embedding_message(mob/living/victim)
+	if(!length(victim?.recent_embeds))
+		return FALSE
+	
+	var/is_harmful = harmful
+	if(length(victim.recent_embeds) == 1)
+		for(var/obj/item/weapon in victim.recent_embeds)
+			victim.visible_message("<span class='danger'>[weapon] [is_harmful ? "embeds" : "sticks"] itself [is_harmful ? "in" : "to"] [victim]'s [limb.name]!</span>",\
+								"<span class='userdanger'>[weapon] [is_harmful ? "embeds" : "sticks"] itself [is_harmful ? "in" : "to"] your [limb.name]!</span>")
+	else
+		var/list/counter = list()
+		var/list/messages = list()
+		var/list/bodyparts = list()
+		var/weapon = ""
+		var/bodypart = ""
+		for(var/obj/item/wpn in victim.recent_embeds)
+			if(counter[wpn.name])
+				counter[wpn.name]++
+			else
+				counter[wpn.name] = 1
+			if(!wpn.isEmbedHarmless())
+				is_harmful = TRUE
+			bodyparts |= victim.recent_embeds[wpn]
+		
+		for(var/i in counter)
+			messages |= "[counter[i] > 1 ? "[counter[i]] [i]" : "\the [i]"]"
+		weapon = messages.Join(", ", 1, length(messages) - 1)
+		if(length(messages) > 1)
+			weapon += " and [messages[length(messages)]]"
+		
+		bodypart = bodyparts.Join(", ", 1, length(bodyparts) - 1)
+		if(length(bodyparts) > 1)
+			bodypart += " and [bodyparts[length(bodyparts)]]"
+		
+		victim.visible_message("<span class='danger'>[weapon] [is_harmful ? "embed" : "stick"] themselves [is_harmful ? "in" : "to"] [victim]'s [bodypart]!</span>",\
+				"<span class='userdanger'>[weapon] [is_harmful ? "embed" : "stick"] themselves [harmful ? "in" : "to"] your [bodypart]!</span>")
+	clearlist(victim.recent_embeds)
 
 /datum/component/embedded/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/jostleCheck)

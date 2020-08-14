@@ -1,6 +1,7 @@
 /mob/living/carbon/human/examine(mob/user)
-//this is very slightly better than it was because you can use it more places. still can't do \his[src] though.
+	//this is very slightly better than it was because you can use it more places. still can't do \his[src] though.
 	var/t_He = p_they(TRUE)
+	var/t_he = p_they()
 	var/t_His = p_their(TRUE)
 	var/t_his = p_their()
 	var/t_him = p_them()
@@ -158,25 +159,6 @@
 			if(100 to 200)
 				. += "<span class='warning'>[t_He] [t_is] twitching ever so slightly.</span>"
 
-	var/appears_dead = 0
-	if(!screwy_self)
-		if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
-			appears_dead = 1
-			if(suiciding)
-				. += "<span class='warning'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>"
-			if(hellbound)
-				. += "<span class='warning'>[t_His] soul seems to have been ripped out of [t_his] body.  Revival is impossible.</span>"
-			if(getorgan(/obj/item/organ/brain) && !key && !get_ghost(FALSE, TRUE))
-				. += "<span class='deadsay'>[t_He] [t_is] limp and unresponsive; there are no signs of life and [t_his] soul has departed...</span>"
-			else
-				. += "<span class='deadsay'>[t_He] [t_is] limp and unresponsive; there are no signs of life...</span>"
-	else
-		. += "<span class='notice'>[t_He] appear[p_s()] to be unaware.</span>"
-
-	if(!screwy_self)
-		if(get_bodypart(BODY_ZONE_HEAD) && !getorgan(/obj/item/organ/brain))
-			. += "<span class='deadsay'>It appears that [t_his] brain is missing...</span>"
-
 	var/temp = getBruteLoss() //no need to calculate each of these twice
 
 	var/list/msg = list()
@@ -312,6 +294,8 @@
 	if(!screwy_self)
 		if(ShowAsPaleExamine())
 			msg += "[t_He] [t_has] pale skin.\n"
+	
+	var/bleed_text
 	if(!screwy_self)
 		if(is_bleeding())
 			var/list/obj/item/bodypart/bleeding_limbs = list()
@@ -323,11 +307,7 @@
 
 			var/num_bleeds = LAZYLEN(bleeding_limbs)
 
-			var/bleed_text
-			if(appears_dead)
-				bleed_text = "<span class='deadsay'><B>Blood is visible in [t_his] open"
-			else
-				bleed_text = "<B>[t_He] [t_is] bleeding from [t_his]"
+			bleed_text = "<B>[t_He] [t_is] bleeding from [t_his]"
 			
 			switch(num_bleeds)
 				if(1 to 2)
@@ -338,9 +318,7 @@
 						bleed_text += " [BP.name],"
 					bleed_text += " and [bleeding_limbs[num_bleeds].name]"
 			
-			if(appears_dead)
-				bleed_text += ", but it has pooled and is not flowing.</span>"
-			else if(reagents.has_reagent(/datum/reagent/toxin/heparin))
+			if(reagents.has_reagent(/datum/reagent/toxin/heparin))
 				bleed_text += " incredibly quickly!"
 			else
 				bleed_text += "!"
@@ -380,7 +358,7 @@
 				if(stun_absorption[i]["end_time"] > world.time && stun_absorption[i]["examine_message"])
 					msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
 
-		if(drunkenness && !skipface && !appears_dead) //Drunkenness
+		if(drunkenness && !skipface && !(stat == DEAD)) //Drunkenness
 			switch(drunkenness)
 				if(11 to 21)
 					msg += "[t_He] [t_is] slightly flushed.\n"
@@ -403,7 +381,7 @@
 
 	if(isliving(user))
 		var/mob/living/L = user
-		if(src != user && HAS_TRAIT(L, TRAIT_EMPATH) && !appears_dead)
+		if(src != user && HAS_TRAIT(L, TRAIT_EMPATH) && !(stat != CONSCIOUS))
 			if (a_intent != INTENT_HELP)
 				msg += "[t_He] seem[p_s()] to be on guard.\n"
 			if (getOxyLoss() >= 10)
@@ -428,26 +406,81 @@
 			if(client.prefs.cit_toggles & HYPNO)
 				msg += "<span class='velvet'><i>You feel your chords resonate looking at them.</i></span>\n"
 
-	if(!screwy_self)
-		if(!appears_dead)
-			if(stat == UNCONSCIOUS)
-				msg += "[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.\n"
-			else
-				if(HAS_TRAIT(src, TRAIT_DUMB))
-					msg += "[t_He] [t_has] a vapid expression on [t_his] face.\n" // Skyrat edit
-				if(InCritical())
-					msg += "[t_He] [t_is] barely conscious.\n"
-			
-			if(getorgan(/obj/item/organ/brain))
-				if(!key)
-					msg += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
-				else if(!client)
-					msg += "[t_He] [t_has] a blank, absent-minded stare and [t_has] been completely unresponsive to anything for [round(((world.time - lastclienttime) / (1 MINUTES)),1)] minutes. [t_He] may snap out of it soon.\n" //SKYRAT CHANGE - ssd indicator
+	//CONSCIOUSNESS
+	var/dist = get_dist(user, src)
+	var/consciousness = LOOKS_CONSCIOUS
 
-			if(digitalcamo)
-				msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
-	else
-		msg += "[t_He] [t_is] conscious.\n"
+	var/mob/living/carbon/human/H = user
+	var/has_health_hud = FALSE
+	var/consciousness_msg = null
+	if(istype(H))
+		var/obj/item/organ/cyberimp/eyes/hud/CIH = H.getorgan(/obj/item/organ/cyberimp/eyes/hud)
+		var/obj/item/clothing/glasses/hud/health/health = H.glasses
+		if(istype(health) || (istype(CIH) && (CIH.HUD_type == DATA_HUD_MEDICAL_BASIC || CIH.HUD_type == DATA_HUD_MEDICAL_ADVANCED)))
+			has_health_hud = TRUE
+	if(!screwy_self)
+		if(has_health_hud)
+			if(IsSleeping())
+				consciousness = LOOKS_SLEEPY
+				consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
+			if(InCritical())
+				consciousness = LOOKS_UNCONSCIOUS
+				consciousness_msg = "<span class='warning>[t_His] life signs are shallow and labored[lying ? ", and [t_he] is unconscious" : ""].</span>"
+			if(InFullCritical())
+				consciousness = LOOKS_VERYUNCONSCIOUS
+				consciousness_msg = "<span class='warning>[t_His] life signs are very shallow and labored, [lying ? "[t_he] is completely unconscious and " : ""][t_he] appears to be undergoing shock.</span>"
+			if(stat == DEAD)
+				consciousness = LOOKS_DEAD
+				consciousness_msg = "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.[bleed_text ? "\n[t_His] bleeding has pooled, and is not flowing." : ""]</span>"
+		else
+			if(IsSleeping() || HAS_TRAIT(src, TRAIT_LOOKSSLEEPY) || consciousness == LOOKS_SLEEPY)
+				consciousness = LOOKS_SLEEPY
+				if((dist <= 3) || (dist <= 7 && lying))
+					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
+			if(InCritical() || HAS_TRAIT(src, TRAIT_LOOKSUNCONSCIOUS) || consciousness == LOOKS_UNCONSCIOUS)
+				consciousness = LOOKS_UNCONSCIOUS
+				if(dist <= 1 && is_face_visible() && !HAS_TRAIT(src, TRAIT_NOBREATH))
+					consciousness_msg = "<span class='warning>[t_His] breathing is shallow and labored[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
+				else if((dist <= 3) || (dist <= 7 && lying))
+					consciousness = LOOKS_SLEEPY
+					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
+			if(InFullCritical() || HAS_TRAIT(src, TRAIT_LOOKSVERYUNCONSCIOUS) || consciousness == TRAIT_LOOKSVERYUNCONSCIOUS)
+				consciousness = LOOKS_VERYUNCONSCIOUS
+				var/thicc = FALSE
+				var/obj/item/clothing/clothes = wear_suit
+				if(clothes.clothing_flags & THICKMATERIAL)
+					thicc = TRUE
+				else
+					clothes = w_uniform
+					if(clothes.clothing_flags & THICKMATERIAL)
+						thicc = TRUE
+				if(NOBLOOD in dna?.species?.species_traits)
+					thicc = TRUE
+				if(dist <= 1 && !thicc)
+					consciousness_msg = "<span class='warning>[t_He] seems to have no identifiable pulse[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
+				else if((dist <= 3) || (dist <= 7 && lying))
+					consciousness = LOOKS_SLEEPY
+					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
+			if((stat == DEAD) || (mob_biotypes & MOB_UNDEAD) || HAS_TRAIT(src, TRAIT_LOOKSDEAD) || HAS_TRAIT(src, TRAIT_FAKEDEATH) || consciousness == LOOKS_DEAD)
+				consciousness = LOOKS_DEAD
+				if((dist <= 1) || ((dist <= 3) && (mob_biotypes & MOB_UNDEAD)) || ((dist <= 7) && (mob_biotypes & MOB_UNDEAD) && lying))
+					consciousness_msg = "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.[(bleed_text && !(mob_biotypes & MOB_UNDEAD)) || ((mob_biotypes & MOB_UNDEAD) && (stat == DEAD)) ? "\n[t_His] bleeding has pooled, and is not flowing." : ""]</span>"
+					if(suiciding)
+						consciousness_msg += "\n<span class='deadsay'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>"
+					if(hellbound)
+						consciousness_msg += "\n<span class='deadsay'>[t_His] soul seems to have been ripped out of [t_his] body.  Revival is impossible.</span>"
+					if(!getorgan(/obj/item/organ/brain) || (!key && !get_ghost(FALSE, TRUE)))
+						consciousness_msg += "\n<span class='deadsay'>[t_His] body seems empty, [t_his] soul has since departed.</span>"
+				else if((dist <= 3) || (dist <= 7 && lying))
+					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
+			
+			if(HAS_TRAIT(src, TRAIT_LOOKSCONSCIOUS))
+				consciousness = LOOKS_CONSCIOUS
+				consciousness_msg = null
+		
+		if(consciousness_msg)
+			. += consciousness_msg
+	//
       
 	//Skyrat changes begin
 	var/scar_severity = 0
@@ -485,7 +518,6 @@
 
 	var/traitstring = get_trait_string()
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/cyberimp/eyes/hud/CIH = H.getorgan(/obj/item/organ/cyberimp/eyes/hud)
 		if(istype(H.glasses, /obj/item/clothing/glasses/hud) || CIH)
 			var/perpname = get_face_name(get_id_name(""))

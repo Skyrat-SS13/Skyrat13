@@ -66,6 +66,7 @@
 	name = ".38 rubber bullet"
 	damage = 12      //Skyrat edit: A rubber pistol bullet of this caliber should NOT deal 15 brute.
 	stamina = 48
+	embedding = EMBED_NONE
 
 /obj/item/projectile/bullet/c38/trac
 	name = ".38 TRAC bullet"

@@ -44,6 +44,13 @@
 		if((HAS_TRAIT(C, TRAIT_NOMARROW) || blood_id == /datum/reagent/blood || blood_id == /datum/reagent/blood/jellyblood) && (method == INJECT || (method == INGEST && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))))
 			C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM * C.blood_ratio)
 			// we don't care about bloodtype here, we're just refilling the mob
+			
+			//skyrat edit - we try to revive the carbon mob if it happens to be a synthetic
+			if(length(C.dna?.species?.species_traits) && (ROBOTIC_LIMBS in C.dna.species.species_traits) && length(C.bodyparts))
+				var/obj/item/bodypart/affecting = C.bodyparts[1]
+				if(istype(affecting))
+					affecting.heal_damage(0, 0, 0, TRUE, FALSE, FALSE)
+			//skyrat edit end
 
 	if(reac_volume >= 10 && istype(L) && method != INJECT)
 		L.add_blood_DNA(list("color" = data["bloodcolor"] || BLOOD_COLOR_HUMAN, data["blood_DNA"] = data["blood_type"]))
