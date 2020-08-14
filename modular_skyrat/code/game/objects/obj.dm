@@ -74,7 +74,16 @@
 			show_the_armor = TRUE
 		else if((shows_armor == SHOW_WEARABLE) && isitem(src))
 			var/obj/item/I = src
-			for(var/i in list(ITEM_SLOT_ICLOTHING, ITEM_SLOT_OCLOTHING, ITEM_SLOT_FEET, ITEM_SLOT_MASK, ITEM_SLOT_HEAD, ITEM_SLOT_NECK, ITEM_SLOT_BACK))
+			for(var/i in list(ITEM_SLOT_ICLOTHING,
+							ITEM_SLOT_OCLOTHING,
+							ITEM_SLOT_BELT,
+							ITEM_SLOT_FEET,
+							ITEM_SLOT_GLOVES,
+							ITEM_SLOT_MASK,
+							ITEM_SLOT_EYES,
+							ITEM_SLOT_HEAD,
+							ITEM_SLOT_NECK,
+							ITEM_SLOT_BACK))
 				if(I.slot_flags & i)
 					show_the_armor = TRUE
 					break
