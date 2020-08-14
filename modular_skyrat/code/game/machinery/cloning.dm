@@ -24,6 +24,8 @@
 	var/attempting = FALSE //One clone attempt at a time thanks
 	var/speed_coeff
 	var/efficiency
+	var/cloneill_duration = 20 MINUTES
+	var/cloneill_cloneloss = 15
 
 	var/datum/mind/clonemind
 	var/grab_ghost_when = CLONER_MATURE_CLONE
@@ -90,6 +92,8 @@
 		speed_coeff += (P.rating / 2)
 	speed_coeff = max(1, speed_coeff)
 	heal_level = clamp((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
+	cloneill_duration = (20 MINUTES * (1/efficiency))
+	cloneill_cloneloss = round(15 * (1/efficiency), 1)
 
 //Clonepod
 /obj/machinery/clonepod/examine(mob/user)
@@ -220,6 +224,11 @@
 		H.give_genitals(TRUE)
 
 		H.suiciding = FALSE
+		//Apply the cloned status effect
+		var/datum/status_effect/cloneill/illness = new()
+		illness.duration = cloneill_duration
+		illness.cloneloss_amount = cloneill_cloneloss
+		H.apply_status_effect()
 	attempting = FALSE
 	return TRUE
 
