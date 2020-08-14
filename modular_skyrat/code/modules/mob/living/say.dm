@@ -64,18 +64,19 @@ GLOBAL_LIST_INIT(bad_words, world.file2list(CRINGE_FILE))
 
 /mob/living/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
 	. = ..()
-	detect_cringe(src, message)
+	detect_cringe(message, src)
 
-/proc/detect_cringe(mob/cringe_mob, cringe_message, silence_chat = FALSE)
-	if(!cringe_mob || !cringe_message)
+/proc/detect_cringe(cringe_message,  mob/cringe_mob, cringe_message, silence_chat = FALSE)
+	if(!cringe_message)
 		return
 	
 	var/list/unfunny = splittext_char(cringe_message, " ")
 	var/cringed = FALSE
 	for(var/i in unfunny)
 		if(lowertext(i) in GLOB.bad_words)
-			SEND_SIGNAL(cringe_mob, COMSIG_ADD_MOOD_EVENT, "cringe", /datum/mood_event/cringe)
-			if(!cringed && !silence_chat)
-				to_chat(src, "<span class='warning'>Saying \"[i]\" makes you feel utter contempt towards yourself...</span>")
+			if(cringe_mob)
+				SEND_SIGNAL(cringe_mob, COMSIG_ADD_MOOD_EVENT, "cringe", /datum/mood_event/cringe)
+			if(!cringed && !silence_chat && cringe_mob)
+				to_chat(cringe_mob, "<span class='warning'>Saying \"[i]\" makes you feel utter contempt towards yourself...</span>")
 			cringed = TRUE
 	return cringed
