@@ -6,10 +6,12 @@
 	icon_living = "scp049"
 	
 /mob/living/simple_animal/hostile/scp/scp049/movement_delay()
-	return -1
+	return 3
 	
 /mob/living/simple_animal/hostile/scp/scp049/UnarmedAttack(atom/A)
 	. = ..()
+	if(A == src)
+		return
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.stat == DEAD)

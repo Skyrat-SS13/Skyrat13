@@ -9,9 +9,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
 	
-/mob/living/simple_animal/hostile/scp173/UnarmedAttack(atom/A)
-	if(A == src)
-		return
+/mob/living/simple_animal/hostile/scp/UnarmedAttack(atom/A)
 	if(istype(A, /obj/structure/window) || istype(A, /obj/structure/grille))
 		if(!do_after(src, 5 SECONDS, FALSE, A))
 			return

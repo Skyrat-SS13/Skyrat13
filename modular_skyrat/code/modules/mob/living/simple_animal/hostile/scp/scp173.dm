@@ -63,6 +63,8 @@
 	if(beingWatched())
 		return
 	. = ..()
+	if(A == src)
+		return
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.stat == DEAD)

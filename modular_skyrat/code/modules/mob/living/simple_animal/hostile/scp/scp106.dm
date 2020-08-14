@@ -4,12 +4,15 @@
 	icon = 'modular_skyrat/icons/mob/scp/scp106.dmi'
 	icon_state = "scp106"
 	icon_living = "scp106"
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
 	
-/mob/living/simple_animal/hostile/scp173/movement_delay()
-	return -1
+/mob/living/simple_animal/hostile/scp/scp106/movement_delay()
+	return 3
 	
-/mob/living/simple_animal/hostile/scp173/UnarmedAttack(atom/A)
+/mob/living/simple_animal/hostile/scp/scp106/UnarmedAttack(atom/A)
 	. = ..()
+	if(A == src)
+		return
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.stat == DEAD)
@@ -54,6 +57,7 @@
 			L.death()
 			var/turf/leave = get_turf(locate(/obj/effect/scp106/realmexit))
 			L.forceMove(leave)
+			return
 		var/turf/T = get_turf(locate(/obj/effect/scp106/mazeenter))
 		L.forceMove(T)
 		master.pick_answer()

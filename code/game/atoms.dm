@@ -173,10 +173,7 @@
 	return TRUE
 
 /atom/proc/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover, /mob/living/simple_animal/hostile/scp/scp106))
-		return TRUE
-	else
-		return !density
+	return !density
 
 /atom/proc/onCentCom()
 	var/turf/T = get_turf(src)
