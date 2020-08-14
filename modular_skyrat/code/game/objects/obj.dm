@@ -84,32 +84,32 @@
 			for(var/i in armorlist)
 				var/value = armorlist[i]
 				switch(value)
-					if(-INFINITY to 0)
-						value = "[capitalize(i)] - Nulla" //Roman numerals do not have a 0, romans just said "null" instead - they don't have negative numbers either
-					if(0 to 1)
+					if(-INFINITY to -1)
+						value = "\t[capitalize(i)] - Nulla" //Roman numerals do not have a 0, romans just said "null" instead - they don't have negative numbers either
+					if(-1 to 1)
 						value = null //we don't show armor stats if we have none, but are not vulnerable to it either
 					if(1 to 10)
-						value = "[capitalize(i)] - I"
+						value = "\t[capitalize(i)] - I"
 					if(10 to 20)
-						value = "[capitalize(i)] - II"
+						value = "\t[capitalize(i)] - II"
 					if(20 to 30)
-						value = "[capitalize(i)] - III"
+						value = "\t[capitalize(i)] - III"
 					if(30 to 40)
-						value = "[capitalize(i)] - IV"
+						value = "\t[capitalize(i)] - IV"
 					if(40 to 50)
-						value = "[capitalize(i)] - V"
+						value = "\t[capitalize(i)] - V"
 					if(50 to 60)
-						value = "[capitalize(i)] - VI"
+						value = "\t[capitalize(i)] - VI"
 					if(60 to 70)
-						value = "[capitalize(i)] - VII"
+						value = "\t[capitalize(i)] - VII"
 					if(70 to 80)
-						value = "[capitalize(i)] - VIII"
+						value = "\t[capitalize(i)] - VIII"
 					if(80 to 90)
-						value = "[capitalize(i)] - IX"
+						value = "\t[capitalize(i)] - IX"
 					if(90 to 100)
-						value = "[capitalize(i)] - X"
+						value = "\t[capitalize(i)] - X"
 					if(100 to INFINITY)
-						value = "[capitalize(i)] - M"
+						value = "\t[capitalize(i)] - M"
 				if(value)
 					stat_strings |= "<span class='notice'>[value]</span>"
 			if(length(stat_strings) <= 1)
