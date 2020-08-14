@@ -56,21 +56,6 @@
 
 	if(!msg)
 		return
-	
-	//SKYRAT CHANGE - Cringe detection in emotes
-	var/message2 = msg
-	for(var/i in list(",",":",";",".","?","!","\'","-"))
-		message2 = replacetextEx(message2, i, " ")
-	var/list/unfunny = splittext_char(message2, " ")
-	var/cringed = FALSE
-	for(var/i in unfunny)
-		if(lowertext(i) in GLOB.bad_words)
-			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "cringe", /datum/mood_event/cringe)
-			if(!cringed)
-				to_chat(user, "<span class='warning'>Saying \"[capitalize(lowertext(i))]\" makes you feel utter contempt towards yourself...</span>")
-			cringed = TRUE
-	//SKYRAT CAHNGE END
-
 	user.log_message(msg, LOG_EMOTE)
 	//msg = "<b>[user]</b> " + msg //SKYRAT CHANGE
 	var/dchatmsg = "<b>[user]</b> " + msg //SKYRAT CHANGE
@@ -89,6 +74,18 @@
 	//Skyrat change
 	if(image_popup)
 		flick_emote_popup_on_mob(user, image_popup, 40)
+	var/message2 = msg
+	
+	for(var/i in list(",",":",";",".","?","!","\'","-"))
+		message2 = replacetextEx(message2, i, " ")
+	var/list/unfunny = splittext_char(message2, " ")
+	var/cringed = FALSE
+	for(var/i in unfunny)
+		if(lowertext(i) in GLOB.bad_words)
+			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "cringe", /datum/mood_event/cringe)
+			if(!cringed)
+				to_chat(user, "<span class='warning'>Thinking of \"[capitalize(lowertext(i))]\" makes you feel utter contempt towards yourself...</span>")
+			cringed = TRUE
 	//End of skyrat changes
 
 /datum/emote/proc/replace_pronoun(mob/user, message)
