@@ -37,7 +37,7 @@
 	drop_limb(dismembered = TRUE, destroyed = (dam_type == BURN ? TRUE : destroy))
 	C.update_equipment_speed_mods() // Update in case speed affecting item unequipped by dismemberment
 
-	C.bleed(40)
+	C.bleed(12)
 
 	if(QDELETED(src)) //Could have dropped into lava/explosion/chasm/whatever
 		return TRUE
@@ -45,7 +45,6 @@
 		burn()
 		return TRUE
 	add_mob_blood(C)
-	C.bleed(rand(20, 40))
 	var/direction = pick(GLOB.cardinals)
 	var/t_range = rand(2,max(throw_range/2, 2))
 	var/turf/target_turf = get_turf(src)
@@ -101,7 +100,7 @@
 				var/datum/wound/mechanical/slash/critical/incision/disembowel/D = new()
 				D.apply_wound(src)
 
-		C.bleed(40)
+		C.bleed(12)
 		return TRUE
 	
 	return FALSE
