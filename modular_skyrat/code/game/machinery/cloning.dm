@@ -128,15 +128,15 @@
 /obj/machinery/clonepod/proc/growclone(ckey, clonename, ui, mutation_index, mindref, datum/species/mrace, list/features, factions, list/quirks)
 	if(pays_for_clone && !currently_linked_account.adjust_money(-cost_per_clone))
 		if(radio)
-			radio.talk_into("Insufficient amount of credits to initiate cloning procedure.")
+			radio.talk_into(src, "Insufficient amount of credits to initiate cloning procedure.")
 		return FALSE
 	if(biomass < biomass_per_clone)
 		if(radio)
-			radio.talk_into("Insufficient amount of biomass to initiate cloning procedure.")
+			radio.talk_into(src, "Insufficient amount of biomass to initiate cloning procedure.")
 		return FALSE
 	if((/datum/quirk/dnc in quirks) || (/datum/quirk/dnr in quirks))
 		if(radio)
-			radio.talk_into("[clonename] cannot be cloned due to a [/datum/quirk/dnc in quirks? "DNC" : "DNR"] contract.")
+			radio.talk_into(src, "[clonename] cannot be cloned due to a [/datum/quirk/dnc in quirks? "DNC" : "DNR"] contract.")
 		return FALSE
 	if(panel_open)
 		return FALSE
