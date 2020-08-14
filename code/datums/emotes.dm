@@ -58,7 +58,18 @@
 		return
 	
 	//SKYRAT CHANGE - Cringe detection in emotes
-	var/list/unfunny = splittext_char(msg, " ")
+	var/message2 = ""
+	message2 = replacetext(message, ",", " ")
+	message2 = replacetext(message, ":", " ")
+	message2 = replacetext(message, ";", " ")
+	message2 = replacetext(message, ".", " ")
+	message2 = replacetext(message, "?", " ")
+	message2 = replacetext(message, "!", " ")
+	message2 = replacetext(message, "\'", " ")
+	message2 = replacetext(message, "-", " ")
+	for(var/i in list(",",":",";",".","?","!","\'","-"))
+		message2 = replacetext(msg, i, " ")
+	var/list/unfunny = splittext_char(message2, " ")
 	var/cringed = FALSE
 	for(var/i in unfunny)
 		if(lowertext(i) in GLOB.bad_words)
