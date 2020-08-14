@@ -10,3 +10,7 @@
 
 /obj/item/projectile/kinetic/miner
 	color = "#FF0000"
+
+/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/death()
+	. = ..()
+	new /obj/effect/temp_visual/dir_setting/miner_death(loc, dir)
