@@ -409,8 +409,8 @@
   * Arguments:
   * * mob/user: The user examining the wound's owner, if that matters
   */
-/datum/wound/proc/get_examine_description(mob/user)
-	if(victim)
+/datum/wound/proc/get_examine_description(mob/user, check_victim = TRUE)
+	if(check_victim && victim)
 		. = "[victim.p_their(TRUE)] [fake_limb ? fake_limb : limb.name] [examine_desc]"
 	else
 		. = "[fake_limb ? fake_limb : limb.name] [examine_desc]"
