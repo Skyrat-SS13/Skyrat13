@@ -417,7 +417,7 @@
 	name = "Riot Shield Arm Implant"
 	desc = "An implanted riot shield, designed to be installed on subject's arm."
 	id = "ci-shield"
-	build_type = PROTOLATHE
+	build_type = MECHFAB
 	materials = list (/datum/material/iron = 8500, /datum/material/glass = 8500, /datum/material/silver = 1800, /datum/material/titanium = 600)
 	construction_time = 200
 	build_path = /obj/item/organ/cyberimp/arm/shield
@@ -434,6 +434,39 @@
 	build_path = /obj/item/organ/cyberimp/arm/janitor
 	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/cyberimp_mantis
+	name = "Mantis Blade Implant"
+	desc = "A set of janitor tools fitted into an arm implant, designed to be installed on subject's arm."
+	id = "ci-mantis"
+	build_type = MECHFAB
+	materials = list (/datum/material/iron = 3500, /datum/material/glass = 1500, /datum/material/silver = 1500)
+	construction_time = 200
+	build_path = /obj/item/organ/cyberimp/arm/armblade
+	category = list("Misc", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/cyberimp_hacker
+	name = "Hacking Hand Implant"
+	desc = "An advanced hacking and machine modification toolkit fitted into an arm implant, designed to be installed on a subject's arm."
+	id = "ci-hacker"
+	build_type = MECHFAB
+	materials = list (/datum/material/iron = 3500, /datum/material/glass = 1500, /datum/material/silver = 1500)
+	construction_time = 200
+	build_path = /obj/item/organ/cyberimp/arm/hacker
+	category = list("Misc", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/cyberimp_flash
+	name = "Photon Projector Implant"
+	desc = "An integrated projector mounted onto a user's arm that is able to be used as a powerful flash."
+	id = "ci-flash"
+	build_type = MECHFAB
+	materials = list (/datum/material/iron = 3500, /datum/material/glass = 1500, /datum/material/silver = 1500)
+	construction_time = 200
+	build_path = /obj/item/organ/cyberimp/arm/flash
+	category = list("Misc", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/cyberimp_service
 	name = "Service Arm Implant"
