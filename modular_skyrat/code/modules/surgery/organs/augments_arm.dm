@@ -88,7 +88,7 @@
 	icon_state = "energy_mantis_blade"
 	item_state = "energy_mantis_blade"
 	force = 30
-	armour_penetration = 35
+	armour_penetration = 10
 	hitsound = 'sound/weapons/blade1.ogg'
 
 /obj/item/organ/cyberimp/arm/armblade
