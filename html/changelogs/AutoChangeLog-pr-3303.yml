@@ -1,0 +1,5 @@
+author: "Yakumo Chen"
+delete-after: True
+changes: 
+  - rscdel: "removed the blood freezers from xenoarch and mining base"
+  - balance: "bloodsuckers no longer get a shitload of free blood from friendly station areas on lavaland"

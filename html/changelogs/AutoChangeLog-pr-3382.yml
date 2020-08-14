@@ -1,0 +1,4 @@
+author: "Sarmenti and Funce"
+delete-after: True
+changes: 
+  - bugfix: "Dogborgs in the Cafe can now rest in their preferred style. Missed this!"

@@ -1,0 +1,8 @@
+author: "Floof Ball#0798 / Kathrin Morrison"
+delete-after: True
+changes: 
+  - rscadd: "New Power Tool sprites."
+  - rscadd: "New Handsaw sprites."
+  - rscadd: "Robotics Hand Drill"
+  - rscadd: "Robotics Power Cutters (Jaws of Life that don't force airlocks open)"
+  - rscadd: "Electric Screwdriver."
