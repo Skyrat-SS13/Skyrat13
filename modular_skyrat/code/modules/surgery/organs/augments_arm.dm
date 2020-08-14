@@ -59,6 +59,8 @@
 /obj/item/organ/cyberimp/arm/hacker //TODO - Make this a hand implant
 	name = "hacking arm implant"
 	desc = "An small arm implant containing an advanced screwdriver, wirecutters, and multitool designed for engineers and on-the-field machine modification. Actually legal, despite what the name may make you think."
+	icon ='icons/obj/items_cyborg.dmi'
+	icon_state = "multitool_cyborg"
 	contents = newlist(/obj/item/screwdriver/cyborg, /obj/item/wirecutters/cyborg, /obj/item/multitool/abductor/implant)
 
 ///ARM BLADE FOR ARM BLADE IMPLANT - Based off of the Mantis Blades from 2077.
