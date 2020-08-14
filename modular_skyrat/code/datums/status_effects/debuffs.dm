@@ -49,7 +49,7 @@
 //Cloning illness
 /obj/screen/alert/cloneill
 	name = "Cloning Illness"
-	desc = "You still need to adapt to your new body... Your body feels frail, and you"
+	desc = "You still need to adapt to your new body... Your body feels frail, and you're more susceptible to damage and wounds."
 	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
 	icon_state = "cloneill"
 
@@ -86,11 +86,13 @@
 	owner.adjustCloneLoss(cloneloss_amount)
 	owner.maxHealth -= healthpenalty
 	ADD_TRAIT(owner, TRAIT_EASYLIMBDISABLE, "cloneill")
+	ADD_TRAIT(owner, TRAIT_SCREWY_CHECKSELF, "cloneill")
 
 /datum/status_effect/cloneill/on_remove()
 	. = ..()
 	owner.maxHealth += healthpenalty
 	REMOVE_TRAIT(owner, TRAIT_EASYLIMBDISABLE, "cloneill")
+	REMOVE_TRAIT(owner, TRAIT_SCREWY_CHECKSELF, "cloneill")
 
 /datum/status_effect/cloneill/process()
 	. = ..()
