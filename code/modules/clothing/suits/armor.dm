@@ -316,3 +316,38 @@
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 20, "bio" = 50, "rad" = 20, "fire" = -10, "acid" = 50)
+
+//New and improved Tech Armor
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor
+	name = "security exoskeleton helmet"
+	desc = "A specialized exoskeleton armor helmet built into a suit of armor; offers decent protection, and comes with a flash-resistant HUD visor and headlamp."
+	icon_state = "hardsuit0-secexo"
+	item_state = "hardsuit0-secexo"
+	hardsuit_type = "secexo"
+	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 55, "acid" = 70)
+	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | ALLOWINTERNALS
+
+/obj/item/clothing/suit/space/hardsuit/security_armor
+	name = "security exoskeleton suit"
+	desc = "A specialized exoskeleton armor suit, comprised of flexible protective shielding. Comes equipped with a retractable helmet which offers a flash-resistant HUD visor, along with a headlamp."
+	icon_state = "hardsuit-secexo"
+	item_state = "hardsuit-secexo"
+	max_integrity = 250
+	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 55, "acid" = 70)
+	allowed = list(/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor
+	clothing_flags = THICKMATERIAL
+	mutantrace_variation = STYLE_DIGITIGRADE
+	slowdown = 0
+
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if (slot == SLOT_HEAD)
+		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+		DHUD.add_hud_to(user)
+
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/dropped(mob/living/carbon/human/user)
+	..()
+	if (user.head == src)
+		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+		DHUD.remove_hud_from(user)

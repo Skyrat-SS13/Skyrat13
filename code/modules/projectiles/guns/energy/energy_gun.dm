@@ -150,3 +150,12 @@
 				add_overlay("[icon_state]_fail_1")
 			if(151 to INFINITY)
 				add_overlay("[icon_state]_fail_2")
+
+/obj/item/gun/energy/e_gun/large
+	name = "energy rifle"
+	desc = "A basic hybrid energy rifle with two settings: disable and kill."
+	icon_state = "energy_rifle"
+	charge_sections = 5
+	cell_type = /obj/item/stock_parts/cell/secborg
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
