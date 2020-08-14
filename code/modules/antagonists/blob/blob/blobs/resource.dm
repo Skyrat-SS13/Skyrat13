@@ -26,7 +26,8 @@
 		return
 	flick("blob_resource_glow", src)
 	if(overmind)
-		overmind.add_points(1)
+		//overmind.add_points(1)
+		overmind.add_points(2) //SKYRAT EDIT - BLOB
 		resource_delay = world.time + 40 + overmind.resource_blobs.len * 2.5 //4 seconds plus a quarter second for each resource blob the overmind has
 	else
 		resource_delay = world.time + 40

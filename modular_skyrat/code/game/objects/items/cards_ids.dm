@@ -50,7 +50,11 @@
 	if(!A.emag_act(user))
 		return
 
-// Charlie Station IDs
+/obj/item/card/id/away/old
+	name = "a perfectly generic identification card"
+	desc = "A perfectly generic identification card. Looks like it could use some flavor."
+	icon_state = "centcom"
+
 /obj/item/card/id/away/old/sec
 	name = "Charlie Station Security Officer's ID card"
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Security Officer\"."

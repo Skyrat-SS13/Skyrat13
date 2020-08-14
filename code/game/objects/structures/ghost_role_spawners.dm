@@ -630,18 +630,18 @@ end Skyrat edit */
 	rank = "Gunner"
 
 /obj/effect/mob_spawn/human/ghostcafe
-	name = "Ghost Cafe Sleeper"
+	name = "Cafe Sleeper"
 	uses = -1
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	mob_name = "a ghost cafe visitor"
+	mob_name = "a cafe visitor"
 	roundstart = FALSE
 	anchored = TRUE
 	density = FALSE
 	death = FALSE
-	assignedrole = "Ghost Cafe Visitor"
-	short_desc = "You are a Ghost Cafe Visitor!"
-	flavour_text = "You know one thing for sure. You arent actually alive. Are you in a simulation?"
+	assignedrole = "Cafe Visitor"
+	short_desc = "You are a Cafe Visitor!"
+	flavour_text = "You are off-duty and have decided to visit your favourite cafe. Enjoy yourself."
 	skip_reentry_check = TRUE
 	banType = ROLE_GHOSTCAFE
 
@@ -702,7 +702,7 @@ end Skyrat edit */
 			uniform = suited ? /obj/item/clothing/under/color/random : /obj/item/clothing/under/color/jumpskirt/random
 
 /obj/item/storage/box/syndie_kit/chameleon/ghostcafe
-	name = "ghost cafe costuming kit"
+	name = "cafe costuming kit"
 	desc = "Look just the way you did in life - or better!"
 
 /obj/item/storage/box/syndie_kit/chameleon/ghostcafe/PopulateContents() // Doesn't contain a PDA, for isolation reasons.

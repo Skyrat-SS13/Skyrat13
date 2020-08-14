@@ -30,3 +30,14 @@
 
 /obj/machinery/sleeper/party
 	icon = 'modular_skyrat/icons/obj/machines/sleeper.dmi'
+	
+/obj/machinery/sleeper/centcom/Initialize()
+	. = ..()
+	component_parts = list()
+	component_parts += new /obj/item/circuitboard/machine/sleeper/syndie(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stack/sheet/glass(null)
+	component_parts += new /obj/item/stack/sheet/glass(null)
+	component_parts += new /obj/item/stack/cable_coil(null)
+	RefreshParts()

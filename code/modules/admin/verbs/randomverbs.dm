@@ -725,45 +725,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Change View Range", "[view]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/admin_call_shuttle()
-
-	set category = "Admin"
-	set name = "Call Shuttle"
-
-	if(EMERGENCY_AT_LEAST_DOCKED)
-		return
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes")
-		return
-
-	SSshuttle.emergency.request()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Call Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-called the emergency shuttle.</span>")
-	return
-
-/client/proc/admin_cancel_shuttle()
-	set category = "Admin"
-	set name = "Cancel Shuttle"
-	if(!check_rights(0))
-		return
-	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
-		return
-
-	if(EMERGENCY_AT_LEAST_DOCKED)
-		return
-
-	SSshuttle.emergency.cancel()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Cancel Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-recalled the emergency shuttle.</span>")
-
-	return
-
 /client/proc/everyone_random()
 	set category = "Fun"
 	set name = "Make Everyone Random"
@@ -1279,7 +1240,19 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_PIE, ADMIN_PUNISHMENT_CUSTOM_PIE, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_PICKLE)
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_PIE,
+		ADMIN_PUNISHMENT_CUSTOM_PIE,
+		ADMIN_PUNISHMENT_FIREBALL,
+		ADMIN_PUNISHMENT_LIGHTNING,
+		ADMIN_PUNISHMENT_BRAINDAMAGE,
+		ADMIN_PUNISHMENT_BSA,
+		ADMIN_PUNISHMENT_GIB,
+		ADMIN_PUNISHMENT_SUPPLYPOD_QUICK,
+		ADMIN_PUNISHMENT_SUPPLYPOD,
+		ADMIN_PUNISHMENT_MAZING,
+		ADMIN_PUNISHMENT_ROD,
+		ADMIN_PUNISHMENT_PICKLE,
+		ADMIN_PUNISHMENT_FRY)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1359,6 +1332,8 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 						A.splat(target)
 		if(ADMIN_PUNISHMENT_PICKLE)
 			target.turn_into_pickle()
+		if(ADMIN_PUNISHMENT_FRY)
+			target.fry()
 
 	punish_log(target, punishment)
 
@@ -1480,3 +1455,94 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 					if(!source)
 						return
 			REMOVE_TRAIT(D,chosen_trait,source)
+
+//SHUTTLE CONTROL
+/client/proc/admin_disable_shuttle()
+	set category = "Admin"
+	set name = "Disable Shuttle"
+	if(!check_rights(R_ADMIN))	return
+
+	if(SSshuttle.emergency.mode == SHUTTLE_DISABLED)
+		to_chat(usr, "<span class='warning'>Error, shuttle is already disabled.</span>")
+		return
+
+	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
+
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] disabled the shuttle.</span>")
+
+	SSshuttle.lastMode = SSshuttle.emergency.mode
+	SSshuttle.lastCallTime = SSshuttle.emergency.timeLeft(1)
+	SSshuttle.adminEmergencyNoRecall = TRUE
+	SSshuttle.emergency.setTimer(null)
+	SSshuttle.emergency.mode = SHUTTLE_DISABLED
+	priority_announce("Warning: Emergency Shuttle uplink failure, shuttle disabled until further notice.", "Emergency Shuttle Uplink Alert", 'sound/misc/announce_dig.ogg')
+
+/client/proc/admin_enable_shuttle()
+	set category = "Admin"
+	set name = "Enable Shuttle"
+	if(!check_rights(R_ADMIN))	return
+
+	if(SSshuttle.emergency.mode != SHUTTLE_DISABLED)
+		to_chat(usr, "<span class='warning'>Error, shuttle not disabled.</span>")
+		return
+
+	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
+
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] enabled the emergency shuttle.</span>")
+	SSshuttle.adminEmergencyNoRecall = FALSE
+	SSshuttle.emergencyNoRecall = FALSE
+	if(SSshuttle.lastMode == SHUTTLE_DISABLED) //If everything goes to shit, fix it.
+		SSshuttle.lastMode = SHUTTLE_IDLE
+
+	SSshuttle.emergency.mode = SSshuttle.lastMode
+	if(SSshuttle.lastCallTime < 100 && SSshuttle.lastMode != SHUTTLE_IDLE)
+		SSshuttle.lastCallTime = 100 //Make sure no insta departures.
+	SSshuttle.emergency.setTimer(SSshuttle.lastCallTime)
+	priority_announce("Warning: Emergency Shuttle uplink reestablished, shuttle enabled.", "Emergency Shuttle Uplink Alert", 'sound/misc/announce_dig.ogg')
+
+/client/proc/admin_call_shuttle()
+	set category = "Admin"
+	set name = "Call Shuttle"
+
+	if(EMERGENCY_AT_LEAST_DOCKED)
+		return
+
+	if(!check_rights(R_ADMIN))	return
+
+	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "Yes (No Recall)", "No")
+	if(confirm == "No")
+		return
+
+	if(confirm == "Yes (No Recall)")
+		SSshuttle.adminEmergencyNoRecall = TRUE
+		SSshuttle.emergency.mode = SHUTTLE_IDLE
+
+	SSshuttle.emergency.request()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Call Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
+	if(confirm == "Yes (No Recall)")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-called the emergency shuttle (non-recallable).</span>")
+	else
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-called the emergency shuttle.</span>")
+	return
+
+/client/proc/admin_cancel_shuttle()
+	set category = "Admin"
+	set name = "Cancel Shuttle"
+	if(!check_rights(0))
+		return
+	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
+		return
+
+	if(SSshuttle.adminEmergencyNoRecall)
+		SSshuttle.adminEmergencyNoRecall = FALSE
+
+	if(EMERGENCY_AT_LEAST_DOCKED)
+		return
+
+	SSshuttle.emergency.cancel()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Cancel Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-recalled the emergency shuttle.</span>")
+
+	return
