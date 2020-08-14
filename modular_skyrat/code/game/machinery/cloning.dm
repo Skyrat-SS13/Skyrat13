@@ -93,9 +93,9 @@
 		speed_coeff += (P.rating / 2)
 	speed_coeff = max(1, speed_coeff)
 	heal_level = clamp((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
-	cloneill_duration = (20 MINUTES * (1/efficiency))
-	cloneill_cloneloss = round(15 * (1/efficiency), 1)
-	cloneill_hallucination = round(10 * (1/efficiency), 1)
+	cloneill_duration = (20 MINUTES * (1/max(efficiency-1,1)))
+	cloneill_cloneloss = round(15 * (1/max(efficiency-1,1)), 1)
+	cloneill_hallucination = round(10 * (1/max(efficiency-1,1)), 1)
 
 //Clonepod
 /obj/machinery/clonepod/examine(mob/user)
@@ -232,11 +232,6 @@
 		H.give_genitals(TRUE)
 
 		H.suiciding = FALSE
-		//Apply the cloned status effect
-		var/datum/status_effect/cloneill/illness = new()
-		illness.duration = cloneill_duration
-		illness.cloneloss_amount = cloneill_cloneloss
-		H.apply_status_effect()
 	attempting = FALSE
 	return TRUE
 
@@ -434,6 +429,14 @@
 	for(var/fl in unattached_flesh)
 		qdel(fl)
 	unattached_flesh.Cut()
+
+	//Apply the cloned status effect
+	var/mob/living/carbon/H = occupant
+	if(istype(H))
+		var/datum/status_effect/cloneill/illness = new()
+		illness.duration = cloneill_duration
+		illness.cloneloss_amount = cloneill_cloneloss
+		H.apply_status_effect()
 
 	occupant = null
 
