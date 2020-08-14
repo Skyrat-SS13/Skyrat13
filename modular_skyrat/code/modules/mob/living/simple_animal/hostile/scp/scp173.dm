@@ -1,34 +1,28 @@
-/mob/living/simple_animal/hostile/scp173
+/mob/living/simple_animal/hostile/scp/scp173
 	name = "SCP 173"
 	desc = "Do not blink. Blink and you're dead."
 	icon = 'modular_skyrat/icons/mob/scp/scp173.dmi'
 	icon_state = "scp173"
 	icon_living = "scp173"
-	maxHealth = 5000
-	health = 5000
-	move_to_delay = 0
-	environment_smash = ENVIRONMENT_SMASH_STRUCTURES | ENVIRONMENT_SMASH_WALLS
-
-	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
 
 	var/blink_cooldown
 
-/mob/living/simple_animal/hostile/scp173/Life(seconds, times_fired)
+/mob/living/simple_animal/hostile/scp/scp173/Life(seconds, times_fired)
 	. = ..()
 	forceBlink()
 	aiSnapNecks()
 	
-/mob/living/simple_animal/hostile/scp173/proc/forceBlink()
+/mob/living/simple_animal/hostile/scp/scp173/proc/forceBlink()
 	if(world.time < blink_cooldown)
 		return
-	for(var/mob/living/carbon/human/H in range(14, src))
+	for(var/mob/living/carbon/human/H in viewers(src))
 		if(H.stat == DEAD)
 			continue
-		H.blind_eyes(2)
+		H.blind_eyes(3)
 		H.blur_eyes(4)
-	blink_cooldown = world.time + 15 SECONDS
+	blink_cooldown = world.time + 10 SECONDS
 	
-/mob/living/simple_animal/hostile/scp173/proc/aiSnapNecks()
+/mob/living/simple_animal/hostile/scp/scp173/proc/aiSnapNecks()
 	if(ckey && mind)
 		return
 	else
@@ -39,7 +33,7 @@
 					continue
 				AttackingTarget(L)
 
-/mob/living/simple_animal/hostile/scp173/proc/beingWatched()
+/mob/living/simple_animal/hostile/scp/scp173/proc/beingWatched()
 	for(var/mob/living/carbon/human/H in viewers(src))
 		if(is_blind(H) || H.eye_blind > 0)
 			continue
@@ -51,82 +45,36 @@
 	stop_automated_movement = FALSE
 	return FALSE
 
-/mob/living/simple_animal/hostile/scp173/Move(atom/newloc, dir, step_x, step_y)
+/mob/living/simple_animal/hostile/scp/scp173/Move(atom/newloc, dir, step_x, step_y)
 	if(beingWatched())
 		return FALSE
 	return ..()
 	
-/mob/living/simple_animal/hostile/scp173/movement_delay()
+/mob/living/simple_animal/hostile/scp/scp173/movement_delay()
 	return -10
 	
-/mob/living/simple_animal/hostile/scp173/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
+/mob/living/simple_animal/hostile/scp/scp173/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
 	return
 
-/mob/living/simple_animal/hostile/scp173/emote(act, m_type, message, intentional)
+/mob/living/simple_animal/hostile/scp/scp173/emote(act, m_type, message, intentional)
 	return
 	
-/mob/living/simple_animal/hostile/scp173/MoveToTarget(list/possible_targets)
-	if(beingWatched())
-		return FALSE
-	return ..()
-
-/mob/living/simple_animal/hostile/scp173/PickTarget(list/Targets)
-	if(target != null)
-		for(var/pos_targ in Targets)
-			var/atom/A = pos_targ
-			var/target_dist = get_dist(targets_from, target)
-			var/possible_target_distance = get_dist(targets_from, A)
-			if(target_dist < possible_target_distance)
-				Targets -= A
-			if(!ishuman(A) && !issilicon(A))
-				Targets -= A
-	if(!Targets.len)
-		return
-	var/chosen_target = pick(Targets)
-	return chosen_target
-	
-/mob/living/simple_animal/hostile/scp173/UnarmedAttack(atom/A)
+/mob/living/simple_animal/hostile/scp/scp173/UnarmedAttack(atom/A)
 	if(beingWatched())
 		return
-	if(A == src)
-		return
-	if(istype(A, /obj/structure/window) || istype(A, /obj/structure/grille))
-		if(!do_after(src, 5 SECONDS, FALSE, A))
-			return
-		qdel(A)
-	else if(istype(A, /obj/machinery/door))
-		var/obj/machinery/door/D = A
-		if(!D.density)
-			return
-		if(D.locked)
-			if(!do_after(src, 5 SECONDS, FALSE, D))
-				return
-			D.locked = FALSE
-			return
-		if(D.welded)
-			if(!do_after(src, 5 SECONDS, FALSE, D))
-				return
-			D.welded = FALSE
-			return
-		if(!do_after(src, 5 SECONDS, FALSE, D))
-			return
-		D.open()
-	else if(isliving(A))
+	. = ..()
+	if(isliving(A))
 		var/mob/living/L = A
 		if(L.stat == DEAD)
 			return
 		L.death()
+		L.adjustBruteLoss(200)
 		playsound(loc, pick('modular_skyrat/sound/scp/NeckSnap1.ogg', 'modular_skyrat/sound/scp/NeckSnap2.ogg'), 50, 1, -1)
 		visible_message("<span class='warning'>[src] snaps [L]'s neck!</span>")
-	
-/mob/living/simple_animal/hostile/scp173/AttackingTarget()
-	if(beingWatched())
-		return
-	if(!ishuman(target))
-		qdel(target)
-	var/mob/living/carbon/human/H = target
-	if(H.stat == DEAD)
-		return
-	H.death()
-	playsound(loc, pick('modular_skyrat/sound/scp/NeckSnap1.ogg', 'modular_skyrat/sound/scp/NeckSnap2.ogg'), 50, 1, -1)
-	visible_message("<span class='warning'>[src] snaps [H]'s neck!</span>")
+
+/mob/living/simple_animal/hostile/scp/scp173/attacked_by(obj/item/I, mob/living/user, attackchain_flags, damage_multiplier)
+	if(user.a_intent == INTENT_HARM)
+		var/half_maxhealth = maxHealth / 2
+		if(health <= half_maxhealth)
+			src.UnarmedAttack(user)
+	return ..()
