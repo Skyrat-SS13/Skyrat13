@@ -56,6 +56,10 @@
 
 	if(!msg)
 		return
+	
+	//SKYRAT CHANGE - Cringe detection in emotes
+	detect_cringe(msg, user)
+	//SKYRAT CAHNGE END
 
 	user.log_message(msg, LOG_EMOTE)
 	//msg = "<b>[user]</b> " + msg //SKYRAT CHANGE
