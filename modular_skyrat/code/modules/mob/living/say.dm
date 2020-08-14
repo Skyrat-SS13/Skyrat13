@@ -67,7 +67,7 @@ GLOBAL_LIST_INIT(bad_words, world.file2list(CRINGE_FILE))
 	detect_cringe(message, src)
 
 /proc/detect_cringe(cringe_message,  mob/cringe_mob, cringe_message, silence_chat = FALSE)
-	if(!cringe_message)
+	if(!length(cringe_message))
 		return
 	
 	var/list/unfunny = splittext_char(cringe_message, " ")
