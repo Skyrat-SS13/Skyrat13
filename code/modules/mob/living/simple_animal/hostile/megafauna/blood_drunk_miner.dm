@@ -89,13 +89,13 @@ Difficulty: Medium
 	if(world.time + adjustment_amount > next_move)
 		changeNext_move(adjustment_amount) //attacking it interrupts it attacking, but only briefly
 	. = ..()
-/* skyrat edit - this shit caused issues
+
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/death()
 	if(health > 0)
 		return
 	new /obj/effect/temp_visual/dir_setting/miner_death(loc, dir)
 	return ..()
-*/
+
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/Move(atom/newloc)
 	if(dashing || (newloc && newloc.z == z && (islava(newloc) || ischasm(newloc)))) //we're not stupid!
 		return FALSE
