@@ -1,3 +1,7 @@
+#define CRINGE_FILE "[global.config.directory]/skyrat/cringe_words.txt"
+
+GLOBAL_LIST_INIT(bad_words, world.file2list(CRINGE_FILE))
+
 /mob/living/send_speech(message, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language=null, message_mode)
 	var/static/list/eavesdropping_modes = list(MODE_WHISPER = TRUE, MODE_WHISPER_CRIT = TRUE)
 	var/eavesdrop_range = 0
@@ -57,3 +61,10 @@
 	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, /.proc/animate_speechbubble, I, speech_bubble_recipients, 30) //skyrat-edit 
+
+/mob/living/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
+	. = ..()
+	var/list/unfunny = splittext_char(message, " ")
+	for(var/i in unfunny)
+		if(lowertext(i) in GLOB.bad_words)
+			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "cringe", /datum/mood_event/cringe)
