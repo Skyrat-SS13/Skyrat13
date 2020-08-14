@@ -217,6 +217,11 @@
 #define TRAIT_DNC		"cant_clone"
 #define TRAIT_DNR		"cant_revive" //You just can't be revived without supernatural means
 #define TRAIT_NODETERMINATION	"no_determination" //tfw no undertales
+#define TRAIT_LOOKSCONSCIOUS	"looks_conscious" //fake conscious
+#define TRAIT_LOOKSSLEEPY		"looks_sleepy" //fake sleep
+#define TRAIT_LOOKSUNCONSCIOUS	"looks_unconscious" //fake fainting
+#define TRAIT_LOOKSVERYUNCONSCIOUS	"looks_very_unconscious" //fake shock
+#define TRAIT_LOOKSDEAD			"looks_dead" //fake death
 //
 
 // mobility flag traits

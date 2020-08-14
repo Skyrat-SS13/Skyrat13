@@ -495,13 +495,9 @@
 	var/old_length = blood_DNA.len
 	blood_DNA |= new_blood_dna
 	var/changed = FALSE
-	if(!blood_DNA["color"])
-		blood_DNA["color"] = new_blood_dna["color"]
-		changed = TRUE
-	else
-		var/old = blood_DNA["color"]
-		blood_DNA["color"] = BlendRGB(blood_DNA["color"], new_blood_dna["color"])
-		changed = old != blood_DNA["color"]
+	var/old = blood_DNA["color"]
+	blood_DNA["color"] = new_blood_dna["color"]
+	changed = (old != blood_DNA["color"])
 	if(blood_DNA.len == old_length)
 		return FALSE
 	return changed
@@ -584,16 +580,12 @@
 	return TRUE
 //Skyrat changes - snowflake blood color
 /atom/proc/blood_DNA_to_color()
-	if(!isnull(blood_DNA["color"]))
-		return blood_DNA["color"]
-	else
-		return BLOOD_COLOR_HUMAN
+	blood_DNA |= list("color" = BLOOD_COLOR_HUMAN)
+	return blood_DNA["color"]
 
 /proc/blood_DNA_list_to_color(list/dna)
-	if(!isnull(dna["color"]))
-		return dna["color"]
-	else
-		return BLOOD_COLOR_HUMAN
+	dna |= list("color" = BLOOD_COLOR_HUMAN)
+	return dna["color"]
 //
 /atom/proc/clean_blood()
 	. = blood_DNA ? TRUE : FALSE
