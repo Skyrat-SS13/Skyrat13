@@ -26,6 +26,7 @@
 	var/efficiency
 	var/cloneill_duration = 20 MINUTES
 	var/cloneill_cloneloss = 15
+	var/cloneill_halucination = 10
 
 	var/datum/mind/clonemind
 	var/grab_ghost_when = CLONER_MATURE_CLONE
@@ -94,6 +95,7 @@
 	heal_level = clamp((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
 	cloneill_duration = (20 MINUTES * (1/efficiency))
 	cloneill_cloneloss = round(15 * (1/efficiency), 1)
+	cloneill_halucination = round(10 * (1/efficiency), 1)
 
 //Clonepod
 /obj/machinery/clonepod/examine(mob/user)

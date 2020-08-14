@@ -61,6 +61,7 @@
 	alert_type = /obj/screen/alert/cloneill
 	var/healthpenalty = 25
 	var/cloneloss_amount = 15
+	var/hallucination_prob = 10
 	var/list/hallucinate_options = list(
 		"Self",
 		"Others",
@@ -93,7 +94,7 @@
 
 /datum/status_effect/cloneill/process()
 	. = ..()
-	if(prob(4) && iscarbon(owner))
+	if(prob(hallucination_prob) && iscarbon(owner))
 		var/mob/living/carbon/C = owner
 		var/chosen_hallucination = pick(hallucinate_options)
 		switch(chosen_hallucination)
