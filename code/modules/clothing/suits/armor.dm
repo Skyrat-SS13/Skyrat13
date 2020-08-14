@@ -339,6 +339,7 @@
 	clothing_flags = THICKMATERIAL
 	mutantrace_variation = STYLE_DIGITIGRADE
 	slowdown = 0
+	anthro_mob_worn_overlay = 'icons/mob/clothing/suit_digi.dmi'
 
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/equipped(mob/living/carbon/human/user, slot)
 	..()
