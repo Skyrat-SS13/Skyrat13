@@ -41,7 +41,7 @@
   */
 /obj/structure/alien/resin/flower_bud_enemy/proc/bear_fruit()
 	visible_message("<span class='danger'>The plant has borne fruit!</span>")
-	new /mob/living/simple_animal/hostile/venus_human_trap/ghost_playable(get_turf(src)) // Skyrat change: slight vine buff, rarely happens anyway!
+	new /mob/living/simple_animal/hostile/venus_human_trap(get_turf(src)) // Skyrat change: slight vine buff, rarely happens anyway!
 	qdel(src)
 
 /obj/effect/ebeam/vine
