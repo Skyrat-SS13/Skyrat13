@@ -437,7 +437,7 @@
 
 /datum/design/cyberimp_mantis
 	name = "Mantis Blade Implant"
-	desc = "A set of janitor tools fitted into an arm implant, designed to be installed on subject's arm."
+	desc = "A long, sharp, mantis-like blade installed within the forearm, acting as a deadly self defense weapon."
 	id = "ci-mantis"
 	build_type = MECHFAB
 	materials = list (/datum/material/iron = 3500, /datum/material/glass = 1500, /datum/material/silver = 1500)
