@@ -77,6 +77,6 @@ GLOBAL_LIST_INIT(bad_words, world.file2list(CRINGE_FILE))
 			if(cringe_mob)
 				SEND_SIGNAL(cringe_mob, COMSIG_ADD_MOOD_EVENT, "cringe", /datum/mood_event/cringe)
 			if(!cringed && !silence_chat && cringe_mob)
-				to_chat(cringe_mob, "<span class='warning'>Saying \"[i]\" makes you feel utter contempt towards yourself...</span>")
+				to_chat(cringe_mob, "<span class='warning'>Saying \"[capitalize(lowertext(i))]\" makes you feel utter contempt towards yourself...</span>")
 			cringed = TRUE
 	return cringed
