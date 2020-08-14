@@ -65,6 +65,10 @@ GLOBAL_LIST_INIT(bad_words, world.file2list(CRINGE_FILE))
 /mob/living/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
 	. = ..()
 	var/list/unfunny = splittext_char(message, " ")
+	var/sent_message = FALSE
 	for(var/i in unfunny)
 		if(lowertext(i) in GLOB.bad_words)
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "cringe", /datum/mood_event/cringe)
+			if(!sent_message)
+				to_chat(src, "<span class='warning'>Saying \"[i]\" makes you feel utter contempt towards yourself...</span>")
+				sent_message = TRUE
