@@ -58,7 +58,14 @@
 		return
 	
 	//SKYRAT CHANGE - Cringe detection in emotes
-	detect_cringe(msg, user)
+	var/list/unfunny = splittext_char(msg, " ")
+	var/cringed = FALSE
+	for(var/i in unfunny)
+		if(lowertext(i) in GLOB.bad_words)
+			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "cringe", /datum/mood_event/cringe)
+			if(!cringed)
+				to_chat(src, "<span class='warning'>Saying \"[capitalize(lowertext(i))]\" makes you feel utter contempt towards yourself...</span>")
+			cringed = TRUE
 	//SKYRAT CAHNGE END
 
 	user.log_message(msg, LOG_EMOTE)
