@@ -58,17 +58,10 @@
 		return
 	
 	//SKYRAT CHANGE - Cringe detection in emotes
-	var/message2 = ""
-	message2 = replacetext(message, ",", " ")
-	message2 = replacetext(message, ":", " ")
-	message2 = replacetext(message, ";", " ")
-	message2 = replacetext(message, ".", " ")
-	message2 = replacetext(message, "?", " ")
-	message2 = replacetext(message, "!", " ")
-	message2 = replacetext(message, "\'", " ")
-	message2 = replacetext(message, "-", " ")
+	var/message2 = msg
 	for(var/i in list(",",":",";",".","?","!","\'","-"))
-		message2 = replacetext(msg, i, " ")
+		message2 = replacetextEx(message2, i, " ")
+	to_chat(user, message2)
 	var/list/unfunny = splittext_char(message2, " ")
 	var/cringed = FALSE
 	for(var/i in unfunny)
@@ -101,11 +94,11 @@
 
 /datum/emote/proc/replace_pronoun(mob/user, message)
 	if(findtext(message, "their"))
-		message = replacetext(message, "their", user.p_their())
+		message = replacetextEx(message, "their", user.p_their())
 	if(findtext(message, "them"))
-		message = replacetext(message, "them", user.p_them())
+		message = replacetextEx(message, "them", user.p_them())
 	if(findtext(message, "%s"))
-		message = replacetext(message, "%s", user.p_s())
+		message = replacetextEx(message, "%s", user.p_s())
 	return message
 
 /datum/emote/proc/select_message_type(mob/user)
@@ -128,7 +121,7 @@
 		. = message_simple
 
 /datum/emote/proc/select_param(mob/user, params)
-	return replacetext(message_param, "%t", params)
+	return replacetextEx(message_param, "%t", params)
 
 /datum/emote/proc/can_run_emote(mob/user, status_check = TRUE, intentional = FALSE)
 	. = TRUE

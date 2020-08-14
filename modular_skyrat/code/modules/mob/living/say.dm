@@ -64,16 +64,9 @@ GLOBAL_LIST_INIT(bad_words, world.file2list(CRINGE_FILE))
 
 /mob/living/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
 	. = ..()
-	var/message2 = ""
-	message2 = replacetext(message, ",", " ")
-	message2 = replacetext(message, ":", " ")
-	message2 = replacetext(message, ";", " ")
-	message2 = replacetext(message, ".", " ")
-	message2 = replacetext(message, "?", " ")
-	message2 = replacetext(message, "!", " ")
-	message2 = replacetext(message, "\'", " ")
-	message2 = replacetext(message, "-", " ")
-	to_chat(src, message2)
+	var/message2 = message
+	for(var/i in list(",",":",";",".","?","!","\'","-"))
+		message2 = replacetextEx(message2, i, " ")
 	var/list/unfunny = splittext_char(message2, " ")
 	var/cringed = FALSE
 	for(var/i in unfunny)
