@@ -60,7 +60,7 @@
 	duration = 20 MINUTES
 	alert_type = /obj/screen/alert/cloneill
 	var/healthpenalty = 25
-	var/cloneloss_amount = 15
+	var/cloneloss_amount = 20
 	var/hallucination_prob = 10
 	var/list/hallucinate_options = list(
 		"Self",

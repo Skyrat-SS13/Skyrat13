@@ -25,7 +25,7 @@
 	var/speed_coeff
 	var/efficiency
 	var/cloneill_duration = 20 MINUTES
-	var/cloneill_cloneloss = 15
+	var/cloneill_cloneloss = 20
 	var/cloneill_hallucination = 10
 
 	var/datum/mind/clonemind
@@ -94,7 +94,7 @@
 	speed_coeff = max(1, speed_coeff)
 	heal_level = clamp((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
 	cloneill_duration = (20 MINUTES * (1/max(efficiency-1,1)))
-	cloneill_cloneloss = round(15 * (1/max(efficiency-1,1)), 1)
+	cloneill_cloneloss = round(20 * (1/max(efficiency-1,1)), 1)
 	cloneill_hallucination = round(10 * (1/max(efficiency-1,1)), 1)
 
 //Clonepod
