@@ -61,14 +61,13 @@
 	var/message2 = msg
 	for(var/i in list(",",":",";",".","?","!","\'","-"))
 		message2 = replacetextEx(message2, i, " ")
-	to_chat(user, message2)
 	var/list/unfunny = splittext_char(message2, " ")
 	var/cringed = FALSE
 	for(var/i in unfunny)
 		if(lowertext(i) in GLOB.bad_words)
-			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "cringe", /datum/mood_event/cringe)
+			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "cringe", /datum/mood_event/cringe)
 			if(!cringed)
-				to_chat(src, "<span class='warning'>Saying \"[capitalize(lowertext(i))]\" makes you feel utter contempt towards yourself...</span>")
+				to_chat(user, "<span class='warning'>Saying \"[capitalize(lowertext(i))]\" makes you feel utter contempt towards yourself...</span>")
 			cringed = TRUE
 	//SKYRAT CAHNGE END
 
