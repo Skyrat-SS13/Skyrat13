@@ -98,7 +98,7 @@
 	icon = 'modular_skyrat/icons/obj/implanted_blade.dmi'
 	icon_state = "mantis_blade"
 
-/obj/item/organ/cyberimp/arm/service/emag_act()
+/obj/item/organ/cyberimp/arm/armblade/emag_act()
 	. = ..()
 	if(obj_flags & EMAGGED)
 		return
