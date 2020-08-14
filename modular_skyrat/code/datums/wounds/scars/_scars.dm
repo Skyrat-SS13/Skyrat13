@@ -125,7 +125,7 @@
 		if(WOUND_SEVERITY_LOSS to INFINITY)
 			msg = "[victim.p_their(TRUE)] [limb.name] [description]." // different format
 			msg = "<span class='notice'><i><b>[msg]</b></i></span>"
-	if(checK_victim && (viewer == victim) && (!is_visible(checkviewer = FALSE) && is_visible(viewer)))
+	if(check_victim && (viewer == victim) && (!is_visible(checkviewer = FALSE) && is_visible(viewer)))
 		return "[msg] <span class='purple'>It is too well hidden for others to notice.</span>"
 	else
 		return msg
