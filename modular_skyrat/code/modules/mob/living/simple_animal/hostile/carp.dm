@@ -17,3 +17,4 @@
 	melee_damage_upper = 17
 	attack_verb_continuous = "thrashes"
 	attack_verb_simple = "thrash"
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/carpmeat/tcarpmeat = 3)
