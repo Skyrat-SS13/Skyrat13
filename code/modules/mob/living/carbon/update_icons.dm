@@ -88,6 +88,26 @@
 
 	apply_overlay(DAMAGE_LAYER)
 
+/mob/living/carbon/proc/update_medicine_overlays()
+	remove_overlay(MEDICINE_LAYER)
+	remove_overlay(LOWER_MEDICINE_LAYER)
+
+	var/mutable_appearance/medicine_overlays = mutable_appearance('modular_skyrat/icons/mob/medicine_overlays.dmi', "blank", -MEDICINE_LAYER)
+	var/mutable_appearance/lower_medicine_overlays = mutable_appearance('modular_skyrat/icons/mob/medicine_overlays.dmi', "blank", -MEDICINE_LAYER)
+	overlays_standing[MEDICINE_LAYER] = medicine_overlays
+	overlays_standing[LOWER_MEDICINE_LAYER] = medicine_overlays
+
+
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/BP = X
+		if(BP.current_gauze)
+			medicine_overlays.add_overlay("gauze_[check_zone(BP.body_zone)]")
+			if(BP.body_zone in list(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND))
+				lower_medicine_overlays.add_overlay("gauze_[check_zone(BP.body_zone)]_behind")
+
+	apply_overlay(MEDICINE_LAYER)
+	apply_overlay(LOWER_MEDICINE_LAYER)
+
 
 /mob/living/carbon/update_inv_wear_mask()
 	remove_overlay(FACEMASK_LAYER)
