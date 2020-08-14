@@ -72549,6 +72549,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"xeO" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/large{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/gun/energy/e_gun/large,
+/obj/item/gun/energy/e_gun/large{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "xjk" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4
@@ -96040,7 +96053,7 @@ aas
 aaA
 aaH
 aic
-aaF
+xeO
 aaF
 acu
 aaA

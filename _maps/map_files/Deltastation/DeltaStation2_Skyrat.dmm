@@ -42975,14 +42975,21 @@
 /area/security/warden)
 "bTi" = (
 /obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/gun/energy/e_gun/large{
+	pixel_y = -6
+	},
+/obj/item/gun/energy/e_gun/large,
+/obj/item/gun/energy/e_gun/large{
+	pixel_y = 6
+	},
 /obj/item/melee/baton/loaded{
 	pixel_y = -4
 	},
 /obj/item/melee/baton/loaded{
 	pixel_y = 3
-	},
-/obj/machinery/light{
-	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -44230,36 +44237,19 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "bVr" = (
-/obj/item/clothing/suit/armor/vest{
-	pixel_x = -8;
-	pixel_y = -2
-	},
-/obj/item/clothing/suit/armor/vest{
-	pixel_y = -2
-	},
-/obj/item/clothing/suit/armor/vest{
-	pixel_x = 8;
-	pixel_y = -2
-	},
-/obj/item/clothing/head/helmet{
-	layer = 3.00001;
-	pixel_x = -9;
-	pixel_y = 7
-	},
-/obj/item/clothing/head/helmet{
-	layer = 3.00001;
-	pixel_x = -1;
-	pixel_y = 7
-	},
-/obj/item/clothing/head/helmet{
-	layer = 3.00001;
-	pixel_x = 8;
-	pixel_y = 7
-	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
 /obj/structure/rack,
+/obj/item/clothing/suit/space/hardsuit/security_armor{
+	pixel_x = 10
+	},
+/obj/item/clothing/suit/space/hardsuit/security_armor{
+	pixel_x = 1
+	},
+/obj/item/clothing/suit/space/hardsuit/security_armor{
+	pixel_x = -8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "bVs" = (
