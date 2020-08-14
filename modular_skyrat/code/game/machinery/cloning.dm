@@ -26,7 +26,7 @@
 	var/efficiency
 	var/cloneill_duration = 20 MINUTES
 	var/cloneill_cloneloss = 15
-	var/cloneill_halucination = 10
+	var/cloneill_hallucination = 10
 
 	var/datum/mind/clonemind
 	var/grab_ghost_when = CLONER_MATURE_CLONE
@@ -95,7 +95,7 @@
 	heal_level = clamp((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
 	cloneill_duration = (20 MINUTES * (1/efficiency))
 	cloneill_cloneloss = round(15 * (1/efficiency), 1)
-	cloneill_halucination = round(10 * (1/efficiency), 1)
+	cloneill_hallucination = round(10 * (1/efficiency), 1)
 
 //Clonepod
 /obj/machinery/clonepod/examine(mob/user)
@@ -105,7 +105,13 @@
 	if(mess)
 		. += "It's filled with blood and viscera. You swear you can see it moving..."
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.</span>"
+		. += "<span class='notice'>\
+			The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.\
+			<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.\
+			<br>Predicted amount of clone illness cellular damage: <b>[cloneill_cloneloss]</b>.\
+			<br>Predicted duration of clone illness: <b>[cloneill_duration]</b>.\
+			<br>Predicted probability of hallucinations: <b>[cloneill_hallucination]% every 5 seconds</b>.\
+			</span>"
 		if(efficiency > 5)
 			to_chat(user, "<span class='notice'>Pod has been upgraded to support autoprocessing.<span>")
 	if(is_operational() && mob_occupant)
