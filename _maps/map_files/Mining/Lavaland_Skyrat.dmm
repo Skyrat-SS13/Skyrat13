@@ -3743,7 +3743,6 @@
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
 "uw" = (
-/obj/structure/closet/crate/freezer/blood,
 /turf/open/floor/plasteel/white,
 /area/xenoarch/arch)
 "ux" = (
