@@ -24,6 +24,9 @@
 	var/attempting = FALSE //One clone attempt at a time thanks
 	var/speed_coeff
 	var/efficiency
+	var/cloneill_duration = 20 MINUTES
+	var/cloneill_cloneloss = 20
+	var/cloneill_hallucination = 10
 
 	var/datum/mind/clonemind
 	var/grab_ghost_when = CLONER_MATURE_CLONE
@@ -90,6 +93,9 @@
 		speed_coeff += (P.rating / 2)
 	speed_coeff = max(1, speed_coeff)
 	heal_level = clamp((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
+	cloneill_duration = (20 MINUTES * (1/max(efficiency-1,1)))
+	cloneill_cloneloss = round(20 * (1/max(efficiency-1,1)), 1)
+	cloneill_hallucination = round(10 * (1/max(efficiency-1,1)), 1)
 
 //Clonepod
 /obj/machinery/clonepod/examine(mob/user)
@@ -99,7 +105,13 @@
 	if(mess)
 		. += "It's filled with blood and viscera. You swear you can see it moving..."
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.</span>"
+		. += "<span class='notice'>\
+			The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.\
+			<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.\
+			<br>Predicted amount of clone illness cellular damage: <b>[cloneill_cloneloss]</b>.\
+			<br>Predicted duration of clone illness: <b>[cloneill_duration/10] seconds ([cloneill_duration/600] minutes).</b>.\
+			<br>Predicted probability of hallucinations: <b>[cloneill_hallucination]% every 5 seconds</b>.\
+			</span>"
 		if(efficiency > 5)
 			to_chat(user, "<span class='notice'>Pod has been upgraded to support autoprocessing.<span>")
 	if(is_operational() && mob_occupant)
@@ -128,15 +140,15 @@
 /obj/machinery/clonepod/proc/growclone(ckey, clonename, ui, mutation_index, mindref, datum/species/mrace, list/features, factions, list/quirks)
 	if(pays_for_clone && !currently_linked_account.adjust_money(-cost_per_clone))
 		if(radio)
-			radio.talk_into("Insufficient amount of credits to initiate cloning procedure.")
+			SPEAK("Insufficient amount of credits to initiate cloning procedure.")
 		return FALSE
 	if(biomass < biomass_per_clone)
 		if(radio)
-			radio.talk_into("Insufficient amount of biomass to initiate cloning procedure.")
+			SPEAK("Insufficient amount of credits to initiate cloning procedure.")
 		return FALSE
 	if((/datum/quirk/dnc in quirks) || (/datum/quirk/dnr in quirks))
 		if(radio)
-			radio.talk_into("[clonename] cannot be cloned due to a [/datum/quirk/dnc in quirks? "DNC" : "DNR"] contract.")
+			SPEAK("Insufficient amount of credits to initiate cloning procedure.")
 		return FALSE
 	if(panel_open)
 		return FALSE
@@ -417,6 +429,14 @@
 	for(var/fl in unattached_flesh)
 		qdel(fl)
 	unattached_flesh.Cut()
+
+	//Apply the cloned status effect
+	var/mob/living/carbon/H = occupant
+	if(istype(H))
+		var/datum/status_effect/cloneill/illness = new()
+		illness.duration = cloneill_duration
+		illness.cloneloss_amount = cloneill_cloneloss
+		H.apply_status_effect()
 
 	occupant = null
 
