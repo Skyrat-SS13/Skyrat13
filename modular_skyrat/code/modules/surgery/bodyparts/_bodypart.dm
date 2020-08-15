@@ -72,7 +72,7 @@
 	var/medium_burn_msg = "blistered"
 	var/heavy_burn_msg = "peeling away"
 
-	//Bobmed variables
+	/// Bobmed variables
 	var/parent_bodyzone //body zone that is considered a "parent" of this bodypart's zone
 	var/dismember_bodyzone //body zone that receives wound when this limb is dismembered
 	var/list/starting_children = list() //children that are already "inside" this limb on spawn. could be organs or limbs.
@@ -120,11 +120,11 @@
 	var/render_like_organic = FALSE
 	/// This is used for pseudolimbs. Basically replaces the mob overlay icon with this.
 	var/mutable_appearance/custom_overlay = null
-	// These were head vars before, but i had to generify behavior for edge cases
-	// (IPCs have their brain in da chest)
+	/// These were head vars before, but i had to generify behavior for edge cases
+	/// (IPCs have their brain in da chest)
 	var/mob/living/brain/brainmob = null
 	var/obj/item/organ/brain/brain = null
-	// Overlays related to medicine, like applied gauze
+	/// Overlays related to medicine, like applied gauze
 	var/list/medicine_overlays = list()
 
 /obj/item/bodypart/Initialize()
