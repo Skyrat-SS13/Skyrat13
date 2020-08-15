@@ -2112,7 +2112,7 @@
 /area/space)
 "fy" = (
 /obj/machinery/light,
-/turf/open/indestructible/clock_spawn_room,
+/turf/open/indestructible,
 /area/centcom/holding)
 "fz" = (
 /turf/open/floor/plasteel,
@@ -5434,6 +5434,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
+"nh" = (
+/obj/item/storage/box/marshmallow,
+/obj/item/melee/roastingstick,
+/obj/item/melee/roastingstick,
+/obj/item/melee/roastingstick,
+/obj/item/melee/roastingstick,
+/turf/open/floor/grass/snow,
+/area/centcom/holding)
 "ni" = (
 /obj/machinery/newscaster/security_unit,
 /turf/closed/indestructible/riveted,
@@ -6901,7 +6909,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/indestructible/clock_spawn_room,
+/turf/open/indestructible,
 /area/centcom/holding)
 "pD" = (
 /mob/living/simple_animal/bot/cleanbot,
@@ -7640,10 +7648,8 @@
 /turf/open/floor/plating/smooth/grass,
 /area/centcom/holding)
 "ri" = (
-/obj/structure/rack,
-/obj/item/melee/transforming/cleaving_saw,
-/obj/item/melee/transforming/cleaving_saw,
-/obj/item/crucible,
+/obj/item/storage/belt/utility/servant,
+/obj/item/storage/belt/utility/servant,
 /turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "rk" = (
@@ -8153,7 +8159,7 @@
 /area/centcom/evac)
 "sa" = (
 /obj/item/hilbertshotel/ghostdojo,
-/turf/open/indestructible/hotelwood,
+/turf/open/floor/carpet/red,
 /area/centcom/holding)
 "sb" = (
 /obj/structure/table/wood/fancy,
@@ -8669,10 +8675,6 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/pacifytile,
 /area/centcom/evac)
-"tb" = (
-/obj/effect/smportalexit,
-/turf/open/floor/plating/beach/sand,
-/area/fabric_of_reality)
 "tc" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/floor/plating/smooth/grass,
@@ -9069,18 +9071,9 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/evac)
 "tS" = (
-/obj/structure/rack,
-/obj/item/melee/baseball_bat/ablative/syndi{
-	pixel_x = 2
-	},
-/obj/item/melee/baseball_bat/ablative/syndi{
-	pixel_x = 2
-	},
-/obj/item/melee/baseball_bat{
-	pixel_x = -4
-	},
-/obj/item/melee/baseball_bat{
-	pixel_x = -4
+/obj/item/storage/belt/utility/servant,
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
@@ -9128,8 +9121,32 @@
 /turf/open/floor/engine/cult,
 /area/wizard_station)
 "tY" = (
-/mob/living/simple_animal/sloth,
-/turf/open/indestructible/hotelwood,
+/obj/structure/rack,
+/obj/item/melee/baseball_bat/ablative/syndi{
+	pixel_x = 2
+	},
+/obj/item/melee/baseball_bat/ablative/syndi{
+	pixel_x = 2
+	},
+/obj/item/melee/baseball_bat{
+	pixel_x = -4
+	},
+/obj/item/melee/baseball_bat{
+	pixel_x = -4
+	},
+/obj/item/fireaxe{
+	pixel_y = -8
+	},
+/obj/item/fireaxe{
+	pixel_y = -8
+	},
+/obj/item/fireaxe{
+	pixel_y = -8
+	},
+/obj/item/fireaxe{
+	pixel_y = -8
+	},
+/turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "tZ" = (
 /obj/structure/chair/wood/normal,
@@ -10273,8 +10290,38 @@
 /turf/open/floor/carpet/royalblue,
 /area/centcom/evac)
 "wi" = (
-/mob/living/simple_animal/chicken/rabbit,
-/turf/open/indestructible/hotelwood,
+/obj/structure/rack,
+/obj/item/melee/baton{
+	pixel_x = -6
+	},
+/obj/item/melee/baton{
+	pixel_x = -6
+	},
+/obj/item/melee/baton{
+	pixel_x = -6
+	},
+/obj/item/melee/baton{
+	pixel_x = -6
+	},
+/obj/item/melee/baton{
+	pixel_x = -6
+	},
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton/telescopic{
+	pixel_x = 6
+	},
+/obj/item/melee/classic_baton/telescopic{
+	pixel_x = 6
+	},
+/obj/item/melee/classic_baton/telescopic{
+	pixel_x = 6
+	},
+/obj/item/melee/classic_baton/telescopic{
+	pixel_x = 6
+	},
+/turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "wj" = (
 /obj/machinery/light{
@@ -12769,7 +12816,7 @@
 /turf/open/floor/carpet/purple,
 /area/centcom/evac)
 "BV" = (
-/obj/machinery/chem_dispenser/drinks/beer,
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
 /turf/closed/indestructible{
 	icon = 'icons/turf/walls/wood_wall.dmi';
 	icon_state = "wood";
@@ -12838,13 +12885,17 @@
 /area/centcom/evac)
 "Cd" = (
 /mob/living/simple_animal/pet/redpanda,
-/turf/open/indestructible/hotelwood,
+/turf/open/floor/carpet/red,
 /area/centcom/holding)
 "Ce" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
 /turf/open/floor/wood,
 /area/fabric_of_reality)
+"Cf" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/grass/snow,
+/area/centcom/holding)
 "Ch" = (
 /obj/machinery/dna_scannernew,
 /turf/open/floor/mineral/titanium/blue,
@@ -13298,14 +13349,6 @@
 /obj/item/storage/box/silver_ids,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
-"CU" = (
-/obj/machinery/light{
-	dir = 1;
-	light_color = "#cee5d2"
-	},
-/mob/living/simple_animal/babyKiwi,
-/turf/open/indestructible/hotelwood,
-/area/centcom/holding)
 "CV" = (
 /obj/structure/chair/stool,
 /turf/open/indestructible/hotelwood,
@@ -13429,7 +13472,7 @@
 /area/fabric_of_reality)
 "Dh" = (
 /obj/machinery/chem_heater,
-/turf/open/indestructible/clock_spawn_room,
+/turf/open/indestructible,
 /area/centcom/holding)
 "Di" = (
 /turf/closed/indestructible/riveted,
@@ -14291,8 +14334,8 @@
 /obj/structure/bedsheetbin/towel,
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"Fo" = (
-/turf/open/floor/plating/beach/coastline_t/sandwater_inner,
+"Fn" = (
+/turf/open/floor/plating,
 /area/fabric_of_reality)
 "Fp" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -14367,7 +14410,7 @@
 /area/centcom/holding)
 "Fy" = (
 /mob/living/simple_animal/pet/fox,
-/turf/open/floor/plating/smooth/dirt,
+/turf/open/indestructible/cobble,
 /area/centcom/holding)
 "Fz" = (
 /obj/structure/chair/comfy/brown{
@@ -16557,6 +16600,8 @@
 /obj/structure/table,
 /obj/item/stack/packageWrap,
 /obj/item/reagent_containers/glass/beaker,
+/obj/item/cookiesynth,
+/obj/item/cookiesynth,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
 "JW" = (
@@ -16640,7 +16685,20 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "Ke" = (
-/turf/closed/indestructible/opshuttle,
+/obj/structure/rack,
+/obj/item/gun/ballistic/automatic/sniper_rifle{
+	pixel_x = -4
+	},
+/obj/item/gun/ballistic/automatic/sniper_rifle{
+	pixel_x = -6
+	},
+/obj/item/gun/energy/beam_rifle{
+	pixel_x = 4
+	},
+/obj/item/gun/energy/beam_rifle{
+	pixel_x = 6
+	},
+/turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "Kf" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -16741,7 +16799,7 @@
 /area/tdome/tdomeadmin)
 "Kp" = (
 /obj/machinery/chem_dispenser/fullupgrade,
-/turf/open/indestructible/clock_spawn_room,
+/turf/open/indestructible,
 /area/centcom/holding)
 "Kq" = (
 /obj/machinery/light{
@@ -17170,9 +17228,13 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "Lq" = (
-/obj/item/storage/belt/utility/servant,
-/obj/machinery/light{
-	dir = 4
+/obj/structure/rack,
+/obj/item/gun/ballistic/automatic/ar,
+/obj/item/gun/ballistic/automatic/ar{
+	pixel_y = 6
+	},
+/obj/item/gun/ballistic/automatic/ar{
+	pixel_y = 8
 	},
 /turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
@@ -17242,9 +17304,13 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "LF" = (
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/plating/beach/sand,
-/area/fabric_of_reality)
+/obj/structure/rack,
+/obj/item/melee/powerfist,
+/obj/item/melee/powerfist,
+/obj/item/melee/rapier,
+/obj/item/melee/rapier,
+/turf/open/indestructible/clock_spawn_room,
+/area/centcom/holding)
 "LG" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/mineral/titanium/blue,
@@ -17768,7 +17834,7 @@
 /area/tdome/tdomeobserve)
 "Nl" = (
 /obj/machinery/chem_master,
-/turf/open/indestructible/clock_spawn_room,
+/turf/open/indestructible,
 /area/centcom/holding)
 "Nm" = (
 /obj/structure/chair/comfy/brown{
@@ -18079,12 +18145,17 @@
 /area/centcom/holding)
 "Oh" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/automatic/ar,
-/obj/item/gun/ballistic/automatic/ar{
-	pixel_y = 6
+/obj/item/gun/ballistic/shotgun/automatic/combat{
+	pixel_y = -6
 	},
-/obj/item/gun/ballistic/automatic/ar{
+/obj/item/gun/ballistic/shotgun/automatic/combat{
+	pixel_y = -4
+	},
+/obj/item/gun/ballistic/automatic/shotgun/bulldog/unrestricted{
 	pixel_y = 8
+	},
+/obj/item/gun/ballistic/automatic/shotgun/bulldog/unrestricted{
+	pixel_y = 5
 	},
 /turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
@@ -18133,6 +18204,9 @@
 /obj/structure/table/wood/fancy,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
+"Om" = (
+/turf/closed/indestructible/rock/glacierrock,
+/area/space)
 "On" = (
 /obj/machinery/rnd/production/cafe_circuit_imprinter,
 /turf/open/indestructible/hotelwood,
@@ -18511,38 +18585,12 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "Pv" = (
-/obj/structure/rack,
-/obj/item/melee/baton{
-	pixel_x = -6
+/obj/structure/chair/stool/bar,
+/obj/structure/noticeboard{
+	dir = 8;
+	pixel_x = 32
 	},
-/obj/item/melee/baton{
-	pixel_x = -6
-	},
-/obj/item/melee/baton{
-	pixel_x = -6
-	},
-/obj/item/melee/baton{
-	pixel_x = -6
-	},
-/obj/item/melee/baton{
-	pixel_x = -6
-	},
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton/telescopic{
-	pixel_x = 6
-	},
-/obj/item/melee/classic_baton/telescopic{
-	pixel_x = 6
-	},
-/obj/item/melee/classic_baton/telescopic{
-	pixel_x = 6
-	},
-/obj/item/melee/classic_baton/telescopic{
-	pixel_x = 6
-	},
-/turf/open/indestructible/clock_spawn_room,
+/turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Pw" = (
 /obj/machinery/light/small,
@@ -18653,7 +18701,7 @@
 /obj/machinery/vending/clothing{
 	extended_inventory = 1
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/red,
 /area/centcom/holding)
 "PO" = (
 /obj/machinery/hydroponics/constructable,
@@ -18942,12 +18990,24 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "QE" = (
-/obj/machinery/defibrillator_mount/loaded,
-/turf/closed/indestructible{
-	icon = 'icons/turf/walls/wood_wall.dmi';
-	icon_state = "wood";
-	smooth = 1
+/obj/structure/rack,
+/obj/item/melee/transforming/energy/sword,
+/obj/item/melee/transforming/energy/sword,
+/obj/item/switchblade,
+/obj/item/switchblade,
+/obj/item/claymore{
+	pixel_x = 9
 	},
+/obj/item/claymore{
+	pixel_x = 9
+	},
+/obj/item/claymore{
+	pixel_x = 9
+	},
+/obj/item/claymore{
+	pixel_x = 9
+	},
+/turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "QF" = (
 /obj/machinery/button/door{
@@ -18965,7 +19025,9 @@
 /turf/open/floor/wood,
 /area/fabric_of_reality)
 "QI" = (
-/obj/structure/closet,
+/obj/structure/closet{
+	name = "coat closet"
+	},
 /obj/item/clothing/suit/hooded/wintercoat,
 /obj/item/clothing/suit/hooded/wintercoat,
 /obj/item/clothing/suit/hooded/wintercoat,
@@ -18996,8 +19058,9 @@
 /area/centcom/holding)
 "QK" = (
 /obj/structure/rack,
-/obj/item/melee/transforming/energy/sword,
-/obj/item/melee/transforming/energy/sword,
+/obj/item/melee/transforming/cleaving_saw,
+/obj/item/melee/transforming/cleaving_saw,
+/obj/item/crucible,
 /turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "QL" = (
@@ -19040,7 +19103,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
 "QT" = (
-/obj/machinery/chem_dispenser/drinks,
+/obj/machinery/chem_dispenser/drinks/fullupgrade,
 /turf/closed/indestructible{
 	icon = 'icons/turf/walls/wood_wall.dmi';
 	icon_state = "wood";
@@ -19227,7 +19290,7 @@
 	dir = 1;
 	light_color = "#cee5d2"
 	},
-/turf/open/indestructible/hotelwood,
+/turf/open/floor/carpet/red,
 /area/centcom/holding)
 "Rr" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -19257,6 +19320,10 @@
 "Rv" = (
 /obj/structure/dresser,
 /turf/open/floor/carpet/royalblue,
+/area/centcom/holding)
+"Rw" = (
+/obj/structure/chair/stool,
+/turf/open/floor/grass/snow,
 /area/centcom/holding)
 "Rx" = (
 /obj/structure/displaycase/trophy,
@@ -19498,19 +19565,18 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Se" = (
+/obj/item/clockwork/weapon/ratvarian_spear,
+/obj/item/clockwork/weapon/ratvarian_spear,
+/obj/item/clockwork/weapon/ratvarian_spear,
+/obj/item/storage/box/syndie_kit/throwing_weapons{
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/obj/item/storage/box/syndie_kit/throwing_weapons{
+	pixel_x = 5;
+	pixel_y = -5
+	},
 /obj/structure/rack,
-/obj/item/gun/ballistic/shotgun/automatic/combat{
-	pixel_y = -6
-	},
-/obj/item/gun/ballistic/shotgun/automatic/combat{
-	pixel_y = -4
-	},
-/obj/item/gun/ballistic/automatic/shotgun/bulldog/unrestricted{
-	pixel_y = 8
-	},
-/obj/item/gun/ballistic/automatic/shotgun/bulldog/unrestricted{
-	pixel_y = 5
-	},
 /turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "Sf" = (
@@ -19550,7 +19616,7 @@
 	extended_inventory = 1
 	},
 /obj/machinery/light,
-/turf/open/floor/wood,
+/turf/open/floor/carpet/red,
 /area/centcom/holding)
 "Sk" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
@@ -19756,19 +19822,8 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "SL" = (
-/obj/item/clockwork/weapon/ratvarian_spear,
-/obj/item/clockwork/weapon/ratvarian_spear,
-/obj/item/clockwork/weapon/ratvarian_spear,
-/obj/item/storage/box/syndie_kit/throwing_weapons{
-	pixel_x = 5;
-	pixel_y = -5
-	},
-/obj/item/storage/box/syndie_kit/throwing_weapons{
-	pixel_x = 5;
-	pixel_y = -5
-	},
-/obj/structure/rack,
-/turf/open/indestructible/clock_spawn_room,
+/obj/structure/fans/tiny/invisible,
+/turf/open/indestructible,
 /area/centcom/holding)
 "SM" = (
 /obj/machinery/computer/cloning{
@@ -20165,17 +20220,31 @@
 /area/centcom/evac)
 "TX" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/automatic/sniper_rifle{
-	pixel_x = -4
-	},
-/obj/item/gun/ballistic/automatic/sniper_rifle{
-	pixel_x = -6
-	},
-/obj/item/gun/energy/beam_rifle{
+/obj/item/gun/ballistic/automatic/mini_uzi{
 	pixel_x = 4
 	},
-/obj/item/gun/energy/beam_rifle{
-	pixel_x = 6
+/obj/item/gun/ballistic/automatic/mini_uzi{
+	pixel_x = 2
+	},
+/obj/item/gun/ballistic/automatic/mini_uzi,
+/obj/item/gun/ballistic/automatic/mini_uzi{
+	pixel_x = -4
+	},
+/obj/item/gun/ballistic/automatic/pistol{
+	pixel_x = 4;
+	pixel_y = -2
+	},
+/obj/item/gun/ballistic/automatic/pistol{
+	pixel_x = 4;
+	pixel_y = -2
+	},
+/obj/item/gun/ballistic/automatic/pistol{
+	pixel_x = 4;
+	pixel_y = -2
+	},
+/obj/item/gun/ballistic/automatic/pistol{
+	pixel_x = 4;
+	pixel_y = -2
 	},
 /turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
@@ -20303,7 +20372,7 @@
 /area/tdome/tdomeobserve)
 "Up" = (
 /mob/living/simple_animal/pet/cat,
-/turf/open/indestructible/hotelwood,
+/turf/open/floor/carpet/red,
 /area/centcom/holding)
 "Uq" = (
 /obj/structure/table/wood,
@@ -20511,20 +20580,14 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "UU" = (
-/obj/structure/rack,
-/obj/item/melee/powerfist,
-/obj/item/melee/powerfist,
-/obj/item/melee/rapier,
-/obj/item/melee/rapier,
-/turf/open/indestructible/clock_spawn_room,
+/turf/open/indestructible,
 /area/centcom/holding)
 "UV" = (
 /obj/machinery/computer/arcade,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "UW" = (
-/obj/item/storage/belt/utility/servant,
-/obj/item/storage/belt/utility/servant,
+/obj/machinery/light,
 /turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "UX" = (
@@ -20816,7 +20879,7 @@
 /area/centcom/supplypod/loading/one)
 "VK" = (
 /mob/living/simple_animal/pet/dog/cheems,
-/turf/open/indestructible/hotelwood,
+/turf/open/floor/carpet/royalblue,
 /area/centcom/holding)
 "VL" = (
 /obj/machinery/button/crematorium{
@@ -20826,6 +20889,65 @@
 /obj/item/storage/box/bodybags,
 /obj/item/storage/box/bodybags,
 /turf/open/indestructible/hotelwood,
+/area/centcom/holding)
+"VN" = (
+/obj/structure/rack,
+/obj/item/shield/riot/tele{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/shield/riot/tele{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/shield/riot/tele{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/shield/riot/tele{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/shield/riot/tele{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/shield/riot/tele{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/shield/riot/tele{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/shield/riot/tele{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/clothing/suit/armor/bulletproof{
+	pixel_x = 9
+	},
+/obj/item/clothing/suit/armor/bulletproof{
+	pixel_x = 9
+	},
+/obj/item/clothing/suit/armor/bulletproof{
+	pixel_x = 9
+	},
+/obj/item/clothing/suit/armor/bulletproof{
+	pixel_x = 9
+	},
+/obj/item/clothing/suit/armor/bulletproof{
+	pixel_x = 9
+	},
+/obj/item/clothing/suit/space/hardsuit/syndi,
+/obj/item/clothing/suit/space/hardsuit/syndi,
+/obj/item/clothing/suit/space/hardsuit/syndi,
+/obj/item/clothing/suit/space/hardsuit/syndi,
+/obj/item/clothing/suit/space/hardsuit/syndi,
+/obj/item/clothing/suit/space/hardsuit/syndi,
+/obj/item/clothing/suit/space/hardsuit/syndi,
+/obj/item/clothing/suit/space/hardsuit/syndi,
+/turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "VO" = (
 /turf/closed/indestructible/fakedoor,
@@ -20886,7 +21008,7 @@
 /area/centcom/evac)
 "VZ" = (
 /mob/living/simple_animal/pet/dog/corgi,
-/turf/open/indestructible/hotelwood,
+/turf/open/floor/carpet/royalblue,
 /area/centcom/holding)
 "Wb" = (
 /obj/structure/table/wood,
@@ -20934,7 +21056,10 @@
 /turf/open/floor/carpet/royalblack,
 /area/centcom/holding)
 "Wh" = (
-/obj/machinery/jukebox/disco/indestructible,
+/obj/machinery/jukebox/disco{
+	req_access = null;
+	req_one_access = null
+	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Wi" = (
@@ -21037,6 +21162,9 @@
 /obj/item/defibrillator/compact/loaded,
 /obj/item/defibrillator/compact/loaded,
 /obj/structure/table/greyscale,
+/obj/item/gun/medbeam,
+/obj/item/gun/medbeam,
+/obj/item/gun/medbeam,
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
 "WA" = (
@@ -21070,7 +21198,7 @@
 /obj/machinery/vending/kink{
 	extended_inventory = 1
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/red,
 /area/centcom/holding)
 "WF" = (
 /obj/machinery/door/airlock/sandstone{
@@ -21085,10 +21213,9 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "WI" = (
-/obj/machinery/vr_sleeper{
-	dir = 4
-	},
-/turf/open/indestructible/hotelwood,
+/obj/item/storage/box/beakers/variety,
+/obj/item/storage/box/beakers/variety,
+/turf/open/indestructible,
 /area/centcom/holding)
 "WJ" = (
 /obj/machinery/door/airlock/centcom{
@@ -21295,13 +21422,56 @@
 /area/centcom/holding)
 "Xp" = (
 /obj/structure/rack,
-/obj/item/uplink/debug{
+/obj/item/chameleon{
+	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/item/uplink/debug{
-	pixel_y = 4
+/obj/item/chameleon{
+	pixel_x = -8;
+	pixel_y = 8
 	},
-/obj/item/uplink/debug,
+/obj/item/chameleon{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/chameleon{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/laser_pointer/upgraded,
+/obj/item/laser_pointer/upgraded,
+/obj/item/laser_pointer/upgraded,
+/obj/item/laser_pointer/upgraded,
+/obj/item/laser_pointer/upgraded,
+/obj/item/laser_pointer/upgraded,
+/obj/item/laser_pointer/upgraded,
+/obj/item/reagent_containers/hypospray/medipen/stimpack/traitor{
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/hypospray/medipen/stimpack/traitor{
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/hypospray/medipen/stimpack/traitor{
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/hypospray/medipen/stimpack/traitor{
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/hypospray/medipen/stimpack/traitor{
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/hypospray/medipen/stimpack/traitor{
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/hypospray/medipen/stimpack/traitor{
+	pixel_y = 8
+	},
+/obj/item/storage/box/flashbangs{
+	pixel_x = 6
+	},
+/obj/item/storage/box/flashbangs{
+	pixel_x = 6
+	},
 /turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding)
 "Xq" = (
@@ -21658,7 +21828,7 @@
 /area/centcom/evac)
 "Yr" = (
 /mob/living/simple_animal/opossum,
-/turf/open/indestructible/hotelwood,
+/turf/open/floor/carpet/red,
 /area/centcom/holding)
 "Ys" = (
 /obj/structure/table/reinforced,
@@ -21756,8 +21926,14 @@
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
 "YG" = (
-/turf/open/floor/plating,
-/area/fabric_of_reality)
+/obj/structure/rack,
+/obj/item/storage/firstaid/tactical/nukeop,
+/obj/item/storage/firstaid/tactical/nukeop,
+/obj/item/storage/firstaid/tactical/nukeop,
+/obj/item/storage/firstaid/tactical/nukeop,
+/obj/item/storage/firstaid/tactical/nukeop,
+/turf/open/indestructible/clock_spawn_room,
+/area/centcom/holding)
 "YH" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien13";
@@ -21869,7 +22045,7 @@
 /area/fabric_of_reality)
 "YX" = (
 /mob/living/simple_animal/pet/dog/pug,
-/turf/open/indestructible/hotelwood,
+/turf/open/floor/carpet/red,
 /area/centcom/holding)
 "YY" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -21938,34 +22114,9 @@
 /turf/open/floor/wood,
 /area/centcom/evac)
 "Zk" = (
-/obj/structure/rack,
-/obj/item/gun/ballistic/automatic/mini_uzi{
-	pixel_x = 4
-	},
-/obj/item/gun/ballistic/automatic/mini_uzi{
-	pixel_x = 2
-	},
-/obj/item/gun/ballistic/automatic/mini_uzi,
-/obj/item/gun/ballistic/automatic/mini_uzi{
-	pixel_x = -4
-	},
-/obj/item/gun/ballistic/automatic/pistol{
-	pixel_x = 4;
-	pixel_y = -2
-	},
-/obj/item/gun/ballistic/automatic/pistol{
-	pixel_x = 4;
-	pixel_y = -2
-	},
-/obj/item/gun/ballistic/automatic/pistol{
-	pixel_x = 4;
-	pixel_y = -2
-	},
-/obj/item/gun/ballistic/automatic/pistol{
-	pixel_x = 4;
-	pixel_y = -2
-	},
-/turf/open/indestructible/clock_spawn_room,
+/obj/item/flashlight/lamp/bananalamp,
+/obj/structure/table/wood,
+/turf/open/floor/plating/smooth/grass,
 /area/centcom/holding)
 "Zl" = (
 /turf/open/floor/plating,
@@ -21992,7 +22143,7 @@
 /turf/open/floor/carpet/red,
 /area/centcom/evac)
 "Zq" = (
-/turf/open/floor/plating/smooth/dirt,
+/turf/open/indestructible/cobble,
 /area/centcom/holding)
 "Zr" = (
 /obj/machinery/light,
@@ -22151,10 +22302,8 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "ZM" = (
-/obj/machinery/vr_sleeper{
-	dir = 8
-	},
-/turf/open/indestructible/hotelwood,
+/obj/machinery/light,
+/turf/open/floor/carpet/red,
 /area/centcom/holding)
 "ZN" = (
 /obj/machinery/vending/snack,
@@ -46781,16 +46930,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
 OY
 OY
 OY
@@ -47038,17 +47187,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -47295,17 +47444,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -47552,17 +47701,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -47624,23 +47773,23 @@ PX
 CV
 Sd
 NT
-WI
 Sd
-WI
-WI
 Sd
-WI
+Sd
+Sd
+Sd
+Sd
 Nd
-Sd
-Sd
-Sd
-Sd
-Sd
+Of
+Of
+Of
+Of
+Ur
 VK
-Sd
+Ur
 Yr
-Sd
-Sd
+Of
+Of
 WE
 Nd
 aa
@@ -47809,16 +47958,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
 Zl
 Zl
@@ -47854,12 +47993,22 @@ Zl
 Zl
 Zl
 Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Nd
 Nd
 Nd
-Nd
+FR
 XL
-Nd
+FR
 Nd
 py
 Nd
@@ -47888,16 +48037,16 @@ Sd
 Sd
 Sd
 Qu
-Sd
-Sd
-Sd
+Of
+Of
+Of
 YX
-Sd
-Sd
-Sd
-Sd
-Sd
-Sd
+Ur
+Ur
+Ur
+Of
+Of
+Of
 Sj
 Nd
 aa
@@ -48066,17 +48215,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -48138,23 +48287,23 @@ Ym
 CV
 Sd
 NT
-ZM
+Sd
 MR
-ZM
-ZM
+Sd
+Sd
 MR
-ZM
+Sd
 Nd
-Sd
-Sd
-Sd
-Sd
-Sd
-Sd
+Of
+Of
+Of
+Of
+Ur
+Ur
 VZ
-Sd
+Of
 Cd
-Sd
+Of
 PM
 Nd
 aa
@@ -48323,17 +48472,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -48397,6 +48546,8 @@ Sd
 Nd
 Nd
 Nd
+FR
+FR
 Nd
 Nd
 Nd
@@ -48404,11 +48555,9 @@ Nd
 Nd
 Nd
 Nd
-Nd
-Nd
-CU
-Sd
-HH
+Rq
+Of
+ZM
 Nd
 Nd
 Nd
@@ -48580,17 +48729,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -48663,9 +48812,9 @@ UD
 tZ
 SY
 Nd
-Sd
-Sd
-Sd
+Of
+Of
+Of
 Nd
 SY
 Os
@@ -48837,17 +48986,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -48920,9 +49069,9 @@ Sd
 Sd
 Sd
 lS
-Sd
-wi
-Sd
+Of
+Of
+Of
 RP
 Sd
 Sd
@@ -49094,17 +49243,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -49177,9 +49326,9 @@ Xn
 Sd
 Ya
 Nd
-Sd
-Sd
-Sd
+Of
+Of
+Of
 Nd
 XD
 Sd
@@ -49351,17 +49500,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -49434,8 +49583,8 @@ Nd
 Nd
 Nd
 Nd
-tY
-Sd
+Of
+Of
 Up
 Nd
 Nd
@@ -49608,17 +49757,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -49691,9 +49840,9 @@ UD
 tZ
 SY
 Nd
-Sd
-Sd
-Sd
+Of
+Of
+Of
 Nd
 SY
 Os
@@ -49865,17 +50014,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -49948,9 +50097,9 @@ Sd
 Sd
 Sd
 uh
-Sd
-Sd
-Sd
+Of
+Of
+Of
 zW
 Sd
 Sd
@@ -50122,17 +50271,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -50205,9 +50354,9 @@ Xn
 Sd
 Tc
 Nd
-Sd
-Sd
-Sd
+Of
+Of
+Of
 Nd
 AC
 Sd
@@ -50379,17 +50528,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -50463,8 +50612,8 @@ Nd
 Nd
 Nd
 Rq
-Sd
-HH
+Of
+ZM
 Nd
 Nd
 Nd
@@ -50636,17 +50785,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -50719,9 +50868,9 @@ Xs
 Ol
 YO
 Nd
-Sd
-Sd
-Sd
+Of
+Of
+Of
 Nd
 RX
 Xw
@@ -50893,17 +51042,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -50952,7 +51101,7 @@ XL
 Sd
 Sd
 XX
-UE
+Pv
 Sd
 Sd
 Sd
@@ -50976,9 +51125,9 @@ Gs
 Sd
 Sd
 SZ
-Sd
-Sd
-Sd
+Of
+Of
+Of
 Ws
 Sd
 Sd
@@ -51150,17 +51299,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -51233,9 +51382,9 @@ Ru
 Of
 QF
 Nd
-Sd
-Sd
-Sd
+Of
+Of
+Of
 Nd
 WN
 Ur
@@ -51407,17 +51556,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -51480,10 +51629,10 @@ Te
 Nd
 Nd
 Nd
-Nd
+FR
 TT
 TT
-Nd
+FR
 Nd
 Nd
 Kf
@@ -51491,8 +51640,8 @@ WV
 Sd
 Nd
 sa
-Sd
-Sd
+Of
+Of
 Nd
 Sd
 zY
@@ -51664,17 +51813,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -51921,17 +52070,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -52178,33 +52327,33 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -52435,33 +52584,33 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 OY
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 Zl
 Zl
 Zl
@@ -52508,9 +52657,9 @@ Nd
 Nd
 Nd
 Nd
-Nd
+FR
 XG
-QE
+FR
 Nd
 Nd
 Nd
@@ -52692,32 +52841,32 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
 OY
 OY
 OY
@@ -52789,7 +52938,7 @@ CR
 CR
 CR
 CR
-aa
+Om
 aa
 aa
 aa
@@ -53045,9 +53194,9 @@ WZ
 Qm
 Qm
 WZ
+Qm
 CR
-CR
-aa
+Om
 aa
 aa
 aa
@@ -53303,9 +53452,9 @@ Qm
 Qm
 Qm
 Qm
+Qm
 CR
-CR
-aa
+Om
 aa
 aa
 aa
@@ -53561,9 +53710,9 @@ Qm
 WZ
 Qm
 Qm
+Qm
 CR
-CR
-aa
+Om
 aa
 aa
 aa
@@ -53819,9 +53968,9 @@ Qm
 Qm
 WZ
 Qm
+Qm
 CR
-CR
-aa
+Om
 aa
 aa
 aa
@@ -54077,9 +54226,9 @@ Qm
 Qm
 ue
 Qm
+Qm
 CR
-CR
-aa
+Om
 aa
 aa
 aa
@@ -54335,9 +54484,9 @@ Qm
 Pb
 Pb
 Qm
+Qm
 CR
-CR
-aa
+Om
 aa
 aa
 aa
@@ -54593,7 +54742,7 @@ Qm
 Qm
 Qm
 WZ
-CR
+Qm
 CR
 aa
 aa
@@ -54805,13 +54954,13 @@ Sd
 OC
 Vp
 Bk
-Ke
+FR
 YR
-Ke
+FR
 Xx
-Ke
+FR
 YR
-OY
+FR
 OC
 Vp
 Bk
@@ -55062,18 +55211,18 @@ OY
 pS
 pS
 pS
-Ke
+FR
 pA
-Ke
+FR
 Cm
-Ke
+FR
 pA
-OY
+FR
 pS
 pS
 pS
-OY
-OY
+FR
+FR
 OY
 OY
 Nd
@@ -55582,12 +55731,12 @@ HI
 HI
 HI
 HI
-XR
-HI
-HI
-HI
-HI
-HI
+SL
+UU
+UU
+WI
+UU
+WI
 fy
 OY
 TK
@@ -55839,12 +55988,12 @@ HI
 HI
 HI
 HI
-XR
-HI
-HI
-HI
-HI
-HI
+SL
+UU
+UU
+WI
+UU
+WI
 fy
 OY
 TK
@@ -56604,8 +56753,8 @@ OY
 Jj
 HI
 HI
-Ns
-HI
+YG
+Ke
 HI
 HI
 HI
@@ -56859,10 +57008,10 @@ aa
 aa
 OY
 oU
+MK
 HI
-HI
-Ns
-HI
+VN
+Lq
 HI
 HI
 HI
@@ -57116,7 +57265,7 @@ aa
 aa
 OY
 VU
-HI
+MK
 HI
 Ns
 HI
@@ -57373,7 +57522,7 @@ aa
 aa
 OY
 TX
-MK
+ri
 HI
 HI
 HI
@@ -57630,13 +57779,13 @@ aa
 aa
 OY
 Oh
-MK
-HI
-HI
-HI
-HI
-HI
-HI
+tS
+tY
+wi
+LF
+QE
+QK
+Se
 HI
 HI
 HI
@@ -57653,7 +57802,7 @@ Dm
 Dm
 Dm
 Dm
-Dm
+Zk
 Zq
 Zq
 Zq
@@ -57668,8 +57817,8 @@ kR
 Qm
 Qm
 Qm
-Qm
-Qm
+nh
+Rw
 Qm
 Qm
 Qm
@@ -57884,16 +58033,16 @@ aa
 aa
 aa
 aa
-aa
+ab
 OY
-Zk
-UW
-HI
-HI
-HI
-HI
-HI
-HI
+OY
+FR
+FR
+FR
+FR
+FR
+OY
+OY
 HI
 HI
 HI
@@ -57925,9 +58074,9 @@ Qm
 Qm
 Qm
 Qm
-Qm
-Qm
-Qm
+Rw
+Cf
+Rw
 Qm
 Qm
 Pb
@@ -58141,16 +58290,16 @@ aa
 aa
 aa
 aa
-aa
+ab
+Vc
+HI
+HI
+Vc
+HI
+HI
+HI
+Vc
 OY
-Se
-Lq
-tS
-Pv
-UU
-QK
-ri
-SL
 HI
 HI
 Rg
@@ -58183,7 +58332,7 @@ Qm
 Qm
 WZ
 Qm
-Qm
+Rw
 Qm
 Qm
 Qm
@@ -58399,14 +58548,14 @@ mD
 mD
 aa
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
+HI
+HI
+GC
+HI
+HI
+HI
+HI
+HI
 OY
 XR
 XR
@@ -58685,12 +58834,12 @@ Mm
 Mm
 Zq
 Zq
-Mm
-Dm
-Mm
-Mm
-Mm
-Mm
+Zq
+Zq
+Zq
+Zq
+Zq
+Zq
 NR
 Qm
 Qm
@@ -58942,12 +59091,12 @@ Mm
 FE
 Zq
 Zq
-Mm
-Dm
-Mm
-Mm
-Mm
-Mm
+Zq
+Zq
+Zq
+Zq
+Zq
+Zq
 NR
 Qm
 Qm
@@ -59182,7 +59331,7 @@ GC
 HI
 HI
 HI
-HI
+UW
 OY
 aa
 aa
@@ -59953,7 +60102,7 @@ HI
 HI
 GC
 GC
-HI
+UW
 OY
 aa
 aa
@@ -60724,7 +60873,7 @@ GC
 HI
 HI
 HI
-HI
+UW
 Ep
 Ev
 Ev
@@ -60971,7 +61120,7 @@ aa
 OY
 Kw
 HI
-HI
+GC
 HI
 GC
 HI
@@ -61485,13 +61634,13 @@ aa
 OY
 Br
 HI
+Rg
 HI
 HI
+Rg
 HI
 HI
-HI
-HI
-HI
+Rg
 HI
 HI
 Rg
@@ -63082,12 +63231,12 @@ aa
 aa
 aa
 CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 aa
 aa
@@ -63338,14 +63487,14 @@ zv
 zv
 aa
 aa
-CR
-Qm
-Qm
-kR
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -63595,14 +63744,14 @@ pT
 zv
 aa
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -63851,15 +64000,15 @@ pT
 pT
 zv
 aa
-CR
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -64108,15 +64257,15 @@ pT
 pT
 Rk
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -64365,15 +64514,15 @@ pT
 pT
 Rk
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -64622,15 +64771,15 @@ pT
 pT
 zv
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-kR
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -64879,15 +65028,15 @@ pT
 pT
 zv
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -65136,15 +65285,15 @@ pT
 pT
 Rk
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -65393,15 +65542,15 @@ pT
 pT
 Rk
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -65650,16 +65799,16 @@ pT
 pT
 Rk
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -65907,16 +66056,16 @@ pT
 pT
 Rk
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -66164,16 +66313,16 @@ pT
 pT
 Rk
 aa
-CR
-Qm
-Qm
-Qm
-kR
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -66421,16 +66570,16 @@ pT
 pT
 zv
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -66678,16 +66827,16 @@ pT
 pT
 zv
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -66935,16 +67084,16 @@ pT
 pT
 Rk
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -67192,16 +67341,16 @@ pT
 pT
 Rk
 aa
-CR
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -67450,15 +67599,15 @@ pT
 zv
 aa
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -67707,15 +67856,15 @@ pT
 zv
 aa
 aa
-CR
-Qm
-Qm
-Qm
-kR
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -67964,15 +68113,15 @@ Rk
 zv
 aa
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -68221,15 +68370,15 @@ aa
 aa
 aa
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -68478,15 +68627,15 @@ aa
 aa
 aa
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -68735,15 +68884,15 @@ aa
 aa
 aa
 aa
-CR
-Qm
-Qm
-kR
-Qm
-Qm
-Qm
-CR
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -68992,14 +69141,14 @@ aa
 aa
 aa
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -69249,14 +69398,14 @@ aa
 aa
 aa
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -69506,14 +69655,14 @@ aa
 aa
 aa
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -69763,14 +69912,14 @@ aa
 aa
 aa
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-CR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -70020,14 +70169,14 @@ aa
 aa
 aa
 aa
-CR
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -70277,14 +70426,14 @@ aa
 aa
 aa
 aa
-CR
-Qm
-Qm
-Qm
-kR
-Qm
-Qm
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -70534,14 +70683,14 @@ aa
 aa
 aa
 aa
-Mc
-Qm
-Qm
-Qm
-Qm
-Qm
-Qm
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -70791,14 +70940,14 @@ aa
 aa
 aa
 aa
-Mc
-Qm
-Qm
-Qm
-Qm
-Qm
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -71048,14 +71197,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-Qm
-Qm
-Qm
-Qm
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -71305,14 +71454,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-Qm
-Qm
-QM
-Qm
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -71562,14 +71711,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-Qm
-Qm
-QM
-Qm
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -71819,14 +71968,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-Qm
-QM
-Qm
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -72076,14 +72225,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-Qm
-QM
-Qm
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -72333,14 +72482,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-Qm
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -72590,14 +72739,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-Qm
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -72847,14 +72996,14 @@ aa
 aa
 aa
 aa
-Mc
-LF
-LF
-LF
-LF
-LF
-LF
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -73104,14 +73253,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -73361,14 +73510,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -73618,14 +73767,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -73875,14 +74024,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -74132,14 +74281,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -74389,14 +74538,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -74646,14 +74795,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -74903,14 +75052,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -75160,14 +75309,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -75417,14 +75566,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -75674,14 +75823,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -75931,14 +76080,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -76188,14 +76337,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -76445,14 +76594,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -76702,14 +76851,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -76959,14 +77108,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -77216,14 +77365,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -77473,14 +77622,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -77730,14 +77879,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -77987,14 +78136,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -78244,14 +78393,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -78501,14 +78650,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -78758,14 +78907,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -79015,14 +79164,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -79272,14 +79421,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -79529,14 +79678,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -79786,14 +79935,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -80043,14 +80192,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -80300,14 +80449,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -80557,14 +80706,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -80814,14 +80963,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -81071,14 +81220,14 @@ aa
 aa
 aa
 aa
-Mc
-QM
-QM
-QM
-QM
-QM
-QM
-Mc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -81329,12 +81478,12 @@ Mc
 Mc
 Mc
 Mc
-QM
-QM
-QM
-QM
-QM
-Fo
+Mc
+Mc
+Mc
+Mc
+Mc
+Mc
 Mc
 Mc
 Mc
@@ -83372,7 +83521,7 @@ aa
 aa
 Mc
 UR
-YG
+Fn
 XF
 XF
 XF
@@ -83629,7 +83778,7 @@ aa
 aa
 Mc
 NC
-YG
+Fn
 OX
 BN
 BN
@@ -83885,8 +84034,8 @@ aa
 aa
 aa
 Mc
-YG
-YG
+Fn
+Fn
 XF
 Nj
 BN
@@ -84413,7 +84562,7 @@ UA
 Mr
 QM
 QM
-tb
+QM
 QM
 Yn
 QM
@@ -85171,7 +85320,7 @@ aa
 aa
 Mc
 Jq
-YG
+Fn
 XF
 QG
 Fd
@@ -85428,7 +85577,7 @@ aa
 aa
 Mc
 wS
-YG
+Fn
 XF
 XF
 XF
