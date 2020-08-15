@@ -294,7 +294,7 @@
 				phased = 0
 				if(iscarbon(user))
 					var/mob/living/carbon/C = user
-					C.AdjustBloodVol(initial(C.blood_volume)/10)
+					C.AdjustBloodVol(initial(C.blood_volume)/20)
 		else
 			if(user.phaseout(target))
 				phased = 1
