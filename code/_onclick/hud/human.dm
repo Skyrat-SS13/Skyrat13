@@ -347,7 +347,7 @@
 	infodisplay += healthdoll
 
 	pull_icon = new /obj/screen/pull()
-	pull_icon.icon = ui_style
+	pull_icon.icon = ui_style_modular_skyrat(ui_style) //SKYRAT EDIT
 	pull_icon.hud = src
 	pull_icon.update_icon()
 	pull_icon.screen_loc = ui_pull_resist
