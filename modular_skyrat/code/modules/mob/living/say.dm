@@ -69,8 +69,19 @@ GLOBAL_LIST_INIT(bad_words, world.file2list(CRINGE_FILE))
 		message2 = replacetextEx(message2, i, " ")
 	var/list/unfunny = splittext_char(message2, " ")
 	var/cringed = FALSE
+	var/len = length(unfunny)
+	var/index = 0
 	for(var/i in unfunny)
+		index++
 		if(lowertext(i) in GLOB.bad_words)
+			if(i == "based")
+				var/post = unfunny[min(index+1, len)]
+				if(post in list("on", "in"))
+					continue
+				var/before = unfunny[max(index-1, 1)]
+				before = copytext_char(before, length(before)-2)
+				if(before == "ly")
+					continue
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "cringe", /datum/mood_event/cringe)
 			if(!cringed)
 				to_chat(src, "<span class='warning'>Saying \"[capitalize(lowertext(i))]\" makes you feel utter contempt towards yourself...</span>")
