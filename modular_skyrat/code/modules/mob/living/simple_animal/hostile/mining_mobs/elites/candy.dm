@@ -292,12 +292,12 @@
 		if(phased)
 			if(user.phasein(target))
 				phased = 0
-				if(iscarbon(user))
-					var/mob/living/carbon/C = user
 		else
 			if(user.phaseout(target))
 				phased = 1
-		C.AdjustBloodVol(initial(C.blood_volume)/20)
+		if(iscarbon(user))
+			var/mob/living/carbon/C = user
+			C.AdjustBloodVol(initial(C.blood_volume)/20)
 		start_recharge()
 		return
 	revert_cast()
