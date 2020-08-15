@@ -1,0 +1,4 @@
+author: "Foxtrot and Sarmenti"
+delete-after: True
+changes: 
+  - rscadd: "Added the latest borgo models to the borg shapeshifter"
