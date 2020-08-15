@@ -2112,7 +2112,7 @@
 /area/space)
 "fy" = (
 /obj/machinery/light,
-/turf/open/indestructible/hoteltile,
+/turf/open/indestructible,
 /area/centcom/holding)
 "fz" = (
 /turf/open/floor/plasteel,
@@ -6909,7 +6909,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/indestructible/hoteltile,
+/turf/open/indestructible,
 /area/centcom/holding)
 "pD" = (
 /mob/living/simple_animal/bot/cleanbot,
@@ -13472,7 +13472,7 @@
 /area/fabric_of_reality)
 "Dh" = (
 /obj/machinery/chem_heater,
-/turf/open/indestructible/hoteltile,
+/turf/open/indestructible,
 /area/centcom/holding)
 "Di" = (
 /turf/closed/indestructible/riveted,
@@ -16799,7 +16799,7 @@
 /area/tdome/tdomeadmin)
 "Kp" = (
 /obj/machinery/chem_dispenser/fullupgrade,
-/turf/open/indestructible/hoteltile,
+/turf/open/indestructible,
 /area/centcom/holding)
 "Kq" = (
 /obj/machinery/light{
@@ -17834,7 +17834,7 @@
 /area/tdome/tdomeobserve)
 "Nl" = (
 /obj/machinery/chem_master,
-/turf/open/indestructible/hoteltile,
+/turf/open/indestructible,
 /area/centcom/holding)
 "Nm" = (
 /obj/structure/chair/comfy/brown{
@@ -19823,7 +19823,7 @@
 /area/centcom/evac)
 "SL" = (
 /obj/structure/fans/tiny/invisible,
-/turf/open/indestructible/hoteltile,
+/turf/open/indestructible,
 /area/centcom/holding)
 "SM" = (
 /obj/machinery/computer/cloning{
@@ -20580,7 +20580,7 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "UU" = (
-/turf/open/indestructible/hoteltile,
+/turf/open/indestructible,
 /area/centcom/holding)
 "UV" = (
 /obj/machinery/computer/arcade,
@@ -21215,7 +21215,7 @@
 "WI" = (
 /obj/item/storage/box/beakers/variety,
 /obj/item/storage/box/beakers/variety,
-/turf/open/indestructible/hoteltile,
+/turf/open/indestructible,
 /area/centcom/holding)
 "WJ" = (
 /obj/machinery/door/airlock/centcom{
