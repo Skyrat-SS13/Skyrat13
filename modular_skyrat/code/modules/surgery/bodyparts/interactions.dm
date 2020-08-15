@@ -1,12 +1,16 @@
 // Unsorted, miscellaneous bodypart interactions - like trying to dislocate a limb
 /obj/item/bodypart/proc/get_wrenched(mob/living/carbon/user, mob/living/carbon/victim, silent = FALSE)
 	. = FALSE
-	if(!owner || !user || body_zone == BODY_ZONE_HEAD)
+	if(!owner || !user)
 		return
 	if(!victim)
 		victim = owner
 	
 	var/bio_state = victim.get_biological_state()
+
+	if(!(bio_state & BIO_BONE) && !(bio_state & BIO_FLESH))
+		return
+	
 	for(var/datum/wound/W in wounds)
 		if(bio_state & BIO_BONE)
 			if(W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL))
@@ -14,8 +18,6 @@
 		else if(bio_state & BIO_FLESH)
 			if(W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL))
 				return
-	if(!(bio_state & BIO_BONE) && !(bio_state & BIO_FLESH))
-		return
 	
 	var/time = 4 SECONDS
 	var/time_mod = 1
@@ -40,7 +42,9 @@
 		var/datum/wound/W
 		if(bio_state & BIO_BONE)
 			if(status & BODYPART_ORGANIC)
-				if(body_zone == BODY_ZONE_CHEST)
+				if(body_zone == BODY_ZONE_HEAD)
+					W = new /datum/wound/blunt/moderate/jaw()
+				else if(body_zone == BODY_ZONE_CHEST)
 					W = new /datum/wound/blunt/moderate/ribcage()
 				else if(body_zone == BODY_ZONE_PRECISE_GROIN)
 					W = new /datum/wound/blunt/moderate/hips()

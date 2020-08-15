@@ -303,7 +303,7 @@
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(60 + prob_mod))
+	if(prob(40 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] back into place!</span>", "<span class='notice'>You snap [victim]'s dislocated [limb.name] back into place!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] back into place!</span>")
 		victim.emote("scream")
@@ -410,7 +410,7 @@
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(prob(40 + prob_mod))
 		user.visible_message("<span class='notice'>[user] massages [victim]'s dislocated ribs back in place.</span>", "<span class='notice'>You massage [victim]'s dislocated ribs back into place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='notice'>[user] massages your dislocated ribs back into place.</span>")
 		victim.emote("scream")
@@ -493,7 +493,7 @@
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(prob(40 + prob_mod))
 		user.visible_message("<span class='danger'>[user] forces [victim]'s femoral bone back in place!</span>", "<span class='notice'>You force [victim]'s dislocated femoral bone back in place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] forces your femoral bone in place!</span>")
 		victim.emote("scream")
@@ -521,6 +521,89 @@
 		limb.receive_damage(brute=7, wound_bonus=CANT_WOUND)
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s femur!</span>", "<span class='nicegreen'>You finish resetting [victim]'s femur!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your femur!</span>")
+
+	victim.emote("scream")
+	qdel(src)
+
+/*
+	Moderate (Jaw Dislocation)
+*/
+
+/datum/wound/blunt/moderate/jaw
+	name = "Jaw Dislocation"
+	desc = "Patient has a dislocated jaw, causing pain and discomfort."
+	treat_text = "Recommended application of bonesetter to the head, though forcing the jaw back in place by applying an aggressive grab to the patient and helpfully interacting with their head may suffice."
+	examine_desc = "is red and swollen"
+	occur_text = "snaps audibly"
+	severity = WOUND_SEVERITY_MODERATE
+	viable_zones = list(BODY_ZONE_HEAD)
+	interaction_efficiency_penalty = 1.5
+	limp_slowdown = 3
+	threshold_minimum = 35
+	threshold_penalty = 15
+	treatable_tool = TOOL_BONESET
+	status_effect_type = /datum/status_effect/wound/blunt/moderate
+	scarring_descriptions = list("light discoloring", "a slight blue tint")
+	associated_alerts = list()
+
+/datum/wound/blunt/moderate/jaw/crush()
+	if(prob(33))
+		victim.visible_message("<span class='danger'>[victim]'s dislocated jaw pops back into place!</span>", "<span class='userdanger'>Your dislocated jaw pops back into place! Ow!</span>")
+		remove_wound()
+
+/datum/wound/blunt/moderate/jaw/try_handling(mob/living/carbon/human/user)
+	if(user.pulling != victim || user.zone_selected != limb.body_zone || user.a_intent == INTENT_GRAB)
+		return FALSE
+
+	if(user.grab_state == GRAB_PASSIVE)
+		to_chat(user, "<span class='warning'>You must have [victim] in an aggressive grab to manipulate [victim.p_their()] [lowertext(name)]!</span>")
+		return TRUE
+
+	if((user.grab_state >= GRAB_AGGRESSIVE) && (user.a_intent == INTENT_HELP))
+		user.visible_message("<span class='notice'>[user] begins forcing [victim]'s jaw back in place.</span>", "<span class='notice'>You begin forcing [victim]'s jaw back in place...</span>", ignored_mobs=victim)
+		to_chat(victim, "<span class='notice'>[user] begins forcing your jaw back in place.</span>")
+		chiropractice(user)
+		return TRUE
+
+/// If someone is treating the jaw
+/datum/wound/blunt/moderate/jaw/chiropractice(mob/living/carbon/human/user)
+	var/time = base_treat_time
+	var/time_mod = 1
+	var/prob_mod = 20
+	if(time_mod)
+		time *= time_mod
+
+	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+		return
+
+	if(prob(40 + prob_mod))
+		user.visible_message("<span class='notice'>[user] jams [victim]'s jaw back in place.</span>", "<span class='notice'>You jam [victim]'s dislocated jaaw back into place.</span>", ignored_mobs=victim)
+		to_chat(victim, "<span class='notice'>[user] jams your dislocated jaw back into place.</span>")
+		victim.emote("scream")
+		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		qdel(src)
+	else
+		user.visible_message("<span class='danger'>[user] moves [victim]'s jaw around painfully!</span>", "<span class='danger'>You move [victim]'s jaw around painfully!</span>", ignored_mobs=victim)
+		to_chat(victim, "<span class='userdanger'>[user] moves your jaw around painfully!</span>")
+		limb.receive_damage(brute=8, wound_bonus=CANT_WOUND)
+		chiropractice(user)
+
+/datum/wound/blunt/moderate/jaw/treat(obj/item/I, mob/user)
+	if(victim == user)
+		victim.visible_message("<span class='danger'>[user] begins resetting [victim.p_their()] jaw with [I].</span>", "<span class='warning'>You begin resetting your jaw with [I]...</span>")
+	else
+		user.visible_message("<span class='danger'>[user] begins resetting [victim]'s jaw with [I].</span>", "<span class='notice'>You begin resetting [victim]'s jaw with [I]...</span>")
+
+	if(!do_after(user, base_treat_time * (user == victim ? 2.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+		return
+
+	if(victim == user)
+		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
+		victim.visible_message("<span class='danger'>[user] finishes resetting [victim.p_their()] jaw!</span>", "<span class='userdanger'>You reset your jaw!</span>")
+	else
+		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s jaw!</span>", "<span class='nicegreen'>You finish resetting [victim]'s jaw!</span>", victim)
+		to_chat(victim, "<span class='userdanger'>[user] resets your jaw!</span>")
 
 	victim.emote("scream")
 	qdel(src)

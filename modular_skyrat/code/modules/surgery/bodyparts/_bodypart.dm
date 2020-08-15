@@ -72,7 +72,7 @@
 	var/medium_burn_msg = "blistered"
 	var/heavy_burn_msg = "peeling away"
 
-	//Bobmed variables
+	/// Bobmed variables
 	var/parent_bodyzone //body zone that is considered a "parent" of this bodypart's zone
 	var/dismember_bodyzone //body zone that receives wound when this limb is dismembered
 	var/list/starting_children = list() //children that are already "inside" this limb on spawn. could be organs or limbs.
@@ -120,11 +120,11 @@
 	var/render_like_organic = FALSE
 	/// This is used for pseudolimbs. Basically replaces the mob overlay icon with this.
 	var/mutable_appearance/custom_overlay = null
-	// These were head vars before, but i had to generify behavior for edge cases
-	// (IPCs have their brain in da chest)
+	/// These were head vars before, but i had to generify behavior for edge cases
+	/// (IPCs have their brain in da chest)
 	var/mob/living/brain/brainmob = null
 	var/obj/item/organ/brain/brain = null
-	// Overlays related to medicine, like applied gauze
+	/// Overlays related to medicine, like applied gauze
 	var/list/medicine_overlays = list()
 
 /obj/item/bodypart/Initialize()
@@ -223,7 +223,7 @@
 	if(!(status & BODYPART_ROBOTIC))
 		playsound(T, 'sound/misc/splort.ogg', 50, 1, -1)
 	if(current_gauze)
-		QDEL_NULL(current_gauze)
+		remove_gauze(drop_gauze = FALSE)
 	for(var/X in get_organs())
 		var/obj/item/organ/O = X
 		O.transfer_to_limb(src, owner)
@@ -554,7 +554,7 @@
 				var/obj/item/bodypart/parent = owner.get_bodypart(parent_bodyzone)
 				if(parent.is_disabled())
 					return parent.is_disabled()
-		if(get_damage(TRUE) >= max_damage * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1)) //Easy limb disable disables the limb at 40% health instead of 0%
+		if(get_damage(TRUE) >= ((max_damage - min(5, max_damage * 0.1)) * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1))) //Easy limb disable disables the limb at 40% health instead of 0%
 			if(!last_maxed)
 				owner.emote("scream")
 				last_maxed = TRUE
@@ -728,14 +728,11 @@
 				R.name = "shredded [current_gauze.name]"
 				R.desc = "Pretty worthless for medicine now..."
 				R.add_mob_blood(owner)
-				QDEL_NULL(current_gauze)
-				owner.update_medicine_overlays()
+				remove_gauze(drop_gauze = FALSE)
 			else
 				owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [src.name] falls off!</span>", "<span class='userdanger'>\The [current_gauze] on your [src.name] falls off!</span>")
-				current_gauze.forceMove(owner.loc)
 				current_gauze.add_mob_blood(owner)
-				current_gauze = null
-				owner.update_medicine_overlays()
+				remove_gauze(drop_gauze = TRUE)
 		
 		else if(prob(base_roll))
 			owner.visible_message("<span class='boldwarning'>\The [current_gauze] on [owner]'s [src.name] tears up a bit!</span>", "<span class='danger'>\The [current_gauze] on your [src.name] tears up a bit!</span>")
@@ -880,7 +877,7 @@
 	
 	if(!LAZYLEN(wounds) && current_gauze && !replaced)
 		owner.visible_message("<span class='notice'>\The [current_gauze] on [owner]'s [name] fall away.</span>", "<span class='notice'>The [current_gauze] on your [name] fall away.</span>")
-		QDEL_NULL(current_gauze)
+		remove_gauze(drop_gauze = FALSE)
 
 	wound_damage_multiplier = dam_mul
 	update_disabled()
@@ -924,6 +921,22 @@
 	else
 		owner.update_medicine_overlays()
 
+/obj/item/bodypart/proc/remove_gauze(drop_gauze = FALSE)
+	if(!current_gauze)
+		return
+	
+	if(!drop_gauze)
+		QDEL_NULL(current_gauze)
+	else
+		var/turf/drop = get_turf(src)
+		current_gauze.forceMove(drop)
+		current_gauze = null
+	
+	if(!owner)
+		update_icon_dropped()
+	else
+		owner.update_medicine_overlays()
+
 /**
   * seep_gauze() is for when a gauze wrapping absorbs blood or pus from wounds, lowering its absorption capacity.
   *
@@ -938,8 +951,7 @@
 	current_gauze.absorption_capacity -= seep_amt
 	if(current_gauze.absorption_capacity < 0)
 		owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [name] fall away in rags.</span>", "<span class='warning'>\The [current_gauze] on your [name] fall away in rags.</span>", vision_distance=COMBAT_MESSAGE_RANGE)
-		QDEL_NULL(current_gauze)
-		owner.update_medicine_overlays()
+		remove_gauze()
 
 //Update_limb() changes because synths
 /obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source)
@@ -1153,7 +1165,7 @@
 						auxmarking += image(body_markings_icon, "[body_markings]_[I]", -aux_layer, image_dir)
 			. += aux
 			. += auxmarking
-		
+		/*
 		if((body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_CHEST)) && (!owner || dropped))
 			for(var/obj/item/organ/genital/G in src)
 				var/datum/sprite_accessory/S
@@ -1184,7 +1196,7 @@
 
 				genital_overlay.icon_state = "[G.slot]_[S.icon_state]_[size][(original_owner?.dna?.species?.use_skintones && !original_owner?.dna?.skin_tone_override) ? "_s" : ""]_[aroused_state]_FRONT"
 				. += genital_overlay
-
+		*/
 	else
 		limb.icon = icon
 		if(should_draw_gender)
@@ -1219,6 +1231,7 @@
 				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
 			. += marking
 		
+		/*
 		if((body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_CHEST)) && (!owner || dropped))
 			for(var/obj/item/organ/genital/G in src)
 				var/datum/sprite_accessory/S
@@ -1249,7 +1262,7 @@
 
 				genital_overlay.icon_state = "[G.slot]_[S.icon_state]_[size][(original_owner?.dna?.species?.use_skintones && !original_owner?.dna?.skin_tone_override) ? "_s" : ""]_[aroused_state]_FRONT"
 				. += genital_overlay
-
+		*/
 	if(color_src) //TODO - add color matrix support for base species limbs
 		var/draw_color = mutation_color || species_color
 		var/grayscale = FALSE

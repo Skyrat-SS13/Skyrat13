@@ -15,7 +15,10 @@
 	required_status = null
 
 /datum/wound/disembowel/proc/apply_disembowel(obj/item/bodypart/L, wounding_type=WOUND_SLASH)
-	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.disembowable || HAS_TRAIT(L.owner, TRAIT_NOGUT) || HAS_TRAIT(L.owner, TRAIT_NODISMEMBER) || !length(L.owner.getorganszone(L.body_zone)))
+	var/list/organs = L?.owner?.getorganszone(L.body_zone)
+	for(var/obj/item/organ/genital/G in organs)
+		organs -= G
+	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.disembowable || HAS_TRAIT(L.owner, TRAIT_NOGUT) || HAS_TRAIT(L.owner, TRAIT_NODISMEMBER) || !length(organs))
 		qdel(src)
 		return
 
