@@ -17614,6 +17614,13 @@
 /obj/item/storage/fancy/candle_box,
 /obj/item/storage/fancy/candle_box,
 /obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "MA" = (
@@ -18726,6 +18733,24 @@
 "PQ" = (
 /obj/structure/closet/secure_closet,
 /obj/item/coin/silver,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
+"PR" = (
+/obj/structure/table/wood/bar,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/multitool,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "PS" = (
@@ -48518,7 +48543,7 @@ Zl
 Zl
 Zl
 Nd
-Tq
+PR
 Sd
 MG
 YN
