@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Megafauna music now uses a proper preference toggle."
