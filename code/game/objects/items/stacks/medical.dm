@@ -22,6 +22,8 @@
 	var/heal_brute
 	/// How much burn we heal per application
 	var/heal_burn
+	/// How much we heal stamina on application
+	var/heal_stamina
 	/// How much we reduce bleeding per application on cut wounds
 	var/stop_bleeding
 	/// How much sanitization to apply to burns on application
@@ -94,7 +96,7 @@
 			user.visible_message("<span class='green'>[user] applies \the [src] on [C]'s [affecting.name].</span>", "<span class='green'>You apply \the [src] on [C]'s [affecting.name].</span>")
 		var/brute2heal = brute
 		var/burn2heal = burn
-		if(affecting.heal_damage(brute2heal, burn2heal))
+		if(affecting.heal_damage(brute2heal, burn2heal, heal_stamina, FALSE, FALSE, TRUE))
 			C.update_damage_overlays()
 		use(stackperlimb)
 		if(affect_children)
