@@ -251,3 +251,10 @@
 	item = /obj/item/gun/ballistic/automatic/toy/pistol/riot
 	cost = 3
 	surplus = 10
+
+/datum/uplink_item/dangerous/stigma
+	name = "Burning Sword"
+	desc = "A longsword with a soft red tint, capable of doing significant burn damage to your foes."
+	item = /obj/item/stigma
+	cost = 10
+	surplus = 0
