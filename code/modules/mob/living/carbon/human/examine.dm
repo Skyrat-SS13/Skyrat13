@@ -306,7 +306,8 @@
 
 			var/num_bleeds = LAZYLEN(bleeding_limbs)
 
-			bleed_text = "<B>[t_He] [t_is] bleeding from [t_his]"
+			if(length(bleeding_limbs))
+				bleed_text = "<B>[t_He] [t_is] bleeding from [t_his]"
 			
 			switch(num_bleeds)
 				if(1 to 2)
@@ -325,7 +326,7 @@
 			if(bleed_text)
 				bleed_text += "</B>\n"
 			
-			msg += bleed_text
+			msg |= bleed_text
 		//skyrat edit
 		var/list/obj/item/bodypart/suppress_limbs = list()
 		for(var/i in bodyparts)
