@@ -1,0 +1,5 @@
+author: "ForrestWick"
+delete-after: True
+changes: 
+  - tweak: "made it so ghost role cafe people aren't spawning in as pacifists."
+  - bugfix: "Fixed the jukebox not being public access, hopefully, and removed the uplinks"
