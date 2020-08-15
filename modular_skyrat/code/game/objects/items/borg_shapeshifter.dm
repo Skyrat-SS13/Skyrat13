@@ -221,7 +221,7 @@
 				)
 				var/list/L = list("Medihound" = "medihound", "Medihound Dark" = "medihounddark", "Vale" = "valemed")
 				for(var/a in L)
-					var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+					var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a])
 					wide.pixel_x = -16
 					med_icons[a] = wide
 				med_icons = sortList(med_icons)
@@ -306,9 +306,9 @@
 					"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_engi"),
 					"Drake" = image(icon = 'icons/mob/cyborg/drakemech.dmi', icon_state = "drakeengbox")
 				)
-				var/list/L = list("Pup Dozer" = "pupdozer", "Vale" = "valeeng")
+				var/list/L = list("Pup Dozer" = "pupdozer", "Vale" = "valeeng", "Hound" = "engihound", "Darkhound" = "engihounddark")
 				for(var/a in L)
-					var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+					var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a])
 					wide.pixel_x = -16
 					engi_icons[a] = wide
 				engi_icons = sortList(engi_icons)
@@ -378,6 +378,16 @@
 						disguise_icon_override = 'icons/mob/cyborg/drakemech.dmi'
 						disguise_pixel_offset = -16
 						disguise_dogborg = TRUE
+					if("Hound")
+						disguise = "engihound"
+						disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+						disguise_pixel_offset = -16
+						disguise_dogborg = TRUE
+					if("Darkhound")
+						disguise = "engihounddark"
+						disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+						disguise_pixel_offset = -16
+						disguise_dogborg = TRUE
 					else
 						return FALSE
 			if("Security")
@@ -396,9 +406,9 @@
 					"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_sec"),
 					"Drake" = image(icon = 'icons/mob/cyborg/drakemech.dmi', icon_state = "drakesecbox")
 				)
-				var/list/L = list("K9" = "k9", "Vale" = "valesec", "K9 Dark" = "k9dark")
+				var/list/L = list("K9" = "k9", "Vale" = "valesec", "K9 Dark" = "k9dark", "Otie" = "oties")
 				for(var/a in L)
-					var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+					var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a])
 					wide.pixel_x = -16
 					sec_icons[a] = wide
 				sec_icons = sortList(sec_icons)
@@ -467,6 +477,11 @@
 						disguise_icon_override = 'icons/mob/cyborg/drakemech.dmi'
 						disguise_pixel_offset = -16
 						disguise_dogborg = TRUE
+					if("Otie")
+						disguise = "oties"
+						disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+						disguise_pixel_offset = -16
+						disguise_dogborg = TRUE
 					else
 						return FALSE
 			if("Service")
@@ -495,9 +510,9 @@
 					"(Janitor) Drake" = image(icon = 'icons/mob/cyborg/drakemech.dmi', icon_state = "drakejanitbox")
 				)
 				var/list/L = list("(Service) DarkK9" = "k50", "(Service) Vale" = "valeserv", "(Service) ValeDark" = "valeservdark",
-								"(Janitor) Scrubpuppy" = "scrubpup")
+								"(Janitor) Scrubpuppy" = "scrubpup", "(Janitor) Otie" = "otiej")
 				for(var/a in L)
-					var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+					var/image/wide = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = L[a])
 					wide.pixel_x = -16
 					service_icons[a] = wide
 				service_icons = sortList(service_icons)
@@ -591,6 +606,11 @@
 					if("(Janitor) Drake")
 						disguise = "drakejanit"
 						disguise_icon_override = 'icons/mob/cyborg/drakemech.dmi'
+						disguise_pixel_offset = -16
+						disguise_dogborg = TRUE
+					if("(Janitor) Otie")
+						disguise = "otiej"
+						disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 						disguise_pixel_offset = -16
 						disguise_dogborg = TRUE
 					else
