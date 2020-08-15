@@ -241,25 +241,25 @@
 			consciousness = LOOKS_DEAD
 			consciousness_msg = "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.[bleed_text ? "\n[t_His] bleeding has pooled, and is not flowing." : ""]</span>"
 	else
-		if(IsSleeping() || HAS_TRAIT(src, TRAIT_LOOKSSLEEPY) || consciousness == LOOKS_SLEEPY)
+		if(IsSleeping() || HAS_TRAIT(src, TRAIT_LOOKSSLEEPY) || (consciousness == LOOKS_SLEEPY))
 			consciousness = LOOKS_SLEEPY
 			if((dist <= 3) || (dist <= 7 && lying))
 				consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
-		if(InCritical() || HAS_TRAIT(src, TRAIT_LOOKSUNCONSCIOUS) || consciousness == LOOKS_UNCONSCIOUS)
+		if(InCritical() || HAS_TRAIT(src, TRAIT_LOOKSUNCONSCIOUS) || (consciousness == LOOKS_UNCONSCIOUS))
 			consciousness = LOOKS_UNCONSCIOUS
 			if(dist <= 1 && is_face_visible() && !HAS_TRAIT(src, TRAIT_NOBREATH))
 				consciousness_msg = "<span class='warning>[t_His] breathing is shallow and labored[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
 			else if((dist <= 3) || (dist <= 7 && lying))
 				consciousness = LOOKS_SLEEPY
 				consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
-		if(InFullCritical() || HAS_TRAIT(src, TRAIT_LOOKSVERYUNCONSCIOUS) || consciousness == TRAIT_LOOKSVERYUNCONSCIOUS)
+		if(InFullCritical() || HAS_TRAIT(src, TRAIT_LOOKSVERYUNCONSCIOUS) || (consciousness == TRAIT_LOOKSVERYUNCONSCIOUS))
 			consciousness = LOOKS_VERYUNCONSCIOUS
 			if(dist <= 1)
 				consciousness_msg = "<span class='warning>[t_He] seems to have no identifiable pulse[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
 			else if((dist <= 3) || (dist <= 7 && lying))
 				consciousness = LOOKS_SLEEPY
 				consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
-		if((stat == DEAD) || (mob_biotypes & MOB_UNDEAD) || HAS_TRAIT(src, TRAIT_LOOKSDEAD) || HAS_TRAIT(src, TRAIT_FAKEDEATH) || consciousness == LOOKS_DEAD)
+		if((stat == DEAD) || (mob_biotypes & MOB_UNDEAD) || HAS_TRAIT(src, TRAIT_LOOKSDEAD) || HAS_TRAIT(src, TRAIT_FAKEDEATH) || (consciousness == LOOKS_DEAD))
 			consciousness = LOOKS_DEAD
 			if((dist <= 1) || ((dist <= 3) && (mob_biotypes & MOB_UNDEAD)) || ((dist <= 7) && (mob_biotypes & MOB_UNDEAD) && lying))
 				consciousness_msg = "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.[(bleed_text && !(mob_biotypes & MOB_UNDEAD)) || ((mob_biotypes & MOB_UNDEAD) && (stat == DEAD)) ? "\n[t_His] bleeding has pooled, and is not flowing." : ""]</span>"
