@@ -2,12 +2,9 @@
 /turf/closed/wall/supermatter
 	name = "Supermatter Sea"
 	desc = "THE END IS right now actually."
-	icon='modular_skyrat/icons/turf/space.dmi'
+	icon= 'modular_skyrat/code/game/gamemodes/endgame/smblob.dmi'
 	icon_state = "bluespacecrystal"
-
-	light_range = 10
-	light_power = 5
-	light_color="#0066FF"
+	opacity = 0
 	explosion_block = INFINITY
 	layer = ABOVE_LIGHTING_PLANE
 
@@ -19,19 +16,25 @@
 
 /turf/closed/wall/supermatter/Initialize()
 	icon_state = "bluespacecrystal[rand(1,6)]"
-	START_PROCESSING(SSobj,src)
-	update_light()
+	START_PROCESSING(SSobj, src)
+	var/turf/T = get_turf(src)
+	for(var/atom/movable/A in T)
+		if(A)
+			if(istype(A,/mob/living))
+				QDEL_NULL(A)
+			else if(istype(A,/mob)) // Observers, AI cameras.
+				continue
+			QDEL_NULL(A)
 	..()
 
-/turf/closed/wall/supermatter/New()
-	return ..()
-
 /turf/closed/wall/supermatter/Destroy()
-	var/dpdir = pick(card_dirs)
-	var/turf/CT = get_step(src,dpdir)
-	if(istype(CT, /turf/closed/wall/supermatter/))
-		CT.ChangeTurf(/turf/closed/wall/supermatter)
-	STOP_PROCESSING(SSobj,src)
+	for(var/step_direction in GLOB.cardinals)
+		var/turf/neighbor_turf = get_step(src, step_direction)
+		if(istype(neighbor_turf, /turf/closed/wall/supermatter))
+			var/turf/closed/wall/supermatter/issupermatter = neighbor_turf
+			issupermatter.avail_dirs = list(NORTH,SOUTH,EAST,WEST)
+			START_PROCESSING(SSobj, issupermatter)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /turf/closed/wall/supermatter/process()
@@ -64,22 +67,10 @@
 			for(var/atom/movable/A in T)
 				if(A)
 					if(istype(A,/mob/living))
-						qdel(A)
-						A = null
+						QDEL_NULL(A)
 					else if(istype(A,/mob)) // Observers, AI cameras.
 						continue
-					qdel(A)
-					A = null
-				CHECK_TICK
-			for(var/atom/movable/A in T)
-				if(A)
-					if(istype(A,/mob/living))
-						qdel(A)
-						A = null
-					else if(istype(A,/mob)) // Observers, AI cameras.
-						continue
-					qdel(A)
-					A = null
+					QDEL_NULL(A)
 				CHECK_TICK
 			T.ChangeTurf(type)
 			var/turf/closed/wall/supermatter/SM = T

@@ -26,6 +26,11 @@
 	tastes = list("fish" = 1)
 	foodtype = MEAT
 
+/obj/item/reagent_containers/food/snacks/carpmeat/tcarpmeat  //skyrat edit
+	name = "tiger carp fillet"
+	desc = "A robust and nutrient filled fillet of carp meat."
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 3)
+
 /obj/item/reagent_containers/food/snacks/carpmeat/Initialize()
 	. = ..()
 	eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
@@ -63,7 +68,7 @@
 	filling_color = "#ee7676"
 	tastes = list("fish" = 1, "pan seared vegtables" = 1)
 	foodtype = MEAT | VEGETABLES | FRIED
-	
+
 /obj/item/reagent_containers/food/snacks/sushi_basic
 	name = "funa hosomaki"
 	desc = "A small cylindrical kudzu skin, filled with rice and fish."
@@ -139,11 +144,22 @@
 	tastes = list("meat" = 1, "salmon" = 1)
 	foodtype = MEAT | ALCOHOL
 
+/obj/item/reagent_containers/food/snacks/rawmeatball
+	name = "raw meatball"
+	desc = "Raw mushy meat. Better cook this!"
+	icon_state = "rawmeatball"
+	cooked_type = /obj/item/reagent_containers/food/snacks/meatball
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
+	filling_color = "#bd2020"
+	tastes = list("meat" = 1, "slime" = 1)
+	foodtype = MEAT | RAW
+
 /obj/item/reagent_containers/food/snacks/meatball
 	name = "meatball"
 	desc = "MAMA MIA DAS A SPICY"
 	icon_state = "meatball"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#800000"
 	tastes = list("meat" = 1)
 	foodtype = MEAT
