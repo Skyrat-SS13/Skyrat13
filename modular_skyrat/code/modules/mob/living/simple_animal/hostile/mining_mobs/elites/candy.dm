@@ -277,7 +277,7 @@
 
 /obj/effect/proc_holder/spell/bloodcrawl/lesser
 	name = "Lesser Blood Crawl"
-	desc = "Use pools of blood to phase out of existence. Requires large pools of blood, and has a 15 second cooldown."
+	desc = "Use pools of blood to phase out of existence. Requires large pools of blood, and drains 5% of your blood."
 
 /obj/effect/proc_holder/spell/bloodcrawl/lesser/choose_targets(mob/user = usr)
 	for(var/obj/effect/decal/cleanable/target in range(range, get_turf(user)))
@@ -288,7 +288,7 @@
 	to_chat(user, "<span class='warning'>There must be a nearby source of plentiful blood!</span>")
 
 /obj/effect/proc_holder/spell/bloodcrawl/lesser/perform(obj/effect/decal/cleanable/target, recharge = 1, mob/living/user = usr)
-	if(istype(user))
+	if(istype(user) && user.canUseTopic(user, TRUE))
 		if(phased)
 			if(user.phasein(target))
 				phased = 0
