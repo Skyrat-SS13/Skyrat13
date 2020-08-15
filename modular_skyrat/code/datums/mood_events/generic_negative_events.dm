@@ -12,6 +12,6 @@
 
 //Got cloned recently
 /datum/mood_event/clooned
-	description = "<span class='boldwarning'>I don't feel like myself...</span>\n"
+	description = "<span class='boldwarning'>Awake... but at what cost?</span>\n"
 	mood_change = -10
 	timeout = 20 MINUTES
