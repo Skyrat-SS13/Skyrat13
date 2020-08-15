@@ -299,8 +299,12 @@ GENETICS SCANNER
 			else if(istype(O, /obj/item/organ/genital/penis))
 				var/obj/item/organ/genital/penis/P = O
 				if(P.length>20)
-					temp_message += " <span class='info'>Subject has a sizeable gentleman's organ at [P.length] inches.</span>"
-
+					//skyrat edit
+					if(user?.client?.prefs?.toggles & METRIC_OR_BUST)
+						temp_message += " <span class='info'>Subject has a sizeable gentleman's organ at [round(P.length * 2.54, 0.1)] inches.</span>"
+					else
+						temp_message += " <span class='info'>Subject has a sizeable gentleman's organ at [round(P.length, 0.1)] inches.</span>"
+					//
 			else if(istype(O, /obj/item/organ/genital/breasts))
 				var/obj/item/organ/genital/breasts/Br = O
 				if(Br.cached_size>5)
