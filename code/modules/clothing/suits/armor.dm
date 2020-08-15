@@ -359,6 +359,26 @@
 	icon_state = "hardsuit0-hosexo"
 	item_state = "hardsuit0-hosexo"
 	hardsuit_type = "hosexo"
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/hats.dmi',
+	"Classic" = 'icons/obj/clothing/hats.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/clothing/head.dmi',
+	"Classic" = 'icons/mob/clothing/head.dmi',
+	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'icons/mob/clothing/head.dmi',
+	"Classic" = 'icons/mob/clothing/head.dmi',
+	)
+	unique_reskin = list(
+	"Default" = "hardsuit0-hosexo",
+	"Classic" = "hardsuit0-hosexoX",
+	)
+	unique_hardsuit_type = list(
+	"Default" = "hosexo",
+	"Classic" = "hosexoX",
+	)
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/hos
 	name = "head of security's exoskeleton suit"
@@ -368,3 +388,23 @@
 	max_integrity = 300
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 70, "acid" = 90)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor/hos
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/suits.dmi',
+	"Classic" = 'icons/obj/clothing/suits.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/clothing/suit.dmi',
+	"Classic" = 'icons/mob/clothing/suit.dmi',
+	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
+	"Classic" = 'icons/mob/clothing/suit_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = "hardsuit-hosexo",
+	"Classic" = "hardsuit-hosexoX",
+	)
+	unique_hardsuit_type = list(
+	"Default" = "hosexo",
+	"Classic" = "hosexoX",
+	)
