@@ -144,10 +144,9 @@
 		msg += "[t_He] [t_is] restrained by [pulledby]'s grip.\n"
 	
 	var/bleed_text
+	var/list/obj/item/bodypart/bleeding_limbs = list()
 	//skyrat edit
 	if(is_bleeding())
-		var/list/obj/item/bodypart/bleeding_limbs = list()
-
 		for(var/i in bodyparts)
 			var/obj/item/bodypart/BP = i
 			if(BP.get_bleed_rate() && !BP.current_gauze)
@@ -239,7 +238,7 @@
 			consciousness_msg = "<span class='warning>[t_His] life signs are very shallow and labored, [lying ? "[t_he] is completely unconscious and " : ""][t_he] appears to be undergoing shock.</span>"
 		if(stat == DEAD)
 			consciousness = LOOKS_DEAD
-			consciousness_msg = "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.[bleed_text ? "\n[t_His] bleeding has pooled, and is not flowing." : ""]</span>"
+			consciousness_msg = "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.[(length(bleeding_limbs) && !(mob_biotypes & MOB_UNDEAD)) || (length(bleeding_limbs) && (mob_biotypes & MOB_UNDEAD) && (stat == DEAD)) ? "\n[t_His] bleeding has pooled, and is not flowing." : ""]
 	else
 		if(IsSleeping() || HAS_TRAIT(src, TRAIT_LOOKSSLEEPY) || (consciousness == LOOKS_SLEEPY))
 			consciousness = LOOKS_SLEEPY
@@ -262,7 +261,7 @@
 		if((stat == DEAD) || (mob_biotypes & MOB_UNDEAD) || HAS_TRAIT(src, TRAIT_LOOKSDEAD) || HAS_TRAIT(src, TRAIT_FAKEDEATH) || (consciousness == LOOKS_DEAD))
 			consciousness = LOOKS_DEAD
 			if((dist <= 1) || ((dist <= 3) && (mob_biotypes & MOB_UNDEAD)) || ((dist <= 7) && (mob_biotypes & MOB_UNDEAD) && lying))
-				consciousness_msg = "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.[(bleed_text && !(mob_biotypes & MOB_UNDEAD)) || ((mob_biotypes & MOB_UNDEAD) && (stat == DEAD)) ? "\n[t_His] bleeding has pooled, and is not flowing." : ""]</span>"
+				consciousness_msg = "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.[(length(bleeding_limbs) && !(mob_biotypes & MOB_UNDEAD)) || (length(bleeding_limbs) && (mob_biotypes & MOB_UNDEAD) && (stat == DEAD)) ? "\n[t_His] bleeding has pooled, and is not flowing." : ""]</span>"
 				if(suiciding)
 					consciousness_msg += "\n<span class='deadsay'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>"
 				if(hellbound)
