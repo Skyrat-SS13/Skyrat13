@@ -4,7 +4,7 @@
 /obj/screen/alert/status_effect/determined
 	name = "Determined"
 	desc = "The serious wounds you've sustained have put your body into fight-or-flight mode! Now's the time to look for an exit!"
-	icon = 'modular_skyrat/icons/obj/screen_alert.dmi'
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
 	icon_state = "determination"
 
 /datum/status_effect/determined

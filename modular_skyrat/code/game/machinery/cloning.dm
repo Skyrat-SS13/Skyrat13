@@ -27,6 +27,7 @@
 	var/cloneill_duration = 20 MINUTES
 	var/cloneill_cloneloss = 20
 	var/cloneill_hallucination = 10
+	var/cloneill_moodhit = 10
 
 	var/datum/mind/clonemind
 	var/grab_ghost_when = CLONER_MATURE_CLONE
@@ -96,6 +97,7 @@
 	cloneill_duration = (20 MINUTES * (1/max(efficiency-1,1)))
 	cloneill_cloneloss = round(20 * (1/max(efficiency-1,1)), 1)
 	cloneill_hallucination = round(10 * (1/max(efficiency-1,1)), 1)
+	cloneill_moodhit = round(10 * (1/max(efficiency-2,1)), 1)
 
 //Clonepod
 /obj/machinery/clonepod/examine(mob/user)
@@ -111,6 +113,7 @@
 			<br>Predicted amount of clone illness cellular damage: <b>[cloneill_cloneloss]</b>.\
 			<br>Predicted duration of clone illness: <b>[cloneill_duration/10] seconds ([cloneill_duration/600] minutes).</b>.\
 			<br>Predicted probability of hallucinations: <b>[cloneill_hallucination]% every 5 seconds</b>.\
+			<br>Predicted mood hit on the patient: <b>[cloneill_moodhit*10]%</b>.\
 			</span>"
 		if(efficiency > 5)
 			to_chat(user, "<span class='notice'>Pod has been upgraded to support autoprocessing.<span>")
@@ -436,6 +439,7 @@
 		var/datum/status_effect/cloneill/illness = new()
 		illness.duration = cloneill_duration
 		illness.cloneloss_amount = cloneill_cloneloss
+		illness.moodmalus = cloneill_moodhit
 		H.apply_status_effect()
 
 	occupant = null

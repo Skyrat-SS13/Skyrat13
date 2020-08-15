@@ -62,6 +62,7 @@
 	var/healthpenalty = 25
 	var/cloneloss_amount = 20
 	var/hallucination_prob = 10
+	var/moodmalus = 10
 	var/list/hallucinate_options = list(
 		"Self",
 		"Others",
@@ -87,6 +88,10 @@
 	owner.maxHealth -= healthpenalty
 	ADD_TRAIT(owner, TRAIT_EASYLIMBDISABLE, "cloneill")
 	ADD_TRAIT(owner, TRAIT_SCREWY_CHECKSELF, "cloneill")
+	var/datum/mood_event/clooned/kleiner = new()
+	kleiner.timeout = duration
+	kleiner.mood_change = -moodmalus
+	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "clooned", kleiner)
 
 /datum/status_effect/cloneill/on_remove()
 	. = ..()
