@@ -444,7 +444,7 @@
 				else if((dist <= 3) || (dist <= 7 && lying))
 					consciousness = LOOKS_SLEEPY
 					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
-			if(InFullCritical() || HAS_TRAIT(src, TRAIT_LOOKSVERYUNCONSCIOUS) || (consciousness == TRAIT_LOOKSVERYUNCONSCIOUS))
+			if(InFullCritical() || HAS_TRAIT(src, TRAIT_LOOKSVERYUNCONSCIOUS) || (consciousness == LOOKS_VERYUNCONSCIOUS))
 				consciousness = LOOKS_VERYUNCONSCIOUS
 				var/thicc = FALSE
 				var/obj/item/clothing/clothes = wear_suit
@@ -469,7 +469,7 @@
 						consciousness_msg += "\n<span class='deadsay'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>"
 					if(hellbound)
 						consciousness_msg += "\n<span class='deadsay'>[t_His] soul seems to have been ripped out of [t_his] body.  Revival is impossible.</span>"
-					if(!getorgan(/obj/item/organ/brain) || (!key && !get_ghost(FALSE, TRUE)))
+					if(!getorgan(/obj/item/organ/brain) || (!key && !get_ghost(FALSE)))
 						consciousness_msg += "\n<span class='deadsay'>[t_His] body seems empty, [t_his] soul has since departed.</span>"
 				else if((dist <= 3) || (dist <= 7 && lying))
 					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
