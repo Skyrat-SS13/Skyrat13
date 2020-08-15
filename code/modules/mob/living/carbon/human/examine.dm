@@ -448,11 +448,11 @@
 				consciousness = LOOKS_VERYUNCONSCIOUS
 				var/thicc = FALSE
 				var/obj/item/clothing/clothes = wear_suit
-				if(clothes.clothing_flags & THICKMATERIAL)
+				if(clothes?.clothing_flags & THICKMATERIAL)
 					thicc = TRUE
 				else
 					clothes = w_uniform
-					if(clothes.clothing_flags & THICKMATERIAL)
+					if(clothes?.clothing_flags & THICKMATERIAL)
 						thicc = TRUE
 				if(NOBLOOD in dna?.species?.species_traits)
 					thicc = TRUE
