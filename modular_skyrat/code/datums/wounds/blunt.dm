@@ -536,7 +536,7 @@
 	examine_desc = "is red and swollen"
 	occur_text = "snaps audibly"
 	severity = WOUND_SEVERITY_MODERATE
-	viable_zones = list(BODY_ZONE_CHEST)
+	viable_zones = list(BODY_ZONE_HEAD)
 	interaction_efficiency_penalty = 1.5
 	limp_slowdown = 3
 	threshold_minimum = 35
