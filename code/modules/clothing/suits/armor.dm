@@ -319,7 +319,7 @@
 
 //New and improved Tech Armor
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor
-	name = "security exoskeleton helmet"
+	name = "type I techhelmet"
 	desc = "A specialized exoskeleton armor helmet built into a suit of armor; offers decent protection, and comes with a flash-resistant HUD visor and headlamp."
 	icon_state = "hardsuit0-secexo"
 	item_state = "hardsuit0-secexo"
@@ -328,7 +328,7 @@
 	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | ALLOWINTERNALS
 
 /obj/item/clothing/suit/space/hardsuit/security_armor
-	name = "security exoskeleton suit"
+	name = "type I full-body techarmor"
 	desc = "A specialized exoskeleton armor suit, comprised of flexible protective shielding. Comes equipped with a retractable helmet which offers a flash-resistant HUD visor, along with a headlamp."
 	icon_state = "hardsuit-secexo"
 	item_state = "hardsuit-secexo"
@@ -354,7 +354,7 @@
 		DHUD.remove_hud_from(user)
 
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/hos
-	name = "head of security's exoskeleton helmet"
+	name = "head of security's techhelmet"
 	desc = "A specialized exoskeleton armor helmet built into a suit of armor; offers decent protection, and comes with a flash-resistant HUD visor and headlamp."
 	icon_state = "hardsuit0-hosexo"
 	item_state = "hardsuit0-hosexo"
@@ -381,7 +381,7 @@
 	)
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/hos
-	name = "head of security's exoskeleton suit"
+	name = "head of security's techarmor"
 	desc = "A specialized exoskeleton armor suit comprised of flexible protective shielding. This particular suit has been designed specifically for the station security commander."
 	icon_state = "hardsuit-hosexo"
 	item_state = "hardsuit-hosexo"

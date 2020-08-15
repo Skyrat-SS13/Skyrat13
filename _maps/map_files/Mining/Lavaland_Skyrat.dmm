@@ -3742,9 +3742,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
-"uw" = (
-/turf/open/floor/plasteel/white,
-/area/xenoarch/arch)
 "ux" = (
 /obj/structure/stone_tile/block{
 	dir = 4
@@ -7912,7 +7909,6 @@
 /turf/open/floor/engine,
 /area/xenoarch/eng)
 "QM" = (
-/obj/structure/closet/secure_closet/security,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -7920,6 +7916,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/closet/secure_closet/security_xenoarch,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/sec)
 "QR" = (
@@ -20721,7 +20718,7 @@ Id
 CT
 jn
 BS
-uw
+KE
 KE
 KE
 cB
