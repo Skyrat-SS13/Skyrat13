@@ -52,7 +52,7 @@
 	/// attach the wound to the parent body zone instead
 	var/fake_limb = null
 	/// The body zone of the phantom limb
-	var/fake_body_zone = BODY_ZONE_CHEST
+	var/fake_body_zone = null
 
 	/// Specific items such as bandages or sutures that can try directly treating this wound
 	var/list/treatable_by

@@ -60,7 +60,7 @@
 	precise_location = pick(limb.specific_locations)
 	src.visibility = W.severity
 	if(W.fake_body_zone)
-		precise_location = "[lowertext(W.fake_body_zone)]"
+		precise_location = "[lowertext(parse_zone(W.fake_body_zone))]"
 
 /datum/scar/proc/pref_apply(obj/item/bodypart/BP, specific_location, new_description, new_severity = 0, add_to_scars=TRUE)
 	if(!(BP.body_zone in applicable_zones) || !BP.is_organic_limb())
