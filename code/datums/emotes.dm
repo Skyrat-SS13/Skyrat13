@@ -86,10 +86,10 @@
 		index++
 		if(lowertext(i) in GLOB.bad_words)
 			if(i == "based")
-				var/post = unfunny[min(index+1, len)]
+				var/post = lowertext(unfunny[min(index+1, len)])
 				if(post in list("on", "in"))
 					continue
-				var/before = unfunny[max(index-1, 1)]
+				var/before = lowertext(unfunny[max(index-1, 1)])
 				before = copytext_char(before, length(before)-2)
 				if(before == "ly")
 					continue
