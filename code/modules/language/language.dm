@@ -38,6 +38,7 @@
 		return FALSE
 	return TRUE
 
+
 /datum/language/proc/get_icon()
 	var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/goonchat)
 	return sheet.icon_tag("language-[icon_state]")
