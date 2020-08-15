@@ -223,7 +223,7 @@
 	if(!(status & BODYPART_ROBOTIC))
 		playsound(T, 'sound/misc/splort.ogg', 50, 1, -1)
 	if(current_gauze)
-		QDEL_NULL(current_gauze)
+		remove_gauze(drop_gauze = FALSE)
 	for(var/X in get_organs())
 		var/obj/item/organ/O = X
 		O.transfer_to_limb(src, owner)
@@ -728,14 +728,11 @@
 				R.name = "shredded [current_gauze.name]"
 				R.desc = "Pretty worthless for medicine now..."
 				R.add_mob_blood(owner)
-				QDEL_NULL(current_gauze)
-				owner.update_medicine_overlays()
+				remove_gauze(drop_gauze = FALSE)
 			else
 				owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [src.name] falls off!</span>", "<span class='userdanger'>\The [current_gauze] on your [src.name] falls off!</span>")
-				current_gauze.forceMove(owner.loc)
 				current_gauze.add_mob_blood(owner)
-				current_gauze = null
-				owner.update_medicine_overlays()
+				remove_gauze(drop_gauze = TRUE)
 		
 		else if(prob(base_roll))
 			owner.visible_message("<span class='boldwarning'>\The [current_gauze] on [owner]'s [src.name] tears up a bit!</span>", "<span class='danger'>\The [current_gauze] on your [src.name] tears up a bit!</span>")
@@ -880,7 +877,7 @@
 	
 	if(!LAZYLEN(wounds) && current_gauze && !replaced)
 		owner.visible_message("<span class='notice'>\The [current_gauze] on [owner]'s [name] fall away.</span>", "<span class='notice'>The [current_gauze] on your [name] fall away.</span>")
-		QDEL_NULL(current_gauze)
+		remove_gauze(drop_gauze = FALSE)
 
 	wound_damage_multiplier = dam_mul
 	update_disabled()
@@ -924,6 +921,22 @@
 	else
 		owner.update_medicine_overlays()
 
+/obj/item/bodypart/proc/remove_gauze(drop_gauze = FALSE)
+	if(!current_gauze)
+		return
+	
+	if(!drop_gauze)
+		QDEL_NULL(current_gauze)
+	else
+		var/turf/drop = get_turf(src)
+		current_gauze.forceMove(drop)
+		current_gauze = null
+	
+	if(!owner)
+		update_icon_dropped()
+	else
+		owner.update_medicine_overlays()
+
 /**
   * seep_gauze() is for when a gauze wrapping absorbs blood or pus from wounds, lowering its absorption capacity.
   *
@@ -938,8 +951,7 @@
 	current_gauze.absorption_capacity -= seep_amt
 	if(current_gauze.absorption_capacity < 0)
 		owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [name] fall away in rags.</span>", "<span class='warning'>\The [current_gauze] on your [name] fall away in rags.</span>", vision_distance=COMBAT_MESSAGE_RANGE)
-		QDEL_NULL(current_gauze)
-		owner.update_medicine_overlays()
+		remove_gauze()
 
 //Update_limb() changes because synths
 /obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source)
