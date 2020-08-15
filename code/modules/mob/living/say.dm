@@ -151,9 +151,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		return
 
 	if(!can_speak_vocal(message))
-		if(!(language.flags & SIGNLANG))
-			to_chat(src, "<span class='warning'>You find yourself unable to speak!</span>")
-			return
+		to_chat(src, "<span class='warning'>You find yourself unable to speak!</span>")
+		return
 
 	var/message_range = 7
 

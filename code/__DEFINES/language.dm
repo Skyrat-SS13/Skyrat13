@@ -2,8 +2,6 @@
 #define TONGUELESS_SPEECH 2
 #define LANGUAGE_HIDE_ICON_IF_UNDERSTOOD 4
 #define LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD 8
-#define SIGNLANG 16 // Language is completely non-verbal. Speech is displayed through emotes for those who can understand.
-
 
 // LANGUAGE SOURCE DEFINES
 #define LANGUAGE_ALL 			"all"		// For use in full removal only.
