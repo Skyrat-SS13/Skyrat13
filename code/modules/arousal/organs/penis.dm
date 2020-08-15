@@ -93,12 +93,13 @@
 			var/datum/sprite_accessory/taur/T = GLOB.taur_list[owner.dna.features["taur"]]
 			if(T.taur_mode & S.accepted_taurs) //looks out of place on those.
 				lowershape = "taur, [lowershape]"
-	
-	desc = "You see [aroused_state ? "an erect" : "a flaccid"] [lowershape] [name]. You estimate it's about [round(length, 0.25)] inch[round(length, 0.25) != 1 ? "es" : ""] long and [round(diameter, 0.25)] inch[round(diameter, 0.25) != 1 ? "es" : ""] in diameter."
-	//Skyrat edit - Metric is based, imperial is cringe
-	if(owner?.client?.prefs?.toggles & METRIC_OR_BUST)
-		desc = "You see [aroused_state ? "an erect" : "a flaccid"] [lowershape] [name]. You estimate it's about [round(length * 2.54, 0.5)] centimeter[round(length * 2.54, 0.5) != 1 ? "s" : ""] long and [round(diameter, 0.5)] centimeter[round(diameter, 0.5) != 1 ? "s" : ""] in diameter."
-	//
+
+/obj/item/organ/genital/penis/genital_examine(mob/user)
+	. = list()
+	if(user?.client?.prefs?.toggles & METRIC_OR_BUST)
+		. += "<span class='notice'>You see [aroused_state ? "an erect" : "a flaccid"] [lowershape] [name]. You estimate it's about [round(length * 2.54, 0.1)] centimeter[round(length * 2.54, 0.1) != 1 ? "s" : ""] long and [round(diameter, 0.1)] centimeter[round(diameter, 0.1) != 1 ? "s" : ""] in diameter.</span>"
+	else
+		. += "<span class='notice'>You see [aroused_state ? "an erect" : "a flaccid"] [lowershape] [name]. You estimate it's about [round(length, 0.1)] inch[round(length, 0.1) != 1 ? "es" : ""] long and [round(diameter, 0.1)] inch[round(diameter, 0.1) != 1 ? "es" : ""] in diameter.</span>"
 
 /obj/item/organ/genital/penis/get_features(mob/living/carbon/human/H)
 	var/datum/dna/D = H.dna
