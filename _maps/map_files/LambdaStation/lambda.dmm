@@ -82465,6 +82465,11 @@
 	},
 /turf/open/space/basic,
 /area/engine/engineering)
+"eCO" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/starboard/aft)
 "eDP" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
@@ -84282,8 +84287,20 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/machinery/camera{
 	c_tag = "Kitchen Starboard"
+=======
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"vDO" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/fore)
+"vDW" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+>>>>>>> 130c3a9480... Merge pull request #13096 from Michiyamenotehifunana/possum
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -109838,7 +109855,7 @@ aaA
 abY
 ayy
 acw
-acw
+vDO
 acw
 acw
 aeG
@@ -137457,7 +137474,7 @@ bPp
 ccJ
 clR
 bQh
-clN
+eCO
 bPp
 bQh
 bYx

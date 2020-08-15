@@ -103,6 +103,10 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 				if(cli.prefs.body_descriptors[entry])
 					var/datum/mob_descriptor/descriptor = H.dna.species.descriptors[entry]
 					descriptor.current_value = cli.prefs.body_descriptors[entry]
+	//Let's update the gene tools, in case the client uses metric (is based)
+	if(cli.prefs.toggles & METRIC_OR_BUST)
+		for(var/obj/item/organ/genital/genetool in H.internal_organs)
+			genetool.update()
 	//
 
 /datum/controller/subsystem/processing/quirks/proc/quirk_path_by_name(name)

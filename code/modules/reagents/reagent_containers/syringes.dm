@@ -53,7 +53,10 @@
 /obj/item/reagent_containers/syringe/attackby(obj/item/I, mob/user, params)
 	return
 
-/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user , proximity)
+/obj/item/reagent_containers/syringe/attack()
+	return			// no bludgeoning.
+
+/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(busy)
 		return
