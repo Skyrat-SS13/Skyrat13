@@ -78,7 +78,6 @@
 	var/datum/sprite_accessory/S = GLOB.cock_shapes_list[shape]
 	var/icon_shape = S ? S.icon_state : "human"
 	icon_state = "penis_[icon_shape]_[size]"
-	var/lowershape = lowertext(shape)
 
 	if(owner)
 		if(owner.dna.species.use_skintones && owner.dna.features["genitals_use_skintone"])
@@ -96,6 +95,7 @@
 
 /obj/item/organ/genital/penis/genital_examine(mob/user)
 	. = list()
+	var/lowershape = lowertext(shape)
 	if(user?.client?.prefs?.toggles & METRIC_OR_BUST)
 		. += "<span class='notice'>You see [aroused_state ? "an erect" : "a flaccid"] [lowershape] [name]. You estimate it's about [round(length * 2.54, 0.1)] centimeter[round(length * 2.54, 0.1) != 1 ? "s" : ""] long and [round(diameter, 0.1)] centimeter[round(diameter, 0.1) != 1 ? "s" : ""] in diameter.</span>"
 	else
