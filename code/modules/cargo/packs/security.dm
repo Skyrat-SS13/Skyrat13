@@ -39,8 +39,8 @@
 	crate_name = "armor crate"
 
 /datum/supply_pack/security/armor
-	name = "Exoskeleton Armor Crate"
-	desc = "Three vests of advanced, well-rounded exoskeleton armor. Requires Security access to open."
+	name = "Techarmor Crate"
+	desc = "Three vests of advanced, well-rounded type I techarmor. Requires Security access to open."
 	cost = 2200
 	contains = list(/obj/item/clothing/suit/space/hardsuit/security_armor,
 					/obj/item/clothing/suit/space/hardsuit/security_armor,
