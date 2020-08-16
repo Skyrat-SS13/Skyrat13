@@ -326,6 +326,26 @@
 	hardsuit_type = "secexo"
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 55, "acid" = 70)
 	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | ALLOWINTERNALS
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/hats.dmi',
+	"Classic" = 'icons/obj/clothing/hats.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/clothing/head.dmi',
+	"Classic" = 'icons/mob/clothing/head.dmi',
+	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'icons/mob/clothing/head.dmi',
+	"Classic" = 'icons/mob/clothing/head.dmi',
+	)
+	unique_reskin = list(
+	"Default" = "hardsuit0-secexo",
+	"Classic" = "hardsuit0-secexoX",
+	)
+	unique_hardsuit_type = list(
+	"Default" = "secexo",
+	"Classic" = "secexoX",
+	)
 
 /obj/item/clothing/suit/space/hardsuit/security_armor
 	name = "type I full-body techarmor"
@@ -340,6 +360,27 @@
 	mutantrace_variation = STYLE_DIGITIGRADE
 	slowdown = 0
 	anthro_mob_worn_overlay = 'icons/mob/clothing/suit_digi.dmi'
+	flags_inv = HIDETAUR
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/suits.dmi',
+	"Classic" = 'icons/obj/clothing/suits.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/clothing/suit.dmi',
+	"Classic" = 'icons/mob/clothing/suit.dmi',
+	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
+	"Classic" = 'icons/mob/clothing/suit_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = "hardsuit-secexo",
+	"Classic" = "hardsuit-secexoX",
+	)
+	unique_hardsuit_type = list(
+	"Default" = "secexo",
+	"Classic" = "secexoX",
+	)
 
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/equipped(mob/living/carbon/human/user, slot)
 	..()
@@ -388,6 +429,7 @@
 	max_integrity = 300
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 70, "acid" = 90)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor/hos
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAUR
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/suits.dmi',
 	"Classic" = 'icons/obj/clothing/suits.dmi',
