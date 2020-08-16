@@ -428,7 +428,7 @@
 			var/mob/living/carbon/human/C = mob_occupant
 			C.update_pacification_ban()	// SKYRAT ADDITION -- END
 		
-		//Apply the cloned status effect
+		//Apply the cloned status effect and mood debuff
 		if(cloneill)
 			mob_occupant.apply_status_effect(/datum/status_effect/cloneill, cloneill_healthpenalty, cloneill_cloneloss, cloneill_hallucination)
 		SEND_SIGNAL(mob_occupant, COMSIG_ADD_MOOD_EVENT, "clooned", /datum/mood_event/clooned)
