@@ -16,7 +16,7 @@
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
 	mutant_bodyparts = list()
 	initial_species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //for getting these values back for assume_disguise()
-	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE,TRAIT_CLONEIMMUNE,TRAIT_NODEFIB) //blah blah i explained above
+	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE,TRAIT_CLONEIMMUNE,TRAIT_NODEFIB,TRAIT_DNC) //blah blah i explained above
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
