@@ -20,7 +20,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 
 // rest of the file
 //Armstrong overrides
-/datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
+/datum/species/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	..()
 	if(attacker_style && attacker_style.help_act(user,target)) // SKYRAT-EDIT: bless you hippiestation(code improvement to allow help intent attacks)
 		return 1
