@@ -135,6 +135,31 @@
 		for(var/I in starting_children)
 			new I(src)
 
+/obj/item/bodypart/Topic(href, href_list)
+	. = ..()
+	if(href_list["gauze"])
+		var/mob/living/carbon/C = usr
+		if(!istype(C) || !C.canUseTopic(owner, TRUE, FALSE, FALSE) || !current_gauze)
+			return
+		if(C == owner)
+			owner.visible_message("<span class='warning'>[owner] starts ripping off \the [current_gauze] from [owner.p_their()] [src.name]!</span>",
+								"<span class='warning'>You start ripping off \the [current_gauze] from your name [src.name]!</span>")
+			if(do_mob(owner, owner, 5 SECONDS))
+				owner.visible_message("<span class='warning'>[owner] rips \the [current_gauze] from [owner.p_their()] [src.name], destroying it in the process!</span>",
+									"<span class='warning'>You rip \the [current_gauze] from your [src.name], destroying it in the process!</span>")
+				playsound(owner, 'modular_skyrat/sound/effects/clothripping.ogg', 40, 0, -4)
+				remove_gauze(FALSE)
+			else
+				to_chat(owner, "<span class='warning'>You fail to rip \the [current_gauze] on your [src.name] off.</span>")
+		else
+			if(do_mob(usr, owner, 3 SECONDS))
+				usr.visible_message("<span class='warning'>[usr] rips \the [current_gauze] from [owner]'s [src.name], destroying it in the process!</span>",
+								"<span class='warning'>You rip \the [current_gauze] from [owner]'s [src.name], destroying it in the process!</span>")
+				playsound(owner, 'modular_skyrat/sound/effects/clothripping.ogg', 40, 0, -4)
+				remove_gauze(FALSE)
+			else
+				to_chat(usr, "<span class='warning'>You fail to rip \the [current_gauze] from [owner]'s [src.name].</span>")
+
 /obj/item/bodypart/examine(mob/user)
 	. = ..()
 	for(var/woundie in wounds)
@@ -877,7 +902,7 @@
 	for(var/datum/wound/W in wounds)
 		dam_mul *= W.damage_multiplier_penalty
 	
-	if(!LAZYLEN(wounds) && current_gauze && !replaced)
+	if(!LAZYLEN(wounds) && current_gauze && !replaced && (current_gauze.absorption_capacity <= 0))
 		owner.visible_message("<span class='notice'>\The [current_gauze] on [owner]'s [name] fall away.</span>", "<span class='notice'>The [current_gauze] on your [name] fall away.</span>")
 		remove_gauze(drop_gauze = FALSE)
 
@@ -957,7 +982,7 @@
 	if(!current_gauze)
 		return
 	current_gauze.absorption_capacity -= seep_amt
-	if(current_gauze.absorption_capacity < 0)
+	if(current_gauze.absorption_capacity <= 0)
 		owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [name] fall away in rags.</span>", "<span class='warning'>\The [current_gauze] on your [name] fall away in rags.</span>", vision_distance=COMBAT_MESSAGE_RANGE)
 		remove_gauze()
 

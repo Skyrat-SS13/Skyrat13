@@ -331,30 +331,8 @@
 			for(var/obj/item/bodypart/grasped_part in grasped_limbs)
 				bleed_text += "[t_He] [t_is] holding [t_his] [grasped_part.name] to slow the bleeding!\n"
 			
-			msg |= bleed_text
-		//skyrat edit
-		var/list/obj/item/bodypart/suppress_limbs = list()
-		for(var/i in bodyparts)
-			var/obj/item/bodypart/BP = i
-			if(BP.status & BODYPART_NOBLEED)
-				suppress_limbs += BP
-
-		var/num_suppress = LAZYLEN(suppress_limbs)
-		var/suppress_text = "<span class='notice'><B>[t_His]"
-		switch(num_suppress)
-			if(1 to 2)
-				suppress_text += " [suppress_limbs[1].name][num_suppress == 2 ? " and [suppress_limbs[2].name]" : ""]"
-			if(3 to INFINITY)
-				for(var/i in 1 to (num_suppress - 1))
-					var/obj/item/bodypart/BP = suppress_limbs[i]
-					suppress_text += " [BP.name],"
-				suppress_text += " and [suppress_limbs[num_suppress].name]"
-		suppress_text += "[num_suppress == 1 ? " is impervious to bleeding" : " are impervious to bleeding"]"
+			msg += bleed_text
 		
-		suppress_text += ".</B></span>\n"
-		if(num_suppress)
-			msg += suppress_text
-		//
 		if(reagents.has_reagent(/datum/reagent/teslium))
 			msg += "[t_He] [t_is] emitting a gentle blue glow!\n"
 
@@ -638,6 +616,8 @@
 		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] [p_have()] no visible scars.</i></span>"
 		return msg
 	
+	var/t_His = p_their(TRUE)
+	var/t_his = p_their()
 	var/list/damaged_bodypart_text = list()
 	for(var/obj/item/bodypart/BP in bodyparts)
 		var/how_brute = ""
@@ -689,6 +669,52 @@
 
 	if(!length(damaged_bodypart_text))
 		msg |= "\t<span class='smallnotice'>[p_they(TRUE)] [p_have()] no significantly damaged bodyparts.</span>"
+	
+	var/list/obj/item/bodypart/gauzed_limbs = list()
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		if(BP.current_gauze)
+			gauzed_limbs += BP
+	var/num_gauze = LAZYLEN(gauzed_limbs)
+	var/gauze_text = "<span class='notice'>[t_His]"
+	switch(num_gauze)
+		if(1 to 2)
+			gauze_text += " <a href='?src=[REF(gauzed_limbs[1])];gauze=1;'>"
+			gauze_text += "[gauzed_limbs[1].name]"
+			gauze_text += "</a>"
+			gauze_text += "[num_gauze == 2 ? " and <a href='?src=[REF(gauzed_limbs[2])];gauze=1;'>[gauzed_limbs[2].name]</a>" : ""]"
+		if(3 to INFINITY)
+			for(var/i in 1 to (num_gauze - 1))
+				var/obj/item/bodypart/BP = gauzed_limbs[i]
+				gauze_text += " [BP.name],"
+			gauze_text += " and [gauzed_limbs[num_gauze].name]"
+	gauze_text += "[num_gauze == 1 ? " is gauzed" : " are gauzed"]"
+	
+	gauze_text += ".</span>\n"
+	if(num_gauze)
+		msg += gauze_text
+
+	var/list/obj/item/bodypart/suppress_limbs = list()
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		if(BP.status & BODYPART_NOBLEED)
+			suppress_limbs += BP
+
+	var/num_suppress = LAZYLEN(suppress_limbs)
+	var/suppress_text = "<span class='notice'><B>[t_His]"
+	switch(num_suppress)
+		if(1 to 2)
+			suppress_text += " [suppress_limbs[1].name][num_suppress == 2 ? " and [suppress_limbs[2].name]" : ""]"
+		if(3 to INFINITY)
+			for(var/i in 1 to (num_suppress - 1))
+				var/obj/item/bodypart/BP = suppress_limbs[i]
+				suppress_text += " [BP.name],"
+			suppress_text += " and [suppress_limbs[num_suppress].name]"
+	suppress_text += "[num_suppress == 1 ? " is impervious to bleeding" : " are impervious to bleeding"]"
+	
+	suppress_text += ".</B></span>\n"
+	if(num_suppress)
+		msg += suppress_text
 	
 	var/list/visible_scars = list()
 	for(var/i in all_scars)

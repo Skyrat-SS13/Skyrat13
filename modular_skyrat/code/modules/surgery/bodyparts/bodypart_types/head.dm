@@ -187,31 +187,37 @@
 
 /obj/item/bodypart/head/Topic(href, href_list)
 	. = ..()
-	var/mob/living/carbon/C = usr
-	if(!istype(C) || !C.canUseTopic(owner, TRUE, FALSE, FALSE) || owner?.wear_mask)
-		return
-	if(C == owner)
-		owner.visible_message("<span class='warning'>[owner] desperately tries to rip \the [tapered] from their mouth!</span>", "<span class='warning'>You desperately try to rip \the [tapered] from your mouth!</span>")
-		if(do_mob(owner, owner, 3 SECONDS))
-			tapered.forceMove(get_turf(owner))
-			tapered = null
-			owner.visible_message("<span class='warning'>[owner] rips \the [tapered] from their mouth!</span>", "<span class='warning'>You successfully remove \the [tapered] from your mouth!</span>")
-			owner.emote("scream")
-			REMOVE_TRAIT(owner, TRAIT_MUTE, "tape")
-		else
-			to_chat(owner, "<span class='warning'>You fail to take \the [tapered] off.</span>")
-	else
-		if(do_mob(usr, owner, 3))
-			owner.UnregisterSignal(tapered, COMSIG_MOB_SAY)
-			tapered.forceMove(get_turf(owner))
-			tapered = null
-			usr.visible_message("<span class='warning'>[usr] rips \the [tapered] from [owner]'s mouth!</span>", "<span class='warning'>You rip \the [tapered] out of [owner]'s mouth!</span>")
-			if(owner)
+	if(href_list["tape"])
+		var/mob/living/carbon/C = usr
+		if(!istype(C) || !C.canUseTopic(owner, TRUE, FALSE, FALSE) || owner?.wear_mask)
+			return
+		if(C == owner)
+			owner.visible_message("<span class='warning'>[owner] desperately tries to rip \the [tapered] from their mouth!</span>",
+								"<span class='warning'>You desperately try to rip \the [tapered] from your mouth!</span>")
+			if(do_mob(owner, owner, 3 SECONDS))
+				tapered.forceMove(get_turf(owner))
+				tapered = null
+				owner.visible_message("<span class='warning'>[owner] rips \the [tapered] from their mouth!</span>",
+									"<span class='warning'>You successfully remove \the [tapered] from your mouth!</span>")
+				playsound(owner, 'modular_skyrat/sound/effects/clothripping.ogg', 40, 0, -4)
 				owner.emote("scream")
 				REMOVE_TRAIT(owner, TRAIT_MUTE, "tape")
+			else
+				to_chat(owner, "<span class='warning'>You fail to take \the [tapered] off.</span>")
 		else
-			to_chat(usr, "<span class='warning'>You fail to take \the [tapered] off.</span>")
-	update_limb(!owner, owner)
+			if(do_mob(usr, owner, 1.5 SECONDS))
+				owner.UnregisterSignal(tapered, COMSIG_MOB_SAY)
+				tapered.forceMove(get_turf(owner))
+				tapered = null
+				usr.visible_message("<span class='warning'>[usr] rips \the [tapered] from [owner]'s mouth!</span>",
+								"<span class='warning'>You rip \the [tapered] out of [owner]'s mouth!</span>")
+				playsound(owner, 'modular_skyrat/sound/effects/clothripping.ogg', 40, 0, -4)
+				if(owner)
+					owner.emote("scream")
+					REMOVE_TRAIT(owner, TRAIT_MUTE, "tape")
+			else
+				to_chat(usr, "<span class='warning'>You fail to take \the [tapered] off.</span>")
+		update_limb(!owner, owner)
 
 /obj/item/bodypart/head/examine(mob/user)
 	. = ..()

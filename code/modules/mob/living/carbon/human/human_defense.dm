@@ -902,7 +902,10 @@
 			if(HD.tapered)
 				if(!wear_mask)
 					to_chat(src, "\t <span class='warning'>Your [HD.name] has \a <b><a href='?src=[REF(HD)];tape=[HD.tapered];'>[HD.tapered]</a></b> on it's mouth!</span>")
-
+		
+		if(LB.current_gauze)
+			to_chat(src, "\t <span class='notice'>Your [LB.name] is wrapped in <a href='?src=[REF(LB)];gauze=1;'>[LB.current_gauze.name]</a>.</span>")
+		
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 			for(var/thing in LB.wounds)
 				var/datum/wound/W = thing

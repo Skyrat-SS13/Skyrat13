@@ -20,6 +20,14 @@
 	required_reagents = list(/datum/reagent/foaming_agent = 1, /datum/reagent/gold = 1, /datum/reagent/iron = 1)
 	mix_message = "The mixture becomes a metallic slurry."
 
+/datum/chemical_reaction/kerosene
+	name = "Kerosene"
+	id = /datum/reagent/medicine/kerosene
+	results = list(/datum/reagent/medicine/kerosene = 10)
+	required_reagents = list(/datum/reagent/carbon = 5, /datum/reagent/fuel = 3, /datum/reagent/hydrogen = 2)
+	required_temp = 600
+	mix_message = "The mixture becomes a metallic slurry."
+
 //Repathed preservahyde
 /datum/chemical_reaction/preservahyde
 	name = "Preservahyde"
