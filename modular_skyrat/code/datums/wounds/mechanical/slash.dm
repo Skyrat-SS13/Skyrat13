@@ -37,12 +37,15 @@
 
 /datum/wound/mechanical/slash/self_treat(mob/living/carbon/user, first_time = FALSE)
 	. = ..()
-	if(. && victim && limb?.body_zone)
+	if(.)
+		return TRUE
+	
+	if(victim && limb?.body_zone)
 		var/obj/screen/zone_sel/sel = victim.hud_used?.zone_select
 		if(istype(sel))
 			sel.set_selected_zone(limb?.body_zone)
 			victim.grabbedby(victim)
-		return TRUE
+		return
 
 /datum/wound/mechanical/slash/wound_injury(datum/wound/slash/old_wound = null)
 	blood_flow = initial_flow

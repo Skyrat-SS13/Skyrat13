@@ -222,6 +222,10 @@
 	can_self_treat = TRUE
 
 /datum/wound/mechanical/blunt/moderate/self_treat(mob/living/carbon/user, first_time = FALSE)
+	. = ..()
+	if(.)
+		return TRUE
+	
 	var/time = base_treat_time
 	var/time_mod = 2
 	var/prob_mod = 20

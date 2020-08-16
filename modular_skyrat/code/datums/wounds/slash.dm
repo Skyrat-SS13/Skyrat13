@@ -41,12 +41,15 @@
 
 /datum/wound/slash/self_treat(mob/living/carbon/user, first_time = FALSE)
 	. = ..()
-	if(. && victim && limb?.body_zone)
+	if(.)
+		return TRUE
+	
+	if(victim && limb?.body_zone)
 		var/obj/screen/zone_sel/sel = victim.hud_used?.zone_select
 		if(istype(sel))
 			sel.set_selected_zone(limb?.body_zone)
 			victim.grabbedby(victim)
-		return TRUE
+		return
 
 /datum/wound/slash/on_hemostatic(quantity)
 	if((quantity >= 15) && (severity == WOUND_SEVERITY_SEVERE) && demotes_to)
