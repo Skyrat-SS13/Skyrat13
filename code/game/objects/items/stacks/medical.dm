@@ -124,6 +124,8 @@
 	heal_brute = 40
 	self_delay = 40
 	other_delay = 20
+	amount = 12
+	max_amount = 12
 	grind_results = list(/datum/reagent/medicine/styptic_powder = 10)
 
 /obj/item/stack/medical/bruise_pack/one
@@ -357,7 +359,8 @@
 	max_amount = 15
 	self_delay = 40
 	other_delay = 20
-
+	amount = 12
+	max_amount = 12
 	heal_burn = 5
 	flesh_regeneration = 2.5
 	sanitization = 0.3

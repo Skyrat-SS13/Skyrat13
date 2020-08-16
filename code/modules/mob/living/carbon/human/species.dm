@@ -2144,20 +2144,26 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		burn_damage = burn_damage * heatmod * H.physiology.heat_mod
 		if (H.stat < UNCONSCIOUS && (prob(burn_damage) * 10) / 4) //40% for level 3 damage on humans
 			H.emote("scream")
-		H.apply_damage(burn_damage, BURN)
+		var/obj/item/bodypart/BP
+		if(length(H.bodyparts) && prob(70))
+			BP = pick(H.bodyparts) 
+		H.apply_damage(burn_damage, BURN, BP)
 
 	else if(H.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(H, TRAIT_RESISTCOLD))
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "cold", /datum/mood_event/cold)
 		//Apply cold slowdown
 		H.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/cold, multiplicative_slowdown = ((BODYTEMP_COLD_DAMAGE_LIMIT - H.bodytemperature) / COLD_SLOWDOWN_FACTOR))
+		var/obj/item/bodypart/BP
+		if(length(H.bodyparts) && prob(70))
+			BP = pick(H.bodyparts) 
 		switch(H.bodytemperature)
 			if(200 to BODYTEMP_COLD_DAMAGE_LIMIT)
-				H.apply_damage(COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, BURN)
+				H.apply_damage(COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, BURN, BP)
 			if(120 to 200)
-				H.apply_damage(COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, BURN)
+				H.apply_damage(COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, BURN, BP)
 			else
-				H.apply_damage(COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, BURN)
+				H.apply_damage(COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, BURN, BP)
 
 	else
 		H.remove_movespeed_modifier(/datum/movespeed_modifier/cold)
@@ -2183,7 +2189,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			if(HAS_TRAIT(H, TRAIT_RESISTLOWPRESSURE))
 				H.clear_alert("pressure")
 			else
-				H.adjustBruteLoss(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod)
+				var/obj/item/bodypart/BP
+				if(length(H.bodyparts) && prob(50))
+					BP = pick(H.bodyparts)
+				H.apply_damage(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod, BRUTE, BP)
 				H.throw_alert("pressure", /obj/screen/alert/lowpressure, 2)
 
 //////////
