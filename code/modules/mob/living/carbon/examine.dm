@@ -360,7 +360,7 @@
 		if(BP.current_gauze)
 			gauzed_limbs += BP
 	var/num_gauze = LAZYLEN(gauzed_limbs)
-	var/gauze_text = "<span class='notice'>[t_His]"
+	var/gauze_text = "\t<span class='notice'>[t_His]"
 	switch(num_gauze)
 		if(1 to 2)
 			gauze_text += " <a href='?src=[REF(gauzed_limbs[1])];gauze=1;'>"
@@ -374,7 +374,7 @@
 			gauze_text += " and [gauzed_limbs[num_gauze].name]"
 	gauze_text += "[num_gauze == 1 ? " is gauzed" : " are gauzed"]"
 	
-	gauze_text += ".</span>\n"
+	gauze_text += ".</span>"
 	if(num_gauze)
 		msg += gauze_text
 
