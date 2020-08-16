@@ -610,7 +610,7 @@
 	
 	for(var/i in grasped_part?.children_zones)
 		var/obj/item/bodypart/child = attempted_grasper.get_bodypart(i)
-		if(attempted_grasper.active_hand_index == grasped_part.held_index)
+		if(attempted_grasper.active_hand_index == child.held_index)
 			to_chat(attempted_grasper, "<span class='danger'>You can't grasp your [grasped_part.name] with your [child.name]!</span>")
 			qdel(src)
 			return
