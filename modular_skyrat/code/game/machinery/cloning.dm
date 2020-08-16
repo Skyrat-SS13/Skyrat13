@@ -94,7 +94,7 @@
 		speed_coeff += (P.rating / 2)
 	speed_coeff = max(1, speed_coeff)
 	heal_level = clamp((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
-	cloneill_duration = (20 MINUTES * (1/max(efficiency-1,1)))
+	cloneill_duration = round(20 MINUTES * (1/max(efficiency-1,1)), 1)
 	cloneill_cloneloss = round(20 * (1/max(efficiency-1,1)), 1)
 	cloneill_hallucination = round(10 * (1/max(efficiency-1,1)), 1)
 	cloneill_moodhit = round(10 * (1/max(efficiency-2,1)), 1)
