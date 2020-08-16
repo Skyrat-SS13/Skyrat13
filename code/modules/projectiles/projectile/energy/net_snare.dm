@@ -5,6 +5,7 @@
 	damage_type = STAMINA
 	hitsound = 'sound/weapons/taserhit.ogg'
 	range = 10
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/energy/net/Initialize()
 	. = ..()
@@ -82,6 +83,7 @@
 	knockdown = 0
 	hitsound = 'sound/weapons/taserhit.ogg'
 	range = 10
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/energy/trap/cyborg/on_hit(atom/target, blocked = FALSE)
 	if(!ismob(target) || blocked >= 100)

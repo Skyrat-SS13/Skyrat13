@@ -125758,6 +125758,13 @@
 	},
 /turf/open/space,
 /area/engine/atmos)
+"kqo" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "ktK" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -126416,6 +126423,10 @@
 	dir = 1
 	},
 /area/science/circuit)
+"pok" = (
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plasteel/grimy,
+/area/crew_quarters/theatre/abandoned)
 "poI" = (
 /obj/structure/bed,
 /obj/item/tank/internals/anesthetic,
@@ -127080,34 +127091,12 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-<<<<<<< HEAD
-/obj/machinery/firealarm{
+<<<<<<< HEAD/obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"wFu" = (
-/turf/closed/wall/r_wall,
-/area/space/nearstation)
-"wHv" = (
-=======
->>>>>>> f42994c79b... Toxin tweaks! Just storage (#12363)
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 4
-	},
-/obj/machinery/airalarm{
-	pixel_y = 22
-	},
-/turf/open/floor/plasteel/dark,
-/area/chapel/office)
 "xaf" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Holodeck Access"
@@ -163361,7 +163350,7 @@ aof
 aky
 aky
 aky
-arD
+kqo
 asZ
 aui
 avF
@@ -178120,7 +178109,7 @@ dCX
 dEj
 dFq
 dGJ
-dGJ
+pok
 dJy
 dGJ
 dGJ

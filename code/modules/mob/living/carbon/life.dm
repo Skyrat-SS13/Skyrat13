@@ -1,6 +1,7 @@
 /mob/living/carbon/BiologicalLife(seconds, times_fired)
 	//Reagent processing needs to come before breathing, to prevent edge cases.
 	handle_organs()
+	handle_changeling()
 	. = ..()		// if . is false, we are dead.
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
@@ -26,7 +27,6 @@
 		handle_liver()
 
 	//Updates the number of stored chemicals for powers
-	handle_changeling()
 
 /mob/living/carbon/PhysicalLife(seconds, times_fired)
 	if(!(. = ..()))
@@ -763,3 +763,10 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		return
 
 	heart.beating = !status
+
+//skyrat edit
+/mob/living/carbon/handle_wounds()
+	for(var/thing in all_wounds)
+		var/datum/wound/W = thing
+		if(istype(W) && W.processes) // meh
+			W.handle_process()

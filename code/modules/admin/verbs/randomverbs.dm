@@ -1239,20 +1239,38 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	set category = "Fun"
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
-
 	var/list/punishment_list = list(ADMIN_PUNISHMENT_PIE,
-		ADMIN_PUNISHMENT_CUSTOM_PIE,
-		ADMIN_PUNISHMENT_FIREBALL,
-		ADMIN_PUNISHMENT_LIGHTNING,
-		ADMIN_PUNISHMENT_BRAINDAMAGE,
-		ADMIN_PUNISHMENT_BSA,
-		ADMIN_PUNISHMENT_GIB,
-		ADMIN_PUNISHMENT_SUPPLYPOD_QUICK,
-		ADMIN_PUNISHMENT_SUPPLYPOD,
-		ADMIN_PUNISHMENT_MAZING,
-		ADMIN_PUNISHMENT_ROD,
-		ADMIN_PUNISHMENT_PICKLE,
-		ADMIN_PUNISHMENT_FRY)
+								ADMIN_PUNISHMENT_CUSTOM_PIE,
+								ADMIN_PUNISHMENT_FIREBALL,
+								ADMIN_PUNISHMENT_LIGHTNING,
+								ADMIN_PUNISHMENT_BRAINDAMAGE,
+								ADMIN_PUNISHMENT_BSA,
+								ADMIN_PUNISHMENT_GIB,
+								ADMIN_PUNISHMENT_SUPPLYPOD_QUICK,
+								ADMIN_PUNISHMENT_SUPPLYPOD,
+								ADMIN_PUNISHMENT_MAZING,
+								ADMIN_PUNISHMENT_ROD,
+								ADMIN_PUNISHMENT_PICKLE,
+								ADMIN_PUNISHMENT_FRY,
+								ADMIN_PUNISHMENT_CRACK,
+								ADMIN_PUNISHMENT_BLEED,
+								ADMIN_PUNISHMENT_PERFORATE,
+								ADMIN_PUNISHMENT_BURN,
+								ADMIN_PUNISHMENT_WARCRIME,
+								ADMIN_PUNISHMENT_INCISIONIFY,
+								ADMIN_PUNISHMENT_SHRAPNEL,
+								ADMIN_PUNISHMENT_SCARIFY,
+								ADMIN_PUNISHMENT_NUGGET,
+								ADMIN_PUNISHMENT_ONE,
+								ADMIN_PUNISHMENT_EXTREMITIES,
+								ADMIN_PUNISHMENT_RAYMAN,
+								ADMIN_PUNISHMENT_HOLLOW,
+								ADMIN_PUNISHMENT_LIVELEAK,
+								ADMIN_PUNISHMENT_ISIS,
+								ADMIN_PUNISHMENT_MEDIC,
+								ADMIN_PUNISHMENT_PAPAJOHNS,
+								ADMIN_PUNISHMENT_PHANTOM_PAIN,
+								)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1334,6 +1352,279 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			target.turn_into_pickle()
 		if(ADMIN_PUNISHMENT_FRY)
 			target.fry()
+		
+		//skyrat punishments
+		if(ADMIN_PUNISHMENT_CRACK)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/squish_part in C.bodyparts)
+				var/type_wound = pick(WOUND_LIST_BLUNT)
+				if(!squish_part.is_organic_limb())
+					type_wound = pick(WOUND_LIST_BLUNT_MECHANICAL)
+				squish_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_BLEED)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/slice_part in C.bodyparts)
+				var/type_wound = pick(WOUND_LIST_SLASH)
+				if(!slice_part.is_organic_limb())
+					type_wound = pick(WOUND_LIST_SLASH_MECHANICAL)
+				var/i = 0
+				while(i < 3)
+					i++
+					slice_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_PERFORATE)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/puncture_part in C.bodyparts)
+				var/type_wound = pick(WOUND_LIST_PIERCE)
+				if(!puncture_part.is_organic_limb())
+					type_wound = pick(WOUND_LIST_PIERCE_MECHANICAL)
+				var/i = 0
+				while(i < 3)
+					i++
+					puncture_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_BURN)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/burn_part in C.bodyparts)
+				var/type_wound = pick(WOUND_LIST_BURN)
+				if(!burn_part.is_organic_limb())
+					type_wound = pick(WOUND_LIST_BURN_MECHANICAL)
+				burn_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_WARCRIME)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/list/orders = list("I was just following orders", "Fuck, go back")
+			var/sure = input("Are you that evil?", "Space Nuremberg Trials") as anything in orders
+			if(sure == orders[1])
+				var/mob/living/carbon/C = target
+				for(var/obj/item/bodypart/burn_part in C.bodyparts)
+					var/type_wound = pick(WOUND_LIST_BURN)
+					if(!burn_part.is_organic_limb())
+						type_wound = pick(WOUND_LIST_BURN_MECHANICAL)
+					burn_part.force_wound_upwards(type_wound, smited=TRUE)
+				for(var/obj/item/bodypart/puncture_part in C.bodyparts)
+					var/type_wound = pick(WOUND_LIST_PIERCE)
+					if(!puncture_part.is_organic_limb())
+						type_wound = pick(WOUND_LIST_PIERCE_MECHANICAL)
+					var/i = 0
+					while(i < 3)
+						i++
+						puncture_part.force_wound_upwards(type_wound, smited=TRUE)
+				for(var/obj/item/bodypart/slice_part in C.bodyparts)
+					var/type_wound = pick(WOUND_LIST_SLASH)
+					if(!slice_part.is_organic_limb())
+						type_wound = pick(WOUND_LIST_SLASH_MECHANICAL)
+					var/i = 0
+					while(i < 3)
+						i++
+						slice_part.force_wound_upwards(type_wound, smited=TRUE)
+				for(var/obj/item/bodypart/squish_part in C.bodyparts)
+					var/type_wound = pick(WOUND_LIST_BLUNT)
+					if(!squish_part.is_organic_limb())
+						type_wound = pick(WOUND_LIST_BLUNT_MECHANICAL)
+					squish_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_INCISIONIFY)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				var/datum/wound/woundie = new /datum/wound/slash/critical/incision()
+				woundie.apply_wound(BP)
+		if(ADMIN_PUNISHMENT_SHRAPNEL)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				var/randumb = rand(1, 3)
+				for(var/i in 1 to randumb)
+					var/obj/item/shrapnel/shame = new /obj/item/shrapnel(C)
+					shame.name = "shrapnel of shame"
+					shame.desc = "You're shameful."
+					shame.tryEmbed(BP, TRUE, FALSE)
+		if(ADMIN_PUNISHMENT_SCARIFY)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			C.generate_fake_scars(rand(1, 4), null, TRUE)
+			to_chat(C, "<span class='userdanger'>You feel your body grow jaded and torn...</span>")
+		if(ADMIN_PUNISHMENT_NUGGET)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				if(BP.body_zone in LIMB_BODYPARTS)
+					BP.dismember(BRUTE)
+		if(ADMIN_PUNISHMENT_ONE)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				if(BP.body_zone in LIMB_BODYPARTS)
+					BP.drop_limb(FALSE, FALSE, FALSE, TRUE)
+			var/list/sensory = list(ORGAN_SLOT_EYES, ORGAN_SLOT_TONGUE, ORGAN_SLOT_VOICE, ORGAN_SLOT_EARS)
+			for(var/i in sensory)
+				if(C.getorganslot(i))
+					var/obj/item/organ/O = C.getorganslot(i)
+					O.Remove()
+					qdel(O)
+			to_chat(C, "<span class='narsiesmall'>DARKNESS! IMPRISONING ME! ALL THAT I SEE, ABSOLUTE HORROR!</span>")
+			ADD_TRAIT(C, TRAIT_DNR, "smite")
+			ADD_TRAIT(C, TRAIT_NOHARDCRIT, "smite")
+			ADD_TRAIT(C, TRAIT_NOSOFTCRIT, "smite")
+			ADD_TRAIT(C, TRAIT_NODEATH, "smite")
+			C.gain_trauma_type(/datum/brain_trauma/severe/paralysis, TRAUMA_RESILIENCE_ABSOLUTE)
+			C.verbs -= list(/mob/living/verb/ghost, /mob/dead/observer/verb/stay_dead, /mob/living/carbon/human/verb/suicide)
+		if(ADMIN_PUNISHMENT_RAYMAN)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				if(BP.body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_ARM, BODY_ZONE_R_LEG))
+					qdel(BP)
+			C.regenerate_icons()
+		if(ADMIN_PUNISHMENT_EXTREMITIES)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				if(BP.body_zone in EXTREMITY_BODYPARTS)
+					BP.dismember(BRUTE)
+		if(ADMIN_PUNISHMENT_HOLLOW)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			to_chat(C, "<span class='userdanger'>You feel your body going hollow...</span>")
+			for(var/obj/item/organ/O in C.internal_organs)
+				if(O.slot != ORGAN_SLOT_BRAIN)
+					O.Remove()
+					qdel(O)
+		if(ADMIN_PUNISHMENT_LIVELEAK)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			var/obj/item/bodypart/BP = C.get_bodypart(BODY_ZONE_PRECISE_GROIN)
+			if(istype(BP))
+				BP.dismember(BRUTE)
+		if(ADMIN_PUNISHMENT_ISIS)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			var/god = pick("Allah", "God", "Jesus", "Buddha", "Space Jesus", "Flying Spaghetti Monster", "Yakub", "Armok", "Yama", "Ares", "Zeus", "Sithis", "Mephala", "Bob Joga")
+			C.visible_message("<span class='userdanger'>[C]'s neck gets slicen by the will of [god]", "<span class='narsiesmall'>[god] slices your neck!</span>")
+			playsound(C, 'modular_skyrat/sound/weapons/bloodyslice.ogg', 100, 0, 7)
+			C.apply_status_effect(/datum/status_effect/neck_slice)
+			spawn(5 SECONDS)
+				var/obj/item/bodypart/BP = C.get_bodypart(BODY_ZONE_HEAD)
+				if(istype(BP))
+					BP.dismember(BRUTE)
+		if(ADMIN_PUNISHMENT_MEDIC)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			var/obj/item/organ/heart/ht = C.getorganslot(ORGAN_SLOT_HEART)
+			if(ht)
+				to_chat(C, "<span class='nicegreen'>Don't worry... it'll grow back!</span>")
+				var/obj/item/bodypart/BP = C.get_bodypart(BODY_ZONE_CHEST)
+				if(istype(BP))
+					var/datum/wound/woundie = new /datum/wound/slash/critical/incision()
+					woundie.apply_wound(L = BP, smited = TRUE)
+				ht.Remove()
+				ht.forceMove(get_turf(C))
+				spawn(6 SECONDS)
+					new /obj/effect/gibspawner/human(ht.loc)
+					qdel(ht)
+		if(ADMIN_PUNISHMENT_PAPAJOHNS)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				var/body_zoner = BP.body_zone
+				BP.drop_limb(TRUE, TRUE, FALSE)
+				var/obj/item/bodypart/papajohn = C.newBodyPart(body_zoner, FALSE, TRUE)
+				papajohn.is_pseudopart = TRUE
+				papajohn.attach_limb(C, TRUE, TRUE)
+				var/pizza = pick(subtypesof(/obj/item/reagent_containers/food/snacks/pizza))
+				var/obj/item/reagent_containers/food/snacks/pizza/vinny = new pizza()
+				if(body_zoner == BODY_ZONE_PRECISE_R_HAND)
+					C.put_in_r_hand(vinny)
+					ADD_TRAIT(vinny, TRAIT_NODROP, "surgery")
+				else if(body_zoner == BODY_ZONE_PRECISE_L_HAND)
+					C.put_in_l_hand(vinny)
+					ADD_TRAIT(vinny, TRAIT_NODROP, "surgery")
+				papajohn.name = "[vinny.name] [papajohn.name]"
+				papajohn.desc = vinny.desc
+				papajohn.custom_overlay = mutable_appearance(vinny.icon, vinny.icon_state, FLOAT_LAYER, FLOAT_PLANE, vinny.color)
+				papajohn.custom_overlay.transform *= 0.5
+				papajohn.custom_overlay.pixel_x = 0
+				papajohn.custom_overlay.pixel_y = 0
+				papajohn.custom_overlay.pixel_x += 8
+				papajohn.custom_overlay.pixel_y -= 8
+				switch(body_zoner)
+					if(BODY_ZONE_HEAD)
+						papajohn.custom_overlay.pixel_x -= 8
+						papajohn.custom_overlay.pixel_y += 16
+					if(BODY_ZONE_CHEST)
+						papajohn.custom_overlay.pixel_x -= 8
+						papajohn.custom_overlay.pixel_y += 12
+					if(BODY_ZONE_PRECISE_GROIN)
+						papajohn.custom_overlay.pixel_x -= 8
+						papajohn.custom_overlay.pixel_y += 6
+					if(BODY_ZONE_R_LEG)
+						papajohn.custom_overlay.pixel_x += 0
+						papajohn.custom_overlay.pixel_y += 4
+					if(BODY_ZONE_PRECISE_R_FOOT)
+						papajohn.custom_overlay.pixel_x += 0
+						papajohn.custom_overlay.pixel_y += 2
+					if(BODY_ZONE_L_LEG)
+						papajohn.custom_overlay.pixel_x -= 16
+						papajohn.custom_overlay.pixel_y += 4
+					if(BODY_ZONE_PRECISE_L_FOOT)
+						papajohn.custom_overlay.pixel_x -= 16
+						papajohn.custom_overlay.pixel_y += 2
+			if(ishuman(C))
+				var/mob/living/carbon/human/H = C
+				if(H.dna?.species?.name)
+					H.dna.species.name = "Papa John's Pizza"
+					H.dna.species.exotic_blood = /datum/reagent/consumable/tomatojuice
+					H.dna.species.exotic_bloodtype = "Tomato Sauce"
+					H.dna.species.liked_food = GRAIN | DAIRY | JUNKFOOD
+					H.dna.species.say_mod = "salsas"
+					H.dna.species.meat = /obj/item/reagent_containers/food/snacks/pizza
+					H.dna.species.hair_alpha = 0
+					H.dna.species.species_traits -= list(HAIR,LIPS,FACEHAIR,MUTCOLORS,MUTCOLORS2,MUTCOLORS3,MUTCOLORS_PARTSONLY,MARKINGS)
+			C.regenerate_icons()
+			to_chat(C, "<span class='rose'>Your entire body becomes doughy!</span>")
+		if(ADMIN_PUNISHMENT_PHANTOM_PAIN)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				BP.drop_limb(TRUE, TRUE, FALSE, FALSE)
+		//
 
 	punish_log(target, punishment)
 

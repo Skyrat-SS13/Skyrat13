@@ -30,6 +30,7 @@
 		"cyan" = rgb(24, 162, 213),
 		"yellow" = rgb(255, 165, 0)
 	)
+	sharpness = SHARP_POINTY
 
 /obj/item/screwdriver/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is stabbing [src] into [user.p_their()] [pick("temple", "heart")]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -133,6 +134,7 @@
 /obj/item/screwdriver/power/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	var/obj/item/wrench/power/b_drill = new /obj/item/wrench/power(drop_location())
+	b_drill.name = name // Skyrat fix
 	to_chat(user, "<span class='notice'>You attach the bolt driver bit to [src].</span>")
 	qdel(src)
 	user.put_in_active_hand(b_drill)

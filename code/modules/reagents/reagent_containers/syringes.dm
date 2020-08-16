@@ -9,6 +9,7 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list()
 	volume = 15
+	force = 5
 	var/mode = SYRINGE_DRAW
 	var/busy = FALSE		// needed for delayed drawing of blood
 	var/proj_piercing = 0 //does it pierce through thick clothes when shot with syringe gun
@@ -16,6 +17,8 @@
 	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 	custom_price = PRICE_CHEAP_AS_FREE
+	var/useless = FALSE // If we stabbed someone, yep, useless. No more.
+	sharpness = SHARP_POINTY
 
 /obj/item/reagent_containers/syringe/Initialize()
 	. = ..()
@@ -50,16 +53,41 @@
 /obj/item/reagent_containers/syringe/attack_paw(mob/user)
 	return attack_hand(user)
 
+/obj/item/reagent_containers/syringe/examine(mob/user)
+	. = ..()
+	if(useless)
+		. += "<span class='warning'>The tip is severely bent, [src] can't be used for much.</span>"
+
 /obj/item/reagent_containers/syringe/attackby(obj/item/I, mob/user, params)
+	if(useless)
+		if(istype(I, /obj/item/weldingtool))
+			var/obj/item/weldingtool/welder = I
+			if(welder.isOn() && welder.use(2))
+				welder.play_attack_sound(welder.force)
+				user.visible_message("<span class='notice'>[user] fixes \the [src] with [user.p_their()] [welder].",\
+									"<span class='notice'>You fix \the [src] with your [welder].")
+				name = initial(name)
+				useless = FALSE
+			else
+				if(!welder.isOn())
+					to_chat(user, "<span class='warning'>\The [src] needs to be on!</span>")
+				else if(!welder.use(2))
+					to_chat(user, "<span class='warning'>\The [src] does not have enough fuel!</span>")
 	return
 
-/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user , proximity)
+/obj/item/reagent_containers/syringe/attack()
+	return			// no bludgeoning.
+
+/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(busy)
 		return
 	if(!proximity)
 		return
 	if(!target.reagents)
+		return
+	if(useless)
+		to_chat(user, "<span class='warning'>\The [src] is broken!</span>")
 		return
 
 	var/mob/living/L
@@ -83,20 +111,32 @@
 
 			if(L) //living mob
 				var/drawn_amount = reagents.maximum_volume - reagents.total_volume
-				if(target != user)
-					target.visible_message("<span class='danger'>[user] is trying to take a blood sample from [target]!</span>", \
-									"<span class='userdanger'>[user] is trying to take a blood sample from [target]!</span>")
-					busy = TRUE
-					if(!do_mob(user, target, extra_checks=CALLBACK(L, /mob/living/proc/can_inject,user,1)))
-						busy = FALSE
-						return
-					if(reagents.total_volume >= reagents.maximum_volume)
-						return
+				if(L != user)
+					if(user.a_intent != INTENT_HARM)
+						target.visible_message("<span class='danger'>[user] is trying to take a blood sample from [target]!</span>", \
+										"<span class='userdanger'>[user] is trying to take a blood sample from [target]!</span>")
+						busy = TRUE
+						if(!do_mob(user, target, extra_checks=CALLBACK(L, /mob/living/proc/can_inject,user,1)))
+							busy = FALSE
+							return
+						if(reagents.total_volume >= reagents.maximum_volume)
+							return
+					else
+						target.visible_message("<span class='danger'>[user] stabs [target] with \the [src]!</span>", \
+										"<span class='userdanger'>[user] stabs [target] with \the [src]!</span>")
+				else if(L == user && user.a_intent == INTENT_HARM)
+					target.visible_message("<span class='danger'>[user] stabs themselves with \the [src]!</span>", \
+									"<span class='userdanger'>You stab yourself with \the [src]!</span>")
+
 				busy = FALSE
 				if(L.transfer_blood_to(src, drawn_amount))
-					user.visible_message("[user] takes a blood sample from [L].")
+					user.visible_message("<span class='[user.a_intent == INTENT_HARM ? "danger" : "warning"]'>[user] [user.a_intent == INTENT_HARM ? "forcefully " : ""]takes a blood sample from [L][user.a_intent == INTENT_HARM ? "!" : "."]</span>")
 				else
-					to_chat(user, "<span class='warning'>You are unable to draw any blood from [L]!</span>")
+					to_chat(user, "<span class='warning'>You were unable to draw any blood from [L]!</span>")
+				
+				if(user.a_intent == INTENT_HARM)
+					useless = TRUE
+					name = "broken [name]"
 
 			else //if not mob
 				if(!target.reagents.total_volume)
@@ -135,25 +175,37 @@
 				if(!L.can_inject(user, TRUE))
 					return
 				if(L != user)
-					L.visible_message("<span class='danger'>[user] is trying to inject [L]!</span>", \
-											"<span class='userdanger'>[user] is trying to inject [L]!</span>")
-					if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject,user,1)))
-						return
-					if(!reagents.total_volume)
-						return
-					if(L.reagents.total_volume >= L.reagents.maximum_volume)
-						return
-					L.visible_message("<span class='danger'>[user] injects [L] with the syringe!", \
-									"<span class='userdanger'>[user] injects [L] with the syringe!</span>")
+					if(user.a_intent != INTENT_HARM)
+						L.visible_message("<span class='danger'>[user] is trying to inject [L]!</span>", \
+												"<span class='userdanger'>[user] is trying to inject [L]!</span>")
+						if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject,user,1)))
+							return
+						if(!reagents.total_volume)
+							return
+						if(L.reagents.total_volume >= L.reagents.maximum_volume)
+							return
+						L.visible_message("<span class='danger'>[user] injects [L] with the syringe!", \
+										"<span class='userdanger'>[user] injects [L] with the syringe!</span>")
+					else
+						target.visible_message("<span class='danger'>[user] stabs [target] with \the [src]!</span>", \
+										"<span class='userdanger'>[user] stabs [target] with \the [src]!</span>")
+				else if(L == user && user.a_intent == INTENT_HARM)
+					target.visible_message("<span class='danger'>[user] stabs themselves with \the [src]!</span>", \
+									"<span class='userdanger'>You stab yourself with \the [src]!</span>")
 
 				if(L != user)
-					log_combat(user, L, "injected", src, addition="which had [contained]")
+					log_combat(user, L, "[user.a_intent == INTENT_HARM ? "stab-" : ""]injected", src, addition="which had [contained]")
 				else
-					L.log_message("injected themselves ([contained]) with [src.name]", LOG_ATTACK, color="orange")
+					L.log_message("[user.a_intent == INTENT_HARM ? "stab-" : ""]injected themselves ([contained]) with [src.name]", LOG_ATTACK, color="orange")
+				
+				if(user.a_intent == INTENT_HARM)
+					useless = TRUE
+					name = "broken [name]"
+				
 			var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
 			reagents.reaction(L, INJECT, fraction)
-			reagents.trans_to(target, amount_per_transfer_from_this)
-			to_chat(user, "<span class='notice'>You inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units.</span>")
+			reagents.trans_to(target, (user.a_intent == INTENT_HARM ? reagents.total_volume : amount_per_transfer_from_this))
+			to_chat(user, "<span class='[user.a_intent == INTENT_HARM ? "danger" : "notice"]'>You [user.a_intent == INTENT_HARM ? "stab-" : ""]inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units.</span>")
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()

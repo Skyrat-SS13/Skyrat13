@@ -7,7 +7,7 @@
 	icon_state = "stealth"
 	item_state = "stealth"
 	has_sensor = NO_SENSORS
-	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 90)
+	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 90, "wound" = 10)
 	alt_covers_chest = TRUE
 	can_adjust = FALSE
 	var/effectapplied = /datum/status_effect/stealthsuit

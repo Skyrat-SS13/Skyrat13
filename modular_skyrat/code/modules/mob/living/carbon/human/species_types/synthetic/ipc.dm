@@ -1,7 +1,7 @@
 /datum/species/ipc
-	species_traits = list(MUTCOLORS_PARTSONLY,NOEYES,NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY,HAIR)
-	mutant_bodyparts = list("ipc_screen" = "Blank", "ipc_antenna" = "None", ipc_chassis = "Morpheus Cyberkinetics(Greyscale)")
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE, TRAIT_CLONEIMMUNE)
+	species_traits = list(MUTCOLORS_PARTSONLY,NOEYES,NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY,HAIR,HAS_SKIN,HAS_FLESH,HAS_BONE)
+	mutant_bodyparts = list("ipc_screen" = "Blank", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)")
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH,TRAIT_TOXIMMUNE,TRAIT_CLONEIMMUNE,TRAIT_NODEFIB)
 	coldmod = 0.5
 	burnmod = 1.1
 	heatmod = 1.2
