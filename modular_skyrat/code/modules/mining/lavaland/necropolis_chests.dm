@@ -107,6 +107,8 @@
 	item_state = "heckgun"
 	sharpness = IS_SHARP
 	force = 15
+	inhand_x_dimension = 0
+	inhand_y_dimension = 0
 	var/recharge_rate = 4
 	var/charge_tick = 0
 	var/toggled = FALSE
