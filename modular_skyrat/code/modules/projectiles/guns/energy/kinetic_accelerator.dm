@@ -215,7 +215,7 @@
 	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
 	icon_state = "byoka"
 	item_state = "kineticgun"
-	overheat_time = 30
+	overheat_time = 27
 	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/byoka)
 	max_mod_capacity = 300
 
