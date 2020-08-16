@@ -56,7 +56,7 @@
 /datum/status_effect/cloneill
 	id = "cloneill"
 	status_type = STATUS_EFFECT_REPLACE
-	tick_interval = 50
+	tick_interval = 5 SECONDS
 	duration = 20 MINUTES
 	alert_type = /obj/screen/alert/cloneill
 	var/healthpenalty = 25
@@ -101,7 +101,7 @@
 	REMOVE_TRAIT(owner, TRAIT_EASYLIMBDISABLE, "cloneill")
 	REMOVE_TRAIT(owner, TRAIT_SCREWY_CHECKSELF, "cloneill")
 
-/datum/status_effect/cloneill/process()
+/datum/status_effect/cloneill/tick()
 	. = ..()
 	if(prob(hallucination_prob) && iscarbon(owner))
 		var/mob/living/carbon/C = owner
