@@ -370,8 +370,8 @@
 		if(3 to INFINITY)
 			for(var/i in 1 to (num_gauze - 1))
 				var/obj/item/bodypart/BP = gauzed_limbs[i]
-				gauze_text += " [BP.name],"
-			gauze_text += " and [gauzed_limbs[num_gauze].name]"
+				gauze_text += " <a href='?src=[REF(BP)];gauze=1;'>[BP.name]</a>,"
+			gauze_text += " and <a href='?src=[REF(gauzed_limbs[num_gauze])];gauze=1;'>[gauzed_limbs[num_gauze].name]</a>"
 	gauze_text += "[num_gauze == 1 ? " is gauzed" : " are gauzed"]"
 	
 	gauze_text += ".</span>"
