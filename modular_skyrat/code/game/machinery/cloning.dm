@@ -27,7 +27,8 @@
 	var/cloneill_duration = 20 MINUTES
 	var/cloneill_cloneloss = 20
 	var/cloneill_hallucination = 10
-	var/cloneill_moodhit = 10
+	var/cloneill_healthpenalty = 25
+	var/cloneill = FALSE
 
 	var/datum/mind/clonemind
 	var/grab_ghost_when = CLONER_MATURE_CLONE
@@ -97,7 +98,6 @@
 	cloneill_duration = round(20 MINUTES * (1/max(efficiency-1,1)), 1)
 	cloneill_cloneloss = round(20 * (1/max(efficiency-1,1)), 1)
 	cloneill_hallucination = round(10 * (1/max(efficiency-1,1)), 1)
-	cloneill_moodhit = round(10 * (1/max(efficiency-2,1)), 1)
 
 //Clonepod
 /obj/machinery/clonepod/examine(mob/user)
@@ -111,10 +111,10 @@
 		cloonmessage += "<span class='notice'>"
 		cloonmessage += "The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>."
 		cloonmessage += "<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>."
-		cloonmessage += "<br>Predicted amount of clone illness cellular damage: <b>[cloneill_cloneloss]</b>."
-		cloonmessage += "<br>Predicted duration of clone illness: <b>[cloneill_duration/10] second[cloneill_duration/10 == 1 ? "s" : ""] ([cloneill_duration/600] minute[cloneill_duration/600 == 1 ? "s" : ""])</b>."
-		cloonmessage += "<br>Predicted probability of hallucinations: <b>[cloneill_hallucination]% every 5 seconds</b>."
-		cloonmessage += "<br>Predicted mood hit on the patient: <b>[cloneill_moodhit*10]%</b>."
+		if(cloneill)
+			cloonmessage += "<br>Predicted amount of clone illness cellular damage: <b>[cloneill_cloneloss]</b>."
+			cloonmessage += "<br>Predicted duration of clone illness: <b>[cloneill_duration/10] second[cloneill_duration/10 == 1 ? "s" : ""] ([cloneill_duration/600] minute[cloneill_duration/600 == 1 ? "s" : ""])</b>."
+			cloonmessage += "<br>Predicted probability of hallucinations: <b>[cloneill_hallucination]% every 7 seconds</b>."
 		cloonmessage += "</span>"
 		. += cloonmessage
 		if(efficiency > 5)
@@ -427,6 +427,11 @@
 		if(jobban_isbanned(mob_occupant) && ishuman(mob_occupant))	// SKYRAT ADDITION -- BEGIN
 			var/mob/living/carbon/human/C = mob_occupant
 			C.update_pacification_ban()	// SKYRAT ADDITION -- END
+		
+		//Apply the cloned status effect
+		if(cloneill)
+			mob_occupant.apply_status_effect(/datum/status_effect/cloneill, cloneill_healthpenalty, cloneill_cloneloss, cloneill_hallucination)
+		SEND_SIGNAL(mob_occupant, COMSIG_ADD_MOOD_EVENT, "clooned", /datum/mood_event/clooned)
 
 	occupant.forceMove(T)
 	update_icon()
@@ -434,16 +439,6 @@
 	for(var/fl in unattached_flesh)
 		qdel(fl)
 	unattached_flesh.Cut()
-
-	//Apply the cloned status effect
-	var/mob/living/carbon/H = occupant
-	if(istype(H))
-		var/datum/status_effect/cloneill/illness = new(H)
-		illness.duration = cloneill_duration
-		illness.cloneloss_amount = cloneill_cloneloss
-		illness.moodmalus = cloneill_moodhit
-		H.apply_status_effect(illness)
-
 	occupant = null
 
 /obj/machinery/clonepod/proc/malfunction()

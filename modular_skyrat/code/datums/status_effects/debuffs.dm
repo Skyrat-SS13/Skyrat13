@@ -62,7 +62,6 @@
 	var/healthpenalty = 25
 	var/cloneloss_amount = 20
 	var/hallucination_prob = 10
-	var/moodmalus = 10
 	var/storedmaxhealth = 0
 	var/list/hallucinate_options = list(
 		"Self",
@@ -83,6 +82,12 @@
 		"Random",
 	)
 
+/datum/status_effect/cloneill/on_creation(mob/living/new_owner, healthp = 25, cloneloss = 20, hallucination = 10)
+	. = ..()
+	healthpenalty = healthp
+	cloneloss_amount = cloneloss
+	hallucination_prob = hallucination
+
 /datum/status_effect/cloneill/on_apply()
 	. = ..()
 	owner.adjustCloneLoss(cloneloss_amount)
@@ -90,10 +95,6 @@
 	owner.maxHealth -= healthpenalty
 	ADD_TRAIT(owner, TRAIT_EASYLIMBDISABLE, "cloneill")
 	ADD_TRAIT(owner, TRAIT_SCREWY_CHECKSELF, "cloneill")
-	var/datum/mood_event/clooned/kleiner = new(owner)
-	kleiner.timeout = duration
-	kleiner.mood_change = -moodmalus
-	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "clooned", kleiner)
 
 /datum/status_effect/cloneill/on_remove()
 	. = ..()

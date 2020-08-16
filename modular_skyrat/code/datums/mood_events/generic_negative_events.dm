@@ -14,4 +14,4 @@
 /datum/mood_event/clooned
 	description = "<span class='boldwarning'>Awake... but at what cost?</span>\n"
 	mood_change = -10
-	timeout = 20 MINUTES
+	timeout = 15 MINUTES
