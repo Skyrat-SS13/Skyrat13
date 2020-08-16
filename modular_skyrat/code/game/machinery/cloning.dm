@@ -438,7 +438,7 @@
 	//Apply the cloned status effect
 	var/mob/living/carbon/H = occupant
 	if(istype(H))
-		var/datum/status_effect/cloneill/illness = new()
+		var/datum/status_effect/cloneill/illness = new(H)
 		illness.duration = cloneill_duration
 		illness.cloneloss_amount = cloneill_cloneloss
 		illness.moodmalus = cloneill_moodhit

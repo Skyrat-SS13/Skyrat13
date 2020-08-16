@@ -90,7 +90,7 @@
 	owner.maxHealth -= healthpenalty
 	ADD_TRAIT(owner, TRAIT_EASYLIMBDISABLE, "cloneill")
 	ADD_TRAIT(owner, TRAIT_SCREWY_CHECKSELF, "cloneill")
-	var/datum/mood_event/clooned/kleiner = new()
+	var/datum/mood_event/clooned/kleiner = new(owner)
 	kleiner.timeout = duration
 	kleiner.mood_change = -moodmalus
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "clooned", kleiner)
