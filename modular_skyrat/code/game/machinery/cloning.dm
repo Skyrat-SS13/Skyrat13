@@ -112,7 +112,7 @@
 		cloonmessage += "The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>."
 		cloonmessage += "<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>."
 		cloonmessage += "<br>Predicted amount of clone illness cellular damage: <b>[cloneill_cloneloss]</b>."
-		cloonmessage += "<br>Predicted duration of clone illness: <b>[cloneill_duration/10] seconds ([cloneill_duration/600] minutes)</b>."
+		cloonmessage += "<br>Predicted duration of clone illness: <b>[cloneill_duration/10] second[cloneill_duration/10 == 1 ? "s" : ""] ([cloneill_duration/600] minute[cloneill_duration/600 == 1 ? "s" : ""])</b>."
 		cloonmessage += "<br>Predicted probability of hallucinations: <b>[cloneill_hallucination]% every 5 seconds</b>."
 		cloonmessage += "<br>Predicted mood hit on the patient: <b>[cloneill_moodhit*10]%</b>."
 		cloonmessage += "</span>"
