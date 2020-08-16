@@ -302,7 +302,6 @@
 		return msg
 
 	var/t_His = p_their(TRUE)
-	var/t_his = p_their()
 	var/list/damaged_bodypart_text = list()
 	for(var/obj/item/bodypart/BP in bodyparts)
 		var/how_brute = ""
