@@ -45,7 +45,7 @@
 	desc = "A paste composed of silicon and healing nanites. Very efficient tool to heal robotic limbs."
 	novariants = TRUE
 	self_delay = 60
-	other_delay = 25
+	other_delay = 30
 	heal_brute = 20
 	heal_burn = 20
 	required_status = BODYPART_ROBOTIC
