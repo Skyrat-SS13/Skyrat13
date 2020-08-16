@@ -107,14 +107,16 @@
 	if(mess)
 		. += "It's filled with blood and viscera. You swear you can see it moving..."
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>\
-			The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.\
-			<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.\
-			<br>Predicted amount of clone illness cellular damage: <b>[cloneill_cloneloss]</b>.\
-			<br>Predicted duration of clone illness: <b>[cloneill_duration/10] seconds ([cloneill_duration/600] minutes)</b>.\
-			<br>Predicted probability of hallucinations: <b>[cloneill_hallucination]% every 5 seconds</b>.\
-			<br>Predicted mood hit on the patient: <b>[cloneill_moodhit*10]%</b>.\
-			</span>"
+		var/cloonmessage = ""
+		cloonmessage += "<span class='notice'>"
+		cloonmessage += "The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>."
+		cloonmessage += "<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>."
+		cloonmessage += "<br>Predicted amount of clone illness cellular damage: <b>[cloneill_cloneloss]</b>."
+		cloonmessage += "<br>Predicted duration of clone illness: <b>[cloneill_duration/10] seconds ([cloneill_duration/600] minutes)</b>."
+		cloonmessage += "<br>Predicted probability of hallucinations: <b>[cloneill_hallucination]% every 5 seconds</b>."
+		cloonmessage += "<br>Predicted mood hit on the patient: <b>[cloneill_moodhit*10]%</b>."
+		cloonmessage += "</span>"
+		. += cloonmessage
 		if(efficiency > 5)
 			to_chat(user, "<span class='notice'>Pod has been upgraded to support autoprocessing.<span>")
 	if(is_operational() && mob_occupant)
