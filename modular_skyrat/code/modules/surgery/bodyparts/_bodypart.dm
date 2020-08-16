@@ -124,6 +124,8 @@
 	/// (IPCs have their brain in da chest)
 	var/mob/living/brain/brainmob = null
 	var/obj/item/organ/brain/brain = null
+	/// If something is currently grasping this bodypart and trying to staunch bleeding (see [/obj/item/grasp_self])
+	var/obj/item/self_grasp/grasped_by
 	/// Overlays related to medicine, like applied gauze
 	var/list/medicine_overlays = list()
 
@@ -249,7 +251,7 @@
 
 /obj/item/bodypart/proc/get_organs()
 	if(!owner)
-		return
+		return FALSE
 
 	var/list/our_organs
 	for(var/X in owner.internal_organs) //internal organs inside the dismembered limb are dropped.
@@ -906,6 +908,12 @@
 	
 	if(owner.mobility_flags & ~MOBILITY_STAND)
 		bleed_rate *= 0.75
+
+	if(grasped_by)
+		bleed_rate *= 0.7
+	
+	if(!bleed_rate)
+		QDEL_NULL(grasped_by)
 
 	return bleed_rate
 

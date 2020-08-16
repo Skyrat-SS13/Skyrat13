@@ -1645,6 +1645,7 @@
 			to_chat(M, "<span class='danger'>You can feel your blood clotting up in your veins!</span>")
 		else if(prob(10))
 			to_chat(M, "<span class='userdanger'>You feel like your blood has stopped moving!</span>")
+			M.adjustOxyLoss(rand(3,4))
 
 		if(prob(50))
 			var/obj/item/organ/lungs/our_lungs = M.getorganslot(ORGAN_SLOT_LUNGS)

@@ -29,6 +29,16 @@
 	base_treat_time = 2.5 SECONDS
 	biology_required = list(HAS_FLESH)
 	required_status = BODYPART_ORGANIC
+	can_self_treat = TRUE
+
+/datum/wound/pierce/self_treat(mob/living/carbon/user, first_time = FALSE)
+	. = ..()
+	if(. && victim && limb?.body_zone)
+		var/obj/screen/zone_sel/sel = victim.hud_used?.zone_select
+		if(istype(sel))
+			sel.set_selected_zone(limb?.body_zone)
+			victim.grabbedby(victim)
+		return TRUE
 
 /datum/wound/pierce/wound_injury(datum/wound/old_wound)
 	blood_flow = initial_flow
@@ -96,6 +106,10 @@
 	var/time_mod = 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
+	if(!I.use(1))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
+		return
+	
 	user.visible_message("<span class='green'>[user] stitches up some of the bleeding on [victim].</span>", "<span class='green'>You stitch up some of the bleeding on [user == victim ? "yourself" : "[victim]"].</span>")
 	var/blood_sutured = I.stop_bleeding / self_penalty_mult * 0.5
 	blood_flow -= blood_sutured

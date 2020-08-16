@@ -27,6 +27,16 @@
 	base_treat_time = 2.5 SECONDS
 	biology_required = list(HAS_FLESH)
 	required_status = BODYPART_ROBOTIC
+	can_self_treat = TRUE
+
+/datum/wound/mechanical/pierce/self_treat(mob/living/carbon/user, first_time = FALSE)
+	. = ..()
+	if(. && victim && limb?.body_zone)
+		var/obj/screen/zone_sel/sel = victim.hud_used?.zone_select
+		if(istype(sel))
+			sel.set_selected_zone(limb?.body_zone)
+			victim.grabbedby(victim)
+		return TRUE
 
 /datum/wound/mechanical/pierce/wound_injury(datum/wound/old_wound)
 	blood_flow = initial_flow
@@ -122,8 +132,8 @@
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 	
-	if(!I.use(2))
-		to_chat(user, "<span class='warning'>[capitalize(I)] doesn't have enough sheets!</span>")
+	if(!I.use(max(1, severity - WOUND_SEVERITY_TRIVIAL)))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to patch \the [src.name]!</span>")
 		return
 
 	limb.heal_damage(3.5 * power/2, 3.5 * power)

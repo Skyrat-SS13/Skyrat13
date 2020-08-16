@@ -246,6 +246,10 @@
 		remove_wound()
 
 /datum/wound/blunt/moderate/self_treat(mob/living/carbon/user, first_time = FALSE)
+	. = ..()
+	if(.)
+		return TRUE
+	
 	var/time = base_treat_time
 	var/time_mod = 2
 	var/prob_mod = -25
@@ -677,7 +681,10 @@
 	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 0.75), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
-	I.use(1)
+	if(!I.use(1))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
+		return
+	
 	victim.emote("scream")
 	if(user != victim)
 		user.visible_message("<span class='notice'>[user] finishes applying [I] to [victim]'s [limb.name], emitting a fizzing noise!</span>", "<span class='notice'>You finish applying [I] to [victim]'s [limb.name]!</span>", ignored_mobs=victim)
@@ -714,10 +721,12 @@
 
 	if(!do_after(user, base_treat_time * (user == victim ? 2 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
-
+	if(!I.use(1))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
+		return
+	
 	regen_points_current = 0
 	regen_points_needed = 15 * (user == victim ? 2 : 1) * severity
-	I.use(1)
 	if(user != victim)
 		user.visible_message("<span class='notice'>[user] finishes applying [I] to [victim]'s [limb.name], emitting a fizzing noise!</span>", "<span class='notice'>You finish applying [I] to [victim]'s [limb.name]!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='green'>[user] finishes applying [I] to your [limb.name], you immediately begin to feel your bones start to reform!</span>")

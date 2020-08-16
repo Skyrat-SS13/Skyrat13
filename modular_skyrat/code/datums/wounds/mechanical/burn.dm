@@ -296,11 +296,13 @@
 	victim.visible_message("<span class='notice'>[user] begins repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>", "<span class='notice'>You begin begin repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>")
 	if(!do_after(victim, (victim == victim ? 6 SECONDS : 3 SECONDS), extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
-
-	limb.heal_damage(10, 15)
+	if(!I.use(5))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
+		return
+	
+	limb.heal_damage(10, 10)
 	victim.visible_message("<span class='green'>[user] repairs some of the wiring on [victim]'s [limb.name].</span>", "<span class='green'>You repair some of the wiring on [victim]'s [limb.name].</span>")
-	I.use(10)
-	heat_warpingnt += 1.25
+	heat_warpingnt += 0.75
 
 	if(heat_warping <= 0 || heat_warpingnt >= 10)
 		to_chat(victim, "<span class='notice'>You've done all you can with [I], now you must wait for the BIOS on [victim]'s [limb.name] to recover.</span>")

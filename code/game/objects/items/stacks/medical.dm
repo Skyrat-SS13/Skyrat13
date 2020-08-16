@@ -355,15 +355,15 @@
 	icon_state = "ointment"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	amount = 15
-	max_amount = 15
+	amount = 12
+	max_amount = 12
 	self_delay = 40
 	other_delay = 20
 	amount = 12
 	max_amount = 12
 	heal_burn = 5
 	flesh_regeneration = 2.5
-	sanitization = 0.3
+	sanitization = 0.25
 	grind_results = list(/datum/reagent/medicine/silver_sulfadiazine = 10)
 
 /obj/item/stack/medical/ointment/one
