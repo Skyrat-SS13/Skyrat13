@@ -167,7 +167,8 @@
 	tool_behaviour = TOOL_SCALPEL
 	toolspeed = 1
 	//skyrat edit
-	bare_wound_bonus = 15
+	wound_bonus = 10
+	bare_wound_bonus = 10
 	//
 
 /obj/item/scalpel/Initialize()
@@ -251,8 +252,8 @@
 	tool_behaviour = TOOL_SAW
 	toolspeed = 1
 	//skyrat edit
-	wound_bonus = 5
-	bare_wound_bonus = 15
+	wound_bonus = 10
+	bare_wound_bonus = 10
 	//
 
 /obj/item/circular_saw/Initialize()

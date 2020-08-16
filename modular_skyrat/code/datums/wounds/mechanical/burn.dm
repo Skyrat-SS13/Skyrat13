@@ -112,6 +112,8 @@
 		malfunction(malf_severity, pickweight(malf_possible))
 
 /datum/wound/mechanical/burn/proc/malfunction(power = 1, malf_type = "disable")
+	if(victim?.stat != DEAD)
+		return FALSE
 	if((last_malf + malf_duration) < world.time && !is_malf)
 		switch(malf_type)
 			if("disable")
@@ -127,8 +129,7 @@
 		limb.update_wounds()
 		is_malf = TRUE
 		return TRUE
-	else
-		return FALSE
+	return FALSE
 
 /datum/wound/mechanical/burn/proc/go_kooky(power = 1)
 	//1 power means you interact with something on your inventory
