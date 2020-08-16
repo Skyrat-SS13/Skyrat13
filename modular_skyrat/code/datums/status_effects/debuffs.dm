@@ -63,6 +63,7 @@
 	var/cloneloss_amount = 20
 	var/hallucination_prob = 10
 	var/moodmalus = 10
+	var/storedmaxhealth = 0
 	var/list/hallucinate_options = list(
 		"Self",
 		"Others",
@@ -85,6 +86,7 @@
 /datum/status_effect/cloneill/on_apply()
 	. = ..()
 	owner.adjustCloneLoss(cloneloss_amount)
+	storedmaxhealth = owner.maxHealth
 	owner.maxHealth -= healthpenalty
 	ADD_TRAIT(owner, TRAIT_EASYLIMBDISABLE, "cloneill")
 	ADD_TRAIT(owner, TRAIT_SCREWY_CHECKSELF, "cloneill")
@@ -95,7 +97,7 @@
 
 /datum/status_effect/cloneill/on_remove()
 	. = ..()
-	owner.maxHealth += healthpenalty
+	owner.maxHealth = storedmaxhealth
 	REMOVE_TRAIT(owner, TRAIT_EASYLIMBDISABLE, "cloneill")
 	REMOVE_TRAIT(owner, TRAIT_SCREWY_CHECKSELF, "cloneill")
 

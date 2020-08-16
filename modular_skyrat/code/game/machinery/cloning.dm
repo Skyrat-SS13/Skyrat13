@@ -111,7 +111,7 @@
 			The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.\
 			<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.\
 			<br>Predicted amount of clone illness cellular damage: <b>[cloneill_cloneloss]</b>.\
-			<br>Predicted duration of clone illness: <b>[cloneill_duration/10] seconds ([cloneill_duration/600] minutes).</b>.\
+			<br>Predicted duration of clone illness: <b>[cloneill_duration/10] seconds ([cloneill_duration/600] minutes)</b>.\
 			<br>Predicted probability of hallucinations: <b>[cloneill_hallucination]% every 5 seconds</b>.\
 			<br>Predicted mood hit on the patient: <b>[cloneill_moodhit*10]%</b>.\
 			</span>"
@@ -440,7 +440,7 @@
 		illness.duration = cloneill_duration
 		illness.cloneloss_amount = cloneill_cloneloss
 		illness.moodmalus = cloneill_moodhit
-		H.apply_status_effect()
+		H.apply_status_effect(illness)
 
 	occupant = null
 
