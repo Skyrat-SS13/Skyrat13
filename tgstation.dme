@@ -3556,7 +3556,6 @@
 #include "modular_skyrat\code\datums\diseases\advance\symptoms\heal.dm"
 #include "modular_skyrat\code\datums\diseases\advance\symptoms\sensory.dm"
 #include "modular_skyrat\code\datums\diseases\advance\symptoms\viral.dm"
-#include "modular_skyrat\code\datums\martial\armstrong.dm"
 #include "modular_skyrat\code\datums\mood_events\generic_negative_events.dm"
 #include "modular_skyrat\code\datums\ruins\lavaland.dm"
 #include "modular_skyrat\code\datums\ruins\space.dm"
@@ -4103,4 +4102,5 @@
 #include "modular_skyrat\code\modules\zombie\items.dm"
 #include "modular_skyrat\code\modules\zombie\organs.dm"
 #include "modular_skyrat\tools\Redirector\textprocs.dm"
+#include "modular_skyrat\code\datums\martial\armstrong.dm"
 // END_INCLUDE
