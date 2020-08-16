@@ -123,7 +123,7 @@
 			self_treat(usr, TRUE)
 	return
 
-/datum/wound/proc/self_treat(mob/living/carbon/user) //used so you can far cry up wounds to fix them
+/datum/wound/proc/self_treat(mob/living/carbon/user, first_time = FALSE) //used so you can far cry up wounds to fix them
 	return FALSE
 
 /datum/wound/Destroy()
