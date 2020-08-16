@@ -165,7 +165,7 @@
 	item_state = "kineticgun"
 	flight_x_offset = 16
 	flight_y_offset = 13
-	overheat_time = 16
+	overheat_time = 18
 	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/precise)
 	max_mod_capacity = 80
 	knife_x_offset = 21
