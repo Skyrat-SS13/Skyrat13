@@ -56,7 +56,7 @@
 				S.start()
 
 /obj/item/clothing/under/syndicate/stealthsuit/proc/get_wearer()
-	var/mob/living/carbon/C = loc
+	var/mob/living/carbon/human/C = loc
 	if(istype(C) && (C.w_uniform == src))
 		return C
 	return FALSE
