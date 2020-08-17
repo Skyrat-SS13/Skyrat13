@@ -11,7 +11,7 @@
 		if("Botanist")
 			heirloom_type = pick(/obj/item/cultivator, /obj/item/reagent_containers/glass/bucket, /obj/item/storage/bag/plants, /obj/item/toy/plush/beeplushie)
 		if("Medical Doctor")
-			heirloom_type = /obj/item/healthanalyzer/advanced
+			heirloom_type = /obj/item/healthanalyzer
 		if("Paramedic")
 			heirloom_type = pick(/obj/item/clothing/neck/stethoscope, /obj/item/bodybag)
 		if("Station Engineer")
@@ -58,7 +58,6 @@
 	UnregisterSignal(heirloom, COMSIG_PARENT_QDELETING)
 	heirloom = null
 
-//airhead
 /datum/quirk/airhead
 	name = "Airhead"
 	desc = "You are exceptionally airheaded... but who cares?"
@@ -66,7 +65,6 @@
 	mob_trait = TRAIT_DUMB
 	medical_record_text = "Patient exhibits rather low mental capabilities."
 
-//clumsyness
 /datum/quirk/disaster_artist
 	name = "Disaster Artist"
 	desc = "You always manage to wreak havoc on everything you touch."
@@ -74,7 +72,6 @@
 	mob_trait = TRAIT_CLUMSY
 	medical_record_text = "Patient lacks proper spatial awareness."
 
-//aaa i dont know my mood aaa
 /datum/quirk/screwy_mood
 	name = "Alexithymia"
 	desc = "You cannot accurately assess your feelings."
@@ -82,7 +79,6 @@
 	mob_trait = TRAIT_SCREWY_MOOD
 	medical_record_text = "Patient is incapable of communicating their emotions."
 
-//aaaaaa im bleeding aaaaaaaaa
 /datum/quirk/hemophiliac
 	name = "Hemophiliac"
 	desc = "Your body is bad at coagulating blood. Bleeding will always be two times worse when compared to the average person."
@@ -90,7 +86,6 @@
 	mob_trait = TRAIT_HEMOPHILIA
 	medical_record_text = "Patient exhibits abnormal blood coagulation behavior."
 
-//i cant run help
 /datum/quirk/asthmatic
 	name = "Asthmatic"
 	desc = "You have been diagnosed with asthma. You can only run half of what a healthy person can, and running may cause oxygen damage."
@@ -98,7 +93,6 @@
 	mob_trait = TRAIT_ASTHMATIC
 	medical_record_text = "Patient exhibits asthmatic symptoms."
 
-//owie everythign hurt
 /datum/quirk/paper_skin
 	name = "Paper skin"
 	desc = "Your skin and body are fragile. Damage from most sources is increased by 10%."
@@ -112,7 +106,6 @@
 		if(H && istype(H))
 			H.physiology.armor -= 10
 
-//mom grab the epipen
 /datum/quirk/allergic
 	name = "Allergic"
 	desc = "You have had terrible allergies for as long as you can remember. Some foods will become toxic to your palate and cause unforeseen consequences."
@@ -120,19 +113,17 @@
 	medical_record_text = "Patient is allergic to a certain type of food."
 
 /datum/quirk/allergic/add()
-	. = ..()
-	if(.)
-		var/mob/living/carbon/human/H = quirk_holder
-		if(H && istype(H))
-			var/foodie = pick(GLOB.food)
-			var/randumb = GLOB.food[foodie]
-			while((H.dna.species.toxic_food | randumb) == H.dna.species.toxic_food)
-				foodie = pick(GLOB.food)
-				randumb = GLOB.food[foodie]
-			H.dna.species.toxic_food |= randumb
-			H.dna.species.liked_food -= randumb
-			H.physiology.allergies |= randumb
-			addtimer(CALLBACK(src, .proc/inform, foodie), 5 SECONDS)
+	var/mob/living/carbon/human/H = quirk_holder
+	if(istype(H))
+		var/foodie = pick(GLOB.food)
+		var/randumb = GLOB.food[foodie]
+		while((H.dna.species.toxic_food | randumb) == initial(H.dna.species.toxic_food))
+			foodie = pick(GLOB.food)
+			randumb = GLOB.food[foodie]
+		H.dna.species.toxic_food |= randumb
+		H.dna.species.liked_food -= randumb
+		H.physiology.allergies |= randumb
+		addtimer(CALLBACK(src, .proc/inform, foodie), 5 SECONDS)
 
-/datum/quirk/allergic/proc/inform(var/allergy = "bad coders")
-	to_chat(quirk_holder, "<span class='danger'><b><i>You are allergic to [lowertext(allergy)].</i></b></span>")
+/datum/quirk/allergic/proc/inform(allergy = "bad coders")
+	to_chat(quirk_holder, "<span class='boldwarning'>You are allergic to [lowertext(allergy)].</span>")
