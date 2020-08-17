@@ -26,7 +26,7 @@
 	else
 		if(def_zone)
 			def_zone = ran_zone(def_zone)
-		BP = H.get_bodypart(check_zone(def_zone))
+			BP = H.get_bodypart(check_zone(def_zone))
 
 	switch(damagetype)
 		if(BRUTE)

@@ -2145,7 +2145,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		if (H.stat < UNCONSCIOUS && (prob(burn_damage) * 10) / 4) //40% for level 3 damage on humans
 			H.emote("scream")
 		var/obj/item/bodypart/BP
-		if(length(H.bodyparts) && prob(70))
+		if(length(H.bodyparts) && prob(50))
 			BP = pick(H.bodyparts) 
 		H.apply_damage(burn_damage, BURN, BP)
 
