@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 #define BLUNT_WOUND_ROLL_MULT 2
 #define BURN_WOUND_ROLL_MULT 2
 #define SPECIFY_BODYPART_BURN_PROB 40
-#define SPECIFY_BODYPART_PRESSURE_PROB 25
+#define SPECIFY_BODYPART_BLUNT_PROB 25
 
 /datum/species
 	var/id	// if the game needs to manually check your race to do something not included in a proc here, it will use this
