@@ -13,6 +13,7 @@
 	cure_chance = 20
 	bypasses_immunity = TRUE
 	severity = DISEASE_SEVERITY_DANGEROUS
+	infectable_biotypes = MOB_ORGANIC | MOB_HUMANOID
 
 /datum/disease/anaphylactic_shock/stage_act()
 	..()
