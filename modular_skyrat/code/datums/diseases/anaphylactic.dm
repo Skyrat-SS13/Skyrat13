@@ -24,12 +24,13 @@
 		H.Jitter(1000)
 	if(prob(10))
 		to_chat(H, "<span class='userdanger'>You can feel your throat constricting!</span>")
-		H.adjustOxyLoss(rand(5, 10))
-	if(prob(6))
+		H.adjustOxyLoss(rand(5, 25))
+	else if(prob(5))
 		H.vomit(10, 10, 1)
-	if(prob(3))
+	else if(prob(5))
 		H.Unconscious(200)
 
 /datum/disease/anaphylactic_shock/cure(add_resistance)
 	. = ..()
 	affected_mob.jitteriness = 0
+	affected_mob.Jitter(0)
