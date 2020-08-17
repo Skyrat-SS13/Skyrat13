@@ -6,6 +6,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 GLOBAL_LIST_EMPTY(roundstart_race_datums)
 //
 
+#define BLUNT_WOUND_ROLL_MULT 3
+#define BURN_WOUND_ROLL_MULT 4
+
 /datum/species
 	var/id	// if the game needs to manually check your race to do something not included in a proc here, it will use this
 	var/limbs_id		//this is used if you want to use a different species limb sprites. Mainly used for angels as they look like humans.
@@ -2142,12 +2145,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			firemodifier = min(firemodifier, 0)
 			burn_damage = max(log(2-firemodifier,(H.bodytemperature-BODYTEMP_NORMAL))-5,0) // this can go below 5 at log 2.5
 		burn_damage = burn_damage * heatmod * H.physiology.heat_mod
-		if (H.stat < UNCONSCIOUS && (prob(burn_damage) * 10) / 4) //40% for level 3 damage on humans
+		if (H.stat < UNCONSCIOUS && (prob(burn_damage) * 5) / 4) //40% for level 3 damage on humans
 			H.emote("scream")
 		var/obj/item/bodypart/BP
 		if(length(H.bodyparts) && prob(50))
 			BP = pick(H.bodyparts) 
-		H.apply_damage(damage = burn_damage, damagetype = BURN, def_zone = BP, wound_bonus = 35, bare_wound_bonus = 15)
+		H.apply_damage(damage = burn_damage, damagetype = BURN, def_zone = BP)
+		if(BP)
+			BP.painless_wound_roll(WOUND_BURN, burn_damage * BURN_WOUND_ROLL_MULT)
 
 	else if(H.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(H, TRAIT_RESISTCOLD))
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")
@@ -2155,16 +2160,21 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		//Apply cold slowdown
 		H.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/cold, multiplicative_slowdown = ((BODYTEMP_COLD_DAMAGE_LIMIT - H.bodytemperature) / COLD_SLOWDOWN_FACTOR))
 		var/obj/item/bodypart/BP
-		if(length(H.bodyparts) && prob(70))
+		if(length(H.bodyparts) && prob(50))
 			BP = pick(H.bodyparts) 
 		switch(H.bodytemperature)
 			if(200 to BODYTEMP_COLD_DAMAGE_LIMIT)
-				H.apply_damage(damage = COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = 35, bare_wound_bonus = 15)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP)
+				if(BP)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 			if(120 to 200)
-				H.apply_damage(damage = COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = 35, bare_wound_bonus = 15)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP)
+				if(BP)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 			else
-				H.apply_damage(damage = COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = 35, bare_wound_bonus = 15)
-
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP)
+				if(BP)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 	else
 		H.remove_movespeed_modifier(/datum/movespeed_modifier/cold)
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "cold")
@@ -2193,6 +2203,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				if(length(H.bodyparts) && prob(50))
 					BP = pick(H.bodyparts)
 				H.apply_damage(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod, BRUTE, BP)
+				if(BP)
+					BP.painless_wound_roll(WOUND_BLUNT, LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod * BURN_WOUND_ROLL_MULT)
 				H.throw_alert("pressure", /obj/screen/alert/lowpressure, 2)
 
 //////////
@@ -2320,3 +2332,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		. |= BIO_FLESH
 	if(HAS_BONE in species_traits)
 		. |= BIO_BONE
+
+#undef BURN_WOUND_ROLL_MULT
+#undef BLUNT_WOUND_ROLL_MULT
