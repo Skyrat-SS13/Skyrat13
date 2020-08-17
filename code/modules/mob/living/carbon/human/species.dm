@@ -2147,7 +2147,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		var/obj/item/bodypart/BP
 		if(length(H.bodyparts) && prob(50))
 			BP = pick(H.bodyparts) 
-		H.apply_damage(burn_damage, BURN, BP)
+		H.apply_damage(damage = burn_damage, damagetype = BURN, def_zone = BP, wound_bonus = 35, bare_wound_bonus = 15)
 
 	else if(H.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(H, TRAIT_RESISTCOLD))
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")
@@ -2159,11 +2159,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			BP = pick(H.bodyparts) 
 		switch(H.bodytemperature)
 			if(200 to BODYTEMP_COLD_DAMAGE_LIMIT)
-				H.apply_damage(COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, BURN, BP)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = 35, bare_wound_bonus = 15)
 			if(120 to 200)
-				H.apply_damage(COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, BURN, BP)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = 35, bare_wound_bonus = 15)
 			else
-				H.apply_damage(COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, BURN, BP)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = 35, bare_wound_bonus = 15)
 
 	else
 		H.remove_movespeed_modifier(/datum/movespeed_modifier/cold)
