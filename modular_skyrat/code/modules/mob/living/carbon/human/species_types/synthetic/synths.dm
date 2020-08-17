@@ -147,7 +147,7 @@
 		H.visible_message("<span class='danger'>[H]'s disguise falls apart!</span>", "<span class='userdanger'>Your disguise falls apart!</span>")
 	else if((actualhealth >= disguise_fail_health) && !isdisguised && (H.stat != DEAD))
 		assume_disguise(fake_species, H)
-		H.visible_message("<span class='warning'>[H] morphs their appearance to that of [fake_species.name].</span>", "<span class='notice'>You morph your appearance to that of [fake_species.name].</span>")
+		H.visible_message("<span class='warning'>[H] morphs their appearance to that of \a [fake_species.name].</span>", "<span class='notice'>You morph your appearance to that of [fake_species.name].</span>")
 
 /datum/species/synth/handle_hair(mob/living/carbon/human/H, forced_colour)
 	if(fake_species && isdisguised)
