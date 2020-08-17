@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "Timestop no longer freezes mobs indefinitely because of a runtime"
+  - bugfix: "Punch miss messages no longer appear as if they were an emote done by the target"
