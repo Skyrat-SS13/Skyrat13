@@ -4,16 +4,16 @@
 	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
 	icon = 'modular_skyrat/icons/mob/human_parts.dmi'
 	icon_state = "default_human_head"
-	max_damage = 200
+	max_damage = 100
 	body_zone = BODY_ZONE_HEAD
 	body_part = HEAD
 	w_class = WEIGHT_CLASS_BULKY
-	slowdown = 1
+	stam_heal_tick = 2
+	stam_damage_coeff = 1
+	max_stamina_damage = 100
 	throw_range = 5
 	px_x = 0
 	px_y = -8
-	stam_damage_coeff = 1
-	max_stamina_damage = 100
 
 	//Limb appearance info:
 	var/real_name = "" //Replacement name
@@ -40,11 +40,8 @@
 	parent_bodyzone = BODY_ZONE_CHEST
 	children_zones = list()
 	var/obj/item/stack/sticky_tape/tapered = null
-
-/obj/item/bodypart/head/can_dismember(obj/item/I)
-	if(owner && !((owner.stat == DEAD) || owner.InFullCritical()))
-		return FALSE
-	return ..()
+	dismember_mod = 0.7
+	disembowel_mod = 0.7
 
 /obj/item/bodypart/head/update_limb(dropping_limb, mob/living/carbon/source)
 	var/mob/living/carbon/C
@@ -122,7 +119,7 @@
 	. = ..()
 	if(dropped) //certain overlays only appear when the limb is being detached from its owner.
 
-		if(status != BODYPART_ROBOTIC) //having a robotic head hides certain features.
+		if(!(status & BODYPART_ROBOTIC)) //having a robotic head hides certain features.
 			//facial hair
 			if(facial_hair_style)
 				var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facial_hair_style]
@@ -133,7 +130,14 @@
 					. += facial_overlay
 
 			//Applies the debrained overlay if there is no brain
-			if(!brain)
+			if(!owner?.getorganslot(ORGAN_SLOT_BRAIN) && !brain)
+				var/datum/sprite_accessory/S2 = GLOB.hair_styles_list[hair_style]
+				if(S2)
+					var/image/hair_overlay = image(S2.icon, "[S2.icon_state]", -HAIR_LAYER, SOUTH)
+					hair_overlay.color = "#" + hair_color
+					hair_overlay.alpha = hair_alpha
+					. += hair_overlay
+			else
 				var/image/debrain_overlay = image(layer = -HAIR_LAYER, dir = SOUTH)
 				if(animal_origin == ALIEN_BODYPART)
 					debrain_overlay.icon = 'icons/mob/animal_parts.dmi'
@@ -145,13 +149,6 @@
 					debrain_overlay.icon = 'icons/mob/human_face.dmi'
 					debrain_overlay.icon_state = "debrained"
 				. += debrain_overlay
-			else
-				var/datum/sprite_accessory/S2 = GLOB.hair_styles_list[hair_style]
-				if(S2)
-					var/image/hair_overlay = image(S2.icon, "[S2.icon_state]", -HAIR_LAYER, SOUTH)
-					hair_overlay.color = "#" + hair_color
-					hair_overlay.alpha = hair_alpha
-					. += hair_overlay
 
 
 		// lipstick
@@ -168,9 +165,13 @@
 
 		else if(eyes.eye_color)
 			eyes_overlay.color = "#" + eyes.eye_color
+	// tape gag
+	if(tapered)
+		var/mutable_appearance/tape_overlay = mutable_appearance('modular_skyrat/icons/mob/tapegag.dmi', "tapegag", -BODY_LAYER)
+		. += tape_overlay
 
 /obj/item/bodypart/head/proc/get_stickied(obj/item/stack/sticky_tape/tape, mob/user)
-	if(!tape)
+	if(!tape || tapered)
 		return
 	if(tape.use(1))
 		if(user && owner)
@@ -178,34 +179,69 @@
 			to_chat(user, "<span class='warning'>You successfully gag [owner] with \the [src]!</span>")
 		else if(user)
 			user.visible_message("<span class='notice'>[user] tapes off [src]'s mouth.</span>")
-		tapered = new /obj/item/stack/sticky_tape(owner)
+		tapered = new tape.type(owner)
 		tapered.amount = 1
-		owner?.RegisterSignal(tapered, COMSIG_MOB_SAY, /obj/item/stack/sticky_tape/proc/handle_speech)
+		if(owner)
+			ADD_TRAIT(owner, TRAIT_MUTE, "tape")
+	update_limb(!owner, owner)
 
 /obj/item/bodypart/head/Topic(href, href_list)
 	. = ..()
-	var/mob/living/carbon/C = usr
-	if(!istype(C) || !C.canUseTopic(owner, TRUE, FALSE, FALSE) || owner?.wear_mask)
-		return
-	if(C == owner)
-		owner.visible_message("<span class='warning'>[owner] desperately tries to rip \the [tapered] from their mouth!</span>", "<span class='warning'>You desperately try to rip \the [tapered] from your mouth!</span>")
-		if(do_mob(owner, owner, 3 SECONDS))
-			owner.UnregisterSignal(tapered, COMSIG_MOB_SAY)
-			tapered.forceMove(get_turf(owner))
-			tapered = null
-			owner.visible_message("<span class='warning'>[owner] rips \the [tapered] from their mouth!</span>", "<span class='warning'>You successfully remove \the [tapered] from your mouth!</span>")
+	if(href_list["tape"])
+		var/mob/living/carbon/C = usr
+		if(!istype(C) || !C.canUseTopic(owner, TRUE, FALSE, FALSE) || owner?.wear_mask)
+			return
+		if(C == owner)
+			owner.visible_message("<span class='warning'>[owner] desperately tries to rip \the [tapered] from their mouth!</span>",
+								"<span class='warning'>You desperately try to rip \the [tapered] from your mouth!</span>")
+			if(do_mob(owner, owner, 3 SECONDS))
+				tapered.forceMove(get_turf(owner))
+				tapered = null
+				owner.visible_message("<span class='warning'>[owner] rips \the [tapered] from their mouth!</span>",
+									"<span class='warning'>You successfully remove \the [tapered] from your mouth!</span>")
+				playsound(owner, 'modular_skyrat/sound/effects/clothripping.ogg', 40, 0, -4)
+				owner.emote("scream")
+				REMOVE_TRAIT(owner, TRAIT_MUTE, "tape")
+			else
+				to_chat(owner, "<span class='warning'>You fail to take \the [tapered] off.</span>")
 		else
-			to_chat(owner, "<span class='warning'>You fail to take \the [tapered] off.</span>")
-	else
-		if(do_mob(usr, owner, 3))
-			owner.UnregisterSignal(tapered, COMSIG_MOB_SAY)
-			tapered.forceMove(get_turf(owner))
-			tapered = null
-			usr.visible_message("<span class='warning'>[usr] rips \the [tapered] from [owner]'s mouth!</span>", "<span class='warning'>You rip \the [tapered] out of [owner]'s mouth!</span>")
-		else
-			to_chat(usr, "<span class='warning'>You fail to take \the [tapered] off.</span>")
+			if(do_mob(usr, owner, 1.5 SECONDS))
+				owner.UnregisterSignal(tapered, COMSIG_MOB_SAY)
+				tapered.forceMove(get_turf(owner))
+				tapered = null
+				usr.visible_message("<span class='warning'>[usr] rips \the [tapered] from [owner]'s mouth!</span>",
+								"<span class='warning'>You rip \the [tapered] out of [owner]'s mouth!</span>")
+				playsound(owner, 'modular_skyrat/sound/effects/clothripping.ogg', 40, 0, -4)
+				if(owner)
+					owner.emote("scream")
+					REMOVE_TRAIT(owner, TRAIT_MUTE, "tape")
+			else
+				to_chat(usr, "<span class='warning'>You fail to take \the [tapered] off.</span>")
+		update_limb(!owner, owner)
 
 /obj/item/bodypart/head/examine(mob/user)
 	. = ..()
 	if(tapered)
 		. += "<span class='notice'>The mouth on [src] is taped shut with [tapered].</span>"
+
+/obj/item/bodypart/head/attach_limb(mob/living/carbon/C, special)
+	. = ..()
+	if(. && tapered && owner)
+		ADD_TRAIT(owner, TRAIT_MUTE, "tape")
+
+/obj/item/bodypart/head/drop_limb(special, ignore_children, dismembered, destroyed)
+	. = ..()
+	var/mob/living/og_owner = owner
+	if(.)
+		REMOVE_TRAIT(og_owner, TRAIT_MUTE, "tape")
+
+/obj/item/bodypart/head/replace_limb(mob/living/carbon/C, special)
+	if(!istype(C))
+		return
+	var/obj/item/bodypart/head/O = C.get_bodypart(body_zone)
+	if(O)
+		if(!special)
+			return
+		else
+			O.drop_limb(special, TRUE, FALSE, FALSE)
+	attach_limb(C, special)

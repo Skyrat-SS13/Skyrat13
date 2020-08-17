@@ -35,6 +35,11 @@
 	Overwriting of base procs
 */
 
+/datum/wound/mechanical/blunt/Destroy()
+	. = ..()
+	if(active_trauma)
+		QDEL_NULL(active_trauma)
+
 /datum/wound/mechanical/blunt/wound_injury(datum/wound/old_wound = null)
 	if(limb.body_zone == BODY_ZONE_HEAD && brain_trauma_group)
 		processes = TRUE
@@ -96,12 +101,12 @@
 		// And you have a 70% or 50% chance to actually land the blow, respectively
 		if(prob(70 - 20 * (severity - 1)))
 			to_chat(victim, "<span class='userdanger'>Your [limb.name] malfunctions as you strike [target]!</span>")
-			limb.receive_damage(brute=rand(1,5))
+			limb.receive_damage(brute=rand(1,5), wound_bonus = CANT_WOUND)
 		else
 			victim.visible_message("<span class='danger'>[victim] weakly strikes [target] with [victim.p_their()] bent [limb.name]!</span>", \
 			"<span class='userdanger'>You fail to strike [target] as the frictioning metal in your [limb.name] causes it to spark!</span>", vision_distance=COMBAT_MESSAGE_RANGE)
 			victim.Stun(0.5 SECONDS)
-			limb.receive_damage(brute=rand(3,7))
+			limb.receive_damage(brute=rand(3,7), wound_bonus = CANT_WOUND)
 			return COMPONENT_NO_ATTACK_HAND
 
 /datum/wound/mechanical/blunt/receive_damage(wounding_type, wounding_dmg, wound_bonus)
@@ -202,7 +207,7 @@
 /datum/wound/mechanical/blunt/moderate
 	name = "Joint Desynchronization"
 	desc = "Parts of the patient's actuators have forcefully disconnected from each other, causing delayed and inefficient limb movement."
-	treat_text = "Recommended wrenching of the affected limb, though manual synchronization by applying an aggressive grab to the patient and helpfully interacting with afflicted limb may suffice."
+	treat_text = "Recommended wrenching of the affected limb, though manual synchronization by applying an aggressive grab to the patient and helpfully interacting with afflicted limb may suffice.  Use of synthetic healing chemicals may also help."
 	examine_desc = "has visibly disconnected rotors"
 	occur_text = "snaps and becomes unseated"
 	severity = WOUND_SEVERITY_MODERATE
@@ -217,9 +222,13 @@
 	can_self_treat = TRUE
 
 /datum/wound/mechanical/blunt/moderate/self_treat(mob/living/carbon/user, first_time = FALSE)
+	. = ..()
+	if(.)
+		return TRUE
+	
 	var/time = base_treat_time
 	var/time_mod = 2
-	var/prob_mod = -25
+	var/prob_mod = 20
 	
 	if(first_time)
 		user.visible_message("<span class='notice'>[user] starts to force their [limb.name]'s rotors back in place...</span>", "<span class='notice'>You start forcing your [limb.name]'s rotors back in place...</span>")
@@ -229,14 +238,14 @@
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(60 + prob_mod))
+	if(prob(30 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps their own [limb.name]'s rotors back in place!</span>", "<span class='danger'>You snap your own [limb.name]'s rotors back into place!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=24, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
 		user.visible_message("<span class='danger'>[user] wrenches their [limb.name] around!</span>", "<span class='danger'>You wrench your [limb.name] around!</span>")
-		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=8, wound_bonus=CANT_WOUND)
 		self_treat(user, FALSE)
 	return
 
@@ -273,16 +282,16 @@
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(65 + prob_mod))
+	if(prob(45 + prob_mod))
 		user.visible_message("<span class='danger'>[user] forcefully connects [victim]'s disconnected [limb.name] actuators!</span>", "<span class='notice'>You forcefully connect [victim]'s disconnected [limb.name] actuators!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your desynchronized [limb.name] actuators back into place!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=20, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
 		user.visible_message("<span class='danger'>[user] torques and grinds [victim]'s disconnected [limb.name] actuators!</span>", "<span class='danger'>You torque and grind [victim]'s disconnected [limb.name] actuators!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] torques and grings your [limb.name]'s disconnected actuators!</span>")
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=8, wound_bonus=CANT_WOUND)
 		chiropractice(user)
 
 /// If someone is snapping our dislocated joint into a fracture by hand with an aggro grab and harm or disarm intent
@@ -295,15 +304,15 @@
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(65 + prob_mod))
+	if(prob(45 + prob_mod))
 		user.visible_message("<span class='danger'>[user] torques [victim]'s disconnected [limb.name] actuators with a loud pop!</span>", "<span class='danger'>You torque [victim]'s disconnected [limb.name] actuators with a loud pop!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=25, wound_bonus=30 + prob_mod * 3)
+		limb.receive_damage(brute=12, wound_bonus=30 + prob_mod * 3, wound_bonus = CANT_WOUND)
 	else
 		user.visible_message("<span class='danger'>[user] grinds [victim]'s disconnected [limb.name] actuators around!</span>", "<span class='danger'>You grind [victim]'s disconnected [limb.name] actuators around painfully!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] grinds your dislocated [limb.name] actuators around!</span>")
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=8, wound_bonus=CANT_WOUND)
 		malpractice(user)
 
 
@@ -320,7 +329,7 @@
 		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
 		victim.visible_message("<span class='danger'>[user] finishes resetting [victim.p_their()] [limb.name]!</span>", "<span class='userdanger'>You reset your [limb.name]!</span>")
 	else
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=7, wound_bonus=CANT_WOUND)
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s [limb.name]!</span>", "<span class='nicegreen'>You finish resetting [victim]'s [limb.name]!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your [limb.name]!</span>")
 
@@ -334,12 +343,13 @@
 /datum/wound/mechanical/blunt/severe
 	name = "Malfunctioning Actuators"
 	desc = "Patient's actuators are malfunctioning, causing reduced limb functionality and performance."
-	treat_text = "Recommended internal repair of the limb, though sticky tape will prevent a worsening situation."
+	treat_text = "Recommended taping and welding of the affected limb. Use of synthetic healing chemicals may also help."
 	examine_desc = "has loose and disconnected bits of metal"
 
 	occur_text = "loudly hums as some loose nuts and bolts fall out"
 
 	severity = WOUND_SEVERITY_SEVERE
+	viable_zones = ALL_BODYPARTS
 	interaction_efficiency_penalty = 2
 	limp_slowdown = 6
 	threshold_minimum = 60
@@ -351,13 +361,18 @@
 	trauma_cycle_cooldown = 1.5 MINUTES
 	shock_chance = 30
 
+/*
+	Critical (Broken Actuators)
+*/
+
 /datum/wound/mechanical/blunt/critical
 	name = "Broken Actuators"
 	desc = "Patient's actuators have suffered severe dents and component losses, causing a severe decrease in limb functionality and performance."
-	treat_text = "Complete internal component repair and replacement."
+	treat_text = "Recommended complete internal component repair and replacement, but taping and welding of the limb might suffice. Use of synthetic healing chemicals may also help."
 	examine_desc = "is damaged at several spots, with protuding bits of metal"
 	occur_text = "loudly hums as it's rotors scrapes away bits of metal"
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	interaction_efficiency_penalty = 4
 	limp_slowdown = 9
 	sound_effect = 'sound/effects/clang2.ogg'
@@ -392,7 +407,7 @@
 		
 		victim.visible_message("<span class='notice'>[victim] finishes fastening [victim.p_their()] [limb.name]!</span>", "<span class='notice'>You fastening your [limb.name]!</span>")
 
-	limb.receive_damage(30, stamina=100, wound_bonus=CANT_WOUND)
+	limb.receive_damage(15, stamina=75, wound_bonus=CANT_WOUND)
 	if(!wrenched)
 		wrenched = TRUE
 
@@ -410,10 +425,12 @@
 
 	if(!do_after(user, base_treat_time * (user == victim ? 2 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
-
+	if(!I.use(1))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
+		return
+	
 	regen_points_current = 0
 	regen_points_needed = 15 * (user == victim ? 2 : 1) * (severity - 1)
-	I.use(1)
 	if(user != victim)
 		user.visible_message("<span class='notice'>[user] finishes applying [I] to [victim]'s [limb.name]!</span>", "<span class='notice'>You finish applying [I] to [victim]'s [limb.name]!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='green'>[user] finishes applying [I] to your [limb.name], you can feel the repair processes booting up!</span>")
@@ -440,7 +457,7 @@
 		else if(!taped)
 			. += "<span class='notice'>Continue Alternative Treatment: Apply sticky tape directly to injured limb to begin automatic. This is very ineffective and may damage internal components, and as such only recommended in dire need.</span>\n"
 		else
-			. += "<span class='notice'>Note: Automatic repair in effect. Background tasks are [round(regen_points_current/regen_points_needed)]% operational.</span>\n"
+			. += "<span class='notice'>Note: Automatic repair in effect. Background tasks are [round((regen_points_current/regen_points_needed) * 100)]% operational.</span>\n"
 
 	if(limb.body_zone == BODY_ZONE_HEAD)
 		. += "Head Trauma Detected: Patient will suffer random bouts of [severity == WOUND_SEVERITY_SEVERE ? "mild" : "severe"] runtimes until damage is repaired."

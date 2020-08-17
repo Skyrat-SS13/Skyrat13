@@ -15,9 +15,13 @@
 	stam_heal_tick = 4
 	amputation_point = "groin"
 	dismember_bodyzone = BODY_ZONE_PRECISE_GROIN
+	parent_bodyzone = BODY_ZONE_PRECISE_GROIN
 	children_zones = list(BODY_ZONE_PRECISE_R_FOOT)
-	specific_locations = list("right sole", "right ankle", "right heel")
+	heal_zones = list(BODY_ZONE_PRECISE_R_FOOT)
+	specific_locations = list("inner right thigh", "outer right calf", "outer right hip", "right kneecap", "lower right shin")
 	max_cavity_size = WEIGHT_CLASS_SMALL
+	dismember_mod = 0.8
+	disembowel_mod = 0.8
 
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))

@@ -1615,7 +1615,7 @@
 	/// How much base clotting we do per bleeding wound, multiplied by the below number for each bleeding wound
 	var/clot_rate = 0.25
 	/// If we have multiple bleeding wounds, we count the number of bleeding wounds, then multiply the clot rate by this^(n) before applying it to each cut, so more cuts = less clotting per cut (though still more total clotting)
-	var/clot_coeff_per_wound = 0.9
+	var/clot_coeff_per_wound = 0.75
 
 /datum/reagent/medicine/coagulant/on_mob_life(mob/living/carbon/M)
 	. = ..()
@@ -1645,6 +1645,7 @@
 			to_chat(M, "<span class='danger'>You can feel your blood clotting up in your veins!</span>")
 		else if(prob(10))
 			to_chat(M, "<span class='userdanger'>You feel like your blood has stopped moving!</span>")
+			M.adjustOxyLoss(rand(3,4))
 
 		if(prob(50))
 			var/obj/item/organ/lungs/our_lungs = M.getorganslot(ORGAN_SLOT_LUNGS)

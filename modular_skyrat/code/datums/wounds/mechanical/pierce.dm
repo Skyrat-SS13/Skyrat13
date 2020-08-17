@@ -27,6 +27,19 @@
 	base_treat_time = 2.5 SECONDS
 	biology_required = list(HAS_FLESH)
 	required_status = BODYPART_ROBOTIC
+	can_self_treat = TRUE
+
+/datum/wound/mechanical/pierce/self_treat(mob/living/carbon/user, first_time = FALSE)
+	. = ..()
+	if(.)
+		return TRUE
+	
+	if(victim && limb?.body_zone)
+		var/obj/screen/zone_sel/sel = victim.hud_used?.zone_select
+		if(istype(sel))
+			sel.set_selected_zone(limb?.body_zone)
+			victim.grabbedby(victim)
+		return
 
 /datum/wound/mechanical/pierce/wound_injury(datum/wound/old_wound)
 	blood_flow = initial_flow
@@ -93,13 +106,13 @@
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	limb.heal_damage(2.5, 2.5)
+	limb.heal_damage(10, 10)
 	welded = TRUE
 	if(patched)
 		user.visible_message("<span class='green'>[user] welds \the [patch] on [victim]'s [limb.name] with [I].</span>", "<span class='green'>You weld \the patch on [user == victim ? "your" : "[victim]'s"] [limb.name] with [I].</span>")
 	else
 		user.visible_message("<span class='green'>[user] welds \the [lowertext(name)] [victim]'s [limb.name] with [I].</span>", "<span class='green'>You weld \the [lowertext(name)] on [user == victim ? "your" : "[victim]'s"] [limb.name] with [I].</span>")
-	var/blood_cauterized = (1 / self_penalty_mult) * 0.25 * max(0.5, patched)
+	var/blood_cauterized = (1 / self_penalty_mult) * max(0.5, patched)
 	blood_flow -= blood_cauterized
 
 	if(repeat_patch)
@@ -122,12 +135,12 @@
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 	
-	if(!I.use(2))
-		to_chat(user, "<span class='warning'>[capitalize(I)] doesn't have enough sheets!</span>")
+	if(!I.use(max(1, severity - WOUND_SEVERITY_TRIVIAL)))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to patch \the [src.name]!</span>")
 		return
 
-	limb.heal_damage(3.5 * power/2, 2.5 * power)
-	var/blood_cauterized = power * 0.10
+	limb.heal_damage(3.5 * power/2, 3.5 * power)
+	var/blood_cauterized = power * 0.15
 	blood_flow -= blood_cauterized
 	patch = "[lowertext(I.name)]"
 	patched = power
@@ -156,6 +169,7 @@
 	occur_text = "spurts out a thin stream of hydraulic fluid"
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_MODERATE
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 1.5
 	gauzed_clot_rate = 0.8
 	internal_bleeding_chance = 30
@@ -168,11 +182,12 @@
 /datum/wound/mechanical/pierce/severe
 	name = "Open Dent"
 	desc = "Patient's internals have been severely punctured, causing reduced limb stability and noticeable hydraulic leakage."
-	treat_text = "Recommended full internal repair, but mineral patching and welding of the limb may suffice."
+	treat_text = "Recommended full internal repair, but mineral patching, taping and welding of the limb may suffice."
 	examine_desc = "is pierced clear through, with jagged metal edges leaking hydraulic fluids"
 	occur_text = "looses a violent spray of hydraulic fluid, revealing a considerable hole"
 	sound_effect = 'modular_skyrat/sound/effects/blood2.ogg'
 	severity = WOUND_SEVERITY_SEVERE
+	viable_zones = ALL_BODYPARTS
 	treatable_by = list(/obj/item/stack/sheet)
 	initial_flow = 2.25
 	gauzed_clot_rate = 0.6
@@ -186,11 +201,12 @@
 /datum/wound/mechanical/pierce/critical
 	name = "Ruptured Hydraulics"
 	desc = "Patient's hydraulic cablings have been shredded, causing critical leakage and damage to internal components."
-	treat_text = "Full internal repair of the affected area."
+	treat_text = "Full internal repair of the affected area, but mineral patching, taping and welding of the limb can prevent a worsening situation."
 	examine_desc = "is ripped clear through, barely held together by it's endoskeleton"
 	occur_text = "blasts apart, sending metallic shrapnel flying in all directions"
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	treatable_by = list(/obj/item/stack/sheet)
 	initial_flow = 3
 	gauzed_clot_rate = 0.4

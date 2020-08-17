@@ -11,7 +11,24 @@
 /datum/keybinding/client/admin_help/down(client/user)
 	user.get_adminhelp()
 	return TRUE
+	
+//SKYRAT EDIT START.
 
+/client/proc/get_msay()
+	var/msg = input(src, "", "Mentorsay") as text
+	cmd_mentor_say(msg)
+
+/datum/keybinding/client/m_say
+	hotkey_keys = list("F4")
+	name = "m_say"
+	full_name = "Mentorsay"
+	description = "Talk on the mentor channel."
+
+/datum/keybinding/client/m_say/down(client/user)
+	user.get_msay()
+	return TRUE
+
+//SKYRAT EDIT END.
 /datum/keybinding/client/screenshot
 	hotkey_keys = list("F2")
 	name = "screenshot"

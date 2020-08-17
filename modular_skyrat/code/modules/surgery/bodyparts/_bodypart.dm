@@ -72,11 +72,12 @@
 	var/medium_burn_msg = "blistered"
 	var/heavy_burn_msg = "peeling away"
 
-	//Bobmed variables
+	/// Bobmed variables
 	var/parent_bodyzone //body zone that is considered a "parent" of this bodypart's zone
 	var/dismember_bodyzone //body zone that receives wound when this limb is dismembered
 	var/list/starting_children = list() //children that are already "inside" this limb on spawn. could be organs or limbs.
 	var/list/children_zones = list() //body zones that are considered "children" of this bodypart's zone
+	var/list/heal_zones = list() //body zones that are healed in "multiple" mode on medical items
 	var/amputation_point //descriptive string used in amputation.
 	var/obj/item/cavity_item
 	var/cremation_progress = 0 //Gradually increases while burning when at full damage, destroys the limb when at 100
@@ -90,6 +91,10 @@
 	var/wound_resistance = 0
 	/// When this bodypart hits max damage, this number is added to all wound rolls. Obviously only relevant for bodyparts that have damage caps.
 	var/disabled_wound_penalty = 15
+	/// How much we multiply the dismemberment roll chance by, when rolling for dismemberment
+	var/dismember_mod = 1
+	/// How much we multiply the disembowelment roll chance by, when rolling for disembowelment
+	var/disembowel_mod = 1
 
 	/// A hat won't cover your face, but a shirt covering your chest will cover your... you know, chest
 	var/scars_covered_by_clothes = TRUE
@@ -115,10 +120,14 @@
 	var/render_like_organic = FALSE
 	/// This is used for pseudolimbs. Basically replaces the mob overlay icon with this.
 	var/mutable_appearance/custom_overlay = null
-	// These were head vars before, but i had to generify behavior for edge cases
-	// (IPCs have their brain in da chest)
+	/// These were head vars before, but i had to generify behavior for edge cases
+	/// (IPCs have their brain in da chest)
 	var/mob/living/brain/brainmob = null
 	var/obj/item/organ/brain/brain = null
+	/// If something is currently grasping this bodypart and trying to staunch bleeding (see [/obj/item/grasp_self])
+	var/obj/item/self_grasp/grasped_by
+	/// Overlays related to medicine, like applied gauze
+	var/list/medicine_overlays = list()
 
 /obj/item/bodypart/Initialize()
 	. = ..()
@@ -126,23 +135,48 @@
 		for(var/I in starting_children)
 			new I(src)
 
+/obj/item/bodypart/Topic(href, href_list)
+	. = ..()
+	if(href_list["gauze"])
+		var/mob/living/carbon/C = usr
+		if(!istype(C) || !C.canUseTopic(owner, TRUE, FALSE, FALSE) || !current_gauze)
+			return
+		if(C == owner)
+			owner.visible_message("<span class='warning'>[owner] starts ripping off \the [current_gauze] from [owner.p_their()] [src.name]!</span>",
+								"<span class='warning'>You start ripping off \the [current_gauze] from your name [src.name]!</span>")
+			if(do_mob(owner, owner, 5 SECONDS))
+				owner.visible_message("<span class='warning'>[owner] rips \the [current_gauze] from [owner.p_their()] [src.name], destroying it in the process!</span>",
+									"<span class='warning'>You rip \the [current_gauze] from your [src.name], destroying it in the process!</span>")
+				playsound(owner, 'modular_skyrat/sound/effects/clothripping.ogg', 40, 0, -4)
+				remove_gauze(FALSE)
+			else
+				to_chat(owner, "<span class='warning'>You fail to rip \the [current_gauze] on your [src.name] off.</span>")
+		else
+			if(do_mob(usr, owner, 3 SECONDS))
+				usr.visible_message("<span class='warning'>[usr] rips \the [current_gauze] from [owner]'s [src.name], destroying it in the process!</span>",
+								"<span class='warning'>You rip \the [current_gauze] from [owner]'s [src.name], destroying it in the process!</span>")
+				playsound(owner, 'modular_skyrat/sound/effects/clothripping.ogg', 40, 0, -4)
+				remove_gauze(FALSE)
+			else
+				to_chat(usr, "<span class='warning'>You fail to rip \the [current_gauze] from [owner]'s [src.name].</span>")
+
 /obj/item/bodypart/examine(mob/user)
 	. = ..()
 	for(var/woundie in wounds)
 		var/datum/wound/W = woundie
 		if(istype(W))
-			. += "[W.get_examine_description(user)]"
+			. += "[W.get_examine_description(user, FALSE)]"
 	for(var/scarrie in scars)
 		var/datum/scar/S = scarrie
 		if(istype(S))
-			. += "[S.get_examine_description(user)]"
+			. += "[S.get_examine_description(user, FALSE)]"
 	if(brute_dam > DAMAGE_PRECISION)
 		. += "<span class='warning'>This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.</span>"
 	if(burn_dam > DAMAGE_PRECISION)
 		. += "<span class='warning'>This limb has [burn_dam > 30 ? "severe" : "minor"] burns.</span>"
 	if(etching)
 		. += "<span class='notice'>[src] has <b>\"[etching]\"</b> inscribed on it.</span>"
-	if(status & BODYPART_ROBOTIC && status & BODYPART_ORGANIC)
+	if((status & BODYPART_ROBOTIC) && (status & BODYPART_ORGANIC))
 		. += "<span class='notice'>[src] is seemingly of both inorganic and organic nature.</span>"
 	else if(status & BODYPART_ROBOTIC)
 		. += "<span class='notice'>[src] is seemingly of inorganic nature.</span>"
@@ -216,7 +250,7 @@
 	if(!(status & BODYPART_ROBOTIC))
 		playsound(T, 'sound/misc/splort.ogg', 50, 1, -1)
 	if(current_gauze)
-		QDEL_NULL(current_gauze)
+		remove_gauze(drop_gauze = FALSE)
 	for(var/X in get_organs())
 		var/obj/item/organ/O = X
 		O.transfer_to_limb(src, owner)
@@ -242,7 +276,7 @@
 
 /obj/item/bodypart/proc/get_organs()
 	if(!owner)
-		return
+		return FALSE
 
 	var/list/our_organs
 	for(var/X in owner.internal_organs) //internal organs inside the dismembered limb are dropped.
@@ -323,57 +357,56 @@
 			if(WOUND_BLUNT)
 				wounding_dmg *= 1.25
 			if(WOUND_SLASH)
-				wounding_dmg *= 2.5 //well you're just fucked
+				wounding_dmg *= 2 //well you're just fucked
 			if(WOUND_PIERCE)
-				wounding_dmg *= 1.65
+				wounding_dmg *= 1.5
 	
 	//Handling for bone only/flesh only/skin only/all of them targets
-	switch(bio_state)
-		// if we're bone only, all cutting attacks go straight to the bone
-		if(BIO_BONE)
-			if(wounding_type == WOUND_SLASH)
-				wounding_type = WOUND_BLUNT
-				if(!easy_dismember)
-					wounding_dmg *= 0.5
-			else if(wounding_type == WOUND_PIERCE)
-				wounding_type = WOUND_BLUNT
-				if(!easy_dismember)
-					wounding_dmg *= 0.75
-			
-			if((mangled_state & BODYPART_MANGLED_BONE) && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
-				return
+	// if we're bone only, all cutting attacks go straight to the bone
+	if((bio_state & BIO_BONE) && !(bio_state & BIO_FLESH))
+		if(wounding_type == WOUND_SLASH)
+			wounding_type = WOUND_BLUNT
+			if(!easy_dismember)
+				wounding_dmg *= 0.5
+		else if(wounding_type == WOUND_PIERCE)
+			wounding_type = WOUND_BLUNT
+			if(!easy_dismember)
+				wounding_dmg *= 0.75
 		
-		// slime people p much they dont have bone
-		if(BIO_FLESH)
-			if(wounding_type == WOUND_BLUNT)
-				wounding_type = WOUND_SLASH
-				if(!easy_dismember)
-					wounding_dmg *= 0.5
-			else if(wounding_type == WOUND_PIERCE)
-				wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
-			if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
-				return
-
-		// nothing uses only skin just yet
-		if(BIO_SKIN)
+		if((mangled_state & BODYPART_MANGLED_BONE) && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
+			return
+	
+	// slime people p much they dont have bone
+	else if((bio_state & BIO_FLESH) && !(bio_state & BIO_BONE))
+		if(wounding_type == WOUND_BLUNT)
+			wounding_type = WOUND_SLASH
+			if(!easy_dismember)
+				wounding_dmg *= 0.5
+		else if(wounding_type == WOUND_PIERCE)
+			wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
+		if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
 
-		// standard humanoids
-		if(BIO_FULL)
-			// If there is already a moderate or above cut, the target is just a wee bit softened up
-			if(mangled_state == BODYPART_MANGLED_SKIN && sharpness)
-				wounding_dmg *= 1.1
-			// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
-			// So a big sharp weapon is still all you need to destroy a limb
-			else if(mangled_state == (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE) && sharpness)
-				playsound(src, "sound/effects/crackandbleed.ogg", 100)
-				if(wounding_type == WOUND_SLASH && !easy_dismember)
-					wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
-				if(wounding_type == WOUND_PIERCE && !easy_dismember)
-					wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
-				wounding_type = WOUND_BLUNT
-			else if(mangled_state & BODYPART_MANGLED_BOTH && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
-				return
+	// nothing uses only skin just yet
+	else if((bio_state & BIO_SKIN) && !(bio_state & BIO_FLESH) && !(bio_state & BIO_BONE))
+		return
+
+	// standard humanoids
+	else if(bio_state & BIO_FULL)
+		// If there is already a moderate or above cut, the target is just a wee bit softened up
+		if(mangled_state == BODYPART_MANGLED_SKIN && sharpness)
+			wounding_dmg *= 1.1
+		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
+		// So a big sharp weapon is still all you need to destroy a limb
+		else if(mangled_state == (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE) && sharpness)
+			playsound(src, "sound/effects/crackandbleed.ogg", 100)
+			if(wounding_type == WOUND_SLASH && !easy_dismember)
+				wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
+			if(wounding_type == WOUND_PIERCE && !easy_dismember)
+				wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
+			wounding_type = WOUND_BLUNT
+		else if(mangled_state & BODYPART_MANGLED_BOTH && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
+			return
 	/*
 	// END WOUND HANDLING
 	*/
@@ -435,52 +468,51 @@
 				phantom_wounding_dmg *= 1.65
 	
 	//Handling for bone only/flesh only/skin only/all of them targets
-	switch(bio_state)
-		// if we're bone only, all cutting attacks go straight to the bone
-		if(BIO_BONE)
-			if(wounding_type == WOUND_SLASH)
-				wounding_type = WOUND_BLUNT
-				if(!easy_dismember)
-					phantom_wounding_dmg *= 0.5
-			else if(wounding_type == WOUND_PIERCE)
-				wounding_type = WOUND_BLUNT
-				if(!easy_dismember)
-					phantom_wounding_dmg *= 0.75
-			
-			if((mangled_state & BODYPART_MANGLED_BONE) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
-				return
+	if((bio_state & BIO_BONE) && !(bio_state & BIO_FLESH)) // if we're bone only, all cutting attacks go straight to the bone
+		if(wounding_type == WOUND_SLASH)
+			wounding_type = WOUND_BLUNT
+			if(!easy_dismember)
+				phantom_wounding_dmg *= 0.5
+		else if(wounding_type == WOUND_PIERCE)
+			wounding_type = WOUND_BLUNT
+			if(!easy_dismember)
+				phantom_wounding_dmg *= 0.75
 		
-		// slime people p much they dont have bone
-		if(BIO_FLESH)
-			if(wounding_type == WOUND_BLUNT)
-				wounding_type = WOUND_SLASH
-				if(!easy_dismember)
-					phantom_wounding_dmg *= 0.5
-			else if(wounding_type == WOUND_PIERCE)
-				phantom_wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
-			if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
-				return
-
-		// nothing uses only skin just yet
-		if(BIO_SKIN)
+		if((mangled_state & BODYPART_MANGLED_BONE) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
+			return
+	
+	// slime people p much they dont have bone
+	else if((bio_state & BIO_FLESH) && !(bio_state & BIO_BONE))
+		if(wounding_type == WOUND_BLUNT)
+			wounding_type = WOUND_SLASH
+			if(!easy_dismember)
+				phantom_wounding_dmg *= 0.5
+		else if(wounding_type == WOUND_PIERCE)
+			phantom_wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
+		if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
 
-		// standard humanoids
-		if(BIO_FULL)
-			// If there is already a moderate or above cut, the target is just a wee bit softened up
-			if(mangled_state == BODYPART_MANGLED_SKIN && sharpness)
-				phantom_wounding_dmg *= 1.1
-			// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
-			// So a big sharp weapon is still all you need to destroy a limb
-			else if(mangled_state == (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE) && sharpness)
-				playsound(src, "sound/effects/crackandbleed.ogg", 100)
-				if(wounding_type == WOUND_SLASH && !easy_dismember)
-					phantom_wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
-				if(wounding_type == WOUND_PIERCE && !easy_dismember)
-					phantom_wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
-				wounding_type = WOUND_BLUNT
-			else if(mangled_state == BODYPART_MANGLED_BOTH && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
-				return
+	// nothing uses only skin just yet
+	else if((bio_state & BIO_SKIN) && !(bio_state & BIO_FLESH) && !(bio_state & BIO_BONE))
+		return
+
+	// standard humanoids
+	else if(bio_state & BIO_FULL)
+		// If there is already a moderate or above cut, the target is just a wee bit softened up
+		if(mangled_state == BODYPART_MANGLED_SKIN && sharpness)
+			phantom_wounding_dmg *= 1.1
+		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
+		// So a big sharp weapon is still all you need to destroy a limb
+		else if(mangled_state == (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE) && sharpness)
+			playsound(src, "sound/effects/crackandbleed.ogg", 100)
+			if(wounding_type == WOUND_SLASH && !easy_dismember)
+				phantom_wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
+			if(wounding_type == WOUND_PIERCE && !easy_dismember)
+				phantom_wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
+			wounding_type = WOUND_BLUNT
+		else if(mangled_state == BODYPART_MANGLED_BOTH && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
+			return
+
 
 	check_wounding(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)
 
@@ -500,9 +532,10 @@
 	if(owner && updating_health)
 		owner.updatehealth()
 	if(owner.dna && owner.dna.species && (REVIVESBYHEALING in owner.dna.species.species_traits))
-		if(owner.health > owner.dna.species.revivesbyhealreq && !owner.hellbound)
-			owner.revive(0)
-			owner.cure_husk(0) // If it has REVIVESBYHEALING, it probably can't be cloned. No husk cure.
+		if((owner.health > owner.dna.species.revivesbyhealreq) && !owner.hellbound)
+			if((NOBLOOD in owner.dna.species.species_traits) || (owner.blood_volume >= BLOOD_VOLUME_OKAY))
+				owner.revive(0)
+				owner.cure_husk(0) // If it has REVIVESBYHEALING, it probably can't be cloned. No husk cure.
 	consider_processing()
 	update_disabled()
 	return update_bodypart_damage_state() 
@@ -548,7 +581,7 @@
 				var/obj/item/bodypart/parent = owner.get_bodypart(parent_bodyzone)
 				if(parent.is_disabled())
 					return parent.is_disabled()
-		if(get_damage(TRUE) >= max_damage * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1)) //Easy limb disable disables the limb at 40% health instead of 0%
+		if(get_damage(TRUE) >= ((max_damage - min(5, max_damage * 0.1)) * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1))) //Easy limb disable disables the limb at 40% health instead of 0%
 			if(!last_maxed)
 				owner.emote("scream")
 				last_maxed = TRUE
@@ -619,6 +652,7 @@
 		owner.update_body() //if our head becomes robotic, we remove the lizard horns and human hair.
 		owner.update_hair()
 		owner.update_damage_overlays()
+		owner.update_medicine_overlays()
 
 //Status related procs
 /obj/item/bodypart/proc/is_organic_limb()
@@ -649,6 +683,19 @@
 			I.pixel_x = px_x
 			I.pixel_y = px_y
 		standing |= substanding
+		for(var/obj/item/bodypart/grandchild in BP)
+			var/list/subsubstanding = grandchild.get_limb_icon(1)
+			for(var/image/I in subsubstanding)
+				I.pixel_x = px_x
+				I.pixel_y = px_y
+			standing |= subsubstanding
+			//the ride never ends
+			for(var/obj/item/bodypart/ggrandchild in grandchild)
+				var/list/subsubsubstanding = ggrandchild.get_limb_icon(1)
+				for(var/image/I in subsubsubstanding)
+					I.pixel_x = px_x
+					I.pixel_y = px_y
+				standing |= subsubsubstanding
 	if(!standing.len)
 		icon_state = initial(icon_state)//no overlays found, we default back to initial icon.
 		return
@@ -708,12 +755,11 @@
 				R.name = "shredded [current_gauze.name]"
 				R.desc = "Pretty worthless for medicine now..."
 				R.add_mob_blood(owner)
-				QDEL_NULL(current_gauze)
+				remove_gauze(drop_gauze = FALSE)
 			else
-				owner.visible_message("<span class='danger'>\The [current_gauze] on [owner] falls off from [lowertext(owner.p_their())] [src.name]!</span>", "<span class='userdanger'>\The [current_gauze] on your [src.name] falls off!</span>")
-				current_gauze.forceMove(owner.loc)
+				owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [src.name] falls off!</span>", "<span class='userdanger'>\The [current_gauze] on your [src.name] falls off!</span>")
 				current_gauze.add_mob_blood(owner)
-				current_gauze = null
+				remove_gauze(drop_gauze = TRUE)
 		
 		else if(prob(base_roll))
 			owner.visible_message("<span class='boldwarning'>\The [current_gauze] on [owner]'s [src.name] tears up a bit!</span>", "<span class='danger'>\The [current_gauze] on your [src.name] tears up a bit!</span>")
@@ -750,7 +796,7 @@
 				else
 					replaced_wound = existing_wound
 
-		if(initial(possible_wound.threshold_minimum) * CONFIG_GET(number/wound_threshold_multiplier) < injury_roll)
+		if(possible_wound.threshold_minimum * CONFIG_GET(number/wound_threshold_multiplier) < injury_roll)
 			var/datum/wound/new_wound
 			if(replaced_wound)
 				new_wound = replaced_wound.replace_wound(possible_wound.type)
@@ -768,15 +814,13 @@
 
 // try forcing a specific wound, but only if there isn't already a wound of that severity or greater for that type on this bodypart
 /obj/item/bodypart/proc/force_wound_upwards(specific_woundtype, smited = FALSE)
-	var/datum/wound/potential_wound = specific_woundtype
-	for(var/i in wounds)
-		var/datum/wound/existing_wound = i
-		if(existing_wound.type in (initial(potential_wound.wound_type)))
-			if(existing_wound.severity < initial(potential_wound.severity)) // we only try if the existing one is inferior to the one we're trying to force
-				existing_wound.replace_wound(potential_wound, smited)
+	var/datum/wound/new_wound = new specific_woundtype
+	for(var/datum/wound/existing_wound in wounds)
+		if(existing_wound.wound_type == new_wound.wound_type)
+			if(existing_wound.severity < initial(new_wound.severity)) // we only try if the existing one is inferior to the one we're trying to force
+				existing_wound.replace_wound(new_wound, smited)
 			return
 
-	var/datum/wound/new_wound = new potential_wound
 	var/severity = new_wound.severity
 	if(!(body_zone in new_wound.viable_zones))
 		var/list/fuck = (new_wound.wound_type - new_wound.type)
@@ -839,8 +883,7 @@
 	if(isnull(wounds))
 		return
 
-	for(var/thing in wounds)
-		var/datum/wound/W = thing
+	for(var/datum/wound/W in wounds)
 		if(istype(W, checking_type))
 			return W
 
@@ -859,9 +902,9 @@
 	for(var/datum/wound/W in wounds)
 		dam_mul *= W.damage_multiplier_penalty
 	
-	if(!LAZYLEN(wounds) && current_gauze && !replaced)
+	if(!LAZYLEN(wounds) && current_gauze && !replaced && (current_gauze.absorption_capacity <= 0))
 		owner.visible_message("<span class='notice'>\The [current_gauze] on [owner]'s [name] fall away.</span>", "<span class='notice'>The [current_gauze] on your [name] fall away.</span>")
-		QDEL_NULL(current_gauze)
+		remove_gauze(drop_gauze = FALSE)
 
 	wound_damage_multiplier = dam_mul
 	update_disabled()
@@ -891,6 +934,12 @@
 	if(owner.mobility_flags & ~MOBILITY_STAND)
 		bleed_rate *= 0.75
 
+	if(grasped_by)
+		bleed_rate *= 0.7
+	
+	if(!bleed_rate)
+		QDEL_NULL(grasped_by)
+
 	return bleed_rate
 
 /obj/item/bodypart/proc/apply_gauze(obj/item/stack/I)
@@ -900,6 +949,26 @@
 	current_gauze = new I.type(src)
 	current_gauze.amount = 1
 	I.use(1)
+	if(!owner)
+		update_icon_dropped()
+	else
+		owner.update_medicine_overlays()
+
+/obj/item/bodypart/proc/remove_gauze(drop_gauze = FALSE)
+	if(!current_gauze)
+		return
+	
+	if(!drop_gauze)
+		QDEL_NULL(current_gauze)
+	else
+		var/turf/drop = get_turf(src)
+		current_gauze.forceMove(drop)
+		current_gauze = null
+	
+	if(!owner)
+		update_icon_dropped()
+	else
+		owner.update_medicine_overlays()
 
 /**
   * seep_gauze() is for when a gauze wrapping absorbs blood or pus from wounds, lowering its absorption capacity.
@@ -913,9 +982,9 @@
 	if(!current_gauze)
 		return
 	current_gauze.absorption_capacity -= seep_amt
-	if(current_gauze.absorption_capacity < 0)
+	if(current_gauze.absorption_capacity <= 0)
 		owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [name] fall away in rags.</span>", "<span class='warning'>\The [current_gauze] on your [name] fall away in rags.</span>", vision_distance=COMBAT_MESSAGE_RANGE)
-		QDEL_NULL(current_gauze)
+		remove_gauze()
 
 //Update_limb() changes because synths
 /obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source)
@@ -1129,8 +1198,8 @@
 						auxmarking += image(body_markings_icon, "[body_markings]_[I]", -aux_layer, image_dir)
 			. += aux
 			. += auxmarking
-		
-		if(body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_CHEST))
+		/*
+		if((body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_CHEST)) && (!owner || dropped))
 			for(var/obj/item/organ/genital/G in src)
 				var/datum/sprite_accessory/S
 				var/size = G.size
@@ -1160,7 +1229,7 @@
 
 				genital_overlay.icon_state = "[G.slot]_[S.icon_state]_[size][(original_owner?.dna?.species?.use_skintones && !original_owner?.dna?.skin_tone_override) ? "_s" : ""]_[aroused_state]_FRONT"
 				. += genital_overlay
-
+		*/
 	else
 		limb.icon = icon
 		if(should_draw_gender)
@@ -1195,7 +1264,8 @@
 				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
 			. += marking
 		
-		if(body_zone == BODY_ZONE_PRECISE_GROIN)
+		/*
+		if((body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_CHEST)) && (!owner || dropped))
 			for(var/obj/item/organ/genital/G in src)
 				var/datum/sprite_accessory/S
 				var/size = G.size
@@ -1225,8 +1295,7 @@
 
 				genital_overlay.icon_state = "[G.slot]_[S.icon_state]_[size][(original_owner?.dna?.species?.use_skintones && !original_owner?.dna?.skin_tone_override) ? "_s" : ""]_[aroused_state]_FRONT"
 				. += genital_overlay
-		return
-
+		*/
 	if(color_src) //TODO - add color matrix support for base species limbs
 		var/draw_color = mutation_color || species_color
 		var/grayscale = FALSE
@@ -1258,3 +1327,5 @@
 					marking.color = "#141414"
 				else
 					marking.color = list(markings_color)
+	
+	return

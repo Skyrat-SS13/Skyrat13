@@ -1,6 +1,7 @@
 /mob/living/carbon/BiologicalLife(seconds, times_fired)
 	//Reagent processing needs to come before breathing, to prevent edge cases.
 	handle_organs()
+	handle_changeling()
 	. = ..()		// if . is false, we are dead.
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
@@ -26,7 +27,6 @@
 		handle_liver()
 
 	//Updates the number of stored chemicals for powers
-	handle_changeling()
 
 /mob/living/carbon/PhysicalLife(seconds, times_fired)
 	if(!(. = ..()))
@@ -396,7 +396,7 @@
 			if(O)
 				O.on_life()
 	else
-		if(reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/preservahyde, 1)) // No organ decay if the body contains formaldehyde. Or preservahyde.
+		if(reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/medicine/preservahyde, 1)) // No  organ decay if the body contains formaldehyde. Orpreservahyde. Skyrat Edit - repaths perservahyde
 			return
 		for(var/V in internal_organs)
 			var/obj/item/organ/O = V

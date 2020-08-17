@@ -1,0 +1,4 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "The super shotgun from bubblegum no longer floats around telepathically when you pick it up"

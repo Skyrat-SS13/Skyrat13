@@ -235,7 +235,7 @@
 		if(!affecting)
 			affecting = get_bodypart(BODY_ZONE_CHEST)
 		var/armor = run_armor_check(affecting, "melee", armour_penetration = M.armour_penetration)
-		apply_damage(damage, M.melee_damage_type, affecting, armor)
+		apply_damage(damage, M.melee_damage_type, affecting, armor, FALSE, M.wound_bonus, M.bare_wound_bonus, M.sharpness)
 
 
 /mob/living/carbon/human/attack_slime(mob/living/simple_animal/slime/M)
@@ -902,7 +902,10 @@
 			if(HD.tapered)
 				if(!wear_mask)
 					to_chat(src, "\t <span class='warning'>Your [HD.name] has \a <b><a href='?src=[REF(HD)];tape=[HD.tapered];'>[HD.tapered]</a></b> on it's mouth!</span>")
-
+		
+		if(LB.current_gauze)
+			to_chat(src, "\t <span class='notice'>Your [LB.name] is wrapped in <a href='?src=[REF(LB)];gauze=1;'>[LB.current_gauze.name]</a>.</span>")
+		
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 			for(var/thing in LB.wounds)
 				var/datum/wound/W = thing
@@ -1052,4 +1055,4 @@
 			var/obj/item/clothing/C = bp
 			if(C.body_parts_covered & def_zone.body_part)
 				covering_part += C
-	return covering_part.len
+	return length(covering_part)

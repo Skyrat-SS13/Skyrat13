@@ -8,7 +8,8 @@
 	/datum/surgery_step/prepare_electronics,
 	/datum/surgery_step/add_plating/fullbody,
 	/datum/surgery_step/weld_plating/fullbody,
-	/datum/surgery_step/finalize_chassis_restoration)
+	/datum/surgery_step/finalize_chassis_restoration,
+	/datum/surgery_step/mechanic_close)
 
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST)

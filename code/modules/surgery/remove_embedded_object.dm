@@ -1,8 +1,11 @@
 /datum/surgery/embedded_removal
 	name = "Removal of embedded objects"
-	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/remove_object)
+	steps = list(/datum/surgery_step/incise,
+				/datum/surgery_step/clamp_bleeders,
+				/datum/surgery_step/retract_skin,
+				/datum/surgery_step/remove_object,
+				/datum/surgery_step/close)
 	possible_locs = ALL_BODYPARTS //skyrat edit
-	requires_bodypart_type = BODYPART_ORGANIC //skyrat edit
 
 /datum/surgery_step/remove_object
 	name = "Remove embedded objects"

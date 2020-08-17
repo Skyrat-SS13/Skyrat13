@@ -55,10 +55,6 @@
 	//Breathing, if applicable
 	handle_breathing(times_fired)
 
-	//skyrat edit
-	handle_wounds()
-	//
-
 	if (QDELETED(src)) // diseases can qdel the mob via transformations
 		return FALSE
 
@@ -100,6 +96,10 @@
 	handle_gravity()
 
 	handle_block_parry(seconds)
+
+	//skyrat edit
+	handle_wounds()
+	//
 
 	if(machine)
 		machine.check_eye(src)
@@ -201,3 +201,9 @@
 //skyrat edit
 /mob/living/proc/handle_wounds()
 	return
+
+/mob/living/carbon/handle_wounds()
+	for(var/thing in all_wounds)
+		var/datum/wound/W = thing
+		if(W.processes) // meh
+			W.handle_process()

@@ -1,5 +1,6 @@
 /obj/item/organ/eyes/robot_ipc
 	name = "robotic eyes"
+	icon = 'modular_skyrat/icons/obj/surgery.dmi'
 	icon_state = "cybernetic_eyeballs"
 	desc = "A very basic set of optical sensors with no extra vision modes or functions."
 	status = ORGAN_ROBOTIC

@@ -60,7 +60,7 @@
 	precise_location = pick(limb.specific_locations)
 	src.visibility = W.severity
 	if(W.fake_body_zone)
-		precise_location = "[lowertext(W.fake_body_zone)]"
+		precise_location = "[lowertext(parse_zone(W.fake_body_zone))]"
 
 /datum/scar/proc/pref_apply(obj/item/bodypart/BP, specific_location, new_description, new_severity = 0, add_to_scars=TRUE)
 	if(!(BP.body_zone in applicable_zones) || !BP.is_organic_limb())
@@ -104,12 +104,12 @@
 	return TRUE
 
 /// What will show up in examine_more() if this scar is visible
-/datum/scar/proc/get_examine_description(mob/viewer)
+/datum/scar/proc/get_examine_description(mob/viewer, check_victim = TRUE)
 	if(!is_visible(viewer))
 		return
 
 	var/msg
-	if(victim)
+	if(check_victim && victim)
 		msg = "[victim.p_they(TRUE)] [victim.p_have()] [description] on [victim.p_their()] [precise_location]."
 	else
 		msg = "\The [limb] has [description] on it's [precise_location]."
@@ -125,10 +125,10 @@
 		if(WOUND_SEVERITY_LOSS to INFINITY)
 			msg = "[victim.p_their(TRUE)] [limb.name] [description]." // different format
 			msg = "<span class='notice'><i><b>[msg]</b></i></span>"
-	if((viewer == victim) && (!is_visible(checkviewer = FALSE) && is_visible(viewer)))
-		return "\t[msg] <span class='purple'>It is too well hidden for others to notice.</span>"
+	if(check_victim && (viewer == victim) && (!is_visible(checkviewer = FALSE) && is_visible(viewer)))
+		return "[msg] <span class='purple'>It is too well hidden for others to notice.</span>"
 	else
-		return "\t[msg]"
+		return msg
 
 /// Whether a scar can currently be seen by the viewer
 /datum/scar/proc/is_visible(mob/viewer, checkviewer = TRUE)

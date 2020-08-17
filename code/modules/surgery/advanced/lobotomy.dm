@@ -48,7 +48,7 @@
 			target.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_SURGERY)
 		if(3)
 			target.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_SURGERY)
-	// you're cutting off a part of the brain.w
+	// you're cutting off a part of the brain.
 	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
 	B.applyOrganDamage(50, 100)
 	return TRUE

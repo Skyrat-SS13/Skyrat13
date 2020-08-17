@@ -32,13 +32,18 @@
 	/// If this is a chest wound and this is set, we have this chance to cough up blood when hit in the chest
 	var/internal_bleeding_chance = 0
 
-	base_treat_time = 5 SECONDS
+	base_treat_time = 4 SECONDS
 	biology_required = list(HAS_BONE)
 	required_status = BODYPART_ORGANIC
 
 /*
 	Overwriting of base procs
 */
+
+/datum/wound/blunt/Destroy()
+	. = ..()
+	if(active_trauma)
+		QDEL_NULL(active_trauma)
 
 /datum/wound/blunt/on_hemostatic(quantity)
 	if((severity <= WOUND_SEVERITY_SEVERE) && (quantity >= 15))
@@ -88,7 +93,7 @@
 
 	regen_points_current++
 	if(prob(severity * 2))
-		victim.take_bodypart_damage(rand(2, severity * 2), stamina=rand(2, severity * 2.5), wound_bonus=CANT_WOUND)
+		victim.take_bodypart_damage(rand(2, (min(severity - 1, 1) * 2)), stamina=rand(2, severity * 2.5), wound_bonus=CANT_WOUND)
 		if(prob(33))
 			to_chat(victim, "<span class='danger'>You feel a sharp pain in your body as your bones are reforming!</span>")
 
@@ -109,13 +114,13 @@
 		// And you have a 70% or 50% chance to actually land the blow, respectively
 		if(prob(70 - 20 * (severity - 1)))
 			to_chat(victim, "<span class='userdanger'>The fracture in your [limb.name] shoots with pain as you strike [target]!</span>")
-			limb.receive_damage(brute=rand(1,5))
+			limb.receive_damage(brute=rand(1,5), wound_bonus = CANT_WOUND)
 		else
 			victim.visible_message("<span class='danger'>[victim] weakly strikes [target] with [victim.p_their()] broken [limb.name], recoiling from pain!</span>", \
 			"<span class='userdanger'>You fail to strike [target] as the fracture in your [limb.name] lights up in unbearable pain!</span>", vision_distance=COMBAT_MESSAGE_RANGE)
 			victim.emote("scream")
 			victim.Stun(0.5 SECONDS)
-			limb.receive_damage(brute=rand(2,7))
+			limb.receive_damage(brute=rand(2,7), wound_bonus = CANT_WOUND)
 			return COMPONENT_NO_ATTACK_HAND
 
 /datum/wound/blunt/receive_damage(wounding_type, wounding_dmg, wound_bonus)
@@ -241,6 +246,10 @@
 		remove_wound()
 
 /datum/wound/blunt/moderate/self_treat(mob/living/carbon/user, first_time = FALSE)
+	. = ..()
+	if(.)
+		return TRUE
+	
 	var/time = base_treat_time
 	var/time_mod = 2
 	var/prob_mod = -25
@@ -259,14 +268,14 @@
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(60 + prob_mod))
+	if(prob(70 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps their own [custom_location ? custom_location : limb.name] back in place!</span>", "<span class='danger'>You snap your [custom_location ? custom_location : limb.name] back into place!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=24, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
 		user.visible_message("<span class='danger'>[user] wrenches their own dislocated [custom_location ? custom_location : limb.name] around painfully!</span>", "<span class='danger'>You wrench your own dislocated [custom_location ? custom_location : limb.name] around painfully!</span>")
-		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=8, wound_bonus=CANT_WOUND)
 		self_treat(user, FALSE)
 	return
 
@@ -298,16 +307,16 @@
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(60 + prob_mod))
+	if(prob(40 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] back into place!</span>", "<span class='notice'>You snap [victim]'s dislocated [limb.name] back into place!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] back into place!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=20, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
 		user.visible_message("<span class='danger'>[user] wrenches [victim]'s dislocated [limb.name] around painfully!</span>", "<span class='danger'>You wrench [victim]'s dislocated [limb.name] around painfully!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] wrenches your dislocated [limb.name] around painfully!</span>")
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=7, wound_bonus=CANT_WOUND)
 		chiropractice(user)
 
 /// If someone is snapping our dislocated joint into a fracture by hand with an aggro grab and harm or disarm intent
@@ -320,15 +329,15 @@
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(prob(40 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] with a sickening crack!</span>", "<span class='danger'>You snap [victim]'s dislocated [limb.name] with a sickening crack!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=25, wound_bonus=30 + prob_mod * 3)
+		limb.receive_damage(brute=25, wound_bonus=30 + prob_mod * 3, wound_bonus = CANT_WOUND)
 	else
 		user.visible_message("<span class='danger'>[user] wrenches [victim]'s dislocated [limb.name] around painfully!</span>", "<span class='danger'>You wrench [victim]'s dislocated [limb.name] around painfully!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] wrenches your dislocated [limb.name] around painfully!</span>")
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=12.5, wound_bonus=CANT_WOUND)
 		malpractice(user)
 
 
@@ -342,10 +351,10 @@
 		return
 
 	if(victim == user)
-		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		victim.visible_message("<span class='danger'>[user] finishes resetting [victim.p_their()] [limb.name]!</span>", "<span class='userdanger'>You reset your [limb.name]!</span>")
 	else
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=7, wound_bonus=CANT_WOUND)
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s [limb.name]!</span>", "<span class='nicegreen'>You finish resetting [victim]'s [limb.name]!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your [limb.name]!</span>")
 
@@ -405,16 +414,16 @@
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(prob(40 + prob_mod))
 		user.visible_message("<span class='notice'>[user] massages [victim]'s dislocated ribs back in place.</span>", "<span class='notice'>You massage [victim]'s dislocated ribs back into place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='notice'>[user] massages your dislocated ribs back into place.</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=25, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
 		user.visible_message("<span class='danger'>[user] grinds [victim]'s rib cartilage around painfully!</span>", "<span class='danger'>You grind [victim]'s rib cartilage around painfully!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] grinds your ribs' cartilage around painfully!</span>")
-		limb.receive_damage(brute=20, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=8, wound_bonus=CANT_WOUND)
 		chiropractice(user)
 
 /datum/wound/blunt/moderate/ribcage/treat(obj/item/I, mob/user)
@@ -488,16 +497,16 @@
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(prob(40 + prob_mod))
 		user.visible_message("<span class='danger'>[user] forces [victim]'s femoral bone back in place!</span>", "<span class='notice'>You force [victim]'s dislocated femoral bone back in place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] forces your femoral bone in place!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=25, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
 		user.visible_message("<span class='danger'>[user] painfully wrenches [victim]'s femur around!</span>", "<span class='danger'>You painfully wrench [victim]'s femur around!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] painfully wrenches your femur around!</span>")
-		limb.receive_damage(brute=20, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		chiropractice(user)
 
 /datum/wound/blunt/moderate/hips/treat(obj/item/I, mob/user)
@@ -513,9 +522,92 @@
 		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
 		victim.visible_message("<span class='danger'>[user] finishes resetting [victim.p_their()] femur!</span>", "<span class='userdanger'>You reset your femur!</span>")
 	else
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=7, wound_bonus=CANT_WOUND)
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s femur!</span>", "<span class='nicegreen'>You finish resetting [victim]'s femur!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your femur!</span>")
+
+	victim.emote("scream")
+	qdel(src)
+
+/*
+	Moderate (Jaw Dislocation)
+*/
+
+/datum/wound/blunt/moderate/jaw
+	name = "Jaw Dislocation"
+	desc = "Patient has a dislocated jaw, causing pain and discomfort."
+	treat_text = "Recommended application of bonesetter to the head, though forcing the jaw back in place by applying an aggressive grab to the patient and helpfully interacting with their head may suffice."
+	examine_desc = "is red and swollen"
+	occur_text = "snaps audibly"
+	severity = WOUND_SEVERITY_MODERATE
+	viable_zones = list(BODY_ZONE_HEAD)
+	interaction_efficiency_penalty = 1.5
+	limp_slowdown = 3
+	threshold_minimum = 35
+	threshold_penalty = 15
+	treatable_tool = TOOL_BONESET
+	status_effect_type = /datum/status_effect/wound/blunt/moderate
+	scarring_descriptions = list("light discoloring", "a slight blue tint")
+	associated_alerts = list()
+
+/datum/wound/blunt/moderate/jaw/crush()
+	if(prob(33))
+		victim.visible_message("<span class='danger'>[victim]'s dislocated jaw pops back into place!</span>", "<span class='userdanger'>Your dislocated jaw pops back into place! Ow!</span>")
+		remove_wound()
+
+/datum/wound/blunt/moderate/jaw/try_handling(mob/living/carbon/human/user)
+	if(user.pulling != victim || user.zone_selected != limb.body_zone || user.a_intent == INTENT_GRAB)
+		return FALSE
+
+	if(user.grab_state == GRAB_PASSIVE)
+		to_chat(user, "<span class='warning'>You must have [victim] in an aggressive grab to manipulate [victim.p_their()] [lowertext(name)]!</span>")
+		return TRUE
+
+	if((user.grab_state >= GRAB_AGGRESSIVE) && (user.a_intent == INTENT_HELP))
+		user.visible_message("<span class='notice'>[user] begins forcing [victim]'s jaw back in place.</span>", "<span class='notice'>You begin forcing [victim]'s jaw back in place...</span>", ignored_mobs=victim)
+		to_chat(victim, "<span class='notice'>[user] begins forcing your jaw back in place.</span>")
+		chiropractice(user)
+		return TRUE
+
+/// If someone is treating the jaw
+/datum/wound/blunt/moderate/jaw/chiropractice(mob/living/carbon/human/user)
+	var/time = base_treat_time
+	var/time_mod = 1
+	var/prob_mod = 20
+	if(time_mod)
+		time *= time_mod
+
+	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+		return
+
+	if(prob(40 + prob_mod))
+		user.visible_message("<span class='notice'>[user] jams [victim]'s jaw back in place.</span>", "<span class='notice'>You jam [victim]'s dislocated jaaw back into place.</span>", ignored_mobs=victim)
+		to_chat(victim, "<span class='notice'>[user] jams your dislocated jaw back into place.</span>")
+		victim.emote("scream")
+		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		qdel(src)
+	else
+		user.visible_message("<span class='danger'>[user] moves [victim]'s jaw around painfully!</span>", "<span class='danger'>You move [victim]'s jaw around painfully!</span>", ignored_mobs=victim)
+		to_chat(victim, "<span class='userdanger'>[user] moves your jaw around painfully!</span>")
+		limb.receive_damage(brute=8, wound_bonus=CANT_WOUND)
+		chiropractice(user)
+
+/datum/wound/blunt/moderate/jaw/treat(obj/item/I, mob/user)
+	if(victim == user)
+		victim.visible_message("<span class='danger'>[user] begins resetting [victim.p_their()] jaw with [I].</span>", "<span class='warning'>You begin resetting your jaw with [I]...</span>")
+	else
+		user.visible_message("<span class='danger'>[user] begins resetting [victim]'s jaw with [I].</span>", "<span class='notice'>You begin resetting [victim]'s jaw with [I]...</span>")
+
+	if(!do_after(user, base_treat_time * (user == victim ? 2.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+		return
+
+	if(victim == user)
+		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
+		victim.visible_message("<span class='danger'>[user] finishes resetting [victim.p_their()] jaw!</span>", "<span class='userdanger'>You reset your jaw!</span>")
+	else
+		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s jaw!</span>", "<span class='nicegreen'>You finish resetting [victim]'s jaw!</span>", victim)
+		to_chat(victim, "<span class='userdanger'>[user] resets your jaw!</span>")
 
 	victim.emote("scream")
 	qdel(src)
@@ -530,9 +622,10 @@
 	treat_text = "Recommended light surgical application of bone gel, though a sling of medical gauze will prevent worsening situation."
 	examine_desc = "appears grotesquely swollen, its attachment weakened"
 
-	occur_text = "sprays chips of bone and develops a nasty looking bruise"
+	occur_text = "cracks audibly and develops a nasty looking bruise"
 
 	severity = WOUND_SEVERITY_SEVERE
+	viable_zones = ALL_BODYPARTS
 	interaction_efficiency_penalty = 2
 	limp_slowdown = 6
 	threshold_minimum = 60
@@ -552,6 +645,7 @@
 	examine_desc = "is mangled and pulped, seemingly held together by tissue alone"
 	occur_text = "cracks apart, exposing broken bones to open air"
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	interaction_efficiency_penalty = 4
 	limp_slowdown = 9
 	sound_effect = 'modular_skyrat/sound/effects/crack2.ogg'
@@ -587,7 +681,10 @@
 	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 0.75), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
-	I.use(1)
+	if(!I.use(1))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
+		return
+	
 	victim.emote("scream")
 	if(user != victim)
 		user.visible_message("<span class='notice'>[user] finishes applying [I] to [victim]'s [limb.name], emitting a fizzing noise!</span>", "<span class='notice'>You finish applying [I] to [victim]'s [limb.name]!</span>", ignored_mobs=victim)
@@ -607,7 +704,7 @@
 			return
 		victim.visible_message("<span class='notice'>[victim] finishes applying [I] to [victim.p_their()] [limb.name], grimacing from the pain!</span>", "<span class='notice'>You finish applying [I] to your [limb.name], and your bones explode in pain!</span>")
 
-	limb.receive_damage(30, stamina=100, wound_bonus=CANT_WOUND)
+	limb.receive_damage(15, stamina=75, wound_bonus=CANT_WOUND)
 	if(!gelled)
 		gelled = TRUE
 
@@ -624,10 +721,12 @@
 
 	if(!do_after(user, base_treat_time * (user == victim ? 2 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
-
+	if(!I.use(1))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
+		return
+	
 	regen_points_current = 0
 	regen_points_needed = 15 * (user == victim ? 2 : 1) * severity
-	I.use(1)
 	if(user != victim)
 		user.visible_message("<span class='notice'>[user] finishes applying [I] to [victim]'s [limb.name], emitting a fizzing noise!</span>", "<span class='notice'>You finish applying [I] to [victim]'s [limb.name]!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='green'>[user] finishes applying [I] to your [limb.name], you immediately begin to feel your bones start to reform!</span>")
@@ -654,7 +753,7 @@
 		else if(!taped)
 			. += "<span class='notice'>Continue Alternative Treatment: Apply surgical tape directly to injured limb to begin bone regeneration. Note, this is both excruciatingly painful and slow.</span>\n"
 		else
-			. += "<span class='notice'>Note: Bone regeneration in effect. Bone is [round(regen_points_current/regen_points_needed)]% regenerated.</span>\n"
+			. += "<span class='notice'>Note: Bone regeneration in effect. Bone is [round((regen_points_current/regen_points_needed) * 100)]% regenerated.</span>\n"
 
 	if(limb.body_zone == BODY_ZONE_HEAD)
 		. += "Cranial Trauma Detected: Patient will suffer random bouts of [severity == WOUND_SEVERITY_SEVERE ? "mild" : "severe"] brain traumas until bone is repaired."

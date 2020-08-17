@@ -78,6 +78,8 @@
 
 /datum/datacore/proc/manifest()
 	for(var/mob/dead/new_player/N in GLOB.player_list)
+		if(!N?.client)
+			continue
 		if(N.new_character)
 			log_manifest(N.ckey,N.new_character.mind,N.new_character)
 		if(ishuman(N.new_character))
@@ -278,11 +280,14 @@
 		M.fields["cdi"]			= "None"
 		M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
 		M.fields["notes"]		= H.get_trait_string(medical)
-		//Skyrat edit - rp records
+		//Skyrat edit
 		if(C)
 			M.fields["past_records"] = C.prefs.medical_records
 		else
 			M.fields["past_records"] = ""
+		//Feature records. Used by the limbgrower at the moment.
+		if(C)
+			M.fields["features"] = C.prefs.features.Copy()
 		//End of skyrat edit
 		medical += M
 

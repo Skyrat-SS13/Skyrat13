@@ -69,7 +69,6 @@
 //SKYRAT CHANGES
 	var/appear_in_round_end_report = TRUE
 	var/mob/original_character
-	var/accept_ERG = FALSE
 //END OF SKYRAT CHANGES
 
 	var/force_escaped = FALSE  // Set by Into The Sunset command of the shuttle manipulator
@@ -1602,7 +1601,7 @@ GLOBAL_LIST(objective_choices)
 /datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S, give_mind = TRUE)
 	if(give_mind)
 		spell_list += S
-		
+
 	S.action.Grant(current)
 
 /datum/mind/proc/owns_soul()

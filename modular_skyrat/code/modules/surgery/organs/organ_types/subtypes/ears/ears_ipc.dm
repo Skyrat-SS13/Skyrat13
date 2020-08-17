@@ -1,5 +1,6 @@
 /obj/item/organ/ears/robot_ipc
 	name = "auditory sensors"
+	icon = 'modular_skyrat/icons/obj/surgery.dmi'
 	icon_state = "ears-c"
 	desc = "A pair of microphones intended to be installed in an IPC head, that grant the ability to hear."
 	zone = BODY_ZONE_HEAD

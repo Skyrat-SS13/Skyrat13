@@ -54,6 +54,10 @@
 	max_integrity = 100
 	brute_resist = 1
 	explosion_block = 2
+	//SKYRAT EDIT START - BLOB
+	ricochet_chance_mod = 2
+	ricochet_damage_mod = 0.2
+	//SKYRAT EDIT END - BLOB
 
 /obj/structure/blob/shield/reflective/check_projectile_ricochet(obj/item/projectile/P)
 	return PROJECTILE_RICOCHET_FORCE

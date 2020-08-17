@@ -29,18 +29,16 @@
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50, "wound" = 15)
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/head/hooded/explorer/Initialize()
-	. = ..()
-	AddComponent(/datum/component/armor_plate, 3, list("melee" = 10, "wound" = 3.5))
-
-/obj/item/clothing/suit/hooded/explorer/Initialize()
-	. = ..()
-	AddComponent(/datum/component/armor_plate, 3, list("melee" = 10, "wound" = 3.5))
-
 /obj/item/clothing/suit/hooded/explorer/standard
 	hoodtype = /obj/item/clothing/head/hooded/explorer/standard
 
-/obj/item/clothing/head/hooded/explorer/standard
+/obj/item/clothing/suit/hooded/explorer/standard/Initialize()
+	. = ..()
+	AddComponent(/datum/component/armor_plate, 3, /obj/item/stack/sheet/animalhide/goliath_hide, list("melee" = 10, "wound" = 3.5))
+
+/obj/item/clothing/head/hooded/explorer/standard/Initialize()
+	. = ..()
+	AddComponent(/datum/component/armor_plate, 3, /obj/item/stack/sheet/animalhide/goliath_hide, list("melee" = 10, "wound" = 3.5))
 
 /obj/item/clothing/mask/gas/explorer
 	name = "explorer gas mask"

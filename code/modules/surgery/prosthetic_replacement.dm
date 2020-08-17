@@ -1,6 +1,6 @@
 /datum/surgery/prosthetic_replacement
 	name = "Prosthetic replacement"
-	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/add_prosthetic)
+	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/add_prosthetic, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = ALL_BODYPARTS //skyrat edit
 	requires_bodypart = FALSE //need a missing limb
@@ -32,10 +32,10 @@
 	if(istype(tool, /obj/item/bodypart))
 		var/obj/item/bodypart/BP = tool
 		if(ismonkey(target))// monkey patient only accept organic monkey limbs
-			if(BP.status == BODYPART_ROBOTIC || BP.animal_origin != MONKEY_BODYPART)
+			if((BP.status & BODYPART_ROBOTIC) || BP.animal_origin != MONKEY_BODYPART)
 				to_chat(user, "<span class='warning'>[BP] doesn't match the patient's morphology.</span>")
 				return -1
-		if(BP.status != BODYPART_ROBOTIC)
+		if(!(BP.status & BODYPART_ROBOTIC))
 			organ_rejection_dam = 10
 			if(ishuman(target))
 				if(BP.animal_origin)
@@ -44,6 +44,8 @@
 				var/mob/living/carbon/human/H = target
 				if(H.dna.species.id != BP.species_id)
 					organ_rejection_dam = 30
+				if(ROBOTIC_LIMBS in H.dna?.species?.species_traits)
+					organ_rejection_dam = 0
 
 		if(target_zone == BP.body_zone) //so we can't replace a leg with an arm, or a human arm with a monkey arm.
 			display_results(user, target, "<span class ='notice'>You begin to replace [target]'s [parse_zone(target_zone)] with [tool]...</span>",

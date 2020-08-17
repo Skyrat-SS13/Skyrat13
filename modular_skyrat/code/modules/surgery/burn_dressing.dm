@@ -5,7 +5,7 @@
 /datum/surgery/debride
 	name = "Debride infected flesh"
 	steps = list(/datum/surgery_step/debride, /datum/surgery_step/dress)
-	target_mobtypes = list(/mob/living/carbon/human)
+	target_mobtypes = list(/mob/living/carbon)
 	possible_locs = ALL_BODYPARTS
 	requires_real_bodypart = TRUE
 	targetable_wound = /datum/wound/burn
@@ -22,7 +22,7 @@
 /datum/surgery_step/debride
 	name = "Excise infection"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCALPEL = 85, TOOL_SAW = 60, TOOL_WIRECUTTER = 40)
-	time = 30
+	time = 3 SECONDS
 	repeatable = TRUE
 
 /datum/surgery_step/debride/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -60,7 +60,7 @@
 	display_results(user, target, "<span class='notice'>You carve away some of the healthy flesh from [target]'s [parse_zone(target_zone)].</span>",
 		"<span class='notice'>[user] carves away some of the healthy flesh from [target]'s [parse_zone(target_zone)] with [tool]!</span>",
 		"<span class='notice'>[user] carves away some of the healthy flesh from  [target]'s [parse_zone(target_zone)]!</span>")
-	surgery.operated_bodypart.receive_damage(brute=rand(4,8), sharpness=TRUE)
+	surgery.operated_bodypart.receive_damage(brute=rand(4,8), sharpness=SHARP_EDGED)
 
 /datum/surgery_step/debride/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	if(!..())
@@ -74,7 +74,7 @@
 /datum/surgery_step/dress
 	name = "Bandage burns"
 	implements = list(/obj/item/stack/medical/gauze = 100, /obj/item/stack/sticky_tape/surgical = 100)
-	time = 40
+	time = 4 SECONDS
 
 /datum/surgery_step/dress/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/datum/wound/burn/burn_wound = surgery.operated_wound
@@ -104,4 +104,4 @@
 	..()
 	if(istype(tool, /obj/item/stack))
 		var/obj/item/stack/used_stack = tool
-		used_stack.use(1)
+		used_stack.use(2)

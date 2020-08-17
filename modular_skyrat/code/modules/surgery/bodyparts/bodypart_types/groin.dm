@@ -8,10 +8,14 @@
 	px_x = 0
 	px_y = -3
 	stam_damage_coeff = 1
+	stam_heal_tick = 2
 	max_stamina_damage = 100
 	amputation_point = "lumbar"
 	parent_bodyzone = BODY_ZONE_CHEST
+	heal_zones = list(BODY_ZONE_CHEST)
 	dismember_bodyzone = BODY_ZONE_CHEST
 	children_zones = list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 	specific_locations = list("left buttock", "right buttock", "inner left thigh", "inner right thigh", "perineum")
 	max_cavity_size = WEIGHT_CLASS_NORMAL
+	dismember_mod = 0.7
+	disembowel_mod = 0.7

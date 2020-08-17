@@ -58,7 +58,7 @@
 			if(affecting)
 				if(!S.requires_bodypart)
 					return
-				if(S.requires_bodypart_type && affecting.status != S.requires_bodypart_type)
+				if(S.requires_bodypart_type && !(affecting.status & S.requires_bodypart_type))
 					return
 			else if(C && S.requires_bodypart)
 				return
@@ -91,7 +91,7 @@
 	else if(S.can_cancel)
 		var/required_tool_type = TOOL_CAUTERY
 		var/obj/item/close_tool = user.get_inactive_held_item()
-		var/is_robotic = S.requires_bodypart_type == BODYPART_ROBOTIC
+		var/is_robotic = S.requires_bodypart_type & BODYPART_ROBOTIC
 		if(is_robotic)
 			required_tool_type = TOOL_SCREWDRIVER
 		if(iscyborg(user))
@@ -107,6 +107,10 @@
 			S.operated_bodypart.generic_bleedstacks -= 5
 		//
 		M.surgeries -= S
+		for(var/datum/wound/slash/critical/incision/inch in S.operated_bodypart.wounds)
+			inch.remove_wound()
+		for(var/datum/wound/mechanical/slash/critical/incision/inch in S.operated_bodypart.wounds)
+			inch.remove_wound()
 		user.visible_message("<span class='notice'>[user] closes [M]'s [parse_zone(selected_zone)] with [close_tool] and removes [I].</span>", \
 			"<span class='notice'>You close [M]'s [parse_zone(selected_zone)] with [close_tool] and remove [I].</span>")
 		qdel(S)

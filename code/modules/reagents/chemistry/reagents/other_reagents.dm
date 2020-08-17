@@ -44,6 +44,13 @@
 		if((HAS_TRAIT(C, TRAIT_NOMARROW) || blood_id == /datum/reagent/blood || blood_id == /datum/reagent/blood/jellyblood) && (method == INJECT || (method == INGEST && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))))
 			C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM * C.blood_ratio)
 			// we don't care about bloodtype here, we're just refilling the mob
+			
+			//skyrat edit - we try to revive the carbon mob if it happens to be a synthetic
+			if(length(C.dna?.species?.species_traits) && (ROBOTIC_LIMBS in C.dna.species.species_traits) && length(C.bodyparts))
+				var/obj/item/bodypart/affecting = C.bodyparts[1]
+				if(istype(affecting))
+					affecting.heal_damage(0, 0, 0, TRUE, FALSE, FALSE)
+			//skyrat edit end
 
 	if(reac_volume >= 10 && istype(L) && method != INJECT)
 		L.add_blood_DNA(list("color" = data["bloodcolor"] || BLOOD_COLOR_HUMAN, data["blood_DNA"] = data["blood_type"]))
@@ -144,6 +151,7 @@
 	taste_description = "oil"
 	color = BLOOD_COLOR_SYNTHETIC // rgb: 11, 7, 48
 	value = REAGENT_VALUE_NONE
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 
 /datum/reagent/blood/jellyblood
 	data = list("donor"=null,"viruses"=null,"blood_DNA"=null, "bloodcolor" = BLOOD_COLOR_SLIME, "blood_type"="GEL","resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null)
@@ -2211,12 +2219,12 @@
 
 	..()
 
-/datum/reagent/preservahyde
+/* /datum/reagent/preservahyde // Skyrat Edit - Relocated to modular_skyrat's medicine_reagents.dm
 	name = "Preservahyde"
 	description = "A powerful preservation agent, utilizing the preservative effects of formaldehyde with significantly less of the histamine."
 	reagent_state = LIQUID
 	color = "#f7685e"
-	metabolization_rate = REAGENTS_METABOLISM * 0.25
+	metabolization_rate = REAGENTS_METABOLISM * 0.25 */ 
 
 
 //body bluids

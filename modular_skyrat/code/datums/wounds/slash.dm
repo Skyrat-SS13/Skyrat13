@@ -37,6 +37,19 @@
 	base_treat_time = 3 SECONDS
 	biology_required = list(HAS_FLESH)
 	required_status = BODYPART_ORGANIC
+	can_self_treat = TRUE
+
+/datum/wound/slash/self_treat(mob/living/carbon/user, first_time = FALSE)
+	. = ..()
+	if(.)
+		return TRUE
+	
+	if(victim && limb?.body_zone)
+		var/obj/screen/zone_sel/sel = victim.hud_used?.zone_select
+		if(istype(sel))
+			sel.set_selected_zone(limb?.body_zone)
+			victim.grabbedby(victim)
+		return
 
 /datum/wound/slash/on_hemostatic(quantity)
 	if((quantity >= 15) && (severity == WOUND_SEVERITY_SEVERE) && demotes_to)
@@ -240,6 +253,10 @@
 	var/time_mod = 1 //no skills for now, cit skills are horrible
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
+	if(!I.use(1))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
+		return
+	
 	user.visible_message("<span class='green'>[user] stitches up some of the bleeding on [victim].</span>", "<span class='green'>You stitch up some of the bleeding on [user == victim ? "yourself" : "[victim]"].</span>")
 	var/blood_sutured = I.stop_bleeding / max(1, self_penalty_mult)
 	blood_flow -= blood_sutured
@@ -259,6 +276,7 @@
 	occur_text = "is cut open, slowly leaking blood"
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_MODERATE
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 2
 	minimum_flow = 0.5
 	max_per_type = 3
@@ -276,6 +294,7 @@
 	occur_text = "is ripped open, veins spurting blood"
 	sound_effect = 'modular_skyrat/sound/effects/blood2.ogg'
 	severity = WOUND_SEVERITY_SEVERE
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 3.25
 	minimum_flow = 2.75
 	clot_rate = 0.05
@@ -294,6 +313,7 @@
 	occur_text = "is brutally torn open, spraying blood wildly"
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	initial_flow = 4.25
 	minimum_flow = 4
 	clot_rate = -0.05 // critical cuts actively get worse instead of better
@@ -312,15 +332,11 @@
 	occur_text = "is surgically cut open"
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	wound_type = WOUND_LIST_INCISION
-	treatable_by = list()
-	treatable_tool = null
 	initial_flow = 1.5
-	minimum_flow = 0.5
-	clot_rate = 0.03
+	minimum_flow = 0
+	clot_rate = 0.025
 	max_per_type = 5
 	demotes_to = null
-	status_effect_type = null
 	scarring_descriptions = list("a precise line of scarred tissue", "a long line of slightly darker tissue")
-	required_status = null
-	biology_required = list()

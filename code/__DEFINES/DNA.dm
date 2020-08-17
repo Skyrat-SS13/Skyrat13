@@ -199,9 +199,3 @@
 #define G_FEMALE 2
 #define G_PLURAL 3
 #define G_NEUTER 4
-
-//skyrat defines
-#define CAN_SCAR		27
-#define HAS_FLESH		28
-#define HAS_BONE		29
-#define HAS_SKIN		30

@@ -112,6 +112,8 @@
 		malfunction(malf_severity, pickweight(malf_possible))
 
 /datum/wound/mechanical/burn/proc/malfunction(power = 1, malf_type = "disable")
+	if(victim?.stat != DEAD)
+		return FALSE
 	if((last_malf + malf_duration) < world.time && !is_malf)
 		switch(malf_type)
 			if("disable")
@@ -127,8 +129,7 @@
 		limb.update_wounds()
 		is_malf = TRUE
 		return TRUE
-	else
-		return FALSE
+	return FALSE
 
 /datum/wound/mechanical/burn/proc/go_kooky(power = 1)
 	//1 power means you interact with something on your inventory
@@ -282,24 +283,26 @@
 	. += "Alternative treatment: Apply synthetic repair chemicals to the patient (liquid solder, nanite slurry or system cleaner). While these chemicals are in the patient's system, the wound will gradually diminish - apply all of these reagents for best results."
 	. += "</div>"
 
-/datum/wound/mechanical/burn/treat(obj/item/I, mob/victim)
+/datum/wound/mechanical/burn/treat(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/cable_coil))
-		cable(I, victim)
+		cable(I, user)
 
 /*
 	new mechanical burn common procs
 */
 
 /// if someone is using cable on the wound
-/datum/wound/mechanical/burn/proc/cable(obj/item/stack/cable_coil/I, mob/victim)
-	victim.visible_message("<span class='notice'>[victim] begins repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>", "<span class='notice'>You begin begin repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>")
+/datum/wound/mechanical/burn/proc/cable(obj/item/stack/cable_coil/I, mob/user)
+	victim.visible_message("<span class='notice'>[user] begins repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>", "<span class='notice'>You begin begin repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>")
 	if(!do_after(victim, (victim == victim ? 6 SECONDS : 3 SECONDS), extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
-
-	limb.heal_damage(0, 5)
-	victim.visible_message("<span class='green'>[victim] repairs some of the wiring on [victim]'s [limb.name].</span>", "<span class='green'>You repair some of the wiring on [victim]'s [limb.name].</span>")
-	I.use(10)
-	heat_warpingnt += 1.25
+	if(!I.use(5))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
+		return
+	
+	limb.heal_damage(10, 10)
+	victim.visible_message("<span class='green'>[user] repairs some of the wiring on [victim]'s [limb.name].</span>", "<span class='green'>You repair some of the wiring on [victim]'s [limb.name].</span>")
+	heat_warpingnt += 0.75
 
 	if(heat_warping <= 0 || heat_warpingnt >= 10)
 		to_chat(victim, "<span class='notice'>You've done all you can with [I], now you must wait for the BIOS on [victim]'s [limb.name] to recover.</span>")
@@ -317,6 +320,7 @@
 	examine_desc = "has visible pools of molten cable sleeving"
 	occur_text = "sparks and pops audibly"
 	severity = WOUND_SEVERITY_MODERATE
+	viable_zones = ALL_BODYPARTS
 	damage_multiplier_penalty = 1.1
 	threshold_minimum = 40
 	threshold_penalty = 30 // burns cause significant decrease in limb integrity compared to other wounds
@@ -338,6 +342,7 @@
 	examine_desc = "appears mildly warped, with partially charred internal components"
 	occur_text = "flares up with a small flame, noxious smoke coming out of it"
 	severity = WOUND_SEVERITY_SEVERE
+	viable_zones = ALL_BODYPARTS
 	damage_multiplier_penalty = 1.25
 	threshold_minimum = 80
 	threshold_penalty = 40
@@ -355,11 +360,12 @@
 /datum/wound/mechanical/burn/critical
 	name = "Catastrophic Melting"
 	desc = "Patient's limb has been severely deformed by high heat, along with complete charring of many internal components, causing extreme malfunctioning and leaving the limb extremely frail."
-	treat_text = "Full reconstruction or replacement of the affected limb."
+	treat_text = "Full reconstruction or replacement of the affected limb, although cable coil can prevent a worsening situation."
 	treatable_by = list()
 	examine_desc = "is completely deformed, constantly sparking and smoking from it's charred components"
 	occur_text = "melts and pools around itself"
 	severity = WOUND_SEVERITY_CRITICAL
+	viable_zones = ALL_BODYPARTS
 	damage_multiplier_penalty = 1.4
 	sound_effect = 'modular_skyrat/sound/effects/sizzle2.ogg'
 	threshold_minimum = 140

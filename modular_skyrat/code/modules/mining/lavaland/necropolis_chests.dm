@@ -107,6 +107,8 @@
 	item_state = "heckgun"
 	sharpness = SHARP_NONE
 	force = 15
+	inhand_x_dimension = 0
+	inhand_y_dimension = 0
 	var/recharge_rate = 4
 	var/charge_tick = 0
 	var/toggled = FALSE
@@ -206,8 +208,8 @@
 	icon = 'modular_skyrat/icons/obj/1x2.dmi'
 	icon_state = "crucible0"
 	var/icon_state_on = "crucible1"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/crucible_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/crucible_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	item_state = "crucible0"
 	force = 3
 	throwforce = 5
@@ -965,11 +967,11 @@
 	icon_state = "necklace_forsaken_active"
 	actions_types = list(/datum/action/item_action/hands_free/necklace_of_the_forsaken)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	var/mob/living/carbon/human/active_owner
+	var/mob/living/carbon/active_owner
 	var/numUses = 1
 
 /obj/item/clothing/neck/necklace/necklace_of_the_forsaken/item_action_slot_check(slot)
-	return slot == ITEM_SLOT_NECK
+	return (..() && (slot == SLOT_NECK))
 
 /obj/item/clothing/neck/necklace/necklace_of_the_forsaken/dropped(mob/user)
 	..()
@@ -989,10 +991,10 @@
 	icon_state = "necklace_forsaken_active"
 	if(!active_owner)
 		return
-	var/mob/living/carbon/human/H = active_owner
+	var/mob/living/carbon/C = active_owner
 	active_owner = null
-	to_chat(H, "<span class='userdanger'>You feel a scorching burn fill your body and limbs!</span>")
-	H.revive(TRUE, FALSE)
+	to_chat(C, "<span class='userdanger'>You feel a scorching burn fill your body and limbs!</span>")
+	C.revive(TRUE, FALSE)
 	remove_necklace() //remove buffs
 
 //Remove buffs
@@ -1012,19 +1014,20 @@
 //What happens when the user clicks on datum
 /datum/action/item_action/hands_free/necklace_of_the_forsaken/Trigger()
 	var/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/MM = target
-	if(MM.numUses == 0)//skip if it has already been used up
+	if(MM.numUses <= 0)//skip if it has already been used up
 		return
 	if(!MM.active_owner)//apply bind if there is no active owner
-		if(ishuman(owner))
+		if(iscarbon(owner))
 			MM.temp_buff(owner)
 		src.desc = "Revive or fully heal yourself, but you can only do this once! Can be used when knocked out or dead."
 		to_chat(MM.active_owner, "<span class='userdanger'>You have binded the ember to yourself! The next time you use the necklace it will heal you!</span>")
-	else if(MM.numUses == 1 && MM.active_owner)//revive / heal then remove usage
+	else if(MM.numUses >= 1 && MM.active_owner)//revive / heal then remove usage
 		MM.second_chance()
 		MM.numUses = 0
 		MM.icon_state = "necklace_forsaken"
 		MM.desc = "A rose gold necklace that used to have a bright burning ember inside of it."
 		src.desc = "The necklaces ember has already been used..."
+	
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=End of Necklace of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 
 
@@ -1044,3 +1047,96 @@
 	new /obj/item/melee/sword_of_the_forsaken(src)
 	new /obj/item/clothing/neck/necklace/necklace_of_the_forsaken(src)
 	new /obj/item/crusher_trophy/dark_energy(src)
+
+//Rogue process loot
+/obj/structure/closet/crate/necropolis/rogue
+	name = "Rogue's chest"
+
+/obj/structure/closet/crate/necropolis/rogue/PopulateContents()
+	new /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer(src)
+	new /obj/item/rogue(src)
+
+/obj/structure/closet/crate/necropolis/rogue/crusher
+	name = "Corrupted Rogue's chest"
+
+/obj/structure/closet/crate/necropolis/rogue/crusher/PopulateContents()
+	new /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer(src)
+	new /obj/item/crusher_trophy/brokentech(src)
+	new /obj/item/rogue(src)
+
+/obj/item/rogue
+	name = "\proper Rogue's Drill"
+	desc = "A drill coupled with an internal mechanism that produces shockwaves on demand. Serves as a very robust melee."
+	sharpness = SHARP_POINTY
+	icon = 'modular_skyrat/icons/obj/mining.dmi'
+	icon_state = "roguedrill"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/mining_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/mining_righthand.dmi'
+	item_state = "roguedrill"
+	w_class = WEIGHT_CLASS_BULKY
+	tool_behaviour = TOOL_MINING
+	toolspeed = 0.1
+	slot_flags = ITEM_SLOT_BELT
+	custom_materials = list(/datum/material/diamond=10000, /datum/material/titanium=20000, /datum/material/plasma=20000)
+	usesound = 'sound/weapons/drill.ogg'
+	hitsound = 'sound/weapons/drill.ogg'
+	attack_verb = list("drilled")
+	var/cooldowntime = 50
+	var/cooldown = 0
+	var/range = 7
+
+/obj/item/rogue/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=20)
+
+/obj/item/rogue/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	. = ..()
+	if(user.a_intent == INTENT_HARM)
+		var/datum/component/two_handed/TH = GetComponent(/datum/component/two_handed)
+		if(TH.wielded && isliving(target) && proximity_flag && cooldown <= world.time)
+			cooldown = world.time + (cooldowntime * 0.5)
+			playsound(src,'sound/misc/crunch.ogg', 200, 1)
+			var/mob/living/M = target
+			M.DefaultCombatKnockdown(40)
+			M.adjustStaminaLoss(20)
+		else if(TH.wielded)
+			if(cooldown < world.time)
+				cooldown = world.time + cooldowntime
+				playsound(src,'sound/misc/crunch.ogg', 200, 1)
+				var/list/hit_things = list()
+				var/turf/T = get_turf(get_step(user, user.dir))
+				var/ogdir = user.dir
+				var/turf/otherT = get_step(T, turn(ogdir, 90))
+				var/turf/otherT2 = get_step(T, turn(ogdir, -90))
+				for(var/i in 1 to range)
+					new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+					new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
+					new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)
+					for(var/mob/living/L in T.contents)
+						if(L != src && !(L in hit_things))
+							L.Stun(20)
+							L.adjustBruteLoss(10)
+							hit_things += L
+					for(var/mob/living/L in otherT.contents)
+						if(L != src && !(L in hit_things))
+							L.Stun(20)
+							L.adjustBruteLoss(10)
+							hit_things += L
+					for(var/mob/living/L in otherT2.contents)
+						if(L != src && !(L in hit_things))
+							L.Stun(20)
+							L.adjustBruteLoss(10)
+							hit_things += L
+					if(ismineralturf(T))
+						var/turf/closed/mineral/M = T
+						M.gets_drilled(user)
+					if(ismineralturf(otherT))
+						var/turf/closed/mineral/M = otherT
+						M.gets_drilled(user)
+					if(ismineralturf(otherT2))
+						var/turf/closed/mineral/M = otherT2
+						M.gets_drilled(user)
+					T = get_step(T, ogdir)
+					otherT = get_step(otherT, ogdir)
+					otherT2 = get_step(otherT2, ogdir)
+					sleep(2)

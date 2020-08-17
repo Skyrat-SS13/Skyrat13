@@ -7,7 +7,7 @@
 				/datum/surgery_step/mechanic_close)
 
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = ALL_BODYPARTS
+	possible_locs = list(BODY_ZONE_CHEST)
 	replaced_by = /datum/surgery
 	requires_bodypart_type = BODYPART_ROBOTIC
 	ignore_clothes = TRUE
@@ -33,12 +33,6 @@
 	var/brutehealing = 0
 	var/burnhealing = 0
 	var/missinghpbonus = 0 //heals an extra point of damager per X missing damage of type (burn damage for burn healing, brute for brute). Smaller Number = More Healing!
-	// WOUND HEALING
-	// Associate the woundtype with the maximum severity it can heal
-	var/wound_heal_blunt = WOUND_SEVERITY_NONE
-	var/wound_heal_burn = WOUND_SEVERITY_NONE
-	var/wound_heal_slash = WOUND_SEVERITY_NONE
-	var/wound_heal_pierce = WOUND_SEVERITY_NONE
 
 /datum/surgery_step/robot_heal/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == TOOL_WELDER && !tool.tool_use_check(user, 1))
@@ -94,37 +88,6 @@
 		umsg += " as best as you can while they have clothing on"
 		tmsg += " as best as they can while [target] has clothing on"
 	target.heal_bodypart_damage(urhealedamt_brute,urhealedamt_burn, only_organic = FALSE, only_robotic = TRUE)
-	var/obj/item/bodypart/affected = target.get_bodypart(target_zone)
-	var/list/woundies = list()
-	var/datum/wound/Y
-	if(istype(affected))
-		if(wound_heal_blunt > WOUND_SEVERITY_NONE)	
-			for(var/i in affected.wounds)
-				var/datum/wound/W = i
-				if((W.wound_type = WOUND_LIST_BLUNT_MECHANICAL) && (wound_heal_blunt >= W.severity))
-					woundies += W
-		if(wound_heal_burn > WOUND_SEVERITY_NONE)	
-			for(var/i in affected.wounds)
-				var/datum/wound/W = i
-				if((W.wound_type = WOUND_LIST_BURN_MECHANICAL) && (wound_heal_burn >= W.severity))
-					woundies += W
-		if(wound_heal_slash > WOUND_SEVERITY_NONE)
-			for(var/i in affected.wounds)
-				var/datum/wound/W = i
-				if((W.wound_type = WOUND_LIST_SLASH_MECHANICAL) && (wound_heal_slash >= W.severity))
-					woundies += W
-		if(wound_heal_pierce > WOUND_SEVERITY_NONE)
-			for(var/i in affected.wounds)
-				var/datum/wound/W = i
-				if((W.wound_type = WOUND_LIST_PIERCE_MECHANICAL) && (wound_heal_pierce >= W.severity))
-					woundies += W
-		if(length(woundies))
-			Y = pick_n_take(woundies)
-		if(istype(Y))
-			display_results(user, target, "<span class='notice'>You repair the [lowertext(Y.name)] on [target]'s [affected.name].</span>",
-				"[user] repairs the [lowertext(Y.name)] on [target]'s [affected.name].",
-				"[user] tinkers with [target]'s internals.")
-			Y.remove_wound()
 	display_results(user, target, "<span class='notice'>[umsg].</span>",
 		"[tmsg].",
 		"[tmsg].")
@@ -157,30 +120,6 @@
 	desc = "A surgical procedure that provides repairs and maintenance to robotic limbs. Is slightly more efficient when the patient is severely damaged."
 	replaced_by = null
 
-/datum/surgery/robot_healing/blunt
-	name = "Repair mechanical wounds (blunt)"
-	healing_step_type = /datum/surgery_step/robot_heal/blunt
-	desc = "A surgical procedure that provides repairs to blunt wounds on synthetic patients."
-	replaced_by = null
-
-/datum/surgery/robot_healing/burn
-	name = "Repair mechanical wounds (burn)"
-	healing_step_type = /datum/surgery_step/robot_heal/burn
-	desc = "A surgical procedure that provides repairs to burn wounds on synthetic patients."
-	replaced_by = null
-
-/datum/surgery/robot_healing/slash
-	name = "Repair mechanical wounds (slash)"
-	healing_step_type = /datum/surgery_step/robot_heal/slash
-	desc = "A surgical procedure that provides repairs to slash wounds on synthetic patients."
-	replaced_by = null
-
-/datum/surgery/robot_healing/pierce
-	name = "Repair mechanical wounds (pierce)"
-	healing_step_type = /datum/surgery_step/robot_heal/pierce
-	desc = "A surgical procedure that provides repairs to pierce wounds on synthetic patients."
-	replaced_by = null
-
 /***************************STEPS***************************/
 
 /datum/surgery_step/robot_heal/basic
@@ -188,31 +127,3 @@
 	brutehealing = 10
 	burnhealing = 10
 	missinghpbonus = 15 
-
-/datum/surgery_step/robot_heal/blunt
-	name = "Repair joints"
-	brutehealing = 0
-	burnhealing = 0
-	missinghpbonus = 0
-	wound_heal_blunt = WOUND_SEVERITY_CRITICAL
-
-/datum/surgery_step/robot_heal/burn
-	name = "Repair heat warping"
-	brutehealing = 0
-	burnhealing = 0
-	missinghpbonus = 0
-	wound_heal_burn = WOUND_SEVERITY_CRITICAL
-
-/datum/surgery_step/robot_heal/slash
-	name = "Repair cut hydraulics"
-	brutehealing = 0
-	burnhealing = 0
-	missinghpbonus = 0
-	wound_heal_slash = WOUND_SEVERITY_CRITICAL
-
-/datum/surgery_step/robot_heal/pierce
-	name = "Repair pierced hydraulics"
-	brutehealing = 0
-	burnhealing = 0
-	missinghpbonus = 0
-	wound_heal_pierce = WOUND_SEVERITY_CRITICAL

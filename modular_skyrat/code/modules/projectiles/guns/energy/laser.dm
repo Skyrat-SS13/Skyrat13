@@ -220,11 +220,13 @@
 
 //captain's laser gun
 /obj/item/gun/energy/laser/captain
-	name = "\improper Z-10 Multiphase Energy Gun Mk.I"
+	name = "\improper Y-10 MultiPhase Energy Gun"
 	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
 	icon_state = "caplaser"
 	item_state = "hoslaser"
-	desc = "This is an antique prototype of a laser gun. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. The object menaces with spikes of energy. On the item is an image of Space Station 13. The station is exploding."
+	desc = "This is an antique prototype of a high-quality, silver-engraved laser gun - the predecessor to the X-01 MultiPhase Energy Gun, made with the intent of being a cheaper, but not cheap, alternative for militia around the sector. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. The object menaces with spikes of energy. On the item is an image of Space Station 13. The station is exploding."
 	force = 10
 	ammo_x_offset = 3
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/captain = TRUE, /obj/item/ammo_casing/energy/disabler/captain = TRUE)
@@ -234,4 +236,5 @@
 	can_bayonet = TRUE
 	custom_light_icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
 	custom_light_state = "caplaser_bayonet"
+	custom_light_color = "#d30000" //ANGRY BLOOD RED >:)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF

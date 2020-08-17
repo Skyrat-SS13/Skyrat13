@@ -171,6 +171,32 @@
 	..()
 	. = 1
 
+/datum/reagent/medicine/kerosene
+	name = "Kerosene"
+	description = "When injected or ingested by a synthetic, slowly regenerates oxygen damage. When applied with a patch, instantly regenerates some oxygen damage."
+	reagent_state = LIQUID
+	pH = 7.2
+	color = "#cccccc"
+	process_flags = REAGENT_SYNTHETIC
+
+/datum/reagent/medicine/kerosene/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+	if(method == TOUCH)
+		M.adjustOxyLoss(max(-30, -reac_volume))
+	..()
+
+/datum/reagent/medicine/kerosene/on_mob_life(mob/living/L)
+	L.adjustOxyLoss(-0.6 * REM)
+	..()
+	. = 1
+
+//Repathed preservahyde
+/datum/reagent/medicine/preservahyde
+	name = "Preservahyde"
+	description = "A powerful preservation agent, utilizing the preservative effects of formaldehyde with significantly less of the histamine."
+	reagent_state = LIQUID
+	color = "#f7685e"
+	metabolization_rate = REAGENTS_METABOLISM * 0.25
+
 //Used to cure scars easily
 /datum/reagent/medicine/corticosteroids
 	name = "Corticosteroids"

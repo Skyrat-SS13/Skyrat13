@@ -13,10 +13,14 @@
 	stam_heal_tick = STAM_RECOVERY_LIMB
 	max_stamina_damage = 50
 	dismember_bodyzone = BODY_ZONE_PRECISE_GROIN
+	parent_bodyzone = BODY_ZONE_PRECISE_GROIN
 	amputation_point = "groin"
 	children_zones = list(BODY_ZONE_PRECISE_L_FOOT)
-	specific_locations = list("inner left thigh", "outer left calf", "outer left hip", " left kneecap", "lower left shin")
+	heal_zones = list(BODY_ZONE_PRECISE_L_FOOT)
+	specific_locations = list("inner left thigh", "outer left calf", "outer left hip", "left kneecap", "lower left shin")
 	max_cavity_size = WEIGHT_CLASS_SMALL
+	dismember_mod = 0.8
+	disembowel_mod = 0.8
 
 /obj/item/bodypart/l_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))

@@ -1,6 +1,17 @@
 //Check if the limb is dismemberable
 /obj/item/bodypart/proc/can_dismember(obj/item/I)
+	if(status & BODYPART_HARDDISMEMBER)
+		if(owner && brain && !((owner.stat == DEAD) || owner.InCritical()))
+			return FALSE
 	if(dismemberable)
+		return TRUE
+
+//Check if the limb is disembowable
+/obj/item/bodypart/proc/can_disembowel(obj/item/I)
+	if(status & BODYPART_HARDDISMEMBER)
+		if(owner && brain && !((owner.stat == DEAD) || owner.InCritical()))
+			return FALSE
+	if(disembowable)
 		return TRUE
 
 //Dismember a limb
@@ -26,7 +37,7 @@
 	drop_limb(dismembered = TRUE, destroyed = (dam_type == BURN ? TRUE : destroy))
 	C.update_equipment_speed_mods() // Update in case speed affecting item unequipped by dismemberment
 
-	C.bleed(40)
+	C.bleed(12)
 
 	if(QDELETED(src)) //Could have dropped into lava/explosion/chasm/whatever
 		return TRUE
@@ -34,7 +45,6 @@
 		burn()
 		return TRUE
 	add_mob_blood(C)
-	C.bleed(rand(20, 40))
 	var/direction = pick(GLOB.cardinals)
 	var/t_range = rand(2,max(throw_range/2, 2))
 	var/turf/target_turf = get_turf(src)
@@ -49,7 +59,7 @@
 	return TRUE
 
 //Disembowel a limb
-/obj/item/bodypart/proc/disembowel(dam_type = BRUTE, silent = FALSE)
+/obj/item/bodypart/proc/disembowel(dam_type = BRUTE, silent = FALSE, wound = FALSE)
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner
@@ -65,7 +75,7 @@
 	for(var/X in C.internal_organs)
 		var/obj/item/organ/O = X
 		var/org_zone = check_zone(O.zone)
-		if(org_zone != body_zone)
+		if((org_zone != body_zone) || (O.organ_flags & ORGAN_NO_DISMEMBERMENT))
 			continue
 		O.Remove()
 		O.forceMove(T)
@@ -79,10 +89,18 @@
 		organ_spilled = 1
 
 	if(organ_spilled)
-		if(!silent)
+		if(!silent && !wound)
 			playsound(get_turf(C), 'sound/misc/splort.ogg', 80, 1)
 			C.visible_message("<span class='danger'><B>[C]'s [parse_zone(body_zone)] organs spill out onto the floor!</B></span>")
-		C.bleed(50)
+		if(wound)
+			if(is_organic_limb())
+				var/datum/wound/slash/critical/incision/disembowel/D = new()
+				D.apply_wound(src)
+			else
+				var/datum/wound/mechanical/slash/critical/incision/disembowel/D = new()
+				D.apply_wound(src)
+
+		C.bleed(12)
 		return TRUE
 	
 	return FALSE
@@ -129,7 +147,7 @@
 			lost.fake_limb = "[name]"
 			lost.fake_body_zone = body_zone
 			lost.desc = "Patient's [lowertext(name)] has been violently dismembered from [owner.p_their(FALSE)] [parse_zone(dismember_bodyzone)], leaving only a severely damaged stump in it's place."
-			lost.examine_desc = "has been violently severed from their [parse_zone(dismember_bodyzone)]"
+			lost.examine_desc = "has been violently severed from [owner.p_their(FALSE)] [parse_zone(dismember_bodyzone)]"
 			lost.apply_wound(BP, TRUE)
 	owner = null
 	if(!ignore_children)
@@ -203,10 +221,10 @@
 	var/required_flesh_severity = WOUND_SEVERITY_SEVERE
 	var/required_skin_severity = WOUND_SEVERITY_MODERATE
 
-	if(owner && owner.get_biological_state() == BIO_BONE && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
+	if(owner && (owner.get_biological_state() == BIO_BONE || owner.get_biological_state() == BIO_BONE|BIO_SKIN) && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		required_bone_severity = WOUND_SEVERITY_CRITICAL
 	
-	if(owner && owner.get_biological_state() == BIO_FLESH && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
+	if(owner && (owner.get_biological_state() == BIO_FLESH || owner.get_biological_state() == BIO_FLESH|BIO_SKIN) && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		required_flesh_severity = WOUND_SEVERITY_CRITICAL
 
 	if(owner && owner.get_biological_state() == BIO_SKIN && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
@@ -253,18 +271,24 @@
   * * bare_wound_bonus: ditto above
   */
 /obj/item/bodypart/proc/try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
-	if(!can_dismember() || !dismemberable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE))
+	if(!can_dismember() || !dismemberable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE) || ((wounding_dmg + wound_bonus)< DISMEMBER_MINIMUM_DAMAGE) || ((wounding_dmg + bare_wound_bonus)< DISMEMBER_MINIMUM_DAMAGE) || wound_bonus == CANT_WOUND || bare_wound_bonus == CANT_WOUND)
 		return FALSE
-	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
+	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 45) // how much damage we dealt with this blow, + 40% of the damage percentage we already had on this bodypart
 	var/bio_state = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
-		if(((W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_BONE)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
+		if((W.wound_type in list(WOUND_LIST_INCISION, WOUND_LIST_INCISION_MECHANICAL)) && (bio_state & BIO_FLESH)) // incisions make you very vulnerable to dismemberment
+			base_chance += 20
+			break
+		else if(((W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_BONE)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
 			base_chance += 10
 			break
 		else if(((W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL,WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_FLESH)) // we only need a severe slash or pierce, but critical and we add 10%
 			base_chance += 10
 			break
+
+	// We multiply by our dismemberment mod (the leg is tougher than a foot, etc)
+	base_chance *= dismember_mod
 
 	if(!prob(base_chance))
 		return
@@ -278,35 +302,27 @@
 	dismembering.apply_dismember(src, wounding_type)
 
 /obj/item/bodypart/proc/try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
-	if(!can_dismember() || !disembowable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE))
+	if(!can_disembowel() || !disembowable || (wounding_dmg < DISEMBOWEL_MINIMUM_DAMAGE))
 		return FALSE
-	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
+	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 35) // how much damage we dealt with this blow, + 35% of the damage percentage we already had on this bodypart
 	var/bio_state = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
-		if(istype(W, /datum/wound/slash/critical/incision) && (bio_state & BIO_FLESH)) // incisions make you very vulnerable to disembowelment
-			base_chance += 20
+		if((W.wound_type in list(WOUND_LIST_INCISION, WOUND_LIST_INCISION_MECHANICAL)) && (bio_state & BIO_FLESH)) // incisions make you very vulnerable to disembowelment
+			base_chance += 15
 			break
-		else if((istype(W, /datum/wound/slash/critical) || istype(W, /datum/wound/pierce/critical) || istype(W, /datum/wound/mechanical/slash/critical || istype(W, /datum/wound/mechanical/pierce/critical))) && (bio_state & BIO_FLESH)) // we only require a severe slash, but if we have an avulsion, it's easier for an organ to fall off
+		else if(((W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_BONE)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
 			base_chance += 10
 			break
-		else if((istype(W, /datum/wound/blunt/critical) || istype(W, /datum/wound/mechanical/blunt/critical)) && (bio_state & BIO_BONE)) // skeletons need to be disemboweled too because they have "organs"...?
+		else if(((W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL,WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_FLESH)) // we only need a severe slash or pierce, but critical and we add 10%
 			base_chance += 10
 			break
-
+	
+	// We multiply by our disembowel mod (the chest is tougher than a groin, etc)
+	base_chance *= disembowel_mod
 
 	if(!prob(base_chance))
 		return
-
-	switch(wounding_type)
-		if(WOUND_BLUNT)
-			wounding_type = BRUTE
-		if(WOUND_SLASH)
-			wounding_type = BRUTE
-		if(WOUND_PIERCE)
-			wounding_type = BRUTE
-		if(WOUND_BURN)
-			wounding_type = BURN
 
 	return disembowel_wound(wounding_type)
 
@@ -424,27 +440,23 @@
 		return
 	var/obj/item/bodypart/O = C.get_bodypart(body_zone)
 	if(O)
-		O.drop_limb(1)
-	attach_limb(C, special)
-
-/obj/item/bodypart/head/replace_limb(mob/living/carbon/C, special)
-	if(!istype(C))
-		return
-	var/obj/item/bodypart/head/O = C.get_bodypart(body_zone)
-	if(O)
-		if(!special)
-			return
-		else
-			O.drop_limb(1)
+		O.drop_limb(special, TRUE, FALSE, FALSE)
 	attach_limb(C, special)
 
 /obj/item/bodypart/proc/attach_limb(mob/living/carbon/C, special, ignore_parent_restriction = FALSE)
 	if(SEND_SIGNAL(C, COMSIG_CARBON_ATTACH_LIMB, src, special) & COMPONENT_NO_ATTACH)
 		return FALSE
-	if(!ignore_parent_restriction && !C.get_bodypart(parent_bodyzone))
+	if(parent_bodyzone && !ignore_parent_restriction && !C.get_bodypart(parent_bodyzone))
 		return FALSE
 	. = TRUE
 	moveToNullspace()
+
+	// We check if there is another limb like us before attaching. If so, we kindly delete them.
+	var/obj/item/bodypart/rival = C.get_bodypart(body_zone)
+	if(rival)
+		rival.drop_limb(special = TRUE, ignore_children = TRUE)
+		qdel(rival)
+	
 	owner = C
 	C.bodyparts += src
 	if(held_index)
@@ -475,7 +487,7 @@
 	//Remove the dismemberment wound from the parent, if there is one at all
 	var/obj/item/bodypart/parent = C.get_bodypart(parent_bodyzone)
 	if(parent)
-		for(var/datum/wound/woundie in parent)
+		for(var/datum/wound/woundie in parent.wounds)
 			if((woundie.fake_body_zone == body_zone) && (woundie.severity == WOUND_SEVERITY_LOSS))
 				woundie.remove_wound()
 	

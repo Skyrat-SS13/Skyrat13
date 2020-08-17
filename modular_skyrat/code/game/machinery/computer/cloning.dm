@@ -1,3 +1,26 @@
+//Cloning data disk. Used by limbgrowers and other genetics stuff.
+/obj/item/disk/data
+	name = "cloning data disk"
+	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
+	var/list/fields = list()
+	var/list/mutations = list()
+	var/max_mutations = 6
+	var/read_only = 0 //Well,it's still a floppy disk
+
+/obj/item/disk/data/Initialize()
+	. = ..()
+	icon_state = "datadisk[rand(0,6)]"
+	add_overlay("datadisk_gene")
+
+/obj/item/disk/data/attack_self(mob/user)
+	read_only = !read_only
+	to_chat(user, "<span class='notice'>You flip the write-protect tab to [read_only ? "protected" : "unprotected"].</span>")
+
+/obj/item/disk/data/examine(mob/user)
+	. = ..()
+	. += "The write-protect tab is set to [read_only ? "protected" : "unprotected"]."
+
+//Computer itself
 /obj/machinery/computer/cloning
 	name = "cloning console"
 	desc = "Used to clone people and manage DNA."
@@ -26,7 +49,6 @@
 	updatemodules(TRUE)
 	var/obj/item/circuitboard/computer/cloning/board = circuit
 	records = board.records
-
 
 /obj/machinery/computer/cloning/Destroy()
 	if(pods)
@@ -176,8 +198,11 @@
 	if(pod)
 		dat += "<br><div class='statusDisplay'><b>Pod Biomass:</b> [pod.biomass]/[pod.max_biomass]"
 		dat += " <a href='byond://?src=[REF(src)];task=succ'>Collect Biomass</a></div>"
-		dat += "<br><div class='statusDisplay'><b>Paying Account:</b> [pod.currently_linked_account.account_holder]"
-		dat += " <a href='byond://?src=[REF(src)];task=payday'>Change Account</a></div>"
+		dat += "<br>"
+		dat += "<div class='statusDisplay'><b>Paying Account:</b> [pod.currently_linked_account.account_holder]"
+		dat += " <a href='byond://?src=[REF(src)];task=payday'>Change Account</a>"
+		dat += "<br>"
+		dat += "<b>Credits:</b> [pod.currently_linked_account.account_balance]/[pod.cost_per_clone] ([pod.pays_for_clone ? "Payment" : "No Payment"])</div>"
 	switch(src.menu)
 		if(1)
 			// Modules
@@ -507,6 +532,7 @@
 				if(active_record == C)
 					active_record = null
 				menu = 1
+				SEND_SIGNAL(usr, COMSIG_ADD_MOOD_EVENT, "clooner", /datum/mood_event/clooner)
 			else
 				temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
@@ -545,7 +571,7 @@
 		scantemp = "<font class='bad'>Subject is biologically unable to be cloned.</font>"
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
 		return
-	if(HAS_TRAIT(mob_occupant, TRAIT_DNC) || HAS_TRAIT(mob_occupant, TRAIT_DNR))
+	if(HAS_TRAIT(mob_occupant, TRAIT_DNC) || HAS_TRAIT(mob_occupant, TRAIT_DNR) || (ROBOTIC_LIMBS in dna.species?.species_traits))
 		scantemp = "<font class='bad'>Subject [HAS_TRAIT(mob_occupant, TRAIT_DNC) ? "is a DNC, and cannot be cloned. If possible, try other methods of revival." : HAS_TRAIT(mob_occupant, TRAIT_DNR) ? "is a DNR, and cannot be revived in any way." : "could not be revived due to biological reasons."]</font>"
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
 		return

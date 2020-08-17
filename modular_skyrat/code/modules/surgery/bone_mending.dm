@@ -55,7 +55,7 @@
 			"<span class='notice'>[user] successfully repairs the fracture in [target]'s [parse_zone(target_zone)] with [tool]!</span>",
 			"<span class='notice'>[user] successfully repairs the fracture in [target]'s [parse_zone(target_zone)]!</span>")
 		log_combat(user, target, "repaired a hairline fracture in", addition="INTENT: [uppertext(user.a_intent)]")
-		qdel(surgery.operated_wound)
+		surgery.operated_wound.remove_wound()
 	else
 		to_chat(user, "<span class='warning'>[target] has no hairline fracture there!</span>")
 	return ..()
@@ -64,9 +64,7 @@
 	..()
 	if(istype(tool, /obj/item/stack))
 		var/obj/item/stack/used_stack = tool
-		used_stack.use(1)
-
-
+		used_stack.use(2)
 
 ///// Reset Compound Fracture (Crticial)
 /datum/surgery_step/reset_compound_fracture
@@ -99,7 +97,7 @@
 	..()
 	if(istype(tool, /obj/item/stack))
 		var/obj/item/stack/used_stack = tool
-		used_stack.use(1)
+		used_stack.use(2)
 
 
 ///// Repair Compound Fracture (Crticial)
@@ -134,4 +132,4 @@
 	..()
 	if(istype(tool, /obj/item/stack))
 		var/obj/item/stack/used_stack = tool
-		used_stack.use(1)
+		used_stack.use(2)

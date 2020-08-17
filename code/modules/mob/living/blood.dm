@@ -17,8 +17,8 @@
 	if(stat != DEAD && bleed_rate) //skyrat edit
 		to_chat(src, "<span class='warning'>The blood soaks through your bandage.</span>")
 */
-//skyrat edit
 
+//skyrat edit
 ///Returns how much blood we're losing from being dragged a tile, from [mob/living/proc/makeTrail]
 /mob/living/proc/get_bleed_amount(brute_ratio)
 	return max(1, brute_ratio * 2)
@@ -84,13 +84,25 @@
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")
-		switch(blood_volume * INVERSE(blood_ratio))
+		switch(blood_volume)
+			if(BLOOD_VOLUME_EXCESS to BLOOD_VOLUME_MAX_LETHAL)
+				if(prob(15))
+					to_chat(src, "<span class='userdanger'>Blood starts to tear your skin apart. You're going to burst!</span>")
+					var/severity = rand(15, 50)
+					adjustStaminaLoss(severity)
+					if(severity >= 40)
+						AdjustUnconscious(severity)
+					adjustBruteLoss(severity/5)
+					bleed(severity/2)
+			if(BLOOD_VOLUME_MAXIMUM to BLOOD_VOLUME_EXCESS)
+				if(prob(10))
+					to_chat(src, "<span class='warning'>You feel terribly bloated.</span>")
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(prob(5))
 					to_chat(src, "<span class='warning'>You feel [word].</span>")
-				adjustOxyLoss(round(((BLOOD_VOLUME_NORMAL * blood_ratio) - blood_volume) * 0.01, 1))
+				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.01, 1))
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
-				adjustOxyLoss(round(((BLOOD_VOLUME_NORMAL * blood_ratio) - blood_volume) * 0.02, 1))
+				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.02, 1))
 				if(prob(5))
 					blur_eyes(6)
 					to_chat(src, "<span class='warning'>You feel very [word].</span>")

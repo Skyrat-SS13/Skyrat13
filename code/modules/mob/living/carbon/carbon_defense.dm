@@ -75,7 +75,7 @@
 	var/obj/item/bodypart/affecting = get_bodypart(impacting_zone)
 	if(!affecting) //missing limb? we select the first bodypart (you can never have zero, because of chest)
 		affecting = bodyparts[1]
-	send_item_attack_message(I, user, affecting.name, null, affecting)
+	send_item_attack_message(I, user, affecting.body_zone, totitemdamage, affecting)
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 	I.do_stagger_action(src, user, totitemdamage)
 	if(I.force)
@@ -84,8 +84,6 @@
 			var/basebloodychance = affecting.brute_dam + totitemdamage
 			if(prob(basebloodychance))
 				I.add_mob_blood(src)
-				var/turf/location = get_turf(src)
-				add_splatter_floor(location)
 				if(totitemdamage >= 10 && get_dist(user, src) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(src)
 
@@ -99,17 +97,26 @@
 					if(head && prob(basebloodychance))
 						head.add_mob_blood(src)
 						update_inv_head()
+				var/dist = rand(0,max(min(round(totitemdamage/5, 1),3), 1))
+				var/turf/location = get_turf(src)
+				if(istype(location))
+					add_splatter_floor(location)
+				var/turf/targ = get_ranged_target_turf(user, get_dir(user, src), dist)
+				if(istype(targ) && dist > 0 && ((mob_biotypes & MOB_ORGANIC) || (mob_biotypes & MOB_HUMANOID)))
+					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(loc, get_blood_dna_list())
+					B.add_blood_DNA(get_blood_dna_list())
+					B.GoTo(targ, dist)
 		return TRUE //successful attack
 
 /mob/living/carbon/attack_drone(mob/living/simple_animal/drone/user)
 	return //so we don't call the carbon's attack_hand().
 
-/mob/living/carbon/send_item_attack_message(obj/item/I, mob/living/user, hit_area, obj/item/bodypart/hit_BP)
+/mob/living/carbon/send_item_attack_message(obj/item/I, mob/living/user, hit_area, current_force, obj/item/bodypart/hit_BP)
 	var/extra_wound_details = ""
 	if(I.damtype == BRUTE && hit_BP.can_dismember())
 		var/mangled_state = hit_BP.get_mangled_state()
 		var/bio_state = get_biological_state()
-		if(mangled_state == BODYPART_MANGLED_BOTH)
+		if((mangled_state == BODYPART_MANGLED_BOTH) && !(hit_BP.body_zone == BODY_ZONE_CHEST))
 			extra_wound_details = ", threatening to sever it entirely"
 		else if(mangled_state & BODYPART_MANGLED_BONE && I.get_sharpness() || (mangled_state & BODYPART_MANGLED_MUSCLE && bio_state & BIO_FLESH))
 			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through remaining tissue"
@@ -158,19 +165,26 @@
 		var/datum/disease/D = thing
 		if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
 			ContactContractDisease(D)
+
+	//surgeries have higher priority than wounds due to incision wounds.
+	if(surgeries.len)
+		if(user.a_intent == INTENT_HELP)
+			for(var/datum/surgery/S in surgeries)
+				if(!S.lying_required || (S.lying_required && lying))
+					if(S.next_step(user, user.a_intent))
+						return TRUE
 	
 	//skyrat edit
 	for(var/datum/wound/W in all_wounds)
 		if(W.try_handling(user))
-			return 1
+			return TRUE
+	
+	if((pulledby == user) && (pulledby.grab_state >= GRAB_AGGRESSIVE) && (user.a_intent == INTENT_HARM))
+		var/obj/item/bodypart/part = get_bodypart(user.zone_selected)
+		if(istype(part))
+			part.get_wrenched(user, src)
+			return TRUE
 	//
-
-	if(lying && surgeries.len)
-		if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
-			for(var/datum/surgery/S in surgeries)
-				if(S.next_step(user, user.a_intent))
-					return TRUE
-
 
 /mob/living/carbon/attack_paw(mob/living/carbon/monkey/M)
 
@@ -538,3 +552,84 @@
 	var/obj/item/bodypart/limb = get_bodypart(zone)
 	if(!limb)
 		return
+
+//We can grab ourselves
+/mob/living/carbon/grabbedby(mob/living/carbon/user, supress_message = FALSE)
+	if(user != src)
+		return ..()
+	var/obj/item/self_grasp/grasp = new()
+	if(!grasp.try_grasp(user))
+		return ..()
+
+/// an abstract item representing you holding your own limb to staunch the bleeding, see [/mob/living/carbon/proc/grabbedby] will probably need to find somewhere else to put this.
+/obj/item/self_grasp
+	name = "self-grasp"
+	desc = "Sometimes all you can do is slow the bleeding."
+	icon_state = "latexballon"
+	item_state = "nothing"
+	force = 0
+	throwforce = 0
+	slowdown = 1
+	item_flags = DROPDEL | ABSTRACT | NOBLUDGEON | SLOWS_WHILE_IN_HAND
+	/// The bodypart we're staunching bleeding on, which also has a reference to us in [/obj/item/bodypart/var/grasped_by]
+	var/obj/item/bodypart/grasped_part
+	/// The carbon who owns all of this mess
+	var/mob/living/carbon/user
+
+/obj/item/self_grasp/Destroy()
+	if(user)
+		to_chat(user, "<span class='warning'>You stop holding onto your[grasped_part ? " [grasped_part.name]" : "self"].</span>")
+		UnregisterSignal(user, COMSIG_PARENT_QDELETING)
+	if(grasped_part)
+		UnregisterSignal(grasped_part, COMSIG_PARENT_QDELETING)
+		grasped_part.grasped_by = null
+	grasped_part = null
+	user = null
+	return ..()
+
+/// The limb or the whole damn person we were grasping got deleted, so we don't care anymore
+/obj/item/self_grasp/proc/qdel_void()
+	qdel(src)
+
+/// We're trying to grasp, but we can only do so if we have a bodypart on the zone we're targeting, and said bodypart is bleeding
+/obj/item/self_grasp/proc/try_grasp(mob/living/carbon/attempted_grasper)
+	if(!istype(attempted_grasper))
+		stack_trace("[src] attempted to try_grasp() with [istype(attempted_grasper, /datum) ? attempted_grasper.type : isnull(attempted_grasper) ? "null" : attempted_grasper] attempted_grasper")
+		qdel(src)
+		return
+
+	grasped_part = attempted_grasper.get_bodypart(attempted_grasper.zone_selected)
+	if(!grasped_part?.get_bleed_rate())
+		qdel(src)
+		return
+
+	if(attempted_grasper.active_hand_index == grasped_part.held_index)
+		to_chat(attempted_grasper, "<span class='danger'>You can't grasp your [grasped_part.name] with itself!</span>")
+		qdel(src)
+		return
+	
+	for(var/i in grasped_part?.children_zones)
+		var/obj/item/bodypart/child = attempted_grasper.get_bodypart(i)
+		if(attempted_grasper.active_hand_index == child.held_index)
+			to_chat(attempted_grasper, "<span class='danger'>You can't grasp your [grasped_part.name] with your [child.name]!</span>")
+			qdel(src)
+			return
+
+	to_chat(attempted_grasper, "<span class='warning'>You try grasping at your [grasped_part.name], trying to stop the bleeding...</span>")
+	if(!do_after(attempted_grasper, 1.5 SECONDS))
+		qdel(src)
+		return
+
+	if(!attempted_grasper.put_in_active_hand(src))
+		to_chat(attempted_grasper, "<span class='danger'>You fail to grasp your [grasped_part.name].</span>")
+		qdel(src)
+		return
+
+	user = attempted_grasper // if we have a user, we know we were successful
+	grasped_part.grasped_by = src
+	RegisterSignal(user, COMSIG_PARENT_QDELETING, .proc/qdel_void)
+	RegisterSignal(grasped_part, COMSIG_PARENT_QDELETING, .proc/qdel_void)
+
+	user.visible_message("<span class='danger'>[user] grasps at [user.p_their()] [grasped_part.name], trying to stop the bleeding.</span>", "<span class='notice'>You grab hold of your [grasped_part.name] tightly.</span>", vision_distance=COMBAT_MESSAGE_RANGE)
+	playsound(get_turf(src), 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+	return TRUE

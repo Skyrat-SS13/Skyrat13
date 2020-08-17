@@ -2,6 +2,12 @@
 
 GLOBAL_LIST_EMPTY(roundstart_races)
 GLOBAL_LIST_EMPTY(roundstart_race_names)
+//skyrat edit
+GLOBAL_LIST_EMPTY(roundstart_race_datums)
+//
+
+#define BLUNT_WOUND_ROLL_MULT 3
+#define BURN_WOUND_ROLL_MULT 3
 
 /datum/species
 	var/id	// if the game needs to manually check your race to do something not included in a proc here, it will use this
@@ -112,12 +118,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 // PROCS //
 ///////////
 
-
 /datum/species/New()
 	//if we havent set a limbs id to use, just use our own id
 	if(!limbs_id)
 		limbs_id = id
-	
+
 	//skyrat change
 	//Set our descriptors proper
 	if(LAZYLEN(descriptors))
@@ -130,7 +135,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			descriptor_datums[descriptor.name] = descriptor
 		descriptors = descriptor_datums
 	//
-	
+
 	..()
 
 
@@ -143,7 +148,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(S.check_roundstart_eligible())
 			GLOB.roundstart_races |= S.id
 			GLOB.roundstart_race_names["[S.name]"] = S.id
-			qdel(S)
+			//skyrat edit
+			GLOB.roundstart_race_datums["[S.id]"] = S
+			//
 	if(!GLOB.roundstart_races.len)
 		GLOB.roundstart_races += "human"
 
@@ -316,7 +323,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 	if(exotic_bloodtype && C.dna.blood_type != exotic_bloodtype)
 		C.dna.blood_type = exotic_bloodtype
-	
+
 	//skyrat edti
 	if(C.client)
 		var/client/cli = C.client
@@ -367,7 +374,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 						H.physiology.footstep_type = null
 			else
 				H.physiology.footstep_type = null
-				
+
 	/* SKYRAT EDIT - START, COMMENTED OUT
 		if(H.client && has_field_of_vision && CONFIG_GET(flag/use_field_of_vision))
 			H.LoadComponent(/datum/component/field_of_vision, H.field_of_vision_type)
@@ -1299,6 +1306,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	if(chem.type == exotic_blood && !istype(exotic_blood, /datum/reagent/blood))
 		H.blood_volume = min(H.blood_volume + round(chem.volume, 0.1), BLOOD_VOLUME_MAXIMUM)
 		H.reagents.del_reagent(chem.type)
+		//skyrat edit - we try to revive the carbon mob if it happens to be a synthetic
+		if(length(species_traits) && (ROBOTIC_LIMBS in species_traits) && length(H.bodyparts))
+			var/obj/item/bodypart/affecting = H.bodyparts[1]
+			if(istype(affecting))
+				affecting.heal_damage(0, 0, 0, TRUE, FALSE, FALSE)
+		//skyrat edit end
 		return TRUE
 	return FALSE
 
@@ -1521,11 +1534,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 		//CITADEL CHANGES - makes resting and disabled combat mode reduce punch damage, makes being out of combat mode result in you taking more damage
 		if(!SEND_SIGNAL(target, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
-			damage *= 1.5
+			damage *= 1.2
 		if(!CHECK_MOBILITY(user, MOBILITY_STAND))
-			damage *= 0.5
+			damage *= 0.8
 		if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
-			damage *= 0.25
+			damage *= 0.8
 		//END OF CITADEL CHANGES
 
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
@@ -1765,13 +1778,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	armor_block = min(95,armor_block) //cap damage reduction at 95%
 	var/Iwound_bonus = I.wound_bonus
 
-	// this way, you can't wound with a surgical tool on help intent if they have a surgery active and are laying down, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
-	if((I.item_flags & SURGICAL_TOOL) && user.a_intent == INTENT_HELP && (H.mobility_flags & ~MOBILITY_STAND) && (LAZYLEN(H.surgeries) > 0))
+	// this way, you can't wound with a surgical tool on help intent if they have a surgery active, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
+	if((I.item_flags & SURGICAL_TOOL) && (user.a_intent == INTENT_HELP) && (LAZYLEN(H.surgeries) > 0))
 		Iwound_bonus = CANT_WOUND
 	//
 	var/weakness = H.check_weakness(I, user)
 
-	H.send_item_attack_message(I, user, hit_area, affecting)
+	H.send_item_attack_message(I, user, hit_area, totitemdamage, affecting)
 	
 	apply_damage(totitemdamage * weakness, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
 
@@ -1786,11 +1799,17 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			I.add_mob_blood(H)	//Make the weapon bloody, not the person.
 			if(prob(I.force * 2))	//blood spatter!
 				bloody = 1
-				var/turf/location = H.loc
-				if(istype(location))
-					H.add_splatter_floor(location)
 				if(get_dist(user, H) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(H)
+				var/dist = rand(0,max(min(round(totitemdamage/5, 1),3), 1))
+				var/turf/location = get_turf(H)
+				if(istype(location))
+					H.add_splatter_floor(location)
+				var/turf/targ = get_ranged_target_turf(user, get_dir(user, H), dist)
+				if(istype(targ) && dist > 0 && ((inherent_biotypes & MOB_ORGANIC) || (inherent_biotypes & MOB_HUMANOID)))
+					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(H.loc, H.get_blood_dna_list())
+					B.add_blood_DNA(H.get_blood_dna_list())
+					B.GoTo(targ, dist)
 
 		switch(hit_area)
 			if(BODY_ZONE_HEAD)
@@ -1802,7 +1821,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 											"<span class='userdanger'>You have been knocked senseless!</span>")
 							H.confused = max(H.confused, 20)
 							H.adjust_blurriness(10)
-						if(prob(10))
+						if(prob(5))
 							H.gain_trauma(/datum/brain_trauma/mild/concussion)
 					else
 						H.adjustOrganLoss(ORGAN_SLOT_BRAIN, I.force * 0.2)
@@ -2126,23 +2145,36 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			firemodifier = min(firemodifier, 0)
 			burn_damage = max(log(2-firemodifier,(H.bodytemperature-BODYTEMP_NORMAL))-5,0) // this can go below 5 at log 2.5
 		burn_damage = burn_damage * heatmod * H.physiology.heat_mod
-		if (H.stat < UNCONSCIOUS && (prob(burn_damage) * 10) / 4) //40% for level 3 damage on humans
+		if (H.stat < UNCONSCIOUS && (prob(burn_damage) * 5) / 4) //40% for level 3 damage on humans
 			H.emote("scream")
-		H.apply_damage(burn_damage, BURN)
+		var/obj/item/bodypart/BP
+		if(length(H.bodyparts) && prob(50))
+			BP = pick(H.bodyparts) 
+		H.apply_damage(damage = burn_damage, damagetype = BURN, def_zone = BP)
+		if(BP)
+			BP.painless_wound_roll(WOUND_BURN, burn_damage * BURN_WOUND_ROLL_MULT)
 
 	else if(H.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(H, TRAIT_RESISTCOLD))
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "cold", /datum/mood_event/cold)
 		//Apply cold slowdown
 		H.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/cold, multiplicative_slowdown = ((BODYTEMP_COLD_DAMAGE_LIMIT - H.bodytemperature) / COLD_SLOWDOWN_FACTOR))
+		var/obj/item/bodypart/BP
+		if(length(H.bodyparts) && prob(50))
+			BP = pick(H.bodyparts) 
 		switch(H.bodytemperature)
 			if(200 to BODYTEMP_COLD_DAMAGE_LIMIT)
-				H.apply_damage(COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, BURN)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP)
+				if(BP)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 			if(120 to 200)
-				H.apply_damage(COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, BURN)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP)
+				if(BP)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 			else
-				H.apply_damage(COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, BURN)
-
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP)
+				if(BP)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 	else
 		H.remove_movespeed_modifier(/datum/movespeed_modifier/cold)
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "cold")
@@ -2167,7 +2199,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			if(HAS_TRAIT(H, TRAIT_RESISTLOWPRESSURE))
 				H.clear_alert("pressure")
 			else
-				H.adjustBruteLoss(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod)
+				var/obj/item/bodypart/BP
+				if(length(H.bodyparts) && prob(50))
+					BP = pick(H.bodyparts)
+				H.apply_damage(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod, BRUTE, BP)
+				if(BP)
+					BP.painless_wound_roll(WOUND_BLUNT, LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod * BURN_WOUND_ROLL_MULT)
 				H.throw_alert("pressure", /obj/screen/alert/lowpressure, 2)
 
 //////////
@@ -2287,16 +2324,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 /**
   * The human species version of [/mob/living/carbon/proc/get_biological_state]. Depends on the HAS_SKIN, HAS_FLESH and HAS_BONE species traits, having bones lets you have bone wounds, having flesh lets you have burn, slash, and piercing wounds, skin is currently unused
   */
-/datum/species/proc/get_biological_state(mob/living/carbon/human/H)
+/datum/species/proc/get_biological_state()
 	. = BIO_INORGANIC
 	if(HAS_SKIN in species_traits)
-		. &= ~BIO_INORGANIC
 		. |= BIO_SKIN
 	if(HAS_FLESH in species_traits)
-		. &= ~BIO_INORGANIC
 		. |= BIO_FLESH
 	if(HAS_BONE in species_traits)
-		. &= ~BIO_INORGANIC
 		. |= BIO_BONE
-	if(species_traits & list(HAS_BONE, HAS_FLESH, HAS_SKIN))
-		. = BIO_FULL
+
+#undef BURN_WOUND_ROLL_MULT
+#undef BLUNT_WOUND_ROLL_MULT

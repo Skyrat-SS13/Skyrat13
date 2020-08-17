@@ -725,45 +725,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Change View Range", "[view]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/admin_call_shuttle()
-
-	set category = "Admin"
-	set name = "Call Shuttle"
-
-	if(EMERGENCY_AT_LEAST_DOCKED)
-		return
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes")
-		return
-
-	SSshuttle.emergency.request()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Call Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-called the emergency shuttle.</span>")
-	return
-
-/client/proc/admin_cancel_shuttle()
-	set category = "Admin"
-	set name = "Cancel Shuttle"
-	if(!check_rights(0))
-		return
-	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
-		return
-
-	if(EMERGENCY_AT_LEAST_DOCKED)
-		return
-
-	SSshuttle.emergency.cancel()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Cancel Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-recalled the emergency shuttle.</span>")
-
-	return
-
 /client/proc/everyone_random()
 	set category = "Fun"
 	set name = "Make Everyone Random"
@@ -1289,24 +1250,26 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 								ADMIN_PUNISHMENT_SUPPLYPOD,
 								ADMIN_PUNISHMENT_MAZING,
 								ADMIN_PUNISHMENT_ROD,
-                ADMIN_PUNISHMENT_PICKLE,
-                ADMIN_PUNISHMENT_FRY,
+								ADMIN_PUNISHMENT_PICKLE,
+								ADMIN_PUNISHMENT_FRY,
 								ADMIN_PUNISHMENT_CRACK,
 								ADMIN_PUNISHMENT_BLEED,
 								ADMIN_PUNISHMENT_PERFORATE,
 								ADMIN_PUNISHMENT_BURN,
+								ADMIN_PUNISHMENT_WARCRIME,
 								ADMIN_PUNISHMENT_INCISIONIFY,
 								ADMIN_PUNISHMENT_SHRAPNEL,
 								ADMIN_PUNISHMENT_SCARIFY,
 								ADMIN_PUNISHMENT_NUGGET,
 								ADMIN_PUNISHMENT_ONE,
-								ADMIN_PUNISHMENT_RAYMAN,
 								ADMIN_PUNISHMENT_EXTREMITIES,
+								ADMIN_PUNISHMENT_RAYMAN,
 								ADMIN_PUNISHMENT_HOLLOW,
 								ADMIN_PUNISHMENT_LIVELEAK,
 								ADMIN_PUNISHMENT_ISIS,
-								ADMIN_PUNISHMENT_PAPAJOHNS,
 								ADMIN_PUNISHMENT_MEDIC,
+								ADMIN_PUNISHMENT_PAPAJOHNS,
+								ADMIN_PUNISHMENT_PHANTOM_PAIN,
 								)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
@@ -1389,7 +1352,8 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			target.turn_into_pickle()
 		if(ADMIN_PUNISHMENT_FRY)
 			target.fry()
-		//skyrat edit punishments
+		
+		//skyrat punishments
 		if(ADMIN_PUNISHMENT_CRACK)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
@@ -1418,14 +1382,85 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
 				return
 			var/mob/living/carbon/C = target
-			for(var/obj/item/bodypart/slice_part in C.bodyparts)
+			for(var/obj/item/bodypart/puncture_part in C.bodyparts)
 				var/type_wound = pick(WOUND_LIST_PIERCE)
-				if(!slice_part.is_organic_limb())
+				if(!puncture_part.is_organic_limb())
 					type_wound = pick(WOUND_LIST_PIERCE_MECHANICAL)
 				var/i = 0
 				while(i < 3)
 					i++
-					slice_part.force_wound_upwards(type_wound, smited=TRUE)
+					puncture_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_BURN)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/burn_part in C.bodyparts)
+				var/type_wound = pick(WOUND_LIST_BURN)
+				if(!burn_part.is_organic_limb())
+					type_wound = pick(WOUND_LIST_BURN_MECHANICAL)
+				burn_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_WARCRIME)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/list/orders = list("I was just following orders", "Fuck, go back")
+			var/sure = input("Are you that evil?", "Space Nuremberg Trials") as anything in orders
+			if(sure == orders[1])
+				var/mob/living/carbon/C = target
+				for(var/obj/item/bodypart/burn_part in C.bodyparts)
+					var/type_wound = pick(WOUND_LIST_BURN)
+					if(!burn_part.is_organic_limb())
+						type_wound = pick(WOUND_LIST_BURN_MECHANICAL)
+					burn_part.force_wound_upwards(type_wound, smited=TRUE)
+				for(var/obj/item/bodypart/puncture_part in C.bodyparts)
+					var/type_wound = pick(WOUND_LIST_PIERCE)
+					if(!puncture_part.is_organic_limb())
+						type_wound = pick(WOUND_LIST_PIERCE_MECHANICAL)
+					var/i = 0
+					while(i < 3)
+						i++
+						puncture_part.force_wound_upwards(type_wound, smited=TRUE)
+				for(var/obj/item/bodypart/slice_part in C.bodyparts)
+					var/type_wound = pick(WOUND_LIST_SLASH)
+					if(!slice_part.is_organic_limb())
+						type_wound = pick(WOUND_LIST_SLASH_MECHANICAL)
+					var/i = 0
+					while(i < 3)
+						i++
+						slice_part.force_wound_upwards(type_wound, smited=TRUE)
+				for(var/obj/item/bodypart/squish_part in C.bodyparts)
+					var/type_wound = pick(WOUND_LIST_BLUNT)
+					if(!squish_part.is_organic_limb())
+						type_wound = pick(WOUND_LIST_BLUNT_MECHANICAL)
+					squish_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_INCISIONIFY)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				var/datum/wound/woundie = new /datum/wound/slash/critical/incision()
+				woundie.apply_wound(BP)
+		if(ADMIN_PUNISHMENT_SHRAPNEL)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				var/randumb = rand(1, 3)
+				for(var/i in 1 to randumb)
+					var/obj/item/shrapnel/shame = new /obj/item/shrapnel(C)
+					shame.name = "shrapnel of shame"
+					shame.desc = "You're shameful."
+					shame.tryEmbed(BP, TRUE, FALSE)
+		if(ADMIN_PUNISHMENT_SCARIFY)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			C.generate_fake_scars(rand(1, 4), null, TRUE)
+			to_chat(C, "<span class='userdanger'>You feel your body grow jaded and torn...</span>")
 		if(ADMIN_PUNISHMENT_NUGGET)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
@@ -1454,16 +1489,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			ADD_TRAIT(C, TRAIT_NOSOFTCRIT, "smite")
 			ADD_TRAIT(C, TRAIT_NODEATH, "smite")
 			C.gain_trauma_type(/datum/brain_trauma/severe/paralysis, TRAUMA_RESILIENCE_ABSOLUTE)
-		if(ADMIN_PUNISHMENT_BURN)
-			if(!iscarbon(target))
-				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
-				return
-			var/mob/living/carbon/C = target
-			for(var/obj/item/bodypart/burn_part in C.bodyparts)
-				var/type_wound = pick(WOUND_LIST_BURN)
-				if(!burn_part.is_organic_limb())
-					type_wound = pick(WOUND_LIST_BURN_MECHANICAL)
-				burn_part.force_wound_upwards(type_wound, smited=TRUE)
+			C.verbs -= list(/mob/living/verb/ghost, /mob/dead/observer/verb/stay_dead, /mob/living/carbon/human/verb/suicide)
 		if(ADMIN_PUNISHMENT_RAYMAN)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
@@ -1473,25 +1499,6 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				if(BP.body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_ARM, BODY_ZONE_R_LEG))
 					qdel(BP)
 			C.regenerate_icons()
-		if(ADMIN_PUNISHMENT_SHRAPNEL)
-			if(!iscarbon(target))
-				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
-				return
-			var/mob/living/carbon/C = target
-			for(var/obj/item/bodypart/BP in C.bodyparts)
-				var/randumb = rand(1, 3)
-				for(var/i in 1 to randumb)
-					var/obj/item/shrapnel/shame = new /obj/item/shrapnel(C)
-					shame.name = "shrapnel of shame"
-					shame.desc = "You're shameful."
-					shame.tryEmbed(BP, TRUE, FALSE)
-		if(ADMIN_PUNISHMENT_SCARIFY)
-			if(!iscarbon(target))
-				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
-				return
-			var/mob/living/carbon/C = target
-			C.generate_fake_scars(rand(1, 4), null, TRUE)
-			to_chat(C, "<span class='userdanger'>You feel your body grow jaded and torn...</span>")
 		if(ADMIN_PUNISHMENT_EXTREMITIES)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
@@ -1548,14 +1555,6 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				spawn(6 SECONDS)
 					new /obj/effect/gibspawner/human(ht.loc)
 					qdel(ht)
-		if(ADMIN_PUNISHMENT_INCISIONIFY)
-			if(!iscarbon(target))
-				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
-				return
-			var/mob/living/carbon/C = target
-			for(var/obj/item/bodypart/BP in C.bodyparts)
-				var/datum/wound/woundie = new /datum/wound/slash/critical/incision()
-				woundie.apply_wound(BP)
 		if(ADMIN_PUNISHMENT_PAPAJOHNS)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
@@ -1747,3 +1746,94 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 					if(!source)
 						return
 			REMOVE_TRAIT(D,chosen_trait,source)
+
+//SHUTTLE CONTROL
+/client/proc/admin_disable_shuttle()
+	set category = "Admin"
+	set name = "Disable Shuttle"
+	if(!check_rights(R_ADMIN))	return
+
+	if(SSshuttle.emergency.mode == SHUTTLE_DISABLED)
+		to_chat(usr, "<span class='warning'>Error, shuttle is already disabled.</span>")
+		return
+
+	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
+
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] disabled the shuttle.</span>")
+
+	SSshuttle.lastMode = SSshuttle.emergency.mode
+	SSshuttle.lastCallTime = SSshuttle.emergency.timeLeft(1)
+	SSshuttle.adminEmergencyNoRecall = TRUE
+	SSshuttle.emergency.setTimer(null)
+	SSshuttle.emergency.mode = SHUTTLE_DISABLED
+	priority_announce("Warning: Emergency Shuttle uplink failure, shuttle disabled until further notice.", "Emergency Shuttle Uplink Alert", 'sound/misc/announce_dig.ogg')
+
+/client/proc/admin_enable_shuttle()
+	set category = "Admin"
+	set name = "Enable Shuttle"
+	if(!check_rights(R_ADMIN))	return
+
+	if(SSshuttle.emergency.mode != SHUTTLE_DISABLED)
+		to_chat(usr, "<span class='warning'>Error, shuttle not disabled.</span>")
+		return
+
+	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
+
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] enabled the emergency shuttle.</span>")
+	SSshuttle.adminEmergencyNoRecall = FALSE
+	SSshuttle.emergencyNoRecall = FALSE
+	if(SSshuttle.lastMode == SHUTTLE_DISABLED) //If everything goes to shit, fix it.
+		SSshuttle.lastMode = SHUTTLE_IDLE
+
+	SSshuttle.emergency.mode = SSshuttle.lastMode
+	if(SSshuttle.lastCallTime < 100 && SSshuttle.lastMode != SHUTTLE_IDLE)
+		SSshuttle.lastCallTime = 100 //Make sure no insta departures.
+	SSshuttle.emergency.setTimer(SSshuttle.lastCallTime)
+	priority_announce("Warning: Emergency Shuttle uplink reestablished, shuttle enabled.", "Emergency Shuttle Uplink Alert", 'sound/misc/announce_dig.ogg')
+
+/client/proc/admin_call_shuttle()
+	set category = "Admin"
+	set name = "Call Shuttle"
+
+	if(EMERGENCY_AT_LEAST_DOCKED)
+		return
+
+	if(!check_rights(R_ADMIN))	return
+
+	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "Yes (No Recall)", "No")
+	if(confirm == "No")
+		return
+
+	if(confirm == "Yes (No Recall)")
+		SSshuttle.adminEmergencyNoRecall = TRUE
+		SSshuttle.emergency.mode = SHUTTLE_IDLE
+
+	SSshuttle.emergency.request()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Call Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
+	if(confirm == "Yes (No Recall)")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-called the emergency shuttle (non-recallable).</span>")
+	else
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-called the emergency shuttle.</span>")
+	return
+
+/client/proc/admin_cancel_shuttle()
+	set category = "Admin"
+	set name = "Cancel Shuttle"
+	if(!check_rights(0))
+		return
+	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
+		return
+
+	if(SSshuttle.adminEmergencyNoRecall)
+		SSshuttle.adminEmergencyNoRecall = FALSE
+
+	if(EMERGENCY_AT_LEAST_DOCKED)
+		return
+
+	SSshuttle.emergency.cancel()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Cancel Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-recalled the emergency shuttle.</span>")
+
+	return

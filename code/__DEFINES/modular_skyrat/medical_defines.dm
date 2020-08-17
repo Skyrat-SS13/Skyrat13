@@ -8,6 +8,7 @@
 #define WOUND_MINIMUM_DAMAGE		5 // an attack must do this much damage after armor in order to roll for being a wound (incremental pressure damage need not apply)
 #define WOUND_MAX_CONSIDERED_DAMAGE	35 // any damage dealt over this is ignored for damage rolls unless the target has the frail quirk (35^1.4=145)
 #define DISMEMBER_MINIMUM_DAMAGE	10 // an attack must do this much damage after armor in order to be eliigible to dismember a suitably mushed bodypart
+#define DISEMBOWEL_MINIMUM_DAMAGE	18 // an attack must do this much damage after armor in order to be eliigible to disembowel a suitably mushed bodypart
 
 #define WOUND_SEVERITY_NONE		0
 #define WOUND_SEVERITY_TRIVIAL	1 // for jokey/meme wounds like stubbed toe, no standard messages/sounds or second winds
@@ -42,8 +43,9 @@
 #define CANT_WOUND -100
 
 // List in order of highest severity to lowest (if the wound is rolled for normally - there are edge cases like incisions)
-#define WOUND_LIST_INCISION list(/datum/wound/slash/critical/incision)
-#define WOUND_LIST_BLUNT		list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate/ribcage, /datum/wound/blunt/moderate/hips, /datum/wound/blunt/moderate)
+#define WOUND_LIST_INCISION	list(/datum/wound/slash/critical/incision)
+#define WOUND_LIST_INCISION_MECHANICAL	list(/datum/wound/mechanical/slash/critical/incision)
+#define WOUND_LIST_BLUNT		list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate/jaw, /datum/wound/blunt/moderate/ribcage, /datum/wound/blunt/moderate/hips, /datum/wound/blunt/moderate)
 #define WOUND_LIST_BLUNT_MECHANICAL list(/datum/wound/mechanical/blunt/critical, /datum/wound/mechanical/blunt/severe, /datum/wound/mechanical/blunt/moderate)
 #define WOUND_LIST_SLASH		list(/datum/wound/slash/critical, /datum/wound/slash/severe, /datum/wound/slash/moderate)
 #define WOUND_LIST_SLASH_MECHANICAL		list(/datum/wound/mechanical/slash/critical, /datum/wound/mechanical/slash/severe, /datum/wound/mechanical/slash/moderate)
@@ -86,27 +88,29 @@
 // 	3. Bone is mangled: At least a severe bone wound on that limb
 // see [/obj/item/bodypart/proc/get_mangled_state()] for more information
 #define BODYPART_MANGLED_NONE	0
-#define BODYPART_MANGLED_SKIN	(1<<1)
-#define BODYPART_MANGLED_MUSCLE (1<<2)
-#define BODYPART_MANGLED_BONE	(1<<3)
+#define BODYPART_MANGLED_SKIN	(1<<0)
+#define BODYPART_MANGLED_MUSCLE (1<<1)
+#define BODYPART_MANGLED_BONE	(1<<2)
 #define BODYPART_MANGLED_BOTH 	(BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE | BODYPART_MANGLED_BONE)
 
 // What kind of biology we have, and what wounds we can suffer, mostly relies on the HAS_FLESH and HAS_BONE species traits on human species
-#define BIO_INORGANIC	(1<<1) // golems, cannot suffer any wounds
-#define BIO_BONE	(1<<2) // skeletons and plasmemes, can only suffer bone wounds, only needs mangled bone to be able to dismember
-#define BIO_FLESH	(1<<3) // nothing right now, maybe slimepeople in the future, can only suffer slashing, piercing, and burn wounds
-#define BIO_SKIN	(1<<4)
+#define BIO_INORGANIC	0 // golems, cannot suffer any wounds
+#define BIO_BONE	(1<<0) // skeletons and plasmemes, can only suffer bone wounds, only needs mangled bone to be able to dismember
+#define BIO_FLESH	(1<<1) // nothing right now, maybe slimepeople in the future, can only suffer slashing, piercing, and burn wounds
+#define BIO_SKIN	(1<<2)
 #define BIO_FULL	(BIO_BONE | BIO_FLESH | BIO_SKIN) // standard humanoids, can suffer all wounds, needs mangled bone and flesh to dismember
 
 //Organ status flags
-#define ORGAN_ORGANIC   (1<<1)
-#define ORGAN_ROBOTIC   (1<<2)
-#define ORGAN_NODAMAGE  (1<<3) //not yet implemented
+#define ORGAN_ORGANIC   (1<<0)
+#define ORGAN_ROBOTIC   (1<<1)
+#define ORGAN_NODAMAGE  (1<<2) //not yet implemented
 
 //Bodypart status flags
-#define BODYPART_ORGANIC   (1<<1)
-#define BODYPART_ROBOTIC   (1<<2)
-#define BODYPART_NOBLEED	(1<<3)
+#define BODYPART_ORGANIC	(1<<0)
+#define BODYPART_ROBOTIC	(1<<1)
+#define BODYPART_NOBLEED	(1<<2)
+#define BODYPART_NOEMBED	(1<<3)
+#define BODYPART_HARDDISMEMBER	(1<<4)
 
 //Bodypart disabling defines
 #define BODYPART_NOT_DISABLED 0
@@ -133,3 +137,10 @@
 #define BODYPARTS_PATH list(/obj/item/bodypart/chest, /obj/item/bodypart/groin, /obj/item/bodypart/head, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_hand, /obj/item/bodypart/r_arm, /obj/item/bodypart/r_hand,/obj/item/bodypart/l_leg, /obj/item/bodypart/l_foot, /obj/item/bodypart/r_leg, /obj/item/bodypart/r_foot)
 #define MONKEY_BODYPARTS_PATH list(/obj/item/bodypart/head/monkey, /obj/item/bodypart/chest/monkey, /obj/item/bodypart/groin/monkey, /obj/item/bodypart/l_arm/monkey, /obj/item/bodypart/l_hand/monkey, /obj/item/bodypart/r_arm/monkey, /obj/item/bodypart/r_hand/monkey, /obj/item/bodypart/l_leg/monkey, /obj/item/bodypart/l_foot/monkey, /obj/item/bodypart/r_leg/monkey, /obj/item/bodypart/r_foot/monkey)
 #define LARVA_BODYPARTS_PATH list(/obj/item/bodypart/chest/larva, /obj/item/bodypart/head/larva)
+
+//Defines related to apparent consciousness, when you examine someone
+#define LOOKS_CONSCIOUS	0
+#define LOOKS_SLEEPY	1
+#define LOOKS_UNCONSCIOUS 2
+#define LOOKS_VERYUNCONSCIOUS 3
+#define LOOKS_DEAD		4

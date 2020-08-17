@@ -9,7 +9,7 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list()
 	volume = 15
-	force = 10
+	force = 5
 	var/mode = SYRINGE_DRAW
 	var/busy = FALSE		// needed for delayed drawing of blood
 	var/proj_piercing = 0 //does it pierce through thick clothes when shot with syringe gun
@@ -75,7 +75,10 @@
 					to_chat(user, "<span class='warning'>\The [src] does not have enough fuel!</span>")
 	return
 
-/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user , proximity)
+/obj/item/reagent_containers/syringe/attack()
+	return			// no bludgeoning.
+
+/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(busy)
 		return
@@ -134,11 +137,6 @@
 				if(user.a_intent == INTENT_HARM)
 					useless = TRUE
 					name = "broken [name]"
-					if(iscarbon(L))
-						var/mob/living/carbon/C = L
-						C.apply_damage(force, BRUTE, check_zone(user.zone_selected), C.run_armor_check(check_zone(user.zone_selected), "melee"))
-					else
-						L.adjustBruteLoss(force)
 
 			else //if not mob
 				if(!target.reagents.total_volume)
@@ -203,15 +201,10 @@
 				if(user.a_intent == INTENT_HARM)
 					useless = TRUE
 					name = "broken [name]"
-					if(iscarbon(L))
-						var/mob/living/carbon/C = L
-						C.apply_damage(force, BRUTE, check_zone(user.zone_selected), C.run_armor_check(check_zone(user.zone_selected), "melee"))
-					else
-						L.adjustBruteLoss(force)
 				
 			var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
 			reagents.reaction(L, INJECT, fraction)
-			reagents.trans_to(target, (user.a_intent == INTENT_HARM ? amount_per_transfer_from_this : reagents.total_volume))
+			reagents.trans_to(target, (user.a_intent == INTENT_HARM ? reagents.total_volume : amount_per_transfer_from_this))
 			to_chat(user, "<span class='[user.a_intent == INTENT_HARM ? "danger" : "notice"]'>You [user.a_intent == INTENT_HARM ? "stab-" : ""]inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units.</span>")
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
 				mode = SYRINGE_DRAW

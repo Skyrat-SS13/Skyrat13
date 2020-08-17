@@ -24,6 +24,11 @@
 	var/attempting = FALSE //One clone attempt at a time thanks
 	var/speed_coeff
 	var/efficiency
+	var/cloneill_duration = 20 MINUTES
+	var/cloneill_cloneloss = 20
+	var/cloneill_hallucination = 10
+	var/cloneill_healthpenalty = 25
+	var/cloneill = FALSE
 
 	var/datum/mind/clonemind
 	var/grab_ghost_when = CLONER_MATURE_CLONE
@@ -38,10 +43,10 @@
 	var/list/unattached_flesh
 	var/flesh_number = 0
 	var/biomass = 0
-	var/max_biomass = 1000
-	var/biomass_per_clone = 300
+	var/max_biomass = 1200
+	var/biomass_per_clone = 400
 
-	var/pays_for_clone = TRUE
+	var/pays_for_clone = FALSE
 	var/cost_per_clone = 1000 //cost in credits for a clone, of course.
 	var/dep_id = ACCOUNT_MED
 	var/datum/bank_account/currently_linked_account
@@ -90,34 +95,11 @@
 		speed_coeff += (P.rating / 2)
 	speed_coeff = max(1, speed_coeff)
 	heal_level = clamp((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
-
-//The return of data disks?? Just for transferring between genetics machine/cloning machine.
-//TO-DO: Make the genetics machine accept them.
-/obj/item/disk/data
-	name = "cloning data disk"
-	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
-	var/list/fields = list()
-	var/list/mutations = list()
-	var/max_mutations = 6
-	var/read_only = 0 //Well,it's still a floppy disk
-
-//Disk stuff.
-/obj/item/disk/data/Initialize()
-	. = ..()
-	icon_state = "datadisk[rand(0,6)]"
-	add_overlay("datadisk_gene")
-
-/obj/item/disk/data/attack_self(mob/user)
-	read_only = !read_only
-	to_chat(user, "<span class='notice'>You flip the write-protect tab to [read_only ? "protected" : "unprotected"].</span>")
-
-/obj/item/disk/data/examine(mob/user)
-	. = ..()
-	. += "The write-protect tab is set to [read_only ? "protected" : "unprotected"]."
-
+	cloneill_duration = round(20 MINUTES * (1/max(efficiency-1,1)), 1)
+	cloneill_cloneloss = round(20 * (1/max(efficiency-1,1)), 1)
+	cloneill_hallucination = round(10 * (1/max(efficiency-1,1)), 1)
 
 //Clonepod
-
 /obj/machinery/clonepod/examine(mob/user)
 	. = ..()
 	var/mob/living/mob_occupant = occupant
@@ -125,7 +107,16 @@
 	if(mess)
 		. += "It's filled with blood and viscera. You swear you can see it moving..."
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.</span>"
+		var/cloonmessage = ""
+		cloonmessage += "<span class='notice'>"
+		cloonmessage += "The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>."
+		cloonmessage += "<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>."
+		if(cloneill)
+			cloonmessage += "<br>Predicted amount of clone illness cellular damage: <b>[cloneill_cloneloss]</b>."
+			cloonmessage += "<br>Predicted duration of clone illness: <b>[cloneill_duration/10] second[cloneill_duration/10 == 1 ? "s" : ""] ([cloneill_duration/600] minute[cloneill_duration/600 == 1 ? "s" : ""])</b>."
+			cloonmessage += "<br>Predicted probability of hallucinations: <b>[cloneill_hallucination]% every 7 seconds</b>."
+		cloonmessage += "</span>"
+		. += cloonmessage
 		if(efficiency > 5)
 			to_chat(user, "<span class='notice'>Pod has been upgraded to support autoprocessing.<span>")
 	if(is_operational() && mob_occupant)
@@ -154,15 +145,15 @@
 /obj/machinery/clonepod/proc/growclone(ckey, clonename, ui, mutation_index, mindref, datum/species/mrace, list/features, factions, list/quirks)
 	if(pays_for_clone && !currently_linked_account.adjust_money(-cost_per_clone))
 		if(radio)
-			radio.talk_into("Insufficient amount of credits to initiate cloning procedure.")
+			SPEAK("Insufficient amount of credits to initiate cloning procedure.")
 		return FALSE
 	if(biomass < biomass_per_clone)
 		if(radio)
-			radio.talk_into("Insufficient amount of biomass to initiate cloning procedure.")
+			SPEAK("Insufficient amount of credits to initiate cloning procedure.")
 		return FALSE
 	if((/datum/quirk/dnc in quirks) || (/datum/quirk/dnr in quirks))
 		if(radio)
-			radio.talk_into("[clonename] cannot be cloned due to a [/datum/quirk/dnc in quirks? "DNC" : "DNR"] contract.")
+			SPEAK("Insufficient amount of credits to initiate cloning procedure.")
 		return FALSE
 	if(panel_open)
 		return FALSE
@@ -436,6 +427,11 @@
 		if(jobban_isbanned(mob_occupant) && ishuman(mob_occupant))	// SKYRAT ADDITION -- BEGIN
 			var/mob/living/carbon/human/C = mob_occupant
 			C.update_pacification_ban()	// SKYRAT ADDITION -- END
+		
+		//Apply the cloned status effect and mood debuff
+		if(cloneill)
+			mob_occupant.apply_status_effect(/datum/status_effect/cloneill, cloneill_healthpenalty, cloneill_cloneloss, cloneill_hallucination)
+		SEND_SIGNAL(mob_occupant, COMSIG_ADD_MOOD_EVENT, "clooned", /datum/mood_event/clooned)
 
 	occupant.forceMove(T)
 	update_icon()
@@ -443,7 +439,6 @@
 	for(var/fl in unattached_flesh)
 		qdel(fl)
 	unattached_flesh.Cut()
-
 	occupant = null
 
 /obj/machinery/clonepod/proc/malfunction()
@@ -610,6 +605,20 @@
 	<i>A good diskette is a great way to counter aforementioned genetic drift!</i><br>
 	<br>
 	<font size=1>This technology produced under license from Thinktronic Systems, LTD.</font>"}
+
+/obj/machinery/clonepod/fullupgrade/Initialize()
+	. = ..()
+	component_parts = list()
+	component_parts += new /obj/item/circuitboard/machine/clonepod(null)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stock_parts/scanning_module/triphasic(null)
+	component_parts += new /obj/item/stock_parts/scanning_module/triphasic(null)
+	component_parts += new /obj/item/stack/cable_coil/cut(null)
+	component_parts += new /obj/item/stack/cable_coil/cut(null)
+	component_parts += new /obj/item/stack/sheet/glass(null)
+	
+	RefreshParts()
 
 #undef CLONE_INITIAL_DAMAGE
 #undef SPEAK

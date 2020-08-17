@@ -8,6 +8,7 @@
 	viable_zones = ALL_BODYPARTS
 	wound_type = WOUND_LIST_LOSS
 	severity = WOUND_SEVERITY_LOSS
+	ignore_preexisting = TRUE
 	threshold_minimum = 180
 	status_effect_type = null
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
@@ -15,6 +16,11 @@
 	required_status = null
 
 /datum/wound/loss/proc/apply_dismember(obj/item/bodypart/L, wounding_type=WOUND_SLASH)
+	if(L.body_zone == BODY_ZONE_CHEST)
+		qdel(src)
+		var/datum/wound/disembowel/des = new()
+		des.apply_disembowel(L, wounding_type)
+		return
 	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.can_dismember())
 		qdel(src)
 		return
@@ -33,24 +39,24 @@
 				qdel(src)
 				return
 
-	occur_text = "is slashed through the last tissue holding it together, severing it completely!"
+	occur_text = "is slashed through the last tissue holding it together, severing it completely"
 	switch(wounding_type)
 		if(WOUND_BLUNT)
-			occur_text = "is shattered through the last bone holding it together, severing it completely!"
-			if(limb.is_robotic_limb())
-				occur_text = "is shattered through the last bit of endoskeleton holding it together, severing it completely!"
+			occur_text = "is shattered through the last bone holding it together, severing it completely"
+			if(L.is_robotic_limb())
+				occur_text = "is shattered through the last bit of endoskeleton holding it together, severing it completely"
 		if(WOUND_SLASH)
-			occur_text = "is slashed through the last tissue holding it together, severing it completely!"
-			if(limb.is_robotic_limb())
-				occur_text = "is slashed through the last bit of exoskeleton layer holding it together, severing it completely!"
+			occur_text = "is slashed through the last bit of tissue holding it together, severing it completely"
+			if(L.is_robotic_limb())
+				occur_text = "is slashed through the last bit of exoskeleton layer holding it together, severing it completely"
 		if(WOUND_PIERCE)
-			occur_text = "is pierced through the last tissue holding it together, severing it completely!"
-			if(limb.is_robotic_limb())
-				occur_text = "is pierced through the last bit of exoskeleton holding it together, severing it completely!"
+			occur_text = "is pierced through the last tissue holding it together, severing it completely"
+			if(L.is_robotic_limb())
+				occur_text = "is pierced through the last bit of exoskeleton holding it together, severing it completely"
 		if(WOUND_BURN)
-			occur_text = "is completely incinerated, falling to a pile of dust!"
-			if(limb.is_robotic_limb())
-				occur_text = "is completely melted, falling to a puddle of debris!"
+			occur_text = "is completely incinerated, falling to a pile of carbonized remains"
+			if(L.is_robotic_limb())
+				occur_text = "is completely melted, falling to a puddle of debris"
 
 	var/mob/living/carbon/victim = L.owner
 	if(prob(40))
@@ -68,13 +74,13 @@
 	//apply the blood gush effect
 	if(wounding_type != WOUND_BURN && L.owner)
 		var/direction = L.owner.dir
-		direction = turn(direction, angle2dir(180))
-		var/bodypart_turn = 0 //north
+		direction = turn(direction, 180)
+		var/bodypart_turn = 0 //relative north
 		if(L.body_zone in list(BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_L_HAND))
-			bodypart_turn = 90 //west
+			bodypart_turn = -90 //relative east
 		else if(L.body_zone in list(BODY_ZONE_R_ARM, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_R_HAND))
-			bodypart_turn = -90 //east
-		direction = turn(direction, angle2dir(bodypart_turn))
+			bodypart_turn = 90 //relative west
+		direction = turn(direction, bodypart_turn)
 		var/dist = rand(3, 5)
 		var/turf/targ = get_ranged_target_turf(L.owner, direction, dist)
 		if(targ)
@@ -99,7 +105,7 @@
 	ignore_preexisting = TRUE
 	initial_flow = 2
 	minimum_flow = 0.5
-	clot_rate = -0.05
+	clot_rate = 0
 	max_per_type = 4
 	threshold_penalty = 80
 	demotes_to = null
@@ -116,10 +122,16 @@
 
 /datum/wound/slash/loss/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)
 	. = ..()
-	switch(fake_body_zone)
+	switch(L.body_zone)
+		if(BODY_ZONE_HEAD)
+			initial_flow = 3
+			minimum_flow = 0
+		if(BODY_ZONE_CHEST)
+			initial_flow = 4
+			minimum_flow = 0
 		if(BODY_ZONE_PRECISE_GROIN)
 			initial_flow = 4
-			minimum_flow = 0.5
+			minimum_flow = 0.2
 		if(BODY_ZONE_L_ARM)
 			initial_flow = 2.5
 			minimum_flow = 0.5
@@ -128,25 +140,25 @@
 			minimum_flow = 0.5
 		if(BODY_ZONE_PRECISE_L_HAND)
 			initial_flow = 1.5
-			minimum_flow = 0.85
+			minimum_flow = 0.75
 		if(BODY_ZONE_PRECISE_R_HAND)
 			initial_flow = 1.5
-			minimum_flow = 0.85
+			minimum_flow = 0.75
 		if(BODY_ZONE_L_LEG)
 			initial_flow = 3
-			minimum_flow = 0.25
+			minimum_flow = 0.3
 		if(BODY_ZONE_R_LEG)
 			initial_flow = 3
-			minimum_flow = 0.25
+			minimum_flow = 0.3
 		if(BODY_ZONE_PRECISE_L_FOOT)
 			initial_flow = 2
-			minimum_flow = 0.75
+			minimum_flow = 0.5
 		if(BODY_ZONE_PRECISE_R_FOOT)
 			initial_flow = 2
-			minimum_flow = 0.75
+			minimum_flow = 0.5
 
 /datum/wound/mechanical/slash/loss
-	name = "Dismembered"
+	name = "Dismembered stump"
 	desc = "Patient's limb has been violently dismembered, leaving only a severely damaged stump in it's place."
 	treat_text = "Immediate surgical reattachment of the lost limb or suitable equivalent if possible. Welding and patching of the stump otherwise."
 	examine_desc = "has been violently severed from their body"
@@ -157,7 +169,7 @@
 	ignore_preexisting = TRUE
 	initial_flow = 2
 	minimum_flow = 0.5
-	clot_rate = -0.05
+	clot_rate = 0
 	max_per_type = 4
 	threshold_penalty = 80
 	demotes_to = null
@@ -174,31 +186,37 @@
 
 /datum/wound/mechanical/slash/loss/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)
 	. = ..()
-	switch(fake_body_zone)
+	switch(L.body_zone)
+		if(BODY_ZONE_HEAD)
+			initial_flow = 3
+			minimum_flow = 0
+		if(BODY_ZONE_CHEST)
+			initial_flow = 4
+			minimum_flow = 0
 		if(BODY_ZONE_PRECISE_GROIN)
 			initial_flow = 4
-			minimum_flow = 0.5
+			minimum_flow = 0.2
 		if(BODY_ZONE_L_ARM)
-			initial_flow = 3
+			initial_flow = 2.5
 			minimum_flow = 0.5
 		if(BODY_ZONE_R_ARM)
-			initial_flow = 3
+			initial_flow = 2.5
 			minimum_flow = 0.5
 		if(BODY_ZONE_PRECISE_L_HAND)
-			initial_flow = 2
+			initial_flow = 1.5
 			minimum_flow = 0.75
 		if(BODY_ZONE_PRECISE_R_HAND)
-			initial_flow = 2
+			initial_flow = 1.5
 			minimum_flow = 0.75
 		if(BODY_ZONE_L_LEG)
-			initial_flow = 3.5
-			minimum_flow = 0.25
+			initial_flow = 3
+			minimum_flow = 0.3
 		if(BODY_ZONE_R_LEG)
-			initial_flow = 3.5
-			minimum_flow = 0.25
+			initial_flow = 3
+			minimum_flow = 0.3
 		if(BODY_ZONE_PRECISE_L_FOOT)
-			initial_flow = 2.5
-			minimum_flow = 0.75
+			initial_flow = 2
+			minimum_flow = 0.5
 		if(BODY_ZONE_PRECISE_R_FOOT)
-			initial_flow = 2.5
-			minimum_flow = 0.75
+			initial_flow = 2
+			minimum_flow = 0.5

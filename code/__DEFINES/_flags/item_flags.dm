@@ -51,9 +51,8 @@
 #define ORGAN_EXTERNAL			(1<<3)	//Was this organ implanted/inserted/etc, if true will not be removed during species change.
 #define ORGAN_VITAL				(1<<4)	//Currently only the brain
 #define ORGAN_NO_SPOIL			(1<<5)	//Do not spoil under any circumstances
-#define ORGAN_EDIBLE			(1<<6)	//Can be eaten
-#define ORGAN_NO_DISMEMBERMENT	(1<<7)	//Immune to disembowelment.
-
+#define ORGAN_NO_DISMEMBERMENT	(1<<6)	//Immune to disembowelment.
+#define ORGAN_EDIBLE			(1<<7)	//is a snack? :D
 
 //skyrat flags
 /// Integrity defines for clothing (not flags but close enough)

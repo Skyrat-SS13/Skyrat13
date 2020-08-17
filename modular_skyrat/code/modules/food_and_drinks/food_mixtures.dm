@@ -9,7 +9,7 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/biomeat/on_reaction(datum/reagents/holder, multiplier, specialreact)
+	multiplier *= 2
 	var/location = get_turf(holder.my_atom)
-	var/use = round(max(1, multiplier), 1)
-	for(var/i = 1, i >= use, i++)
-		new /obj/item/reagent_containers/food/snacks/meat/slab/biomeat(location)
+	for(var/i = 1, i <= multiplier, i++)
+		new /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat(location)

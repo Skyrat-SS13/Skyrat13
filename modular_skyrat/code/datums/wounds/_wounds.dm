@@ -52,7 +52,7 @@
 	/// attach the wound to the parent body zone instead
 	var/fake_limb = null
 	/// The body zone of the phantom limb
-	var/fake_body_zone = BODY_ZONE_CHEST
+	var/fake_body_zone = null
 
 	/// Specific items such as bandages or sutures that can try directly treating this wound
 	var/list/treatable_by
@@ -123,12 +123,14 @@
 			self_treat(usr, TRUE)
 	return
 
-/datum/wound/proc/self_treat(mob/living/carbon/user) //used so you can far cry up wounds to fix them
-	return
+/datum/wound/proc/self_treat(mob/living/carbon/user, first_time = FALSE) //used so you can far cry up wounds to fix them
+	return FALSE
 
 /datum/wound/Destroy()
 	if(attached_surgery)
 		QDEL_NULL(attached_surgery)
+	if(victim?.all_wounds && (src in victim.all_wounds))
+		victim.all_wounds -= src
 	if(limb?.wounds && (src in limb.wounds)) // destroy can call remove_wound() and remove_wound() calls qdel, so we check to make sure there's anything to remove first
 		remove_wound()
 	limb = null
@@ -179,10 +181,9 @@
 
 	// we accept promotions and demotions, but no point in redundancy. This should have already been checked wherever the wound was rolled and applied for (see: bodypart damage code), but we do an extra check
 	// in case we ever directly add wounds
-	// only loss wounds will ignore preexisting ones at the moment
+	// only dismemberment and disembowelment wounds will ignore preexisting ones at the moment
 	if(!ignore_preexisting)
-		for(var/i in L.wounds)
-			var/datum/wound/preexisting_wound = i
+		for(var/datum/wound/preexisting_wound in L.wounds)
 			if((preexisting_wound.type == type) && (preexisting_wound != old_wound))
 				qdel(src)
 				return
@@ -209,11 +210,18 @@
 		var/msg = "<span class='danger'>[victim]'s [limb.name] [occur_text]!</span>"
 		var/vis_dist = COMBAT_MESSAGE_RANGE
 
-		if(severity != WOUND_SEVERITY_MODERATE)
+		if(severity > WOUND_SEVERITY_MODERATE)
 			msg = "<b>[msg]</b>"
 			vis_dist = DEFAULT_MESSAGE_RANGE
-
-		victim.visible_message(msg, "<span class='userdanger'>Your [limb.name] [occur_text]!</span>", vision_distance = vis_dist)
+		var/list/ignore =list()
+		for(var/mob/Y in view(vis_dist, L.owner))
+			if(Y != L.owner)
+				if(Y.client?.prefs?.chat_toggles & CHAT_WOUNDS_OTHER)
+					ignore |= Y
+			else
+				if(Y.client?.prefs?.chat_toggles & CHAT_WOUNDS_SELF)
+					ignore |= Y
+		victim.visible_message(msg, (L.owner?.client?.prefs?.chat_toggles & CHAT_WOUNDS_SELF ? null : "<span class='userdanger'>Your [limb.name] [occur_text]!</span>"), vision_distance = vis_dist, ignored_mobs = ignore)
 		if(sound_effect)
 			playsound(L.owner, sound_effect, 60 + 20 * severity, TRUE)
 
@@ -223,9 +231,9 @@
 
 /// Remove the wound from whatever it's afflicting, and cleans up whateverstatus effects it had or modifiers it had on interaction times. ignore_limb is used for detachments where we only want to forget the victim
 /datum/wound/proc/remove_wound(ignore_limb, replaced = FALSE, forced = FALSE)
-	//TODO: have better way to tell if we're getting removed without replacement (full heal) scar stuff
 	if(severity == WOUND_SEVERITY_PERMANENT && !forced)
 		return FALSE
+	//TODO: have better way to tell if we're getting removed without replacement (full heal) scar stuff
 	wound_alert(TRUE)
 	if(limb && !already_scarred && !replaced)
 		already_scarred = TRUE
@@ -313,10 +321,15 @@
 	// if none of those apply, we return false to avoid interrupting
 	if(!allowed)
 		return FALSE
-	// now that we've determined we have a valid attempt at treating, we can stomp on their dreams if we're already interacting with the patient
+	// now that we've determined we have a valid attempt at treating, we can stomp on their dreams if we're already interacting with the patient or if their part is obscured
 	if(INTERACTING_WITH(user, victim))
 		to_chat(user, "<span class='warning'>You're already interacting with [victim]!</span>")
 		return TRUE
+
+	if(!victim.can_inject(user, TRUE))
+		to_chat(user, "<span class='warning'>\The [src.name] isn't exposed!</span>")
+		return TRUE
+	
 	// lastly, treat them
 	treat(I, user)
 	return TRUE
@@ -325,7 +338,7 @@
 /datum/wound/proc/check_grab_treatments(obj/item/I, mob/user)
 	return FALSE
 
-/// Like try_treating() but for unhanded interactions from humans, used by joint dislocations for manual bodypart chiropractice for example.
+/// Like try_treating() but for unhanded interactions from humans, used by joint dislocations for manual bodypart chiropractice for example.  Ignores thick material checks since you can pop an arm into place through a thick suit unlike using sutures.
 /datum/wound/proc/try_handling(mob/living/carbon/human/user)
 	return FALSE
 
@@ -401,8 +414,8 @@
   * Arguments:
   * * mob/user: The user examining the wound's owner, if that matters
   */
-/datum/wound/proc/get_examine_description(mob/user)
-	if(victim)
+/datum/wound/proc/get_examine_description(mob/user, check_victim = TRUE)
+	if(check_victim && victim)
 		. = "[victim.p_their(TRUE)] [fake_limb ? fake_limb : limb.name] [examine_desc]"
 	else
 		. = "[fake_limb ? fake_limb : limb.name] [examine_desc]"
