@@ -8,9 +8,9 @@
 #define HAS_SKIN		56
 
 //Defines for processing reagents, for synths, IPC's and Vox
-#define PROCESS_ORGANIC 1		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC"
-#define PROCESS_SYNTHETIC 2		//Only processes reagents with "SYNTHETIC" or "ORGANIC | SYNTHETIC"
+#define PROCESS_ORGANIC (1<<0)		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC"
+#define PROCESS_SYNTHETIC (1<<1)		//Only processes reagents with "SYNTHETIC" or "ORGANIC | SYNTHETIC"
 
 // Reagent type flags, defines the types of mobs this reagent will affect
-#define REAGENT_ORGANIC 1
-#define REAGENT_SYNTHETIC 2 
+#define REAGENT_ORGANIC (1<<0)
+#define REAGENT_SYNTHETIC (1<<1)
