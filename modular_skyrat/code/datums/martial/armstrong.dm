@@ -529,7 +529,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	owner.adjustBruteLoss(-4)
 	owner.adjustFireLoss(-4)
 	owner.adjust_fire_stacks(-1)
-	owner.adjustStaminaLoss(-3)
+	owner.adjustStaminaLoss(-12) //BUMPED UP EXPERIMENTALLY
 	owner.adjustOxyLoss(-5)
 
 /datum/status_effect/horse_stance/on_remove()
