@@ -30,7 +30,7 @@
 	else if(prob(5))
 		H.Unconscious(200)
 
-/datum/disease/anaphylactic_shock/cure(add_resistance)
+/datum/disease/anaphylactic_shock/Destroy()
 	. = ..()
 	affected_mob.jitteriness = 0
 	affected_mob.Jitter(0)
