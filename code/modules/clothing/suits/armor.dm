@@ -326,6 +326,7 @@
 	hardsuit_type = "secexo"
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 55, "acid" = 70)
 	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | ALLOWINTERNALS
+	mutantrace_variation = STYLE_MUZZLE
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Classic" = 'icons/obj/clothing/hats.dmi',
@@ -335,7 +336,7 @@
 	"Classic" = 'icons/mob/clothing/head.dmi',
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
+	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
 	"Classic" = 'icons/mob/clothing/head.dmi',
 	)
 	unique_reskin = list(
@@ -354,7 +355,7 @@
 	item_state = "hardsuit-secexo"
 	max_integrity = 250
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 55, "acid" = 70)
-	allowed = list(/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
+	allowed = list(/obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/flashlight, /obj/item/gun/ballistic, /obj/item/gun/energy, /obj/item/kitchen/knife/combat, /obj/item/melee/baton, /obj/item/melee/classic_baton/telescopic, /obj/item/reagent_containers/spray/pepper, /obj/item/restraints/handcuffs, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/blunderbuss) //I had to do this all snowflake style because it just would not accept any sort of global list, fucking kill me
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor
 	clothing_flags = THICKMATERIAL
 	mutantrace_variation = STYLE_DIGITIGRADE
@@ -382,6 +383,11 @@
 	"Classic" = "secexoX",
 	)
 
+/obj/item/clothing/suit/space/hardsuit/security_armor/Initialize()
+	. = ..()
+	if(!allowed)
+		allowed = GLOB.security_vest_allowed
+
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if (slot == SLOT_HEAD)
@@ -400,6 +406,8 @@
 	icon_state = "hardsuit0-hosexo"
 	item_state = "hardsuit0-hosexo"
 	hardsuit_type = "hosexo"
+	mutantrace_variation = NONE
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Classic" = 'icons/obj/clothing/hats.dmi',
