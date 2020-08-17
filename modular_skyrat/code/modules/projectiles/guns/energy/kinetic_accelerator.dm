@@ -150,10 +150,10 @@
 
 /obj/item/projectile/kinetic/premium/heavy
 	name = "Heavy kinetic force"
-	damage = 65
+	damage = 75
 	damage_type = BRUTE
 	flag = "bomb"
-	range = 4
+	range = 3
 	log_override = TRUE
 
 //Precise KA
