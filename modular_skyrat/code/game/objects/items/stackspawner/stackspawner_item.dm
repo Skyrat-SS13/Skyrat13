@@ -9,7 +9,7 @@
 
 /obj/item/stackspawner/attack_self(mob/user)
 	. = ..()
-	
+
 	var/static/list/material_list
 	if(!material_list)
 		material_list = list(
@@ -36,7 +36,6 @@
 			"Brass"						= image(icon = icon, icon_state = "brass"),
 			"Runed"						= image(icon = icon, icon_state = "runed"),
 			"Mythril"					= image(icon = icon, icon_state = "mythril"),
-			"Adamantine"				= image(icon = icon, icon_state = "adamantine"),
 			"Alien Alloy"				= image(icon = icon, icon_state = "alien"),
 			//"Alien Glass"				= image(icon = icon, icon_state = "aglass"),
 			"Coal"						= image(icon = icon, icon_state = "coal"),
@@ -108,12 +107,12 @@
 			itemstack = /obj/item/stack/sheet/runed_metal
 		if("Mythril")
 			itemstack = /obj/item/stack/sheet/mineral/mythril
-		if("Adamantine")	
+		if("Adamantine")
 			itemstack = /obj/item/stack/sheet/mineral/adamantine
 		if("Alien Alloy")
 			itemstack = /obj/item/stack/sheet/mineral/abductor
 		//if("Alien Glass")
-		//	itemstack = 
+		//	itemstack =
 		if("Coal")
 			itemstack = /obj/item/stack/sheet/mineral/coal
 		if("Wood")
