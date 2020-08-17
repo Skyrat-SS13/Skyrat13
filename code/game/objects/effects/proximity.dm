@@ -106,8 +106,9 @@
 /obj/effect/abstract/proximity_checker/Destroy()
 	//Skyrat changes
 	if(monitor)
-		monitor.checkers -= src
-		monitor = null
+		if(length(monitor.checkers))
+			monitor.checkers -= src
+			monitor = null
 	//End of skyrat changes
 	return ..()
 
