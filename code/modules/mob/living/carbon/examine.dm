@@ -385,7 +385,7 @@
 			suppress_limbs += BP
 
 	var/num_suppress = LAZYLEN(suppress_limbs)
-	var/suppress_text = "<span class='notice'><B>[t_His]"
+	var/suppress_text = "\t<span class='notice'><B>[t_His]"
 	switch(num_suppress)
 		if(1 to 2)
 			suppress_text += " [suppress_limbs[1].name][num_suppress == 2 ? " and [suppress_limbs[2].name]" : ""]"
