@@ -471,6 +471,12 @@
 		if(consciousness_msg)
 			. += consciousness_msg
 	//
+	
+	if(getorgan(/obj/item/organ/brain))
+		if(!key)
+			. += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
+		else if(!client)
+			. += "[t_He] [t_has] a blank, absent-minded stare and [t_has] been completely unresponsive to anything for [round(((world.time - lastclienttime) / (1 MINUTES)),1)] minutes. [t_He] may snap out of it soon.\n" //SKYRAT CHANGE - ssd indicator
       
 	//Skyrat changes begin
 	var/scar_severity = 0
