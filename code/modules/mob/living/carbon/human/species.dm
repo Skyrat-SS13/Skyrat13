@@ -6,8 +6,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 GLOBAL_LIST_EMPTY(roundstart_race_datums)
 //
 
-#define BLUNT_WOUND_ROLL_MULT 3
-#define BURN_WOUND_ROLL_MULT 3
+#define BLUNT_WOUND_ROLL_MULT 2
+#define BURN_WOUND_ROLL_MULT 2
+#define SPECIFY_BODYPART_BURN_PROB 40
+#define SPECIFY_BODYPART_PRESSURE_PROB 25
 
 /datum/species
 	var/id	// if the game needs to manually check your race to do something not included in a proc here, it will use this
@@ -2148,7 +2150,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		if (H.stat < UNCONSCIOUS && (prob(burn_damage) * 5) / 4) //40% for level 3 damage on humans
 			H.emote("scream")
 		var/obj/item/bodypart/BP
-		if(length(H.bodyparts) && prob(50))
+		if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BURN_PROB))
 			BP = pick(H.bodyparts) 
 		H.apply_damage(damage = burn_damage, damagetype = BURN, def_zone = BP)
 		if(BP)
@@ -2160,7 +2162,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		//Apply cold slowdown
 		H.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/cold, multiplicative_slowdown = ((BODYTEMP_COLD_DAMAGE_LIMIT - H.bodytemperature) / COLD_SLOWDOWN_FACTOR))
 		var/obj/item/bodypart/BP
-		if(length(H.bodyparts) && prob(50))
+		if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BURN_PROB))
 			BP = pick(H.bodyparts) 
 		switch(H.bodytemperature)
 			if(200 to BODYTEMP_COLD_DAMAGE_LIMIT)
@@ -2200,11 +2202,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				H.clear_alert("pressure")
 			else
 				var/obj/item/bodypart/BP
-				if(length(H.bodyparts) && prob(50))
+				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BLUNT_PROB))
 					BP = pick(H.bodyparts)
 				H.apply_damage(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod, BRUTE, BP)
 				if(BP)
-					BP.painless_wound_roll(WOUND_BLUNT, LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod * BURN_WOUND_ROLL_MULT)
+					BP.painless_wound_roll(WOUND_BLUNT, LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod * BLUNT_WOUND_ROLL_MULT)
 				H.throw_alert("pressure", /obj/screen/alert/lowpressure, 2)
 
 //////////
@@ -2335,3 +2337,5 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 #undef BURN_WOUND_ROLL_MULT
 #undef BLUNT_WOUND_ROLL_MULT
+#undef SPECIFY_BODYPART_BLUNT_PROB
+#undef SPECIFY_BODYPART_BURN_PROB

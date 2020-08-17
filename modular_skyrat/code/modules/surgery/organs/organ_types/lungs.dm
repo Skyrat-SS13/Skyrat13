@@ -110,7 +110,7 @@
 	if(HAS_TRAIT(H, TRAIT_NOBREATH))
 		return
 
-	if((!breath || (breath.total_moles() == 0)) && (safe_co2_min || safe_nitro_min || safe_oxygen_min || safe_toxins_min))
+	if((!breath || (breath?.total_moles() == 0)) && (safe_co2_min || safe_nitro_min || safe_oxygen_min || safe_toxins_min))
 		if(H.reagents.has_reagent(crit_stabilizing_reagent))
 			return
 		
@@ -132,7 +132,9 @@
 
 	var/gas_breathed = 0
 
-	var/list/breath_gases = breath.gases
+	var/list/breath_gases = breath?.gases
+	if(!breath_gases)
+		return
 
 	//Partial pressures in our breath
 	var/O2_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/oxygen])+(8*breath.get_breath_partial_pressure(breath_gases[/datum/gas/pluoxium]))
