@@ -22,7 +22,7 @@
 		return FALSE
 	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "allergyshock", /datum/mood_event/allergyshock)
 	if(prob(20))
-		H.Jitter(1000)
+		H.Jitter(100)
 	if(prob(10))
 		to_chat(H, "<span class='userdanger'>You can feel your throat constricting!</span>")
 		H.adjustOxyLoss(rand(5, 25))
