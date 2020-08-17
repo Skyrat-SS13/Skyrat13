@@ -108,7 +108,7 @@
 	if(monitor)
 		if(length(monitor.checkers))
 			monitor.checkers -= src
-			monitor = null
+		monitor = null
 	//End of skyrat changes
 	return ..()
 
