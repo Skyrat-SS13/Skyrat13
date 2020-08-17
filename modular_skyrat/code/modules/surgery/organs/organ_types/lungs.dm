@@ -110,9 +110,10 @@
 	if(HAS_TRAIT(H, TRAIT_NOBREATH))
 		return
 
-	if(!breath || (breath.total_moles() == 0))
+	if((!breath || (breath.total_moles() == 0)) && (safe_co2_min || safe_nitro_min || safe_oxygen_min || safe_toxins_min))
 		if(H.reagents.has_reagent(crit_stabilizing_reagent))
 			return
+		
 		if(H.health >= H.crit_threshold)
 			H.adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 		else if(!HAS_TRAIT(H, TRAIT_NOCRITDAMAGE))
