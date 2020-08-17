@@ -293,9 +293,16 @@
 			msg += "[t_He] look[p_s()] extremely disgusted.\n"
 	if(!screwy_self)
 		if(ShowAsPaleExamine())
-			msg += "[t_He] [t_has] pale skin.\n"
+			var/apparent_blood_volume = blood_volume
+			switch(apparent_blood_volume)
+				if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
+					msg += "[t_He] [t_has] pale skin.\n"
+				if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
+					msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
+				if(-INFINITY to BLOOD_VOLUME_BAD)
+					msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
 	
-	var/bleed_text = ""
+	var/bleed_text
 	var/list/obj/item/bodypart/bleeding_limbs = list()
 	var/list/obj/item/bodypart/grasped_limbs = list()
 	if(!screwy_self)
@@ -408,10 +415,10 @@
 				consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
 			if(InCritical())
 				consciousness = LOOKS_UNCONSCIOUS
-				consciousness_msg = "<span class='warning>[t_His] life signs are shallow and labored[lying ? ", and [t_he] is unconscious" : ""].</span>"
+				consciousness_msg = "<span class='warning'>[t_His] life signs are shallow and labored[lying ? ", and [t_he] is unconscious" : ""].</span>"
 			if(InFullCritical())
 				consciousness = LOOKS_VERYUNCONSCIOUS
-				consciousness_msg = "<span class='warning>[t_His] life signs are very shallow and labored, [lying ? "[t_he] is completely unconscious and " : ""][t_he] appears to be undergoing shock.</span>"
+				consciousness_msg = "<span class='warning'>[t_His] life signs are very shallow and labored, [lying ? "[t_he] is completely unconscious and " : ""][t_he] appears to be undergoing shock.</span>"
 			if(stat == DEAD)
 				consciousness = LOOKS_DEAD
 				consciousness_msg = "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.[length(bleeding_limbs) ? "\n[t_His] bleeding has pooled, and is not flowing." : ""]</span>"
@@ -423,7 +430,7 @@
 			if(InCritical() || HAS_TRAIT(src, TRAIT_LOOKSUNCONSCIOUS) || (consciousness == LOOKS_UNCONSCIOUS))
 				consciousness = LOOKS_UNCONSCIOUS
 				if(dist <= 1 && is_face_visible() && !HAS_TRAIT(src, TRAIT_NOBREATH))
-					consciousness_msg = "<span class='warning>[t_His] breathing is shallow and labored[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
+					consciousness_msg = "<span class='warning'>[t_His] breathing is shallow and labored[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
 				else if((dist <= 3) || (dist <= 7 && lying))
 					consciousness = LOOKS_SLEEPY
 					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
@@ -440,7 +447,7 @@
 				if(NOBLOOD in dna?.species?.species_traits)
 					thicc = TRUE
 				if(dist <= 1 && !thicc)
-					consciousness_msg = "<span class='warning>[t_He] seems to have no identifiable pulse[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
+					consciousness_msg = "<span class='warning'>[t_He] seems to have no identifiable pulse[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
 				else if((dist <= 3) || (dist <= 7 && lying))
 					consciousness = LOOKS_SLEEPY
 					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
@@ -451,7 +458,7 @@
 					if(suiciding)
 						consciousness_msg += "\n<span class='deadsay'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>"
 					if(hellbound)
-						consciousness_msg += "\n<span class='deadsay'>[t_His] soul seems to have been ripped out of [t_his] body.  Revival is impossible.</span>"
+						consciousness_msg += "\n<span class='deadsay'>[t_His] soul seems to have been ripped out of [t_his] body. Revival is impossible.</span>"
 					if(!getorgan(/obj/item/organ/brain) || (!key && !get_ghost(FALSE)))
 						consciousness_msg += "\n<span class='deadsay'>[t_His] body seems empty, [t_his] soul has since departed.</span>"
 				else if((dist <= 3) || (dist <= 7 && lying))
@@ -687,8 +694,8 @@
 				var/obj/item/bodypart/BP = gauzed_limbs[i]
 				gauze_text += " <a href='?src=[REF(BP)];gauze=1;'>[BP.name]</a>,"
 			gauze_text += " and <a href='?src=[REF(gauzed_limbs[num_gauze])];gauze=1;'>[gauzed_limbs[num_gauze].name]</a>"
-	gauze_text += "[num_gauze == 1 ? " is gauzed" : " are gauzed"]"
 	
+	gauze_text += "[num_gauze == 1 ? " is gauzed" : " are gauzed"]"
 	gauze_text += ".</span>"
 	if(num_gauze)
 		msg += gauze_text
@@ -709,8 +716,8 @@
 				var/obj/item/bodypart/BP = suppress_limbs[i]
 				suppress_text += " [BP.name],"
 			suppress_text += " and [suppress_limbs[num_suppress].name]"
-	suppress_text += "[num_suppress == 1 ? " is impervious to bleeding" : " are impervious to bleeding"]"
 	
+	suppress_text += "[num_suppress == 1 ? " is impervious to bleeding" : " are impervious to bleeding"]"
 	suppress_text += ".</B></span>\n"
 	if(num_suppress)
 		msg += suppress_text
@@ -725,10 +732,10 @@
 		var/datum/scar/S = i
 		var/scar_text = S.get_examine_description(user)
 		if(scar_text)
-			msg |= "\t[scar_text]"
+			msg += "\t[scar_text]"
 	
 	if(!length(visible_scars))
-		msg |= "\t<span class='smallnotice'><i>[p_they(TRUE)] [p_have()] no visible scars.</i></span>"
+		msg += "\t<span class='smallnotice'><i>[p_they(TRUE)] [p_have()] no visible scars.</i></span>"
 	
 	return msg
 //

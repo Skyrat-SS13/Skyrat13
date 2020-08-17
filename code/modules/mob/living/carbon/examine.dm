@@ -34,7 +34,7 @@
 	/* skyrat edit
 	var/list/missing = get_missing_limbs()
 	*/
-	var/list/msg = list("<span class='warning'>")
+	var/list/msg = list()
 
 	var/list/missing = ALL_BODYPARTS
 	var/list/disabled = list()
@@ -143,7 +143,7 @@
 	if(pulledby && pulledby.grab_state)
 		msg += "[t_He] [t_is] restrained by [pulledby]'s grip.\n"
 	
-	var/bleed_text = ""
+	var/bleed_text
 	var/list/obj/item/bodypart/bleeding_limbs = list()
 	var/list/obj/item/bodypart/grasped_limbs = list()
 	//skyrat edit
@@ -218,10 +218,10 @@
 			consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
 		if(InCritical())
 			consciousness = LOOKS_UNCONSCIOUS
-			consciousness_msg = "<span class='warning>[t_His] life signs are shallow and labored[lying ? ", and [t_he] is unconscious" : ""].</span>"
+			consciousness_msg = "<span class='warning'>[t_His] life signs are shallow and labored[lying ? ", and [t_he] is unconscious" : ""].</span>"
 		if(InFullCritical())
 			consciousness = LOOKS_VERYUNCONSCIOUS
-			consciousness_msg = "<span class='warning>[t_His] life signs are very shallow and labored, [lying ? "[t_he] is completely unconscious and " : ""][t_he] appears to be undergoing shock.</span>"
+			consciousness_msg = "<span class='warning'>[t_His] life signs are very shallow and labored, [lying ? "[t_he] is completely unconscious and " : ""][t_he] appears to be undergoing shock.</span>"
 		if(stat == DEAD)
 			consciousness = LOOKS_DEAD
 			consciousness_msg = "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.[(length(bleeding_limbs) && !(mob_biotypes & MOB_UNDEAD)) || (length(bleeding_limbs) && (mob_biotypes & MOB_UNDEAD) && (stat == DEAD)) ? "\n[t_His] bleeding has pooled, and is not flowing." : ""]</span>"
@@ -233,14 +233,14 @@
 		if(InCritical() || HAS_TRAIT(src, TRAIT_LOOKSUNCONSCIOUS) || (consciousness == LOOKS_UNCONSCIOUS))
 			consciousness = LOOKS_UNCONSCIOUS
 			if(dist <= 1 && is_face_visible() && !HAS_TRAIT(src, TRAIT_NOBREATH))
-				consciousness_msg = "<span class='warning>[t_His] breathing is shallow and labored[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
+				consciousness_msg = "<span class='warning'>[t_His] breathing is shallow and labored[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
 			else if((dist <= 3) || (dist <= 7 && lying))
 				consciousness = LOOKS_SLEEPY
 				consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
 		if(InFullCritical() || HAS_TRAIT(src, TRAIT_LOOKSVERYUNCONSCIOUS) || (consciousness == LOOKS_VERYUNCONSCIOUS))
 			consciousness = LOOKS_VERYUNCONSCIOUS
 			if(dist <= 1)
-				consciousness_msg = "<span class='warning>[t_He] seems to have no identifiable pulse[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
+				consciousness_msg = "<span class='warning'>[t_He] seems to have no identifiable pulse[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
 			else if((dist <= 3) || (dist <= 7 && lying))
 				consciousness = LOOKS_SLEEPY
 				consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
