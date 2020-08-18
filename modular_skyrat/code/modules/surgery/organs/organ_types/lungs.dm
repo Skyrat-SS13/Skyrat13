@@ -402,6 +402,12 @@
 
 			handle_breath_temperature(breath, H)
 			GAS_GARBAGE_COLLECT(breath.gases)
+	else if(!safe_oxygen_min && !safe_nitro_min && !safe_toxins_min && !safe_co2_min)
+		H.failed_last_breath = FALSE
+		if(H.health >= H.crit_threshold)
+			H.adjustOxyLoss(-breathModifier) //More damaged lungs = slower oxy rate up to a factor of half
+		gas_breathed = breath_gases[/datum/gas/oxygen]
+		H.clear_alert("not_enough_oxy")
 	return TRUE
 
 
