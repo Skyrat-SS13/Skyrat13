@@ -33,7 +33,7 @@
 	if(duration != -1)
 		duration = world.time + duration
 	next_tick = world.time + tick_interval
-	if(alert_type && istype(owner) && id && alert_type) //skyrat edit
+	if(alert_type && istype(owner) && id) //skyrat edit
 		var/obj/screen/alert/status_effect/A = owner.throw_alert(id, alert_type)
 		if(istype(A))
 			A.attached_effect = src //so the alert can reference us, if it needs to
