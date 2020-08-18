@@ -2209,9 +2209,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				var/obj/item/bodypart/BP
 				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BLUNT_PROB))
 					BP = pick(H.bodyparts)
-				H.apply_damage(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod, BRUTE, BP)
-				if(BP)
-					BP.painless_wound_roll(WOUND_BLUNT, LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod * BLUNT_WOUND_ROLL_MULT)
+				var/applydam = LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod
+				H.apply_damage(applydam, BRUTE, BP)
+				if(BP && BP.brute_dam >= applydam * 0.75)
+					BP.painless_wound_roll(WOUND_BLUNT, applydam * BLUNT_WOUND_ROLL_MULT)
 				H.throw_alert("pressure", /obj/screen/alert/lowpressure, 2)
 
 //////////
