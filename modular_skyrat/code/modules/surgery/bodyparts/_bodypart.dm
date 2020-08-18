@@ -126,8 +126,6 @@
 	var/obj/item/organ/brain/brain = null
 	/// If something is currently grasping this bodypart and trying to staunch bleeding (see [/obj/item/grasp_self])
 	var/obj/item/self_grasp/grasped_by
-	/// Overlays related to medicine, like applied gauze
-	var/list/medicine_overlays = list()
 
 /obj/item/bodypart/Initialize()
 	. = ..()

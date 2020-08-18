@@ -93,9 +93,9 @@
 	remove_overlay(LOWER_MEDICINE_LAYER)
 
 	var/mutable_appearance/medicine_overlays = mutable_appearance('modular_skyrat/icons/mob/medicine_overlays.dmi', "blank", -MEDICINE_LAYER)
-	var/mutable_appearance/lower_medicine_overlays = mutable_appearance('modular_skyrat/icons/mob/medicine_overlays.dmi', "blank", -MEDICINE_LAYER)
+	var/mutable_appearance/lower_medicine_overlays = mutable_appearance('modular_skyrat/icons/mob/medicine_overlays.dmi', "blank", -LOWER_MEDICINE_LAYER)
 	overlays_standing[MEDICINE_LAYER] = medicine_overlays
-	overlays_standing[LOWER_MEDICINE_LAYER] = medicine_overlays
+	overlays_standing[LOWER_MEDICINE_LAYER] = lower_medicine_overlays
 
 
 	for(var/X in bodyparts)
