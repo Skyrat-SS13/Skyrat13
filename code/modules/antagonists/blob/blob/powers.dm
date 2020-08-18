@@ -137,14 +137,14 @@
 	set name = "Create Resource Blob (25)" //SKYRAT EDIT - BLOB
 	set desc = "Create a resource tower which will generate resources for you."
 	//createSpecial(40, /obj/structure/blob/resource, 4, 1)
-	createSpecial(25, /obj/structure/blob/resource, 3, 1) //SKYRAT EDIT - BLOB
+	createSpecial(25, /obj/structure/blob/resource, 4, 1) //SKYRAT EDIT - BLOB
 
 /mob/camera/blob/verb/create_node()
 	set category = "Blob"
 	set name = "Create Node Blob (40)" //SKYRAT EDIT - BLOB
 	set desc = "Create a node, which will power nearby factory and resource blobs."
 	//createSpecial(50, /obj/structure/blob/node, 5, 0)
-	createSpecial(40, /obj/structure/blob/node, 4, 0) //SKYRAT EDIT - BLOB
+	createSpecial(40, /obj/structure/blob/node, 5, 0) //SKYRAT EDIT - BLOB
 
 /mob/camera/blob/verb/create_factory()
 	set category = "Blob"

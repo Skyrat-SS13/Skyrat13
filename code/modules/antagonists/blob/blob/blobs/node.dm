@@ -36,6 +36,6 @@
 		Pulse_Area(overmind, 10, 3, 2)
 	// SKYRAT EDIT START - BLOB
 	for(var/obj/structure/blob/normal/B in range(1, src))
-		if(prob(5))
+		if(prob(0.1))
 			B.change_to(/obj/structure/blob/shield/core, overmind)
-	// SKYRAT EDIT END - BLOB
+	// SKYRAT EDIT END - Probability to make blob around a node from 0% to 0.1%. It was once 5%, and this was rolled so frequently it resulted in constant upgrades.
