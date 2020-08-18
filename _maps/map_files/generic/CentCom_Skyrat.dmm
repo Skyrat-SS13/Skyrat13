@@ -18298,7 +18298,9 @@
 /turf/closed/indestructible/rock/glacierrock,
 /area/centcom/holding/cafepark)
 "On" = (
-/obj/machinery/rnd/production/cafe_circuit_imprinter,
+/obj/machinery/rnd/production/cafe_circuit_imprinter{
+	console_link = 0
+	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafebotany)
 "Oo" = (
@@ -18439,7 +18441,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/rnd/production/techfab/department/engineering,
+/obj/machinery/rnd/production/protolathe/department/engineering,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafebotany)
 "OH" = (
@@ -18964,6 +18966,10 @@
 /obj/machinery/vending/custom,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
+"Qh" = (
+/obj/item/hilbertshotel/ghostdojo,
+/turf/open/floor/carpet/red,
+/area/centcom/holding/cafedorms)
 "Qi" = (
 /obj/item/paicard,
 /obj/structure/table/wood,
@@ -51872,7 +51878,7 @@ Kf
 WV
 WG
 Wa
-Of
+Qh
 Of
 Of
 Wa
