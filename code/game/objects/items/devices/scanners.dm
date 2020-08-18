@@ -452,7 +452,7 @@ GENETICS SCANNER
 		if(blood_typepath)
 			if(ishuman(C))
 				if(H.is_bleeding()) //skyrat edit
-					msg += "<span class='danger'>Subject is bleeding!</span>\n"
+					msg += "\t<span class='danger'>Subject is bleeding!</span>\n"
 			var/blood_percent =  round((C.scan_blood_volume() / (BLOOD_VOLUME_NORMAL * C.blood_ratio))*100)
 			var/blood_type = C.dna.blood_type
 			if(!(blood_typepath in GLOB.blood_reagent_types))
@@ -460,11 +460,11 @@ GENETICS SCANNER
 				if(R)
 					blood_type = R.name
 			if(C.scan_blood_volume() <= (BLOOD_VOLUME_SAFE*C.blood_ratio) && C.scan_blood_volume() > (BLOOD_VOLUME_OKAY*C.blood_ratio))
-				msg += "<span class='danger'>LOW blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type]</span>\n"
+				msg += "\t<span class='danger'>LOW blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type]</span>\n"
 			else if(C.scan_blood_volume() <= (BLOOD_VOLUME_OKAY*C.blood_ratio))
-				msg += "<span class='danger'>CRITICAL blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type]</span>\n"
+				msg += "\t<span class='danger'>CRITICAL blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type]</span>\n"
 			else
-				msg += "<span class='info'>Blood level [blood_percent] %, [C.scan_blood_volume()] cl, type: [blood_type]</span>\n"
+				msg += "\t<span class='info'>Blood level [blood_percent] %, [C.scan_blood_volume()] cl, type: [blood_type]</span>\n"
 
 		var/cyberimp_detect
 		for(var/obj/item/organ/cyberimp/CI in C.internal_organs)
