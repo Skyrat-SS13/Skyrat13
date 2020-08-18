@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 GLOBAL_LIST_EMPTY(roundstart_race_datums)
 //
 
-#define BLUNT_WOUND_ROLL_MULT 2.25
+#define BLUNT_WOUND_ROLL_MULT 2
 #define BURN_WOUND_ROLL_MULT 3.6
 #define SPECIFY_BODYPART_BURN_PROB 40
 #define SPECIFY_BODYPART_BLUNT_PROB 30
