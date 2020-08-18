@@ -3,7 +3,7 @@
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blank_blob"
 	desc = "A large, pulsating yellow mass."
-	max_integrity = 400 //Skyrat Change
+	max_integrity = 150	// Skyrat Edit: 200 to 150.
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 65, "acid" = 90)
 	health_regen = 3
 	point_return = 25

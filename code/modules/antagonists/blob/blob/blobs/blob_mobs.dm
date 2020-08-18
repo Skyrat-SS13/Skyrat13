@@ -82,8 +82,8 @@
 	verb_ask = "psychically probes"
 	verb_exclaim = "psychically yells"
 	verb_yell = "psychically screams"
-	melee_damage_lower = 2
-	melee_damage_upper = 4
+	melee_damage_lower = 5	//2 to 5.
+	melee_damage_upper = 10	//4 to 10.
 	obj_damage = 20
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	attack_verb_continuous = "hits"
