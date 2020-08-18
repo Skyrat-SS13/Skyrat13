@@ -145,12 +145,17 @@
 	knife_x_offset = 15
 	knife_y_offset = 8
 
+/obj/item/gun/energy/kinetic_accelerator/premiumka/heavy/Initialize()
+	. = ..()
+	var/obj/item/borg/upgrade/modkit/aoe/heavy/initial_kit = new /obj/item/borg/upgrade/modkit/aoe/heavy(src)
+	initial_kit.install(src)
+
 /obj/item/ammo_casing/energy/kinetic/premium/heavy
 	projectile_type = /obj/item/projectile/kinetic/premium/heavy
 
 /obj/item/projectile/kinetic/premium/heavy
 	name = "Heavy kinetic force"
-	damage = 75
+	damage = 65
 	damage_type = BRUTE
 	flag = "bomb"
 	range = 3
@@ -542,3 +547,23 @@
 	if(prob(modifier))
 		K.damage *= multiplier
 		K.name = "critical [K.name]"
+
+//This is Messy fucking code to get something to work... trust me, I wish i was good enough of a coder to not rely on this
+//AoE blasts (Unremovable)
+/obj/item/borg/upgrade/modkit/aoe/heavy
+	name = "mining explosion"
+	desc = "Causes the Heavy KA to work properly. If you have this, Report it to ZenithEevee on Discord."
+	denied_type = /obj/item/borg/upgrade/modkit/aoe
+	turf_aoe = TRUE
+	modifier = 0.5
+	cost = 0
+
+/obj/item/borg/upgrade/modkit/aoe/heavy/install(obj/item/gun/energy/kinetic_accelerator/KA)
+	KA.modkits += src
+	return TRUE
+
+/obj/item/borg/upgrade/modkit/aoe/heavy/uninstall(obj/item/gun/energy/kinetic_accelerator/KA)
+	return FALSE
+
+/obj/item/borg/upgrade/modkit/aoe/heavy/modify_projectile(obj/item/projectile/kinetic/K)
+	K.name = "heavy kinetic explosion"
