@@ -2151,7 +2151,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			H.emote("scream")
 		var/obj/item/bodypart/BP
 		if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BURN_PROB))
-			BP = pick(H.bodyparts) 
+			BP = pick(H.bodyparts)
 		H.apply_damage(damage = burn_damage, damagetype = BURN, def_zone = BP)
 		if(BP)
 			BP.painless_wound_roll(WOUND_BURN, burn_damage * BURN_WOUND_ROLL_MULT)
