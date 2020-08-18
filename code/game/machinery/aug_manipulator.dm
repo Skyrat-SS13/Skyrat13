@@ -59,7 +59,7 @@
 
 	else if(istype(O, /obj/item/bodypart))
 		var/obj/item/bodypart/B = O
-		if(B.status != BODYPART_ROBOTIC)
+		if(!(B.status & BODYPART_ROBOTIC))
 			to_chat(user, "<span class='warning'>The machine only accepts cybernetics!</span>")
 			return
 		if(storedpart)
