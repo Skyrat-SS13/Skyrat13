@@ -116,3 +116,4 @@
 	desc = "A headset used by mining technicians."
 	icon_state = "cargo_headset"
 	keyslot = new /obj/item/encryptionkey/headset_cargo/mining_engineer
+	
