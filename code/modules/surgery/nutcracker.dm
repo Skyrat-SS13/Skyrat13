@@ -61,7 +61,7 @@
 	if(do_mob(user, M, crush_time))
 		if(get_location_accessible(M, target_zone)) //Yes, two checks, before and after the timer. What if someone puts a helmet on the guy while you're crushing his head?
 			if(target_limb)//If he still has the head. In case you queue up a lot of these up at once or the guy loses the head while you're removing it.
-				M.visible_message("<span class='warning'>[M]\s [target_limb.name] cracks like a loudly, spilling everything aside, as it becomes an unrecognizable mess!</span>")
+				M.visible_message("<span class='warning'>[M]\s [target_limb.name] cracks like loudly, spilling everything inside, as it becomes an unrecognizable mess!</span>")
 				if(target_limb.body_zone == BODY_ZONE_HEAD)
 					gib_head(M)
 				else if(target_limb.body_zone == BODY_ZONE_PRECISE_GROIN)
@@ -74,7 +74,6 @@
 					target_limb.dismember(BRUTE, FALSE, TRUE)
 		else
 			to_chat(user, "<span class='notice'>Expose [M]\s [target_limb.name] before trying to crush it!</span>")
-
 
 /obj/item/nutcracker/suicide_act(mob/living/carbon/user)
 	var/obj/item/bodypart/target_limb = user.get_bodypart("head")
