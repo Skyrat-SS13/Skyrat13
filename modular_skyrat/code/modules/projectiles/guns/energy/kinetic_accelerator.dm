@@ -555,7 +555,7 @@
 	desc = "Causes the Heavy KA to work properly. If you have this, Report it to ZenithEevee on Discord."
 	denied_type = /obj/item/borg/upgrade/modkit/aoe
 	turf_aoe = TRUE
-	modifier = 0.5
+	modifier = 0.33
 	cost = 0
 
 /obj/item/borg/upgrade/modkit/aoe/heavy/install(obj/item/gun/energy/kinetic_accelerator/KA)
