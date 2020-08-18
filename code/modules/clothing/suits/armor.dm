@@ -326,6 +326,7 @@
 	hardsuit_type = "secexo"
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 55, "acid" = 70)
 	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | ALLOWINTERNALS
+	flags_inv = HIDEMASK|HIDEEARS|HIDEFACE|HIDEHAIR
 	mutantrace_variation = STYLE_MUZZLE
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/hats.dmi',
@@ -337,7 +338,7 @@
 	)
 	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
-	"Classic" = 'icons/mob/clothing/head.dmi',
+	"Classic" = 'icons/mob/clothing/head_muzzled.dmi',
 	)
 	unique_reskin = list(
 	"Default" = "hardsuit0-secexo",
