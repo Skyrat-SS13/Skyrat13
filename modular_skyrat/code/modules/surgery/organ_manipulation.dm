@@ -1,5 +1,15 @@
 /datum/surgery_step/manipulate_organs
-	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100, /obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100, /obj/item/stack/medical/mesh = 100, /obj/item/stack/medical/aloe = 100, /obj/item/stack/medical/suture = 100, /obj/item/reagent_containers = 100, /obj/item/pen = 100, /obj/item/mmi = 100)
+	implements = list(/obj/item/organ = 100,
+					/obj/item/organ_storage = 100,
+					/obj/item/stack/medical/bruise_pack = 100,
+					/obj/item/stack/medical/ointment = 100,
+					/obj/item/stack/medical/mesh = 100,
+					/obj/item/stack/medical/aloe = 100,
+					/obj/item/stack/medical/suture = 100,
+					/obj/item/stack/medical/nanopaste = 100,
+					/obj/item/reagent_containers = 100,
+					/obj/item/pen = 100,
+					/obj/item/mmi = 100)
 	var/heal_amount = 40
 	var/disinfect_amount = 20
 
@@ -82,24 +92,44 @@
 				continue
 			O.on_find(user)
 			organs -= O
+			if(O.status & ORGAN_ROBOTIC)
+				continue
 			organs[O.name] = O
 		if(!length(organs))
-			display_results(user, target, "<span class='notice'>There are no damaged organs in the [parse_zone(target_zone)]!</span>",
-				"[user] begins to heal [target]'s [parse_zone(target_zone)], only to be met with no damaged organs at all.",
-				"[user] begins to heal [target]'s [parse_zone(target_zone)], only to be met with no damaged organs at all.")
+			display_results(user, target, "<span class='notice'>There are no damaged organic organs in the [parse_zone(target_zone)]!</span>",
+				"[user] begins to heal [target]'s [parse_zone(target_zone)], only to be met with no damaged organic organs at all.",
+				"[user] begins to heal [target]'s [parse_zone(target_zone)], only to be met with no damaged organic organs at all.")
 			return -1
-		var/choice = input(user, "What organ do you want to heal?", "Organ healing") as null|anything in organs
-		if(!choice)
-			return -1
-		var/obj/item/organ/targeted_organ = organs[choice]
-		if(!istype(targeted_organ))
-			return -1
-		I = targeted_organ
 		current_type = "heal"
 		if(M.use(2))
 			display_results(user, target, "<span class='notice'>You begin to heal the organs in [target]'s [parse_zone(target_zone)]...</span>",
 							"[user] begins to heal [target]'s the organs in [parse_zone(target_zone)]...",
 							"[user] begins to heal [target]'s the organs in [parse_zone(target_zone)]...")
+		else
+			to_chat(user, "<span class='warning'>[M] does not have enough stacks to be used on a surgery!</span>")
+			return -1
+	else if(istype(tool, /obj/item/stack/medical/nanopaste))
+		var/obj/item/stack/medical/M = tool
+		var/list/organs = target.getorganszone(target_zone)
+		for(var/obj/item/organ/O in organs)
+			if(O.damage <= 5)
+				organs -= O
+				continue
+			O.on_find(user)
+			organs -= O
+			if(O.status & BODYPART_ORGANIC)
+				continue
+			organs[O.name] = O
+		if(!length(organs))
+			display_results(user, target, "<span class='notice'>There are no damaged robotic organs in the [parse_zone(target_zone)]!</span>",
+				"[user] begins to heal [target]'s [parse_zone(target_zone)], only to be met with no damaged robotic organs at all.",
+				"[user] begins to heal [target]'s [parse_zone(target_zone)], only to be met with no damaged robotic organs at all.")
+			return -1
+		current_type = "heal_robotic"
+		if(M.use(2))
+			display_results(user, target, "<span class='notice'>You begin to heal the robotic organs in [target]'s [parse_zone(target_zone)]...</span>",
+							"[user] begins to heal [target]'s the robotic organs in [parse_zone(target_zone)]...",
+							"[user] begins to heal [target]'s the robotic organs in [parse_zone(target_zone)]...")
 		else
 			to_chat(user, "<span class='warning'>[M] does not have enough stacks to be used on a surgery!</span>")
 			return -1
@@ -240,7 +270,7 @@
 		var/healedatall = FALSE
 		var/fully_healed = FALSE
 		for(var/obj/item/organ/O in target.getorganszone(target_zone))
-			if(O.damage < (O.maxHealth - O.maxHealth/10))
+			if((O.damage < (O.maxHealth - O.maxHealth/10)) && !(O.status & ORGAN_ROBOTIC))
 				O.applyOrganDamage(-heal_amount)
 				healedatall = TRUE
 				fully_healed = TRUE
@@ -259,10 +289,33 @@
 			display_results(user, target, "<span class='warning'>You have failed to heal [target]'s [parse_zone(target_zone)] organs.</span>",
 				"[user] has failed to heal [target]'s [parse_zone(target_zone)] organs!",
 				"[user] has failed to heal [target]'s [parse_zone(target_zone)] organs!")
+	else if(current_type == "heal_robotic")
+		var/healedatall = FALSE
+		var/fully_healed = FALSE
+		for(var/obj/item/organ/O in target.getorganszone(target_zone))
+			if((O.damage < (O.maxHealth - O.maxHealth/10)) && !(O.status & ORGAN_ORGANIC))
+				O.applyOrganDamage(-heal_amount)
+				healedatall = TRUE
+				fully_healed = TRUE
+		for(var/obj/item/organ/O in target.getorganszone(target_zone))
+			if(O.damage)
+				fully_healed = FALSE
+		if(fully_healed)
+			display_results(user, target, "<span class='notice'>You have succesfully healed [target]'s [parse_zone(target_zone)] robotic organs.</span>",
+				"[user] has successfully healed [target]'s [parse_zone(target_zone)] robotic organs!",
+				"[user] has successfully healed [target]'s [parse_zone(target_zone)] robotic organs!")
+		else if(healedatall)
+			display_results(user, target, "<span class='notice'>You have partially healed [target]'s [parse_zone(target_zone)] robotic organs.</span>",
+				"[user] has partially healed [target]'s [parse_zone(target_zone)] robotic organs!",
+				"[user] has partially healed [target]'s [parse_zone(target_zone)] robotic organs!")
+		else
+			display_results(user, target, "<span class='warning'>You have failed to heal [target]'s [parse_zone(target_zone)] robotic organs.</span>",
+				"[user] has failed to heal [target]'s [parse_zone(target_zone)] robotic organs!",
+				"[user] has failed to heal [target]'s [parse_zone(target_zone)] robotic organs!")
 	else if(current_type == "disinfect")
 		var/disinfectedatall = FALSE
 		for(var/obj/item/organ/O in target.getorganszone(target_zone))
-			if(O.damage >= (O.maxHealth - O.maxHealth/10) && !(O.status == ORGAN_ROBOTIC))
+			if(O.damage >= (O.maxHealth - O.maxHealth/10) && !(O.status & ORGAN_ROBOTIC))
 				O.applyOrganDamage(-disinfect_amount)
 				disinfectedatall = TRUE
 		if(disinfectedatall)

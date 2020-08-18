@@ -1,32 +1,32 @@
-/datum/surgery/prosthetic_replacement
+/datum/surgery/mechanic_prosthetic_replacement
 	name = "Prosthetic replacement"
-	steps = list(/datum/surgery_step/incise,
-				/datum/surgery_step/clamp_bleeders,
-				/datum/surgery_step/retract_skin,
-				/datum/surgery_step/add_prosthetic,
-				/datum/surgery_step/close)
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_add_prosthetic,
+				/datum/surgery_step/mechanic_close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = ALL_BODYPARTS //skyrat edit
 	requires_bodypart = FALSE //need a missing limb
 	requires_bodypart_type = 0
 
-/datum/surgery/prosthetic_replacement/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
+/datum/surgery/mechanic_prosthetic_replacement/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
 	if(!iscarbon(target))
 		return 0
 	var/mob/living/carbon/C = target
 	var/obj/item/bodypart/BP = C.get_bodypart(SSquirks.bodypart_child_to_parent[user.zone_selected])
-	if(BP?.status & BODYPART_ROBOTIC)
+	if(BP?.status & BODYPART_ORGANIC)
 		return 0
 	if(!C.get_bodypart(user.zone_selected)) //can only start if limb is missing
 		return 1
 
-/datum/surgery_step/add_prosthetic
+/datum/surgery_step/mechanic_add_prosthetic
 	name = "Add prosthetic"
 	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item = 100, /obj/item/melee/synthetic_arm_blade = 100)
 	time = 32
 	var/organ_rejection_dam = 0
 
-/datum/surgery_step/add_prosthetic/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_add_prosthetic/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(istype(tool, /obj/item/organ_storage))
 		if(!tool.contents.len)
 			to_chat(user, "<span class='notice'>There is nothing inside [tool]!</span>")
@@ -72,7 +72,7 @@
 			"[user] begins to attach [tool] onto [target]'s [parse_zone(target_zone)].",
 			"[user] begins to attach something onto [target]'s [parse_zone(target_zone)].")
 
-/datum/surgery_step/add_prosthetic/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_add_prosthetic/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(istype(tool, /obj/item/organ_storage))
 		tool.icon_state = initial(tool.icon_state)
 		tool.desc = initial(tool.desc)

@@ -1,14 +1,15 @@
-/datum/surgery/plastic_surgery
+/datum/surgery/mechanic_plastic_surgery
 	name = "Robotic factory reset"
 	steps = list(/datum/surgery_step/mechanic_open,
 				/datum/surgery_step/mechanic_unwrench,
-				/datum/surgery_step/mechanic_mechanic_reshape_face,
-				/datum/surgery_step/close)
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_reshape_face,
+				/datum/surgery_step/mechanic_close)
 	possible_locs = list(BODY_ZONE_HEAD)
 	requires_bodypart_type = BODYPART_ROBOTIC
 
 //reshape face
-/datum/surgery_step/mechanic_mechanic_reshape_face
+/datum/surgery_step/mechanic_reshape_face
 	name = "Perform factory reset"
 	implements = list(TOOL_SCREWDRIVER = 100, TOOL_CROWBAR = 65, TOOL_HEMOSTAT = 60, TOOL_DRILL = 30)
 	time = 64

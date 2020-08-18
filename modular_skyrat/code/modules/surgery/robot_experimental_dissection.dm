@@ -1,41 +1,40 @@
-#define BASE_HUMAN_REWARD 500
+#define BASE_HUMAN_REWARD 1000
 
-/datum/surgery/advanced/experimental_dissection
-	name = "Dissection"
-	desc = "A surgical procedure which analyzes the biology of a corpse, and automatically adds new findings to the research database."
-	steps = list(/datum/surgery_step/incise,
-				/datum/surgery_step/retract_skin,
-				/datum/surgery_step/clamp_bleeders,
-				/datum/surgery_step/dissection,
-				/datum/surgery_step/clamp_bleeders,
-				/datum/surgery_step/close)
+/datum/surgery/advanced/experimental_dissection/mechanical
+	name = "Mechanical Dissection"
+	desc = "A surgical procedure which analyzes the biology of a synthetic corpse, and automatically adds new findings to the research database."
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_dissection,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/mechanic_close)
 	possible_locs = TORSO_BODYPARTS //skyrat edit
-	requires_bodypart_type = BODYPART_ORGANIC
+	requires_bodypart_type = BODYPART_ROBOTIC
 	target_mobtypes = list(/mob/living) //Feel free to dissect devils but they're magic.
-	replaced_by = /datum/surgery/advanced/experimental_dissection/adv
+	replaced_by = /datum/surgery/advanced/experimental_dissection/mechanical/adv
 	requires_tech = FALSE
-	var/value_multiplier = 1
 
-/datum/surgery/advanced/experimental_dissection/can_start(mob/user, mob/living/target, obj/item/tool)
+/datum/surgery/advanced/experimental_dissection/mechanical/can_start(mob/user, mob/living/target, obj/item/tool)
 	. = ..()
 	if(HAS_TRAIT_FROM(target, TRAIT_DISSECTED,"[name]"))
 		return FALSE
 	if(target.stat != DEAD)
 		return FALSE
 
-/datum/surgery_step/dissection
+/datum/surgery_step/mechanic_dissection
 	name = "Dissection"
 	implements = list(/obj/item/scalpel/alien = 100, /obj/item/scalpel/advanced = 99, /obj/item/scalpel = 90, /obj/item/kitchen/knife = 45, /obj/item/shard = 25)// special tools not only cut down time but also improve probability, doesn't use TOOL_SCALPEL because different scalpels have different probs
 	time = 100
 	silicons_obey_prob = TRUE
 	repeatable = TRUE
 
-/datum/surgery_step/dissection/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_dissection/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, "<span class='notice'>You start dissecting [target].</span>",
 	"[user] starts dissecting [target].",
 	"[user] starts dissecting [target].")
 
-/datum/surgery_step/dissection/proc/check_value(mob/living/target, datum/surgery/advanced/experimental_dissection/ED)
+/datum/surgery_step/mechanic_dissection/proc/check_value(mob/living/target, datum/surgery/advanced/experimental_dissection/ED)
 	var/cost = BASE_HUMAN_REWARD
 	var/multi_surgery_adjust = 0
 
@@ -72,7 +71,7 @@
 	cost *= ED.value_multiplier
 	return (cost-multi_surgery_adjust)
 
-/datum/surgery_step/dissection/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_dissection/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/points_earned = check_value(target, surgery)
 	display_results(user, target, "<span class='notice'>You dissect [target], and add your [points_earned] point\s worth of discoveries to the research database!</span>",
 	"[user] dissects [target], discovering [points_earned] point\s of data!",
@@ -84,7 +83,7 @@
 	repeatable = FALSE
 	return TRUE
 
-/datum/surgery_step/dissection/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_dissection/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, "<span class='notice'>You dissect [target], but do not find anything particularly interesting.</span>",
 	"[user] dissects [target], however it seems [user.p_they()] didn't find anything useful.",
 	"[user] dissects [target], but looks a little dissapointed.")
@@ -93,19 +92,19 @@
 	target.apply_damage(80, BRUTE, L, wound_bonus=CANT_WOUND) //skyrat edit
 	return TRUE
 
-/datum/surgery/advanced/experimental_dissection/adv
+/datum/surgery/advanced/experimental_dissection/mechanical/adv
 	name = "Thorough Dissection"
 	value_multiplier = 2
 	replaced_by = /datum/surgery/advanced/experimental_dissection/exp
 	requires_tech = TRUE
 
-/datum/surgery/advanced/experimental_dissection/exp
+/datum/surgery/advanced/experimental_dissection/mechanical/exp
 	name = "Experimental Dissection"
 	value_multiplier = 5
 	replaced_by = /datum/surgery/advanced/experimental_dissection/alien
 	requires_tech = TRUE
 
-/datum/surgery/advanced/experimental_dissection/alien
+/datum/surgery/advanced/experimental_dissection/mechanical/alien
 	name = "Extraterrestrial Dissection"
 	value_multiplier = 10
 	requires_tech = TRUE

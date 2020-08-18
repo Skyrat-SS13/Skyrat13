@@ -1,18 +1,12 @@
-/datum/surgery/implant_removal
-	name = "implant removal"
-	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/extract_implant, /datum/surgery_step/close)
-	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = TORSO_BODYPARTS //SKYRAT EDIT
-	requires_bodypart_type = BODYPART_ORGANIC
-
 //extract implant
-/datum/surgery_step/extract_implant
+/datum/surgery_step/mechanic_extract_implant
 	name = "extract implant"
-	implements = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 65)
+	implements = list(TOOL_CROWBAR = 100,
+					TOOL_HEMOSTAT = 65)
 	time = 64
 	var/obj/item/implant/I = null
 
-/datum/surgery_step/extract_implant/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_extract_implant/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	for(var/obj/item/O in target.implants)
 		I = O
 		break
@@ -25,7 +19,7 @@
 			"[user] looks for an implant in [target]'s [target_zone].",
 			"[user] looks for something in [target]'s [target_zone].")
 
-/datum/surgery_step/extract_implant/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_extract_implant/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(I)
 		display_results(user, target, "<span class='notice'>You successfully remove [I] from [target]'s [target_zone].</span>",
 			"[user] successfully removes [I] from [target]'s [target_zone]!",
@@ -51,3 +45,14 @@
 	else
 		to_chat(user, "<span class='warning'>You can't find anything in [target]'s [target_zone]!</span>")
 	return 1
+
+/datum/surgery/implant_removal/mechanic
+	name = "implant removal"
+	requires_bodypart_type = BODYPART_ROBOTIC
+	steps = list(
+		/datum/surgery_step/mechanic_open,
+		/datum/surgery_step/open_hatch,
+		/datum/surgery_step/mechanic_unwrench,
+		/datum/surgery_step/mechanic_extract_implant,
+		/datum/surgery_step/mechanic_wrench,
+		/datum/surgery_step/mechanic_close)

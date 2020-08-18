@@ -1,23 +1,18 @@
-/obj/item/disk/surgery/brainwashing
-	name = "Brainwashing Surgery Disk"
-	desc = "The disk provides instructions on how to impress an order on a brain, making it the primary objective of the patient."
-	surgeries = list(/datum/surgery/advanced/brainwashing, /datum/surgery/advanced/brainwashing/mechanical)
-
-/datum/surgery/advanced/brainwashing
-	name = "Brainwashing"
-	desc = "A surgical procedure which directly implants a directive into the patient's brain, making it their absolute priority. It can be cleared using a mindshield implant."
+/datum/surgery/advanced/brainwashing/mechanical
+	name = "Mechanical Brainwashing"
+	desc = "A surgical procedure which directly implants a directive into the patient's positronic brain, making it their absolute priority. It can be cleared using a mindshield implant."
 	steps = list(
-	/datum/surgery_step/incise,
-	/datum/surgery_step/retract_skin,
-	/datum/surgery_step/saw,
-	/datum/surgery_step/clamp_bleeders,
-	/datum/surgery_step/brainwash,
-	/datum/surgery_step/close)
+	/datum/surgery_step/mechanic_open,
+	/datum/surgery_step/mechanic_unwrench,
+	/datum/surgery_step/open_hatch,
+	/datum/surgery_step/mechanic_brainwash,
+	/datum/surgery_step/mechanic_wrench,
+	/datum/surgery_step/mechanic_close)
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_HEAD)
-	requires_bodypart_type = BODYPART_ORGANIC
+	requires_bodypart_type = BODYPART_ROBOTIC
 
-/datum/surgery/advanced/brainwashing/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
+/datum/surgery/advanced/brainwashing/mechanical/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
 	if(!..())
 		return FALSE
 	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
@@ -25,13 +20,13 @@
 		return FALSE
 	return TRUE
 
-/datum/surgery_step/brainwash
+/datum/surgery_step/mechanic_brainwash
 	name = "Brainwash"
-	implements = list(TOOL_HEMOSTAT = 85, TOOL_WIRECUTTER = 50, /obj/item/stack/packageWrap = 35, /obj/item/stack/cable_coil = 15)
+	implements = list(TOOL_MULTITOOL = 85, TOOL_WIRECUTTER = 50, /obj/item/stack/packageWrap = 35, /obj/item/stack/cable_coil = 15)
 	time = 200
 	var/objective
 
-/datum/surgery_step/brainwash/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_brainwash/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	objective = stripped_input(user, "Choose the objective to imprint on your victim's brain.", "Brainwashing", null, MAX_MESSAGE_LEN)
 	if(!objective)
 		return -1
@@ -39,7 +34,7 @@
 		"[user] begins to fix [target]'s brain.",
 		"[user] begins to perform surgery on [target]'s brain.")
 
-/datum/surgery_step/brainwash/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_brainwash/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(!target.mind)
 		to_chat(user, "<span class='warning'>[target] doesn't respond to the brainwashing, as if [target.p_they()] lacked a mind...</span>")
 		return FALSE
@@ -55,7 +50,7 @@
 	log_game("[key_name(user)] surgically brainwashed [key_name(target)] with the objective '[objective]'.")
 	return TRUE
 
-/datum/surgery_step/brainwash/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_brainwash/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(target.getorganslot(ORGAN_SLOT_BRAIN))
 		display_results(user, target, "<span class='warning'>You screw up, bruising the brain tissue!</span>",
 			"<span class='warning'>[user] screws up, causing brain damage!</span>",

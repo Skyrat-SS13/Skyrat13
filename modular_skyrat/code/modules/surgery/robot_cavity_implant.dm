@@ -1,12 +1,17 @@
-/datum/surgery/cavity_implant
+/datum/surgery/cavity_implant/mechanical
 	name = "Cavity implant"
-	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/incise, /datum/surgery_step/handle_cavity, /datum/surgery_step/close)
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_handle_cavity,
+				/datum/surgery_step/mechanic_wrench,
+				/datum/surgery_step/mechanic_close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = ALL_BODYPARTS //skyrat edit
-	requires_bodypart_type = BODYPART_ORGANIC
+	requires_bodypart_type = BODYPART_ROBOTIC
 
 //handle cavity
-/datum/surgery_step/handle_cavity
+/datum/surgery_step/mechanic_handle_cavity
 	name = "Implant item"
 	accept_hand = 1
 	accept_any_item = 1
@@ -15,12 +20,12 @@
 	time = 32
 	var/obj/item/IC = null
 
-/datum/surgery_step/handle_cavity/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
+/datum/surgery_step/mechanic_handle_cavity/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(istype(tool, /obj/item/cautery) || istype(tool, /obj/item/gun/energy/laser))
 		return FALSE
 	return !tool.get_temperature()
 
-/datum/surgery_step/handle_cavity/preop(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_handle_cavity/preop(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/bodypart/CH = target.get_bodypart(target_zone) //skyrat edit
 	IC = CH.cavity_item
 	if(tool)
@@ -32,7 +37,7 @@
 			"[user] checks for items in [target]'s [target_zone].",
 			"[user] looks for something in [target]'s [target_zone].")
 
-/datum/surgery_step/handle_cavity/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/mechanic_handle_cavity/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/bodypart/CH = target.get_bodypart(target_zone) //skyrat edit
 	if(tool)
 		if(IC || tool.w_class > CH.max_cavity_size || HAS_TRAIT(tool, TRAIT_NODROP) || istype(tool, /obj/item/organ))
