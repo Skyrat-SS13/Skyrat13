@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 GLOBAL_LIST_EMPTY(roundstart_race_datums)
 //
 
-#define BLUNT_WOUND_ROLL_MULT 3
+#define INTERNAL_WOUND_ROLL_MULT 3
 #define BURN_WOUND_ROLL_MULT 3.6
 #define SPECIFY_BODYPART_BURN_PROB 40
 #define SPECIFY_BODYPART_BLUNT_PROB 40
@@ -2192,7 +2192,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 					BP = pick(H.bodyparts)
 				H.apply_damage(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod, BRUTE, BP)
 				if(BP)
-					BP.painless_wound_roll(WOUND_BLUNT, min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
+					BP.painless_wound_roll(WOUND_INTERNALBLEED, min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
 				H.throw_alert("pressure", /obj/screen/alert/highpressure, 2)
 			else
 				H.clear_alert("pressure")
@@ -2212,7 +2212,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				var/applydam = LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod
 				H.apply_damage(applydam, BRUTE, BP)
 				if(BP && BP.brute_dam >= applydam * 0.75)
-					BP.painless_wound_roll(WOUND_BLUNT, applydam * BLUNT_WOUND_ROLL_MULT)
+					BP.painless_wound_roll(WOUND_INTERNALBLEED, applydam * INTERNAL_WOUND_ROLL_MULT)
 				if(H.getBruteLoss() >= 50)
 					for(var/obj/item/organ/O in H.internal_organs)
 						H.adjustOrganLoss(O.slot, O.maxHealth/20)
@@ -2345,6 +2345,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		. |= BIO_BONE
 
 #undef BURN_WOUND_ROLL_MULT
-#undef BLUNT_WOUND_ROLL_MULT
+#undef INTERNAL_WOUND_ROLL_MULT
 #undef SPECIFY_BODYPART_BLUNT_PROB
 #undef SPECIFY_BODYPART_BURN_PROB

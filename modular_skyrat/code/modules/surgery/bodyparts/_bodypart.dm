@@ -355,9 +355,11 @@
 			if(WOUND_BLUNT)
 				wounding_dmg *= 1.25
 			if(WOUND_SLASH)
-				wounding_dmg *= 2 //well you're just fucked
+				wounding_dmg *= 2
 			if(WOUND_PIERCE)
 				wounding_dmg *= 1.5
+			if(WOUND_INTERNALBLEED)
+				wounding_dmg *= 2.25 //well you're just fucked
 	
 	//Handling for bone only/flesh only/skin only/all of them targets
 	// if we're bone only, all cutting attacks go straight to the bone
@@ -370,6 +372,10 @@
 			wounding_type = WOUND_BLUNT
 			if(!easy_dismember)
 				wounding_dmg *= 0.75
+		else if(wounding_type == WOUND_INTERNALBLEED)
+			wounding_type = WOUND_BLUNT
+			if(!easy_dismember)
+				wounding_dmg *= 0.65
 		
 		if((mangled_state & BODYPART_MANGLED_BONE) && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
@@ -382,6 +388,8 @@
 				wounding_dmg *= 0.5
 		else if(wounding_type == WOUND_PIERCE)
 			wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
+		else if(wounding_type == WOUND_INTERNALBLEED)
+			wounding_dmg *= 1.25 // No bones encasing the organs and blood vessels
 		if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
 
@@ -392,12 +400,14 @@
 	// standard humanoids
 	else if(bio_state & BIO_FULL)
 		// If there is already a moderate or above cut, the target is just a wee bit softened up
-		if(mangled_state == BODYPART_MANGLED_SKIN && sharpness)
+		if((mangled_state & BODYPART_MANGLED_SKIN) && sharpness)
 			wounding_dmg *= 1.1
 		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
 		// So a big sharp weapon is still all you need to destroy a limb
-		else if(mangled_state == (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE) && sharpness)
+		else if((mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE)) && sharpness)
 			playsound(src, "sound/effects/crackandbleed.ogg", 100)
+			if(wounding_type == WOUND_INTERNALBLEED && !easy_dismember)
+				wounding_dmg *= 0.8
 			if(wounding_type == WOUND_SLASH && !easy_dismember)
 				wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
 			if(wounding_type == WOUND_PIERCE && !easy_dismember)
@@ -461,9 +471,11 @@
 			if(WOUND_BLUNT)
 				phantom_wounding_dmg *= 1.25
 			if(WOUND_SLASH)
-				phantom_wounding_dmg *= 2.5 //well you're just fucked
+				phantom_wounding_dmg *= 2
 			if(WOUND_PIERCE)
-				phantom_wounding_dmg *= 1.65
+				phantom_wounding_dmg *= 1.5
+			if(WOUND_INTERNALBLEED)
+				phantom_wounding_dmg *= 2.25 //well you're just fucked
 	
 	//Handling for bone only/flesh only/skin only/all of them targets
 	if((bio_state & BIO_BONE) && !(bio_state & BIO_FLESH)) // if we're bone only, all cutting attacks go straight to the bone
@@ -475,11 +487,15 @@
 			wounding_type = WOUND_BLUNT
 			if(!easy_dismember)
 				phantom_wounding_dmg *= 0.75
+		else if(wounding_type == WOUND_INTERNALBLEED)
+			wounding_type = WOUND_BLUNT
+			if(!easy_dismember)
+				phantom_wounding_dmg *= 0.65
 		
 		if((mangled_state & BODYPART_MANGLED_BONE) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
 	
-	// slime people p much they dont have bone
+	// slime people p much, they dont have bone
 	else if((bio_state & BIO_FLESH) && !(bio_state & BIO_BONE))
 		if(wounding_type == WOUND_BLUNT)
 			wounding_type = WOUND_SLASH
@@ -487,6 +503,8 @@
 				phantom_wounding_dmg *= 0.5
 		else if(wounding_type == WOUND_PIERCE)
 			phantom_wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
+		else if(wounding_type == WOUND_INTERNALBLEED)
+			phantom_wounding_dmg *= 1.25 // No bones encasing the organs and blood vessels
 		if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
 
@@ -497,20 +515,21 @@
 	// standard humanoids
 	else if(bio_state & BIO_FULL)
 		// If there is already a moderate or above cut, the target is just a wee bit softened up
-		if(mangled_state == BODYPART_MANGLED_SKIN && sharpness)
+		if((mangled_state & BODYPART_MANGLED_SKIN) && sharpness)
 			phantom_wounding_dmg *= 1.1
 		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
 		// So a big sharp weapon is still all you need to destroy a limb
-		else if(mangled_state == (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE) && sharpness)
+		else if((mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE)) && sharpness)
 			playsound(src, "sound/effects/crackandbleed.ogg", 100)
+			if(wounding_type == WOUND_INTERNALBLEED && !easy_dismember)
+				phantom_wounding_dmg *= 0.8
 			if(wounding_type == WOUND_SLASH && !easy_dismember)
 				phantom_wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
 			if(wounding_type == WOUND_PIERCE && !easy_dismember)
 				phantom_wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
 			wounding_type = WOUND_BLUNT
-		else if(mangled_state == BODYPART_MANGLED_BOTH && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
+		else if((mangled_state & BODYPART_MANGLED_BOTH) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
-
 
 	check_wounding(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)
 
@@ -723,6 +742,7 @@
 
 	var/base_roll = rand(1, round(damage ** WOUND_DAMAGE_EXPONENT))
 	var/injury_roll = base_roll
+	var/check_gauze = FALSE
 	injury_roll += check_woundings_mods(woundtype, damage, wound_bonus, bare_wound_bonus)
 	var/list/wounds_checking
 
@@ -731,21 +751,30 @@
 			wounds_checking = WOUND_LIST_BLUNT
 			if(!organic)
 				wounds_checking = WOUND_LIST_BLUNT_MECHANICAL
+			check_gauze = TRUE
 		if(WOUND_SLASH)
 			wounds_checking = WOUND_LIST_SLASH
 			if(!organic)
 				wounds_checking = WOUND_LIST_SLASH_MECHANICAL
+			check_gauze = TRUE
 		if(WOUND_PIERCE)
 			wounds_checking = WOUND_LIST_PIERCE
 			if(!organic)
 				wounds_checking = WOUND_LIST_PIERCE_MECHANICAL
+			check_gauze = TRUE
 		if(WOUND_BURN)
 			wounds_checking = WOUND_LIST_BURN
 			if(!organic)
 				wounds_checking = WOUND_LIST_BURN_MECHANICAL
+			check_gauze = TRUE
+		if(WOUND_INTERNALBLEED)
+			wounds_checking = WOUND_LIST_INTERNAL_BLEEDING
+	
+	if(!length(wounds_checking))
+		return
 	
 	//check if there's gauze, and if we should destroy or damage it, before we apply any wounds
-	if(current_gauze)
+	if(current_gauze && check_gauze)
 		if(prob(base_roll/4))
 			if(prob(base_roll/2))
 				owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [src.name] shreds apart completely!</span>", "<span class='userdanger'>\The [current_gauze] on your [src.name] gets completely shredded!</span>")
