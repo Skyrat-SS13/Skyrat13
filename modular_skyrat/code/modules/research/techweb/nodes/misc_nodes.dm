@@ -31,7 +31,6 @@
 	prereq_ids = list("sticky_basic")
 	design_ids = list("super_sticky_tape", "pointy_tape")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
-	hidden = TRUE
 
 // Nyanites
 /datum/techweb_node/nanite_smart
