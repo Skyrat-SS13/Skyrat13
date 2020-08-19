@@ -51,12 +51,24 @@
 		if(TOX)
 			var/damage_amount = forced ? damage : damage * hit_percent * toxmod * H.physiology.tox_mod
 			H.adjustToxLoss(damage_amount)
+			if((H.health > revivesbyhealreq) && (REVIVESBYHEALING in species_traits))
+				if((NOBLOOD in species_traits) || (H.blood_volume >= BLOOD_VOLUME_OKAY))
+					owner.revive(0)
+					owner.cure_husk(0)
 		if(OXY)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.oxy_mod
 			H.adjustOxyLoss(damage_amount)
+			if((H.health > revivesbyhealreq) && (REVIVESBYHEALING in species_traits))
+				if((NOBLOOD in species_traits) || (H.blood_volume >= BLOOD_VOLUME_OKAY))
+					owner.revive(0)
+					owner.cure_husk(0)
 		if(CLONE)
 			var/damage_amount = forced ? damage : damage * hit_percent * clonemod * H.physiology.clone_mod
 			H.adjustCloneLoss(damage_amount)
+			if((H.health > revivesbyhealreq) && (REVIVESBYHEALING in species_traits))
+				if((NOBLOOD in species_traits) || (H.blood_volume >= BLOOD_VOLUME_OKAY))
+					owner.revive(0)
+					owner.cure_husk(0)
 		if(STAMINA)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.stamina_mod
 			if(BP)
