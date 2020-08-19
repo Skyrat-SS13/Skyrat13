@@ -23,7 +23,7 @@
 	design_ids = list("sticky_tape")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
-// Can be researched after getting the basic sticky technology from the BEPIS major reward
+// Can be researched after getting the basic sticky technology
 /datum/techweb_node/sticky_advanced
 	id = "sticky_advanced"
 	display_name = "Advanced Sticky Technology"
