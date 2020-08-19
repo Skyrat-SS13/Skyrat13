@@ -21,7 +21,8 @@
 	description = "The only thing left to do after researching this tech is to start printing out a bunch of 'kick me' signs."
 	prereq_ids = list("adv_engi", "high_efficiency")
 	design_ids = list("sticky_tape")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
+	hidden = FALSE
 
 // Can be researched after getting the basic sticky technology
 /datum/techweb_node/sticky_advanced
@@ -29,8 +30,9 @@
 	display_name = "Advanced Sticky Technology"
 	description = "Taking a good joke too far? Nonsense!"
 	prereq_ids = list("sticky_basic")
-	design_ids = list("super_sticky_tape", "pointy_tape")
+	design_ids = list("super_sticky_tape", "pointy_tape", "surgical_sticky_tape")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
+	hidden = FALSE
 
 // Nyanites
 /datum/techweb_node/nanite_smart
