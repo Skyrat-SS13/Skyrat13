@@ -103,13 +103,20 @@
 		owner.Dizzy(1)
 
 /obj/item/organ/lungs/proc/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
-//TODO: add lung damage = less oxygen gains
+	//TODO: add lung damage = less oxygen gains
 	var/breathModifier = (5-(5*(damage/maxHealth)/2)) //range 2.5 - 5
 	if((H.status_flags & GODMODE))
 		return
 	if(HAS_TRAIT(H, TRAIT_NOBREATH))
 		return
 
+	if(!safe_oxygen_min && !safe_nitro_min && !safe_toxins_min && !safe_co2_min)
+		H.failed_last_breath = FALSE
+		if(H.health >= H.crit_threshold)
+			H.adjustOxyLoss(-breathModifier) //More damaged lungs = slower oxy rate up to a factor of half
+		H.clear_alert("not_enough_oxy")
+		return TRUE
+	
 	if((!breath || (breath?.total_moles() == 0)) && (safe_co2_min || safe_nitro_min || safe_oxygen_min || safe_toxins_min))
 		if(H.reagents.has_reagent(crit_stabilizing_reagent))
 			return
@@ -402,12 +409,6 @@
 
 			handle_breath_temperature(breath, H)
 			GAS_GARBAGE_COLLECT(breath.gases)
-	else if(!safe_oxygen_min && !safe_nitro_min && !safe_toxins_min && !safe_co2_min)
-		H.failed_last_breath = FALSE
-		if(H.health >= H.crit_threshold)
-			H.adjustOxyLoss(-breathModifier) //More damaged lungs = slower oxy rate up to a factor of half
-		gas_breathed = breath_gases[/datum/gas/oxygen]
-		H.clear_alert("not_enough_oxy")
 	return TRUE
 
 
