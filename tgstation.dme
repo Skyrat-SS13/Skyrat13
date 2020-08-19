@@ -3993,6 +3993,7 @@
 #include "modular_skyrat\code\modules\projectiles\boxes_magazines\ammo_boxes.dm"
 #include "modular_skyrat\code\modules\projectiles\boxes_magazines\external\pistol.dm"
 #include "modular_skyrat\code\modules\projectiles\boxes_magazines\internal\misc.dm"
+#include "modular_skyrat\code\modules\projectiles\boxes_magazines\internal\shotgun.dm"
 #include "modular_skyrat\code\modules\projectiles\guns\ballistic\automatic.dm"
 #include "modular_skyrat\code\modules\projectiles\guns\ballistic\crossbow.dm"
 #include "modular_skyrat\code\modules\projectiles\guns\ballistic\pistol.dm"
