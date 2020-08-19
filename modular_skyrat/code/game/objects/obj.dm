@@ -70,9 +70,9 @@
 	if(armor)
 		var/msg = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
 		var/show_the_armor = FALSE
-		if(shows_armor == SHOW_ALWAYS)
+		if(shows_armor == ARMOR_SHOW_ALWAYS)
 			show_the_armor = TRUE
-		else if((shows_armor == SHOW_WEARABLE) && isitem(src))
+		else if((shows_armor == ARMOR_SHOW_WEARABLE) && isitem(src))
 			var/obj/item/I = src
 			for(var/i in list(ITEM_SLOT_ICLOTHING,
 							ITEM_SLOT_OCLOTHING,
