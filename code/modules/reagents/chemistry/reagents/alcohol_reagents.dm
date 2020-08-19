@@ -38,7 +38,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/on_mob_add(mob/living/L, amount)
 	. = ..()
 	if(ishuman(L))
-		var/mob/living/carbon/H = L
+		var/mob/living/carbon/human/H = L
 		if(H.physiology?.allergies & ALCOHOL)
 			H.ForceContractDisease(new /datum/disease/anaphylactic_shock())
 			to_chat(H, "<span class='danger'><b>As you feel your muscles inflaming, you realize how much you fucked up.</b></span>")
