@@ -1,4 +1,4 @@
-/datum/job/warden
+/datum/outfit/job/warden
 	backpack_contents = list(/obj/item/melee/baton/loaded=1, /obj/item/ammo_box/shotgun/loaded/rubbershot=1, /obj/item/choice_beacon/warden=1)
 	suit_store = null
 
