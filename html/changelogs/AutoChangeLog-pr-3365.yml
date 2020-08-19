@@ -1,4 +1,0 @@
-author: "Foxtrot and Sarmenti"
-delete-after: True
-changes: 
-  - bugfix: "Service dogborgs should work again in the borg shapeshifter. Sorry!"
