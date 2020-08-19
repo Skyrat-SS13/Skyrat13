@@ -178,7 +178,9 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define EMBEDDED_JOSTLE_PAIN_MULTIPLIER			1	//Coefficient of multiplication for the damage the item does while
 #define EMBEDDED_PAIN_STAM_PCT					0.0	//This percentage of all pain will be dealt as stam damage rather than brute (0-1)
 #define EMBED_CHANCE_TURF_MOD					-15	//You are this many percentage points less likely to embed into a turf (good for things glass shards and spears vs walls)
-
+//skyrat edit
+#define EMBED_NONE list("embed_chance" = 0, "fall_chance" = 0, "pain_chance" = 0, "pain_mult" = 0, "remove_pain_mult" = 0, "rip_time" = 0, "impact_pain_mult" = 0, "ignore_throwspeed_threshold" = 0, "jostle_chance" = 0, "jostle_pain_mult" = 0, "pain_stam_pct" = 0, "weapon" = null)
+//
 #define EMBED_HARMLESS list("pain_mult" = 0, "jostle_pain_mult" = 0, "ignore_throwspeed_threshold" = TRUE)
 #define EMBED_HARMLESS_SUPERIOR list("pain_mult" = 0, "jostle_pain_mult" = 0, "ignore_throwspeed_threshold" = TRUE, "embed_chance" = 100, "fall_chance" = 0.1)
 #define EMBED_POINTY list("ignore_throwspeed_threshold" = TRUE)
@@ -209,9 +211,11 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define GUN_AIMING_TIME (2 SECONDS)
 
 //Object/Item sharpness
-#define IS_BLUNT			0
-#define IS_SHARP			1
-#define IS_SHARP_ACCURATE	2
+//skyrat edit stuff
+#define SHARP_NONE 0
+#define SHARP_EDGED 1
+#define SHARP_POINTY 2
+//
 
 //His Grace.
 #define HIS_GRACE_SATIATED 0 //He hungers not. If bloodthirst is set to this, His Grace is asleep.
@@ -243,7 +247,6 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define BODY_ZONE_R_ARM		"r_arm"
 #define BODY_ZONE_L_LEG		"l_leg"
 #define BODY_ZONE_R_LEG		"r_leg"
-
 #define BODY_ZONE_PRECISE_EYES		"eyes"
 #define BODY_ZONE_PRECISE_MOUTH		"mouth"
 #define BODY_ZONE_PRECISE_GROIN		"groin"

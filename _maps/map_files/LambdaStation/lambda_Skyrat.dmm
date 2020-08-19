@@ -33978,6 +33978,20 @@
 "bkj" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/central/secondary)
+"bkk" = (
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 6
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 9
+	},
+/obj/machinery/limbgrower,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "bkl" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -33992,6 +34006,20 @@
 /obj/machinery/gateway/centerstation,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
+"bkm" = (
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_x = 24
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
+/obj/machinery/limbgrower,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "bkn" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "gateshutter";
@@ -34259,6 +34287,31 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/nuke_storage)
+"bkL" = (
+/obj/item/poster/random_contraband,
+/turf/open/floor/plating,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/aft)
+"bkM" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/department/electrical)
+"bkN" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/aft)
 "bkO" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -47658,19 +47711,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
-"bJI" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 6
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "bJJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -47873,19 +47913,6 @@
 	},
 /turf/open/space,
 /area/solar/starboard/aft)
-"bJZ" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 4;
-	pixel_x = 24
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 10
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "bKa" = (
 /obj/structure/window/reinforced/spawner,
 /obj/structure/window/reinforced{
@@ -65099,13 +65126,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"crd" = (
-/obj/item/poster/random_contraband,
-/turf/open/floor/plating,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
-/area/maintenance/aft)
 "cre" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -65132,15 +65152,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"crh" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plating,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
-/area/maintenance/department/electrical)
 "cri" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -66818,15 +66829,6 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
-"cuL" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
-/area/maintenance/aft)
 "cuM" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior,
@@ -122066,7 +122068,7 @@ bYa
 bYa
 bYa
 bYa
-crd
+bkL
 bYa
 bYa
 ceG
@@ -124383,11 +124385,11 @@ cmd
 aaA
 cSc
 cVT
-crh
+bkM
 cXu
 cXz
 ceG
-cuL
+bkN
 cTU
 cyo
 aab
@@ -124842,7 +124844,7 @@ bHG
 bGT
 bJd
 bIy
-bJI
+bkk
 bNP
 bLp
 bLy
@@ -127412,7 +127414,7 @@ bHK
 bHc
 bJe
 bIy
-bJZ
+bkm
 bNT
 bLs
 bLG

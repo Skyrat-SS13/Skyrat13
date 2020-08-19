@@ -8,7 +8,7 @@
 	var/power_on = 0.8
 	var/on = FALSE
 	var/hat_type = "yellow" //Determines used sprites: hardhat[on]_[hat_type] and hardhat[on]_[hat_type]2 (lying down sprite)
-	armor = list("melee" = 15, "bullet" = 5, "laser" = 20,"energy" = 10, "bomb" = 20, "bio" = 10, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 15, "bullet" = 5, "laser" = 20,"energy" = 10, "bomb" = 20, "bio" = 10, "rad" = 20, "fire" = 100, "acid" = 50, "wound" = 7.5)
 	flags_inv = 0
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	resistance_flags = FIRE_PROOF

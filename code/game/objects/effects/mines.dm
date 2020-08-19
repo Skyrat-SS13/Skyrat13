@@ -1,3 +1,4 @@
+//idk whole file was skyrat edit ed
 /obj/effect/mine
 	name = "dummy mine"
 	desc = "Better stay away from that thing."
@@ -47,14 +48,9 @@
 /obj/effect/mine/explosive/mineEffect(mob/victim)
 	explosion(loc, range_devastation, range_heavy, range_light, range_flash)
 
-
 /obj/effect/mine/stun
 	name = "stun mine"
 	var/stun_time = 80
-
-/obj/effect/mine/stun/mineEffect(mob/living/victim)
-	if(isliving(victim))
-		victim.DefaultCombatKnockdown(stun_time)
 
 /obj/effect/mine/shrapnel
 	name = "shrapnel mine"
@@ -68,6 +64,10 @@
 	name = "stinger mine"
 	shrapnel_type = /obj/item/projectile/bullet/pellet/stingball
 
+/obj/effect/mine/stun/mineEffect(mob/living/victim)
+	if(isliving(victim))
+		victim.Paralyze(stun_time)
+
 /obj/effect/mine/kickmine
 	name = "kick mine"
 
@@ -75,7 +75,6 @@
 	if(isliving(victim) && victim.client)
 		to_chat(victim, "<span class='userdanger'>You have been kicked FOR NO REISIN!</span>")
 		qdel(victim.client)
-
 
 /obj/effect/mine/gas
 	name = "oxygen mine"
@@ -96,12 +95,17 @@
 	gas_type = "n2o"
 
 
+/obj/effect/mine/gas/water_vapor
+	name = "chilled vapor mine"
+	gas_amount = 500
+	gas_type = "water_vapor"
+
 /obj/effect/mine/sound
 	name = "honkblaster 1000"
 	var/sound = 'sound/items/bikehorn.ogg'
 
 /obj/effect/mine/sound/mineEffect(mob/victim)
-	playsound(loc, sound, 100, 1)
+	playsound(loc, sound, 100, TRUE)
 
 
 /obj/effect/mine/sound/bwoink
@@ -143,8 +147,7 @@
 	var/static/list/red_splash = list(1,0,0,0.8,0.2,0, 0.8,0,0.2,0.1,0,0)
 	var/static/list/pure_red = list(0,0,0,0,0,0,0,0,0,1,0,0)
 
-	spawn(0)
-		new /datum/hallucination/delusion(victim, TRUE, "demon",duration,0)
+	INVOKE_ASYNC(src, .proc/blood_delusion, victim)
 
 	var/obj/item/chainsaw/doomslayer/chainsaw = new(victim.loc)
 	victim.log_message("entered a blood frenzy", LOG_ATTACK)
@@ -166,6 +169,9 @@
 	victim.log_message("exited a blood frenzy", LOG_ATTACK)
 	qdel(src)
 
+/obj/effect/mine/pickup/bloodbath/proc/blood_delusion(mob/living/carbon/victim)
+	new /datum/hallucination/delusion(victim, TRUE, "demon", duration, 0)
+
 /obj/effect/mine/pickup/healing
 	name = "Blue Orb"
 	desc = "You feel better just looking at it."
@@ -175,7 +181,7 @@
 	if(!victim.client || !istype(victim))
 		return
 	to_chat(victim, "<span class='notice'>You feel great!</span>")
-	victim.revive(full_heal = 1, admin_revive = 1)
+	victim.revive(full_heal = TRUE, admin_revive = TRUE)
 
 /obj/effect/mine/pickup/speed
 	name = "Yellow Orb"

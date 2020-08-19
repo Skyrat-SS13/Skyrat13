@@ -205,7 +205,7 @@
 
 //since these people will be dead M != usr
 
-	if(!C.getorgan(/obj/item/organ/brain))
+	if(!C.getorgan(/obj/item/organ/brain) && (user.zone_selected == zone))
 		if(!C.get_bodypart(BODY_ZONE_HEAD) || !user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/msg = "[C] has [src] inserted into [C.p_their()] head by [user]."
@@ -331,6 +331,10 @@
 			max_traumas = TRAUMA_LIMIT_BASIC
 		if(TRAUMA_RESILIENCE_SURGERY)
 			max_traumas = TRAUMA_LIMIT_SURGERY
+		//skyrat edit
+		if(TRAUMA_RESILIENCE_WOUND)
+			max_traumas = TRAUMA_LIMIT_WOUND
+		//
 		if(TRAUMA_RESILIENCE_LOBOTOMY)
 			max_traumas = TRAUMA_LIMIT_LOBOTOMY
 		if(TRAUMA_RESILIENCE_MAGIC)
@@ -389,7 +393,7 @@
 		return
 
 	var/trauma_type = pick(possible_traumas)
-	gain_trauma(trauma_type, resilience)
+	return gain_trauma(trauma_type, resilience) //skyrat edit
 
 //Cure a random trauma of a certain resilience level
 /obj/item/organ/brain/proc/cure_trauma_type(brain_trauma_type = /datum/brain_trauma, resilience = TRAUMA_RESILIENCE_BASIC)

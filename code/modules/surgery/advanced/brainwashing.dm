@@ -1,7 +1,8 @@
 /obj/item/disk/surgery/brainwashing
 	name = "Brainwashing Surgery Disk"
 	desc = "The disk provides instructions on how to impress an order on a brain, making it the primary objective of the patient."
-	surgeries = list(/datum/surgery/advanced/brainwashing)
+	surgeries = list(/datum/surgery/advanced/brainwashing, /datum/surgery/advanced/brainwashing/mechanical)
+
 /datum/surgery/advanced/brainwashing
 	name = "Brainwashing"
 	desc = "A surgical procedure which directly implants a directive into the patient's brain, making it their absolute priority. It can be cleared using a mindshield implant."
@@ -12,9 +13,9 @@
 	/datum/surgery_step/clamp_bleeders,
 	/datum/surgery_step/brainwash,
 	/datum/surgery_step/close)
-
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_HEAD)
+	requires_bodypart_type = BODYPART_ORGANIC
 
 /datum/surgery/advanced/brainwashing/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
 	if(!..())
@@ -23,11 +24,13 @@
 	if(!B)
 		return FALSE
 	return TRUE
+
 /datum/surgery_step/brainwash
-	name = "brainwash"
+	name = "Brainwash"
 	implements = list(TOOL_HEMOSTAT = 85, TOOL_WIRECUTTER = 50, /obj/item/stack/packageWrap = 35, /obj/item/stack/cable_coil = 15)
 	time = 200
 	var/objective
+
 /datum/surgery_step/brainwash/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	objective = stripped_input(user, "Choose the objective to imprint on your victim's brain.", "Brainwashing", null, MAX_MESSAGE_LEN)
 	if(!objective)

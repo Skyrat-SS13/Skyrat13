@@ -1,3 +1,4 @@
+/* skyrat edit - commented out in favor of our own
 /datum/component/mirv
 	var/projectile_type
 	var/radius // shoots a projectile for every turf on this radius from the hit target
@@ -40,3 +41,4 @@
 		P.firer = firer // don't hit ourself that would be really annoying
 		P.permutated += target // don't hit the target we hit already with the flak
 		P.fire()
+*/
