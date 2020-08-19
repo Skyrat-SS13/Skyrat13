@@ -64,7 +64,7 @@
 
 //Armor stats on examine
 /obj
-	var/shows_armor = SHOW_DONT
+	var/shows_armor = ARMOR_SHOW_DONT
 
 /obj/examine_more(mob/user)
 	if(armor)
