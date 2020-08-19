@@ -2215,7 +2215,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 					BP.painless_wound_roll(WOUND_BLUNT, applydam * BLUNT_WOUND_ROLL_MULT)
 				if(H.getBruteLoss() >= 50)
 					for(var/obj/item/organ/O in H.internal_organs)
-						H.adjustOrganLoss(O.slot, (O.maxHealth/20 * rand(1,2)))
+						H.adjustOrganLoss(O.slot, O.maxHealth/20)
 				H.throw_alert("pressure", /obj/screen/alert/lowpressure, 2)
 
 //////////
