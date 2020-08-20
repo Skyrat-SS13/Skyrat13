@@ -330,23 +330,28 @@
 	mutantrace_variation = STYLE_MUZZLE
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/hats.dmi',
+	"ERT" = 'icons/obj/clothing/hats.dmi',
 	"Classic" = 'icons/obj/clothing/hats.dmi',
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
+	"ERT" = 'icons/mob/clothing/head.dmi',
 	"Classic" = 'icons/mob/clothing/head.dmi',
 	)
 	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
+	"ERT" = 'icons/mob/clothing/head_muzzled.dmi',
 	"Classic" = 'icons/mob/clothing/head_muzzled.dmi',
 	)
 	unique_reskin = list(
 	"Default" = "hardsuit0-secexo",
-	"Classic" = "hardsuit0-secexoX",
+	"ERT" = "hardsuit0-secexoX",
+	"Classic" = "hardsuit0-secexoA",
 	)
 	unique_hardsuit_type = list(
 	"Default" = "secexo",
-	"Classic" = "secexoX",
+	"ERT" = "secexoX",
+	"Classic" = "secexoA",
 	)
 
 /obj/item/clothing/suit/space/hardsuit/security_armor
@@ -362,26 +367,31 @@
 	mutantrace_variation = STYLE_DIGITIGRADE
 	slowdown = 0
 	anthro_mob_worn_overlay = 'icons/mob/clothing/suit_digi.dmi'
-	flags_inv = HIDETAUR
+	flags_inv = NONE
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/suits.dmi',
+	"ERT" = 'icons/obj/clothing/suits.dmi',
 	"Classic" = 'icons/obj/clothing/suits.dmi',
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/suit.dmi',
+	"ERT" = 'icons/mob/clothing/suit.dmi',
 	"Classic" = 'icons/mob/clothing/suit.dmi',
 	)
 	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/suit_digi.dmi',
+	"ERT" = 'icons/mob/clothing/suit_digi.dmi',
 	"Classic" = 'icons/mob/clothing/suit_digi.dmi',
 	)
 	unique_reskin = list(
 	"Default" = "hardsuit-secexo",
-	"Classic" = "hardsuit-secexoX",
+	"ERT" = "hardsuit-secexoX",
+	"Classic" = "hardsuit-secexoA",
 	)
 	unique_hardsuit_type = list(
 	"Default" = "secexo",
-	"Classic" = "secexoX",
+	"ERT" = "secexoX",
+	"Classic" = "secexoA",
 	)
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/Initialize()
@@ -411,23 +421,23 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/hats.dmi',
-	"Classic" = 'icons/obj/clothing/hats.dmi',
+	"Old" = 'icons/obj/clothing/hats.dmi',
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
-	"Classic" = 'icons/mob/clothing/head.dmi',
+	"Old" = 'icons/mob/clothing/head.dmi',
 	)
 	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
-	"Classic" = 'icons/mob/clothing/head.dmi',
+	"Old" = 'icons/mob/clothing/head.dmi',
 	)
 	unique_reskin = list(
 	"Default" = "hardsuit0-hosexo",
-	"Classic" = "hardsuit0-hosexoX",
+	"Old" = "hardsuit0-hosexoX",
 	)
 	unique_hardsuit_type = list(
 	"Default" = "hosexo",
-	"Classic" = "hosexoX",
+	"Old" = "hosexoX",
 	)
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/hos
@@ -441,21 +451,21 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAUR
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/suits.dmi',
-	"Classic" = 'icons/obj/clothing/suits.dmi',
+	"Old" = 'icons/obj/clothing/suits.dmi',
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/suit.dmi',
-	"Classic" = 'icons/mob/clothing/suit.dmi',
+	"Old" = 'icons/mob/clothing/suit.dmi',
 	)
 	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/suit_digi.dmi',
-	"Classic" = 'icons/mob/clothing/suit_digi.dmi',
+	"Old" = 'icons/mob/clothing/suit_digi.dmi',
 	)
 	unique_reskin = list(
 	"Default" = "hardsuit-hosexo",
-	"Classic" = "hardsuit-hosexoX",
+	"Old" = "hardsuit-hosexoX",
 	)
 	unique_hardsuit_type = list(
 	"Default" = "hosexo",
-	"Classic" = "hosexoX",
+	"Old" = "hosexoX",
 	)
