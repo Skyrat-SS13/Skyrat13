@@ -87,7 +87,7 @@
 	display_name = "Combat Cybernetic Implants"
 	description = "Military grade combat implants to improve performance."
 	prereq_ids = list("adv_cyber_implants","weaponry","NVGtech","high_efficiency")
-	design_ids = list("ci-xray", "ci-thermals", "ci-antidrop", "ci-antistun", "ci-thrusters", "ci-shield", "ci-mantis", "ci-flash")
+	design_ids = list("ci-xray", "ci-thermals", "ci-antidrop", "ci-antistun", "ci-antisleep", "ci-thrusters", "ci-shield", "ci-mantis", "ci-flash")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 12000)
 
 /*/datum/techweb_node/mining_cyber_implants
