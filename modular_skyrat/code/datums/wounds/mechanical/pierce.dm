@@ -158,8 +158,7 @@
 		msg = "[victim.p_their(TRUE)] [limb.name] [examine_desc], but it has been [(blood_flow < initial_flow * 0.65) ? "decently" : "poorly"] patched with \the [patch]"
 	else
 		msg = "[victim.p_their(TRUE)] [limb.name] [examine_desc], but it has been [(blood_flow < initial_flow * 0.65) ? "decently" : "poorly"] patched and welded with \the [patch]"
-	msg += "!"
-	return "<B>[msg]</B>"
+	return "<B>[msg]!</B>"
 
 /datum/wound/mechanical/pierce/moderate
 	name = "Minor Dent"

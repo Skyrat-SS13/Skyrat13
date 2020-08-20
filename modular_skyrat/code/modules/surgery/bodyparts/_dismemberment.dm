@@ -241,6 +241,8 @@
 		
 		if((istype(W, /datum/wound/slash)) && (W.severity >= required_flesh_severity))
 			. |= BODYPART_MANGLED_MUSCLE
+		else if((istype(W, /datum/wound/internalbleed)) && (W.severity >= required_flesh_severity))
+			. |= BODYPART_MANGLED_MUSCLE
 		else if((istype(W, /datum/wound/pierce)) && (W.severity >= required_flesh_severity))
 			. |= BODYPART_MANGLED_MUSCLE
 		else if((istype(W, /datum/wound/mechanical/slash)) && (W.severity >= required_flesh_severity))

@@ -187,12 +187,10 @@
 		msg = "<B>[victim.p_their(TRUE)] [limb.name] is [sling_condition] fastened in a sling of [limb.current_gauze.name]</B>"
 
 	if(taped)
-		msg += ", <span class='notice'>and appears to be reforming itself under some surgical tape!</span>"
+		msg += ", <span class='notice'>and appears to be reforming itself under some surgical tape</span>"
 	else if(gelled)
-		msg += ", <span class='notice'>with fizzing flecks of blue bone gel sparking off the bone!</span>"
-	else
-		msg +=  "!"
-	return "<B>[msg]</B>"
+		msg += ", <span class='notice'>with fizzing flecks of blue bone gel sparking off the bone</span>"
+	return "<B>[msg]!</B>"
 
 /*
 	New common procs for /datum/wound/blunt/
@@ -690,18 +688,19 @@
 		user.visible_message("<span class='notice'>[user] finishes applying [I] to [victim]'s [limb.name], emitting a fizzing noise!</span>", "<span class='notice'>You finish applying [I] to [victim]'s [limb.name]!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] finishes applying [I] to your [limb.name], and you can feel the bones exploding with pain as they begin melting and reforming!</span>")
 	else
-		var/painkiller_bonus = 0
-		if(victim.drunkenness)
-			painkiller_bonus += 5
-		if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/medicine/morphine))
-			painkiller_bonus += 10
-		if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/determination))
-			painkiller_bonus += 5
+		if(!HAS_TRAIT(user, TRAIT_PAINKILLER))
+			var/painkiller_bonus = 0
+			if(victim.drunkenness)
+				painkiller_bonus += 5
+			if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/medicine/morphine))
+				painkiller_bonus += 10
+			if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/determination))
+				painkiller_bonus += 5		
 
-		if(prob(25 + (20 * severity - 2) - painkiller_bonus)) // 25%/45% chance to fail self-applying with severe and critical wounds, modded by painkillers
-			victim.visible_message("<span class='danger'>[victim] fails to finish applying [I] to [victim.p_their()] [limb.name], passing out from the pain!</span>", "<span class='notice'>You black out from the pain of applying [I] to your [limb.name] before you can finish!</span>")
-			victim.AdjustUnconscious(5 SECONDS)
-			return
+			if(prob(25 + (20 * severity - 2) - painkiller_bonus)) // 25%/45% chance to fail self-applying with severe and critical wounds, modded by painkillers
+				victim.visible_message("<span class='danger'>[victim] fails to finish applying [I] to [victim.p_their()] [limb.name], passing out from the pain!</span>", "<span class='notice'>You black out from the pain of applying [I] to your [limb.name] before you can finish!</span>")
+				victim.AdjustUnconscious(5 SECONDS)
+				return
 		victim.visible_message("<span class='notice'>[victim] finishes applying [I] to [victim.p_their()] [limb.name], grimacing from the pain!</span>", "<span class='notice'>You finish applying [I] to your [limb.name], and your bones explode in pain!</span>")
 
 	limb.receive_damage(15, stamina=75, wound_bonus=CANT_WOUND)

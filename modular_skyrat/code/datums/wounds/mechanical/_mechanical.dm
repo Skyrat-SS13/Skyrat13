@@ -87,12 +87,12 @@
 		if(75 to INFINITY)
 			sling_condition = "tightly "
 
-	msg = "<B>[victim.p_their(TRUE)] [limb.name] is [sling_condition] held together with [limb.current_gauze.name]</B>"
+	msg = "[victim.p_their(TRUE)] [limb.name] is [sling_condition] held together with [limb.current_gauze.name]"
 	if(!msg && patch)
-		msg = "[..()]<B>, and has been patched[welded ? ", and welded," : ""] with [patch]</B>"
+		msg = "[..()], and has been patched[welded ? ", and welded," : ""] with [patch]"
 	else if(!msg && welded)
-		msg = "[..()]<B>, and has been welded</B>"
-	return msg
+		msg = "[..()], and has been welded"
+	return "<B>[msg]!</B>"
 
 /// if someone is using a mineral sheet on the wound
 /datum/wound/mechanical/proc/patch(obj/item/stack/sheet/I, mob/user, power)

@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 GLOBAL_LIST_EMPTY(roundstart_race_datums)
 //
 
-#define BLUNT_WOUND_ROLL_MULT 3
+#define INTERNAL_WOUND_ROLL_MULT 3
 #define BURN_WOUND_ROLL_MULT 3.6
 #define SPECIFY_BODYPART_BURN_PROB 40
 #define SPECIFY_BODYPART_BLUNT_PROB 40
@@ -1771,10 +1771,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	if(!affecting) //Something went wrong. Maybe the limb is missing?
 		affecting = H.bodyparts[1]
 
-	hit_area = affecting.name
-	var/def_zone = affecting.body_zone
-
-	var/armor_block = H.run_armor_check(affecting, "melee", "<span class='notice'>Your armor has protected your [hit_area].</span>", "<span class='notice'>Your armor has softened a hit to your [hit_area].</span>",I.armour_penetration)
+	hit_area = affecting.body_zone
+	var/armor_block = H.run_armor_check(affecting, "melee", "<span class='notice'>Your armor has protected your [parse_zone(hit_area)].</span>", "<span class='notice'>Your armor has softened a hit to your [parse_zone(hit_area)].</span>",I.armour_penetration)
 	var/Iforce = I.force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
 	//skyrat edit
 	armor_block = min(95,armor_block) //cap damage reduction at 95%
@@ -1788,7 +1786,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 	H.send_item_attack_message(I, user, hit_area, totitemdamage, affecting)
 	
-	apply_damage(totitemdamage * weakness, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
+	apply_damage(totitemdamage * weakness, I.damtype, hit_area, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
 
 	I.do_stagger_action(H, user, totitemdamage)
 
@@ -1848,6 +1846,20 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 						H.update_inv_glasses()
 
 			if(BODY_ZONE_CHEST)
+				if(H.stat == CONSCIOUS && !I.get_sharpness() && armor_block < 50)
+					if(prob(I.force))
+						H.visible_message("<span class='danger'>[H] has been knocked down!</span>", \
+									"<span class='userdanger'>[H] has been knocked down!</span>")
+						H.apply_effect(60, EFFECT_KNOCKDOWN, armor_block)
+
+				if(bloody)
+					if(H.wear_suit)
+						H.wear_suit.add_mob_blood(H)
+						H.update_inv_wear_suit()
+					if(H.w_uniform)
+						H.w_uniform.add_mob_blood(H)
+						H.update_inv_w_uniform()
+			if(BODY_ZONE_PRECISE_GROIN)
 				if(H.stat == CONSCIOUS && !I.get_sharpness() && armor_block < 50)
 					if(prob(I.force))
 						H.visible_message("<span class='danger'>[H] has been knocked down!</span>", \
@@ -2192,7 +2204,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 					BP = pick(H.bodyparts)
 				H.apply_damage(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod, BRUTE, BP)
 				if(BP)
-					BP.painless_wound_roll(WOUND_BLUNT, min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
+					BP.painless_wound_roll(WOUND_INTERNALBLEED, min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
 				H.throw_alert("pressure", /obj/screen/alert/highpressure, 2)
 			else
 				H.clear_alert("pressure")
@@ -2212,7 +2224,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				var/applydam = LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod
 				H.apply_damage(applydam, BRUTE, BP)
 				if(BP && BP.brute_dam >= applydam * 0.75)
-					BP.painless_wound_roll(WOUND_BLUNT, applydam * BLUNT_WOUND_ROLL_MULT)
+					BP.painless_wound_roll(WOUND_INTERNALBLEED, applydam * INTERNAL_WOUND_ROLL_MULT)
 				if(H.getBruteLoss() >= 50)
 					for(var/obj/item/organ/O in H.internal_organs)
 						H.adjustOrganLoss(O.slot, O.maxHealth/20)
@@ -2345,6 +2357,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		. |= BIO_BONE
 
 #undef BURN_WOUND_ROLL_MULT
-#undef BLUNT_WOUND_ROLL_MULT
+#undef INTERNAL_WOUND_ROLL_MULT
 #undef SPECIFY_BODYPART_BLUNT_PROB
 #undef SPECIFY_BODYPART_BURN_PROB

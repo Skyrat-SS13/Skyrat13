@@ -273,6 +273,8 @@
 	name = "sterilized medical gauze"
 	desc = "A roll of elastic sterilized cloth that is extremely effective at stopping bleeding, heals minor wounds and cleans them."
 	singular_name = "sterilized medical gauze"
+	icon = 'modular_skyrat/icons/obj/medical.dmi'
+	icon_state = "adv_gauze"
 	heal_brute = 6
 	self_delay = 40
 	other_delay = 15

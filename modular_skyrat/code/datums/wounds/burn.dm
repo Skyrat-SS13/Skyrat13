@@ -154,17 +154,15 @@
 	else
 		switch(infestation)
 			if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
-				condition += ", <span class='deadsay'>with small spots of discoloration along the nearby veins!</span>"
+				condition += ", <span class='deadsay'>with small spots of discoloration along the nearby veins</span>"
 			if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
-				condition += ", <span class='deadsay'>with dark clouds spreading outwards under the skin!</span>"
+				condition += ", <span class='deadsay'>with dark clouds spreading outwards under the skin</span>"
 			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
-				condition += ", <span class='deadsay'>with streaks of rotten infection pulsating outward!</span>"
+				condition += ", <span class='deadsay'>with streaks of rotten infection pulsating outward</span>"
 			if(WOUND_INFECTION_SEPTIC to INFINITY)
-				return "<span class='deadsay'><B>[victim.p_their(TRUE)] [limb.name] is a mess of char and rot, skin literally dripping off the bone with infection!</B></span>"
-			else
-				condition += "!"
+				return "<span class='deadsay'><B>[victim.p_their(TRUE)] [limb.name] is a mess of char and rot, skin literally dripping off the bone with infection</B></span>"
 
-	return "<B>[victim.p_their(TRUE)] [limb.name] [examine_desc][condition]</B>"
+	return "<B>[victim.p_their(TRUE)] [limb.name] [examine_desc][condition]!</B>"
 
 /datum/wound/burn/get_scanner_description(mob/user)
 	if(strikes_to_lose_limb == 0)

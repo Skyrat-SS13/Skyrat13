@@ -162,15 +162,13 @@
 			if(75 to INFINITY)
 				sling_condition = "tightly "
 
-		msg = "<B>[victim.p_their(TRUE)] [limb.name] is [sling_condition] held together with [limb.current_gauze.name]</B>"
+		msg = "[victim.p_their(TRUE)] [limb.name] is [sling_condition] held together with [limb.current_gauze.name]"
 
 	if(taped)
-		msg += ", <span class='notice'>and the joints appear to be held together with sticky tape!</span>"
+		msg += ", <span class='notice'>and the joints appear to be held together with sticky tape</span>"
 	else if(wrenched)
-		msg += ", <span class='notice'>and it appears to be tightly secured to avoid further damage!</span>"
-	else
-		msg +=  "!"
-	return "<B>[msg]</B>"
+		msg += ", <span class='notice'>and it appears to be tightly secured to avoid further damage</span>"
+	return "<B>[msg]!</B>"
 
 /*
 	New common procs for /datum/wound/mechanical/blunt/
