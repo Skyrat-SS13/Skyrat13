@@ -121,6 +121,9 @@
 
 /// If someone is using applying fix o' vein after cutting the limb open
 /datum/wound/internalbleed/proc/fixovein(obj/item/stack/medical/fixovein/I, mob/user)
+	if(!(locate(/datum/wound/slash/critical/incision) in limb?.wounds))
+		to_chat(user, "<span class='danger'>[user == victim ? "Your " : ""][user == victim ? limb.name : capitalize(limb.name)] needs to be cut open to apply [I]!</span>")
+		return
 	var/self_penalty_mult = (user == victim ? 2 : 1)
 	user.visible_message("<span class='danger'>[user] begins painfully applying \the [I] on [victim]'s incised [limb.name]...</span>", "<span class='danger'>You begin painfully applying \the [I] on [user == victim ? "your" : "[victim]'s"] incised [limb.name]...</span>")
 	var/time_mod = 1
