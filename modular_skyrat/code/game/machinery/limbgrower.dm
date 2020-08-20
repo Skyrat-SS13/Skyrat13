@@ -172,7 +172,7 @@
 
 /obj/machinery/limbgrower/proc/build_genital(buildpath)
 	//i needed to create a way to customize gene tools using dna
-	var/list/features = dna_disk.fields["features"]
+	var/list/features = dna_disk?.fields["features"]
 	if(length(features))
 		switch(buildpath)
 			if(/obj/item/organ/genital/penis)
