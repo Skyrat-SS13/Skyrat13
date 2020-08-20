@@ -120,7 +120,7 @@
 	limb.receive_damage(5)
 
 /// If someone is using applying fix o' vein after cutting the limb open
-/datum/wound/internalbleed/proc/fixovein(obj/item/stack/medical/fixovein/I, mob/user)
+/datum/wound/internalbleed/proc/fixovein(obj/item/stack/I, mob/user)
 	if(!(locate(/datum/wound/slash/critical/incision) in limb?.wounds))
 		to_chat(user, "<span class='danger'>[user == victim ? "Your " : ""][user == victim ? limb.name : capitalize(limb.name)] needs to be cut open to apply [I]!</span>")
 		return
@@ -142,8 +142,6 @@
 			painkiller_bonus += 10
 		if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/determination))
 			painkiller_bonus += 5
-		if(!HAS_TRAIT(user, TRAIT_PAINKILLER))
-			painkiller_bonus += 10
 
 		if(prob(25 + (20 * severity - 2) - painkiller_bonus)) // 25%/45% chance to fail self-applying with severe and critical wounds, modded by painkillers
 			victim.visible_message("<span class='danger'>[victim] fails to finish applying [I] to [victim.p_their()] [limb.name], passing out from the pain!</span>", "<span class='notice'>You black out from the pain of applying [I] to your [limb.name] before you can finish!</span>")
@@ -182,7 +180,7 @@
 	var/bloodflow_stopped = (1.2 / max(1, self_penalty_mult))
 	blood_flow -= bloodflow_stopped
 
-	regeneration += (bloodflow_stopped/5) //we reduce the bloodflow by this on each process
+	regeneration += (bloodflow_stopped/4) //we reduce the bloodflow by this on each process
 
 	if(blood_flow > 0)
 		try_treating(I, user)
