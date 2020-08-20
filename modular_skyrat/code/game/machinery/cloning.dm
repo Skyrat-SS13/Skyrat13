@@ -149,11 +149,11 @@
 		return FALSE
 	if(biomass < biomass_per_clone)
 		if(radio)
-			SPEAK("Insufficient amount of credits to initiate cloning procedure.")
+			SPEAK("Insufficient amount of biomass to initiate cloning procedure.")
 		return FALSE
 	if((/datum/quirk/dnc in quirks) || (/datum/quirk/dnr in quirks))
 		if(radio)
-			SPEAK("Insufficient amount of credits to initiate cloning procedure.")
+			SPEAK("Patient is a DNC/DNR, and cannot be cloned.")
 		return FALSE
 	if(panel_open)
 		return FALSE
