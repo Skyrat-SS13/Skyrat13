@@ -1772,7 +1772,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		affecting = H.bodyparts[1]
 
 	hit_area = affecting.body_zone
-
 	var/armor_block = H.run_armor_check(affecting, "melee", "<span class='notice'>Your armor has protected your [parse_zone(hit_area)].</span>", "<span class='notice'>Your armor has softened a hit to your [parse_zone(hit_area)].</span>",I.armour_penetration)
 	var/Iforce = I.force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
 	//skyrat edit
@@ -1847,6 +1846,20 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 						H.update_inv_glasses()
 
 			if(BODY_ZONE_CHEST)
+				if(H.stat == CONSCIOUS && !I.get_sharpness() && armor_block < 50)
+					if(prob(I.force))
+						H.visible_message("<span class='danger'>[H] has been knocked down!</span>", \
+									"<span class='userdanger'>[H] has been knocked down!</span>")
+						H.apply_effect(60, EFFECT_KNOCKDOWN, armor_block)
+
+				if(bloody)
+					if(H.wear_suit)
+						H.wear_suit.add_mob_blood(H)
+						H.update_inv_wear_suit()
+					if(H.w_uniform)
+						H.w_uniform.add_mob_blood(H)
+						H.update_inv_w_uniform()
+			if(BODY_ZONE_PRECISE_GROIN)
 				if(H.stat == CONSCIOUS && !I.get_sharpness() && armor_block < 50)
 					if(prob(I.force))
 						H.visible_message("<span class='danger'>[H] has been knocked down!</span>", \
