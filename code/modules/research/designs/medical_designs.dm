@@ -446,6 +446,17 @@
 	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/*/datum/design/cyberimp_mining
+	name = "Advanced Mining Implant"
+	desc = "An internal arm implant containing multiple minified variants of advanced mining gear for use on planetside expeditions and resource-gathering operations."
+	id = "ci-mining"
+	build_type = MECHFAB
+	materials = list (/datum/material/iron = 5000, /datum/material/glass = 3500, /datum/material/silver = 2500, /datum/material/diamond = 1500, /datum/material/gold = 225, /datum/material/bluespace = 1500, /datum/material/uranium = 450)
+	construction_time = 300
+	build_path = /obj/item/organ/cyberimp/arm/mining
+	category = list("Misc", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO*/ //Broken implant, only uncomment if you plan to fix it. Runtimes to high hell.
+
 /datum/design/cyberimp_hacker
 	name = "Hacking Hand Implant"
 	desc = "An advanced hacking and machine modification toolkit fitted into an arm implant, designed to be installed on a subject's arm."
@@ -467,6 +478,17 @@
 	build_path = /obj/item/organ/cyberimp/arm/flash
 	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/cyberimp_service
+	name = "Botany Arm Implant"
+	desc = "Everything a botanist needs in an arm implant, designed to be installed on a subject's arm."
+	id = "ci-botany"
+	build_type = MECHFAB
+	materials = list (/datum/material/iron = 3500, /datum/material/glass = 1500, /datum/material/silver = 1500, /datum/material/plastic = 2000)
+	construction_time = 200
+	build_path = /obj/item/organ/cyberimp/arm/botany
+	category = list("Misc", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_service
 	name = "Service Arm Implant"

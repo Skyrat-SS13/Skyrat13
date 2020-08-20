@@ -220,6 +220,11 @@
 	items_list += new /obj/item/kitchen/knife/combat/cyborg(src)
 	return TRUE
 
+/obj/item/organ/cyberimp/arm/botany
+	name = "botany arm implant"
+	desc = "A rather simple arm implant containing tools used in gardening and botanical research."
+	contents = newlist(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/hatchet, /obj/item/gun/energy/floragun, /obj/item/plant_analyzer, /obj/item/reagent_containers/glass/beaker/plastic, /obj/item/storage/bag/plants, /obj/item/storage/bag/plants/portaseeder)
+
 ///////////////
 //Combat Arms//
 ///////////////
@@ -288,3 +293,9 @@
 	var/obj/item/assembly/flash/armimplant/F = new(src)
 	items_list += F
 	F.I = src
+
+/*/obj/item/organ/cyberimp/arm/mining
+	name = "advanced mining implant"
+	desc = "An advanced implant with minified variants of all you need for a standard mining expedition, GPS and satchel included!"
+	contents = newlist(/obj/item/gun/energy/kinetic_accelerator, /obj/item/gun/energy/plasmacutter/adv, /obj/item/pickaxe/drill/diamonddrill, /obj/item/resonator/upgraded, /obj/item/t_scanner/adv_mining_scanner/lesser, /obj/item/storage/bag/ore/holding, /obj/item/gps)
+*/ //Shits broken to high hell, someone else can fix it lmao

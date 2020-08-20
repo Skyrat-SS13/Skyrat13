@@ -71,7 +71,7 @@
 	display_name = "Cybernetic Implants"
 	description = "Electronic implants that improve humans."
 	prereq_ids = list("adv_biotech", "adv_datatheory")
-	design_ids = list("ci-nutriment", "ci-breather", "ci-gloweyes", "ci-welding", "ci-medhud", "ci-sechud", "ci-service")
+	design_ids = list("ci-nutriment", "ci-breather", "ci-gloweyes", "ci-welding", "ci-medhud", "ci-sechud", "ci-service", "ci-botany")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 
 /datum/techweb_node/adv_cyber_implants
@@ -89,6 +89,14 @@
 	prereq_ids = list("adv_cyber_implants","weaponry","NVGtech","high_efficiency")
 	design_ids = list("ci-xray", "ci-thermals", "ci-antidrop", "ci-antistun", "ci-thrusters", "ci-shield", "ci-mantis", "ci-flash")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 12000)
+
+/*/datum/techweb_node/mining_cyber_implants
+	id = "mining_cyber_implants"
+	display_name = "Advanced Mining Implants"
+	description = "Minifying advanced mining tools for use in internal arm implants."
+	prereq_ids = list("adv_cyber_implants","high_efficiency","practical_bluespace","adv_mining")
+	design_ids = list("ci-mining")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)*/ //I don't care enough about this to fix its runtimes, someone else can do it if they want.
 
 /////////////////////////Advanced Surgery/////////////////////////
 /datum/techweb_node/imp_wt_surgery
