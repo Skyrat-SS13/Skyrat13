@@ -165,10 +165,10 @@
 	new /obj/item/stack/medical/gauze/adv(src)
 	new /obj/item/stack/medical/suture/medicated(src)
 	new /obj/item/stack/medical/suture(src)
-	new /obj/item/healthanalyzer(src)
+	new /obj/item/stack/sticky_tape/surgical(src)
 	new /obj/item/stack/medical/bone_gel(src)
 	new /obj/item/bonesetter(src)
-	new /obj/item/stack/sticky_tape/surgical(src)
+	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/firstaid/tactical
 	name = "combat medical kit"
