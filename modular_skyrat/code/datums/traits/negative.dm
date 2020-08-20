@@ -113,19 +113,17 @@
 	medical_record_text = "Patient is allergic to a certain type of food."
 
 /datum/quirk/allergic/add()
-	. = ..()
-	if(.)
-		var/mob/living/carbon/human/H = quirk_holder
-		if(H && istype(H))
-			var/foodie = pick(GLOB.food)
-			var/randumb = GLOB.food[foodie]
-			while((H.dna.species.toxic_food | randumb) == H.dna.species.toxic_food)
-				foodie = pick(GLOB.food)
-				randumb = GLOB.food[foodie]
-			H.dna.species.toxic_food |= randumb
-			H.dna.species.liked_food -= randumb
-			H.physiology.allergies |= randumb
-			addtimer(CALLBACK(src, .proc/inform, foodie), 5 SECONDS)
+	var/mob/living/carbon/human/H = quirk_holder
+	if(istype(H))
+		var/foodie = pick(GLOB.food)
+		var/randumb = GLOB.food[foodie]
+		while((H.dna.species.toxic_food | randumb) == initial(H.dna.species.toxic_food))
+			foodie = pick(GLOB.food)
+			randumb = GLOB.food[foodie]
+		H.dna.species.toxic_food |= randumb
+		H.dna.species.liked_food -= randumb
+		H.physiology.allergies |= randumb
+		addtimer(CALLBACK(src, .proc/inform, foodie), 5 SECONDS)
 
-/datum/quirk/allergic/proc/inform(var/allergy = "bad coders")
-	to_chat(quirk_holder, "<span class='danger'><b><i>You are allergic to [lowertext(allergy)].</i></b></span>")
+/datum/quirk/allergic/proc/inform(allergy = "bad coders")
+	to_chat(quirk_holder, "<span class='boldwarning'>You are allergic to [lowertext(allergy)].</span>")
