@@ -21375,8 +21375,6 @@
 /obj/item/defibrillator/compact/loaded,
 /obj/structure/table/greyscale,
 /obj/item/gun/medbeam,
-/obj/item/gun/medbeam,
-/obj/item/gun/medbeam,
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
 "WA" = (
