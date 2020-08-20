@@ -7658,6 +7658,14 @@
 /obj/item/storage/belt/utility/servant,
 /turf/open/indestructible/clock_spawn_room,
 /area/centcom/holding/cafewar)
+"rj" = (
+/obj/effect/light_emitter{
+	name = "outdoor light";
+	set_cap = 3;
+	set_luminosity = 6
+	},
+/turf/open/indestructible/cobble,
+/area/centcom/holding/cafepark)
 "rk" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/security_space_law,
@@ -13382,6 +13390,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
+"CR" = (
+/obj/effect/light_emitter{
+	name = "outdoor light";
+	set_cap = 3;
+	set_luminosity = 6
+	},
+/turf/open/floor/grass/snow,
+/area/centcom/holding/cafepark)
 "CS" = (
 /obj/machinery/light{
 	dir = 8
@@ -13400,6 +13416,14 @@
 /obj/item/storage/box/silver_ids,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
+"CU" = (
+/obj/effect/light_emitter{
+	name = "outdoor light";
+	set_cap = 3;
+	set_luminosity = 6
+	},
+/turf/open/floor/grass,
+/area/centcom/holding/cafepark)
 "CV" = (
 /obj/structure/chair/stool,
 /turf/open/indestructible/hotelwood,
@@ -14505,6 +14529,16 @@
 	dir = 4
 	},
 /area/centcom/holding/cafe)
+"FD" = (
+/obj/effect/light_emitter{
+	name = "outdoor light";
+	set_cap = 3;
+	set_luminosity = 6
+	},
+/turf/open/floor/grass/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=220"
+	},
+/area/centcom/holding/cafepark)
 "FE" = (
 /obj/effect/light_emitter,
 /turf/open/floor/grass,
@@ -17639,6 +17673,14 @@
 /obj/machinery/clonepod/fullupgrade,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
+"Mq" = (
+/obj/effect/light_emitter{
+	name = "outdoor light";
+	set_cap = 3;
+	set_luminosity = 6
+	},
+/turf/open/water/lavaland_jungle,
+/area/centcom/holding/cafepark)
 "Mr" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating/beach/sand,
@@ -18205,6 +18247,11 @@
 /area/syndicate_mothership)
 "Ob" = (
 /obj/structure/flora/ausbushes/brflowers,
+/obj/effect/light_emitter{
+	name = "outdoor light";
+	set_cap = 3;
+	set_luminosity = 6
+	},
 /turf/open/floor/grass,
 /area/centcom/holding/cafepark)
 "Oc" = (
@@ -22347,8 +22394,11 @@
 /turf/open/floor/wood,
 /area/centcom/evac)
 "Zk" = (
-/obj/item/flashlight/lamp/bananalamp,
-/obj/structure/table/wood,
+/obj/effect/light_emitter{
+	name = "outdoor light";
+	set_cap = 3;
+	set_luminosity = 6
+	},
 /turf/open/floor/plating/smooth/grass,
 /area/centcom/holding/cafepark)
 "Zl" = (
@@ -53426,7 +53476,7 @@ XK
 XK
 XK
 VI
-Qm
+FD
 WZ
 Qm
 Qm
@@ -54205,7 +54255,7 @@ Qm
 Qm
 LI
 Ov
-Ov
+CR
 Om
 Om
 aa
@@ -55227,7 +55277,7 @@ XK
 VI
 Qm
 Qm
-Qm
+FD
 Qm
 Qm
 Qm
@@ -55720,14 +55770,14 @@ ZO
 Fo
 TI
 TK
-Dm
+Zk
 Xa
 Xa
 sp
 Vn
 Xa
 Xa
-Zq
+rj
 Zq
 Dm
 Dm
@@ -55737,7 +55787,7 @@ HQ
 XV
 Ob
 VG
-Qm
+FD
 Qm
 Qm
 Qm
@@ -56264,7 +56314,7 @@ Qm
 Qm
 Qm
 WP
-Qm
+FD
 Om
 aa
 aa
@@ -57268,7 +57318,7 @@ Dm
 Dm
 Xa
 YM
-Dm
+Zk
 Zq
 Zq
 YM
@@ -57285,7 +57335,7 @@ Qm
 WZ
 Qm
 Qm
-Qm
+FD
 Qm
 Qm
 Qm
@@ -58039,7 +58089,7 @@ Dm
 Dm
 Dm
 Dm
-Zk
+Dm
 Zq
 Zq
 Zq
@@ -58307,7 +58357,7 @@ Dm
 Dm
 Dm
 SU
-Qm
+FD
 Qm
 Qm
 Qm
@@ -58554,7 +58604,7 @@ Dm
 Xa
 Dm
 Xa
-Xa
+CU
 Fy
 Zq
 Xa
@@ -58582,7 +58632,7 @@ Qm
 MV
 XW
 XW
-XW
+Mq
 XW
 XW
 XW
@@ -58849,7 +58899,7 @@ XW
 XW
 XW
 XW
-XW
+Mq
 Om
 aa
 aa
@@ -59061,7 +59111,7 @@ aa
 aa
 aa
 TK
-Xa
+CU
 Sm
 Xa
 yN
@@ -59347,7 +59397,7 @@ Qm
 Ty
 Qm
 Qm
-Qm
+FD
 Qm
 Qm
 Pt
@@ -59614,7 +59664,7 @@ XW
 XW
 XW
 XW
-XW
+Mq
 XW
 XW
 XW
@@ -60106,12 +60156,12 @@ Dm
 Dm
 Xa
 VG
+FD
 Qm
 Qm
 Qm
 Qm
-Qm
-Qm
+FD
 WZ
 Qm
 Qm
@@ -60346,18 +60396,18 @@ aa
 aa
 aa
 TK
-FE
+Xa
 Xa
 Xa
 Sn
 Xa
 RY
+CU
 Xa
 Xa
 Xa
 Xa
-Xa
-Xa
+CU
 Dm
 Dm
 Dm
@@ -60884,7 +60934,7 @@ Qm
 Qm
 Qm
 Qm
-Qm
+FD
 Qm
 Qm
 Qm
@@ -60897,7 +60947,7 @@ Qm
 Qm
 WZ
 Qm
-Qm
+FD
 Qm
 MV
 MV
@@ -61382,7 +61432,7 @@ IS
 JG
 JG
 Iv
-Xa
+CU
 Xa
 Xa
 Xa
@@ -62417,7 +62467,7 @@ Xa
 Xa
 Dm
 Dm
-Xa
+CU
 VG
 Qm
 Qm
@@ -62933,6 +62983,7 @@ aa
 aa
 aa
 Om
+FD
 Qm
 Qm
 Qm
@@ -62950,8 +63001,7 @@ Qm
 Qm
 Qm
 Qm
-Qm
-Qm
+FD
 Qm
 Qm
 Qm
@@ -63195,28 +63245,28 @@ Qm
 Qm
 Qm
 WZ
-Qm
-Qm
-Qm
-WZ
-Qm
-Qm
-Qm
-Qm
-Om
-Om
-Om
-Om
-Om
-Om
-Om
-Om
-Qm
-Qm
+FD
 Qm
 Qm
 WZ
 Qm
+Qm
+Qm
+FD
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Qm
+Qm
+Qm
+Qm
+WZ
+FD
 Om
 aa
 aa
