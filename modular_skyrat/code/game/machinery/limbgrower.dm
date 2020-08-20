@@ -227,7 +227,7 @@
 
 /obj/machinery/limbgrower/proc/main_win(mob/user)
 	var/dat = "<div class='statusDisplay'><h3>Limb Grower Menu:</h3><br>"
-	dat += "<A href='?src=[REF(src)];dna_disk=1'>[dna_disk ? "Insert" : "Remove"] cloning data disk</A>"
+	dat += "<A href='?src=[REF(src)];dna_disk=1'>[dna_disk ? "Remove" : "Insert"] cloning data disk</A>"
 	dat += "<hr>"
 	dat += "<A href='?src=[REF(src)];menu=[LIMBGROWER_CHEMICAL_MENU]'>Chemical Storage</A>"
 	dat += materials_printout()
