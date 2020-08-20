@@ -1,4 +1,0 @@
-author: "KathrinBailey"
-delete-after: True
-changes: 
-  - bugfix: "Green hand drills are no longer unlocked early with basic mining."
