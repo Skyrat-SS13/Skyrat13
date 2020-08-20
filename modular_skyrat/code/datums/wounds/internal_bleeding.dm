@@ -204,7 +204,7 @@
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_MODERATE
 	viable_zones = ALL_BODYPARTS
-	initial_flow = 1.2
+	initial_flow = 1
 	organ_damage_chance = 4
 	organ_damage_min = 1
 	organ_damage_max = 5
@@ -224,7 +224,7 @@
 	sound_effect = 'modular_skyrat/sound/effects/blood2.ogg'
 	severity = WOUND_SEVERITY_SEVERE
 	viable_zones = ALL_BODYPARTS
-	initial_flow = 1.6
+	initial_flow = 1.5
 	organ_damage_chance = 7
 	organ_damage_min = 3
 	organ_damage_max = 7
