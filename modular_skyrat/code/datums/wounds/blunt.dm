@@ -187,12 +187,10 @@
 		msg = "<B>[victim.p_their(TRUE)] [limb.name] is [sling_condition] fastened in a sling of [limb.current_gauze.name]</B>"
 
 	if(taped)
-		msg += ", <span class='notice'>and appears to be reforming itself under some surgical tape!</span>"
+		msg += ", <span class='notice'>and appears to be reforming itself under some surgical tape</span>"
 	else if(gelled)
-		msg += ", <span class='notice'>with fizzing flecks of blue bone gel sparking off the bone!</span>"
-	else
-		msg +=  "!"
-	return "<B>[msg]</B>"
+		msg += ", <span class='notice'>with fizzing flecks of blue bone gel sparking off the bone</span>"
+	return "<B>[msg]!</B>"
 
 /*
 	New common procs for /datum/wound/blunt/
