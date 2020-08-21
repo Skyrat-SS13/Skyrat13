@@ -406,8 +406,6 @@
 		// So a big sharp weapon is still all you need to destroy a limb
 		else if((mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE)) && sharpness)
 			playsound(src, "sound/effects/crackandbleed.ogg", 100)
-			if(wounding_type == WOUND_INTERNALBLEED && !easy_dismember)
-				wounding_dmg *= 0.8
 			if(wounding_type == WOUND_SLASH && !easy_dismember)
 				wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
 			if(wounding_type == WOUND_PIERCE && !easy_dismember)
@@ -521,8 +519,6 @@
 		// So a big sharp weapon is still all you need to destroy a limb
 		else if((mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE)) && sharpness)
 			playsound(src, "sound/effects/crackandbleed.ogg", 100)
-			if(wounding_type == WOUND_INTERNALBLEED && !easy_dismember)
-				phantom_wounding_dmg *= 0.8
 			if(wounding_type == WOUND_SLASH && !easy_dismember)
 				phantom_wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
 			if(wounding_type == WOUND_PIERCE && !easy_dismember)
