@@ -12,8 +12,8 @@
 	amount = 15
 	max_amount = 15
 	custom_price = 150
-	absorption_rate = 0.65
-	absorption_capacity = 3
+	absorption_rate = 0.1
+	absorption_capacity = 1
 	splint_factor = 0.175
 	custom_price = PRICE_EXPENSIVE
 	novariants = TRUE
