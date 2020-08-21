@@ -183,13 +183,28 @@
 			post_set_firemode()
 			update_icon(TRUE)
 
+/obj/item/gun/energy/e_gun/large/attack_self(mob/living/user)
+	. = ..()
+	if(can_select_fire(user))
+		if(GLOB.security_level == SEC_LEVEL_GREEN && !weapon_hacked)
+			audible_message("<span class='warning'>ERROR: Security level mismatch, cannot change energy mode!</span>")
+			playsound(loc, 'sound/machines/beep.ogg', 50, 1)
+			chambered = null
+			current_firemode_index = 1
+			fire_sound = 'sound/weapons/taser2.ogg'
+			fire_delay = 3.5
+			post_set_firemode()
+			update_icon(TRUE)
+		else
+			return
+
 /obj/item/gun/energy/e_gun/large/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
 
 	panel_open = !panel_open
 	to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the circuitry panel on the rifle.</span>")
-	//desc = "A basic hybrid energy rifle with two settings: disable and kill. [panel_open ? "<b>Its modification panel is open!</b>" : " "]"
+	desc = "A basic hybrid energy rifle with two settings: disable and kill. [panel_open ? "<b>Its modification panel is open!</b>" : " "]"
 
 /obj/item/gun/energy/e_gun/large/multitool_act(mob/user, obj/item/I)
 	if(panel_open)
