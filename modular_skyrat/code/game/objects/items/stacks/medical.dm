@@ -12,9 +12,9 @@
 	amount = 15
 	max_amount = 15
 	custom_price = 150
-	absorption_rate = 0.30
+	absorption_rate = 0.65
 	absorption_capacity = 3
-	splint_factor = 1
+	splint_factor = 0.2
 	custom_price = PRICE_EXPENSIVE
 	novariants = TRUE
 	merge_type = /obj/item/stack/medical/gauze/splint
