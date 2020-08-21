@@ -326,8 +326,8 @@
 		to_chat(user, "<span class='warning'>You're already interacting with [victim]!</span>")
 		return TRUE
 
-	if(!victim.can_inject(user, TRUE))
-		to_chat(user, "<span class='warning'>\The [src.name] isn't exposed!</span>")
+	if(!victim.can_inject(user, FALSE))
+		to_chat(user, "<span class='warning'>\The [src.name] can't be treated if it is not exposed!</span>")
 		return TRUE
 	
 	// lastly, treat them
