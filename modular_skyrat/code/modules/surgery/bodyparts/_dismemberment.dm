@@ -106,9 +106,9 @@
 	return FALSE
 
 /obj/item/bodypart/head/dismember(dam_type = BRUTE, silent = FALSE)
-	if(HAS_TRAIT(owner, TRAIT_NODECAP) || HAS_TRAIT(owner, TRAIT_NODISMEMBER))
+	. = ..()
+	if(. && (HAS_TRAIT(owner, TRAIT_NODECAP) || HAS_TRAIT(owner, TRAIT_NODISMEMBER)))
 		return FALSE
-	..()
 
 //Limb removal. The "special" argument is used for swapping a limb with a new one without the effects of losing a limb kicking in.
 //Destroyed just qdels the limb.
@@ -216,6 +216,8 @@
   * Returns: BODYPART_MANGLED_NONE if we're fine, BODYPART_MANGLED_SKIN if our skin is broken, BODYPART_MANGLED_BONE if our bone is broken, or BODYPART_MANGLED_BOTH if both are broken and we're up for dismembering
   */
 /obj/item/bodypart/proc/get_mangled_state()
+	if(!owner)
+		return FALSE
 	. = BODYPART_MANGLED_NONE
 	var/required_bone_severity = WOUND_SEVERITY_SEVERE
 	var/required_flesh_severity = WOUND_SEVERITY_SEVERE
@@ -271,6 +273,8 @@
   * * bare_wound_bonus: ditto above
   */
 /obj/item/bodypart/proc/try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
+	if(!owner)
+		return
 	if(!can_dismember() || !dismemberable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE) || ((wounding_dmg + wound_bonus)< DISMEMBER_MINIMUM_DAMAGE) || ((wounding_dmg + bare_wound_bonus)< DISMEMBER_MINIMUM_DAMAGE) || wound_bonus == CANT_WOUND || bare_wound_bonus == CANT_WOUND)
 		return FALSE
 	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 45) // how much damage we dealt with this blow, + 40% of the damage percentage we already had on this bodypart
@@ -302,6 +306,8 @@
 	dismembering.apply_dismember(src, wounding_type)
 
 /obj/item/bodypart/proc/try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
+	if(!owner)
+		return
 	if(!can_disembowel() || !disembowable || (wounding_dmg < DISEMBOWEL_MINIMUM_DAMAGE))
 		return FALSE
 	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 35) // how much damage we dealt with this blow, + 35% of the damage percentage we already had on this bodypart

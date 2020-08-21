@@ -303,10 +303,14 @@
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
 /obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE) // maybe separate BRUTE_SHARP and BRUTE_OTHER eventually somehow hmm
+	if(!owner)
+		return FALSE
+	
 	var/hit_percent = (100-blocked)/100
 	if((!brute && !burn && !stamina) || hit_percent <= 0)
 		return FALSE
-	if(owner && (owner.status_flags & GODMODE))
+	
+	if(owner.status_flags & GODMODE)
 		return FALSE	//godmode
 
 	if(required_status && !(status & required_status))
@@ -455,8 +459,8 @@
 
 /// Allows us to roll for and apply a wound without actually dealing damage. Used for aggregate wounding power with pellet clouds (note this doesn't let sharp go to bone)
 /obj/item/bodypart/proc/painless_wound_roll(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)
-	if(!owner || phantom_wounding_dmg <= WOUND_MINIMUM_DAMAGE || wound_bonus == CANT_WOUND)
-		return
+	if(!owner || (phantom_wounding_dmg <= WOUND_MINIMUM_DAMAGE) || (wound_bonus == CANT_WOUND))
+		return FALSE
 
 	var/mangled_state = get_mangled_state()
 	var/bio_state = owner.get_biological_state()
@@ -578,7 +582,7 @@
 
 /obj/item/bodypart/proc/is_disabled()
 	if(!owner)
-		return
+		return FALSE
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS))
 		return BODYPART_DISABLED_PARALYSIS
 	for(var/i in wounds)
@@ -610,7 +614,7 @@
 		return BODYPART_NOT_DISABLED
 
 /obj/item/bodypart/proc/check_disabled() //This might be depreciated and should be safe to remove.
-	if(!can_dismember() || HAS_TRAIT(owner, TRAIT_NODISMEMBER))
+	if(!owner || !can_dismember() || HAS_TRAIT(owner, TRAIT_NODISMEMBER))
 		return
 	if(!disabled && (get_damage(TRUE) >= max_damage))
 		set_disabled(TRUE)
@@ -731,6 +735,8 @@
   * * bare_wound_bonus- The bare_wound_bonus of an attack
   */
 /obj/item/bodypart/proc/check_wounding(woundtype, damage, wound_bonus, bare_wound_bonus)
+	if(!owner)
+		return
 	// actually roll wounds if applicable
 	var/organic = is_organic_limb()
 	if(HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE))
@@ -1034,6 +1040,9 @@
 		body_markings = "husk" // reeee
 		aux_marking = "husk"
 
+	if(!C)
+		no_update = TRUE
+	
 	if(no_update)
 		return
 
