@@ -155,10 +155,10 @@
 	name = "energy rifle"
 	desc = "A basic hybrid energy rifle with two settings: disable and kill."
 	icon_state = "energy_rifle"
-	charge_sections = 5
 	cell_type = /obj/item/stock_parts/cell/secborg
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
+	charge_sections = 3
 	var/weapon_hacked = FALSE //Is this weapon hacked to allow lethal blasts outside of an alert level?
 	var/panel_open = FALSE //Is this weapon's modification panel currently open?
 	var/sec_level = SEC_LEVEL_GREEN
@@ -189,7 +189,7 @@
 
 	panel_open = !panel_open
 	to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the circuitry panel on the rifle.</span>")
-	desc = "A basic hybrid energy rifle with two settings: disable and kill. [panel_open ? "<b>Its modification panel is open!</b>" : " "]"
+	//desc = "A basic hybrid energy rifle with two settings: disable and kill. [panel_open ? "<b>Its modification panel is open!</b>" : " "]"
 
 /obj/item/gun/energy/e_gun/large/multitool_act(mob/user, obj/item/I)
 	if(panel_open)
