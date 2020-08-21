@@ -769,6 +769,8 @@
 			check_gauze = TRUE
 		if(WOUND_INTERNALBLEED)
 			wounds_checking = WOUND_LIST_INTERNAL_BLEEDING
+			if(!organic)
+				return
 	
 	if(!length(wounds_checking))
 		return
