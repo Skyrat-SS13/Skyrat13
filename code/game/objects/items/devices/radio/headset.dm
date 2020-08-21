@@ -84,6 +84,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	return FALSE
 
 /obj/item/radio/headset/syndicate //disguised to look like a normal headset for stealth ops
+	radiosound = 'modular_skyrat/sound/radio/syndie.ogg'
 
 /obj/item/radio/headset/syndicate/alt //undisguised bowman with flash protection
 	name = "syndicate headset"
