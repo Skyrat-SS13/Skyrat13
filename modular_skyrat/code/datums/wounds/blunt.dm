@@ -130,10 +130,20 @@
 	if(severity >= WOUND_SEVERITY_SEVERE)
 		if(prob(round(max(wounding_dmg/10, 1), 1)))
 			for(var/obj/item/organ/O in victim.getorganszone(limb.body_zone, TRUE))
-				victim.adjustOrganLoss(O.slot, rand(1, wounding_dmg/10), O.maxHealth)
+				victim.adjustOrganLoss(O.slot, rand(1, wounding_dmg/2), O.maxHealth)
+	
+	if(limb.body_zone in list(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_R_ARM))
+		if(prob(round(max(wounding_dmg/10, 1), 1) * max(1, severity - WOUND_SEVERITY_TRIVIAL)))
+			var/obj/item/oops = victim?.get_item_for_held_index(limb?.held_index)
+			if(oops)
+				victim?.dropItemToGround(oops)
+			to_chat(victim, "<span class='danger'>You drop [oops] in excruciating pain!</span>")
+		if(prob(max(1, severity - WOUND_SEVERITY_TRIVIAL) * 10))
+			victim?.emote("scream")
 	
 	if(limb.body_zone == BODY_ZONE_PRECISE_GROIN && prob(25))
-		victim.Paralyze(severity * 5)
+		victim?.Paralyze(severity * 3)
+		to_chat(victim, "<span class='danger'>The excruciating pain on your [limb] paralyzes you for a moment!</span>")
 	
 	if(limb.body_zone == BODY_ZONE_CHEST && !HAS_TRAIT(victim, TRAIT_NOBREATH) && severity >= WOUND_SEVERITY_MODERATE)
 		var/oxy_dmg = round(rand(1, (wounding_dmg/5) * (max(1, severity - WOUND_SEVERITY_TRIVIAL))))
