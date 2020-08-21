@@ -37,6 +37,7 @@
 	/turf/closed/wall/clockwork,
 	)
 	var/low_type = /obj/structure/table/low_wall
+	var/mutable_appearance/mutable_overlay
 
 /obj/structure/table/low_wall/metal
 	name = "metal low wall"
@@ -72,6 +73,128 @@
 		canSmoothWith |= typesof(/obj/structure/falsewall)
 		canSmoothWith |= typesof(/turf/closed/indestructible/riveted)
 		canSmoothWith |= typesof(/obj/structure/table/low_wall)
+	update_overlays()
+
+/obj/structure/table/low_wall/proc/calculate_wall_adjacencies()
+	var/adjacencies = 0
+
+	var/atom/A = src
+	var/atom/movable/AM
+	if(ismovable(src))
+		AM = src
+		if(AM.can_be_unanchored && !AM.anchored)
+			return 0
+
+	for(var/direction in GLOB.cardinals)
+		AM = find_type_in_direction(A, direction, /turf/closed/wall)
+		if(AM == NULLTURF_BORDER)
+			if((A.smooth & SMOOTH_BORDER))
+				adjacencies |= 1 << direction
+		else if( (AM && !istype(AM)) || (istype(AM) && AM.anchored) )
+			adjacencies |= 1 << direction
+
+	if(adjacencies & N_NORTH)
+		if(adjacencies & N_WEST)
+			AM = find_type_in_direction(A, NORTHWEST, /turf/closed/wall)
+			if(AM == NULLTURF_BORDER)
+				if((A.smooth & SMOOTH_BORDER))
+					adjacencies |= N_NORTHWEST
+			else if( (AM && !istype(AM)) || (istype(AM) && AM.anchored) )
+				adjacencies |= N_NORTHWEST
+		if(adjacencies & N_EAST)
+			AM = find_type_in_direction(A, NORTHEAST)
+			if(AM == NULLTURF_BORDER)
+				if((A.smooth & SMOOTH_BORDER))
+					adjacencies |= N_NORTHEAST
+			else if( (AM && !istype(AM)) || (istype(AM) && AM.anchored) )
+				adjacencies |= N_NORTHEAST
+
+	if(adjacencies & N_SOUTH)
+		if(adjacencies & N_WEST)
+			AM = find_type_in_direction(A, SOUTHWEST, /turf/closed/wall)
+			if(AM == NULLTURF_BORDER)
+				if((A.smooth & SMOOTH_BORDER))
+					adjacencies |= N_SOUTHWEST
+			else if( (AM && !istype(AM)) || (istype(AM) && AM.anchored) )
+				adjacencies |= N_SOUTHWEST
+		if(adjacencies & N_EAST)
+			AM = find_type_in_direction(A, SOUTHEAST)
+			if(AM == NULLTURF_BORDER)
+				if((A.smooth & SMOOTH_BORDER))
+					adjacencies |= N_SOUTHEAST
+			else if( (AM && !istype(AM)) || (istype(AM) && AM.anchored) )
+				adjacencies |= N_SOUTHEAST
+
+	return adjacencies
+
+/obj/structure/table/low_wall/proc/smooth_walls()
+	. = list()
+	//NW CORNER
+	var/adjacencies = calculate_wall_adjacencies()
+	var/nw = "1-i"
+	if((adjacencies & N_NORTH) && (adjacencies & N_WEST))
+		if(adjacencies & N_NORTHWEST)
+			nw = "1-f"
+		else
+			nw = "1-nw"
+	else
+		if(adjacencies & N_NORTH)
+			nw = "1-n"
+		else if(adjacencies & N_WEST)
+			nw = "1-w"
+
+	//NE CORNER
+	var/ne = "2-i"
+	if((adjacencies & N_NORTH) && (adjacencies & N_EAST))
+		if(adjacencies & N_NORTHEAST)
+			ne = "2-f"
+		else
+			ne = "2-ne"
+	else
+		if(adjacencies & N_NORTH)
+			ne = "2-n"
+		else if(adjacencies & N_EAST)
+			ne = "2-e"
+
+	//SW CORNER
+	var/sw = "3-i"
+	if((adjacencies & N_SOUTH) && (adjacencies & N_WEST))
+		if(adjacencies & N_SOUTHWEST)
+			sw = "3-f"
+		else
+			sw = "3-sw"
+	else
+		if(adjacencies & N_SOUTH)
+			sw = "3-s"
+		else if(adjacencies & N_WEST)
+			sw = "3-w"
+
+	//SE CORNER
+	var/se = "4-i"
+	if((adjacencies & N_SOUTH) && (adjacencies & N_EAST))
+		if(adjacencies & N_SOUTHEAST)
+			se = "4-f"
+		else
+			se = "4-se"
+	else
+		if(adjacencies & N_SOUTH)
+			se = "4-s"
+		else if(adjacencies & N_EAST)
+			se = "4-e"
+	. |= list(nw, ne, sw, se)
+
+//low walls have to create a brim, based on the high walls connected around them
+/obj/structure/table/low_wall/update_overlays()
+	. = ..()
+	if(mutable_overlay)
+		cut_overlay(mutable_overlay)
+	mutable_overlay = mutable_appearance(icon, "metal_over", ABOVE_WALL_WINDOW_LAYER, plane, color)
+	//Make the wall overlays
+	for(var/i in smooth_walls())
+		mutable_overlay.add_overlay("metal_over_[i]")
+	add_overlay(mutable_overlay)
+	for(var/obj/structure/window/W in loc)
+		W.update_overlays()
 
 /obj/structure/table/low_wall/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)
