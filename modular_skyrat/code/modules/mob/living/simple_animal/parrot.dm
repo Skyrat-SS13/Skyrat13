@@ -2,12 +2,6 @@
 /mob/living/simple_animal/parrot/proc/check_command() // Skyrat - Poly listens to some of the CE's commands!
 	return FALSE // Simply return false for non-Poly parrots
 
-/mob/living/simple_animal/parrot/Poly/post_unbuckle_mob(mob/living/M)
-	buckled_to_human = FALSE
-	pixel_x = initial(pixel_x)
-	pixel_y = initial(pixel_y)
-	parrot_state = PARROT_WANDER
-
 /mob/living/simple_animal/parrot/Poly/check_command(message, speaker) // Skyrat - Poly listens to some of the CE's commands!
 	var/mob/living/carbon/human/H = speaker
 	if(!istype(H))
@@ -16,15 +10,17 @@
 		return FALSE // Not CE, Poly don't care!
 	
 	if(findtext(message, "poly"))
-		if((findtext(message, "perch") || findtext(message, "hop")) && (findtext(message, "me") || findtext(message, "shoulder")))
-			// Variations of the message "Poly, hop/perch on me/my shoulder"
-			command_perch(H)
-			return TRUE
+		if(findtext(message, "perch") || findtext(message, "hop"))
+			if(findtext(message, "me") || findtext(message, "shoulder")) // putting an && in a single if() didn't work properly
+				// Variations of the message "Poly, hop/perch on me/my shoulder"
+				command_perch(H)
+				return TRUE
 
-		if(findtext(message, "off") && (findtext(message, "me") || findtext(message, "shoulder") || findtext(message, "hop")))
-			// Variations of "Poly, get/hop off of me/my shoulder."
-			command_hop_off(H)
-			return TRUE
+		if(findtext(message, "off"))
+			if(findtext(message, "me") || findtext(message, "shoulder") || findtext(message, "hop"))
+				// Variations of "Poly, get/hop off of me/my shoulder."
+				command_hop_off(H)
+				return TRUE
 			
 		if(findtext(message, "shut") && speak_chance)
 			if(prob(90))
@@ -36,6 +32,7 @@
 	return FALSE // Wasn't a command.
 
 /mob/living/simple_animal/parrot/Poly/proc/command_perch(var/mob/living/carbon/human/H) // Skyrat proc
+	check_state()
 	if(H.has_buckled_mobs() && H.buckled_mobs.len >= H.max_buckled_mobs)
 		return
 	if(buckled_to_human)
@@ -48,6 +45,7 @@
 	perch_on_human(H)
 
 /mob/living/simple_animal/parrot/Poly/proc/command_hop_off(var/mob/living/carbon/human/H) // Skyrat proc
+	check_state()
 	if(!buckled_to_human || !buckled)
 		emote("me", EMOTE_VISIBLE, "gives [H] a confused look, squawking softly.")
 		return
@@ -68,3 +66,9 @@
 	if(prob(40)) // Telling Poly to shut can have consequences.
 		speak_chance += 1
 
+/mob/living/simple_animal/parrot/Poly/proc/check_state() // Manually unbuckling without the command breaks things, and not a single proc is called on the mob being unbuckled. Gotta do it this way.
+	if(buckled_to_human && !buckled)
+		buckled_to_human = FALSE
+		pixel_x = initial(pixel_x)
+		pixel_y = initial(pixel_y)
+		parrot_state = PARROT_WANDER
