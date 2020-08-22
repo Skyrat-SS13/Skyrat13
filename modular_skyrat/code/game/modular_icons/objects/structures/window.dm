@@ -2,6 +2,10 @@
 	icon = 'modular_skyrat/icons/eris/obj/structures/windows.dmi'
 	var/mutable_appearance/mutable_overlay
 
+/obj/structure/window/setAnchored(anchorvalue)
+	..()
+	update_overlays()
+
 /obj/structure/window/Initialize(mapload, direct)
 	. = ..()
 	if(length(canSmoothWith))

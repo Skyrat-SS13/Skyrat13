@@ -356,7 +356,6 @@
 		if(BURN)
 			playsound(src, 'sound/items/welder.ogg', 80, 1)
 
-
 /obj/structure/table/low_wall/deconstruct(disassembled = TRUE)
 	if(!loc) //if already qdel'd somehow, we do nothing
 		return
