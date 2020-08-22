@@ -95,10 +95,10 @@
 		if(wound)
 			if(is_organic_limb())
 				var/datum/wound/slash/critical/incision/disembowel/D = new()
-				D.apply_wound(src)
+				D.apply_wound(src, TRUE)
 			else
 				var/datum/wound/mechanical/slash/critical/incision/disembowel/D = new()
-				D.apply_wound(src)
+				D.apply_wound(src, TRUE)
 
 		C.bleed(12)
 		return TRUE
