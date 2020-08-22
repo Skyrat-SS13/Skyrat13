@@ -280,6 +280,7 @@
 	R.handle_reactions()
 	return amount
 
+/* moved to modular_skyrat
 /datum/reagents/proc/metabolize(mob/living/carbon/C, can_overdose = FALSE, liverless = FALSE)
 	var/list/cached_reagents = reagent_list
 	var/list/cached_addictions = addiction_list
@@ -344,6 +345,7 @@
 		C.update_mobility()
 		C.update_stamina()
 	update_total()
+*/
 
 /datum/reagents/proc/remove_addiction(datum/reagent/R)
 	to_chat(my_atom, "<span class='notice'>You feel like you've gotten over your need for [R.name].</span>")

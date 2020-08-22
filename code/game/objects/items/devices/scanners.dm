@@ -545,9 +545,9 @@ GENETICS SCANNER
 	var/turf/location = get_turf(user)
 	if(!istype(location))
 		return
-	
+
 	scan_turf(user, location)
-	
+
 /obj/item/analyzer/AltClick(mob/user) //Barometer output for measuring when the next storm happens
 	. = ..()
 
@@ -701,7 +701,7 @@ GENETICS SCANNER
 			var/gas_concentration = env_gases[id]/total_moles
 			to_chat(user, "<span class='alert'>[GLOB.meta_gas_names[id]]: [round(gas_concentration*100, 0.01)] % ([round(env_gases[id], 0.01)] mol)</span>")
 		to_chat(user, "<span class='info'>Temperature: [round(environment.temperature-T0C, 0.01)] &deg;C ([round(environment.temperature, 0.01)] K)</span>")
-		
+
 		if(cached_scan_results && cached_scan_results["fusion"]) //notify the user if a fusion reaction was detected
 			var/fusion_power = round(cached_scan_results["fusion"], 0.01)
 			var/tier = fusionpower2text(fusion_power)
