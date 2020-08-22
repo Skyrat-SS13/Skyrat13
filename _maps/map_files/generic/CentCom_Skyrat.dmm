@@ -9900,11 +9900,12 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/toy/plush/mammal/odrew{
-	step_x = 6;
-	step_y = 7
+	pixel_x = 8;
+	pixel_y = 5
 	},
 /obj/item/toy/plush/mammal/redtail{
-	desc = "An adorable stuffed toy resembling a red panda."
+	pixel_x = -6;
+	pixel_y = -5
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
@@ -10692,11 +10693,10 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/item/toy/plush/mammal/reece{
-	step_x = 4;
-	step_y = 5
+	pixel_x = 4
 	},
 /obj/item/toy/plush/mammal/taff{
-	step_x = -6
+	pixel_x = -6
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
@@ -11177,10 +11177,7 @@
 /obj/structure/table/reinforced,
 /obj/item/toy/katana,
 /obj/item/toy/plush/carpplushie,
-/obj/item/toy/plush/mammal/trace{
-	step_x = -4;
-	step_y = 4
-	},
+/obj/item/toy/plush/mammal/trace,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "yf" = (
@@ -11803,11 +11800,11 @@
 "zw" = (
 /obj/item/paicard,
 /obj/structure/table/reinforced,
-/obj/item/toy/plush/mammal/edgar{
-	step_x = 9;
-	step_y = 4
+/obj/item/toy/plush/mammal/edgar,
+/obj/item/toy/plush/mammal/fox{
+	pixel_x = 8;
+	pixel_y = -5
 	},
-/obj/item/toy/plush/mammal/fox,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "zx" = (
@@ -12560,11 +12557,11 @@
 /obj/item/megaphone,
 /obj/machinery/light,
 /obj/item/toy/plush/catgirl/trilby{
-	step_x = 3;
-	step_y = 3
+	pixel_x = -8
 	},
 /obj/item/toy/plush/catgirl/kobe{
-	step_x = -2
+	pixel_x = 4;
+	pixel_y = -6
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
@@ -12588,12 +12585,11 @@
 /obj/item/binoculars,
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/item/toy/plush/lizardplushie/bottles{
-	step_x = 4;
-	step_y = 4
+	pixel_x = 4
 	},
 /obj/item/toy/plush/lizardplushie/emily{
-	step_x = -5;
-	step_y = 3
+	pixel_x = -7;
+	pixel_y = -5
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
@@ -12634,13 +12630,10 @@
 	},
 /obj/item/reagent_containers/food/snacks/popcorn,
 /obj/effect/turf_decal/trimline/red/filled/line,
-/obj/item/toy/plush/lizardplushie/katra{
-	step_x = 5;
-	step_y = 5
-	},
+/obj/item/toy/plush/lizardplushie/katra,
 /obj/item/toy/plush/lizardplushie/lyssa{
-	step_x = -2;
-	step_y = -2
+	pixel_x = 9;
+	pixel_y = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
@@ -12678,12 +12671,11 @@
 /obj/item/binoculars,
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/item/toy/plush/lizardplushie/xil{
-	step_x = -3;
-	step_y = 4
+	pixel_x = -6
 	},
 /obj/item/toy/plush/mammal/bobjoga{
-	step_x = 5;
-	step_y = -3
+	pixel_x = 6;
+	pixel_y = 3
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
@@ -13040,11 +13032,11 @@
 	pixel_x = -5
 	},
 /obj/item/toy/plush/mammal/cinder{
-	step_x = -7;
-	step_y = 3
+	pixel_x = -7
 	},
 /obj/item/toy/plush/mammal/dubious{
-	step_x = 5
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
@@ -13139,14 +13131,14 @@
 	name = "cookie of encouragement";
 	pixel_y = 3
 	},
-/obj/item/toy/plush/mammal/kato{
-	step_x = -10;
-	step_y = 3
+/obj/item/toy/plush/mammal/kato,
+/obj/item/toy/plush/mammal/michael{
+	pixel_x = 8;
+	pixel_y = -5
 	},
-/obj/item/toy/plush/mammal/michael,
 /obj/item/toy/plush/mammal/monika{
-	step_x = 9;
-	step_y = 5
+	pixel_x = -9;
+	pixel_y = -3
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
@@ -14599,8 +14591,8 @@
 "Fk" = (
 /obj/structure/table/reinforced,
 /obj/item/toy/plush/sergal/jadek{
-	step_x = -3;
-	step_y = -5
+	pixel_x = -3;
+	pixel_y = -4
 	},
 /turf/open/floor/carpet/royalblue,
 /area/centcom/evac)
@@ -14611,8 +14603,8 @@
 "Fm" = (
 /obj/structure/table/reinforced,
 /obj/item/toy/plush/sergal/ray{
-	step_x = -4;
-	step_y = -6
+	pixel_x = -4;
+	pixel_y = -4
 	},
 /turf/open/floor/carpet/royalblue,
 /area/centcom/evac)
@@ -18906,6 +18898,9 @@
 /obj/structure/noticeboard{
 	dir = 8;
 	pixel_x = 32
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
