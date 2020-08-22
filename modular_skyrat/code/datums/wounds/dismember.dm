@@ -16,13 +16,13 @@
 	required_status = null
 
 /datum/wound/loss/proc/apply_dismember(obj/item/bodypart/L, wounding_type=WOUND_SLASH)
+	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.can_dismember())
+		qdel(src)
+		return
 	if(L.body_zone == BODY_ZONE_CHEST)
 		qdel(src)
 		var/datum/wound/disembowel/des = new()
 		des.apply_disembowel(L, wounding_type)
-		return
-	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.can_dismember())
-		qdel(src)
 		return
 
 	if(ishuman(L.owner))
@@ -66,10 +66,10 @@
 
 	victim.visible_message(msg, "<span class='userdanger'>Your [L.name] [occur_text]!</span>")
 	if(wounding_type == WOUND_BURN)
-		if(limb.is_robotic_limb())
-			new /obj/effect/decal/remains/robot(get_turf(limb))
-		if(limb.is_organic_limb())
-			new /obj/effect/decal/cleanable/ash(get_turf(limb))
+		if(L.is_organic_limb())
+			new /obj/effect/decal/cleanable/ash(get_turf(L))
+		else if(L.is_robotic_limb())
+			new /obj/effect/decal/remains/robot(get_turf(L))
 	
 	//apply the blood gush effect
 	if(wounding_type != WOUND_BURN && L.owner)
