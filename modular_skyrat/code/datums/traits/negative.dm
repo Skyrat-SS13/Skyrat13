@@ -127,6 +127,7 @@
 	lose_text = "<span class='notice'>You feel sturdy again.</span>"
 	medical_record_text = "Patient's body is fragile, and tends to suffer more damage from all sources."
 
+//paper skin
 /datum/quirk/paper_skin
 	name = "Paper skin"
 	desc = "Your skin is fragile, and breaks apart easily. You are twice as susceptible to slash and puncture wounds."
@@ -134,6 +135,7 @@
 	mob_trait = TRAIT_EASYCUT
 	medical_record_text = "Patient's skin is frail, and  tends to be cut and punctured quite easily."
 
+//hollow bones
 /datum/quirk/hollow_bones
 	name = "Hollow bones"
 	desc = "Your bones are fragile, and break easily. You are twice as susceptible to blunt wounds."
@@ -141,6 +143,7 @@
 	mob_trait = TRAIT_EASYBLUNT
 	medical_record_text = "Patient's bones are fragile, and tend to be easily fractured."
 
+//flammable skin
 /datum/quirk/flammable_skin
 	name = "Flammable skin"
 	desc = "Your skin is quite easy to set on fire. You are twice as susceptible to burn wounds."
@@ -148,6 +151,7 @@
 	mob_trait = TRAIT_EASYBURN
 	medical_record_text = "Patient's skin is unnaturally flammable, and tends to be easily burnt."
 
+//glass jaw
 /datum/quirk/glass_jaw
 	name = "Glass jaw"
 	desc = "Your jaw is weak and susceptible to damage. You are twice as susceptible to wounds on your head."
