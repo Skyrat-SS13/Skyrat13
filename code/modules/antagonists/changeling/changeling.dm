@@ -273,6 +273,10 @@
 		if(verbose)
 			to_chat(user, "<span class='warning'>[target] is not compatible with our biology.</span>")
 		return
+	if(!target.mind)
+		if(verbose)
+			to_chat(user, "<span class='warning'>We gain no benefit from absorbing the simple minded.</span>")
+		return
 	return 1
 
 
