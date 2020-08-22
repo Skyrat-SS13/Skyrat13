@@ -93,19 +93,6 @@
 	mob_trait = TRAIT_ASTHMATIC
 	medical_record_text = "Patient exhibits asthmatic symptoms."
 
-/datum/quirk/paper_skin
-	name = "Paper skin"
-	desc = "Your skin and body are fragile. Damage from most sources is increased by 10%."
-	value = -3
-	medical_record_text = "Patient is frail and  tends to be damaged quite easily."
-
-/datum/quirk/paper_skin/add()
-	. = ..()
-	if(.)
-		var/mob/living/carbon/human/H = quirk_holder
-		if(H && istype(H))
-			H.physiology.armor -= 10
-
 /datum/quirk/allergic
 	name = "Allergic"
 	desc = "You have had terrible allergies for as long as you can remember. Some foods will become toxic to your palate and cause unforeseen consequences."
@@ -133,12 +120,40 @@
 //frail
 /datum/quirk/frail
 	name = "Frail"
-	desc = "Your bones might as well be made of glass! You suffer wounds much more easily than most."
-	value = -2
+	desc = "Your whole body is quite weak! You suffer wounds much more easily than most."
+	value = -3
 	mob_trait = TRAIT_EASYLIMBDISABLE
 	gain_text = "<span class='danger'>You feel frail.</span>"
 	lose_text = "<span class='notice'>You feel sturdy again.</span>"
-	medical_record_text = "Patient has unusually frail bones, recommend calcium-rich diet."
+	medical_record_text = "Patient's body is fragile, and tends to suffer more damage from all sources."
+
+/datum/quirk/paper_skin
+	name = "Paper skin"
+	desc = "Your skin is fragile, and breaks apart easily. You are twice as susceptible to slash and puncture wounds."
+	value = -2
+	mob_trait = TRAIT_EASYCUT
+	medical_record_text = "Patient's skin is frail, and  tends to be cut and punctured quite easily."
+
+/datum/quirk/hollow_bones
+	name = "Hollow bones"
+	desc = "Your bones are fragile, and break easily. You are twice as susceptible to blunt wounds."
+	value = -2
+	mob_trait = TRAIT_EASYBLUNT
+	medical_record_text = "Patient's bones are fragile, and tend to be easily fractured."
+
+/datum/quirk/flammable_skin
+	name = "Flammable skin"
+	desc = "Your skin is quite easy to set on fire. You are twice as susceptible to burn wounds."
+	value = -2
+	mob_trait = TRAIT_EASYBURN
+	medical_record_text = "Patient's skin is unnaturally flammable, and tends to be easily burnt."
+
+/datum/quirk/glass_jaw
+	name = "Glass jaw"
+	desc = "Your jaw is weak and susceptible to damage. You are twice as susceptible to wounds on your head."
+	value = -2
+	mob_trait = TRAIT_GLASSJAW
+	medical_record_text = "Patient has an unnaturally weak skull."
 
 //betz
 /datum/quirk/betz

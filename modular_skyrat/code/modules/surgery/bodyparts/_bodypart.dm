@@ -365,6 +365,16 @@
 			if(WOUND_INTERNALBLEED)
 				wounding_dmg *= 2.25 //well you're just fucked
 	
+	//We check all wound-related traits to multiply damage adequately.
+	if(body_zone == BODY_ZONE_HEAD && HAS_TRAIT(owner, TRAIT_GLASSJAW))
+		wounding_dmg *= 2
+	if(wounding_type == (WOUND_SLASH || WOUND_PIERCE) && HAS_TRAIT(owner, TRAIT_EASYCUT))
+		wounding_dmg *= 2
+	if(wounding_type == WOUND_BLUNT && HAS_TRAIT(owner, TRAIT_EASYBLUNT))
+		wounding_dmg *= 2
+	if(wounding_type == WOUND_BURN && HAS_TRAIT(owner, TRAIT_EASYBURN))
+		wounding_dmg *= 2
+	
 	//Handling for bone only/flesh only/skin only/all of them targets
 	// if we're bone only, all cutting attacks go straight to the bone
 	if((bio_state & BIO_BONE) && !(bio_state & BIO_FLESH))
@@ -478,6 +488,16 @@
 				phantom_wounding_dmg *= 1.5
 			if(WOUND_INTERNALBLEED)
 				phantom_wounding_dmg *= 2.25 //well you're just fucked
+
+	//We check all wound-related traits to multiply damage adequately.
+	if(body_zone == BODY_ZONE_HEAD && HAS_TRAIT(owner, TRAIT_GLASSJAW))
+		phantom_wounding_dmg *= 2
+	if(wounding_type == (WOUND_SLASH || WOUND_PIERCE) && HAS_TRAIT(owner, TRAIT_EASYCUT))
+		phantom_wounding_dmg *= 2
+	if(wounding_type == WOUND_BLUNT && HAS_TRAIT(owner, TRAIT_EASYBLUNT))
+		phantom_wounding_dmg *= 2
+	if(wounding_type == WOUND_BURN && HAS_TRAIT(owner, TRAIT_EASYBURN))
+		phantom_wounding_dmg *= 2
 	
 	//Handling for bone only/flesh only/skin only/all of them targets
 	if((bio_state & BIO_BONE) && !(bio_state & BIO_FLESH)) // if we're bone only, all cutting attacks go straight to the bone
