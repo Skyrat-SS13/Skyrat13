@@ -1,7 +1,0 @@
-author: "Jamini"
-delete-after: True
-changes: 
-  - rscadd: "Mining Foreman"
-  - rscadd: "Mining Foreman's Office"
-  - rscadd: "Mining Technician"
-  - balance: "Adjusted Xenoarchology base equipment"
