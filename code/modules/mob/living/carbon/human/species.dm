@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 #define INTERNAL_WOUND_ROLL_MULT 3
 #define BURN_WOUND_ROLL_MULT 3.6
 #define SPECIFY_BODYPART_BURN_PROB 40
-#define SPECIFY_BODYPART_BLUNT_PROB 40
+#define SPECIFY_BODYPART_INTERNAL_PROB 40
 
 /datum/species
 	var/id	// if the game needs to manually check your race to do something not included in a proc here, it will use this
@@ -2164,7 +2164,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		var/obj/item/bodypart/BP
 		if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BURN_PROB))
 			BP = pick(H.bodyparts)
-		H.apply_damage(damage = burn_damage, damagetype = BURN, def_zone = BP)
+		H.apply_damage(damage = burn_damage, damagetype = BURN, def_zone = BP, wound_bonus = CANT_WOUND)
 		if(BP)
 			BP.painless_wound_roll(WOUND_BURN, burn_damage * BURN_WOUND_ROLL_MULT)
 
@@ -2178,15 +2178,15 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			BP = pick(H.bodyparts) 
 		switch(H.bodytemperature)
 			if(200 to BODYTEMP_COLD_DAMAGE_LIMIT)
-				H.apply_damage(damage = COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = CANT_WOUND)
 				if(BP)
-					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 			if(120 to 200)
-				H.apply_damage(damage = COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = CANT_WOUND)
 				if(BP)
-					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 			else
-				H.apply_damage(damage = COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = CANT_WOUND)
 				if(BP)
 					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 	else
@@ -2201,14 +2201,16 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			if(!HAS_TRAIT(H, TRAIT_RESISTHIGHPRESSURE))
 				H.throw_alert("pressure", /obj/screen/alert/highpressure, 2)
 				var/obj/item/bodypart/BP
-				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BLUNT_PROB))
+				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_INTERNAL_PROB))
 					BP = pick(H.bodyparts)
+				/* Commented out for the moment
 				if(BP && (BP.brute_dam >= (LOW_PRESSURE_DAMAGE * 0.75)))
 					BP.painless_wound_roll(WOUND_INTERNALBLEED, min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
-				H.apply_damage(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod, BRUTE, BP)
 				if(H.getBruteLoss() >= 50)
 					for(var/obj/item/organ/O in H.internal_organs)
 						H.adjustOrganLoss(O.slot, O.maxHealth/50)
+				*/
+				H.apply_damage(damage = (min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod), damagetype = BRUTE, def_zone = BP, wound_bonus = CANT_WOUND)
 			else
 				H.clear_alert("pressure")
 		if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
@@ -2224,14 +2226,16 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				H.throw_alert("pressure", /obj/screen/alert/lowpressure, 2)
 				var/applydam = LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod
 				var/obj/item/bodypart/BP
-				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BLUNT_PROB))
+				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_INTERNAL_PROB))
 					BP = pick(H.bodyparts)
+				/* Commented out for the moment
 				if(BP && BP.brute_dam >= LOW_PRESSURE_DAMAGE * 0.75)
 					BP.painless_wound_roll(WOUND_INTERNALBLEED, applydam * INTERNAL_WOUND_ROLL_MULT)
-				H.apply_damage(applydam, BRUTE, BP)
 				if(H.getBruteLoss() >= 50)
 					for(var/obj/item/organ/O in H.internal_organs)
 						H.adjustOrganLoss(O.slot, O.maxHealth/50)
+				*/
+				H.apply_damage(damage = applydam, damagetype = BRUTE, def_zone = BP, wound_bonus = CANT_WOUND)
 
 //////////
 // FIRE //
@@ -2361,5 +2365,5 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 #undef BURN_WOUND_ROLL_MULT
 #undef INTERNAL_WOUND_ROLL_MULT
-#undef SPECIFY_BODYPART_BLUNT_PROB
+#undef SPECIFY_BODYPART_INTERNAL_PROB
 #undef SPECIFY_BODYPART_BURN_PROB

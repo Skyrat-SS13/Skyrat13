@@ -30,6 +30,7 @@
 	req_access = list(ACCESS_HEADS) //ONLY USED FOR RECORD DELETION RIGHT NOW.
 	var/obj/machinery/dna_scannernew/scanner = null //Linked scanner. For scanning.
 	var/list/pods //Linked cloning pods
+	var/requires_access = FALSE
 	var/list/access_cloning = list(ACCESS_MEDICAL)
 	var/temp = "Inactive"
 	var/scantemp_ckey
@@ -502,7 +503,7 @@
 	else if (href_list["clone"])
 		var/datum/data/record/C = find_record("id", href_list["clone"], records)
 		var/obj/item/card/id/card = usr.get_idcard()
-		if(!istype(card) || !src.check_access(card, access_cloning))
+		if(requires_access && (!istype(card) || !src.check_access(card, access_cloning)))
 			src.temp = "<font class='bad'>Access Denied. Please hold an authorized ID card.</font>"
 			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			return FALSE

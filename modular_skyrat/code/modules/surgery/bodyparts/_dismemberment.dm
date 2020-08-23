@@ -121,8 +121,8 @@
 	update_limb(1)
 	C.bodyparts -= src
 
-	if(held_index)
-		C.dropItemToGround(owner.get_item_for_held_index(held_index), 1)
+	if(held_index && owner?.get_item_for_held_index(held_index))
+		C.dropItemToGround(owner.get_item_for_held_index(held_index), TRUE, TRUE)
 		C.hand_bodyparts[held_index] = null
 	
 	for(var/thing in scars)
