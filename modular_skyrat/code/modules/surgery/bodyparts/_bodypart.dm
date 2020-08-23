@@ -160,10 +160,6 @@
 
 /obj/item/bodypart/examine(mob/user)
 	. = ..()
-	for(var/woundie in wounds)
-		var/datum/wound/W = woundie
-		if(istype(W))
-			. += "[W.get_examine_description(user, FALSE)]"
 	for(var/scarrie in scars)
 		var/datum/scar/S = scarrie
 		if(istype(S))
@@ -363,7 +359,7 @@
 			if(WOUND_PIERCE)
 				wounding_dmg *= 1.5
 			if(WOUND_INTERNALBLEED)
-				wounding_dmg *= 2.25 //well you're just fucked
+				wounding_dmg *= 2 //well you're just fucked
 	
 	//We check all wound-related traits to multiply damage adequately.
 	if(body_zone == BODY_ZONE_HEAD && HAS_TRAIT(owner, TRAIT_GLASSJAW))
@@ -373,6 +369,8 @@
 	if(wounding_type == WOUND_BLUNT && HAS_TRAIT(owner, TRAIT_EASYBLUNT))
 		wounding_dmg *= 2
 	if(wounding_type == WOUND_BURN && HAS_TRAIT(owner, TRAIT_EASYBURN))
+		wounding_dmg *= 2
+	if(wounding_type == WOUND_INTERNALBLEED && HAS_TRAIT(owner, TRAIT_EASYINTERNALBLEED))
 		wounding_dmg *= 2
 	
 	//Handling for bone only/flesh only/skin only/all of them targets
@@ -424,7 +422,8 @@
 				wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
 			if(wounding_type == WOUND_PIERCE && !easy_dismember)
 				wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
-			wounding_type = WOUND_BLUNT
+			if((wounding_type == WOUND_SLASH) || (wounding_type == WOUND_PIERCE))
+				wounding_type = WOUND_BLUNT
 		else if(mangled_state & BODYPART_MANGLED_BOTH && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
 	/*
@@ -487,7 +486,7 @@
 			if(WOUND_PIERCE)
 				phantom_wounding_dmg *= 1.5
 			if(WOUND_INTERNALBLEED)
-				phantom_wounding_dmg *= 2.25 //well you're just fucked
+				phantom_wounding_dmg *= 2 //well you're just fucked
 
 	//We check all wound-related traits to multiply damage adequately.
 	if(body_zone == BODY_ZONE_HEAD && HAS_TRAIT(owner, TRAIT_GLASSJAW))
@@ -497,6 +496,8 @@
 	if(wounding_type == WOUND_BLUNT && HAS_TRAIT(owner, TRAIT_EASYBLUNT))
 		phantom_wounding_dmg *= 2
 	if(wounding_type == WOUND_BURN && HAS_TRAIT(owner, TRAIT_EASYBURN))
+		phantom_wounding_dmg *= 2
+	if(wounding_type == WOUND_INTERNALBLEED && HAS_TRAIT(owner, TRAIT_EASYINTERNALBLEED))
 		phantom_wounding_dmg *= 2
 	
 	//Handling for bone only/flesh only/skin only/all of them targets
@@ -547,7 +548,8 @@
 				phantom_wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
 			if(wounding_type == WOUND_PIERCE && !easy_dismember)
 				phantom_wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
-			wounding_type = WOUND_BLUNT
+			if((wounding_type == WOUND_SLASH) || (wounding_type == WOUND_PIERCE))
+				wounding_type = WOUND_BLUNT
 		else if((mangled_state & BODYPART_MANGLED_BOTH) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
 
@@ -793,6 +795,7 @@
 			wounds_checking = WOUND_LIST_INTERNAL_BLEEDING
 			if(!organic)
 				return
+			check_gauze = FALSE
 	
 	if(!length(wounds_checking))
 		return

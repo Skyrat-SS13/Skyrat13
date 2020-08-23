@@ -49,7 +49,7 @@
 			"<span class='notice'>[user] successfully pries off some warped metal from  [target]'s [parse_zone(target_zone)]!</span>")
 		log_combat(user, target, "pried warped metal in", addition="INTENT: [uppertext(user.a_intent)]")
 		surgery.operated_bodypart.receive_damage(brute=5, wound_bonus=CANT_WOUND)
-		burn_wound.heat_warping -= 1
+		burn_wound.heat_warping -= 4
 		if(burn_wound.heat_warping <= 0)
 			repeatable = FALSE
 	else
@@ -67,7 +67,7 @@
 	if(!..())
 		return
 	var/datum/wound/mechanical/burn/burn_wound = surgery.operated_wound
-	while(burn_wound && burn_wound.heat_warping > 0.25)
+	while(burn_wound && burn_wound.heat_warping > 0)
 		if(!..())
 			break
 
