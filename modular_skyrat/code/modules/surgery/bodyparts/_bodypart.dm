@@ -139,9 +139,12 @@
 		var/mob/living/carbon/C = usr
 		if(!istype(C) || !C.canUseTopic(owner, TRUE, FALSE, FALSE) || !current_gauze)
 			return
+		if(INTERACTING_WITH(C, src))
+			to_chat(C, "<span class='warning'>You are already interacting with [src]!</span>")
+			return
 		if(C == owner)
 			owner.visible_message("<span class='warning'>[owner] starts ripping off \the [current_gauze] from [owner.p_their()] [src.name]!</span>",
-								"<span class='warning'>You start ripping off \the [current_gauze] from your name [src.name]!</span>")
+								"<span class='warning'>You start ripping off \the [current_gauze] from your [src.name]!</span>")
 			if(do_mob(owner, owner, 5 SECONDS))
 				owner.visible_message("<span class='warning'>[owner] rips \the [current_gauze] from [owner.p_their()] [src.name], destroying it in the process!</span>",
 									"<span class='warning'>You rip \the [current_gauze] from your [src.name], destroying it in the process!</span>")
@@ -510,10 +513,6 @@
 			wounding_type = WOUND_BLUNT
 			if(!easy_dismember)
 				phantom_wounding_dmg *= 0.75
-		else if(wounding_type == WOUND_INTERNALBLEED)
-			wounding_type = WOUND_BLUNT
-			if(!easy_dismember)
-				phantom_wounding_dmg *= 0.65
 		
 		if((mangled_state & BODYPART_MANGLED_BONE) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
@@ -526,8 +525,6 @@
 				phantom_wounding_dmg *= 0.5
 		else if(wounding_type == WOUND_PIERCE)
 			phantom_wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
-		else if(wounding_type == WOUND_INTERNALBLEED)
-			phantom_wounding_dmg *= 1.25 // No bones encasing the organs and blood vessels
 		if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
 
