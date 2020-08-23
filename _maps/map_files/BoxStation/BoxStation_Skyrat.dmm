@@ -28784,6 +28784,10 @@
 	pixel_y = -4
 	},
 /obj/item/crowbar,
+/obj/machinery/newscaster{
+	pixel_x = 32;
+	pixel_y = 1
+	},
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "bow" = (
