@@ -339,6 +339,16 @@
 		else
 			. = expected_damage
 
+/mob/living
+	var/seeded = FALSE
+
+/mob/living/proc/plant_kudzu()
+	seeded = FALSE
+	var/turf/T = get_turf(src)
+	var/list/added_mut_list = list()
+	new /datum/spacevine_controller(T, added_mut_list, 50, 5)
+	new /mob/living/simple_animal/hostile/venus_human_trap/ghost_playable(T)
+
 /datum/spacevine_mutation/seeding
 	name = "seeding"
 	hue = "#68b95d"
@@ -348,9 +358,10 @@
 /datum/spacevine_mutation/seeding/on_cross(obj/structure/spacevine/holder, mob/crosser)
 	if(isliving(crosser))
 		var/mob/living/M = crosser
-		if(isvineimmune(M))
+		if(isvineimmune(M) || M.seeded || M.stat == DEAD)
 			return
-		if(prob(10))
+		if(prob(25))
+			M.seeded = TRUE
 			addtimer(CALLBACK(M, /mob/living/proc/plant_kudzu), 1 MINUTES)
 
 /datum/spacevine_mutation/seeding/on_hit(obj/structure/spacevine/holder, mob/hitter, obj/item/I, expected_damage)
@@ -361,12 +372,6 @@
 		if(prob(10))
 			addtimer(CALLBACK(M, /mob/living/proc/plant_kudzu), 1 MINUTES)
 	. = expected_damage
-		
-/mob/living/proc/plant_kudzu()
-	var/turf/T = get_turf(src)
-	var/list/added_mut_list = list()
-	new /datum/spacevine_controller(T, added_mut_list, 50, 5)
-	new /mob/living/simple_animal/hostile/venus_human_trap/ghost_playable(T)
 
 /datum/spacevine_mutation/electrify
 	name = "electrified"
@@ -407,14 +412,14 @@
 			var/choose_reagent = pick(subtypesof(/datum/reagent))
 			M.reagents.add_reagent(choose_reagent, 10)
 
-/datum/spacevine_mutation/plantbgoneresistant
-	name = "plant-b-gone resistant"
-	hue = "#350132"
-	severity = 1
+/datum/spacevine_mutation/radiation
+	name = "radiation pulsing"
+	hue = "#ffef62"
+	severity = 3
 	quality = NEGATIVE
 
-/datum/spacevine_mutation/plantbgoneresistant/on_birth(obj/structure/spacevine/holder)
-	holder.plantbgone_resist = TRUE
+/datum/spacevine_mutation/radiation/on_grow(obj/structure/spacevine/holder)
+	radiation_pulse(holder, 100, 3)
 
 //SKYRAT EDIT - VINES - END
 // SPACE VINES (Note that this code is very similar to Biomass code)
