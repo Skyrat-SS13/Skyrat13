@@ -80,6 +80,7 @@
 	name = "Contract Reroll"
 	desc = "Request a reroll of your current contract list. Will generate a new target, payment, and dropoff for the contracts you currently have available."
 	item_icon = "fa-dice"
+	limited = 2
 	cost = 0	//Skyrat Change end
 
 /datum/contractor_item/contract_reroll/handle_purchase(var/datum/contractor_hub/hub)
