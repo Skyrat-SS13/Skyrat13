@@ -41,6 +41,7 @@
 
 	create_dna(src)
 	dna.initialize_dna(random_blood_type())
+	dna.monkey_aspect = TRUE
 
 /mob/living/carbon/monkey/ComponentInitialize()
 	. = ..()
