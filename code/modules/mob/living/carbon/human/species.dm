@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 GLOBAL_LIST_EMPTY(roundstart_race_datums)
 //
 
-#define INTERNAL_WOUND_ROLL_MULT 2.4
+#define INTERNAL_WOUND_ROLL_MULT 3
 #define BURN_WOUND_ROLL_MULT 3.6
 #define SPECIFY_BODYPART_BURN_PROB 40
 #define SPECIFY_BODYPART_BLUNT_PROB 40
@@ -2208,7 +2208,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				H.apply_damage(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod, BRUTE, BP)
 				if(H.getBruteLoss() >= 50)
 					for(var/obj/item/organ/O in H.internal_organs)
-						H.adjustOrganLoss(O.slot, O.maxHealth/20)
+						H.adjustOrganLoss(O.slot, O.maxHealth/50)
 			else
 				H.clear_alert("pressure")
 		if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
@@ -2231,7 +2231,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				H.apply_damage(applydam, BRUTE, BP)
 				if(H.getBruteLoss() >= 50)
 					for(var/obj/item/organ/O in H.internal_organs)
-						H.adjustOrganLoss(O.slot, O.maxHealth/20)
+						H.adjustOrganLoss(O.slot, O.maxHealth/50)
 
 //////////
 // FIRE //
