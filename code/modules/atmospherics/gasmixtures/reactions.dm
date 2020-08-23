@@ -41,7 +41,7 @@
 	return NO_REACTION
 
 /datum/gas_reaction/nobliumsupression
-	priority = INFINITY
+	priority = 5000 // Skyrat: ALWAYS FIRST (except for noblium formation)
 	name = "Hyper-Noblium Reaction Suppression"
 	id = "nobstop"
 
@@ -388,7 +388,7 @@
 		return REACTING
 
 /datum/gas_reaction/nobliumformation //Hyper-Noblium formation is extrememly endothermic, but requires high temperatures to start. Due to its high mass, hyper-nobelium uses large amounts of nitrogen and tritium. BZ can be used as a catalyst to make it less endothermic.
-	priority = 6
+	priority = 5001 // Skyrat edit: priority changed so noblium doesn't stop noblium formation
 	name = "Hyper-Noblium condensation"
 	id = "nobformation"
 
