@@ -953,12 +953,12 @@
 	"Turtleneck" = 'modular_skyrat/icons/obj/clothing/cargoutilit.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/under.dmi',
+	"Default" = 'icons/mob/clothing/uniform.dmi',
 	"Gorka" = 'modular_skyrat/icons/mob/clothing/cargoutil.dmi',
 	"Turtleneck" = 'modular_skyrat/icons/mob/clothing/cargoutil.dmi',
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
+	"Default" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Gorka" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
 	"Turtleneck" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
 	)
@@ -975,20 +975,20 @@
 	"Utility" = 'modular_skyrat/icons/obj/clothing/cargoutilit.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/under.dmi',
+	"Default" = 'icons/mob/clothing/uniform.dmi',
 	"Gorka" = 'modular_skyrat/icons/mob/clothing/cargoutil.dmi',
 	"Turtleneck" = 'modular_skyrat/icons/mob/clothing/cargoutil.dmi',
 	"Utility" = 'modular_skyrat/icons/mob/clothing/cargoutil.dmi',
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/under.dmi',
+	"Default" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Gorka" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
 	"Turtleneck" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
 	"Utility" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
 	)
 	unique_reskin = list(
 	"Default" = "cargo",
-	"Gorka" = "gorka_cargo", //da
+	"Gorka" = "gorka_cargo",
 	"Turtleneck" = "turtleneck_cargo",
 	"Utility" = "utility_cargo",
 	)
