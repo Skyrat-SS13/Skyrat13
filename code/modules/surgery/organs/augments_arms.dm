@@ -275,7 +275,8 @@
 
 /obj/item/organ/cyberimp/arm/shield
 	name = "arm-mounted riot shield"
-	desc = "A deployable riot shield to help deal with civil unrest."
+	desc = "A deployable hardlight riot shield to help deal with civil unrest."
+	icon_state = "implant-shield"
 	contents = newlist(/obj/item/shield/riot/implant)
 
 /obj/item/organ/cyberimp/arm/shield/Extend(obj/item/I)

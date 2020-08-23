@@ -377,11 +377,10 @@ obj/item/shield/riot/bullet_proof
 	max_integrity = 250
 
 /obj/item/shield/riot/implant
-	name = "telescoping shield implant"
-	desc = "A compact, arm-mounted telescopic shield. While nigh-indestructible when powered by a host user, it will eventually overload from damage. Recharges while inside its implant."
-	item_state = "metal"
-	icon_state = "metal"
-	slowdown = 1
+	name = "hardlight riot shield"
+	desc = "A compact, arm-mounted hardlight riot shield. While nigh-indestructible when powered by a host user, it will eventually overload from damage. Recharges while inside its implant."
+	item_state = "hardlight"
+	icon_state = "hardlight"
 	shield_flags = SHIELD_FLAGS_DEFAULT
 	max_integrity = 100
 	obj_integrity = 100
@@ -398,7 +397,7 @@ obj/item/shield/riot/bullet_proof
 	if(obj_integrity == 0)
 		if(ismob(loc))
 			var/mob/living/L = loc
-			playsound(src, 'sound/effects/glassbr3.ogg', 100)
+			playsound(src, 'sound/weapons/hardlight_break.ogg', 100)
 			L.visible_message("<span class='boldwarning'>[src] overloads from the damage sustained!</span>")
 			L.dropItemToGround(src)			//implant component catch hook will grab it.
 
