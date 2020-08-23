@@ -69,3 +69,16 @@
 	max_distance = 25
 	needs_physical_contact = 1
 	max_distance = 25
+	
+/datum/interaction/blowsmoke
+    command = "blowsmoke"
+    description = "Blow smoke into their face."
+    interaction_sound = null
+    simple_message = "USER blew a plume of smoke into TARGET's face!"
+    needs_physical_contact = TRUE
+    max_distance = 1
+    write_log_user = "blew smoke"
+    write_log_target = "had to breath in smoke."
+
+/datum/interaction/blowsmoke/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+    user.do_blowsmoke(target)
