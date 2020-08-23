@@ -431,7 +431,7 @@
 	*/
 
 	// now we have our wounding_type and are ready to carry on with wounds and dealing the actual damage
-	if(owner && wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus != CANT_WOUND)
+	if(owner && wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus > CANT_WOUND)
 		check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
 
 	var/can_inflict = max_damage - get_damage()
@@ -468,7 +468,7 @@
 
 /// Allows us to roll for and apply a wound without actually dealing damage. Used for aggregate wounding power with pellet clouds (note this doesn't let sharp go to bone)
 /obj/item/bodypart/proc/painless_wound_roll(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)
-	if(!owner || (phantom_wounding_dmg <= WOUND_MINIMUM_DAMAGE) || (wound_bonus == CANT_WOUND))
+	if(!owner || (phantom_wounding_dmg <= WOUND_MINIMUM_DAMAGE) || (wound_bonus <= CANT_WOUND))
 		return FALSE
 
 	var/mangled_state = get_mangled_state()
@@ -1047,7 +1047,7 @@
 		C = source
 		if(!original_owner)
 			original_owner = source
-	else if(original_owner && owner != original_owner) //Foreign limb
+	else if((owner && original_owner) && (owner != original_owner)) //Foreign limb
 		no_update = TRUE
 	else
 		C = owner
@@ -1062,9 +1062,6 @@
 		no_update = TRUE
 		body_markings = "husk" // reeee
 		aux_marking = "husk"
-
-	if(!C)
-		no_update = TRUE
 	
 	if(no_update)
 		return

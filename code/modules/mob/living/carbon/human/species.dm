@@ -2206,11 +2206,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				/* Commented out for the moment
 				if(BP && (BP.brute_dam >= (LOW_PRESSURE_DAMAGE * 0.75)))
 					BP.painless_wound_roll(WOUND_INTERNALBLEED, min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
-				if(H.getBruteLoss() >= 50)
+				if(H.InCritical())
 					for(var/obj/item/organ/O in H.internal_organs)
 						H.adjustOrganLoss(O.slot, O.maxHealth/50)
 				*/
-				H.apply_damage(damage = (min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod), damagetype = BRUTE, def_zone = BP, wound_bonus = CANT_WOUND)
+				var/applydam = (min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
+				H.apply_damage(damage = applydam, damagetype = BRUTE, def_zone = BP, wound_bonus = CANT_WOUND)
 			else
 				H.clear_alert("pressure")
 		if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
@@ -2231,7 +2232,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				/* Commented out for the moment
 				if(BP && BP.brute_dam >= LOW_PRESSURE_DAMAGE * 0.75)
 					BP.painless_wound_roll(WOUND_INTERNALBLEED, applydam * INTERNAL_WOUND_ROLL_MULT)
-				if(H.getBruteLoss() >= 50)
+				if(H.InCritical())
 					for(var/obj/item/organ/O in H.internal_organs)
 						H.adjustOrganLoss(O.slot, O.maxHealth/50)
 				*/

@@ -189,7 +189,7 @@
 	update_icon_dropped()
 	if(destroyed)
 		for(var/obj/item/organ/O in src)
-			O.setOrganDamage(max(O.damage, O.maxHealth * 0.9))
+			O.applyOrganDamage(O.maxHealth/10 * 9)
 			O.forceMove(get_turf(src))
 	C.update_health_hud() //update the healthdoll
 	C.update_body()
@@ -275,7 +275,7 @@
 /obj/item/bodypart/proc/try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
 	if(!owner)
 		return
-	if(!can_dismember() || !dismemberable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE) || ((wounding_dmg + wound_bonus)< DISMEMBER_MINIMUM_DAMAGE) || ((wounding_dmg + bare_wound_bonus)< DISMEMBER_MINIMUM_DAMAGE) || wound_bonus == CANT_WOUND || bare_wound_bonus == CANT_WOUND)
+	if(!can_dismember() || !dismemberable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE) || ((wounding_dmg + wound_bonus) < DISMEMBER_MINIMUM_DAMAGE) || wound_bonus <= CANT_WOUND)
 		return FALSE
 	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 45) // how much damage we dealt with this blow, + 40% of the damage percentage we already had on this bodypart
 	var/bio_state = owner.get_biological_state()
@@ -308,7 +308,7 @@
 /obj/item/bodypart/proc/try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
 	if(!owner)
 		return
-	if(!can_disembowel() || !disembowable || (wounding_dmg < DISEMBOWEL_MINIMUM_DAMAGE))
+	if(!can_disembowel() || !disembowable || (wounding_dmg < DISEMBOWEL_MINIMUM_DAMAGE) || ((wounding_dmg + wound_bonus) < DISEMBOWEL_MINIMUM_DAMAGE) || (wound_bonus <= CANT_WOUND))
 		return FALSE
 	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 35) // how much damage we dealt with this blow, + 35% of the damage percentage we already had on this bodypart
 	var/bio_state = owner.get_biological_state()
