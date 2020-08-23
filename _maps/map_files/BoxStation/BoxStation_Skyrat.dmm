@@ -26904,7 +26904,6 @@
 /turf/open/floor/wood,
 /area/medical/psych)
 "bjP" = (
-/obj/machinery/holopad,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -27540,6 +27539,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+/obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "blu" = (
@@ -61496,6 +61496,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
+"pWK" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/science/robotics/mechbay)
 "pWM" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -108688,7 +108692,7 @@ bar
 aYV
 aXq
 aYV
-bpY
+pWK
 cHH
 biH
 cHN
