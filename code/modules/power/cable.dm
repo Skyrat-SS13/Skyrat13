@@ -548,7 +548,10 @@ By design, d1 is the smallest direction and d2 is the highest
 		return ..()
 
 	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
-	if(affecting && (affecting.status & BODYPART_ROBOTIC))
+	if(affecting && (affecting.status & BODYPART_ROBOTIC) && (user.a_intent == INTENT_HELP))
+		if(!affecting.burn_dam)
+			to_chat(user, "<span class='notice'>\The [affecting] is already fully repaired!</span>")
+			return
 		if(user == H)
 			user.visible_message("<span class='notice'>[user] starts to fix some of the wires in [H]'s [affecting.name].</span>", "<span class='notice'>You start fixing some of the wires in [H]'s [affecting.name].</span>")
 			if(!do_mob(user, H, 50))
