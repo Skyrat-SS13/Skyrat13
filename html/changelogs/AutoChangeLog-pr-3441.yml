@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added genetics back to medical"
-  - rscadd: "Put circuits where genetics was at in science"
