@@ -1850,6 +1850,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	dat += "<center><a href='?_src_=prefs;preference=cosmetic_scars;task=close'>Done</a></center>"
 	dat += "<hr>"
 	var/list/current_scars = list()
+	if(!length(cosmetic_scars))
+		cosmetic_scars = ASSOCIATED_SCARS
 	for(var/BP in cosmetic_scars)
 		for(var/specific in cosmetic_scars[BP])
 			var/list/bruh = cosmetic_scars[BP][specific]
@@ -1886,14 +1888,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				ass_part = SSquirks.associated_bodyparts[BP]
 		if(!ass_part)
 			continue
-		for(var/specific in ass_part.specific_locations)
-			var/list/check = cosmetic_scars[BP][specific]
-			if(istype(check) && check.len)
-				continue
-			else
-				cosmetic_scars[BP][specific] = list()
-				cosmetic_scars[BP][specific]["specific"] = "None"
-				cosmetic_scars[BP][specific]["severity"] = 0
 		var/font_color = "#99c5ff"
 		var/font_desc = "#a899ff"
 		var/font_severity = "#ff5757"

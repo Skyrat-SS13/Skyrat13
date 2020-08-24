@@ -3,6 +3,7 @@
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/extract_implant, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = TORSO_BODYPARTS //SKYRAT EDIT
+	requires_bodypart_type = BODYPART_ORGANIC
 
 //extract implant
 /datum/surgery_step/extract_implant
@@ -50,14 +51,3 @@
 	else
 		to_chat(user, "<span class='warning'>You can't find anything in [target]'s [target_zone]!</span>")
 	return 1
-
-/datum/surgery/implant_removal/mechanic
-	name = "implant removal"
-	requires_bodypart_type = BODYPART_ROBOTIC
-	steps = list(
-		/datum/surgery_step/mechanic_open,
-		/datum/surgery_step/open_hatch,
-		/datum/surgery_step/mechanic_unwrench,
-		/datum/surgery_step/extract_implant,
-		/datum/surgery_step/mechanic_wrench,
-		/datum/surgery_step/mechanic_close)

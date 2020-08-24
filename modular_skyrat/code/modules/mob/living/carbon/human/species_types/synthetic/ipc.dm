@@ -36,7 +36,6 @@
 	C.dna.features["ipc_screen"] = null // Turns off their monitor on death.
 	C.update_body()
 
-
 /datum/species/ipc/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
 	. = ..()
 	//C.grant_language(/datum/language/machine)

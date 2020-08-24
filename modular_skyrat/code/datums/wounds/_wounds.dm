@@ -115,13 +115,14 @@
 	var/can_self_treat = FALSE
 
 /datum/wound/Topic(href, href_list)
+	if(!victim)
+		return
 	if(usr.canUseTopic(victim, BE_CLOSE, FALSE))
 		if(href_list["self_treat"])
 			if(INTERACTING_WITH(usr, victim))
 				to_chat(usr, "<span class='warning'>You're already interacting with [victim]!</span>")
 				return FALSE
 			self_treat(usr, TRUE)
-	return
 
 /datum/wound/proc/self_treat(mob/living/carbon/user, first_time = FALSE) //used so you can far cry up wounds to fix them
 	return FALSE
@@ -129,7 +130,7 @@
 /datum/wound/Destroy()
 	if(attached_surgery)
 		QDEL_NULL(attached_surgery)
-	if(victim?.all_wounds && (src in victim.all_wounds))
+	if(src in victim?.all_wounds)
 		victim.all_wounds -= src
 	if(limb?.wounds && (src in limb.wounds)) // destroy can call remove_wound() and remove_wound() calls qdel, so we check to make sure there's anything to remove first
 		remove_wound()
@@ -272,6 +273,8 @@
 
 /// Additional beneficial effects when the wound is gained, in case you want to give a temporary boost to allow the victim to try an escape or last stand
 /datum/wound/proc/second_wind()
+	if(!victim)
+		return
 	if(HAS_TRAIT(victim, TRAIT_NODETERMINATION)) //toby is gone
 		return
 	switch(severity)	
@@ -300,13 +303,13 @@
 /// Called when the patient is undergoing stasis, so that having fully treated a wound doesn't make you sit there helplessly until you think to unbuckle them
 /datum/wound/proc/try_treating(obj/item/I, mob/user)
 	// first we weed out if we're not dealing with our wound's bodypart, or if it might be an attack
-	if(!I || limb.body_zone != user.zone_selected || (I.force && user.a_intent != INTENT_HELP))
+	if(!victim || !I || limb.body_zone != user.zone_selected || (I.force && user.a_intent != INTENT_HELP))
 		return FALSE
 
 	var/allowed = FALSE
 
 	// check if we have a valid treatable tool (or, if cauteries are allowed, if we have something hot)
-	if((I.tool_behaviour == treatable_tool) || (treatable_tool == TOOL_CAUTERY && I.get_temperature()))
+	if((I.tool_behaviour == treatable_tool) || (treatable_tool == TOOL_CAUTERY && I.get_temperature()) || (treatable_sharp && I.sharpness))
 		allowed = TRUE
 	// failing that, see if we're aggro grabbing them and if we have an item that works for aggro grabs only
 	else if(user.pulling == victim && user.grab_state >= GRAB_AGGRESSIVE && check_grab_treatments(I, user))
@@ -326,8 +329,8 @@
 		to_chat(user, "<span class='warning'>You're already interacting with [victim]!</span>")
 		return TRUE
 
-	if(!victim.can_inject(user, TRUE))
-		to_chat(user, "<span class='warning'>\The [src.name] isn't exposed!</span>")
+	if(!victim.can_inject(user, FALSE))
+		to_chat(user, "<span class='warning'>\The [src.name] can't be treated if it is not exposed!</span>")
 		return TRUE
 	
 	// lastly, treat them

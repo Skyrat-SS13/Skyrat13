@@ -70,7 +70,7 @@
 				victim.add_splatter_floor(get_step(victim.loc, victim.dir))
 
 /datum/wound/pierce/handle_process()
-	blood_flow = min(blood_flow, WOUND_SLASH_MAX_BLOODFLOW)
+	blood_flow = min(blood_flow, WOUND_PIERCE_MAX_BLOODFLOW)
 
 	if(victim.bodytemperature < (BODYTEMP_NORMAL -  10))
 		blood_flow -= 0.2

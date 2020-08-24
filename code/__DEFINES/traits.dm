@@ -210,6 +210,11 @@
 #define TRAIT_SCREWY_CHECKSELF	"screwy_checkself"
 #define TRAIT_HARD_SOLES		"hard_soles"
 #define TRAIT_HEMOPHILIA		"hemophilia"
+#define TRAIT_EASYINTERNALBLEED "easy_internalbleed"
+#define TRAIT_EASYCUT			"easy_cut"
+#define TRAIT_EASYBURN			"easy_burn"
+#define TRAIT_EASYBLUNT			"easy_blunt"
+#define TRAIT_GLASSJAW			"glass_jaw"
 #define TRAIT_ASTHMATIC			"asthmatic"
 #define TRAIT_SYNTH				"synthetic"	//robotic boy
 #define TRAIT_TOXIMMUNE			"toxin_immune"

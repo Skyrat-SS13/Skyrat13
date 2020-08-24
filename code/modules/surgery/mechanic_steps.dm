@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 //open shell
 /datum/surgery_step/mechanic_open
 	name = "Unscrew shell"
@@ -111,3 +112,4 @@
 	display_results(user, target, "<span class='notice'>You begin to open the hatch holders in [target]'s [parse_zone(target_zone)]...</span>",
 		"[user] begins to open the hatch holders in [target]'s [parse_zone(target_zone)].",
 		"[user] begins to open the hatch holders in [target]'s [parse_zone(target_zone)].")
+*/

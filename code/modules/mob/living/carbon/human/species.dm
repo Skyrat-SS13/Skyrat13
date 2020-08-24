@@ -6,10 +6,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 GLOBAL_LIST_EMPTY(roundstart_race_datums)
 //
 
-#define BLUNT_WOUND_ROLL_MULT 3
+#define INTERNAL_WOUND_ROLL_MULT 3
 #define BURN_WOUND_ROLL_MULT 3.6
 #define SPECIFY_BODYPART_BURN_PROB 40
-#define SPECIFY_BODYPART_BLUNT_PROB 40
+#define SPECIFY_BODYPART_INTERNAL_PROB 40
 
 /datum/species
 	var/id	// if the game needs to manually check your race to do something not included in a proc here, it will use this
@@ -1557,7 +1557,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 			playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)
 			target.visible_message("<span class='danger'>[user]'s [atk_verb] misses [target]!</span>", \
-							"<span class='danger'>You avoid [user]'s [atk_verb]!</span>", "<span class='hear'>You hear a swoosh!</span>", null, COMBAT_MESSAGE_RANGE, null, \
+							"<span class='danger'>You avoid [user]'s [atk_verb]!</span>", "<span class='hear'>You hear a swoosh!</span>", COMBAT_MESSAGE_RANGE, null, \
 							user, "<span class='warning'>Your [atk_verb] misses [target]!</span>")
 			log_combat(user, target, "attempted to punch")
 			return FALSE
@@ -1771,10 +1771,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	if(!affecting) //Something went wrong. Maybe the limb is missing?
 		affecting = H.bodyparts[1]
 
-	hit_area = affecting.name
-	var/def_zone = affecting.body_zone
-
-	var/armor_block = H.run_armor_check(affecting, "melee", "<span class='notice'>Your armor has protected your [hit_area].</span>", "<span class='notice'>Your armor has softened a hit to your [hit_area].</span>",I.armour_penetration)
+	hit_area = affecting.body_zone
+	var/armor_block = H.run_armor_check(affecting, "melee", "<span class='notice'>Your armor has protected your [parse_zone(hit_area)].</span>", "<span class='notice'>Your armor has softened a hit to your [parse_zone(hit_area)].</span>",I.armour_penetration)
 	var/Iforce = I.force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
 	//skyrat edit
 	armor_block = min(95,armor_block) //cap damage reduction at 95%
@@ -1788,7 +1786,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 	H.send_item_attack_message(I, user, hit_area, totitemdamage, affecting)
 	
-	apply_damage(totitemdamage * weakness, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
+	apply_damage(totitemdamage * weakness, I.damtype, hit_area, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
 
 	I.do_stagger_action(H, user, totitemdamage)
 
@@ -1848,6 +1846,20 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 						H.update_inv_glasses()
 
 			if(BODY_ZONE_CHEST)
+				if(H.stat == CONSCIOUS && !I.get_sharpness() && armor_block < 50)
+					if(prob(I.force))
+						H.visible_message("<span class='danger'>[H] has been knocked down!</span>", \
+									"<span class='userdanger'>[H] has been knocked down!</span>")
+						H.apply_effect(60, EFFECT_KNOCKDOWN, armor_block)
+
+				if(bloody)
+					if(H.wear_suit)
+						H.wear_suit.add_mob_blood(H)
+						H.update_inv_wear_suit()
+					if(H.w_uniform)
+						H.w_uniform.add_mob_blood(H)
+						H.update_inv_w_uniform()
+			if(BODY_ZONE_PRECISE_GROIN)
 				if(H.stat == CONSCIOUS && !I.get_sharpness() && armor_block < 50)
 					if(prob(I.force))
 						H.visible_message("<span class='danger'>[H] has been knocked down!</span>", \
@@ -2152,7 +2164,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		var/obj/item/bodypart/BP
 		if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BURN_PROB))
 			BP = pick(H.bodyparts)
-		H.apply_damage(damage = burn_damage, damagetype = BURN, def_zone = BP)
+		H.apply_damage(damage = burn_damage, damagetype = BURN, def_zone = BP, wound_bonus = CANT_WOUND)
 		if(BP)
 			BP.painless_wound_roll(WOUND_BURN, burn_damage * BURN_WOUND_ROLL_MULT)
 
@@ -2166,15 +2178,15 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			BP = pick(H.bodyparts) 
 		switch(H.bodytemperature)
 			if(200 to BODYTEMP_COLD_DAMAGE_LIMIT)
-				H.apply_damage(damage = COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = CANT_WOUND)
 				if(BP)
-					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 			if(120 to 200)
-				H.apply_damage(damage = COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = CANT_WOUND)
 				if(BP)
-					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 			else
-				H.apply_damage(damage = COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = CANT_WOUND)
 				if(BP)
 					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 	else
@@ -2187,13 +2199,19 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	switch(adjusted_pressure)
 		if(HAZARD_HIGH_PRESSURE to INFINITY)
 			if(!HAS_TRAIT(H, TRAIT_RESISTHIGHPRESSURE))
-				var/obj/item/bodypart/BP
-				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BLUNT_PROB))
-					BP = pick(H.bodyparts)
-				H.apply_damage(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod, BRUTE, BP)
-				if(BP)
-					BP.painless_wound_roll(WOUND_BLUNT, min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
 				H.throw_alert("pressure", /obj/screen/alert/highpressure, 2)
+				var/obj/item/bodypart/BP
+				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_INTERNAL_PROB))
+					BP = pick(H.bodyparts)
+				var/applydam = (min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
+				/* Commented out for the moment
+				if(BP && (BP.brute_dam >= (LOW_PRESSURE_DAMAGE * 0.75)))
+					BP.painless_wound_roll(WOUND_INTERNALBLEED, applydam * INTERNAL_WOUND_ROLL_MULT)
+				if(H.InCritical())
+					for(var/obj/item/organ/O in H.internal_organs)
+						H.adjustOrganLoss(O.slot, O.maxHealth/50)
+				*/
+				H.apply_damage(damage = applydam, damagetype = BRUTE, def_zone = BP, wound_bonus = CANT_WOUND)
 			else
 				H.clear_alert("pressure")
 		if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
@@ -2206,14 +2224,19 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			if(HAS_TRAIT(H, TRAIT_RESISTLOWPRESSURE))
 				H.clear_alert("pressure")
 			else
-				var/obj/item/bodypart/BP
-				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BLUNT_PROB))
-					BP = pick(H.bodyparts)
-				var/applydam = LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod
-				H.apply_damage(applydam, BRUTE, BP)
-				if(BP && BP.brute_dam >= applydam * 0.75)
-					BP.painless_wound_roll(WOUND_BLUNT, applydam * BLUNT_WOUND_ROLL_MULT)
 				H.throw_alert("pressure", /obj/screen/alert/lowpressure, 2)
+				var/applydam = LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod
+				var/obj/item/bodypart/BP
+				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_INTERNAL_PROB))
+					BP = pick(H.bodyparts)
+				/* Commented out for the moment
+				if(BP && (BP.brute_dam >= (LOW_PRESSURE_DAMAGE * 0.75)))
+					BP.painless_wound_roll(WOUND_INTERNALBLEED, applydam * INTERNAL_WOUND_ROLL_MULT)
+				if(H.InCritical())
+					for(var/obj/item/organ/O in H.internal_organs)
+						H.adjustOrganLoss(O.slot, O.maxHealth/50)
+				*/
+				H.apply_damage(damage = applydam, damagetype = BRUTE, def_zone = BP, wound_bonus = CANT_WOUND)
 
 //////////
 // FIRE //
@@ -2342,6 +2365,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		. |= BIO_BONE
 
 #undef BURN_WOUND_ROLL_MULT
-#undef BLUNT_WOUND_ROLL_MULT
-#undef SPECIFY_BODYPART_BLUNT_PROB
+#undef INTERNAL_WOUND_ROLL_MULT
+#undef SPECIFY_BODYPART_INTERNAL_PROB
 #undef SPECIFY_BODYPART_BURN_PROB

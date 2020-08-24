@@ -1256,6 +1256,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 								ADMIN_PUNISHMENT_BLEED,
 								ADMIN_PUNISHMENT_PERFORATE,
 								ADMIN_PUNISHMENT_BURN,
+								ADMIN_PUNISHMENT_INTERNALBLEED,
 								ADMIN_PUNISHMENT_WARCRIME,
 								ADMIN_PUNISHMENT_INCISIONIFY,
 								ADMIN_PUNISHMENT_SHRAPNEL,
@@ -1400,6 +1401,14 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				if(!burn_part.is_organic_limb())
 					type_wound = pick(WOUND_LIST_BURN_MECHANICAL)
 				burn_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_INTERNALBLEED)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/blood_part in C.bodyparts)
+				var/type_wound = pick(WOUND_LIST_INTERNAL_BLEEDING)
+				blood_part.force_wound_upwards(type_wound, smited=TRUE)
 		if(ADMIN_PUNISHMENT_WARCRIME)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
@@ -1434,6 +1443,9 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 					if(!squish_part.is_organic_limb())
 						type_wound = pick(WOUND_LIST_BLUNT_MECHANICAL)
 					squish_part.force_wound_upwards(type_wound, smited=TRUE)
+				for(var/obj/item/bodypart/blood_part in C.bodyparts)
+					var/type_wound = pick(WOUND_LIST_INTERNAL_BLEEDING)
+					blood_part.force_wound_upwards(type_wound, smited=TRUE)
 		if(ADMIN_PUNISHMENT_INCISIONIFY)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")

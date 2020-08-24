@@ -178,14 +178,15 @@
 	pH = 7.2
 	color = "#cccccc"
 	process_flags = REAGENT_SYNTHETIC
+	metabolization_rate = 1
 
 /datum/reagent/medicine/kerosene/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(method == TOUCH)
-		M.adjustOxyLoss(max(-30, -reac_volume))
+		M.adjustOxyLoss(max(-10, -reac_volume))
 	..()
 
 /datum/reagent/medicine/kerosene/on_mob_life(mob/living/L)
-	L.adjustOxyLoss(-0.6 * REM)
+	L.adjustOxyLoss(-1 * REM)
 	..()
 	. = 1
 

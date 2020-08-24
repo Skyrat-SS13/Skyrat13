@@ -10,6 +10,7 @@
 				/datum/surgery_step/clamp_bleeders,
 				/datum/surgery_step/close)
 	possible_locs = TORSO_BODYPARTS //skyrat edit
+	requires_bodypart_type = BODYPART_ORGANIC
 	target_mobtypes = list(/mob/living) //Feel free to dissect devils but they're magic.
 	replaced_by = /datum/surgery/advanced/experimental_dissection/adv
 	requires_tech = FALSE

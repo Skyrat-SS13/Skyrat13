@@ -32,8 +32,17 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 500)
 	build_path = /obj/item/stack/sticky_tape
-	category = list("Equipment")
+	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/surgical_tape
+	name = "Surgical Tape"
+	id = "surgical_sticky_tape"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/plastic = 750)
+	build_path = /obj/item/stack/sticky_tape/surgical
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/super_sticky_tape
 	name = "Super Sticky Tape"
@@ -41,7 +50,7 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 3000)
 	build_path = /obj/item/stack/sticky_tape/super
-	category = list("Equipment")
+	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/pointy_tape
@@ -50,5 +59,5 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1500, /datum/material/plastic = 1000)
 	build_path = /obj/item/stack/sticky_tape/pointy
-	category = list("Equipment")
+	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE

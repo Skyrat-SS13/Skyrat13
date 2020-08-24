@@ -1,6 +1,10 @@
 /datum/surgery/prosthetic_replacement
 	name = "Prosthetic replacement"
-	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/add_prosthetic, /datum/surgery_step/close)
+	steps = list(/datum/surgery_step/incise,
+				/datum/surgery_step/clamp_bleeders,
+				/datum/surgery_step/retract_skin,
+				/datum/surgery_step/add_prosthetic,
+				/datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = ALL_BODYPARTS //skyrat edit
 	requires_bodypart = FALSE //need a missing limb
@@ -10,6 +14,9 @@
 	if(!iscarbon(target))
 		return 0
 	var/mob/living/carbon/C = target
+	var/obj/item/bodypart/BP = C.get_bodypart(SSquirks.bodypart_child_to_parent[user.zone_selected])
+	if(BP?.status & BODYPART_ROBOTIC)
+		return 0
 	if(!C.get_bodypart(user.zone_selected)) //can only start if limb is missing
 		return 1
 

@@ -2,7 +2,7 @@
 /////BONE FIXING SURGERIES//////
 
 ///// Repair Hairline Fracture (Severe)
-/datum/surgery/robotic_mechanic_repair_bone_hairline
+/datum/surgery/mechanic_repair_bone_hairline
 	name = "Repair endoskeleton damage (malfunctioning)"
 	steps = list(/datum/surgery_step/mechanic_open,
 				/datum/surgery_step/mechanic_repair_bone_hairline,
@@ -19,10 +19,11 @@
 		return (targeted_bodypart.get_wound_type(targetable_wound))
 
 ///// Repair Compound Fracture (Critical)
-/datum/surgery/robotic_mechanic_repair_bone_compound
+/datum/surgery/mechanic_repair_bone_compound
 	name = "Repair endoskeleton damage (broken)"
 	steps = list(/datum/surgery_step/mechanic_open,
 				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/open_hatch,
 				/datum/surgery_step/mechanic_reset_compound_fracture,
 				/datum/surgery_step/mechanic_repair_bone_compound,
 				/datum/surgery_step/mechanic_wrench,

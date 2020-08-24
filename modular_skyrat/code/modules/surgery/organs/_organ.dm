@@ -200,7 +200,7 @@
 		if(badboy)
 			badboy = strip_html_simple(badboy)
 			etching = "[badboy]"
-			user.visible_message("<span class='notice'>[user] etches something on \the [src] with \the [I].</span>, <span class='notice'>You etch <b>\"[badboy]\"</b> on [src] with \the [I]. Hehe.</span>")
+			user.visible_message("<span class='notice'>[user] etches something on \the [src] with \the [I].</span>", " <span class='notice'>You etch <b>\"[badboy]\"</b> on [src] with \the [I]. Hehe.</span>")
 		else
 			return ..()
 

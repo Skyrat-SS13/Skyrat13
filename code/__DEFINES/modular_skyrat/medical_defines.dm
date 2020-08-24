@@ -22,6 +22,7 @@
 #define WOUND_SLASH 1 // any brute weapon/attack with sharpness = SHARP_EDGED. rolls for slash wounds
 #define WOUND_PIERCE 2 // any brute weapon/attack with sharpness = SHARP_POINTY. rolls for piercing wounds
 #define WOUND_BURN	3 // any concentrated burn attack (lasers really). rolls for burning wounds
+#define WOUND_INTERNALBLEED 4 // currently only caused by exposure to space
 
 // The ones below will be implemented in the future, but dont exist atm
 #define WOUND_TOXIN 4
@@ -43,6 +44,7 @@
 #define CANT_WOUND -100
 
 // List in order of highest severity to lowest (if the wound is rolled for normally - there are edge cases like incisions)
+#define WOUND_LIST_INTERNAL_BLEEDING list(/datum/wound/internalbleed/critical, /datum/wound/internalbleed/severe, /datum/wound/internalbleed/moderate)
 #define WOUND_LIST_INCISION	list(/datum/wound/slash/critical/incision)
 #define WOUND_LIST_INCISION_MECHANICAL	list(/datum/wound/mechanical/slash/critical/incision)
 #define WOUND_LIST_BLUNT		list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate/jaw, /datum/wound/blunt/moderate/ribcage, /datum/wound/blunt/moderate/hips, /datum/wound/blunt/moderate)
@@ -66,6 +68,7 @@
 #define WOUND_BURN_SANITIZATION_RATE 0.15 // how quickly sanitization removes infestation and decays per tick
 #define WOUND_SLASH_MAX_BLOODFLOW		8 // how much blood you can lose per tick per slash max. 8 is a LOT of blood for one cut so don't worry about hitting it easily
 #define WOUND_PIERCE_MAX_BLOODFLOW		8 // same as above, but for piercing wounds
+#define WOUND_INTERNAL_MAX_BLOODFLOW	10 // same as above, but for internal bleeding
 #define WOUND_SLASH_DEAD_CLOT_MIN		0.05 // dead people don't bleed, but they can clot! this is the minimum amount of clotting per tick on dead people, so even critical cuts will slowly clot in dead people
 #define WOUND_PIERCE_DEAD_CLOT_MIN		0.05 // same as above but for piercing wounds
 #define WOUND_BONE_HEAD_TIME_VARIANCE 	20 // if we suffer a bone wound to the head that creates brain traumas, the timer for the trauma cycle is +/- by this percent (0-100)
@@ -96,8 +99,8 @@
 // What kind of biology we have, and what wounds we can suffer, mostly relies on the HAS_FLESH and HAS_BONE species traits on human species
 #define BIO_INORGANIC	0 // golems, cannot suffer any wounds
 #define BIO_BONE	(1<<0) // skeletons and plasmemes, can only suffer bone wounds, only needs mangled bone to be able to dismember
-#define BIO_FLESH	(1<<1) // nothing right now, maybe slimepeople in the future, can only suffer slashing, piercing, and burn wounds
-#define BIO_SKIN	(1<<2)
+#define BIO_FLESH	(1<<1) // slimepeople can only suffer slashing, piercing, and burn wounds
+#define BIO_SKIN	(1<<2) // literally nothing right now
 #define BIO_FULL	(BIO_BONE | BIO_FLESH | BIO_SKIN) // standard humanoids, can suffer all wounds, needs mangled bone and flesh to dismember
 
 //Organ status flags

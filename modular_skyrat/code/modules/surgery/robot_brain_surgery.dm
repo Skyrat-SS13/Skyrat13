@@ -3,11 +3,11 @@
 	steps = list(
 	/datum/surgery_step/mechanic_open,
 	/datum/surgery_step/mechanic_unwrench,
+	/datum/surgery_step/open_hatch,
 	/datum/surgery_step/pry_off_plating,
 	/datum/surgery_step/prepare_electronics,
 	/datum/surgery_step/fix_robot_brain,
 	/datum/surgery_step/mechanic_close)
-
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
 	requires_bodypart_type = BODYPART_ROBOTIC
