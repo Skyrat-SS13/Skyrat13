@@ -1,0 +1,6 @@
+author: "jjpark-kb"
+delete-after: True
+changes: 
+  - rscadd: "made medbay reception 2 more turfs larger for a 2x2; box station"
+  - rscadd: "added a chem-to-medbay fridge and desk; box station"
+  - rscadd: "changed genetics/cloning layout"
