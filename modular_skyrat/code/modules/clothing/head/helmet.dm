@@ -21,6 +21,8 @@
 	armor = list("melee" = 40, "bullet" = 35, "laser" = 35, "energy" = 50, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100)
 	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	actions_types = list(/datum/action/item_action/toggle_nv)
+	var/activated = FALSE
+	var/stored_nv = 0
 
 /datum/action/item_action/toggle_nv
 	name = "Toggle Night-Vision"
@@ -31,12 +33,21 @@
 	if(. && (slot == SLOT_HEAD))
 		return TRUE
 
+/obj/item/clothing/head/helmet/advanced/dropped(mob/user)
+	. = ..()
+	if(activated)
+		activated = !activated
+		user.see_in_dark = stored_nv
+
 /obj/item/clothing/head/helmet/advanced/ui_action_click(mob/user, action)
 	. = ..()
 	if(istype(action, /datum/action/item_action/toggle_nv))
-		if(darkness_view != 8)
-			darkness_view = 8
+		if(!activated)
+			activated = !activated
+			stored_nv = user.see_in_dark
+			user.see_in_dark = 8
 			to_chat(user, "<span class='notice'>You activate [src]'s night vision.</span>")
 		else
-			darkness_view = 0
+			activated = !activated
+			user.see_in_dark = stored_nv
 			to_chat(user, "<span class='notice'>You deactivate [src]'s night vision.</span>")
