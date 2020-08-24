@@ -164,10 +164,6 @@
 
 /obj/item/bodypart/examine(mob/user)
 	. = ..()
-	for(var/scarrie in scars)
-		var/datum/scar/S = scarrie
-		if(istype(S))
-			. += "[S.get_examine_description(user, FALSE)]"
 	if(brute_dam > DAMAGE_PRECISION)
 		. += "<span class='warning'>This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.</span>"
 	if(burn_dam > DAMAGE_PRECISION)
