@@ -35,6 +35,7 @@
 
 	var/brute_reduction = 0 //Subtracted to brute damage taken
 	var/burn_reduction = 0	//Subtracted to burn damage taken
+	var/stamina_reduction = 0 //Subtracted to stamina damage taken
 
 	//Coloring and proper item icon update
 	var/skin_tone = ""
@@ -301,7 +302,7 @@
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
-/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE) // maybe separate BRUTE_SHARP and BRUTE_OTHER eventually somehow hmm
+/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, spread_damage = TRUE)
 	if(!owner)
 		return FALSE
 	
@@ -319,6 +320,7 @@
 	brute = round(max(brute * dmg_mlt, 0),DAMAGE_PRECISION)
 	burn = round(max(burn * dmg_mlt, 0),DAMAGE_PRECISION)
 	stamina = round(max(stamina * dmg_mlt, 0),DAMAGE_PRECISION)
+	stamina = max(0, stamina - stamina_reduction)
 	brute = max(0, brute - brute_reduction)
 	burn = max(0, burn - burn_reduction)
 	//No stamina scaling.. for now..
@@ -437,21 +439,61 @@
 	if(owner && wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus > CANT_WOUND)
 		check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
 
-	var/can_inflict = max_damage - get_damage()
+	//Total damage used to calculate the can_inflicts
 	var/total_damage = brute + burn
-	if(total_damage > can_inflict && total_damage > 0) // TODO: the second part of this check should be removed once disabling is all done
-		brute = round(brute * (can_inflict / total_damage),DAMAGE_PRECISION)
-		burn = round(burn * (can_inflict / total_damage),DAMAGE_PRECISION)
 
-	if(can_inflict <= 0)
-		return FALSE
+	if(!total_damage)
+		return
+	
+	//How much we are actuallly allowed to inflict
+	var/can_inflict = max_damage - get_damage()
+	var/can_inflict_brute = max(0, (brute/total_damage) * can_inflict)
+	var/can_inflict_burn = max(0, (burn/total_damage) * can_inflict)
 
+	//We save these values to spread out to other limbs
+	var/extrabrute = max(0, brute - can_inflict_brute)
+	var/extraburn = max(0, burn - can_inflict_burn)
+
+	if(total_damage && (total_damage > can_inflict))
+		brute = can_inflict_brute
+		burn = can_inflict_burn
+		if(owner && spread_damage && (extrabrute || extraburn))
+			//We still have damage left. Time to spread.
+			//First we get the body zones.
+			var/list/spreadable_limbs = list()
+			if(dismember_bodyzone)
+				spreadable_limbs |= dismember_bodyzone
+			if(parent_bodyzone)
+				spreadable_limbs |= parent_bodyzone
+			if(length(children_zones))
+				spreadable_limbs |= children_zones
+			
+			//We replace the body zones with the appropriate limbs
+			for(var/i in spreadable_limbs)
+				spreadable_limbs -= i
+				var/obj/item/bodypart/BP = owner.get_bodypart(i)
+				if(BP && ((BP.brute_dam + BP.burn_dam) < BP.max_damage))
+					spreadable_limbs |= BP
+				else if(BP && ((BP.brute_dam + BP.burn_dam) >= BP.max_damage) && owner.get_bodypart(BP.dismember_bodyzone))
+					spreadable_limbs |= owner.get_bodypart(BP.dismember_bodyzone)
+			
+			//We have the limbs. Now we divide the damage appropriately between children and parent.
+			if(length(spreadable_limbs))
+				extrabrute = round(extrabrute/length(spreadable_limbs), 1)
+				extraburn = round(extraburn/length(spreadable_limbs), 1)
+				for(var/obj/item/bodypart/damage_limb in spreadable_limbs)
+					//We apply damage without any armor checks, because the limb that made it suffer damage is absolutely FUCKED anyways.
+					damage_limb.receive_damage(brute = extrabrute, burn = extraburn, sharpness = sharpness, spread_damage = (damage_limb.parent_bodyzone ? TRUE : FALSE))
+	
+	if(!brute && !burn)
+		return
+	
 	brute_dam += brute
 	burn_dam += burn
-	if(status == BODYPART_ROBOTIC)
-		if(owner)
-			if((brute+burn)>3 && prob((20+brute+burn)))
-				do_sparks(3,FALSE,src.owner)
+
+	if((status & BODYPART_ROBOTIC) && owner)
+		if((brute+burn)>3 && prob((20+brute+burn)))
+			do_sparks(3,FALSE,src.owner)
 
 	for(var/i in wounds)
 		var/datum/wound/W = i
