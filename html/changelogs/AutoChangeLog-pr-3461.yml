@@ -1,0 +1,6 @@
+author: "jjpark-kb"
+delete-after: True
+changes: 
+  - rscadd: "added patient room"
+  - rscdel: "removed one apothecary"
+  - bugfix: "fixed missing APC for a medical/morgue maint"
