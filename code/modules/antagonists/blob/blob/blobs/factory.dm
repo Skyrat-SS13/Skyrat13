@@ -9,7 +9,8 @@
 	armor = list("melee" = 10, "bullet" = 20, "laser" = 15, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90)
 	var/list/spores = list()
 	var/mob/living/simple_animal/hostile/blob/blobbernaut/naut = null
-	var/max_spores = 3
+	//var/max_spores = 3
+	var/max_spores = 5 //SKYRAT EDIT - BLOB
 	var/spore_delay = 0
 	var/spore_cooldown = 80 //8 seconds between spores and after spore death
 

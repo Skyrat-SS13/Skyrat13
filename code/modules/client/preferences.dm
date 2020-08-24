@@ -400,10 +400,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					dat += "<br>"
 				dat += "<b>[capitalize(custom_name_id)]:</b> <a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a><br>"
 			dat += "<h2>Additional Preferences</h2>"
+			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a>"
+			
+			
+			dat += "<h2>Special Names:</h2>"
 			//
-			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a><BR>"
-
-			dat += "<BR><b>Special Names:</b><BR>"
 			old_group = null
 			for(var/custom_name_id in (GLOB.preferences_custom_names - list("religion", "deity"))) //skyrat edit
 				var/namedata = GLOB.preferences_custom_names[custom_name_id]
@@ -1032,7 +1033,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							if(T.taur_mode & P.accepted_taurs)
 								tauric_shape = TRUE
 					dat += "<b>Penis Shape:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_shape;task=input'>[features["cock_shape"]][tauric_shape ? " (Taur)" : ""]</a>"
-					dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[features["cock_length"]] inch(es)</a>"
+					//Skyrat edit - Metric measurements
+					if(toggles & METRIC_OR_BUST)
+						dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[round(features["cock_length"] * 2.54, 1)] centimeter(s)</a>"
+					else
+						dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[features["cock_length"]] inch(es)</a>"
+					//Skyrat edit end
 					dat += "<b>Penis Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=cock_visibility;task=input'>[features["cock_visibility"]]</a>"
 					dat += "<b>Has Testicles:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=has_balls'>[features["has_balls"] == TRUE ? "Yes" : "No"]</a>"
 					if(features["has_balls"])
@@ -1101,6 +1107,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Ghost PDA:</b> <a href='?_src_=prefs;preference=ghost_pda'>[(chat_toggles & CHAT_GHOSTPDA) ? "All Messages" : "Nearest Creatures"]</a><br>"
 			dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=winflash'>[(windowflashing) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<br>"
+			//SKYRAT CHANGES BEGIN
+			dat += "<b>Play Megafauna Music:</b> <a href='?_src_=prefs;preference=hear_megafauna'>[(toggles & SOUND_MEGAFAUNA) ? "Enabled":"Disabled"]</a><br>"
+			//SKYRAT CHANGES END
 			dat += "<b>Play Admin MIDIs:</b> <a href='?_src_=prefs;preference=hear_midis'>[(toggles & SOUND_MIDI) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>Play Lobby Music:</b> <a href='?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>See Pull Requests:</b> <a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "Enabled":"Disabled"]</a><br>"
@@ -1138,7 +1147,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				p_chaos = preferred_chaos
 			dat += "<b>Preferred Chaos Amount:</b> <a href='?_src_=prefs;preference=preferred_chaos;task=input'>[p_chaos]</a><br>"
 //SKYRAT CHANGES
+			dat += "<h2>Skyrat Preferences</h2>"
 			dat += "<b>Show name at round-end report:</b> <a href='?_src_=prefs;preference=appear_in_round_end_report'>[appear_in_round_end_report ? "Yes" : "No"]</a><br>"
+			dat += "<b>Measurements:</b> <a href='?_src_=prefs;preference=metric_or_bust'>[toggles & METRIC_OR_BUST ? "Metric" : "Imperial"]</a><br>"
 //END OF SKYRAT CHANGES
 			dat += "<br>"
 			dat += "</td>"
@@ -2676,9 +2687,19 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("cock_length")
 					var/min_D = CONFIG_GET(number/penis_min_inches_prefs)
 					var/max_D = CONFIG_GET(number/penis_max_inches_prefs)
-					var/new_length = input(user, "Penis length in inches:\n([min_D]-[max_D])", "Character Preference") as num|null
-					if(new_length)
-						features["cock_length"] = clamp(round(new_length), min_D, max_D)
+					//Skyrat edit - Metric measurements
+					var/min_D_m = round(min_D * 2.54, 1)
+					var/max_D_m = round(max_D * 2.54, 1)
+					var/new_length
+					if(toggles & METRIC_OR_BUST)
+						new_length = input(user, "Penis length in centimeters:\n([min_D_m]-[max_D_m])", "Character Preference") as num|null
+						if(new_length)
+							features["cock_length"] = clamp(round(new_length/2.54, 1), min_D, max_D)
+					else
+						new_length = input(user, "Penis length in inches:\n([min_D]-[max_D])", "Character Preference") as num|null
+						if(new_length)
+							features["cock_length"] = clamp(round(new_length, 1), min_D, max_D)
+					//Skyrat edit end
 
 				if("cock_shape")
 					var/new_shape
@@ -3116,6 +3137,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					toggles ^= SOUND_ADMINHELP
 				if("announce_login")
 					toggles ^= ANNOUNCE_LOGIN
+				//skyrat edit
+				if("metric_or_bust")
+					toggles ^= METRIC_OR_BUST
+				//
 				if("combohud_lighting")
 					toggles ^= COMBOHUD_LIGHTING
 
@@ -3134,6 +3159,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("hear_midis")
 					toggles ^= SOUND_MIDI
+				
+				//SKYRAT CHANGES BEGIN - Megafauna music
+				if("hear_megafauna")
+					toggles ^= SOUND_MEGAFAUNA
+				//SKYRAT CHANGES END
 
 				if("verb_consent") // Skyrat - ERP Mechanic Addition
 					toggles ^= VERB_CONSENT // Skyrat - ERP Mechanic Addition
@@ -3389,7 +3419,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		character.update_hair()
 	if(auto_hiss)
 		character.toggle_hiss()
-
 
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)
