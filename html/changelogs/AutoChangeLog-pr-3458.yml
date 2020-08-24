@@ -1,0 +1,5 @@
+author: "NotRanged"
+delete-after: True
+changes: 
+  - tweak: "Breathing stimulum gives a slight movespeed increase, like with nitryl."
+  - bugfix: "Breathing nitryl actually works now."
