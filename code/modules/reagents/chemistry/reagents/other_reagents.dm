@@ -1454,10 +1454,12 @@
 
 /datum/reagent/stimulum/on_mob_metabolize(mob/living/L)
 	..()
+	L.add_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulum) // Skyrat
 	ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
 
 /datum/reagent/stimulum/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulum) // Skyrat
 	REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
 	..()
