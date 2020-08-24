@@ -243,9 +243,6 @@
 	SSblackbox.Seal()
 
 	sleep(50)
-	//skyrat edit
-	do_ERG()
-	//
 	ready_for_reboot = TRUE
 	standard_reboot()
 
