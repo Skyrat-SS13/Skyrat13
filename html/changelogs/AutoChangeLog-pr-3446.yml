@@ -1,0 +1,7 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - balance: "Bloodsuckers can no longer feed from humanized monkeys"
+  - balance: "Bloodsuckers can no longer use regenerative cores"
+  - balance: "Bloodsuckers can no longer drink blood reagents to increase their blood volume"
+  - balance: "Bloodsucker feeding is now a flat 50% more effective (from 15 blood per tick to 22.5 blood per tick)"
