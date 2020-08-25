@@ -12,8 +12,8 @@
 
 /turf/open/floor/plating/cobblestone/Initialize()
 	.=..()
-		icon_state = "cobblestone[rand(1, 4)]"
+	icon_state = "cobblestone[rand(1, 4)]"
 
 /turf/open/floor/plating/cobblestone/snow/Initialize()
 	.=..()
-		icon_state = "cobblestone_snow[rand(1, 4)]"
+	icon_state = "cobblestone_snow[rand(1, 4)]"
