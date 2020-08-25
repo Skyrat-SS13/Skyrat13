@@ -9885,6 +9885,9 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "jku" = (
+/obj/machinery/light{
+	dir = 8
+	},
 /obj/item/kirbyplants{
 	icon_state = "plant-10"
 	},
@@ -10152,6 +10155,9 @@
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
 "jue" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /obj/item/kirbyplants/random,
 /turf/open/floor/mineral/titanium/white,
 /area/centcom/evac)
@@ -10886,9 +10892,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium/old/white{
-	color = "#4ee68b"
-	},
+/turf/open/floor/carpet/green,
 /area/centcom/evac)
 "kfn" = (
 /obj/machinery/camera{
@@ -11052,9 +11056,7 @@
 "knO" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
-/turf/open/floor/mineral/titanium/old/white{
-	color = "#4ee68b"
-	},
+/turf/open/floor/carpet/green,
 /area/centcom/evac)
 "kog" = (
 /turf/closed/indestructible/abductor{
@@ -11407,7 +11409,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "kHr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -11579,7 +11581,7 @@
 /area/centcom/holding/cafe)
 "kWk" = (
 /obj/structure/chair/office/dark,
-/turf/open/floor/carpet/green,
+/turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "kWr" = (
 /obj/machinery/washing_machine,
@@ -11630,7 +11632,7 @@
 /area/abductor_ship)
 "kYt" = (
 /obj/structure/chair/comfy/shuttle,
-/turf/open/floor/carpet/green,
+/turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "lbv" = (
 /turf/open/floor/plasteel,
@@ -12146,7 +12148,7 @@
 /obj/machinery/modular_computer/console/preset/engineering{
 	dir = 1
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "lHP" = (
 /obj/effect/turf_decal/stripes/line{
@@ -12220,7 +12222,7 @@
 	dir = 1;
 	req_one_access = null
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "lMF" = (
 /obj/structure/flora/ausbushes/genericbush,
@@ -12240,7 +12242,7 @@
 /obj/machinery/computer/shuttle{
 	dir = 1
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "lNz" = (
 /obj/effect/turf_decal/stripes/line{
@@ -12256,13 +12258,13 @@
 	dir = 1;
 	req_one_access = null
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "lPa" = (
 /obj/machinery/modular_computer/console/preset/command{
 	dir = 1
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "lPR" = (
 /obj/structure/table/reinforced,
@@ -15251,9 +15253,6 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/pet_lounge)
-"paa" = (
-/turf/open/floor/carpet/green,
-/area/centcom/evac)
 "pan" = (
 /obj/machinery/light{
 	dir = 1
@@ -82249,7 +82248,7 @@ xSF
 xSF
 xSF
 xSF
-glL
+jku
 uTe
 uTe
 jCT
@@ -82508,7 +82507,7 @@ uTe
 uTe
 uTe
 uTe
-jku
+uTe
 wdX
 wdX
 wdX
@@ -82768,8 +82767,8 @@ uTe
 uTe
 uTe
 xOr
-paa
-paa
+vof
+vof
 wdX
 tcT
 tcT
@@ -83016,7 +83015,7 @@ wdX
 tcT
 wdX
 wdX
-rTT
+uTe
 oNj
 hVX
 uTe
@@ -83273,7 +83272,7 @@ feA
 vof
 gnJ
 wdX
-uTe
+rTT
 hFf
 hVX
 uTe
@@ -83283,8 +83282,8 @@ jls
 wdX
 kdb
 wdX
-paa
-paa
+vof
+vof
 lMg
 tcT
 mlv
@@ -83540,7 +83539,7 @@ jaf
 vwk
 jaf
 vwk
-paa
+vof
 kYt
 lNq
 tcT
@@ -83787,7 +83786,7 @@ fiY
 fQH
 gqt
 wdX
-uTe
+rTT
 hFf
 hVX
 uTe
@@ -83797,8 +83796,8 @@ jmh
 wdX
 kds
 wdX
-paa
-paa
+vof
+vof
 lOS
 tcT
 mlv
@@ -84044,7 +84043,7 @@ wdX
 tcT
 wdX
 wdX
-rTT
+uTe
 hFf
 hVX
 uTe
@@ -84310,8 +84309,8 @@ uTe
 uTe
 uTe
 xOr
-paa
-paa
+vof
+vof
 wdX
 tcT
 tcT
@@ -84564,7 +84563,7 @@ uTe
 uTe
 uTe
 uTe
-jue
+uTe
 wdX
 wdX
 wdX
@@ -84819,7 +84818,7 @@ pCK
 pCK
 pCK
 pCK
-kUz
+jue
 uTe
 uTe
 jFn

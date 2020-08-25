@@ -10,5 +10,5 @@
 	desc = "Snnnooooowwwww! Snowy cobblestone."
 	icon_state = "cobblestone_snow"
 
-/turf/open/floor/cobblestone/Initialize()
-	dir = pick(NORTH, SOUTH, EAST, WEST)
+/turf/open/floor/cobblestone/Initialize(mapload)
+	dir = pick(1,2,4,8)
