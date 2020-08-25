@@ -63,6 +63,14 @@
 	surplus = 40
 	illegal_tech = FALSE
 
+/datum/uplink_item/dangerous/whoopass
+	name = "Can of Whoopass"
+	desc = "An unopened can of Whoopass someone left lying around. Try not to throw it at anybody you like."
+	item = /obj/item/whoopass
+	cost = 7
+	surplus = 20
+	illegal_tech = FALSE
+
 /datum/uplink_item/badass/syndiecigs
 	name = "Syndicate Smokes"
 	desc = "Strong flavor, dense smoke, infused with omnizine."
