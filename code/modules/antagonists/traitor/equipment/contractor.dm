@@ -76,12 +76,11 @@
 	var/limited = -1 // Any number above 0 for how many times it can be bought in a round for a single traitor. -1 is unlimited.
 	var/cost // Cost of the item in contract rep.
 
-/datum/contractor_item/contract_reroll
+/datum/contractor_item/contract_reroll	//Skyrat Change begin
 	name = "Contract Reroll"
 	desc = "Request a reroll of your current contract list. Will generate a new target, payment, and dropoff for the contracts you currently have available."
 	item_icon = "fa-dice"
-	limited = 2
-	cost = 0
+	cost = 0	//Skyrat Change end
 
 /datum/contractor_item/contract_reroll/handle_purchase(var/datum/contractor_hub/hub)
 	. = ..()

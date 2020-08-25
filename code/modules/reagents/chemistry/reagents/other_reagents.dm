@@ -41,7 +41,7 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		var/blood_id = C.get_blood_id()
-		if((HAS_TRAIT(C, TRAIT_NOMARROW) || blood_id == /datum/reagent/blood || blood_id == /datum/reagent/blood/jellyblood) && (method == INJECT || (method == INGEST && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))))
+		if((HAS_TRAIT(C, TRAIT_NOMARROW) || blood_id == /datum/reagent/blood || blood_id == /datum/reagent/blood/jellyblood) && (method == INJECT || (method == INGEST && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))) && !AmBloodsucker(C))
 			C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM * C.blood_ratio)
 			// we don't care about bloodtype here, we're just refilling the mob
 
@@ -1066,7 +1066,7 @@
 /datum/reagent/iron/on_mob_life(mob/living/carbon/C)
 	if((HAS_TRAIT(C, TRAIT_NOMARROW)))
 		return
-	if(C.blood_volume < (BLOOD_VOLUME_NORMAL*C.blood_ratio))
+	if(C.blood_volume < (BLOOD_VOLUME_NORMAL*C.blood_ratio) && !AmBloodsucker(C))
 		C.blood_volume += 0.25
 	..()
 
@@ -1454,10 +1454,12 @@
 
 /datum/reagent/stimulum/on_mob_metabolize(mob/living/L)
 	..()
+	L.add_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulum) // Skyrat
 	ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
 
 /datum/reagent/stimulum/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulum) // Skyrat
 	REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
 	..()
