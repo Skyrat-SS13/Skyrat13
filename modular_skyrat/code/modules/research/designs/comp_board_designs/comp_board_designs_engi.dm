@@ -2,7 +2,7 @@
 ///ENGINE Boards///
 ///////////////////
 
-/datum/design/board/comm_monitor
+/datum/design/board/atmos_sim
 	name = "Computer Design (Atmospherics Simulator)"
 	desc = "Allows for the construction of circuit boards used to build an atmospherics simulator."
 	id = "atmos_sim"
