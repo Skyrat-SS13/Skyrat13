@@ -80,17 +80,16 @@
 	else
 		dat += "<tr><td colspan=1>Volume: [mix.volume] L</td><td colspan=2>Temp: [mix.temperature] K</td></tr>"
 	for(var/id in mix.gases)
-		var/list/gas = mix.gases[id]
 		dat += "<tr>"
 		if(mix_id)
 			dat += "<td><a href='?src=[REF(src)];mix=[mix_id];delete_gas=[id]'>X</a></td>"
-			dat += "<td>[gas[GAS_META][META_GAS_NAME]]</td>"
-			dat += "<td><a href='?src=[REF(src)];mix=[mix_id];change_moles=[id]'>[gas[MOLES]] moles</a></td>"
-			dat += "<td><a href='?src=[REF(src)];mix=[mix_id];change_pressure=[id]'>[gas[MOLES] * R_IDEAL_GAS_EQUATION * mix.temperature / mix.volume] kPa</a></td>"
+			dat += "<td>[GLOB.meta_gas_names[id]]</td>"
+			dat += "<td><a href='?src=[REF(src)];mix=[mix_id];change_moles=[id]'>[mix.gases[id]] moles</a></td>"
+			dat += "<td><a href='?src=[REF(src)];mix=[mix_id];change_pressure=[id]'>[mix.gases[id]] * R_IDEAL_GAS_EQUATION * mix.temperature / mix.volume] kPa</a></td>"
 		else
-			dat += "<td>[gas[GAS_META][META_GAS_NAME]]</td>"
-			dat += "<td>[gas[MOLES]] moles</td>"
-			dat += "<td>[gas[MOLES] * R_IDEAL_GAS_EQUATION * mix.temperature / mix.volume] kPa</td>"
+			dat += "<td>[GLOB.meta_gas_names[id]]</td>"
+			dat += "<td>[mix.gases[id]] moles</td>"
+			dat += "<td>[mix.gases[id] * R_IDEAL_GAS_EQUATION * mix.temperature / mix.volume] kPa</td>"
 		dat += "</tr>"
 	if(mix_id)
 		dat += "<tr><td colspan=4><a href='?src=[REF(src)];mix=[mix_id];add_gas=1'>Add Gas</a></td></tr>"
@@ -104,17 +103,17 @@
 	if(href_list["change_moles"])
 		var/id = text2path(href_list["change_moles"])
 		if(mix.gases[id])
-			var/new_moles = input(usr, "Enter a new mole count for [mix.gases[id][GAS_META][META_GAS_NAME]]", name) as null|num
+			var/new_moles = input(usr, "Enter a new mole count for [GLOB.meta_gas_names[mix.gases[id]]]", name) as null|num
 			if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || new_moles == null)
 				return
-			mix.gases[id][MOLES] = new_moles
+			mix.gases[id] = new_moles
 	if(href_list["change_pressure"])
 		var/id = text2path(href_list["change_pressure"])
 		if(mix.gases[id])
-			var/new_pressure = input(usr, "Enter a new pressure for [mix.gases[id][GAS_META][META_GAS_NAME]]", name) as null|num
+			var/new_pressure = input(usr, "Enter a new pressure for[GLOB.meta_gas_names[mix.gases[id]]]", name) as null|num
 			if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || new_pressure == null)
 				return
-			mix.gases[id][MOLES] = new_pressure / R_IDEAL_GAS_EQUATION / mix.temperature * mix.volume
+			mix.gases[id] = new_pressure / R_IDEAL_GAS_EQUATION / mix.temperature * mix.volume
 	if(href_list["add_gas"])
 		var/list/valid_gas_types = subtypesof(/datum/gas)
 		for(var/id in mix.gases)
@@ -126,7 +125,6 @@
 		var/gas_type = input(usr, "Select a gas type", name) as null|anything in gas_types_map
 		if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || gas_type == null)
 			return
-		mix.assert_gas(gas_types_map[gas_type])
 	if(href_list["change_volume"])
 		var/volume_type = input(usr, "Select a container type", name) as null|anything in list("Custom", "Floor Tile", "Canister", "Portable Tank")
 		if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || volume_type == null)
@@ -151,7 +149,7 @@
 		new_temp = max(TCMB, new_temp)
 		var/temp_ratio = mix.temperature / new_temp
 		for(var/gas_id in mix.gases)
-			mix.gases[gas_id][MOLES] *= temp_ratio // Preserve the pressure
+			mix.gases[gas_id] *= temp_ratio // Preserve the pressure
 		mix.temperature = new_temp
 
 /obj/machinery/computer/atmos_sim/Topic(href, href_list)
