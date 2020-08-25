@@ -280,7 +280,15 @@
 	mob_species = /datum/species/skeleton
 	mob_color = "#454545"
 
+/obj/effect/mob_spawn/human/corpse/charredskeleton/equip(mob/living/carbon/human/H)
+	. = ..()
+	H.dna?.monkey_aspect = TRUE
+
 //Legion infested mobs
+
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested/equip(mob/living/carbon/human/H)
+	. = ..()
+	H.dna?.monkey_aspect = TRUE
 
 /obj/effect/mob_spawn/human/corpse/damaged/legioninfested/dwarf/equip(mob/living/carbon/human/H)
 	. = ..()
