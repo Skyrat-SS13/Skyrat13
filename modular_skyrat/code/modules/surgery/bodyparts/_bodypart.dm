@@ -128,11 +128,47 @@
 	/// If something is currently grasping this bodypart and trying to staunch bleeding (see [/obj/item/grasp_self])
 	var/obj/item/self_grasp/grasped_by
 
+	/// How much pain this limb is feeling
+	var/pain_dam = 0
+	/// Amount of pain healed per on_life() tick
+	var/pain_heal_tick = 0
+	/// How much we multiply pain_heal_tick by if the owner is lying down
+	var/pain_heal_rest_multiplier = 3
+	/// Multiply incoming pain by this. Works like incoming_stam_mult in a way.
+	var/incoming_pain_mult = 1
+	/// Maximum pain this limb can suffer
+	var/max_pain_damage = 0
+	/// Point at which the limb is disabled due to pain
+	var/pain_disability_threshold = 0
+	/// Reduces incoming pain by this, flat
+	var/pain_reduction = 0
+
+	/// Toxin damage
+	var/tox_dam = 0
+	/// Maximum toxin damage this limb can suffer
+	var/max_tox_damage = 0
+	/// Reduces incoming toxin damage by this, flat
+	var/tox_reduction = 0
+
+	/// Clone/cellular damage
+	var/clone_dam = 0
+	/// Maximum cellular damage this limb can suffer
+	var/max_clone_damage = 0
+	/// Reduces incoming cellular damage by this, flat
+	var/clone_reduction = 0
+
 /obj/item/bodypart/Initialize()
 	. = ..()
 	if(starting_children.len)
 		for(var/I in starting_children)
 			new I(src)
+	pain_disability_threshold = (max_damage * 0.75)
+	if(!max_tox_damage)
+		max_tox_damage = max_damage
+	if(!max_pain_damage)
+		max_pain_damage = max_damage
+	if(!max_clone_damage)
+		max_clone_damage = max_damage
 
 /obj/item/bodypart/Topic(href, href_list)
 	. = ..()
@@ -282,7 +318,7 @@
 	return our_organs
 
 /obj/item/bodypart/proc/consider_processing()
-	if(stamina_dam > DAMAGE_PRECISION)
+	if((stamina_dam > DAMAGE_PRECISION) || (get_pain() > DAMAGE_PRECISION))
 		. = TRUE
 	//else if.. else if.. so on.
 	else
@@ -292,18 +328,21 @@
 //Return TRUE to get whatever mob this is in to update health.
 /obj/item/bodypart/proc/on_life()
 	if(stam_heal_tick && stamina_dam > DAMAGE_PRECISION)					//DO NOT update health here, it'll be done in the carbon's life.
-		if(heal_damage(brute = 0, burn = 0, stamina = (stam_heal_tick * (disabled ? 2 : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
+		if(heal_damage(stamina = (stam_heal_tick * (disabled ? 2 : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
+			. |= BODYPART_LIFE_UPDATE_HEALTH
+	if(pain_heal_tick && pain_dam > DAMAGE_PRECISION)
+		if(heal_damage(pain = (pain_heal_tick * (owner?.lying ? pain_heal_rest_multiplier : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
-/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, spread_damage = TRUE)
+/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, spread_damage = TRUE, pain = 0, toxin = 0, clone = 0)
 	if(!owner)
 		return FALSE
 	
 	var/hit_percent = (100-blocked)/100
-	if((!brute && !burn && !stamina) || hit_percent <= 0)
+	if((!brute && !burn && !stamina && !pain && !toxin && !clone) || hit_percent <= 0)
 		return FALSE
 	
 	if(owner.status_flags & GODMODE)
@@ -315,13 +354,18 @@
 	var/dmg_mlt = CONFIG_GET(number/damage_multiplier) * hit_percent
 	brute = round(max(brute * dmg_mlt, 0),DAMAGE_PRECISION)
 	burn = round(max(burn * dmg_mlt, 0),DAMAGE_PRECISION)
-	stamina = round(max(stamina * dmg_mlt, 0),DAMAGE_PRECISION)
-	stamina = max(0, stamina - stamina_reduction)
 	brute = max(0, brute - brute_reduction)
 	burn = max(0, burn - burn_reduction)
-	//No stamina scaling.. for now..
+	stamina = round(max(stamina * dmg_mlt, 0),DAMAGE_PRECISION)
+	stamina = max(0, stamina - stamina_reduction)
+	pain = round(max(pain * dmg_mlt, 0),DAMAGE_PRECISION)
+	pain = max(0, pain - pain_reduction)
+	toxin = round(max(toxin * dmg_mlt, 0),DAMAGE_PRECISION)
+	toxin = max(0, toxin - tox_reduction)
+	clone = round(max(clone * dmg_mlt, 0),DAMAGE_PRECISION)
+	clone = max(0, clone - clone_reduction)
 
-	if(!brute && !burn && !stamina)
+	if(!brute && !burn && !stamina && !pain && !toxin && !clone)
 		return FALSE
 
 	brute *= wound_damage_multiplier
@@ -489,13 +533,19 @@
 		var/datum/wound/W = i
 		W.receive_damage(sharpness, wounding_dmg, wound_bonus)
 
-	//We've dealt the physical damages, if there's room lets apply the stamina damage.
+	//We've dealt the physical damages, if there's room lets apply the stamina, pain and toxin damage.
 	stamina_dam += round(clamp(stamina, 0, max_stamina_damage - stamina_dam), DAMAGE_PRECISION)
+	pain_dam += round(clamp(pain, 0, max_pain_damage - pain_dam), DAMAGE_PRECISION)
+	tox_dam += round(clamp(toxin, 0, max_tox_damage - tox_dam), DAMAGE_PRECISION)
+	clone_dam += round(clamp(clone, 0, max_clone_damage - clone_dam), DAMAGE_PRECISION)
 
 	if(owner && updating_health)
 		owner.updatehealth()
 		if(stamina > DAMAGE_PRECISION)
 			owner.update_stamina()
+			. = TRUE
+		if(pain > DAMAGE_PRECISION)
+			owner.update_pain()
 			. = TRUE
 	consider_processing()
 	update_disabled()
@@ -584,10 +634,10 @@
 
 	check_wounding(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)
 
-//Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
+//Heals brute, burn, stamina, pain, toxin and clone damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
 //Cannot remove negative damage (i.e. apply damage)
-/obj/item/bodypart/proc/heal_damage(brute, burn, stamina, only_robotic = FALSE, only_organic = TRUE, updating_health = TRUE)
+/obj/item/bodypart/proc/heal_damage(brute, burn, stamina, only_robotic = FALSE, only_organic = TRUE, updating_health = TRUE, pain, toxin, clone)
 	if(only_robotic && !(status & BODYPART_ROBOTIC)) //This makes organic limbs not heal when the proc is in Robotic mode.
 		return
 
@@ -597,6 +647,9 @@
 	brute_dam	= round(max(brute_dam - brute, 0), DAMAGE_PRECISION)
 	burn_dam	= round(max(burn_dam - burn, 0), DAMAGE_PRECISION)
 	stamina_dam = round(max(stamina_dam - stamina, 0), DAMAGE_PRECISION)
+	pain_dam = round(max(pain_dam - pain, 0), DAMAGE_PRECISION)
+	tox_dam = round(max(tox_dam - toxin, 0), DAMAGE_PRECISION)
+	clone_dam = round(max(clone_dam - clone, 0), DAMAGE_PRECISION)
 	if(owner && updating_health)
 		owner.updatehealth()
 	if(owner.dna && owner.dna.species && (REVIVESBYHEALING in owner.dna.species.species_traits))
@@ -609,11 +662,17 @@
 	return update_bodypart_damage_state() 
 
 //Returns total damage.
-/obj/item/bodypart/proc/get_damage(include_stamina = FALSE)
+/obj/item/bodypart/proc/get_damage(include_stamina = FALSE, include_pain = FALSE)
 	var/total = brute_dam + burn_dam
 	if(include_stamina)
 		total = max(total, stamina_dam)
+	if(include_pain)
+		total = max(total, pain_dam)
 	return total
+
+//Returns pain damage.
+/obj/item/bodypart/proc/get_pain()
+	return pain_dam
 
 //Checks disabled status thresholds
 /obj/item/bodypart/proc/update_disabled(var/upparent = TRUE, var/upchildren = TRUE)
@@ -649,7 +708,7 @@
 				var/obj/item/bodypart/parent = owner.get_bodypart(parent_bodyzone)
 				if(parent.is_disabled())
 					return parent.is_disabled()
-		if(get_damage(TRUE) >= ((max_damage - min(5, max_damage * 0.1)) * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1))) //Easy limb disable disables the limb at 40% health instead of 0%
+		if(get_damage(include_stamina = TRUE) >= ((max_damage - min(5, max_damage * 0.1)) * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1))) //Easy limb disable disables the limb at 40% health instead of 0%
 			if(!last_maxed)
 				owner.emote("scream")
 				last_maxed = TRUE
@@ -659,7 +718,9 @@
 			last_maxed = FALSE
 		if(stamina_dam >= max_stamina_damage)
 			return BODYPART_DISABLED_DAMAGE
-		if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)))
+		if((pain_dam >= max_pain_damage) || (pain_dam >= max_damage))
+			return BODYPART_DISABLED_PAIN
+		if(disabled && (get_damage(include_stamina = TRUE, include_pain = TRUE) <= (max_damage * 0.5)))
 			return BODYPART_NOT_DISABLED
 	else
 		return BODYPART_NOT_DISABLED
@@ -708,6 +769,10 @@
 		brute_dam = 0
 		brutestate = 0
 		burnstate = 0
+		stamina_dam = 0
+		pain_dam = 0
+		tox_dam = 0
+		clone_dam = 0
 
 	if(change_icon_to_default)
 		if(status & BODYPART_ORGANIC)

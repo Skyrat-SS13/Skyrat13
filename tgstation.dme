@@ -136,6 +136,7 @@
 #include "code\__DEFINES\material\worth.dm"
 #include "code\__DEFINES\misc\return_values.dm"
 #include "code\__DEFINES\mobs\slowdowns.dm"
+#include "code\__DEFINES\modular_skyrat\chemistry.dm"
 #include "code\__DEFINES\modular_skyrat\DNA.dm"
 #include "code\__DEFINES\modular_skyrat\medical_defines.dm"
 #include "code\__DEFINES\modular_skyrat\misc.dm"

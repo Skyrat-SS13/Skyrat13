@@ -1,7 +1,7 @@
 //Check if the limb is dismemberable
 /obj/item/bodypart/proc/can_dismember(obj/item/I)
 	if(status & BODYPART_HARDDISMEMBER)
-		if(owner && brain && !((owner.stat == DEAD) || owner.InCritical()))
+		if(owner && !((owner.stat == DEAD) || owner.InCritical()))
 			return FALSE
 	if(dismemberable)
 		return TRUE

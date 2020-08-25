@@ -545,6 +545,7 @@
 		return
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
 	staminaloss = getStaminaLoss()
+	painloss = getPainLoss()
 	update_stat()
 	med_hud_set_health()
 	med_hud_set_status()
@@ -1017,6 +1018,9 @@
 	return TRUE
 
 /mob/living/proc/update_stamina()
+	return
+
+/mob/living/proc/update_pain()
 	return
 
 /mob/living/carbon/alien/update_stamina()

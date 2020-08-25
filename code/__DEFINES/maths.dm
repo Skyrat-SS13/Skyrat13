@@ -1,6 +1,7 @@
 // Credits to Nickr5 for the useful procs I've taken from his library resource.
 // This file is quadruple wrapped for your pleasure
 // (
+#define CEIL(x) (-round(-(x)))
 
 #define NUM_E 2.71828183
 
