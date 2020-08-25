@@ -177,9 +177,9 @@
 	display_name = "Industrial Engineering"
 	description = "A refresher course on modern engineering technology."
 	prereq_ids = list("base")
-	design_ids = list("solarcontrol", "recharger", "powermonitor", "rped", "pacman", "adv_capacitor", "adv_scanning", "emitter", "high_cell", "adv_matter_bin",
+	design_ids = list("solarcontrol", "recharger", "powermonitor", "rped", "pacman", "adv_capacitor", "adv_scanning", "emitter", "high_cell", "adv_matter_bin", "atmos_sim",
 	"atmosalerts", "atmos_control", "recycler", "autolathe", "autolathe_secure", "high_micro_laser", "nano_mani", "mesons", "thermomachine", "rad_collector", "tesla_coil", "grounding_rod",
-	"apc_control", "cell_charger", "power control", "airlock_board", "firelock_board", "airalarm_electronics", "firealarm_electronics", "cell_charger", "stack_console", "stack_machine", "rcd_ammo", "atmos_sim") // Skyrat: Adds atmos_sim
+	"apc_control", "cell_charger", "power control", "airlock_board", "firelock_board", "airalarm_electronics", "firealarm_electronics", "cell_charger", "stack_console", "stack_machine", "rcd_ammo") // Skyrat: Adds atmos_sim
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 6000)
 
 /datum/techweb_node/adv_engi
