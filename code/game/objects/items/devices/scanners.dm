@@ -301,7 +301,7 @@ GENETICS SCANNER
 				if(P.length>20)
 					//skyrat edit
 					if(user?.client?.prefs?.toggles & METRIC_OR_BUST)
-						temp_message += " <span class='info'>Subject has a sizeable gentleman's organ at [round(P.length * 2.54, 0.1)] inches.</span>"
+						temp_message += " <span class='info'>Subject has a sizeable gentleman's organ at [round(P.length * 2.54, 0.1)] centimeters.</span>"
 					else
 						temp_message += " <span class='info'>Subject has a sizeable gentleman's organ at [round(P.length, 0.1)] inches.</span>"
 					//
