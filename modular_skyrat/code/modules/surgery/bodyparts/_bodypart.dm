@@ -437,14 +437,11 @@
 
 	//Total damage used to calculate the can_inflicts
 	var/total_damage = brute + burn
-
-	if(!total_damage)
-		return
 	
 	//How much we are actuallly allowed to inflict
 	var/can_inflict = max_damage - get_damage()
-	var/can_inflict_brute = max(0, (brute/total_damage) * can_inflict)
-	var/can_inflict_burn = max(0, (burn/total_damage) * can_inflict)
+	var/can_inflict_brute = max(0, (brute/max(1, total_damage)) * can_inflict)
+	var/can_inflict_burn = max(0, (burn/max(1, total_damage)) * can_inflict)
 
 	//We save these values to spread out to other limbs
 	var/extrabrute = max(0, brute - can_inflict_brute)
