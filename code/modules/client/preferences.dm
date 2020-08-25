@@ -1863,31 +1863,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	dat += "</div>"
 	for(var/BP in cosmetic_scars)
 		var/obj/item/bodypart/ass_part
-		switch(BP)
-			if(BODY_ZONE_HEAD)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_CHEST)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_PRECISE_GROIN)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_R_ARM)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_PRECISE_R_HAND)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_L_ARM)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_PRECISE_L_HAND)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_R_LEG)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_PRECISE_R_FOOT)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_L_LEG)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_PRECISE_L_FOOT)
-				ass_part = SSquirks.associated_bodyparts[BP]
+		ass_part = SSquirks.associated_bodyparts[BP]
 		if(!ass_part)
 			continue
+		if(!length(cosmetic_scars[ass_part.body_zone]))
+			for(var/i in ass_part.specific_locations)
+				cosmetic_scars[ass_part.body_zone][i] = list("severity" = WOUND_SEVERITY_NONE, "desc" = "None")
 		var/font_color = "#99c5ff"
 		var/font_desc = "#a899ff"
 		var/font_severity = "#ff5757"
