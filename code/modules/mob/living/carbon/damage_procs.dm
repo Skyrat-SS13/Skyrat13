@@ -22,7 +22,7 @@
 				adjustBruteLoss(damage_amount, forced = forced)
 		if(BURN)
 			if(BP)
-				if(damage > 0 ? BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness) : BP.heal_damage(0, abs(damage_amount)))
+				if(damage > 0 ? BP.receive_damage(0, damage_amount, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness) : BP.heal_damage(0, abs(damage_amount)))
 					update_damage_overlays()
 			else
 				adjustFireLoss(damage_amount, forced = forced)
