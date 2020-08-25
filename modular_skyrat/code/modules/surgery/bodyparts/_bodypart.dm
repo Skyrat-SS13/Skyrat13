@@ -481,9 +481,6 @@
 					//We apply damage without any armor checks, because the limb that made it suffer damage is absolutely FUCKED anyways.
 					damage_limb.receive_damage(brute = extrabrute, burn = extraburn, sharpness = sharpness, spread_damage = (damage_limb.parent_bodyzone ? TRUE : FALSE))
 	
-	if(!brute && !burn)
-		return
-	
 	brute_dam += brute
 	burn_dam += burn
 
