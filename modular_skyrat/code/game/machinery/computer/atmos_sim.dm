@@ -66,6 +66,7 @@
 		if(ATMOS_SIM_MODE_TANK)
 			dat += gas_html(tank_mix, "Tank Contents", "tank_mix")
 			dat += "<div><a href='?src=[REF(src)];react_tank=1'>Run Reaction Tick</a></div>"
+			dat += "<div><a href='?src=[REF(src)];five_react_tank=1'>Run 5 Reaction Ticks</a></div>"
 
 	var/datum/browser/popup = new(user, "atmos_sim", name, 700, 550)
 	popup.set_content(dat)
@@ -164,6 +165,12 @@
 		if(do_simulate_bomb)
 			simulate_bomb()
 	if(href_list["react_tank"])
+		tank_mix.react()
+	if(href_list["five_react_tank"])
+		tank_mix.react()
+		tank_mix.react()
+		tank_mix.react()
+		tank_mix.react()
 		tank_mix.react()
 	ui_interact(usr)
 
