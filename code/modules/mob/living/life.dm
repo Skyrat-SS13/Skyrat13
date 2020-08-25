@@ -210,6 +210,3 @@
 		var/datum/wound/W = thing
 		if(W.processes) // meh
 			W.handle_process()
-
-/mob/living/proc/handle_pain()
-	return

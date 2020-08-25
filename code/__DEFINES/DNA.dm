@@ -140,6 +140,7 @@
 #define CUSTOM_SKINTONE	24	//adds a "_g" suffix to bodypart overlays icon states if a custom skintone is used.
 #define HORNCOLOR		25
 #define WINGCOLOR		26
+#define NOPAIN			27
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"

@@ -148,3 +148,21 @@
 #define LOOKS_UNCONSCIOUS 2
 #define LOOKS_VERYUNCONSCIOUS 3
 #define LOOKS_DEAD		4
+
+//Pain-related defines
+#define PAIN_EMOTE_MINIMUM 10
+#define PAIN_LEVEL_1 0
+#define PAIN_LEVEL_2 10
+#define PAIN_LEVEL_3 40
+#define PAIN_LEVEL_4 70
+
+//Flags for the organ_flags var on /obj/item/organ
+#define ORGAN_SYNTHETIC			(1<<0)	//Synthetic organs, or cybernetic organs. Reacts to EMPs and don't deteriorate or heal
+#define ORGAN_FROZEN			(1<<1)	//Frozen organs, don't deteriorate
+#define ORGAN_FAILING			(1<<2)	//Failing organs perform damaging effects until replaced or fixed
+#define ORGAN_DEAD				(1<<3)	//Completely necrotic organs
+#define ORGAN_EXTERNAL			(1<<4)	//Was this organ implanted/inserted/etc, if true will not be removed during species change.
+#define ORGAN_VITAL				(1<<5)	//Currently only the brain
+#define ORGAN_NO_SPOIL			(1<<6)	//Do not spoil under any circumstances
+#define ORGAN_NO_DISMEMBERMENT	(1<<7)	//Immune to disembowelment.
+#define ORGAN_EDIBLE			(1<<8)	//is a snack? :D

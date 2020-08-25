@@ -358,7 +358,7 @@
 	return (!QDELETED(src) && limb)
 
 /// When our parent bodypart is hurt
-/datum/wound/proc/receive_damage(wounding_type, wounding_dmg, wound_bonus)
+/datum/wound/proc/receive_damage(wounding_type, wounding_dmg, wound_bonus, pain_dmg)
 	return
 
 /// Called from cryoxadone and pyroxadone when they're proc'ing. Wounds will slowly be fixed separately from other methods when these are in effect. crappy name but eh

@@ -131,7 +131,7 @@
 	/// How much pain this limb is feeling
 	var/pain_dam = 0
 	/// Amount of pain healed per on_life() tick
-	var/pain_heal_tick = 0
+	var/pain_heal_tick = 1
 	/// How much we multiply pain_heal_tick by if the owner is lying down
 	var/pain_heal_rest_multiplier = 3
 	/// Multiply incoming pain by this. Works like incoming_stam_mult in a way.
@@ -327,7 +327,8 @@
 
 //Return TRUE to get whatever mob this is in to update health.
 /obj/item/bodypart/proc/on_life()
-	if(stam_heal_tick && stamina_dam > DAMAGE_PRECISION)					//DO NOT update health here, it'll be done in the carbon's life.
+	//DO NOT update health here, it'll be done in the carbon's life.
+	if(stam_heal_tick && stamina_dam > DAMAGE_PRECISION)
 		if(heal_damage(stamina = (stam_heal_tick * (disabled ? 2 : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(pain_heal_tick && pain_dam > DAMAGE_PRECISION)
@@ -479,6 +480,13 @@
 	if(owner && wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus > CANT_WOUND)
 		check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
 
+	//We add the pain values before we scale damage down
+	//Pain does not care about your feelings, nor if your limb was already damaged
+	//to it's maximum
+	pain += 0.65 * clone
+	pain += 0.6 * burn
+	pain += 0.4 * brute
+
 	//Total damage used to calculate the can_inflicts
 	var/total_damage = brute + burn
 	
@@ -531,13 +539,27 @@
 
 	for(var/i in wounds)
 		var/datum/wound/W = i
-		W.receive_damage(sharpness, wounding_dmg, wound_bonus)
+		W.receive_damage(sharpness, wounding_dmg, wound_bonus, pain)
 
-	//We've dealt the physical damages, if there's room lets apply the stamina, pain and toxin damage.
+	//We've dealt the physical damages, if there's room lets apply the stamina, toxin and clone damage.
 	stamina_dam += round(clamp(stamina, 0, max_stamina_damage - stamina_dam), DAMAGE_PRECISION)
-	pain_dam += round(clamp(pain, 0, max_pain_damage - pain_dam), DAMAGE_PRECISION)
 	tox_dam += round(clamp(toxin, 0, max_tox_damage - tox_dam), DAMAGE_PRECISION)
 	clone_dam += round(clamp(clone, 0, max_clone_damage - clone_dam), DAMAGE_PRECISION)
+
+	//We've dealt with everything else, so let's share the pain
+	if(!can_feel_pain())
+		//Or not - The trip was cut short
+		pain = 0
+
+	if(owner)
+		pain -= (owner.pain_reduction/3)
+		if(pain < 0)
+			pain = 0
+	
+	pain_dam = max(0,min(max_pain_damage, pain_dam + pain))
+	var/scream_mult = (pain > 30 ? 3 : 1)
+	if(pain && owner && (pain > 15) && prob(20 * scream_mult))
+		owner.emote("scream")
 
 	if(owner && updating_health)
 		owner.updatehealth()
@@ -547,6 +569,7 @@
 		if(pain > DAMAGE_PRECISION)
 			owner.update_pain()
 			. = TRUE
+	
 	consider_processing()
 	update_disabled()
 	return update_bodypart_damage_state() || .
@@ -670,9 +693,15 @@
 		total = max(total, pain_dam)
 	return total
 
-//Returns pain damage.
+//Returns pain damage
 /obj/item/bodypart/proc/get_pain()
 	return pain_dam
+
+//Returns whether or not the bodypart can feel pain
+/obj/item/bodypart/proc/can_feel_pain()
+	if(status & BODYPART_ROBOTIC)
+		return FALSE
+	return TRUE
 
 //Checks disabled status thresholds
 /obj/item/bodypart/proc/update_disabled(var/upparent = TRUE, var/upchildren = TRUE)
@@ -714,11 +743,11 @@
 				last_maxed = TRUE
 			if(stamina_dam >= max_damage)
 				return BODYPART_DISABLED_DAMAGE
-		else if(disabled && (get_damage(TRUE) <= (max_damage * 0.8))) // reenabled at 80% now instead of 50% as of wounds update
+		else if(disabled && (get_damage(TRUE, TRUE) <= (max_damage * 0.8))) // reenabled at 80% now instead of 50% as of wounds update
 			last_maxed = FALSE
 		if(stamina_dam >= max_stamina_damage)
 			return BODYPART_DISABLED_DAMAGE
-		if((pain_dam >= max_pain_damage) || (pain_dam >= max_damage))
+		if(pain_dam >= pain_disability_threshold)
 			return BODYPART_DISABLED_PAIN
 		if(disabled && (get_damage(include_stamina = TRUE, include_pain = TRUE) <= (max_damage * 0.5)))
 			return BODYPART_NOT_DISABLED
