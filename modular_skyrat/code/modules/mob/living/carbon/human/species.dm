@@ -115,7 +115,7 @@
 /datum/species/proc/get_pain_emote(power)
 	if(NOPAIN in species_traits)
 		return
-	power = (round(min(100, power)/100, 1) * 100)
+	power = round(min(100, power), 10)
 	var/emote_string
 	if(power >= PAIN_EMOTE_MINIMUM)
 		emote_string = pain_emote_by_power["[power]"]

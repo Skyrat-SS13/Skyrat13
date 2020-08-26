@@ -7,6 +7,14 @@
 /mob/living/proc/can_feel_pain()
 	return FALSE
 
+/mob/living/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_MOB_DEATH, .proc/update_pain)
+
+/mob/living/Destroy()
+	. = ..()
+	UnregisterSignal(src, COMSIG_MOB_DEATH)
+
 // Message is the custom message to be displayed
 // Power decides how much painkillers will stop the message
 // Force means it ignores anti-spam timer
@@ -48,5 +56,5 @@
 			force_emote = "groan"
 		if(force_emote && prob(power))
 			emote(force_emote)
-	next_pain_time = world.time + (150 - power)
+	next_pain_time = world.time + (rand(350, 450) - power)
 	return TRUE

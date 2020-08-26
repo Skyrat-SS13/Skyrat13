@@ -68,6 +68,7 @@ h1.alert, h2.alert		{color: #000000;}
 .userdanger				{color: #ff0000;	font-weight: bold; font-size: 3;}
 .bigdanger				{color: #ff0000;	font-size: 3;}
 .mediumdanger			{color: #ff0000;	font-size: 2;}
+.bolddanger				{color: #ff0000;	font-weight: bold}
 .danger					{color: #ff0000;}
 .smalldanger			{color: #ff0000; font-size: 90%;}
 .tinydanger				{color: #ff0000; font-size: 85%;}

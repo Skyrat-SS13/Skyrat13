@@ -130,8 +130,10 @@
 
 	/// How much pain this limb is feeling
 	var/pain_dam = 0
+	/// Like stam_damage_coeff - but for pain
+	var/pain_damage_coeff = 1
 	/// Amount of pain healed per on_life() tick
-	var/pain_heal_tick = 1
+	var/pain_heal_tick = 2
 	/// How much we multiply pain_heal_tick by if the owner is lying down
 	var/pain_heal_rest_multiplier = 3
 	/// Multiply incoming pain by this. Works like incoming_stam_mult in a way.
@@ -557,8 +559,7 @@
 			pain = 0
 	
 	pain_dam = max(0,min(max_pain_damage, pain_dam + pain))
-	var/scream_mult = (pain > 30 ? 3 : 1)
-	if(pain && owner && (pain > 15) && prob(20 * scream_mult))
+	if(pain && owner && (pain >= (max_pain_damage * 0.6)) && prob(10))
 		owner.emote("scream")
 
 	if(owner && updating_health)
@@ -702,7 +703,7 @@
 	extra_pain += 0.8 * burn_dam
 	extra_pain += 0.3 * tox_dam
 	extra_pain += 0.5 * clone_dam
-	return (pain_dam + extra_pain)
+	return clamp(pain_dam + extra_pain, 0, max_pain_damage)
 
 //Returns whether or not the bodypart can feel pain
 /obj/item/bodypart/proc/can_feel_pain()

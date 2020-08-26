@@ -304,6 +304,9 @@ h1.alert, h2.alert		{color: #000000;}
 .passive				{color: #660000;}
 
 .userdanger				{color: #ff0000;	font-weight: bold; font-size: 185%;}
+.bigdanger				{color: #ff0000;	font-size: 3;}
+.mediumdanger			{color: #ff0000;	font-size: 2;}
+.bolddanger				{color: #ff0000;	font-weight: bold}
 .danger					{color: #ff0000;}
 .tinydanger				{color: #c51e1e; font-size: 85%;}
 .smalldanger			{color: #c51e1e; font-size: 90%;}
