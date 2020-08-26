@@ -24,6 +24,7 @@
 	var/list/tiers = list()										//Assoc list, id = number, 1 is available, 2 is all reqs are 1, so on
 
 /datum/techweb/New()
+	SSresearch.techwebs += src // Skyrat fix: actually shows techwebs in the controller now lol
 	hidden_nodes = SSresearch.techweb_nodes_hidden.Copy()
 	for(var/i in SSresearch.techweb_nodes_starting)
 		var/datum/techweb_node/DN = SSresearch.techweb_node_by_id(i)
@@ -244,7 +245,7 @@
 	for(var/id in node.design_ids)
 		add_design_by_id(id)
 	update_node_status(node)
-	if(!istype(src, /datum/techweb/admin))
+	if(istype(src, /datum/techweb/science) && node.starting_node == FALSE) // Skyrat fix: No more infinite money. So many things spawn their own techweb, each would add 11k...
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_SCI)
 		if(D)
 			D.adjust_money(SSeconomy.techweb_bounty)
