@@ -29,6 +29,11 @@
 	if(inert)
 		to_chat(user, "<span class='notice'>[src] has decayed and can no longer be used to heal.</span>")
 		return
+	if(AmBloodsucker(H))
+		to_chat(user, "<span class='notice'>[src] shrivels up and turns into dust as it touches [H].</span>")
+		new /obj/effect/decal/cleanable/ash(get_turf(H))
+		qdel(src)
+		return
 	if(H.stat == DEAD)
 		to_chat(user, "<span class='notice'>[src] are useless on the dead.</span>")
 		return
