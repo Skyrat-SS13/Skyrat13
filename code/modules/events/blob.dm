@@ -1,3 +1,4 @@
+/*
 /datum/round_event_control/blob
 	name = "Blob"
 	typepath = /datum/round_event/ghost_role/blob
@@ -32,3 +33,4 @@
 	message_admins("[ADMIN_LOOKUPFLW(BC)] has been made into a blob overmind by an event.")
 	log_game("[key_name(BC)] was spawned as a blob overmind by an event.")
 	return SUCCESSFUL_SPAWN
+	*/
