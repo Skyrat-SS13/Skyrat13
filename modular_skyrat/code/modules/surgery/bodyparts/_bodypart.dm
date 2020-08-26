@@ -744,15 +744,16 @@
 				var/obj/item/bodypart/parent = owner.get_bodypart(parent_bodyzone)
 				if(parent.is_disabled())
 					return parent.is_disabled()
-		if(get_damage(include_stamina = TRUE) >= (max_damage) * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1))) //Easy limb disable disables the limb at 40% health instead of 0%
+		if(get_damage(include_stamina = TRUE) >= (max_damage * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1))) //Easy limb disable disables the limb at 40% health instead of 0%
 			if(!last_maxed)
 				last_maxed = TRUE
 				owner?.emote("scream")
-		if(stamina_dam >= max_stamina_damage)
 			return BODYPART_DISABLED_DAMAGE
+		if(stamina_dam >= max_stamina_damage)
+			return BODYPART_DISABLED_DAMAGE	
 		if(pain_dam >= pain_disability_threshold)
 			return BODYPART_DISABLED_PAIN
-		if(disabled && (get_damage(include_stamina = TRUE) <= (max_damage * 0.8)) && (pain_dam < pain_disability_threshold))
+		if(disabled && (get_damage(include_stamina = TRUE) <= (max_damage * 0.8)) && (pain_dam < pain_disability_threshold)) // reenabled at 80% now instead of 50% as of wounds update
 			last_maxed = FALSE
 			return BODYPART_NOT_DISABLED
 	else
