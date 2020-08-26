@@ -552,7 +552,7 @@
 		pain = 0
 
 	if(owner)
-		pain -= (owner.pain_reduction/3)
+		pain -= (owner.chem_effects[CE_PAINKILLER]/3)
 		if(pain < 0)
 			pain = 0
 	
