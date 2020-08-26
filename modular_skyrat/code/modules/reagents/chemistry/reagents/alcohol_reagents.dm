@@ -111,7 +111,7 @@
 /datum/reagent/consumable/ethanol/balikitwine/on_mob_life(mob/living/carbon/C)
 	var/mob/living/carbon/human/H = C
 	if(istype(H) && H.physiology.footstep_type != FOOTSTEP_MOB_CRAWL) // Bit of a hacky way to check if the consumer is a snake taur. Only snektaurs have this though.
-		H.adjustToxLoss(3*REM) // Bagatji (and all snake taurs) take no ill effects.
+		H.adjustToxLoss(2.5*REM) // Bagatji (and all snake taurs) take no ill effects.
 		H.adjustStaminaLoss(8*REM)
 		H.hallucination += 10
 		H.set_drugginess(30)
