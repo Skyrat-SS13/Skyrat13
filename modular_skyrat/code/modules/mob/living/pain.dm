@@ -17,7 +17,7 @@
 	if(affecting?.status & BODYPART_NOPAIN)
 		return FALSE
 
-	power -= pain_reduction/2	//Take the edge off.
+	power -= chem_effects[CE_PAINKILLER]/2	//Take the edge off.
 
 	// Excessive pain is horrible, just give them enough to make it visible.
 	if(!nopainloss && power)
