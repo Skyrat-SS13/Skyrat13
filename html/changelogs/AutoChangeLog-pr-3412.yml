@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "Aquatic, avian and anthro no longer require mismatched markings to work proper with snouts and tails."

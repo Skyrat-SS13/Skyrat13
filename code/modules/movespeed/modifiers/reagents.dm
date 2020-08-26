@@ -12,3 +12,6 @@
 
 /datum/movespeed_modifier/reagent/nitryl
 	multiplicative_slowdown = -1
+
+/datum/movespeed_modifier/reagent/stimulum // skyrat edit
+	multiplicative_slowdown = -1 

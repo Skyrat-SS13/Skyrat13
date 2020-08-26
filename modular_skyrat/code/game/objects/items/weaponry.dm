@@ -693,3 +693,13 @@
 	icon_state_on = "butterflyknifeenergy1"
 	onsound = 'modular_skyrat/sound/weapons/knifeopen.ogg'
 	offsound = 'modular_skyrat/sound/weapons/knifeclose.ogg'
+
+//black police baton
+/obj/item/melee/classic_baton/black
+	name = "Black Police Baton"
+	desc = "The safeword is police brutality."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "blackbaton"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_righthand.dmi'
+	item_state = "blackbaton"
