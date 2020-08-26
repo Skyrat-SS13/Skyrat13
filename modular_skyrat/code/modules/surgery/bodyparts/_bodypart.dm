@@ -476,7 +476,7 @@
 				extraburn = round(extraburn/length(spreadable_limbs), 1)
 				for(var/obj/item/bodypart/damage_limb in spreadable_limbs)
 					//We apply damage without any armor checks, because the limb that made it suffer damage is absolutely FUCKED anyways.
-					damage_limb.receive_damage(brute = extrabrute, burn = extraburn, sharpness = sharpness, spread_damage = (damage_limb.parent_bodyzone ? TRUE : FALSE))
+					damage_limb.receive_damage(brute = extrabrute, burn = extraburn, sharpness = sharpness, spread_damage = FALSE)
 	
 	brute_dam += brute
 	burn_dam += burn
