@@ -695,7 +695,14 @@
 
 //Returns pain damage
 /obj/item/bodypart/proc/get_pain()
-	return pain_dam
+	if(!can_feel_pain())
+		return 0
+	var/extra_pain = 0
+	extra_pain += 0.7 * brute_dam
+	extra_pain += 0.8 * burn_dam
+	extra_pain += 0.3 * tox_dam
+	extra_pain += 0.5 * clone_dam
+	return (pain_dam + extra_pain)
 
 //Returns whether or not the bodypart can feel pain
 /obj/item/bodypart/proc/can_feel_pain()
@@ -704,7 +711,7 @@
 	return TRUE
 
 //Checks disabled status thresholds
-/obj/item/bodypart/proc/update_disabled(var/upparent = TRUE, var/upchildren = TRUE)
+/obj/item/bodypart/proc/update_disabled(upparent = TRUE, upchildren = TRUE)
 	if(!owner)
 		return
 	set_disabled(is_disabled())
@@ -737,18 +744,16 @@
 				var/obj/item/bodypart/parent = owner.get_bodypart(parent_bodyzone)
 				if(parent.is_disabled())
 					return parent.is_disabled()
-		if(get_damage(include_stamina = TRUE) >= ((max_damage - min(5, max_damage * 0.1)) * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1))) //Easy limb disable disables the limb at 40% health instead of 0%
+		if(get_damage(include_stamina = TRUE) >= (max_damage) * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1))) //Easy limb disable disables the limb at 40% health instead of 0%
 			if(!last_maxed)
 				last_maxed = TRUE
-			if(stamina_dam >= max_damage)
-				return BODYPART_DISABLED_DAMAGE
-		else if(disabled && (get_damage(TRUE, TRUE) <= (max_damage * 0.8))) // reenabled at 80% now instead of 50% as of wounds update
-			last_maxed = FALSE
+				owner?.emote("scream")
 		if(stamina_dam >= max_stamina_damage)
 			return BODYPART_DISABLED_DAMAGE
 		if(pain_dam >= pain_disability_threshold)
 			return BODYPART_DISABLED_PAIN
-		if(disabled && (get_damage(include_stamina = TRUE, include_pain = TRUE) <= (max_damage * 0.8)))
+		if(disabled && (get_damage(include_stamina = TRUE) <= (max_damage * 0.8)) && (pain_dam < pain_disability_threshold))
+			last_maxed = FALSE
 			return BODYPART_NOT_DISABLED
 	else
 		return BODYPART_NOT_DISABLED
