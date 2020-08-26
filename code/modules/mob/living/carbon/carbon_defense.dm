@@ -557,9 +557,35 @@
 /mob/living/carbon/grabbedby(mob/living/carbon/user, supress_message = FALSE)
 	if(user != src)
 		return ..()
-	var/obj/item/self_grasp/grasp = new()
-	if(!grasp.try_grasp(user))
+	if(!attempt_grasp(user))
 		return ..()
+
+/mob/living/carbon/proc/attempt_grasp(var/mob/living/carbon/attempted_grasper)
+	var/obj/item/bodypart/grasped_part = attempted_grasper.get_bodypart(attempted_grasper.zone_selected)
+	if(!grasped_part?.get_bleed_rate())
+		return
+
+	if(attempted_grasper.active_hand_index == grasped_part.held_index)
+		to_chat(attempted_grasper, "<span class='danger'>You can't grasp your [grasped_part.name] with itself!</span>")
+		return
+	
+	for(var/i in grasped_part?.children_zones)
+		var/obj/item/bodypart/child = attempted_grasper.get_bodypart(i)
+		if(attempted_grasper.active_hand_index == child.held_index)
+			to_chat(attempted_grasper, "<span class='danger'>You can't grasp your [grasped_part.name] with your [child.name]!</span>")
+			return
+
+	to_chat(attempted_grasper, "<span class='warning'>You try grasping at your [grasped_part.name], trying to stop the bleeding...</span>")
+	if(!do_mob(attempted_grasper, attempted_grasper, 1.5 SECONDS))
+		return
+
+	var/obj/item/self_grasp/graspy = new()
+	if(!attempted_grasper.put_in_active_hand(graspy))
+		to_chat(attempted_grasper, "<span class='danger'>You fail to grasp your [grasped_part.name].</span>")
+		qdel(graspy)
+		return
+	
+	return TRUE
 
 /// an abstract item representing you holding your own limb to staunch the bleeding, see [/mob/living/carbon/proc/grabbedby] will probably need to find somewhere else to put this.
 /obj/item/self_grasp
@@ -593,38 +619,6 @@
 
 /// We're trying to grasp, but we can only do so if we have a bodypart on the zone we're targeting, and said bodypart is bleeding
 /obj/item/self_grasp/proc/try_grasp(mob/living/carbon/attempted_grasper)
-	if(!istype(attempted_grasper))
-		stack_trace("[src] attempted to try_grasp() with [istype(attempted_grasper, /datum) ? attempted_grasper.type : isnull(attempted_grasper) ? "null" : attempted_grasper] attempted_grasper")
-		qdel(src)
-		return
-
-	grasped_part = attempted_grasper.get_bodypart(attempted_grasper.zone_selected)
-	if(!grasped_part?.get_bleed_rate())
-		qdel(src)
-		return
-
-	if(attempted_grasper.active_hand_index == grasped_part.held_index)
-		to_chat(attempted_grasper, "<span class='danger'>You can't grasp your [grasped_part.name] with itself!</span>")
-		qdel(src)
-		return
-	
-	for(var/i in grasped_part?.children_zones)
-		var/obj/item/bodypart/child = attempted_grasper.get_bodypart(i)
-		if(attempted_grasper.active_hand_index == child.held_index)
-			to_chat(attempted_grasper, "<span class='danger'>You can't grasp your [grasped_part.name] with your [child.name]!</span>")
-			qdel(src)
-			return
-
-	to_chat(attempted_grasper, "<span class='warning'>You try grasping at your [grasped_part.name], trying to stop the bleeding...</span>")
-	if(!do_after(attempted_grasper, 1.5 SECONDS))
-		qdel(src)
-		return
-
-	if(!attempted_grasper.put_in_active_hand(src))
-		to_chat(attempted_grasper, "<span class='danger'>You fail to grasp your [grasped_part.name].</span>")
-		qdel(src)
-		return
-
 	user = attempted_grasper // if we have a user, we know we were successful
 	grasped_part.grasped_by = src
 	RegisterSignal(user, COMSIG_PARENT_QDELETING, .proc/qdel_void)
