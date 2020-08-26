@@ -99,8 +99,8 @@
 // What kind of biology we have, and what wounds we can suffer, mostly relies on the HAS_FLESH and HAS_BONE species traits on human species
 #define BIO_INORGANIC	0 // golems, cannot suffer any wounds
 #define BIO_BONE	(1<<0) // skeletons and plasmemes, can only suffer bone wounds, only needs mangled bone to be able to dismember
-#define BIO_FLESH	(1<<1) // nothing right now, maybe slimepeople in the future, can only suffer slashing, piercing, and burn wounds
-#define BIO_SKIN	(1<<2)
+#define BIO_FLESH	(1<<1) // slimepeople can only suffer slashing, piercing, and burn wounds
+#define BIO_SKIN	(1<<2) // literally nothing right now
 #define BIO_FULL	(BIO_BONE | BIO_FLESH | BIO_SKIN) // standard humanoids, can suffer all wounds, needs mangled bone and flesh to dismember
 
 //Organ status flags

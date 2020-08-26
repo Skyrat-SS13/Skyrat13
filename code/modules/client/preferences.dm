@@ -1850,6 +1850,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	dat += "<center><a href='?_src_=prefs;preference=cosmetic_scars;task=close'>Done</a></center>"
 	dat += "<hr>"
 	var/list/current_scars = list()
+	if(!length(cosmetic_scars))
+		cosmetic_scars = ASSOCIATED_SCARS
 	for(var/BP in cosmetic_scars)
 		for(var/specific in cosmetic_scars[BP])
 			var/list/bruh = cosmetic_scars[BP][specific]
@@ -1861,39 +1863,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	dat += "</div>"
 	for(var/BP in cosmetic_scars)
 		var/obj/item/bodypart/ass_part
-		switch(BP)
-			if(BODY_ZONE_HEAD)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_CHEST)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_PRECISE_GROIN)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_R_ARM)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_PRECISE_R_HAND)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_L_ARM)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_PRECISE_L_HAND)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_R_LEG)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_PRECISE_R_FOOT)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_L_LEG)
-				ass_part = SSquirks.associated_bodyparts[BP]
-			if(BODY_ZONE_PRECISE_L_FOOT)
-				ass_part = SSquirks.associated_bodyparts[BP]
+		ass_part = SSquirks.associated_bodyparts[BP]
 		if(!ass_part)
 			continue
-		for(var/specific in ass_part.specific_locations)
-			var/list/check = cosmetic_scars[BP][specific]
-			if(istype(check) && check.len)
-				continue
-			else
-				cosmetic_scars[BP][specific] = list()
-				cosmetic_scars[BP][specific]["specific"] = "None"
-				cosmetic_scars[BP][specific]["severity"] = 0
+		if(!length(cosmetic_scars[ass_part.body_zone]))
+			for(var/i in ass_part.specific_locations)
+				cosmetic_scars[ass_part.body_zone][i] = list("severity" = WOUND_SEVERITY_NONE, "desc" = "None")
 		var/font_color = "#99c5ff"
 		var/font_desc = "#a899ff"
 		var/font_severity = "#ff5757"

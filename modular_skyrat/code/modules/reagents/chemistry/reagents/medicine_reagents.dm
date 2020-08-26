@@ -182,7 +182,7 @@
 
 /datum/reagent/medicine/kerosene/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(method == TOUCH)
-		M.adjustOxyLoss(max(-10, -reac_volume))
+		M.adjustOxyLoss(min(-10, -reac_volume))
 	..()
 
 /datum/reagent/medicine/kerosene/on_mob_life(mob/living/L)

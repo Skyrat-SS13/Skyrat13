@@ -127,6 +127,8 @@
 			msg = "<span class='notice'><i><b>[msg]</b></i></span>"
 	if(check_victim && (viewer == victim) && (!is_visible(checkviewer = FALSE) && is_visible(viewer)))
 		return "[msg] <span class='purple'>It is too well hidden for others to notice.</span>"
+	else if(check_victim && !is_visible(checkviewer = FALSE) && is_visible(viewer))
+		return "[msg] <span class='purple'>You can only see this because of your ghostly eyes.</span>"
 	else
 		return msg
 

@@ -65,6 +65,13 @@
 		if(display_error)
 			to_chat(owner, "<span class='warning'>Your victim has no blood to take.</span>")
 		return FALSE
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		var/datum/dna/deeanda = C.dna
+		if(deeanda?.monkey_aspect)
+			if(display_error)
+				to_chat(owner, "<span class='warning'>You cannot feed on the simple-minded.</span>")
+			return FALSE
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(!H.can_inject(owner, TRUE, BODY_ZONE_HEAD) && target == owner.pulling && owner.grab_state < GRAB_AGGRESSIVE)

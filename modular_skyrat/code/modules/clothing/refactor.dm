@@ -944,3 +944,51 @@
 
 /obj/item/clothing/head/helmet/space/hostile_environment
 	armor = list("melee" = 70, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 30)
+
+//Cargo Utilitarian reskins
+/obj/item/clothing/under/rank/cargo/qm
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/uniforms.dmi',
+	"Gorka" = 'modular_skyrat/icons/obj/clothing/cargoutilit.dmi',
+	"Turtleneck" = 'modular_skyrat/icons/obj/clothing/cargoutilit.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/clothing/uniform.dmi',
+	"Gorka" = 'modular_skyrat/icons/mob/clothing/cargoutil.dmi',
+	"Turtleneck" = 'modular_skyrat/icons/mob/clothing/cargoutil.dmi',
+	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Gorka" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
+	"Turtleneck" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = "qm",
+	"Gorka" = "gorka_qm",
+	"Turtleneck" = "turtleneck_qm",
+	)
+/obj/item/clothing/under/rank/cargo/tech
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/uniforms.dmi',
+	"Gorka" = 'modular_skyrat/icons/obj/clothing/cargoutilit.dmi',
+	"Turtleneck" = 'modular_skyrat/icons/obj/clothing/cargoutilit.dmi',
+	"Utility" = 'modular_skyrat/icons/obj/clothing/cargoutilit.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/clothing/uniform.dmi',
+	"Gorka" = 'modular_skyrat/icons/mob/clothing/cargoutil.dmi',
+	"Turtleneck" = 'modular_skyrat/icons/mob/clothing/cargoutil.dmi',
+	"Utility" = 'modular_skyrat/icons/mob/clothing/cargoutil.dmi',
+	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Gorka" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
+	"Turtleneck" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
+	"Utility" = 'modular_skyrat/icons/mob/clothing/cargoutil_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = "cargo",
+	"Gorka" = "gorka_cargo",
+	"Turtleneck" = "turtleneck_cargo",
+	"Utility" = "utility_cargo",
+	)
