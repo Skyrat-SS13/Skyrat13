@@ -22,7 +22,7 @@
 			damaged_bodypart = BP
 			maxdam = dam
 	
-	if(damaged_bodypart && (pain_reduction < maxdam))
+	if(damaged_bodypart && (chem_effects[CE_PAINKILLER] < maxdam))
 		if(maxdam > 10)
 			var/paralyze_amt = AmountParalyzed() - round(maxdam/10)
 			if(paralyze_amt > 0)
