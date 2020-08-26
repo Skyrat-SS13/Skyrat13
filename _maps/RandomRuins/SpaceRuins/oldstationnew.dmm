@@ -1,0 +1,362 @@
+"ae" = (/mob/living/simple_animal/hostile/hivebot/range,/turf/open/floor/mineral/titanium,/area/space)
+"ag" = (/obj/machinery/computer{desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages."; dir = 8; name = "Broken Computer"},/turf/open/floor/plasteel,/area/space)
+"ao" = (/obj/structure/bed,/obj/effect/spawner/lootdrop/bedsheet,/turf/open/floor/wood,/area/space)
+"aw" = (/obj/machinery/door/airlock/public/glass{name = "Dining Area"},/turf/open/floor/plasteel,/area/space)
+"aD" = (/obj/structure/closet/crate/miningcar,/turf/open/floor/plasteel,/area/space)
+"bg" = (/obj/effect/spawner/structure/window/hollow/reinforced,/obj/machinery/atmospherics/pipe/simple/yellow/visible{dir = 4},/turf/open/floor/plating,/area/space)
+"bs" = (/obj/machinery/power/apc{name = "Charlie Station Dorms APC"; pixel_y = -26},/turf/open/floor/plasteel,/area/space)
+"bL" = (/obj/structure/table,/obj/machinery/button/door{id = "ancient"; name = "Charlie Station Lockdown Button"},/turf/open/floor/plasteel,/area/space)
+"bP" = (/obj/effect/spawner/structure/window/hollow/reinforced,/obj/machinery/door/poddoor{id = "ancient"},/turf/open/floor/plating,/area/space)
+"cp" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/open/floor/plasteel/freezer,/area/space)
+"cP" = (/obj/structure/chair,/turf/open/floor/plasteel,/area/space)
+"cX" = (/obj/machinery/door/firedoor/closed,/turf/open/floor/plasteel,/area/space)
+"df" = (/obj/structure/transit_tube{dir = 4},/turf/template_noop,/area/space)
+"dg" = (/obj/structure/chair{dir = 8},/turf/open/floor/plasteel/freezer,/area/space)
+"dk" = (/obj/machinery/pipedispenser,/turf/open/floor/plasteel/airless,/area/space)
+"do" = (/turf/open/floor/plating,/area/space)
+"dz" = (/obj/machinery/shower{dir = 4},/obj/structure/window/reinforced/tinted,/turf/open/floor/plasteel/freezer,/area/space)
+"dE" = (/obj/structure/table/wood,/obj/item/flashlight/lamp{pixel_y = 10},/turf/open/floor/carpet,/area/space)
+"el" = (/obj/effect/turf_decal/loading_area{dir = 8},/turf/open/floor/plasteel,/area/space)
+"fo" = (/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel,/area/space)
+"ft" = (/obj/structure/table/wood,/turf/open/floor/carpet,/area/space)
+"fw" = (/obj/machinery/door/airlock{name = "Shower Room"},/turf/open/floor/plasteel/freezer,/area/space)
+"fx" = (/obj/structure/lattice/catwalk,/turf/template_noop,/area/space)
+"fz" = (/obj/structure/reagent_dispensers/watertank/high{desc = "A highly-pressurized water tank, this one seems almost empty.."; tank_volume = 1000},/obj/item/reagent_containers/glass/bucket{pixel_x = -4; pixel_y = -8},/obj/item/reagent_containers/glass/bucket{pixel_x = 4; pixel_y = -8},/turf/open/floor/plasteel,/area/space)
+"fG" = (/obj/machinery/power/solar_control{dir = 4; name = "Station Solar Control Computer"},/turf/open/floor/plasteel,/area/space)
+"fK" = (/turf/open/floor/mineral/titanium,/area/space)
+"fN" = (/turf/closed/wall/mineral/titanium/interior,/area/space)
+"go" = (/obj/machinery/door/airlock/external/glass,/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 1},/turf/open/floor/plating,/area/space)
+"gq" = (/obj/machinery/power/terminal{dir = 1},/obj/structure/cable{icon_state = "0-2"},/turf/open/floor/plating,/area/space)
+"gx" = (/obj/structure/window/reinforced/tinted{dir = 8},/turf/open/floor/plasteel/freezer,/area/space)
+"gI" = (/obj/structure/table,/obj/item/book/manual/wiki/security_space_law,/turf/open/floor/plasteel,/area/space)
+"gL" = (/obj/machinery/power/apc{dir = 2; name = "Charlie Kitchen APC"; pixel_y = -24; start_charge = 0},/turf/open/floor/plating,/area/space)
+"hK" = (/obj/effect/turf_decal/bot_white,/obj/structure/closet{name = "Suit Closet"},/turf/open/floor/plasteel,/area/space)
+"hT" = (/turf/open/floor/carpet{icon_state = "carpetsymbol"},/area/space)
+"ie" = (/obj/machinery/air_sensor/atmos/nitrogen_tank,/turf/open/floor/engine/air,/area/space)
+"ik" = (/obj/structure/chair{dir = 8},/turf/open/floor/plasteel,/area/space)
+"io" = (/obj/structure/table,/obj/structure/bedsheetbin/towel,/turf/open/floor/plasteel/freezer,/area/space)
+"ir" = (/obj/machinery/air_sensor/atmos/air_tank,/turf/open/floor/engine/air,/area/space)
+"iJ" = (/obj/effect/turf_decal/vg_decals/atmos/air,/turf/open/floor/engine/air,/area/space)
+"iL" = (/obj/structure/cable/yellow{icon_state = "1-4"},/turf/open/floor/plasteel,/area/space)
+"jp" = (/obj/structure/chair/office/dark{dir = 1},/turf/open/floor/plasteel,/area/space)
+"jA" = (/obj/structure/cable,/turf/open/floor/plating,/area/space)
+"jL" = (/obj/structure/table,/turf/open/floor/plasteel,/area/space)
+"jN" = (/obj/machinery/door/airlock/security/glass{name = "Cell 2"},/turf/open/floor/plasteel,/area/space)
+"jU" = (/obj/structure/table/reinforced,/obj/item/multitool,/turf/open/floor/plasteel/white,/area/space)
+"kq" = (/obj/machinery/atmospherics/pipe/simple/cyan/visible,/turf/open/floor/plasteel,/area/space)
+"kv" = (/obj/effect/turf_decal/delivery,/obj/structure/closet/crate,/turf/open/floor/plasteel,/area/space)
+"kI" = (/obj/effect/spawner/structure/window/hollow/reinforced,/turf/open/floor/plating,/area/space)
+"lc" = (/obj/structure/rack,/obj/item/clothing/suit/armor/vest/blueshirt{armor = list("melee" = 35, "bullet" = 12, "laser" = 5, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 80, "wound" = 10); desc = "A larger armor vest that provides more core protection than newer models, though with degraded, less efficient material. It'll help against melee attacks, but anything else will leave you wanting for more."; name = "old armor vest"; pixel_x = 6},/obj/item/clothing/suit/armor/vest/blueshirt{armor = list("melee" = 35, "bullet" = 12, "laser" = 5, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 80, "wound" = 10); desc = "A larger armor vest that provides more core protection than newer models, though with degraded, less efficient material. It'll help against melee attacks, but anything else will leave you wanting for more."; name = "old armor vest"; pixel_x = -6},/turf/open/floor/plasteel,/area/space)
+"lf" = (/obj/machinery/door/airlock/maintenance_hatch,/turf/open/floor/plating,/area/space)
+"lk" = (/obj/structure/table/reinforced,/obj/item/gun/energy/e_gun/old,/turf/open/floor/engine,/area/space)
+"lt" = (/obj/structure/chair/office/dark{dir = 4},/turf/open/floor/plasteel,/area/space)
+"lJ" = (/obj/machinery/door/airlock/mining/glass,/turf/open/floor/plasteel,/area/space)
+"lS" = (/obj/effect/turf_decal/box,/obj/structure/closet/crate/silvercrate,/turf/open/floor/plasteel,/area/space)
+"lY" = (/obj/structure/closet/crate/bin,/turf/open/floor/plasteel,/area/space)
+"ml" = (/obj/structure/table/reinforced,/obj/item/healthanalyzer{desc = "A prototype hand-held body scanner able to distinguish vital signs of the subject."; name = "prototype health analyzer"},/turf/open/floor/engine,/area/space)
+"mo" = (/obj/structure/chair/sofa/left{dir = 1},/turf/open/floor/wood,/area/space)
+"mB" = (/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/oxygen_output{dir = 8},/turf/open/floor/engine/air,/area/space)
+"mG" = (/obj/structure/table/reinforced,/obj/machinery/the_singularitygen,/turf/open/floor/engine,/area/space)
+"mR" = (/obj/structure/table/reinforced,/obj/item/paper/fluff/ruins/oldstation/protogun,/turf/open/floor/engine,/area/space)
+"mT" = (/obj/machinery/door/poddoor{id = "proto"},/obj/structure/window/reinforced{dir = 4},/turf/open/floor/plasteel,/area/space)
+"nc" = (/obj/structure/table,/obj/item/folder/blue,/obj/item/folder/blue{pixel_x = 5; pixel_y = 6},/turf/open/floor/plasteel,/area/space)
+"nm" = (/obj/structure/table,/obj/item/seeds/grape,/obj/item/seeds/grape,/obj/item/seeds/apple,/obj/item/seeds/apple,/obj/item/seeds/ambrosia,/obj/item/seeds/ambrosia,/obj/item/seeds/carrot,/obj/item/seeds/carrot,/obj/item/seeds/potato,/obj/item/seeds/potato,/obj/item/seeds/poppy,/obj/item/seeds/poppy,/obj/item/seeds/watermelon,/obj/item/seeds/soya,/turf/open/floor/plasteel,/area/space)
+"nE" = (/obj/structure/table,/turf/open/floor/plasteel/cafeteria,/area/space)
+"ou" = (/turf/open/floor/engine/air,/area/space)
+"oD" = (/obj/structure/table/reinforced,/turf/open/floor/engine,/area/space)
+"oJ" = (/obj/item/electronics/tracker,/turf/open/space/basic,/area/space)
+"oM" = (/turf/closed/mineral/random/high_chance,/area/space)
+"oP" = (/obj/machinery/door/airlock/external/glass,/turf/open/space/basic,/area/space)
+"oR" = (/mob/living/simple_animal/hostile/hivebot,/turf/open/floor/mineral/titanium,/area/space)
+"pg" = (/obj/structure/chair/pew/right{dir = 4},/turf/open/floor/plasteel/chapel_floor,/area/space)
+"pj" = (/obj/structure/rack,/obj/item/shield/riot{pixel_x = -8},/obj/item/melee/classic_baton{pixel_x = 5},/turf/open/floor/plasteel,/area/space)
+"pk" = (/obj/structure/cable/yellow{icon_state = "2-8"},/turf/open/floor/plating,/area/space)
+"pJ" = (/obj/structure/table,/obj/item/pen,/turf/open/floor/plasteel,/area/space)
+"pS" = (/obj/structure/table/reinforced,/obj/item/paper/fluff/ruins/oldstation/protoinv,/turf/open/floor/plasteel/white,/area/space)
+"qd" = (/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plating,/area/space)
+"qr" = (/obj/machinery/computer{desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages."; dir = 1; name = "Broken Computer"},/obj/item/card/id/away/old/apc,/turf/open/floor/plasteel,/area/space)
+"ra" = (/turf/closed/wall/r_wall,/area/space)
+"rh" = (/obj/effect/decal/cleanable/flour,/turf/open/floor/plasteel/freezer,/area/space)
+"rl" = (/obj/machinery/door/airlock/research{name = "Research and Development"},/obj/machinery/door/firedoor,/turf/open/floor/plasteel,/area/space)
+"rn" = (/obj/machinery/door/airlock/public/glass{name = "Hydroponics"},/turf/open/floor/plasteel,/area/space)
+"rT" = (/obj/structure/table,/obj/item/folder/blue,/turf/open/floor/plasteel,/area/space)
+"sb" = (/obj/machinery/atmospherics/pipe/simple/green/visible{dir = 4},/turf/open/floor/plasteel,/area/space)
+"sc" = (/obj/effect/turf_decal/bot_white,/obj/structure/closet,/turf/open/floor/plasteel,/area/space)
+"sh" = (/obj/structure/table,/obj/item/crowbar{pixel_x = 4},/obj/item/crowbar{pixel_x = -4},/obj/item/flashlight/glowstick,/obj/item/flashlight/glowstick,/obj/item/flashlight/glowstick,/obj/item/flashlight/glowstick,/obj/item/crowbar,/obj/item/crowbar,/turf/open/floor/plasteel,/area/space)
+"si" = (/obj/machinery/door/airlock/highsecurity,/obj/machinery/door/firedoor,/turf/open/floor/plasteel,/area/space)
+"sl" = (/obj/machinery/door/airlock/command/glass{name = "Bridge"},/turf/open/floor/plasteel,/area/space)
+"sw" = (/obj/machinery/door/airlock/science,/obj/machinery/door/firedoor,/turf/open/floor/plasteel,/area/space)
+"sM" = (/obj/machinery/computer{desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages."; dir = 4; name = "Broken Computer"},/turf/open/floor/plasteel/white,/area/space)
+"sQ" = (/obj/machinery/door/poddoor{id = "proto"},/turf/open/floor/plasteel,/area/space)
+"sV" = (/obj/structure/table/reinforced,/obj/item/paper/fluff/ruins/oldstation/protohealth,/turf/open/floor/engine,/area/space)
+"sY" = (/obj/structure/table,/obj/item/paper,/obj/item/paper{pixel_x = 9},/obj/item/paper{pixel_y = 4},/obj/item/pen,/turf/open/floor/plasteel,/area/space)
+"tv" = (/turf/open/floor/carpet,/area/space)
+"ty" = (/obj/structure/table/reinforced,/obj/item/storage/toolbox/mechanical/old,/turf/open/floor/plasteel/white,/area/space)
+"tz" = (/obj/machinery/vending/dinnerware,/turf/open/floor/plasteel/freezer,/area/space)
+"tB" = (/obj/structure/table,/obj/item/reagent_containers/food/condiment/enzyme{layer = 5},/obj/item/kitchen/rollingpin,/obj/item/kitchen/knife{pixel_x = 8},/turf/open/floor/plasteel/freezer,/area/space)
+"ui" = (/obj/structure/chair{dir = 1},/turf/open/floor/plasteel/cafeteria,/area/space)
+"up" = (/obj/structure/chair/stool,/obj/effect/turf_decal/box/red,/turf/open/floor/plasteel,/area/space)
+"ut" = (/obj/machinery/power/apc{dir = 8; name = "Charlie Security APC"; pixel_y = 28; start_charge = 0},/turf/open/floor/plating,/area/space)
+"uz" = (/obj/machinery/door/airlock/security,/turf/open/floor/plasteel,/area/space)
+"uA" = (/obj/effect/turf_decal/delivery,/obj/structure/closet/crate/secure/loot,/turf/open/floor/plasteel,/area/space)
+"uL" = (/obj/structure/table/wood,/obj/item/paper_bin/bundlenatural{pixel_x = 6; pixel_y = 4},/obj/item/paper_bin{pixel_x = -6; pixel_y = 4},/obj/item/pen/fountain,/obj/item/pen/fountain{pixel_x = 3; pixel_y = 3},/turf/open/floor/carpet,/area/space)
+"uX" = (/obj/structure/table,/obj/machinery/reagentgrinder,/turf/open/floor/plasteel/freezer,/area/space)
+"uY" = (/obj/structure/table/reinforced,/obj/item/paper/fluff/ruins/oldstation/protosing,/turf/open/floor/engine,/area/space)
+"vd" = (/obj/machinery/suit_storage_unit/mining/eva,/turf/open/floor/mineral/titanium,/area/space)
+"vg" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/transit_tube{dir = 4},/turf/open/floor/plating,/area/space)
+"vz" = (/turf/open/floor/plasteel,/area/space)
+"vF" = (/obj/structure/table/wood,/obj/item/flashlight/lamp/green{pixel_x = 1; pixel_y = 5},/obj/effect/spawner/lootdrop/space_cash,/turf/open/floor/wood,/area/space)
+"vR" = (/obj/machinery/atmospherics/miner/oxygen,/turf/open/floor/engine/air,/area/space)
+"wj" = (/obj/structure/table/reinforced,/obj/machinery/button/door{id = "proto"; name = "Prototype Lab Lockdown"},/turf/open/floor/plasteel/white,/area/space)
+"wk" = (/obj/structure/lattice,/turf/open/space/basic,/area/space)
+"wn" = (/obj/structure/chair,/turf/open/floor/plasteel/cafeteria,/area/space)
+"wv" = (/obj/structure/table,/obj/machinery/recharger{pixel_x = -8},/obj/machinery/recharger{pixel_x = 8},/obj/item/pen{pixel_y = 6},/turf/open/floor/plasteel,/area/space)
+"ww" = (/obj/structure/dresser,/turf/open/floor/wood,/area/space)
+"wI" = (/obj/effect/turf_decal/box,/obj/structure/closet/crate,/turf/open/floor/plasteel,/area/space)
+"wJ" = (/obj/structure/chair{dir = 4},/turf/open/floor/plasteel/cafeteria,/area/space)
+"wW" = (/obj/structure/chair/comfy{dir = 8},/turf/open/floor/carpet,/area/space)
+"xf" = (/obj/structure/table/wood,/obj/item/reagent_containers/food/snacks/customizable/bread,/turf/open/floor/plasteel/chapel_floor,/area/space)
+"xj" = (/obj/structure/table,/turf/open/floor/plasteel/freezer,/area/space)
+"xm" = (/obj/structure/table,/obj/item/crowbar{pixel_x = -4},/obj/item/crowbar{pixel_x = 4},/obj/item/flashlight/glowstick,/obj/item/flashlight/glowstick,/obj/item/flashlight/glowstick,/obj/item/flashlight/glowstick,/obj/item/crowbar,/obj/item/crowbar,/turf/open/floor/plasteel,/area/space)
+"xv" = (/obj/structure/toilet{dir = 8},/turf/open/floor/plasteel/showroomfloor,/area/space)
+"xJ" = (/obj/structure/table,/obj/machinery/chem_dispenser/drinks,/turf/open/floor/plasteel/freezer,/area/space)
+"xN" = (/obj/structure/table,/obj/item/paper/fluff/ruins/oldstation/generator_manual,/turf/open/floor/plating,/area/space)
+"xV" = (/obj/structure/table/wood,/obj/item/paper{pixel_x = -2},/obj/item/paper{pixel_x = 4; pixel_y = 6},/obj/item/pen/fountain,/turf/open/floor/carpet,/area/space)
+"yb" = (/turf/open/floor/plasteel/white,/area/space)
+"yr" = (/obj/structure/dresser,/obj/effect/spawner/lootdrop/cig_packs,/turf/open/floor/wood,/area/space)
+"yy" = (/obj/machinery/door/airlock,/turf/open/floor/wood,/area/space)
+"yA" = (/obj/machinery/light/small,/obj/machinery/portable_atmospherics/canister/air,/turf/open/floor/engine/air,/area/space)
+"yU" = (/obj/structure/table,/obj/item/trash/plate{pixel_x = 8},/obj/item/trash/plate{pixel_x = -6},/turf/open/floor/plasteel/cafeteria,/area/space)
+"zc" = (/obj/machinery/door/poddoor{id = "proto"},/obj/structure/window/reinforced{dir = 8},/turf/open/floor/plasteel,/area/space)
+"zl" = (/obj/machinery/power/terminal{dir = 1},/obj/structure/cable/yellow{icon_state = "0-4"},/turf/open/floor/plasteel,/area/space)
+"zv" = (/obj/effect/turf_decal/box/white,/turf/open/floor/plasteel,/area/space)
+"zJ" = (/obj/structure/mirror{name = "dusty mirror"; pixel_y = 28},/turf/open/floor/plasteel,/area/space)
+"zK" = (/obj/machinery/air_sensor/atmos/oxygen_tank,/turf/open/floor/engine/air,/area/space)
+"zL" = (/obj/machinery/atmospherics/components/unary/vent_pump/high_volume/siphon/atmos/air_output{dir = 1},/turf/open/floor/engine/air,/area/space)
+"zP" = (/obj/machinery/suit_storage_unit/radsuit,/turf/open/floor/plating,/area/space)
+"zQ" = (/obj/structure/rack,/obj/item/gun/energy/laser/carbine{desc = "An older model laser weapon. Despite being outdated, it isn't far off from current models. Shot count and damage are pretty similar."; icon_state = "retro"; name = "old laser rifle"; pixel_y = -6},/obj/item/gun/energy/laser/carbine{desc = "An older model laser weapon. Despite being outdated, it isn't far off from current models. Shot count and damage are pretty similar."; icon_state = "retro"; name = "old laser rifle"; pixel_y = -2},/obj/item/gun/energy/laser/carbine{desc = "An older model laser weapon. Despite being outdated, it isn't far off from current models. Shot count and damage are pretty similar."; icon_state = "retro"; name = "old laser rifle"; pixel_y = 2},/turf/open/floor/plasteel,/area/space)
+"Aa" = (/obj/structure/table/wood,/obj/item/flashlight/lamp/green{pixel_x = 1; pixel_y = 5},/turf/open/floor/wood,/area/space)
+"At" = (/turf/open/floor/plasteel/cafeteria,/area/space)
+"AQ" = (/obj/effect/turf_decal/loading_area{dir = 1},/turf/open/floor/plasteel,/area/space)
+"AS" = (/obj/machinery/computer{desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages."; dir = 4; name = "Broken Computer"},/turf/open/floor/plasteel,/area/space)
+"BF" = (/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/nitrogen_output{dir = 8},/turf/open/floor/engine/air,/area/space)
+"BP" = (/obj/effect/mob_spawn/human/oldsci,/turf/open/floor/plasteel,/area/space)
+"BW" = (/obj/structure/table,/obj/item/restraints/handcuffs,/turf/open/floor/plasteel,/area/space)
+"Cu" = (/obj/structure/chair/comfy{dir = 4},/turf/open/floor/carpet,/area/space)
+"CD" = (/obj/structure/chair/sofa/corner{dir = 8},/turf/open/floor/wood,/area/space)
+"CL" = (/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/nitrogen_input{dir = 8},/turf/open/floor/engine/air,/area/space)
+"CV" = (/obj/structure/chair/sofa/right{dir = 8},/turf/open/floor/wood,/area/space)
+"Dd" = (/obj/machinery/door/airlock/external/glass,/obj/effect/mapping_helpers/airlock/cyclelink_helper,/turf/open/floor/plating,/area/space)
+"Ds" = (/obj/structure/transit_tube/station/reverse/flipped,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel,/area/space)
+"DB" = (/obj/structure/table,/obj/item/paper{pixel_x = -6},/obj/item/paper{pixel_y = 4},/obj/item/paper{pixel_x = 9; pixel_y = 2},/obj/item/paper{pixel_x = 2},/obj/item/pen,/turf/open/floor/plasteel,/area/space)
+"DD" = (/obj/structure/table,/obj/item/paper{pixel_x = 2},/obj/item/paper{pixel_x = 9},/obj/item/paper{pixel_x = -6},/obj/item/pen,/turf/open/floor/plasteel,/area/space)
+"DE" = (/obj/machinery/power/apc{dir = 4; name = "Charlie Command APC"; pixel_x = 24; start_charge = 0},/turf/open/floor/plating,/area/space)
+"DG" = (/obj/structure/table,/obj/item/paper_bin,/obj/item/paper_bin{pixel_x = -3; pixel_y = 7},/obj/item/pen,/turf/open/floor/plasteel,/area/space)
+"DL" = (/obj/structure/chair/office/dark{dir = 4},/turf/open/floor/plasteel/white,/area/space)
+"DX" = (/obj/machinery/pipedispenser/disposal,/turf/open/floor/plasteel/airless,/area/space)
+"Ec" = (/obj/machinery/atmospherics/miner/nitrogen,/turf/open/floor/engine/air,/area/space)
+"Ef" = (/obj/structure/transit_tube/crossing/horizontal,/turf/template_noop,/area/space)
+"Ew" = (/obj/machinery/hydroponics/soil,/turf/open/floor/grass,/area/space)
+"EO" = (/obj/structure/table/reinforced,/obj/item/weldingtool/mini,/turf/open/floor/plasteel/white,/area/space)
+"EZ" = (/obj/item/wirecutters,/obj/item/wrench,/turf/open/floor/plating,/area/space)
+"Fh" = (/obj/structure/chair/office/dark{dir = 8},/turf/open/floor/plasteel/white,/area/space)
+"Fj" = (/turf/closed/wall/rust,/area/space)
+"Fs" = (/turf/open/floor/plasteel/freezer,/area/space)
+"FL" = (/obj/structure/closet/crate,/turf/open/floor/plasteel,/area/space)
+"FV" = (/obj/structure/table/reinforced,/turf/open/floor/plasteel/white,/area/space)
+"Gb" = (/obj/machinery/power/port_gen/pacman/super{name = "\improper emergency power generator"},/turf/open/floor/plating,/area/space)
+"Gr" = (/obj/machinery/power/smes/engineering{charge = 0},/turf/open/floor/plasteel,/area/space)
+"GI" = (/obj/structure/closet/crate/radiation,/obj/item/stack/sheet/mineral/uranium{amount = 10},/turf/open/floor/plating,/area/space)
+"GP" = (/obj/structure/chair/sofa{dir = 8},/turf/open/floor/wood,/area/space)
+"GX" = (/obj/structure/table/wood,/obj/item/export/bottle/wine{pixel_x = 6; pixel_y = 18},/obj/item/storage/fancy/cracker_pack,/turf/open/floor/plasteel/chapel_floor,/area/space)
+"Hb" = (/turf/open/floor/wood,/area/space)
+"He" = (/turf/closed/mineral/random,/area/space)
+"Hj" = (/obj/effect/mob_spawn/human/oldsec,/turf/open/floor/plasteel,/area/space)
+"HF" = (/obj/structure/table,/obj/machinery/door/window/northleft,/turf/open/floor/plasteel,/area/space)
+"HG" = (/obj/structure/chair/pew/left{dir = 4},/turf/open/floor/plasteel/chapel_floor,/area/space)
+"HP" = (/obj/effect/turf_decal/delivery,/turf/open/floor/plasteel,/area/space)
+"Ig" = (/obj/structure/table,/obj/machinery/microwave{pixel_x = -3; pixel_y = 6},/turf/open/floor/plasteel/freezer,/area/space)
+"Ii" = (/obj/machinery/atmospherics/pipe/simple/yellow/visible{dir = 4},/turf/open/floor/plasteel,/area/space)
+"Il" = (/obj/structure/lattice,/mob/living/simple_animal/hostile/hivebot/range,/turf/open/space/basic,/area/space)
+"Ip" = (/obj/effect/mob_spawn/human/oldmed,/turf/open/floor/plasteel,/area/space)
+"It" = (/obj/effect/turf_decal/box,/turf/open/floor/plasteel,/area/space)
+"IM" = (/obj/effect/mob_spawn/human/oldmine,/turf/open/floor/plasteel,/area/space)
+"IS" = (/obj/machinery/door/window/westright{dir = 2},/turf/open/floor/plasteel/freezer,/area/space)
+"Jx" = (/obj/structure/chair/office/dark,/turf/open/floor/plasteel/white,/area/space)
+"JC" = (/obj/machinery/seed_extractor,/turf/open/floor/plasteel,/area/space)
+"JH" = (/obj/item/kirbyplants{icon_state = "plant-25"},/obj/effect/spawner/structure/window/hollow/reinforced,/turf/open/floor/plating,/area/space)
+"Kb" = (/obj/machinery/computer{desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages."; dir = 8; name = "Broken Computer"},/obj/item/paper/fluff/ruins/oldstation,/turf/open/floor/plasteel,/area/space)
+"Kx" = (/obj/machinery/door/airlock/security,/obj/machinery/door/poddoor{id = "ancient"},/turf/open/floor/plasteel,/area/space)
+"Le" = (/obj/machinery/suit_storage_unit/radsuit,/turf/open/floor/plasteel,/area/space)
+"Lr" = (/obj/structure/table,/obj/item/paper_bin,/obj/item/pen,/turf/open/floor/plasteel,/area/space)
+"Ls" = (/mob/living/simple_animal/hostile/carp,/turf/open/space/basic,/area/space)
+"LI" = (/obj/structure/chair{dir = 4},/turf/open/floor/plasteel,/area/space)
+"LX" = (/turf/open/floor/plasteel/chapel_floor,/area/space)
+"Mo" = (/obj/item/solar_assembly,/turf/open/floor/plating,/area/space)
+"Mr" = (/obj/machinery/door/airlock/public/glass{name = "Chapel Office"},/turf/open/floor/wood,/area/space)
+"Ne" = (/obj/structure/holosign/barrier/combifan,/turf/open/floor/plating,/area/space)
+"Nn" = (/obj/machinery/door/airlock/public/glass{name = "Chapel"},/turf/open/floor/plasteel,/area/space)
+"ND" = (/obj/structure/chair/office/dark{dir = 8},/turf/open/floor/plasteel,/area/space)
+"NP" = (/obj/machinery/power/terminal{dir = 1},/obj/structure/cable/yellow{icon_state = "0-8"},/obj/structure/cable/yellow{icon_state = "0-4"},/obj/structure/cable/yellow{icon_state = "0-2"},/turf/open/floor/plating,/area/space)
+"NU" = (/obj/effect/turf_decal/vg_decals/atmos/oxygen,/turf/open/floor/engine/air,/area/space)
+"NW" = (/obj/structure/table,/obj/item/shovel/spade{pixel_x = -6},/obj/item/cultivator{pixel_x = 4; pixel_y = 8},/obj/item/cultivator{pixel_x = 4; pixel_y = 2},/turf/open/floor/plasteel,/area/space)
+"Ov" = (/obj/structure/table/reinforced,/obj/item/paper/fluff/ruins/oldstation/protosuit,/turf/open/floor/engine,/area/space)
+"Oy" = (/turf/closed/wall/r_wall/rust,/area/space)
+"OQ" = (/obj/structure/table/wood,/obj/item/flashlight/lamp/green{pixel_x = 1; pixel_y = 5},/obj/effect/spawner/lootdrop/cig_packs,/turf/open/floor/wood,/area/space)
+"Pd" = (/mob/living/simple_animal/hostile/hivebot/strong,/turf/open/floor/mineral/titanium,/area/space)
+"Ph" = (/obj/structure/showcase/machinery/oldpod,/turf/open/floor/plasteel,/area/space)
+"Pl" = (/obj/structure/filingcabinet/filingcabinet,/turf/open/floor/plasteel,/area/space)
+"PK" = (/obj/structure/chair{dir = 8},/turf/open/floor/plasteel/cafeteria,/area/space)
+"PU" = (/obj/machinery/door/airlock/public/glass{name = "Cryogenics Room"},/turf/open/floor/plasteel,/area/space)
+"Qa" = (/obj/machinery/power/apc{dir = 1; name = "Charlie Hydroponics APC"; pixel_y = 24; start_charge = 0},/turf/open/floor/plating,/area/space)
+"Qu" = (/obj/structure/table,/obj/machinery/chem_dispenser/drinks/beer,/turf/open/floor/plasteel/freezer,/area/space)
+"QE" = (/obj/machinery/power/terminal{dir = 1},/obj/structure/cable/yellow{icon_state = "0-8"},/turf/open/floor/plating,/area/space)
+"QJ" = (/obj/structure/lattice/catwalk,/turf/open/space/basic,/area/space)
+"QR" = (/obj/effect/mob_spawn/human/oldeng,/turf/open/floor/plasteel,/area/space)
+"QY" = (/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/oxygen_input{dir = 8},/turf/open/floor/engine/air,/area/space)
+"Rm" = (/obj/structure/table,/obj/machinery/recharger,/turf/open/floor/plasteel,/area/space)
+"RA" = (/obj/effect/decal/cleanable/dirt,/obj/structure/transit_tube_pod{dir = 4},/obj/structure/transit_tube/station/reverse{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel,/area/space)
+"RI" = (/mob/living/simple_animal/hostile/hivebot/engineering,/turf/open/floor/mineral/titanium,/area/space)
+"Sj" = (/obj/structure/rack,/obj/item/clothing/head/helmet/riot{pixel_x = 6},/obj/item/clothing/head/helmet/riot{pixel_x = -6},/turf/open/floor/plasteel,/area/space)
+"Sm" = (/obj/machinery/door/airlock{desc = "A small bathroom with a sink, toilet and shower."; id_tag = "Bath1"; name = "Bathroom"},/turf/open/floor/plasteel/showroomfloor,/area/space)
+"Sr" = (/obj/machinery/power/apc{dir = 4; name = "Charlie Main Corridor APC"; pixel_x = 24; start_charge = 0},/turf/open/floor/plasteel,/area/space)
+"Sx" = (/obj/structure/table,/obj/item/megaphone,/turf/open/floor/plasteel,/area/space)
+"SY" = (/obj/machinery/door/airlock{desc = "A small bathroom with a sink, toilet and shower."; id_tag = "Bath1"; name = "Bathroom"},/turf/closed/wall/rust,/area/space)
+"Tb" = (/obj/structure/table,/obj/item/tank/internals/emergency_oxygen,/turf/open/floor/plasteel,/area/space)
+"Te" = (/obj/structure/table/wood,/obj/item/reagent_containers/food/drinks/bottle/holywater{pixel_x = -3; pixel_y = 8},/obj/item/reagent_containers/food/drinks/bottle/holywater,/turf/open/floor/carpet,/area/space)
+"Tk" = (/obj/structure/table,/obj/item/paper{pixel_y = 4},/obj/item/paper,/obj/item/pen,/turf/open/floor/plasteel,/area/space)
+"Tp" = (/obj/structure/holosign/barrier/combifan,/turf/open/floor/plasteel,/area/space)
+"Tv" = (/obj/machinery/door/airlock/command{name = "Delta Station Access"},/obj/machinery/door/poddoor{id = "ancient"},/turf/open/floor/plasteel,/area/space)
+"Tw" = (/obj/machinery/processor,/turf/open/floor/plasteel/freezer,/area/space)
+"TF" = (/obj/structure/window/reinforced/tinted,/turf/open/floor/plasteel/freezer,/area/space)
+"TW" = (/obj/machinery/door/airlock/external/glass,/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/turf/open/floor/plating,/area/space)
+"Ug" = (/obj/structure/table,/obj/item/storage/wallet/random,/turf/open/floor/plasteel,/area/space)
+"UC" = (/obj/structure/cable/yellow{icon_state = "1-8"},/turf/open/floor/plasteel,/area/space)
+"UK" = (/obj/structure/chair/office/dark,/turf/open/floor/plasteel,/area/space)
+"UX" = (/obj/machinery/door/airlock/public/glass{name = "Kitchen"},/turf/open/floor/plasteel,/area/space)
+"Vb" = (/obj/structure/sink{dir = 1; pixel_y = -8},/obj/structure/mirror{name = "dusty mirror"; pixel_y = -28},/turf/open/floor/plasteel/freezer,/area/space)
+"Vd" = (/obj/structure/cable/yellow{icon_state = "1-8"},/turf/open/floor/plating,/area/space)
+"VD" = (/obj/effect/turf_decal/vg_decals/atmos/nitrogen,/turf/open/floor/engine/air,/area/space)
+"VM" = (/obj/machinery/door/airlock/engineering{name = "Engineering"},/obj/machinery/door/poddoor{id = "ancient"},/turf/open/floor/plasteel,/area/space)
+"VN" = (/obj/effect/spawner/structure/window/hollow/reinforced,/obj/machinery/atmospherics/pipe/simple/green/visible{dir = 4},/turf/open/floor/plating,/area/space)
+"VU" = (/obj/structure/cable/yellow{icon_state = "2-4"},/turf/open/floor/plating,/area/space)
+"VZ" = (/obj/machinery/computer{desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages."; dir = 8; name = "Broken Computer"},/turf/open/floor/plasteel/white,/area/space)
+"Wh" = (/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/air_input{dir = 1},/turf/open/floor/engine/air,/area/space)
+"Wl" = (/obj/machinery/door/airlock/atmos/glass,/obj/machinery/door/poddoor{id = "ancient"},/turf/open/floor/plating,/area/space)
+"Wo" = (/obj/structure/table,/obj/item/trash/plate,/turf/open/floor/plasteel/cafeteria,/area/space)
+"Wr" = (/obj/effect/mob_spawn/human/oldchap,/turf/open/floor/plasteel,/area/space)
+"Ww" = (/obj/machinery/door/airlock/external/glass,/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 4},/turf/open/floor/plating,/area/space)
+"WE" = (/obj/machinery/door/window/westright,/turf/open/floor/plasteel/freezer,/area/space)
+"WI" = (/obj/structure/table,/obj/item/folder/red,/obj/item/folder/red{pixel_x = 5; pixel_y = 4},/turf/open/floor/plasteel,/area/space)
+"WK" = (/obj/structure/table,/obj/item/folder,/turf/open/floor/plasteel,/area/space)
+"Xe" = (/obj/structure/table,/obj/item/stack/cable_coil{amount = 15},/turf/open/floor/plating,/area/space)
+"Xh" = (/obj/effect/mob_spawn/human/oldass,/turf/open/floor/plasteel,/area/space)
+"Xi" = (/obj/effect/turf_decal/box,/obj/structure/closet/crate/secure/loot,/turf/open/floor/plasteel,/area/space)
+"Xp" = (/obj/structure/table/wood,/turf/open/floor/wood,/area/space)
+"Xr" = (/obj/machinery/door/airlock/security/glass{name = "Cell 1"},/turf/open/floor/plasteel,/area/space)
+"Xu" = (/obj/machinery/power/smes/engineering{charge = 0},/turf/open/floor/plating,/area/space)
+"Xz" = (/obj/machinery/door/airlock/public/glass,/turf/open/floor/plasteel,/area/space)
+"XB" = (/obj/machinery/pipedispenser/disposal/transit_tube,/turf/open/floor/plasteel/airless,/area/space)
+"XY" = (/obj/machinery/computer{desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages."; name = "Broken Computer"},/turf/open/floor/plasteel,/area/space)
+"Yo" = (/obj/structure/chair{dir = 1},/turf/open/floor/plasteel,/area/space)
+"Yx" = (/obj/item/storage/backpack/old,/turf/open/floor/plasteel,/area/space)
+"YQ" = (/turf/template_noop,/area/space)
+"YR" = (/obj/machinery/door/airlock/highsecurity{name = "Prototype Laboratory"; req_access_txt = "200"},/obj/machinery/door/firedoor,/turf/open/floor/plasteel,/area/space)
+"YT" = (/turf/open/floor/engine,/area/space)
+"YZ" = (/obj/structure/lattice,/mob/living/simple_animal/hostile/hivebot,/turf/open/space/basic,/area/space)
+"Zn" = (/obj/structure/table/reinforced,/obj/item/clothing/suit/space/hardsuit/ancient,/turf/open/floor/engine,/area/space)
+"Zr" = (/obj/machinery/door/airlock/command{name = "Charlie Station Access"; req_access_txt = "200"},/turf/open/floor/plasteel,/area/space)
+"Zt" = (/turf/open/space/basic,/area/space)
+"ZH" = (/obj/effect/spawner/structure/window/hollow/reinforced,/obj/machinery/atmospherics/pipe/simple/cyan/visible,/turf/open/floor/plating,/area/space)
+"ZY" = (/obj/structure/table/reinforced,/obj/item/defibrillator/compact/loaded,/turf/open/floor/engine,/area/space)
+
+(1,1,1) = {"
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtLsZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeHeHeZtZtZtZtZtZtHeZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeHeZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeHeHeHeHeHeHeoMHeHeHeZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeHeHeHeHeZtZtLsZtHeHeHeHeHeHeHeHeHeHeZtZtZtLsZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeHeHeHeoMoMoMoMHeHeZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeHeoMHeHeHeHeHeZtHeHeHeoMoMoMHeHeHeHeHeHeZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeoMoMoMHeHeHeHeZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeoMHeHeHeHeHeHeHeHeHeHeHeHeHeHeHeHeHeHeHeHeZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtrarararararararararararararararararararararaZtZtZtZtZtZtHeHeHeHeHeHeHeHeHeHeHeZtZtZtZtOykIkIkIkIkIkIkIkIkIOyZtZtZtZtZtZtZtZtZtHeHeHeoMHeHeHeHeHeHeHewkHeHeIlfNfNfNHeHeHeHeZtZtZtZtZt
+ZtZtZtZtZtZtZtZtravzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzraZtZtZtZtZtZtZtZtHeHeZtZtZtHeHeHeZtZtZtZtOyOyjLDDvzjLXYUgvzRmSxOyOyZtZtZtZtZtZtZtZtZtHeHeHeHeHeHeHefKwkZtYZwkwkfKfKoRfKHeHeHeHeHeZtZtZtZt
+ZtZtZtZtZtZtZtZtravzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzraZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeZtZtZtOyOyvzvzYovzbLjpTkvzvzvzvzOyOyHeHeZtZtZtZtZtZtZtHeHeHeHewkfKfKfKfKZtwkwkwkRIfKHeHeHeHeHeHeZtZtLsZt
+ZtZtZtZtZtZtZtZtravzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzraZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyOyvzvzvzvzvzvzvzvzvzvzvzvzvzOyOyHeHeZtZtZtZtZtZtZtHeHeHewkaewkHeZtwkRIwkwkfKfKHeHeHeoMHeHeZtZtZtZt
+ZtZtZtZtZtZtZtZtravzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzraZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyvzvzXYXYXYpJvzvzvzTbXYXYXYvzvzOyHeHeHeZtZtZtZtZtZtHeHeHefKHewkZtwkfNoPfNfNfNfKHeHeoMHeHeHeZtZtZtZt
+ZtZtZtZtZtZtZtZtravzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzraZtZtZtZtZtFjDdFjZtZtZtZtFjDdFjZtZtZtOyncvzvzvzjpvzvzDGvzvzUKvzvzvzWKOyHeoMHeHeZtZtZtZtZtHeHeHeHewkZtwkfKfNfKPdvdfNHeHeHeoMHeHeZtZtZtZtZt
+ZtZtZtZtZtZtZtZtravzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzraZtZtZtZtZtFjdoFjZtZtZtZtFjdoFjZtZtZtOysYvzNDvzvzvzvzrTvzvzvzvzvzvzUgOyHeoMoMHeHeZtZtZtZtHeHeHeHeHeZtfNfNfNfNfNfNfNfNHeoMoMHeZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtravzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzraZtZtZtZtZtFjdoFjZtZtZtZtFjdoFjZtZtZtOyWKvzvzvzvzvzvzvzvzvzvzvzvzltLrOyHeHeHeHeHeHeZtZtZtHeHeHeHeHeHeHeHeHeHeHeHeHeHeHeHeHeHeZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtravzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzraZtZtZtZtZtFjgoFjkIkIFjFjFjgoFjkIkIkIOyOyOyOyOyOyOykIslkIOyOyOyOyOyOyOyOyOyOyOyOyHeZtZtZtHeoMHeHeHeHeHeHeHeHeHeHeHeHeHeHeHeZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtravzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzraZtZtZtZtZtFjAQFLvzhKFjzvvzvzvzkvvzuAFjZtZtFjdoDEFjvzvzvzOyvzvzvzvzcPcPvzvzXrupOyHeZtZtZtZtHeHeHeZtZtZtZtZtZtZtZtZtZtHeHeZtZtZtZtZtZtZtLs
+ZtZtZtZtZtZtZtZtravzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzraZtZtZtZtZtFjvzvzvzsckIzvvzvzvzHPvzHPFjZtZtFjdodoFjvzvzvzbPvzXYvzLIWIgIikvzOyOyOyHeZtZtZtZtZtoMHeZtZtZtLsZtZtZtZtZtZtZtZtZtZtZtZtHeHeZtZt
+ZtZtZtZtZtZtZtZtravzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzraZtZtZtZtZtFjaDvzvzsckIzvvzvzvzuAvzkvFjZtZtFjdodoFjvzvzvzbPASNDvzvzBWDBikvzjNupOyHeZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeHeZtZt
+ZtZtZtZtZtZtZtZtrarararararararararasisirarararararararararaZtZtZtZtZtFjaDvzvzsckIzvvzvzvzHPvzkvFjZtZtFjdodolfvzvzvzOyvzwvvzvzYovzvzvzOyOyOyOyZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeoMHeZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtravzvzvzvzraZtZtZtZtZtZtZtZtZtZtZtZtZtFjFjlJFjFjFjvzvzvzvzvzvzvzFjZtZtFjdodoFjvzvzvzKxvzvzvzvzvzvzvzvzWwdodoTWZtZtZtZtZtZtZtHeHeZtZtZtZtZtZtHeHeHeHeZtZtZtHeoMHeHeZt
+ZtZtZtZtZtZtZtZtFjFjFjFjFjFjFjFjrarasisiraraFjFjFjFjFjFjFjFjZtZtZtZtZtFjvzvzvzvzvzvzvzlYPlUKvzagFjZtZtFjdodoFjvzvzvzOyjLUgvzvzvzOyOyOyOyOyOyOyZtZtZtZtZtZtoMHeHeHeZtZtZtHeHeHeoMHeHeZtZtZtHeHeHeHeZt
+ZtZtZtZtZtZtZtZtFjvzvzvzFjvzvzvzvzvzvzvzvzvzvzvzvzFjvzvzvzFjZtZtZtZtZtFjvzvzvzvzvzvzvzFjFjHFHFFjFjFjFjFjFjFjFjvzvzvzKxvzvzvzvzvzkIzQlcSjpjOyHeZtZtZtZtZtZtHeHeoMHeZtZtZtHeHeHeHeHeHeHeZtZtZtHeHeZtZt
+ZtZtZtZtZtZtZtZtFjvzvzvzswvzvzvzvzvzvzvzvzvzvzvzvzswvzvzvzFjZtZtZtZtZtFjItvzlSvzvzvzvzkIASvzvzikFjXexNdoXuEZFjvzvzvzOyYoYoYovzvzuzvzvzvzYxOyHeHeZtZtZtZtZtZtHeHeZtZtZtZtZtHeHeHeHeoMHeZtLsZtZtZtZtZt
+ZtZtZtZtZtZtZtZtFjvzvzvzFjvzvzvzvzvzvzvzvzvzvzvzvzFjvzvzvzFjZtZtZtZtZtFjwIvzItvzvzvzellJvzvzvzikFjdododogqdoFjvzvzvzOyOyOyOyOyOyOyOyOyOyOyOyHeHeHeHeZtZtZtZtZtZtLsZtZtZtZtHeHeoMHeHeHeZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtFjvzvzvzFjFjFjFjFjFjrlrlFjFjFjFjFjFjvzvzvzFjZtZtZtZtZtFjXivzItvzvzvzvzkIvzvzvzvzFjGbdodojAdoFjvzvzvzFjdoutdododododododoFjHeHeoMHeHeHeHeZtZtZtZtZtZtZtZtZtHeHeHeHeHeHeZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtwkvzvzvzFjybybybybybybybybybybybybFjvzvzvzFjFjFjFjZtZtFjFjFjFjFjFjFjFjFjFjFjFjXzFjFjFjdodoGIFjvzvzvzFjdodododododododogLFjoMHeFjFjFjFjFjFjFjFjFjHeZtZtZtZtZtZtHeHeHeZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtwkvzvzFjybybybybybybybybybybybybFjvzvzvzFjvzvzkIZtZtZtZtZtZtZtZtkIvzvzvzFjvzvzvzvzFjFjlfFjFjvzvzvzFjFjFjFjlfFjFjFjFjFjFjFjFjFjwJyUPKwJnEPKAtFjHeHeHeZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtwkvzvzFjybybybybybybybybybybybybFjvzvzvzZrvzRAvgdfdfEfdfdfEfdfdfvgDsvzvzTvvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzFjtzcpcpFsFsQuxJFjAtAtAtAtAtAtwnFjHeoMHeHeHeZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtwkZtwkvzFjybybybybybybybybybybybybFjvzvzvzFjvzvzkIZtZtZtZtZtZtZtHekIvzvzvzFjvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzFjFsFsFsFsrhFsFsFjAtAtwnwnAtAtWoFjHeHeoMHeHeHeHeZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtwkwkvzFjybybybybybybybybybybybybFjvzvzvzFjFjFjFjZtZtZtZtZtZtHeoMFjFjFjFjFjFjFjvzvzvzFjFjFjkIPUkIFjFjFjvzvzvzFjFsFsIgxjTwFsFsjLAtwJWoWoPKAtuiFjoMHeHeHeHeoMHeHeHeZtZtZtZtHeZtZtZtZt
+ZtZtZtZtZtZtZtwkZtZtwkvzFjybybybybybybybybybybybybFjvzvzvzFjZtZtZtZtZtZtZtZtZtHeHeHeHeZtZtZtZtFjvzvzFjFjIMPhPhvzvzzJXYFjFjvzvzFjFsrhuXtBFsFsFsjLAtAtAtAtAtwnwnFjoMFjFjFjFjFjFjFjFjFjZtZtZtHeZtZtZtZt
+ZtZtZtZtZtZtZtZtZtwkwkvzFjybybybybybybybybybybybybFjvzvzvzFjZtZtZtZtZtZtZtZtZtZtHeZtZtZtZtZtZtFjvzSrFjshvzvzvzvzvzvzvzKbFjvzvzFjFsFsFsFsFsrhFsFjAtAtAtAtwJnEnEFjoMFjpgLXpgLXpgLXLXFjZtZtHeHeZtZtZtZt
+ZtZtZtZtZtZtZtwkwkwkwkvzFjybybybybybybybybybybybybFjvzvzvzFjFjFjFjwkwkFjZtoMZtZtZtZtwkFjFjFjFjFjvzvzFjxmvzPhvzPhPhQRvzvzFjvzvzFjFjUXFjjLjLjLFjFjFjkIawkIFjFjFjFjFjFjHGLXHGLXHGLXLXkIZtZtHeHeHeZtZtZt
+ZtZtZtZtZtZtZtZtZtwkvzvzFjybybybybybybybybybybybybFjvzvzvzFjvzvzcXTpvzwkZtZtHeZtZtwkvzTpcXvzvzFjvzvzPUvzvzvzvzvzvzvzvzvzPUvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzNnhThThThThThTGXkIZtHeHeoMHeZtZtZt
+ZtZtZtZtZtZtZtZtwkvzvzvzFjybybybybybybybybybybybybFjvzvzvzZrvzvzcXTpvzvzwkwkZtZtwkwkwkTpcXvzvzTvvzvzPUvzvzPhPhBPIpPhvzvzPUvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzvzbsvzvzvzNnhThThThThThTxfkIZtHeHeoMHeHeZtZt
+ZtZtZtZtZtZtZtZtwkvzvzvzFjybybybybybybybybybybybybFjvzvzvzFjvzvzcXTpvzvzwkZtZtZtwkvzvzTpcXvzvzFjvzvzFjvzvzvzvzvzvzvzvzPhFjvzvzFjkIJHrnJHkIFjFjFjFjFjFjvzvzFjFjFjFjFjpgLXpgLXpgLXLXkIZtHeHeoMHeHeZtZt
+ZtZtZtZtZtZtZtZtFjvzvzvzFjybybybybybybybybybybybybFjvzvzvzFjFjFjFjwkFjwkZtZtZtZtZtwkwkwkFjFjFjFjvzvzFjPhvzvzvzvzvzvzvzXhFjvzvzFjJCvzvzvzvzfzFjaoHbwwFjvzvzFjwwHbaoFjHGLXHGLXHGLXLXFjZtHeHeHeHeHeZtZt
+ZtZtZtZtZtZtZtZtFjvzvzvzFjFjFjFjFjFjrlrlFjFjFjFjFjFjvzvzvzFjHeHeFjwkwkwkZtZtZtZtZtwkFjFjFjFjoMFjvzvzFjFjHjPhjLvzjLWrPhFjFjvzvzFjEwvzNWnmvzEwFjvFHbHbyyvzvzyyHbHbAaFjFjFjFjFjkIMrFjFjZtZtHeHeHeZtZtZt
+ZtZtZtZtZtZtZtZtFjvzvzvzFjvzvzvzvzvzvzvzvzvzvzvzvzFjvzvzvzFjoMHeFjybybybwkZtZtZtwkybybybybFjoMFjvzvzvzFjFjFjkIPUkIFjFjFjvzvzvzFjEwvzvzvzvzEwFjFjFjFjFjvzvzFjFjFjFjFjTetvtvtvHbHbHbFjZtZtHeHeZtZtZtZt
+ZtZtZtZtZtZtZtZtFjvzvzvzswvzvzvzvzvzvzvzvzvzvzvzvzswvzvzvzFjoMHeFjybybwkHeoMZtwkwkybybybybFjHeFjFjvzvzvzvzvzvzvzvzvzvzvzvzvzvzFjEwvzEwEwvzEwFjaoHbyrFjvzvzFjwwHbaoFjuLtvdEwWHbXpCVFjZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtFjvzvzvzFjvzvzvzvzvzvzvzvzvzvzvzvzFjvzvzvzFjHeoMFjybwkHeHeZtZtwkybybybybwkFjHeHeFjFjvzvzvzvzvzvzvzvzvzvzvzFjlfFjFjFjFjFjFjFjFjAaHbHbyyvzvzyyHbHbvFFjftCuxVwWHbXpGPFjZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtFjFjFjOyOyOyOyOyOyOyYRYROyOyOyOyOyOyOyFjFjFjHeHeFjybwkZtZtZtwkwkybybybybybFjHeHeoMFjFjFjkIFjvzvzvzFjkIFjFjFjdodododoQaFjZtZtFjFjFjFjFjvzvzFjFjFjFjFjfttvtvtvHbmoCDFjZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtOyZnYTsQybybybybybybybybsQYTmGOyoMHeHeHeHewkwkZtZtwkwkwkybybwkybybybFjHeHeHeHeHeoMHeFjvzvzvzFjZtZtZtFjdododododoFjZtZtFjaoHbHbyyvzvzyyHbHbaoFjFjFjFjFjFjFjFjFjZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtOyOvYTmTybybybybybybybybzcYTuYOyoMHeoMZtZtHewkZtZtZtwkwkybwkybybybybFjZtHeHeHeHeHeHeFjvzvzvzFjZtZtZtFjFjFjFjFjFjFjZtZtFjOQHbwwFjvzvzFjwwHbAaFjHeHeHeHeHeZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtOyOyOyOyFVybybEOFVFhybFVOyOyOyOyHeHeZtZtZtZtZtZtZtHewkwkybybybybybybFjZtZtZtHeHeHeoMFjvzvzvzFjZtZtZtZtZtZtZtZtoJZtZtZtFjFjFjFjFjSYSYFjFjFjFjFjHeHeHeZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtOymlYTsQybybDLFVjUybybybsQYTlkOyHeZtZtZtZtZtZtZtZtHewkybybybybybybybFjZtZtZtZtHeHeHeFjvzvzvzFjZtZtZtZtZtZtZtZtZtZtZtZtFjdzTFISFjvzvzSmxvFjHeHeHeHeZtZtZtZtZtZtZtZtHeHeHeZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtOysVYTmTybybybFVtyybybybzcYTmROyZtZtZtZtZtZtZtZtZtwkwkFjFjFjFjFjFjFjFjZtZtZtZtHeHeFjFjvzvzvzFjFjZtZtZtZtZtZtZtZtZtZtZtFjFsgxFsFjvzvzFjFjFjHeHeHeZtZtZtZtZtZtHeHeHeHeHeHeHeZtZt
+ZtZtZtZtZtZtZtZtZtZtZtOyOyOyOyFVybybybybybybFVOyOyOyOyZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeFjFjvzvzvzvzvzFjFjZtZtZtZtZtZtZtZtZtZtFjdzWEFsfwvzvzSmxvFjHeHeZtZtLsZtZtHeHeHeHeHeHeHeHeHeZtZt
+ZtZtZtZtZtZtZtZtZtZtZtOyZYYTsQybybsMJxJxVZybybsQYToDOyZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyOyOyOyOyOyOyOyvzvzvzvzvzvzvzFjFjwkwkZtZtZtZtZtZtZtFjFsgxdgFjvzvzFjFjFjHeZtZtZtZtHeHeHeHeHeHeoMHeHeHeHeZtZt
+ZtZtZtZtZtZtZtZtZtZtZtOyoDYTmTybybybwjpSybybybzcYToDOyZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyvzvzvzvzvzvzVMvzvzvzFjvzvzdoWlNevzvzwkZtZtZtZtZtZtFjdzWEFsFjvzvzSmxvFjZtZtZtZtHeHeHeHeHeoMoMHeHeHeHeHeZtZt
+ZtZtZtZtZtZtZtZtZtZtZtOyOyOyOyOyOyOyOyOyOyOyOyOyOyOyOyZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyvzvzdovzdovzOybPbPOyOyFjbPbPFjNevzwkZtZtZtZtZtZtZtFjioVbVbFjvzvzFjFjFjZtZtZtHeHeHeHeHeoMoMHeHeHeHeHeHeZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyvzvzdodovzvzvzvzvzOyZtFjvzvzwkdodovzZtwkwkZtZtZtZtFjFjFjFjFjFjFjFjZtZtZtZtZtHeHeHeHeoMoMHeHeoMHeHeHeZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyvzvzdodovzvzvzdovzOyZtFjdovzvzvzZtvzZtvzvzwkZtZtZtZtZtZtZtZtZtZtZtZtLsZtZtHeHeHeHeHeHeHeHeoMHeHeHeHeZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyvzvzvzvzdovzdodovzOyZtFjzPdovzvzvzvzwkvzdoOyOyOyOyOyZtZtZtZtZtZtZtZtZtZtHeHeHeoMHeHeHeHeoMoMHeHeHeHeZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyvzagGrdovzvzGrASvzOyZtwkLewkwkdodkwkwkdoIibgBFououOyZtZtZtZtZtZtZtZtHeHeHeHeHeoMHeHeoMoMoMHeHeHeHeHeZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyvzvzzlpkqrVUQEvzvzOyZtZtwkwkvzvzDXZtvzdovzkIieEcVDOyZtZtZtZtZtZtZtHeHeHeHeHeHeoMHeHeoMHeHeHeHeHeHeHeZtLsZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyvzvzdofoGrqdvzvzvzOyZtZtZtwkdovzXBwkvzdosbVNCLououOyZtZtLsZtZtZtHeHeHeHeHeoMoMHeHeoMHeHeHeHeHeHeHeHeZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyvzvzvziLNPVdvzvzvzOyZtwkZtwkvzZtZtZtwkvzvzOyOyOyOyOyZtZtZtZtZtZtHeHeHeHeHeHeHeHeoMHeHeHeHeHeHeHeHeZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyvzvzvzvzqdvzvzvzvzOyZtZtwkvzZtZtwkZtZtwkvzOyZtZtZtZtZtZtZtZtZtZtHeHeoMoMoMHeHeoMoMHeHeoMoMHeHeHeHeZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyvzvzvzVUUCvzvzvzvzOyZtwkwkvzwkZtvzwkZtZtvzOyOyOyOyOyZtZtZtZtZtHeHeHeHeHeHeHeHeoMHeHeoMoMHeHeHeHeZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyfGvzvzvzvzvzvzvzvzOyZtFjvzvzZtwkvzwkZtZtIibgmBououOyZtZtZtZtZtHeHeHeHeHeHeHeHeoMHeHeoMHeHeHeHeHeZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOyOyOyOyDdOyOyOyOyOyOyZtFjvzdovzvzvzvzwkvzvzkIzKvRNUOyZtZtZtZtZtHeHeHeHeHeHeHeHeHeHeoMoMHeHeHeHeHeZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOydoOyZtZtZtZtZtZtFjvzdododovzvzwkwksbVNQYououOyZtZtZtZtZtZtHeHeHeHeHeHeHeHeHeoMHeHeHeHeHeZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOydoOyZtZtZtZtZtZtFjvzvzvzkqvzkqvzwkwkOyOyOyOyOyZtZtZtZtZtZtHeHeHeHeHeHeHeHeHeoMHeHeHeHeZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtOygoOyZtZtZtZtZtZtFjFjFjOyZHkIZHOyFjwkwkwkZtZtZtZtZtZtZtZtZtZtHeHeHeHeHeHeHeHeoMHeHeHeHeZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtYQYQYQYQYQQJYQYQYQYQYQZtZtZtZtZtOyWhirzLOyZtZtwkZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeHeHeHeHeHeHeHeHeZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtMododododoQJdododododoZtZtZtZtZtOyouiJouOyZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtHeHeHeHeHeHeHeHeZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtQJQJQJQJQJQJQJQJQJQJQJZtZtZtZtZtOyouyAouOyZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtLsZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtdododododoQJdodoModoMoZtZtZtZtZtOyOyOyOyOyZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtQJQJQJQJQJQJQJQJQJQJQJZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtdodododoMoQJdododododoZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtLsZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtQJQJQJQJQJQJQJQJQJQJQJZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtdoMoMododoQJMoModoModoZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtLsZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtfxfxfxfxfxQJfxfxfxfxfxZtZtZtZtZtZtZtZtZtZtZtZtZtLsZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtModoMoMoMoQJdoMoModoMoZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtfxfxfxfxfxQJfxfxfxfxfxZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtdoModododoQJdoMoMododoZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtLsZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtQJQJQJQJQJQJQJQJQJQJQJZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtYQYQYQYQYQdoYQYQYQYQYQZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+ZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZtZt
+"}
