@@ -1,5 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Added a SWAT techweb node to the BEPIS, which contains improvements to security gear."
-  - balance: "Buffed the blueshield's armor vest to be slightly better than a default security vest."

@@ -1,4 +1,0 @@
-author: "KathrinBailey"
-delete-after: True
-changes: 
-  - bugfix: "Flowers, bushes and grass missing their own max_integrity variable now have it. They don't inherit an unrealistic level of robustness that the trees have, and flowers/bushes/grass are now as weak as they should be."
