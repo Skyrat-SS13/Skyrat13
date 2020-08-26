@@ -85,7 +85,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 //Combat tackle gloves
-/datum/design/adv_helmet
+/datum/design/gorilla_gloves
 	name = "Gorilla Gloves"
 	desc = "The best way to tackle your problems."
 	id = "tackle_combat"
