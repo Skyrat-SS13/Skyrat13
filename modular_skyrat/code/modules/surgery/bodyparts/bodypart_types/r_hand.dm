@@ -32,7 +32,7 @@
 	if(owner.stat < UNCONSCIOUS)
 		switch(disabled)
 			if(BODYPART_DISABLED_PAIN)
-				to_chat(owner, "<span class='userdanger'>The pain in your [name] is too agonizing!</span>")
+				owner.custom_pain("The pain in your [name] is too agonizing!", pain_dam/3, TRUE, src)
 			if(BODYPART_DISABLED_DAMAGE)
 				owner.emote("scream")
 				to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")

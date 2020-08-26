@@ -730,7 +730,7 @@
 			return BODYPART_DISABLED_WOUND
 	if(can_dismember() && !HAS_TRAIT(owner, TRAIT_NODISMEMBER))
 		. = disabled //inertia, to avoid limbs healing 0.1 damage and being re-enabled
-		if((parent_bodyzone != null) && !istype(src, /obj/item/bodypart/groin))
+		if(parent_bodyzone && !istype(src, /obj/item/bodypart/groin))
 			if(!(owner.get_bodypart(parent_bodyzone)))
 				return BODYPART_DISABLED_DAMAGE
 			else
@@ -739,7 +739,6 @@
 					return parent.is_disabled()
 		if(get_damage(include_stamina = TRUE) >= ((max_damage - min(5, max_damage * 0.1)) * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1))) //Easy limb disable disables the limb at 40% health instead of 0%
 			if(!last_maxed)
-				owner.emote("scream")
 				last_maxed = TRUE
 			if(stamina_dam >= max_damage)
 				return BODYPART_DISABLED_DAMAGE
@@ -749,7 +748,7 @@
 			return BODYPART_DISABLED_DAMAGE
 		if(pain_dam >= pain_disability_threshold)
 			return BODYPART_DISABLED_PAIN
-		if(disabled && (get_damage(include_stamina = TRUE, include_pain = TRUE) <= (max_damage * 0.5)))
+		if(disabled && (get_damage(include_stamina = TRUE, include_pain = TRUE) <= (max_damage * 0.8)))
 			return BODYPART_NOT_DISABLED
 	else
 		return BODYPART_NOT_DISABLED
