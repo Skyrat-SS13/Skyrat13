@@ -88,7 +88,7 @@
 	icon_state = "energy_mantis_blade"
 	item_state = "energy_mantis_blade"
 	force = 30
-	armour_penetration = 15 //Energy isn't as good as going through armor as it is through flesh alone.
+	armour_penetration = 10 //Energy isn't as good at going through armor as it is through flesh alone.
 	hitsound = 'sound/weapons/blade1.ogg'
 
 /obj/item/organ/cyberimp/arm/armblade
