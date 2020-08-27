@@ -191,19 +191,19 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "au" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
 /obj/machinery/button/door{
 	id = "escape_cockpit_windows";
 	name = "Cockpit Window Blast Doors";
 	pixel_x = -7;
 	req_access_txt = "19"
 	},
-/turf/open/floor/plasteel/dark,
+/obj/machinery/button/door{
+	id = "escape_cockpit_blast";
+	name = "Cockpit Airlock Blast Doors";
+	pixel_x = 7;
+	req_access_txt = "19"
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/escape)
 "av" = (
 /obj/effect/turf_decal/tile/blue{
@@ -382,15 +382,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"aK" = (
-/obj/machinery/button/door{
-	id = "escape_cockpit_blast";
-	name = "Cockpit Airlock Blast Doors";
-	pixel_y = -26;
-	req_access_txt = "19"
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
 "aL" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -489,7 +480,6 @@
 	pixel_y = 32
 	},
 /obj/structure/table/optable,
-/obj/item/surgical_drapes,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "aV" = (
@@ -697,7 +687,6 @@
 	pixel_x = 28
 	},
 /obj/structure/table/optable,
-/obj/item/surgical_drapes,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "br" = (
@@ -1411,14 +1400,19 @@
 /area/shuttle/escape)
 "cV" = (
 /obj/effect/turf_decal/bot_white,
-/obj/structure/closet/emcloset,
+/obj/structure/closet/emcloset/anchored,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "cW" = (
 /obj/effect/turf_decal/box/white/corners{
 	dir = 4
 	},
-/obj/structure/closet/crate/maint_energy/loaded,
+/obj/structure/rack,
+/obj/item/lazarus_injector,
+/obj/item/lazarus_injector{
+	pixel_x = 4;
+	pixel_y = -6
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "cX" = (
@@ -2285,8 +2279,8 @@ af
 aJ
 at
 aC
-aK
-ax
+ar
+au
 bc
 bm
 ax
@@ -2317,7 +2311,7 @@ aa
 ab
 ag
 ep
-au
+aD
 aD
 ar
 aS
