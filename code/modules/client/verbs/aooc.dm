@@ -73,6 +73,12 @@ GLOBAL_VAR_INIT(normal_aooc_colour, "#ce254f")
 			keyname = "<font color='[prefs.aooccolor ? prefs.aooccolor : GLOB.normal_aooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
 
+	// Skyrat edit: antag anonimity
+	if(!check_rights_for(src, R_ADMIN) || holder.deadmined) // No anonimity for admins unless deadmined
+		if(!aooc_name)
+			aooc_name = "Operator [pick(GLOB.phonetic_alphabet)] [rand(1, 99)]"
+		keyname = aooc_name
+
 	var/antaglisting = list()
 
 	for(var/datum/mind/M in get_antag_minds(/datum/antagonist))
