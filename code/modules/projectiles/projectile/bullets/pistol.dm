@@ -55,7 +55,7 @@
 
 /obj/item/projectile/bullet/c32acp
 	name = ".32 bullet"
-	damage = 13
+	damage = 25 //This shit literally did less damage than a FUCKING WELDER are you KIDDING ME?
 
 /obj/item/projectile/bullet/r32acp
 	name = ".32 rubber bullet"
