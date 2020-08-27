@@ -75,8 +75,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
-	force = 20
-	armour_penetration = 10
+	force = 25
+	armour_penetration = 20
 	sharpness = IS_SHARP
 	item_flags = NEEDS_PERMIT
 	hitsound = 'modular_skyrat/sound/weapons/bloodyslice.ogg'
@@ -88,7 +88,7 @@
 	icon_state = "energy_mantis_blade"
 	item_state = "energy_mantis_blade"
 	force = 30
-	armour_penetration = 10
+	armour_penetration = 15 //Energy isn't as good as going through armor as it is through flesh alone.
 	hitsound = 'sound/weapons/blade1.ogg'
 
 /obj/item/organ/cyberimp/arm/armblade
