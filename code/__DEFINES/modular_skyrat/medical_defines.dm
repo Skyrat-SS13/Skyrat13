@@ -18,17 +18,12 @@
 #define WOUND_SEVERITY_LOSS		5 // theoretical total limb loss, like dismemberment for cuts
 #define WOUND_SEVERITY_PERMANENT 6 // for wounds, severe or not, that cannot be removed via normal means (e.g just amputate the limb affected)
 
-#define WOUND_BLUNT 0 // any brute weapon/attack that doesn't have sharpness. rolls for blunt bone wounds
-#define WOUND_SLASH 1 // any brute weapon/attack with sharpness = SHARP_EDGED. rolls for slash wounds
-#define WOUND_PIERCE 2 // any brute weapon/attack with sharpness = SHARP_POINTY. rolls for piercing wounds
-#define WOUND_BURN	3 // any concentrated burn attack (lasers really). rolls for burning wounds
-#define WOUND_INTERNALBLEED 4 // currently only caused by exposure to space
-
-// The ones below will be implemented in the future, but dont exist atm
-#define WOUND_TOXIN 4
-#define WOUND_RADIATION 5 //arguably could just use the cellular wound thing, but i'm an asshole and want cancer/tumors to be a separate thing
-#define WOUND_CELLULAR 6
-#define WOUND_STAMINA 7
+#define WOUND_NONE 0 // doesn't actually wound
+#define WOUND_BLUNT 1 // any brute weapon/attack that doesn't have sharpness. rolls for blunt bone wounds
+#define WOUND_SLASH 2 // any brute weapon/attack with sharpness = SHARP_EDGED. rolls for slash wounds
+#define WOUND_PIERCE 3 // any brute weapon/attack with sharpness = SHARP_POINTY. rolls for piercing wounds
+#define WOUND_BURN	4 // any concentrated burn attack (lasers really). rolls for burning wounds
+#define WOUND_INTERNALBLEED 5 // may be used in the future
 
 // How much determination reagent to add each time someone gains a new wound in [/datum/wound/proc/second_wind()]
 #define WOUND_DETERMINATION_MODERATE	2

@@ -86,7 +86,7 @@
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
 		. += BP.tox_dam
-	for(var/X in internal_organs)
+	for(var/X in getCurrentOrgans())
 		var/obj/item/organ/O = X
 		//We don't count brain damage
 		if(O.slot == ORGAN_SLOT_BRAIN)
