@@ -229,24 +229,25 @@
 		
 	if(shock_stage >= SHOCK_STAGE_6)
 		if(prob(2))
-			custom_pain("[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!", shock_stage, nopainloss = TRUE)
-			Unconscious(rand(400, 800))
+			if(!IsUnconscious())
+				custom_pain("[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!", shock_stage, nopainloss = TRUE)
+			Unconscious(rand(500, 1000))
 
 	if(shock_stage == SHOCK_STAGE_7)
 		if(IsKnockdown())
 			visible_message("<b>[src]</b> can no longer stand, collapsing!")
-		Knockdown(400)
+		Knockdown(500)
 
 	if(shock_stage >= SHOCK_STAGE_7)
-		Paralyze(300)
+		Paralyze(500)
 		if(prob(4))
-			Unconscious(400)
+			Unconscious(600)
 	
 	if(shock_stage >= SHOCK_STAGE_8)
 		if(!IsUnconscious())
 			to_chat(src, "<span class='warning'>[dna.species.painloss_message_self]</span>")
 			visible_message("<span class='warning'>[dna.species.painloss_message]</span>", "<span class='danger'>[dna.species.painloss_message_self]</span>")
-		Unconscious(600)
+		Unconscious(800)
 
 /mob/living/carbon/fully_heal(admin_revive)
 	. = ..()
