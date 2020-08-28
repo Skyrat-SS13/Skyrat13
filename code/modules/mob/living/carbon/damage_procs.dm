@@ -79,7 +79,7 @@
 	. = 0
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
-		. += BP.pain_dam
+		. += BP.get_pain()
 
 /mob/living/carbon/getToxLoss()
 	. = 0
