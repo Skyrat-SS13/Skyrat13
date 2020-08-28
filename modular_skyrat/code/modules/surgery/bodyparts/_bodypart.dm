@@ -324,7 +324,7 @@
 	if(!owner)
 		return FALSE
 
-	var/list/our_organs
+	var/list/our_organs = list()
 	for(var/X in owner.internal_organs) //internal organs inside the dismembered limb are dropped.
 		var/obj/item/organ/O = X
 		var/org_zone = check_zone(O.zone)
