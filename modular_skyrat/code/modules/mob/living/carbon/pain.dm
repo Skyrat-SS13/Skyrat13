@@ -15,10 +15,10 @@
 	for(var/obj/item/bodypart/BP in bodyparts)
 		if(!BP.can_feel_pain())
 			continue
-		var/dam = BP.get_damage()
+		var/dam = BP.get_damage(include_pain = TRUE)
 		// make the choice of the organ depend on damage,
 		// but also sometimes use one of the less damaged ones
-		if(dam > maxdam && (maxdam == 0 || prob(70)) )
+		if(dam > maxdam && (maxdam <= 0 || prob(70)) )
 			damaged_bodypart = BP
 			maxdam = dam
 	
