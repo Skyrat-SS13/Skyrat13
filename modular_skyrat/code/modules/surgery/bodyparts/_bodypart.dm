@@ -133,7 +133,7 @@
 	/// Like stam_damage_coeff - but for pain
 	var/pain_damage_coeff = 1
 	/// Amount of pain healed per on_life() tick
-	var/pain_heal_tick = 1.25
+	var/pain_heal_tick = 1.6
 	/// How much we multiply pain_heal_tick by if the owner is lying down
 	var/pain_heal_rest_multiplier = 3
 	/// Multiply incoming pain by this. Works like incoming_stam_mult in a way.

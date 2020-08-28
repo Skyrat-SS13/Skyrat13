@@ -1,4 +1,8 @@
 // Pain. Ported from Baystation 12 and cleaned up a bit.
+/mob/living
+	var/last_pain_message = ""
+	var/next_pain_time = 0
+	var/next_pain_message_time = 0
 
 //Called on Life()
 /mob/living/proc/handle_pain()
@@ -37,15 +41,16 @@
 	// Anti message spam checks
 	if(force || (message != last_pain_message) || (world.time >= next_pain_time))
 		last_pain_message = message
-		switch(power)
-			if(PAIN_LEVEL_4 to INFINITY)
-				to_chat(src, "<span class='bigdanger'>[message]</span>")
-			if(PAIN_LEVEL_3 to PAIN_LEVEL_4)
-				to_chat(src, "<span class='mediumdanger'>[message]</span>")
-			if(PAIN_LEVEL_2 to PAIN_LEVEL_3)
-				to_chat(src, "<span class='danger'>[message]</span>")
-			if(PAIN_LEVEL_1 to PAIN_LEVEL_2)
-				to_chat(src, "<span class='warning'>[message]</span>")
+		if(world.time >= next_pain_message_time)
+			switch(power)
+				if(PAIN_LEVEL_4 to INFINITY)
+					to_chat(src, "<span class='bigdanger'>[message]</span>")
+				if(PAIN_LEVEL_3 to PAIN_LEVEL_4)
+					to_chat(src, "<span class='mediumdanger'>[message]</span>")
+				if(PAIN_LEVEL_2 to PAIN_LEVEL_3)
+					to_chat(src, "<span class='danger'>[message]</span>")
+				if(PAIN_LEVEL_1 to PAIN_LEVEL_2)
+					to_chat(src, "<span class='warning'>[message]</span>")
 
 		var/force_emote
 		if(ishuman(src))
@@ -56,5 +61,6 @@
 			force_emote = "groan"
 		if(force_emote && prob(power))
 			emote(force_emote)
-	next_pain_time = world.time + (rand(300, 450) - power)
+	next_pain_message_time = world.time + (rand(300, 450) - power)
+	next_pain_time = world.time + (rand(100, 200) - power)
 	return TRUE
