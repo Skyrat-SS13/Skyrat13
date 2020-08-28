@@ -39,7 +39,7 @@
 	var/germ_level = 0 // Geeeerms!
 	var/pain_multiplier = 1 // How much pain this causes in relation to damage (pain_multiplier * damage)
 	var/toxin_modifier = 1 // How much of this organ's damage we count for toxin damage
-	var/toxin_multiplier = 0.4 // When filtering toxins, how much of the brunt we actually take.
+	var/toxin_multiplier = 0.3 // When filtering toxins, how much of the brunt we actually take.
 
 /obj/item/organ/Initialize()
 	. = ..()
