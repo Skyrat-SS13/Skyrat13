@@ -803,7 +803,7 @@
 	for(var/obj/item/organ/O in pick_organs)
 		if(toxins <= 0)
 			break
-		var/cap_damage = (O.max_damage - O.damage)
+		var/cap_damage = (O.maxHealth - O.damage)
 		O.applyOrganDamage(min(cap_damage, toxins))
 		if(toxins > cap_damage)
 			toxins -= cap_damage
