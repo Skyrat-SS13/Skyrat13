@@ -486,7 +486,7 @@
 				wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
 			if((wounding_type == WOUND_SLASH) || (wounding_type == WOUND_PIERCE))
 				wounding_type = WOUND_BLUNT
-			if(wounding_type = WOUND_BLUNT)
+			else if(wounding_type == WOUND_BLUNT)
 				if(!easy_dismember)
 					wounding_dmg *= 0.4 // blunt weapons pass along 40% of their wounding damage to the tissue, since they could tear off limbs with enough force
 				wounding_type = WOUND_SLASH
