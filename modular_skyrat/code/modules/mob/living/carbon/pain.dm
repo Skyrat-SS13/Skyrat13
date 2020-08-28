@@ -220,36 +220,35 @@
 			visible_message("<b>[src]</b>'s body becomes limp.")
 		if(prob(2))
 			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nopainloss = TRUE)
-			Knockdown(500)
+			Knockdown(400)
 
 	if(shock_stage >= SHOCK_STAGE_5)
 		if(prob(5))
 			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nopainloss = TRUE)
-			Stun(500)
+			Stun(400)
 		
 	if(shock_stage >= SHOCK_STAGE_6)
 		if(prob(2))
 			custom_pain("[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!", shock_stage, nopainloss = TRUE)
-			Unconscious(rand(400, 1000))
+			Unconscious(rand(400, 800))
 
 	if(shock_stage == SHOCK_STAGE_7)
 		if(IsKnockdown())
 			visible_message("<b>[src]</b> can no longer stand, collapsing!")
-		Knockdown(500)
+		Knockdown(400)
 
 	if(shock_stage >= SHOCK_STAGE_7)
-		Paralyze(500)
+		Paralyze(300)
 		if(prob(4))
-			Unconscious(600)
+			Unconscious(400)
 	
 	if(shock_stage >= SHOCK_STAGE_8)
 		if(!IsUnconscious())
 			to_chat(src, "<span class='warning'>[dna.species.painloss_message_self]</span>")
 			visible_message("<span class='warning'>[dna.species.painloss_message]</span>", "<span class='danger'>[dna.species.painloss_message_self]</span>")
-		Unconscious(850)
+		Unconscious(600)
 
 /mob/living/carbon/fully_heal(admin_revive)
 	. = ..()
 	shock_stage = 0
 	setPainLoss(0, FALSE)
-	
