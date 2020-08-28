@@ -782,7 +782,9 @@
 	heal_damage(toxin = toxins, only_robotic = only_robotic, only_organic = only_organic, updating_health = updating_health)
 
 	// Get a list of the organs we should damage.
-	var/list/pick_organs = shuffle(get_organs())
+	var/list/pick_organs = list()
+	pick_organs |= get_organs()
+	pick_organs = shuffle(pick_organs)
 
 	// Prioritize damaging our filtration organs first.
 	var/obj/item/organ/liver/liver = owner.getorganslot(ORGAN_SLOT_LIVER)
@@ -804,6 +806,7 @@
 	for(var/obj/item/organ/O in pick_organs)
 		if(toxins <= 0)
 			break
+		
 		var/cap_damage = (O.maxHealth - O.damage)
 		O.applyOrganDamage(min(cap_damage, toxins * O.toxin_multiplier))
 		if(toxins > cap_damage)
@@ -822,6 +825,7 @@
 		for(var/obj/item/organ/O in pick_organs)
 			if(toxins <= 0)
 				break
+			
 			var/cap_damage = (O.maxHealth - O.damage)
 			O.applyOrganDamage(min(cap_damage, toxins))
 			if(toxins > cap_damage)
