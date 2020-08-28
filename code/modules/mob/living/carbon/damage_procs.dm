@@ -163,6 +163,13 @@
 		return
 	adjustStaminaLoss(diff, updating, forced)
 
+/mob/living/carbon/setPainLoss(amount, updating = TRUE, forced = FALSE)
+	var/current = getPainLoss()
+	var/diff = amount - current
+	if(!diff)
+		return
+	adjustPainLoss(diff, updating, forced)
+
 /** adjustOrganLoss
   * inputs: slot (organ slot, like ORGAN_SLOT_HEART), amount (damage to be done), and maximum (currently an arbitrarily large number, can be set so as to limit damage)
   * outputs:

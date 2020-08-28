@@ -220,6 +220,7 @@
 	associated_alerts = list()
 	can_self_treat = TRUE
 	pain_amount = 3
+	flat_damage_roll_increase = 5
 
 /datum/wound/mechanical/blunt/moderate/self_treat(mob/living/carbon/user, first_time = FALSE)
 	. = ..()
@@ -361,6 +362,7 @@
 	trauma_cycle_cooldown = 1.5 MINUTES
 	shock_chance = 30
 	pain_amount = 7
+	flat_damage_roll_increase = 10
 
 /*
 	Critical (Broken Actuators)
@@ -387,6 +389,7 @@
 	trauma_cycle_cooldown = 2.5 MINUTES
 	shock_chance = 45
 	pain_amount = 12
+	flat_damage_roll_increase = 15
 
 /// if someone is using a reagent container
 /datum/wound/mechanical/blunt/proc/wrench(obj/item/I, mob/user)

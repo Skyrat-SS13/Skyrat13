@@ -102,6 +102,10 @@
 	var/organ_required_reduction = 0.1
 	/// How much pain this wound causes
 	var/pain_amount = 5
+	/// How much this wound increases the damage on organ damage rolls, multiplier
+	var/damage_roll_increase = 0.1
+	/// How much this wound increases the damage on organ damage rolls, flat
+	var/flat_damage_roll_increase = 2.5
 
 	/// What status effect we assign on application
 	var/status_effect_type

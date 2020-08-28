@@ -21,6 +21,8 @@
 	var/obj/item/organ/genital/linked_organ
 	var/linked_organ_slot //used for linking an apparatus' organ to its other half on update_link().
 	var/layer_index = GENITAL_LAYER_INDEX //Order should be very important. FIRST vagina, THEN testicles, THEN penis, as this affects the order they are rendered in.
+	relative_size = 5 //Genital damage doesn't do much
+	damage_modifier = 0
 
 /obj/item/organ/genital/Initialize(mapload, do_update = TRUE)
 	. = ..()

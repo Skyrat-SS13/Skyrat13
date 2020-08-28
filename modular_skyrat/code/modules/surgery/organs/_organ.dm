@@ -34,9 +34,10 @@
 	var/etching = ""
 	var/surface_accessible = FALSE
 	var/relative_size = 25 // Relative size of the organ. Roughly % of space they take in the limb
-	var/damage_modifier = 0.5 // Modifier when the limb gets damaged, and fricks up the organs inside
+	var/damage_modifier = 0.25 // Modifier when the limb gets damaged, and fricks up the organs inside
 	var/damage_reduction = 0 // Flat reduction of the damage when the limb affects us
 	var/germ_level = 0 // Geeeerms!
+	var/pain_multiplier = 1 // How much pain this causes in relation to damage (pain_multiplier * damage)
 
 /obj/item/organ/Initialize()
 	. = ..()
@@ -65,6 +66,12 @@
 
 /obj/item/organ/proc/listen()
 	return
+
+/obj/item/organ/proc/get_pain()
+	var/damage_mult = 1
+	if(status & ORGAN_ROBOTIC)
+		damage_mult *= 0.5
+	return (damage * damage_mult * pain_multiplier)
 
 /obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
 	if(!iscarbon(M) || owner == M)

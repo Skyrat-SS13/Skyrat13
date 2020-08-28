@@ -170,6 +170,14 @@
 		updatehealth()
 	return amount
 
+/mob/living/proc/setPainLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(!forced && (status_flags & GODMODE))
+		return FALSE
+	painloss = amount
+	if(updating_health)
+		updatehealth()
+	return amount
+
 /mob/living/proc/getOxyLoss()
 	return oxyloss
 

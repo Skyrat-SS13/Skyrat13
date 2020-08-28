@@ -1,13 +1,15 @@
 /obj/item/organ/kidneys
 	name = "kidneys"
+	icon = 'modular_skyrat/icons/obj/surgery.dmi'
 	icon_state = "kidneys"
+	desc = "You have to be kidneying me."
 	gender = PLURAL
 	slot = ORGAN_SLOT_KIDNEYS
 	zone = BODY_ZONE_PRECISE_GROIN
 	low_threshold = 25
 	high_threshold = 45
 	maxHealth = 70
-	relative_size = 15
+	relative_size = 20
 	//Reagents associated with the damage they deal when metabolized, if the kidney is damaged
 	var/list/bad_reagents = list(
 		/datum/reagent/consumable/coffee = 0.1,

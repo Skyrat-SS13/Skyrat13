@@ -133,7 +133,7 @@
 	/// Like stam_damage_coeff - but for pain
 	var/pain_damage_coeff = 1
 	/// Amount of pain healed per on_life() tick
-	var/pain_heal_tick = 2
+	var/pain_heal_tick = 1.25
 	/// How much we multiply pain_heal_tick by if the owner is lying down
 	var/pain_heal_rest_multiplier = 3
 	/// Multiply incoming pain by this. Works like incoming_stam_mult in a way.
@@ -175,13 +175,13 @@
 	if(!max_tox_damage)
 		max_tox_damage = max_damage
 	if(!max_pain_damage)
-		max_pain_damage = max_damage
+		max_pain_damage = 2.5 * max_damage
 	if(!max_clone_damage)
 		max_clone_damage = max_damage
 	if(!organ_damage_requirement)
-		organ_damage_requirement = max_damage * 0.25
+		organ_damage_requirement = max_damage * 0.2
 	if(!organ_damage_hit_minimum)
-		organ_damage_hit_minimum = 10
+		organ_damage_hit_minimum = 5
 
 /obj/item/bodypart/Topic(href, href_list)
 	. = ..()
@@ -687,20 +687,21 @@
 		return
 	
 	var/broken = FALSE
-	var/damage_amt = brute
+	var/initial_damage_amt = brute
 	var/cur_damage = brute_dam
 	//Robotic limbs count burns for organ damage
 	if(is_robotic_limb() && ((wounding_type == WOUND_BURN) || (burn > brute)))
 		//Think of it as frying the organs with hot metal
-		damage_amt += burn
+		initial_damage_amt += burn
 		cur_damage += burn_dam
 	//Organic limbs take clone damage, however...
 	else if(is_organic_limb())
-		damage_amt += clone
+		initial_damage_amt += clone
 		//Clone damage makes you way more likely to get your organs fricked up
 		//Think of it as cancer
 		cur_damage += clone
 	
+	var/damage_amt = initial_damage_amt
 	var/organ_damage_threshold = organ_damage_hit_minimum
 	var/organ_damage_required = organ_damage_requirement
 	//Piercing damage is more likely to damage internal organs
@@ -708,6 +709,8 @@
 		organ_damage_threshold *= 0.5
 	//Wounds can alter our odds of harming organs
 	for(var/datum/wound/W in wounds)
+		damage_amt += initial_damage_amt * W.damage_roll_increase
+		damage_amt += W.flat_damage_roll_increase
 		organ_damage_threshold = max(1, organ_damage_threshold - (organ_damage_hit_minimum * W.organ_threshold_reduction))
 		organ_damage_required = max(1, organ_damage_required - (organ_damage_requirement * W.organ_required_reduction))
 		if((W.wound_type == WOUND_LIST_BLUNT) && (W.severity >= WOUND_SEVERITY_SEVERE)) //We have a fracture
@@ -774,6 +777,8 @@
 	extra_pain += 0.3 * clone_dam
 	for(var/datum/wound/W in wounds)
 		extra_pain += W.pain_amount
+	for(var/obj/item/organ/O in get_organs())
+		extra_pain += O.get_pain()
 	return clamp(pain_dam + extra_pain, 0, max_pain_damage)
 
 //Returns whether or not the bodypart can feel pain

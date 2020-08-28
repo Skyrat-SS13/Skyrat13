@@ -249,6 +249,7 @@
 	associated_alerts = list()
 	can_self_treat = TRUE
 	pain_amount = 3
+	flat_damage_roll_increase = 5
 
 /datum/wound/blunt/moderate/crush()
 	if(prob(33))
@@ -651,6 +652,7 @@
 	trauma_cycle_cooldown = 1.5 MINUTES
 	internal_bleeding_chance = 40
 	pain_amount = 7
+	flat_damage_roll_increase = 10
 
 /datum/wound/blunt/critical
 	name = "Compound Fracture"
@@ -674,6 +676,7 @@
 	trauma_cycle_cooldown = 2.5 MINUTES
 	internal_bleeding_chance = 60
 	pain_amount = 12
+	flat_damage_roll_increase = 15
 
 // doesn't make much sense for "a" bone to stick out of your head
 /datum/wound/blunt/critical/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)
