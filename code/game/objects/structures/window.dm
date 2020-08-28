@@ -633,6 +633,11 @@ GLOBAL_LIST_EMPTY(electrochromatic_window_lookup)
 	smooth = SMOOTH_TRUE
 	glass_amount = 2
 
+/obj/structure/window/plasma/reinforced/fulltile/BlockSuperconductivity() // Skyrat edit
+	if(!anchored || !density)
+		return FALSE
+	return TRUE
+
 /obj/structure/window/plasma/reinforced/fulltile/unanchored
 	anchored = FALSE
 
