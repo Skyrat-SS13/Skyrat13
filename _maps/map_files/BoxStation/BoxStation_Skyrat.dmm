@@ -25834,11 +25834,6 @@
 /obj/machinery/vending/wardrobe/chem_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"bhe" = (
-/obj/machinery/door/firedoor,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "bhk" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -98468,7 +98463,7 @@ aJq
 aJq
 aJq
 aJq
-bhe
+aLY
 aJq
 bco
 aJq
