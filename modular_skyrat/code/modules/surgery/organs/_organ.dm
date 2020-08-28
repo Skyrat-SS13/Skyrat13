@@ -32,6 +32,11 @@
 
 	//Bobmed variables
 	var/etching = ""
+	var/surface_accessible = FALSE
+	var/relative_size = 25 // Relative size of the organ. Roughly % of space they take in the limb
+	var/damage_modifier = 0.5 // Modifier when the limb gets damaged, and fricks up the organs inside
+	var/damage_reduction = 0 // Flat reduction of the damage when the limb affects us
+	var/germ_level = 0 // Geeeerms!
 
 /obj/item/organ/Initialize()
 	. = ..()
@@ -45,6 +50,21 @@
 		// while undergoing transformation into different mobs.
 		Remove(TRUE)
 	return ..()
+
+/obj/item/organ/proc/is_bruised()
+	return damage >= low_threshold
+
+/obj/item/organ/proc/is_broken()
+	return ((organ_flags & ORGAN_FAILING) || (damage >= high_threshold))
+
+/obj/item/organ/proc/bruise_organ()
+	damage = max(damage, low_threshold)
+
+/obj/item/organ/proc/break_organ()
+	damage = max(damage, high_threshold)
+
+/obj/item/organ/proc/listen()
+	return
 
 /obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
 	if(!iscarbon(M) || owner == M)

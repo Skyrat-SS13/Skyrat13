@@ -8,6 +8,10 @@
 	desc = "Onaka ga suite imasu."
 	var/disgust_metabolism = 1
 
+	maxHealth = 0.5 * STANDARD_ORGAN_THRESHOLD		//half the normal health max since we go blind at 30, a permanent blindness at 50 therefore makes sense unless medicine is administered
+	high_threshold = 0.25 * STANDARD_ORGAN_THRESHOLD	//threshold at 20
+	low_threshold = 0.1 * STANDARD_ORGAN_THRESHOLD	//threshold at 10
+	relative_size = 30
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
 

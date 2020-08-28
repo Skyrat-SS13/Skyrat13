@@ -674,7 +674,7 @@
 		var/they_breathe = !HAS_TRAIT(C, TRAIT_NOBREATH)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
 
-		if(C.health > C.crit_threshold)
+		if(!C.InFullShock())
 			return
 
 		src.visible_message("[src] performs CPR on [C.name]!", "<span class='notice'>You perform CPR on [C.name].</span>")
@@ -776,7 +776,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = min(health, maxHealth - clamp(getStaminaLoss()-50, 0, 80))//CIT CHANGE - makes staminaloss have less of an impact on the health hud
+			var/health_amount = min(get_physical_damage(), maxHealth - clamp(getStaminaLoss()-50, 0, 80))//CIT CHANGE - makes staminaloss have less of an impact on the health hud
 			if(..(health_amount)) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
@@ -791,7 +791,7 @@
 			hud_used.healthdoll.cut_overlays()
 			if(stat != DEAD)
 				hud_used.healthdoll.icon_state = "healthdoll_OVERLAY"
-				if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
+				if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF) && (chem_effects[CE_PAINKILLER] < 100))
 					for(var/X in bodyparts)
 						var/obj/item/bodypart/BP = X
 						var/damage = BP.burn_dam + BP.brute_dam
@@ -817,7 +817,7 @@
 					for(var/t in get_disabled_limbs()) //Disabled limbs
 						hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[t]7"))
 			else
-				hud_used.healthdoll.icon_state = "healthdoll_DEAD"
+				hud_used.healthdoll.icon_state = "healthdoll_OVERLAY"
 			//
 
 		hud_used.staminas?.update_icon_state()
@@ -1068,7 +1068,7 @@
 		return
 	var/stambufferinfluence = (bufferedstam*(100/stambuffer))*0.2 //CIT CHANGE - makes stamina buffer influence movedelay
 	if(!HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))	//if we want to ignore slowdown from damage, but not from equipment
-		var/health_deficiency = ((maxHealth + stambufferinfluence) - health + (getStaminaLoss()*0.75))//CIT CHANGE - reduces the impact of staminaloss and makes stamina buffer influence it
+		var/health_deficiency = ((maxHealth + stambufferinfluence) - get_physical_damage() + (getStaminaLoss()*0.75))//CIT CHANGE - reduces the impact of staminaloss and makes stamina buffer influence it
 		if(health_deficiency >= 40)
 			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, (health_deficiency-39) / 75)
 			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, (health_deficiency-39) / 25)
@@ -1293,3 +1293,6 @@
 	if(!length(dna?.species?.species_traits))
 		return BIO_INORGANIC
 	return dna.species.get_biological_state()
+
+/mob/living/carbon/human/needs_lungs()
+	return !(TRAIT_NOBREATH in dna?.species?.inherent_traits)

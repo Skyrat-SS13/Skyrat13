@@ -19,3 +19,4 @@
 	max_cavity_size = WEIGHT_CLASS_NORMAL
 	dismember_mod = 0.7
 	disembowel_mod = 0.7
+	encased = "hips"

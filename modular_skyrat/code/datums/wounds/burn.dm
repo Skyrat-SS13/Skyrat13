@@ -30,6 +30,7 @@
 	base_treat_time = 3 SECONDS
 	biology_required = list(HAS_FLESH)
 	required_status = BODYPART_ORGANIC
+	pain_amount = 5 //Burns are awful
 
 /datum/wound/burn/on_hemostatic(quantity)
 	if((severity <= WOUND_SEVERITY_SEVERE) && infestation && (quantity >= 10))
@@ -39,12 +40,12 @@
 
 /datum/wound/burn/handle_process()
 	. = ..()
-	if(strikes_to_lose_limb == 0)
-		victim.adjustToxLoss(0.5)
+	if(strikes_to_lose_limb <= 0)
+		limb.receive_damage(toxin = 1)
 		if(prob(1))
 			victim.visible_message("<span class='danger'>The infection on the remnants of [victim]'s [limb.name] shift and bubble nauseatingly!</span>", "<span class='warning'>You can feel the infection on the remnants of your [limb.name] coursing through your veins!</span>")
 		return
-
+	
 	if(victim.reagents)
 		if(victim.reagents.has_reagent(/datum/reagent/medicine/spaceacillin))
 			sanitization += 0.9
@@ -104,14 +105,17 @@
 			if(!disabling && prob(3))
 				to_chat(victim, "<span class='warning'><b>You suddenly lose all sensation of the festering infection in your [limb.name]!</b></span>")
 				disabling = TRUE
+				pain_amount += 2
 				wound_alert()
 			else if(disabling && prob(3))
 				to_chat(victim, "<span class='notice'>You can barely feel your [limb.name] again, and you have to strain to retain motor control!</span>")
 				disabling = FALSE
+				pain_amount += 2
 				wound_alert()
 			else if(prob(1))
 				to_chat(victim, "<span class='warning'>You contemplate life without your [limb.name]...</span>")
 				victim.adjustToxLoss(0.75)
+				pain_amount += 2
 				wound_alert()
 			else if(prob(4))
 				victim.adjustToxLoss(1)
@@ -130,6 +134,7 @@
 						threshold_penalty = 120 // piss easy to destroy
 						var/datum/brain_trauma/severe/paralysis/sepsis = new (limb.body_zone)
 						victim.gain_trauma(sepsis)
+				pain_amount += 4
 				wound_alert()
 				strikes_to_lose_limb--
 
@@ -274,6 +279,7 @@
 	status_effect_type = /datum/status_effect/wound/burn/moderate
 	flesh_damage = 5
 	scarring_descriptions = list("small amoeba-shaped skinmarks", "a faded streak of depressed skin")
+	pain_amount = 7 //Burns are awful
 
 /datum/wound/burn/severe
 	name = "Third Degree Burns"
@@ -291,6 +297,7 @@
 	infestation_rate = 0.05 // appx 13 minutes to reach sepsis without any treatment
 	flesh_damage = 12.5
 	scarring_descriptions = list("a large, jagged patch of faded skin", "random spots of shiny, smooth skin", "spots of taut, leathery skin")
+	pain_amount = 10 //Burns are awful
 
 /datum/wound/burn/critical
 	name = "Catastrophic Burns"
@@ -309,3 +316,4 @@
 	infestation_rate = 0.15 // appx 4.33 minutes to reach sepsis without any treatment
 	flesh_damage = 20
 	scarring_descriptions = list("massive, disfiguring keloid scars", "several long streaks of badly discolored and malformed skin", "unmistakeable splotches of dead tissue from serious burns")
+	pain_amount = 16 //Burns are awful

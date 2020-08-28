@@ -26,7 +26,8 @@
 	if(stat != DEAD)
 		handle_liver()
 
-	//Updates the number of stored chemicals for powers
+	if(stat != DEAD)
+		handle_shock()
 
 /mob/living/carbon/PhysicalLife(seconds, times_fired)
 	if(!(. = ..()))
@@ -88,17 +89,16 @@
 
 	var/datum/gas_mixture/breath
 
-	if(!getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-		if(health <= HEALTH_THRESHOLD_FULLCRIT || (pulledby && pulledby.grab_state >= GRAB_KILL) || HAS_TRAIT(src, TRAIT_MAGIC_CHOKE) || (lungs && lungs.organ_flags & ORGAN_FAILING))
-			losebreath++  //You can't breath at all when in critical or when being choked, so you're going to miss a breath
-
-		else if(health <= crit_threshold)
-			losebreath += 0.25 //You're having trouble breathing in soft crit, so you'll miss a breath one in four times
+	if(is_asystole() && !getorganslot(ORGAN_SLOT_BREATHING_TUBE) && !chem_effects[CE_STABLE])
+		if(nervous_system_failure() || (pulledby && pulledby.grab_state >= GRAB_KILL) || HAS_TRAIT(src, TRAIT_MAGIC_CHOKE) || (lungs && lungs.organ_flags & ORGAN_FAILING))
+			losebreath++  //You can't breath at all!
+		else
+			losebreath += 0.25 //You're having trouble breathing.
 
 	//Suffocate
 	if(losebreath >= 1) //You've missed a breath, take oxy damage
 		losebreath--
-		if(prob(10))
+		if(prob(10) && !nervous_system_failure()) //Gasp per 10 ticks? Sounds about right.
 			emote("gasp")
 		if(istype(loc, /obj/))
 			var/obj/loc_as_obj = loc
@@ -185,7 +185,7 @@
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "suffocation", /datum/mood_event/suffocation)
 
 	if(O2_partialpressure < safe_oxy_min) //Not enough oxygen
-		if(prob(20))
+		if(prob(20) && !nervous_system_failure())
 			emote("gasp")
 		if(O2_partialpressure > 0)
 			var/ratio = 1 - O2_partialpressure/safe_oxy_min
@@ -201,7 +201,7 @@
 	else //Enough oxygen
 		failed_last_breath = 0
 		o2overloadtime = 0 //reset our counter for this too
-		if(health >= crit_threshold)
+		if(!is_asystole() && !nervous_system_failure())
 			adjustOxyLoss(-5)
 		oxygen_used = breath_gases[/datum/gas/oxygen]
 		clear_alert("not_enough_oxy")
@@ -719,7 +719,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	if(prob(15))
 		to_chat(src, "<span class='danger'>You feel a stabbing pain in your abdomen!</span>")
 
-
 ////////////////
 //BRAIN DAMAGE//
 ////////////////
@@ -770,5 +769,5 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 /mob/living/carbon/handle_wounds()
 	for(var/thing in all_wounds)
 		var/datum/wound/W = thing
-		if(istype(W) && W.processes) // meh
+		if(istype(W) && W.processes) //meh
 			W.handle_process()

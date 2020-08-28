@@ -4166,6 +4166,7 @@
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\eyes.dm"
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\heart.dm"
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\helpers.dm"
+#include "modular_skyrat\code\modules\surgery\organs\organ_types\kidneys.dm"
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\liver.dm"
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\lungs.dm"
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\stomach.dm"

@@ -104,6 +104,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/obj/item/organ/tail/mutanttail = null
 
 	var/obj/item/organ/liver/mutantliver
+	var/obj/item/organ/kidneys/mutantkidneys
 	var/obj/item/organ/stomach/mutantstomach
 	var/override_float = FALSE
 
@@ -115,6 +116,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/icon_limbs //Overrides the icon used for the limbs of this species. Mainly for downstream, and also because hardcoded icons disgust me. Implemented and maintained as a favor in return for a downstream's implementation of synths.
 	/// Our default override for typing indicator state
 	var/typing_indicator_state
+	/// Pain messages
+	var/painloss_message = "slumps over, too weak to continue fighting..."
+	var/painloss_message_self = "The pain is too severe for you to keep going..."
 
 ///////////
 // PROCS //
@@ -198,6 +202,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/obj/item/organ/ears/ears = C.getorganslot(ORGAN_SLOT_EARS)
 	var/obj/item/organ/tongue/tongue = C.getorganslot(ORGAN_SLOT_TONGUE)
 	var/obj/item/organ/liver/liver = C.getorganslot(ORGAN_SLOT_LIVER)
+	var/obj/item/organ/kidneys/kidneys = C.getorganslot(ORGAN_SLOT_KIDNEYS)
 	var/obj/item/organ/stomach/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
 	var/obj/item/organ/tail/tail = C.getorganslot(ORGAN_SLOT_TAIL)
 
@@ -209,6 +214,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/should_have_ears = TRUE
 	var/should_have_tongue = TRUE
 	var/should_have_liver = !(NOLIVER in species_traits)
+	var/should_have_kidneys = !(NOKIDNEYS in species_traits)
 	var/should_have_stomach = !(NOSTOMACH in species_traits)
 	var/should_have_tail = mutanttail
 
@@ -246,6 +252,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		else
 			liver = new()
 		liver.Insert(C)
+	
+	if(should_have_kidneys && !kidneys)
+		if(mutantkidneys)
+			kidneys = new mutantkidneys()
+		else
+			kidneys = new()
+		kidneys.Insert(C)
 
 	if(stomach && (!should_have_stomach || replace_current))
 		stomach.Remove(TRUE)
@@ -1087,7 +1100,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		H.losebreath = 0
 
 		var/takes_crit_damage = !HAS_TRAIT(H, TRAIT_NOCRITDAMAGE)
-		if((H.health < H.crit_threshold) && takes_crit_damage)
+		if(H.is_asystole() && takes_crit_damage)
 			H.adjustBruteLoss(1)
 
 /datum/species/proc/spec_death(gibbed, mob/living/carbon/human/H)
@@ -2098,7 +2111,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	if(HAS_TRAIT(H, TRAIT_NOBREATH))
 		return TRUE
 
-
 /datum/species/proc/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)
 	if(!environment)
 		return
@@ -2204,13 +2216,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_INTERNAL_PROB))
 					BP = pick(H.bodyparts)
 				var/applydam = (min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
-				/* Commented out for the moment
-				if(BP && (BP.brute_dam >= (LOW_PRESSURE_DAMAGE * 0.75)))
-					BP.painless_wound_roll(WOUND_INTERNALBLEED, applydam * INTERNAL_WOUND_ROLL_MULT)
-				if(H.InCritical())
-					for(var/obj/item/organ/O in H.internal_organs)
-						H.adjustOrganLoss(O.slot, O.maxHealth/50)
-				*/
 				H.apply_damage(damage = applydam, damagetype = BRUTE, def_zone = BP, wound_bonus = CANT_WOUND)
 			else
 				H.clear_alert("pressure")
@@ -2229,13 +2234,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				var/obj/item/bodypart/BP
 				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_INTERNAL_PROB))
 					BP = pick(H.bodyparts)
-				/* Commented out for the moment
-				if(BP && (BP.brute_dam >= (LOW_PRESSURE_DAMAGE * 0.75)))
-					BP.painless_wound_roll(WOUND_INTERNALBLEED, applydam * INTERNAL_WOUND_ROLL_MULT)
-				if(H.InCritical())
-					for(var/obj/item/organ/O in H.internal_organs)
-						H.adjustOrganLoss(O.slot, O.maxHealth/50)
-				*/
 				H.apply_damage(damage = applydam, damagetype = BRUTE, def_zone = BP, wound_bonus = CANT_WOUND)
 
 //////////

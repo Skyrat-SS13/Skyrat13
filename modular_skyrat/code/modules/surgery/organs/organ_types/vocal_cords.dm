@@ -10,6 +10,10 @@
 	slot = ORGAN_SLOT_VOICE
 	gender = PLURAL
 	var/list/spans = null
+	relative_size = 10
+	maxHealth = 50
+	high_threshold = 35
+	low_threshold = 10
 
 /obj/item/organ/vocal_cords/proc/can_speak_with() //if there is any limitation to speaking with these cords
 	return TRUE

@@ -6,6 +6,11 @@
 	slot = ORGAN_SLOT_EARS
 	gender = PLURAL
 
+	maxHealth = 0.45 * STANDARD_ORGAN_THRESHOLD		//half the normal health max since we go blind at 30, a permanent blindness at 50 therefore makes sense unless medicine is administered
+	high_threshold = 0.3 * STANDARD_ORGAN_THRESHOLD	//threshold at 30
+	low_threshold = 0.2 * STANDARD_ORGAN_THRESHOLD	//threshold at 15
+	relative_size = 5
+	
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
 

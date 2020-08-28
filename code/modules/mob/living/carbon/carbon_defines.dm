@@ -65,7 +65,11 @@
 	var/drunkenness = 0 //Overall drunkenness - check handle_alcohol() in life.dm for effects
 	var/tackling = FALSE //Whether or not we are tackling, this will prevent the knock into effects for carbons
 	
+	//Bobmed stuff
+
 	/// All of the wounds a carbon has afflicted throughout their limbs
 	var/list/all_wounds = list()
 	/// All of the scars a carbon has afflicted throughout their limbs
 	var/list/all_scars = list()
+	/// Shock (new critical)
+	var/shock_stage = 0

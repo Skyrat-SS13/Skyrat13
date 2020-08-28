@@ -93,6 +93,14 @@
 		var/obj/item/bodypart/BP = X
 		. += BP.clone_dam
 
+/mob/living/carbon/getOxyLoss()
+	. = 0
+	if(needs_lungs())
+		var/obj/item/organ/lungs/lungs = getorganslot(ORGAN_SLOT_LUNGS)
+		if(!lungs)
+			return maxHealth/2
+		return lungs.get_oxygen_deprivation()
+
 /mob/living/carbon/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && amount < 0 && HAS_TRAIT(src,TRAIT_NONATURALHEAL))
 		return FALSE

@@ -35,6 +35,7 @@
 	base_treat_time = 4 SECONDS
 	biology_required = list(HAS_BONE)
 	required_status = BODYPART_ORGANIC
+	pain_amount = 3
 
 /*
 	Overwriting of base procs
@@ -247,6 +248,7 @@
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
 	can_self_treat = TRUE
+	pain_amount = 3
 
 /datum/wound/blunt/moderate/crush()
 	if(prob(33))
@@ -391,6 +393,7 @@
 	status_effect_type = /datum/status_effect/wound/blunt/moderate
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
+	pain_amount = 5 //Hurts a lot, almost a hairline fracture
 
 /datum/wound/blunt/moderate/ribcage/crush()
 	if(prob(33))
@@ -474,6 +477,7 @@
 	status_effect_type = /datum/status_effect/wound/blunt/moderate
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
+	pain_amount = 4 //Hurts more than your average dislocation
 
 /datum/wound/blunt/moderate/hips/crush()
 	if(prob(33))
@@ -557,6 +561,7 @@
 	status_effect_type = /datum/status_effect/wound/blunt/moderate
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
+	pain_amount = 4 //Hurts a bit more
 
 /datum/wound/blunt/moderate/jaw/crush()
 	if(prob(33))
@@ -645,6 +650,7 @@
 	brain_trauma_group = BRAIN_TRAUMA_MILD
 	trauma_cycle_cooldown = 1.5 MINUTES
 	internal_bleeding_chance = 40
+	pain_amount = 7
 
 /datum/wound/blunt/critical
 	name = "Compound Fracture"
@@ -667,6 +673,7 @@
 	brain_trauma_group = BRAIN_TRAUMA_SEVERE
 	trauma_cycle_cooldown = 2.5 MINUTES
 	internal_bleeding_chance = 60
+	pain_amount = 12
 
 // doesn't make much sense for "a" bone to stick out of your head
 /datum/wound/blunt/critical/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)

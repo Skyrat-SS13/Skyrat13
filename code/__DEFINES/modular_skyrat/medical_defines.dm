@@ -29,7 +29,6 @@
 #define WOUND_RADIATION 5 //arguably could just use the cellular wound thing, but i'm an asshole and want cancer/tumors to be a separate thing
 #define WOUND_CELLULAR 6
 #define WOUND_STAMINA 7
-#define WOUND_ORGAN 8
 
 // How much determination reagent to add each time someone gains a new wound in [/datum/wound/proc/second_wind()]
 #define WOUND_DETERMINATION_MODERATE	2
@@ -160,9 +159,38 @@
 #define ORGAN_SYNTHETIC			(1<<0)	//Synthetic organs, or cybernetic organs. Reacts to EMPs and don't deteriorate or heal
 #define ORGAN_FROZEN			(1<<1)	//Frozen organs, don't deteriorate
 #define ORGAN_FAILING			(1<<2)	//Failing organs perform damaging effects until replaced or fixed
-#define ORGAN_DEAD				(1<<3)	//Completely necrotic organs
-#define ORGAN_EXTERNAL			(1<<4)	//Was this organ implanted/inserted/etc, if true will not be removed during species change.
-#define ORGAN_VITAL				(1<<5)	//Currently only the brain
-#define ORGAN_NO_SPOIL			(1<<6)	//Do not spoil under any circumstances
-#define ORGAN_NO_DISMEMBERMENT	(1<<7)	//Immune to disembowelment.
-#define ORGAN_EDIBLE			(1<<8)	//is a snack? :D
+#define ORGAN_EXTERNAL			(1<<3)	//Was this organ implanted/inserted/etc, if true will not be removed during species change.
+#define ORGAN_VITAL				(1<<4)	//Currently only the brain
+#define ORGAN_NO_SPOIL			(1<<5)	//Do not spoil under any circumstances
+#define ORGAN_NO_DISMEMBERMENT	(1<<6)	//Immune to disembowelment.
+#define ORGAN_EDIBLE			(1<<7)	//is a snack? :D
+
+// Pulse levels, very simplified.
+#define PULSE_NONE    0   // So !M.pulse checks would be possible.
+#define PULSE_SLOW    1   // <60     bpm
+#define PULSE_NORM    2   //  60-90  bpm
+#define PULSE_FAST    3   //  90-120 bpm
+#define PULSE_2FAST   4   // >120    bpm
+#define PULSE_THREADY 5   // Occurs during hypovolemic shock
+#define PULSE_MAX_BPM 250 // Highest, readable BPM by machines and humans.
+#define GETPULSE_HAND 0   // Less accurate. (hand)
+#define GETPULSE_TOOL 1   // More accurate. (med scanner, sleeper, etc.)
+
+// Shock defines
+#define SHOCK_STAGE_1 10
+#define SHOCK_STAGE_2 30
+#define SHOCK_STAGE_3 40
+#define SHOCK_STAGE_4 60
+#define SHOCK_STAGE_5 80
+#define SHOCK_STAGE_6 120
+#define SHOCK_STAGE_7 150
+#define SHOCK_STAGE_8 200
+
+//Infection defines
+
+#define GERM_LEVEL_AMBIENT  275 // Maximum germ level you can reach by standing still.
+#define GERM_LEVEL_MOVE_CAP 300 // Maximum germ level you can reach by running around.
+
+#define INFECTION_LEVEL_ONE   250
+#define INFECTION_LEVEL_TWO   500  // infections grow from ambient to two in ~5 minutes
+#define INFECTION_LEVEL_THREE 1000 // infections grow from two to three in ~10 minutes

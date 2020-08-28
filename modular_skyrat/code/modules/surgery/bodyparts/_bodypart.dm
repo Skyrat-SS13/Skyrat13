@@ -159,6 +159,13 @@
 	/// Reduces incoming cellular damage by this, flat
 	var/clone_reduction = 0
 
+	/// How damaged the limb needs to be to start taking internal organ damage
+	var/organ_damage_requirement = 0
+	/// How much damage an attack needs to do, at the very least, to damage internal organs
+	var/organ_damage_hit_minimum = 0
+	/// The bones that encase us
+	var/encased
+
 /obj/item/bodypart/Initialize()
 	. = ..()
 	if(starting_children.len)
@@ -171,6 +178,10 @@
 		max_pain_damage = max_damage
 	if(!max_clone_damage)
 		max_clone_damage = max_damage
+	if(!organ_damage_requirement)
+		organ_damage_requirement = max_damage * 0.25
+	if(!organ_damage_hit_minimum)
+		organ_damage_hit_minimum = 10
 
 /obj/item/bodypart/Topic(href, href_list)
 	. = ..()
@@ -331,7 +342,10 @@
 /obj/item/bodypart/proc/on_life()
 	//DO NOT update health here, it'll be done in the carbon's life.
 	if(stam_heal_tick && stamina_dam > DAMAGE_PRECISION)
-		if(heal_damage(stamina = (stam_heal_tick * (disabled ? 2 : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
+		//Pain makes you regenerate stamina slower.
+		//At maximum pain, you barely regenerate stamina on the limb.
+		var/pain_multiplier = max(0.1, 1- (get_pain()/max_pain_damage))
+		if(heal_damage(stamina = (stam_heal_tick * (disabled ? 2 : 1) * pain_multiplier), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(pain_heal_tick && pain_dam > DAMAGE_PRECISION)
 		if(heal_damage(pain = (pain_heal_tick * (owner?.lying ? pain_heal_rest_multiplier : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
@@ -485,10 +499,10 @@
 	//We add the pain values before we scale damage down
 	//Pain does not care about your feelings, nor if your limb was already damaged
 	//to it's maximum
-	pain += 0.65 * clone
-	pain += 0.6 * burn
+	pain += 0.6 * clone
+	pain += 0.5 * burn
 	pain += 0.4 * brute
-
+	
 	//Total damage used to calculate the can_inflicts
 	var/total_damage = brute + burn
 	
@@ -532,6 +546,10 @@
 					//We apply damage without any armor checks, because the limb that made it suffer damage is absolutely FUCKED anyways.
 					damage_limb.receive_damage(brute = extrabrute, burn = extraburn, sharpness = sharpness, spread_damage = FALSE)
 	
+	//We damage the organs, if possible, before adding onto the limb's damage
+	//Doing so later would fuck up with calculations
+	damage_organs(brute = brute, burn = burn, toxin = toxin, clone = clone, wounding_type = wounding_type)
+
 	brute_dam += brute
 	burn_dam += burn
 
@@ -658,6 +676,57 @@
 
 	check_wounding(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)
 
+//Proc for damaging organs inside a limb
+/obj/item/bodypart/proc/damage_organs(brute = 0, burn = 0, toxin = 0, clone = 0, wounding_type = WOUND_BLUNT)
+	var/list/internal_organs = owner?.getorganszone(body_zone)
+	for(var/obj/item/organ/O in internal_organs)
+		internal_organs -= O
+		if(O.damage < O.maxHealth)
+			internal_organs[O] = O.relative_size
+	if(!length(internal_organs) || (!brute && !burn && !toxin && !clone))
+		return
+	
+	var/broken = FALSE
+	var/damage_amt = brute
+	var/cur_damage = brute_dam
+	//Robotic limbs count burns for organ damage
+	if(is_robotic_limb() && ((wounding_type == WOUND_BURN) || (burn > brute)))
+		//Think of it as frying the organs with hot metal
+		damage_amt += burn
+		cur_damage += burn_dam
+	//Organic limbs take clone damage, however...
+	else if(is_organic_limb())
+		damage_amt += clone
+		//Clone damage makes you way more likely to get your organs fricked up
+		//Think of it as cancer
+		cur_damage += clone
+	
+	var/organ_damage_threshold = organ_damage_hit_minimum
+	var/organ_damage_required = organ_damage_requirement
+	//Piercing damage is more likely to damage internal organs
+	if(wounding_type == WOUND_PIERCE)
+		organ_damage_threshold *= 0.5
+	//Wounds can alter our odds of harming organs
+	for(var/datum/wound/W in wounds)
+		organ_damage_threshold = max(1, organ_damage_threshold - (organ_damage_hit_minimum * W.organ_threshold_reduction))
+		organ_damage_required = max(1, organ_damage_required - (organ_damage_requirement * W.organ_required_reduction))
+		if((W.wound_type == WOUND_LIST_BLUNT) && (W.severity >= WOUND_SEVERITY_SEVERE)) //We have a fracture
+			broken = TRUE
+	if(!(cur_damage + damage_amt >= organ_damage_required) && !(damage_amt >= organ_damage_threshold))
+		return FALSE
+	
+	var/organ_hit_chance = (5 * damage_amt/organ_damage_threshold)
+	if(encased && !broken)
+		organ_hit_chance *= 0.6
+	
+	organ_hit_chance = min(organ_hit_chance, 100)
+	if(prob(organ_hit_chance))
+		var/obj/item/organ/victim = pickweight(internal_organs)
+		damage_amt = max(0, damage_amt - victim.damage_reduction - (damage_amt * victim.damage_modifier))
+		if(damage_amt)
+			victim.applyOrganDamage(damage_amt)
+		return TRUE
+
 //Heals brute, burn, stamina, pain, toxin and clone damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
 //Cannot remove negative damage (i.e. apply damage)
@@ -699,10 +768,12 @@
 	if(!can_feel_pain())
 		return 0
 	var/extra_pain = 0
-	extra_pain += 0.7 * brute_dam
-	extra_pain += 0.8 * burn_dam
-	extra_pain += 0.3 * tox_dam
-	extra_pain += 0.5 * clone_dam
+	extra_pain += 0.5 * brute_dam
+	extra_pain += 0.6 * burn_dam
+	extra_pain += 0.2 * tox_dam
+	extra_pain += 0.3 * clone_dam
+	for(var/datum/wound/W in wounds)
+		extra_pain += W.pain_amount
 	return clamp(pain_dam + extra_pain, 0, max_pain_damage)
 
 //Returns whether or not the bodypart can feel pain

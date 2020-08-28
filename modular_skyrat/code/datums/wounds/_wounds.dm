@@ -96,6 +96,13 @@
 	/// If having this wound makes currently makes the parent bodypart unusable
 	var/disabling
 
+	/// How much this wound reduces organ_damage_threshold in /obj/item/bodypart/damage_organs() (organ_threshold_reduction * organ_damage_hit_minimum)
+	var/organ_threshold_reduction = 0.1
+	/// How much this wound reduces organ_damage_required in /obj/item/bodypart/damage_organs() (organ_required_reduction* organ_damage_requirement)
+	var/organ_required_reduction = 0.1
+	/// How much pain this wound causes
+	var/pain_amount = 5
+
 	/// What status effect we assign on application
 	var/status_effect_type
 	/// The status effect we're linked to

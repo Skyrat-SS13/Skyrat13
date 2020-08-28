@@ -28,7 +28,7 @@ obj/item/organ/heart/cybernetic/upgraded/on_life()
 	. = ..()
 	if(!.)
 		return
-	if(dose_available && owner.health <= owner.crit_threshold && !owner.reagents.has_reagent(rid))
+	if(dose_available && owner.get_physical_damage() <= owner.crit_threshold && !owner.reagents.has_reagent(rid))
 		owner.reagents.add_reagent(rid, ramount)
 		used_dose()
 	if(ramount < 10) //eats your nutrition to regen epinephrine

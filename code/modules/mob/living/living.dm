@@ -439,6 +439,7 @@
 		return FALSE
 	return TRUE
 
+//These procs have been overhauled to comply with the shock system for carbon mobs
 /mob/living/proc/InCritical()
 	return (health <= crit_threshold && (stat == SOFT_CRIT || stat == UNCONSCIOUS))
 
@@ -1320,3 +1321,15 @@
 /// Only defined for carbons who can wear masks and helmets, we just assume other mobs have visible faces
 /mob/living/proc/is_face_visible()
 	return TRUE
+
+//Missing a heartbeat, used by carbons to identify critical condition
+/mob/living/proc/is_asystole()
+	return FALSE
+
+//Brain is poopy
+/mob/living/proc/nervous_system_failure()
+	return FALSE
+
+//Get how damaged the mob is, regardless of how fucked the brain is.
+/mob/living/proc/get_physical_damage()
+	return round(maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - getBruteLoss() - getFireLoss(), DAMAGE_PRECISION)

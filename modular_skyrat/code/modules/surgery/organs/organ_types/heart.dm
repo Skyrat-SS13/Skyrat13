@@ -1,3 +1,5 @@
+#define HEART_MAX_HEALTH 45
+
 /obj/item/organ/heart
 	name = "heart"
 	desc = "I feel bad for the heartless bastard who lost this."
@@ -18,10 +20,27 @@
 	var/no_pump = FALSE
 	var/icon_base = "heart"
 	attack_verb = list("beat", "thumped")
-	var/beat = BEAT_NONE//is this mob having a heatbeat sound played? if so, which?
+	var/beat = BEAT_NONE //is this mob having a heatbeat sound played? if so, which?
 
 	var/failed = FALSE		//to prevent constantly running failing code
 	var/operated = FALSE	//whether the heart's been operated on to fix some of its damages
+
+	maxHealth = HEART_MAX_HEALTH
+	low_threshold = HEART_MAX_HEALTH/4.5
+	high_threshold = HEART_MAX_HEALTH/3 * 2
+
+	//Bobmed variables
+	damage_reduction = 0.7
+	relative_size = 5
+	var/pulse = PULSE_NORM
+	var/heartbeat = 0
+	var/open = 0
+
+/obj/item/organ/heart/proc/is_working()
+	if((organ_flags & ORGAN_FAILING) || (damage >= high_threshold))
+		return FALSE
+	
+	return pulse > PULSE_NONE || (status & ORGAN_ROBOTIC) || (owner && HAS_TRAIT(owner, TRAIT_FAKEDEATH))
 
 /obj/item/organ/heart/update_icon_state()
 	if(beating)
@@ -68,18 +87,102 @@
 
 /obj/item/organ/heart/on_life()
 	. = ..()
-	if(!owner || no_pump)
+	handle_pulse()
+	if(pulse)
+		handle_heartbeat()
+		if(pulse == PULSE_2FAST && prob(1))
+			applyOrganDamage(1)
+		if(pulse == PULSE_THREADY && prob(5))
+			applyOrganDamage(1)
+
+/obj/item/organ/heart/proc/handle_pulse()
+	if(status & ORGAN_ROBOTIC)
+		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
 		return
-	if(owner.client && beating)
+
+	// pulse mod starts out as just the chemical effect amount
+	var/pulse_mod = owner.chem_effects[CE_PULSE]
+	var/is_stable = owner.chem_effects[CE_STABLE]
+		
+	// If you have enough heart chemicals to be over 2, you're likely to take extra damage.
+	if(pulse_mod > 2 && !is_stable)
+		var/damage_chance = (pulse_mod - 2) ** 2
+		if(prob(damage_chance))
+			applyOrganDamage(1)
+	
+	// Now pulse mod is impacted by shock stage and other things too
+	if(owner.shock_stage > SHOCK_STAGE_2)
+		pulse_mod++
+	if(owner.shock_stage > SHOCK_STAGE_5)
+		pulse_mod++
+
+	var/oxy = owner.get_blood_oxygenation()
+	if(oxy < BLOOD_VOLUME_OKAY) //brain wants us to get MOAR OXY
+		pulse_mod++
+	if(oxy < BLOOD_VOLUME_BAD) //MOAR
+		pulse_mod++
+
+	if(HAS_TRAIT(owner, TRAIT_FAKEDEATH) || owner.chem_effects[CE_NOPULSE])
+		pulse = clamp(PULSE_NONE + pulse_mod, PULSE_NONE, PULSE_2FAST) //pretend that we're dead. unlike actual death, can be inflienced by meds
+		return
+
+	//If heart is stopped, it isn't going to restart itself randomly.
+	if(pulse == PULSE_NONE)
+		return
+	//And if it's beating, let's see if it should
+	else
+		var/should_stop = prob(80) && owner.get_blood_circulation() < BLOOD_VOLUME_SURVIVE //cardiovascular shock, not enough liquid to pump
+		should_stop = should_stop || prob(max(0, owner.getOrganLoss(ORGAN_SLOT_BRAIN) - owner.maxHealth * 0.75)) //brain failing to work heart properly
+		should_stop = should_stop || (prob(5) && pulse == PULSE_THREADY) //erratic heart patterns, usually caused by oxyloss
+		if(should_stop) // The heart has stopped due to going into traumatic or cardiovascular shock.
+			to_chat(owner, "<span class='danger'>Your heart has stopped!</span>")
+			pulse = PULSE_NONE
+			return
+
+	// Pulse normally shouldn't go above PULSE_2FAST
+	pulse = clamp(PULSE_NORM + pulse_mod, PULSE_SLOW, PULSE_2FAST)
+
+	// If fibrillation, then it can be PULSE_THREADY
+	var/fibrillation = (oxy <= BLOOD_VOLUME_SURVIVE) || (prob(30) && owner.shock_stage > SHOCK_STAGE_6)
+	if(pulse && fibrillation)	//I SAID MOAR OXYGEN
+		pulse = PULSE_THREADY
+
+	// Stablising chemicals pull the heartbeat towards the center
+	if(pulse != PULSE_NORM && is_stable)
+		if(pulse > PULSE_NORM)
+			pulse--
+		else
+			pulse++
+
+/obj/item/organ/heart/proc/handle_heartbeat()
+	if(pulse >= PULSE_2FAST || owner.shock_stage >= SHOCK_STAGE_1)
+		//PULSE_THREADY - maximum value for pulse, currently it's 5.
+		//High pulse value corresponds to a fast rate of heartbeat.
+		//Divided by 2, otherwise it is too slow.
+		var/rate = (PULSE_THREADY - pulse)/2
+		if(owner.chem_effects[CE_PULSE] > 2)
+			heartbeat++
+
+		if(heartbeat >= rate)
+			heartbeat = 0
+		else
+			heartbeat++
+	
+	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
+		if(owner.stat == CONSCIOUS)
+			owner.visible_message("<span class='userdanger'>[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!</span>")
+		owner.set_heartattack(TRUE)
+		failed = TRUE
+
+	if(owner.client && heartbeat)
 		failed = FALSE
 		var/sound/slowbeat = sound('sound/health/slowbeat.ogg', repeat = TRUE)
 		var/sound/fastbeat = sound('sound/health/fastbeat.ogg', repeat = TRUE)
 
-		if(owner.health <= owner.crit_threshold && beat != BEAT_SLOW)
+		if(owner.InCritical() && beat != BEAT_SLOW)
 			beat = BEAT_SLOW
 			owner.playsound_local(get_turf(owner), slowbeat,40,0, channel = CHANNEL_HEARTBEAT)
-			to_chat(owner, "<span class = 'notice'>You feel your heart slow down...</span>")
-		if(beat == BEAT_SLOW && owner.health > owner.crit_threshold)
+		else if(!owner.InCritical() && beat == BEAT_SLOW)
 			owner.stop_sound_channel(CHANNEL_HEARTBEAT)
 			beat = BEAT_NONE
 
@@ -91,8 +194,28 @@
 			owner.stop_sound_channel(CHANNEL_HEARTBEAT)
 			beat = BEAT_NONE
 
-	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
-		if(owner.stat == CONSCIOUS)
-			owner.visible_message("<span class='userdanger'>[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!</span>")
-		owner.set_heartattack(TRUE)
-		failed = TRUE
+/obj/item/organ/heart/listen()
+	if((status & ORGAN_ROBOTIC) && is_working())
+		if(damage >= low_threshold)
+			return "sputtering pump"
+		else
+			return "steady whirr of the pump"
+
+	if(!pulse || (HAS_TRAIT(owner, TRAIT_FAKEDEATH)))
+		return "no pulse"
+
+	var/pulsesound = "normal"
+	if(damage >= low_threshold)
+		pulsesound = "irregular"
+
+	switch(pulse)
+		if(PULSE_SLOW)
+			pulsesound = "slow"
+		if(PULSE_FAST)
+			pulsesound = "fast"
+		if(PULSE_2FAST)
+			pulsesound = "very fast"
+		if(PULSE_THREADY)
+			pulsesound = "extremely fast and faint"
+
+	. = "[pulsesound] pulse"
