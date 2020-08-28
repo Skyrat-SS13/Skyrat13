@@ -360,7 +360,7 @@
 	icon_state = "hardsuit-secexo"
 	item_state = "hardsuit-secexo"
 	max_integrity = 250
-	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 55, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 55, "acid" = 70)
 	allowed = list(/obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/flashlight, /obj/item/gun/ballistic, /obj/item/gun/energy, /obj/item/kitchen/knife/combat, /obj/item/melee/baton, /obj/item/melee/classic_baton/telescopic, /obj/item/reagent_containers/spray/pepper, /obj/item/restraints/handcuffs, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/blunderbuss) //I had to do this all snowflake style because it just would not accept any sort of global list, fucking kill me
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor
 	clothing_flags = THICKMATERIAL
@@ -410,6 +410,32 @@
 	if (user.head == src)
 		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		DHUD.remove_hud_from(user)
+
+/obj/item/clothing/suit/space/hardsuit/security_armor/cloaker //YOU CALL THIS RESISTING ARREST?
+	name = "type II full-body techarmor"
+	desc = "An advanced version of the standard techarmor, sporting better protection and built-in night vision in place of an integrated light."
+	icon_state = "hardsuit-cloaker" 
+	item_state = "hardsuit-cloaker"
+	armor = list("melee" = 40, "bullet" = 35, "laser" = 35, "energy" = 50, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100)
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker
+
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker
+	name = "type II techhelmet"
+	desc = "THIS IS WHAT WE CALL A DIFFICULTY TWEAK!"
+	icon_state = "hardsuit0-cloaker"
+	item_state = "hardsuit0-cloaker"
+	armor = list("melee" = 40, "bullet" = 35, "laser" = 35, "energy" = 50, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100)
+	var/stored_nv = 0
+
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if (slot == SLOT_HEAD)
+		user.see_in_dark = 8
+
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/security_armor/dropped(mob/living/carbon/human/user)
+	..()
+	if (user.head == src)
+		user.see_in_dark = stored_nv
 
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/hos
 	name = "head of security's techhelmet"
