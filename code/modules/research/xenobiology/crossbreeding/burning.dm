@@ -297,7 +297,7 @@ Burning extracts:
 	pictures_max = 1
 	can_customise = FALSE
 	default_picture_name = "A nostalgic picture"
-	var/used = FALSE
+	//var/used = FALSE [Skyrat modularization]
 
 /datum/saved_bodypart
 	var/obj/item/bodypart/old_part
@@ -340,6 +340,7 @@ Burning extracts:
 		ret[part.body_zone] = saved_part
 	return ret
 
+/* Skyrat modularization - check /modular_skyrat/code/.../burning.dm for new afterattack code
 /obj/item/camera/rewind/afterattack(atom/target, mob/user, flag)
 	if(!on || !pictures_left || !isturf(target.loc))
 		return
@@ -354,6 +355,7 @@ Burning extracts:
 		used = TRUE
 		target.AddComponent(/datum/component/dejavu, 2)
 	.=..()
+*/
 
 //Timefreeze camera - Old Burning Sepia result. Kept in case admins want to spawn it
 /obj/item/camera/timefreeze
