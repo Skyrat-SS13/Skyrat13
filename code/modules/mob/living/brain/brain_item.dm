@@ -164,7 +164,7 @@
 
 
 
-/obj/item/organ/brain/examine(mob/user)
+/obj/item/organ/brain/surgical_examine(mob/user)
 	. = ..()
 
 	if(user.suiciding)

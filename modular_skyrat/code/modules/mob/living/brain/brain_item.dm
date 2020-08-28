@@ -8,7 +8,7 @@
 	var/damage_threshold_count = 10
 	var/damage_threshold_value = 0
 	var/healed_threshold = 1
-	var/oxygen_reserve = 6
+	var/oxygen_reserve = 5
 
 /obj/item/organ/brain/Initialize()
 	. = ..()
@@ -32,7 +32,7 @@
 		else
 			oxygen_reserve = min(initial(oxygen_reserve), oxygen_reserve+1)
 		if(!oxygen_reserve) //(hardcrit)
-			owner.Paralyze(5)
+			owner.Paralyze(300)
 		var/can_heal = damage && damage < maxHealth && (damage % damage_threshold_value || owner.chem_effects[CE_BRAIN_REGEN] || (!past_damage_threshold(3) && owner.chem_effects[CE_STABLE]))
 		var/damprob = 0
 		//Effects of bloodloss
@@ -58,7 +58,7 @@
 				if(!past_damage_threshold(6) && prob(damprob))
 					applyOrganDamage(1)
 				if(!owner.IsParalyzed() && prob(15))
-					owner.Paralyze(3,5)
+					owner.Paralyze(500)
 					to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")
 			if(-(INFINITY) to BLOOD_VOLUME_SURVIVE) // Also see heart.dm, being below this point puts you into cardiac arrest.
 				owner.eye_blurry = max(owner.eye_blurry,6)
