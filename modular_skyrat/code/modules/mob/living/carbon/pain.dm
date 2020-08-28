@@ -199,7 +199,7 @@
 	if(stat > UNCONSCIOUS)
 		return
 	
-	if(shock_stage == 10)
+	if(shock_stage == SHOCK_STAGE_1)
 		// Please be very careful when calling custom_pain() from within code that relies on pain/trauma values. There's the
 		// possibility of a feedback loop from custom_pain() being called with a positive power, incrementing pain on a limb,
 		// which triggers this proc, which calls custom_pain(), etc. Make sure you call it with nopainloss = TRUE in these cases!
