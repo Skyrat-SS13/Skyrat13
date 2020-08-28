@@ -151,9 +151,9 @@
 	var/max_tox_damage = 0
 	/// Reduces incoming toxin damage by this, flat
 	var/tox_reduction = 0
-	/// How many toxins this bodyparts filters when processed
+	/// How many toxins this bodyparts filters when processed on Life()
 	/// Filtering toxins turns the bodypart toxin damage into organ damage
-	var/tox_filter_per_tick = 0.3
+	var/tox_filter_per_tick = 0.1
 
 	/// Clone/cellular damage
 	var/clone_dam = 0
@@ -828,12 +828,16 @@
 				toxins -= cap_damage
 
 //Returns total damage.
-/obj/item/bodypart/proc/get_damage(include_stamina = FALSE, include_pain = FALSE)
+/obj/item/bodypart/proc/get_damage(include_stamina = FALSE, include_pain = FALSE, include_clone = FALSE, include_tox = FALSE)
 	var/total = brute_dam + burn_dam
 	if(include_stamina)
 		total = max(total, stamina_dam)
 	if(include_pain)
 		total = max(total, pain_dam)
+	if(include_clone)
+		total = max(total, clone_dam)
+	if(include_tox)
+		total = max(total, tox_dam)
 	return total
 
 //Returns pain damage
