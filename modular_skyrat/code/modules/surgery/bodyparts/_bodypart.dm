@@ -325,13 +325,14 @@
 		return FALSE
 
 	var/list/our_organs = list()
-	for(var/X in owner.internal_organs) //internal organs inside the dismembered limb are dropped.
+	for(var/X in owner.internal_organs)
 		var/obj/item/organ/O = X
 		var/org_zone = check_zone(O.zone)
 		if(org_zone == body_zone)
 			LAZYADD(our_organs, O)
 
-	return our_organs
+	if(length(our_organs))
+		return our_organs
 
 /obj/item/bodypart/proc/consider_processing()
 	if((stamina_dam > DAMAGE_PRECISION) || (get_pain() > DAMAGE_PRECISION) || (tox_dam > DAMAGE_PRECISION))
