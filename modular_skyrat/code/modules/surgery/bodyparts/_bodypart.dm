@@ -478,7 +478,7 @@
 			wounding_dmg *= 1.1
 		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
 		// So a big sharp weapon is still all you need to destroy a limb
-		else if((mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE)) && sharpness)
+		else if(mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE))
 			playsound(src, "sound/effects/crackandbleed.ogg", 100)
 			if(wounding_type == WOUND_SLASH && !easy_dismember)
 				wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
@@ -486,6 +486,8 @@
 				wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
 			if((wounding_type == WOUND_SLASH) || (wounding_type == WOUND_PIERCE))
 				wounding_type = WOUND_BLUNT
+			if(wounding_type = WOUND_BLUNT)
+				wounding_type = WOUND_PIERCE
 		else if(mangled_state & BODYPART_MANGLED_BOTH && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
 	/*
@@ -503,6 +505,10 @@
 	pain += 0.5 * burn
 	pain += 0.4 * brute
 	
+	//We damage the organs, if possible, before adding onto the limb's damage
+	//Doing so later would fuck up with calculations
+	damage_organs(brute = brute, burn = burn, toxin = toxin, clone = clone, wounding_type = wounding_type)
+
 	//Total damage used to calculate the can_inflicts
 	var/total_damage = brute + burn
 	
@@ -545,10 +551,6 @@
 				for(var/obj/item/bodypart/damage_limb in spreadable_limbs)
 					//We apply damage without any armor checks, because the limb that made it suffer damage is absolutely FUCKED anyways.
 					damage_limb.receive_damage(brute = extrabrute, burn = extraburn, sharpness = sharpness, spread_damage = FALSE)
-	
-	//We damage the organs, if possible, before adding onto the limb's damage
-	//Doing so later would fuck up with calculations
-	damage_organs(brute = brute, burn = burn, toxin = toxin, clone = clone, wounding_type = wounding_type)
 
 	brute_dam += brute
 	burn_dam += burn
