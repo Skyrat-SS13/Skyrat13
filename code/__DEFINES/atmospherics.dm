@@ -122,6 +122,9 @@
 #define MAX_OUTPUT_PRESSURE					4500 // (kPa) What pressure pumps and powered equipment max out at.
 #define MAX_TRANSFER_RATE					200 // (L/s) Maximum speed powered equipment can work at.
 
+/// Skyrat: 10% of an overclocked volume pump leaks into the air
+#define VOLUME_PUMP_LEAK_AMOUNT				0.1
+
 //used for device_type vars
 #define UNARY		1
 #define BINARY 		2
