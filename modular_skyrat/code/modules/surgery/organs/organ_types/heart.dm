@@ -16,7 +16,6 @@
 	high_threshold_cleared = "<span class='info'>The pain in your chest has died down, and your breathing becomes more relaxed.</span>"
 
 	// Heart attack code is in code/modules/mob/living/carbon/human/life.dm
-	var/beating = 1
 	var/no_pump = FALSE
 	var/icon_base = "heart"
 	attack_verb = list("beat", "thumped")
@@ -43,7 +42,7 @@
 	return pulse > PULSE_NONE || (status & ORGAN_ROBOTIC) || (owner && HAS_TRAIT(owner, TRAIT_FAKEDEATH))
 
 /obj/item/organ/heart/update_icon_state()
-	if(beating)
+	if(is_working())
 		icon_state = "[icon_base]-on"
 	else
 		icon_state = "[icon_base]-off"
@@ -59,30 +58,30 @@
 
 /obj/item/organ/heart/attack_self(mob/user)
 	..()
-	if(!beating)
+	if(!pulse)
 		user.visible_message("<span class='notice'>[user] squeezes [src] to \
 			make it beat again!</span>","<span class='notice'>You squeeze [src] to make it beat again!</span>")
 		Restart()
 		addtimer(CALLBACK(src, .proc/stop_if_unowned), 80)
 
 /obj/item/organ/heart/proc/Stop()
-	beating = 0
+	pulse = PULSE_NONE
 	update_icon()
 	return 1
 
 /obj/item/organ/heart/proc/Restart()
-	beating = 1
+	pulse = PULSE_NORM
 	update_icon()
 	return 1
 
 /obj/item/organ/heart/proc/HeartStrengthMessage()
-	if(beating)
+	if(pulse >= PULSE_NORM)
 		return "a healthy"
 	return "<span class='danger'>an unstable</span>"
 
 /obj/item/organ/heart/OnEatFrom(eater, feeder)
 	. = ..()
-	beating = FALSE
+	pulse = PULSE_NONE
 	update_icon()
 
 /obj/item/organ/heart/on_life()

@@ -25,6 +25,9 @@
 
 	if(stat != DEAD)
 		handle_liver()
+	
+	if(stat != DEAD)
+		handle_kidneys()
 
 	if(stat != DEAD)
 		handle_shock()
@@ -715,9 +718,35 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	reagents.metabolize(src, can_overdose=FALSE, liverless = TRUE)
 	if(HAS_TRAIT(src, TRAIT_STABLELIVER))
 		return
-	adjustToxLoss(4, TRUE,  TRUE)
+	adjustToxLoss(2, TRUE, TRUE)
 	if(prob(15))
 		to_chat(src, "<span class='danger'>You feel a stabbing pain in your abdomen!</span>")
+
+///////////
+//KIDNEYS//
+///////////
+/mob/living/carbon/proc/handle_kidneys()
+	var/obj/item/organ/kidneys/kidneys = getorganslot(ORGAN_SLOT_LIVER)
+	if((!dna && !kidneys) || (NOKIDNEYS in dna.species.species_traits))
+		return
+	if(!kidneys || kidneys.organ_flags & ORGAN_FAILING)
+		liver_failure()
+
+/mob/living/carbon/proc/kidney_failure()
+	if(prob(10))
+		to_chat(src, "<span class='danger'>You feel a stabbing pain in your groin!</span>")
+		vomit(5, 5, TRUE)
+	else if(prob(10))
+		to_chat(src, "<span class='danger'>You feel a stabbing pain in your groin!</span>")
+		var/obj/item/bodypart/groin/groin = get_bodypart(BODY_ZONE_PRECISE_GROIN)
+		if(groin)
+			groin.receive_damage(toxin = 8)
+	else if(prob(5))
+		var/obj/item/bodypart/groin/groin = get_bodypart(BODY_ZONE_PRECISE_GROIN)
+		if(groin)
+			//le kidney stones
+			groin.generic_bleedstacks += 5
+			to_chat(src, "<span class='danger'>Blood leaks from your [groin.name]...")
 
 ////////////////
 //BRAIN DAMAGE//
@@ -735,6 +764,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 /mob/living/carbon/proc/can_heartattack()
 	if(!needs_heart())
 		return FALSE
+	
 	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
 	if(!heart || (heart.organ_flags & ORGAN_SYNTHETIC))
 		return FALSE
@@ -749,7 +779,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 
 /mob/living/carbon/proc/undergoing_cardiac_arrest()
 	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
-	if(istype(heart) && heart.beating)
+	if(istype(heart) && heart.pulse)
 		return FALSE
 	else if(!needs_heart())
 		return FALSE
@@ -763,7 +793,10 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	if(!istype(heart))
 		return
 
-	heart.beating = !status
+	if(status)
+		heart.Stop()
+	else
+		heart.Restart()
 
 //skyrat edit
 /mob/living/carbon/handle_wounds()
