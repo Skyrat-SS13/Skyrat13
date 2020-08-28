@@ -805,7 +805,7 @@
 		if(toxins <= 0)
 			break
 		var/cap_damage = (O.maxHealth - O.damage)
-		O.applyOrganDamage(min(cap_damage, toxins))
+		O.applyOrganDamage(min(cap_damage, toxins * O.toxin_multiplier))
 		if(toxins > cap_damage)
 			toxins -= cap_damage
 	
