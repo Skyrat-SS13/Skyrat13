@@ -136,15 +136,15 @@
 			var/list/damaged_bodyparts = list()
 			for(var/obj/item/bodypart/BP in bodyparts)
 				var/bpain = BP.get_pain()
-				if(bpain >= BP.max_pain_damage)
+				if(bpain >= BP.max_damage)
 					damaged_bodyparts += "<span class='bigdanger'>I want to tear my [BP.name] off!</span>\n"
-				else if(bpain > BP.max_pain_damage*0.8)
+				else if(bpain > BP.max_damage*0.8)
 					damaged_bodyparts += "<span class='mediumdanger'>My [BP.name] feels horrendous!</span>\n"
-				else if(bpain > BP.max_pain_damage*0.6)
+				else if(bpain > BP.max_damage*0.6)
 					damaged_bodyparts += "<span class='bolddanger'>My [BP.name] feels terrible!</span>\n"
-				else if(bpain > BP.max_pain_damage*0.4)
+				else if(bpain > BP.max_damage*0.4)
 					damaged_bodyparts += "<span class='danger'>My [BP.name] feels a bit battered...</span>\n"
-				else if(bpain > BP.max_pain_damage*0.2)
+				else if(bpain > BP.max_damage*0.2)
 					damaged_bodyparts += "<span class='notice'>My [BP.name] feels somewhat damaged.</span>\n"
 				else if(bpain > 0)
 					damaged_bodyparts += "<span class='notice'>My [BP.name] is just a bit sore.</span>\n"
