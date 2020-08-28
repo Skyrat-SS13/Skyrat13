@@ -776,7 +776,7 @@
 
 //Filters toxins into the organs
 /obj/item/bodypart/proc/filter_toxins(toxins = 0, only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE)
-	toxins = max(0, toxins)
+	toxins = clamp(toxins, 0, max(0, tox_dam))
 	if(!toxins || !owner)
 		return
 	
@@ -790,12 +790,12 @@
 
 	// Prioritize damaging our filtration organs first.
 	var/obj/item/organ/liver/liver = owner.getorganslot(ORGAN_SLOT_LIVER)
-	if(liver)
+	if(liver && (liver in pick_organs))
 		pick_organs -= liver
 		pick_organs.Insert(1, liver)
 
 	var/obj/item/organ/kidneys/kidneys = owner.getorganslot(ORGAN_SLOT_KIDNEYS)
-	if(kidneys)
+	if(kidneys && (kidneys in pick_organs))
 		pick_organs -= kidneys
 		pick_organs.Insert(1, kidneys)
 	
