@@ -151,6 +151,9 @@
 	var/max_tox_damage = 0
 	/// Reduces incoming toxin damage by this, flat
 	var/tox_reduction = 0
+	/// How many toxins this bodyparts filters when processed
+	/// Filtering toxins turns the bodypart toxin damage into organ damage
+	var/tox_filter_per_tick = 0.5
 
 	/// Clone/cellular damage
 	var/clone_dam = 0
@@ -331,7 +334,7 @@
 	return our_organs
 
 /obj/item/bodypart/proc/consider_processing()
-	if((stamina_dam > DAMAGE_PRECISION) || (get_pain() > DAMAGE_PRECISION))
+	if((stamina_dam > DAMAGE_PRECISION) || (get_pain() > DAMAGE_PRECISION) || (tox_dam > DAMAGE_PRECISION))
 		. = TRUE
 	//else if.. else if.. so on.
 	else
@@ -349,6 +352,9 @@
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(pain_heal_tick && pain_dam > DAMAGE_PRECISION)
 		if(heal_damage(pain = (pain_heal_tick * (owner?.lying ? pain_heal_rest_multiplier : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
+			. |= BODYPART_LIFE_UPDATE_HEALTH
+	if(tox_filter_per_tick && tox_dam > DAMAGE_PRECISION)
+		if(filter_toxins(toxins = tox_filter_per_tick, only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
@@ -765,6 +771,43 @@
 	update_disabled()
 	return update_bodypart_damage_state() 
 
+//Filters toxins into the organs
+/obj/item/bodypart/proc/filter_toxins(toxins = 0, only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE)
+	toxins = max(0, toxins)
+	if(!toxins || !owner)
+		return
+	
+	// Heal the bodypart toxin damage.
+	heal_damage(toxin = toxins, only_robotic = only_robotic, only_organic = only_organic, updating_health = updating_health)
+
+	// Get a list of the organs we should damage.
+	var/list/pick_organs = shuffle(get_organs())
+
+	// Prioritize damaging our filtration organs first.
+	var/obj/item/organ/liver/liver = owner.getorganslot(ORGAN_SLOT_LIVER)
+	if(liver)
+		pick_organs -= liver
+		pick_organs.Insert(1, liver)
+
+	var/obj/item/organ/kidneys/kidneys = owner.getorganslot(ORGAN_SLOT_KIDNEYS)
+	if(kidneys)
+		pick_organs -= kidneys
+		pick_organs.Insert(1, kidneys)
+	
+	// Brain damage literally kills us, so we damage the brain last
+	var/obj/item/organ/brain/brain = owner.getorganslot(ORGAN_SLOT_BRAIN)
+	if(brain && (brain in pick_organs))
+		pick_organs -= brain
+		pick_organs += brain
+	
+	for(var/obj/item/organ/O in pick_organs)
+		if(toxins <= 0)
+			break
+		var/cap_damage = (O.max_damage - O.damage)
+		O.applyOrganDamage(min(cap_damage, toxins))
+		if(toxins > cap_damage)
+			toxins -= cap_damage
+
 //Returns total damage.
 /obj/item/bodypart/proc/get_damage(include_stamina = FALSE, include_pain = FALSE)
 	var/total = brute_dam + burn_dam
@@ -781,8 +824,8 @@
 	var/extra_pain = 0
 	extra_pain += 0.5 * brute_dam
 	extra_pain += 0.6 * burn_dam
-	extra_pain += 0.2 * tox_dam
-	extra_pain += 0.3 * clone_dam
+	extra_pain += 0.9 * tox_dam // Toxin damage gets filtered, but causes a lot of pain while on the bodypart
+	extra_pain += 0.7 * clone_dam // Damage at a cellular level is quite painful
 	for(var/datum/wound/W in wounds)
 		extra_pain += W.pain_amount
 	for(var/obj/item/organ/O in get_organs())
