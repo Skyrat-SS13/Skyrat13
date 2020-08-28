@@ -153,7 +153,7 @@
 	var/tox_reduction = 0
 	/// How many toxins this bodyparts filters when processed
 	/// Filtering toxins turns the bodypart toxin damage into organ damage
-	var/tox_filter_per_tick = 0.5
+	var/tox_filter_per_tick = 0.3
 
 	/// Clone/cellular damage
 	var/clone_dam = 0
@@ -807,6 +807,24 @@
 		O.applyOrganDamage(min(cap_damage, toxins))
 		if(toxins > cap_damage)
 			toxins -= cap_damage
+	
+	// Well... shit, we ran through our organs but we still need to dish out pain.
+	// We run another cycle through all of the organs
+	if(toxins > 0)
+		pick_organs = owner.getCurrentOrgans()
+		if(kidneys)
+			pick_organs -= kidneys
+			pick_organs.Insert(1, kidneys)
+		if(liver)
+			pick_organs -= liver
+			pick_organs.Insert(1, liver)
+		for(var/obj/item/organ/O in pick_organs)
+			if(toxins <= 0)
+				break
+			var/cap_damage = (O.maxHealth - O.damage)
+			O.applyOrganDamage(min(cap_damage, toxins))
+			if(toxins > cap_damage)
+				toxins -= cap_damage
 
 //Returns total damage.
 /obj/item/bodypart/proc/get_damage(include_stamina = FALSE, include_pain = FALSE)
