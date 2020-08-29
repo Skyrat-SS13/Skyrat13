@@ -1576,14 +1576,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/painkiller/on_mob_metabolize(mob/living/L)
 	. = ..()
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
 		C.add_chem_effect(CE_PAINKILLER, 15)
 
 /datum/reagent/consumable/ethanol/painkiller/on_mob_end_metabolize(mob/living/L)
 	. = ..()
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
 		C.remove_chem_effect(CE_PAINKILLER, 15)
 
 /datum/reagent/consumable/ethanol/pina_colada

@@ -643,14 +643,14 @@
 
 /datum/reagent/medicine/sal_acid/on_mob_metabolize(mob/living/L)
 	. = ..()
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
 		C.add_chem_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/medicine/sal_acid/on_mob_end_metabolize(mob/living/L)
 	. = ..()
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
 		C.remove_chem_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/medicine/sal_acid/on_mob_life(mob/living/carbon/M)
@@ -784,8 +784,8 @@
 /datum/reagent/medicine/morphine/on_mob_metabolize(mob/living/L)
 	..()
 	//SKYRAT EDIT, Painkiller.
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
 		C.add_chem_effect(CE_PAINKILLER, 90) //Morphine is very strong.
 	//
 	L.add_movespeed_mod_immunities(type, list(/datum/movespeed_modifier/damage_slowdown, /datum/movespeed_modifier/damage_slowdown_flying, /datum/movespeed_modifier/monkey_health_speedmod))
@@ -793,8 +793,8 @@
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_mod_immunities(type, list(/datum/movespeed_modifier/damage_slowdown, /datum/movespeed_modifier/damage_slowdown_flying, /datum/movespeed_modifier/monkey_health_speedmod))
 	//SKYRAT EDIT, Painkiller.
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
 		C.remove_chem_effect(CE_PAINKILLER, 90) //Morphine is very strong.
 	//
 	..()
