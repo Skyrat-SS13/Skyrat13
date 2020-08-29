@@ -1302,14 +1302,14 @@
 	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
 	var/apparent_blood_volume = blood_volume
 	if(!heart && needs_heart())
-		return 0.25 * apparent_blood_volume
+		return 0.1 * apparent_blood_volume
 
 	var/pulse_mod = 1
 	if(HAS_TRAIT(src, TRAIT_FAKEDEATH))
 		pulse_mod = 1
 	else
 		switch(heart.pulse)
-			if(PULSE_NONE)
+			if(-INFINITY to PULSE_NONE)
 				pulse_mod *= 0.1 //Fuck.
 			if(PULSE_SLOW)
 				pulse_mod *= 0.9
@@ -1317,14 +1317,14 @@
 				pulse_mod *= 1.1
 			if(PULSE_2FAST, PULSE_THREADY)
 				pulse_mod *= 1.25
+	
 	apparent_blood_volume *= pulse_mod
-
 	apparent_blood_volume *= max(0.3, (1-(heart.damage / heart.maxHealth)))
 
 	if(!heart.open && chem_effects[CE_BLOCKAGE])
-		blood_volume *= max(0, 1 - (chem_effects[CE_BLOCKAGE])/100)
+		apparent_blood_volume *= max(0, 1 - (chem_effects[CE_BLOCKAGE])/100)
 
-	return min(blood_volume, BLOOD_VOLUME_NORMAL)
+	return min(apparent_blood_volume, BLOOD_VOLUME_NORMAL)
 
 //Do we need blood to sustain the brain?
 /mob/living/carbon/proc/blood_carries_oxygen()
