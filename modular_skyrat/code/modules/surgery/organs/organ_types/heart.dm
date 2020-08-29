@@ -39,7 +39,7 @@
 	if((organ_flags & ORGAN_FAILING) || (damage >= high_threshold))
 		return FALSE
 	
-	return pulse > PULSE_NONE || (status & ORGAN_ROBOTIC) || (owner && HAS_TRAIT(owner, TRAIT_FAKEDEATH))
+	return pulse > PULSE_NONE || (owner && HAS_TRAIT(owner, TRAIT_FAKEDEATH))
 
 /obj/item/organ/heart/update_icon_state()
 	if(is_working())
@@ -95,10 +95,6 @@
 			applyOrganDamage(1)
 
 /obj/item/organ/heart/proc/handle_pulse()
-	if(status & ORGAN_ROBOTIC)
-		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
-		return
-
 	// pulse mod starts out as just the chemical effect amount
 	var/pulse_mod = owner.chem_effects[CE_PULSE]
 	var/is_stable = owner.chem_effects[CE_STABLE]

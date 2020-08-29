@@ -204,7 +204,7 @@
 	var/damaged = FALSE
 	if(organ_flags & ORGAN_FAILING)
 		failing = TRUE
-		if(status == ORGAN_ROBOTIC)
+		if(status & ORGAN_ROBOTIC)
 			. += "<span class='warning'>[owner ? "[owner.p_their(TRUE)] " : ""][owner ? src.name : capitalize(src.name)] seems to be broken!</span>"
 		else
 			. += "<span class='warning'>[owner ? "[owner.p_their(TRUE)] " : ""][owner ? src.name : capitalize(src.name)] has decayed for too long, and has turned a sickly color! It doesn't look like it will work anymore!</span>"
