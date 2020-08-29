@@ -1305,7 +1305,7 @@
 		return 0.25 * apparent_blood_volume
 
 	var/pulse_mod = 1
-	if((HAS_TRAIT(src, TRAIT_FAKEDEATH)) || (heart.status & ORGAN_ROBOTIC))
+	if(HAS_TRAIT(src, TRAIT_FAKEDEATH))
 		pulse_mod = 1
 	else
 		switch(heart.pulse)

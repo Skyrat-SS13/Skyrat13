@@ -298,7 +298,6 @@
 		return
 
 	if(we_breath)
-		adjustOxyLoss(8)
 		Unconscious(80)
 
 #undef THERMAL_PROTECTION_HEAD
