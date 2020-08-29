@@ -57,8 +57,9 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	icon_state = "solar_armor"
 	item_state = "solar_armor"
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 20, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 100)
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 100)
 	allowed = list(/obj/item/clockwork/weapon/daybreak)
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
 	blocks_shove_knockdown = TRUE
 	strip_delay = 80
 	equip_delay_other = 60

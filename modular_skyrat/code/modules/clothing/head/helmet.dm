@@ -60,4 +60,5 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	icon_state = "solar_helmet"
 	item_state = "solar_helmet"
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 10,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 90, "acid" = 100)
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90,"energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 100)
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
