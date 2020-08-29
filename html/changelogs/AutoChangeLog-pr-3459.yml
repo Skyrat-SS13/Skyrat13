@@ -1,0 +1,9 @@
+author: "Floof Ball / Kathrin Morrison"
+delete-after: True
+changes: 
+  - rscadd: "Ghost Cafe 2 - A complete rebuild of the original."
+  - rscadd: "A new escape pod recovery shuttle that allows mappers to use larger pods."
+  - rscadd: "Option to opt-out of EORG and be teleported to a safe-zone at round end."
+  - rscadd: "Cobblestone, currently not craft-able. There's a snow version too."
+  - tweak: "Central Command escape shuttle docking area reverted to how it was before the EORG changes."
+  - bugfix: "It is no longer possible to grief the station by spending research points in the cafe."
