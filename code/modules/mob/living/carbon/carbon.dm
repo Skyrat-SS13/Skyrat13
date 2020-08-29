@@ -1310,7 +1310,7 @@
 	else
 		switch(heart.pulse)
 			if(PULSE_NONE)
-				pulse_mod *= 0.25
+				pulse_mod *= 0.1 //Fuck.
 			if(PULSE_SLOW)
 				pulse_mod *= 0.9
 			if(PULSE_FAST)

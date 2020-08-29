@@ -300,11 +300,6 @@
 	if(we_breath)
 		adjustOxyLoss(8)
 		Unconscious(80)
-	// Tissues die without blood circulation
-	adjustBruteLoss(2)
-
-
-
 
 #undef THERMAL_PROTECTION_HEAD
 #undef THERMAL_PROTECTION_CHEST

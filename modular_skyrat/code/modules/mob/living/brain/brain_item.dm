@@ -60,13 +60,14 @@
 				if(!owner.IsParalyzed() && prob(15))
 					owner.Paralyze(500)
 					to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")
-			if(-(INFINITY) to BLOOD_VOLUME_SURVIVE) // Also see heart.dm, being below this point puts you into cardiac arrest.
+			// Also see heart.dm, being below this point puts you into cardiac arrest.
+			if(-(INFINITY) to BLOOD_VOLUME_SURVIVE)
 				owner.eye_blurry = max(owner.eye_blurry,6)
 				damprob = owner.chem_effects[CE_STABLE] ? 80 : 100
 				if(prob(damprob))
-					applyOrganDamage(1)
+					applyOrganDamage(2)
 				if(prob(damprob))
-					applyOrganDamage(1)
+					applyOrganDamage(2)
 
 /obj/item/organ/brain/ipc_positron
 	name = "positronic brain carcass"
