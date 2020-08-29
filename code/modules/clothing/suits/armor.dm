@@ -434,18 +434,18 @@
 	name = "Toggle Night-Vision"
 	desc = "Toggle your helmet's night vision."
 
-/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/item_action_slot_check(slot, mob/user, datum/action/A)
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/item_action_slot_check(slot, mob/living/carbon/human/user, datum/action/A)
 	. = ..()
 	if(. && (slot == SLOT_HEAD))
 		return TRUE
 
-/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/dropped(mob/user)
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/dropped(mob/living/carbon/human/user)
 	. = ..()
 	if(activated)
 		activated = !activated
 		user.see_in_dark = stored_nv
 
-/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/ui_action_click(mob/user, action)
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/ui_action_click(mob/living/carbon/human/user, action)
 	if(istype(action, /datum/action/item_action/toggle_nv))
 		if(!activated)
 			activated = !activated
