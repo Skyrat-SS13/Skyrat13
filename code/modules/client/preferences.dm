@@ -96,6 +96,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/event_participation = FALSE
 	var/event_prefs = ""
 	var/appear_in_round_end_report = TRUE //whether the player of the character is listed on the round-end report
+	var/eorg_teleport = FALSE
 	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
@@ -417,8 +418,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<b>[capitalize(custom_name_id)]:</b> <a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a><br>"
 			dat += "<h2>Additional Preferences</h2>"
 			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a>"
-			
-			
+
+
 			dat += "<h2>Special Names:</h2>"
 			//
 			old_group = null
@@ -1174,6 +1175,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<h2>Skyrat Preferences</h2>"
 			dat += "<b>Show name at round-end report:</b> <a href='?_src_=prefs;preference=appear_in_round_end_report'>[appear_in_round_end_report ? "Yes" : "No"]</a><br>"
 			dat += "<b>Measurements:</b> <a href='?_src_=prefs;preference=metric_or_bust'>[toggles & METRIC_OR_BUST ? "Metric" : "Imperial"]</a><br>"
+			dat += "<b>Opt-out of EORG and teleport to a safe zone:</b> <a href='?_src_=prefs;preference=eorg_teleport'>[eorg_teleport ? "Enabled" : "Disabled"]</a><br>"
 //END OF SKYRAT CHANGES
 			dat += "<br>"
 			dat += "</td>"
@@ -2898,11 +2900,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					if(toggles & METRIC_OR_BUST)
 						new_length = input(user, "Penis length in centimeters:\n([min_D_m]-[max_D_m])", "Character Preference") as num|null
 						if(new_length)
-							features["cock_length"] = clamp(round(new_length/2.54, 1), min_D, max_D)
+							features["cock_length"] = clamp(round(new_length/2.54, 0.1), min_D, max_D)
 					else
 						new_length = input(user, "Penis length in inches:\n([min_D]-[max_D])", "Character Preference") as num|null
 						if(new_length)
-							features["cock_length"] = clamp(round(new_length, 1), min_D, max_D)
+							features["cock_length"] = clamp(round(new_length, 0.1), min_D, max_D)
 					//Skyrat edit end
 
 				if("cock_shape")
@@ -3350,10 +3352,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					toggles ^= SOUND_ADMINHELP
 				if("announce_login")
 					toggles ^= ANNOUNCE_LOGIN
-				//skyrat edit
+				// Skyrat Edit Start
 				if("metric_or_bust")
 					toggles ^= METRIC_OR_BUST
-				//
+				if("eorg_teleport")
+					eorg_teleport = !eorg_teleport
+				// Skyrat Edit End
 				if("combohud_lighting")
 					toggles ^= COMBOHUD_LIGHTING
 
@@ -3372,7 +3376,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("hear_midis")
 					toggles ^= SOUND_MIDI
-				
+
 				//SKYRAT CHANGES BEGIN - Megafauna music
 				if("hear_megafauna")
 					toggles ^= SOUND_MEGAFAUNA

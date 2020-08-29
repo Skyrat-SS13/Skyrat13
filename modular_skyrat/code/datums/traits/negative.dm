@@ -13,7 +13,7 @@
 		if("Medical Doctor")
 			heirloom_type = /obj/item/healthanalyzer
 		if("Paramedic")
-			heirloom_type = pick(/obj/item/clothing/neck/stethoscope, /obj/item/bodybag)
+			heirloom_type = /obj/item/healthanalyzer
 		if("Station Engineer")
 			heirloom_type = /obj/item/wirecutters/brass
 		if("Atmospheric Technician")
