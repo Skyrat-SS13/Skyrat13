@@ -1,0 +1,6 @@
+author: "SarmentiCampbell"
+delete-after: True
+changes: 
+  - rscadd: "Added a plushie"
+  - tweak: "removed the angry goats from the choice box from the loadout, No more insta-gib"
+  - bugfix: "fixed reagen id runtimes, credit to jjpark-kb"
