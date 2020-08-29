@@ -15,6 +15,16 @@
 		/datum/reagent/consumable/coffee = 0.1,
 	)
 
+/obj/item/organ/kidneys/get_adrenaline_multiplier()
+	var/multiplier = 1
+	if(is_broken())
+		multiplier = 0
+	else if(is_bruised())
+		multiplier *= (damage/maxHealth)
+	if(owner?.chem_effects[CE_BLOODRESTORE])
+		multiplier *= min(2, owner.chem_effects[CE_BLOODRESTORE])
+	return multiplier
+
 /obj/item/organ/kidneys/on_life()
 	. = ..()
 	if(!owner)

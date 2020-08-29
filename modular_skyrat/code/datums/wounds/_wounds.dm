@@ -288,17 +288,20 @@
 		return
 	if(HAS_TRAIT(victim, TRAIT_NODETERMINATION)) //toby is gone
 		return
-	switch(severity)	
-		if(WOUND_SEVERITY_MODERATE)
-			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_MODERATE)
-		if(WOUND_SEVERITY_SEVERE)
-			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_SEVERE)
-		if(WOUND_SEVERITY_CRITICAL)
-			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_CRITICAL)
-		if(WOUND_SEVERITY_LOSS)
-			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_LOSS)
-		if(WOUND_SEVERITY_PERMANENT)
-			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_PERMANENT)
+	//Kidneys regulate the production of adrenaline (determination)
+	var/obj/item/organ/kidneys/kidneys = victim.getorganslot(ORGAN_SLOT_KIDNEYS)
+	if(kidneys && kidneys.get_adrenaline_multiplier())
+		switch(severity)	
+			if(WOUND_SEVERITY_MODERATE)
+				victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_MODERATE * kidneys.get_adrenaline_multiplier())
+			if(WOUND_SEVERITY_SEVERE)
+				victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_SEVERE)
+			if(WOUND_SEVERITY_CRITICAL)
+				victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_CRITICAL)
+			if(WOUND_SEVERITY_LOSS)
+				victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_LOSS)
+			if(WOUND_SEVERITY_PERMANENT)
+				victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_PERMANENT)
 
 /**
   * try_treating() is an intercept run from [/mob/living/carbon/attackby()] right after surgeries but before anything else. Return TRUE here if the item is something that is relevant to treatment to take over the interaction.
