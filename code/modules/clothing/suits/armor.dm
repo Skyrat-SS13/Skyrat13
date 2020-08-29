@@ -425,17 +425,37 @@
 	icon_state = "hardsuit0-cloaker"
 	item_state = "hardsuit0-cloaker"
 	armor = list("melee" = 40, "bullet" = 35, "laser" = 35, "energy" = 50, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100)
+	actions_types = list(/datum/action/item_action/toggle_nv)
+	hardsuit_type = "cloaker"
+	var/activated = FALSE
 	var/stored_nv = 0
 
-/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if (slot == SLOT_HEAD)
-		user.see_in_dark = 8
+/datum/action/item_action/toggle_nv
+	name = "Toggle Night-Vision"
+	desc = "Toggle your helmet's night vision."
 
-/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/security_armor/dropped(mob/living/carbon/human/user)
-	..()
-	if (user.head == src)
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/item_action_slot_check(slot, mob/user, datum/action/A)
+	. = ..()
+	if(. && (slot == SLOT_HEAD))
+		return TRUE
+
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/dropped(mob/user)
+	. = ..()
+	if(activated)
+		activated = !activated
 		user.see_in_dark = stored_nv
+
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/ui_action_click(mob/user, action)
+	if(istype(action, /datum/action/item_action/toggle_nv))
+		if(!activated)
+			activated = !activated
+			stored_nv = user.see_in_dark
+			user.see_in_dark = 8
+			to_chat(user, "<span class='notice'>You activate [src]'s night vision.</span>")
+		else
+			activated = !activated
+			user.see_in_dark = stored_nv
+			to_chat(user, "<span class='notice'>You deactivate [src]'s night vision.</span>")
 
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/hos
 	name = "head of security's techhelmet"
