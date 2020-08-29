@@ -15,7 +15,7 @@
 		/datum/reagent/consumable/coffee = 0.1,
 	)
 
-/obj/item/organ/kidneys/get_adrenaline_multiplier()
+/obj/item/organ/kidneys/proc/get_adrenaline_multiplier()
 	var/multiplier = 1
 	if(is_broken())
 		multiplier = 0
