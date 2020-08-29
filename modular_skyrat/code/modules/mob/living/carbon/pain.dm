@@ -135,7 +135,7 @@
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 			var/list/damaged_bodyparts = list()
 			for(var/obj/item/bodypart/BP in bodyparts)
-				var/bpain = BP.get_pain()
+				var/bpain = max(0, BP.get_pain() - chem_effects[CE_PAINKILLER])
 				if(bpain >= BP.max_damage)
 					damaged_bodyparts += "<span class='bigdanger'>I want to tear my [BP.name] off!</span>\n"
 				else if(bpain > BP.max_damage*0.8)
