@@ -2694,11 +2694,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					if(toggles & METRIC_OR_BUST)
 						new_length = input(user, "Penis length in centimeters:\n([min_D_m]-[max_D_m])", "Character Preference") as num|null
 						if(new_length)
-							features["cock_length"] = clamp(round(new_length/2.54, 1), min_D, max_D)
+							features["cock_length"] = clamp(round(new_length/2.54, 0.1), min_D, max_D)
 					else
 						new_length = input(user, "Penis length in inches:\n([min_D]-[max_D])", "Character Preference") as num|null
 						if(new_length)
-							features["cock_length"] = clamp(round(new_length, 1), min_D, max_D)
+							features["cock_length"] = clamp(round(new_length, 0.1), min_D, max_D)
 					//Skyrat edit end
 
 				if("cock_shape")

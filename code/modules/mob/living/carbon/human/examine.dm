@@ -134,12 +134,12 @@
 	if(LAZYLEN(internal_organs))
 		for(var/obj/item/organ/genital/dicc in internal_organs)
 			if(istype(dicc) && dicc.is_exposed())
-				. += "[dicc.desc]"
+				. |= dicc.genital_examine(user)
 
 	var/cursed_stuff = attempt_vr(src,"examine_bellies",args) //vore Code
 	if(cursed_stuff)
 		. += cursed_stuff
-//END OF CIT CHANGES
+	//END OF CIT CHANGES
 
 	//Jitters
 	switch(jitteriness)
