@@ -48,3 +48,17 @@
 	icon_state = "cloaker"
 	armor = list("melee" = 40, "bullet" = 35, "laser" = 35, "energy" = 50, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100)
 	mutantrace_variation = STYLE_NO_ANTHRO_ICON
+
+//solar armor
+/obj/item/clothing/suit/armor/riot/solar
+	name = "solar armor"
+	desc = "An unimaginably powerful suit of armor, said to have been forged with the very essence of every star in the universe."
+	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
+	icon_state = "solar_armor"
+	item_state = "solar_armor"
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 20, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 100)
+	allowed = list(/obj/item/clockwork/weapon/daybreak)
+	blocks_shove_knockdown = TRUE
+	strip_delay = 80
+	equip_delay_other = 60

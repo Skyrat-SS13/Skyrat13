@@ -51,3 +51,13 @@
 			activated = !activated
 			user.see_in_dark = stored_nv
 			to_chat(user, "<span class='notice'>You deactivate [src]'s night vision.</span>")
+
+//HEE HOO TERRARIA
+/obj/item/clothing/head/helmet/knight/solar
+	name = "solar helmet"
+	desc = "A helmet forged with the mighty cosmic power of the flaring stars."
+	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	icon_state = "solar_helmet"
+	item_state = "solar_helmet"
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 10,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 90, "acid" = 100)

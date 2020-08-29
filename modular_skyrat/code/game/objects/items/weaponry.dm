@@ -703,3 +703,20 @@
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_righthand.dmi'
 	item_state = "blackbaton"
+
+//Daybreak
+/obj/item/clockwork/weapon/daybreak
+	name = "\proper Daybreak"
+	desc = "A spear said to be made from the very matter of each and every star to have existed throughout time. It glows and hums with energy not thought possible."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_righthand.dmi'
+	icon_state = "daybreak"
+	item_state = "daybreak"
+	force = 50 
+	throwforce = 150
+	armour_penetration = 30
+	sharpness = IS_SHARP_ACCURATE
+	attack_verb = list("stabbed", "jabbed", "slashed")
+	hitsound = 'sound/weapons/daybreakslice.ogg'
+	w_class = WEIGHT_CLASS_BULKY
