@@ -54,8 +54,6 @@
 			adjustOxyLoss(damage_amount, forced = forced)
 	return TRUE
 
-
-
 //These procs fetch a cumulative total damage from all bodyparts
 /mob/living/carbon/getBruteLoss()
 	. = 0
@@ -111,6 +109,17 @@
 			breathe_organ.add_oxygen_deprivation(abs(amount))
 		else
 			breathe_organ.remove_oxygen_deprivation(abs(amount))
+	if(updating_health)
+		updatehealth()
+		update_health_hud()
+
+/mob/living/carbon/setOxyLoss(amount, updating_health, forced)
+	if(!needs_lungs() || (amount < 0))
+		return
+	var/obj/item/organ/lungs/breathe_organ = getorganslot(ORGAN_SLOT_LUNGS)
+	if(breathe_organ)
+		breathe_organ.oxygen_deprivation = 0
+		breathe_organ.add_oxygen_deprivation(abs(amount))
 	if(updating_health)
 		updatehealth()
 		update_health_hud()
