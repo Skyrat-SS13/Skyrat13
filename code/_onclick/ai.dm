@@ -110,11 +110,26 @@
 
 /mob/living/silicon/ai/CtrlShiftClickOn(var/atom/A)
 	A.AICtrlShiftClick(src)
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A // Skyrat edit
+	if(airlock)
+		airlock.AICtrlShiftClick(src)
+	return // End of skyrat edit
+
 /mob/living/silicon/ai/ShiftClickOn(var/atom/A)
 	A.AIShiftClick(src)
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A // Skyrat edit
+	if(airlock)
+		airlock.AIShiftClick(src)
+	return // End of skyrat edit 
+
 /mob/living/silicon/ai/CtrlClickOn(var/atom/A)
 	A.AICtrlClick(src)
-/mob/living/silicon/ai/AltClickOn(var/atom/A)
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A    // Skyrat edit 
+	if(airlock)                              
+		airlock.AICtrlClick(src)
+	return // End of skyrat edit
+	
+	/mob/living/silicon/ai/AltClickOn(var/atom/A)
 	if(!A.AIAltClick(src))
 		altclick_listed_turf(A)
 
