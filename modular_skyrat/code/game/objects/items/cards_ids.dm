@@ -74,6 +74,12 @@
 	assignment = "Charlie Station Engineer"
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_ENGINE, ACCESS_ENGINE_EQUIP)
 
+/obj/item/card/id/away/old/atmos
+	name = "Charlie Station Atmospheric Technician's ID card"
+	desc = "A faded Charlie Station ID card. You can make out the rank \"Atmospheric Technician\"."
+	assignment = "Charlie Station Atmos Tech"
+	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_ENGINE, ACCESS_ENGINE_EQUIP)
+
 /obj/item/card/id/away/old/mine
 	name = "Charlie Station Miner's ID card"
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Miner\"."

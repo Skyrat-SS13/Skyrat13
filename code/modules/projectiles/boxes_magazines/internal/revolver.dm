@@ -20,3 +20,9 @@
 /obj/item/ammo_box/magazine/internal/rus357/Initialize()
 	stored_ammo += new ammo_type(src)
 	. = ..()
+
+/obj/item/ammo_box/magazine/internal/cylinder/bore
+	name = "\improper 410 bore cylinder"
+	ammo_type = /obj/item/ammo_casing/shotgun
+	caliber = list("shell")
+	max_ammo = 5

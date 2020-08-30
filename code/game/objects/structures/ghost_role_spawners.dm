@@ -555,7 +555,7 @@
 	uniform = /obj/item/clothing/under/rank/engineering/engineer
 	shoes = /obj/item/clothing/shoes/workboots
 	id = /obj/item/card/id/away/old/eng
-	gloves = /obj/item/clothing/gloves/color/fyellow/old
+	gloves = /obj/item/clothing/gloves/color/yellow
 	l_pocket = /obj/item/tank/internals/emergency_oxygen
 	assignedrole = "Ancient Crew"
 
@@ -588,6 +588,29 @@
 /obj/effect/mob_spawn/human/oldsci/Destroy()
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
 	return ..()
+
+/obj/effect/mob_spawn/human/oldatmos
+	name = "old cryogenics pod"
+	desc = "A humming cryo pod. You can barely recognise an atmospheric technician uniform underneath the built up ice. The machine is attempting to wake up its occupant."
+	mob_name = "an atmospheric technician"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	roundstart = FALSE
+	death = FALSE
+	random = TRUE
+	mob_species = /datum/species/human
+	short_desc = "You are an atmospheric technician working for Nanotrasen, stationed onboard a state of the art research station."
+	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. \
+	The last thing you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
+	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."
+	important_info = "Work as a team with your fellow survivors and do not abandon them."
+	uniform = /obj/item/clothing/under/rank/engineering/atmospheric_technician
+	shoes = /obj/item/clothing/shoes/workboots
+	gloves = /obj/item/clothing/gloves/color/black
+	id = /obj/item/card/id/away/old/atmos
+	l_pocket = /obj/item/analyzer
+	assignedrole = "Ancient Crew Atmos Tech"
+	job_description = "Oldstation Crew"
 
 /obj/effect/mob_spawn/human/pirate
 	name = "space pirate sleeper"
