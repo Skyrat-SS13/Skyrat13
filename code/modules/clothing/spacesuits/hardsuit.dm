@@ -20,6 +20,7 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/Initialize()
 	. = ..()
+	AddComponent(/datum/component/overlay_lighting, light_color, brightness_on, 1, FALSE) //Skyrat change
 	soundloop = new(list(), FALSE, TRUE)
 	soundloop.volume = 5
 	START_PROCESSING(SSobj, src)
@@ -31,10 +32,11 @@
 /obj/item/clothing/head/helmet/space/hardsuit/attack_self(mob/user)
 	on = !on
 	update_icon() //the mob overlay update is already done by the update_icon_updates_onmob element.
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 	if(on)
-		set_light(brightness_on)
+		OL.turn_on()
 	else
-		set_light(0)
+		OL.turn_off()
 
 /obj/item/clothing/head/helmet/space/hardsuit/update_icon_state()
 	icon_state = "[basestate][on]-[hardsuit_type]"
@@ -287,11 +289,12 @@
 		to_chat(user, "<span class='warning'>You cannot toggle your helmet while in this [user.loc]!</span>" )
 		return
 	on = !on
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 	if(on || force)
 		to_chat(user, "<span class='notice'>You switch your hardsuit to EVA mode, sacrificing speed for space protection.</span>")
 		name = initial(name)
 		desc = initial(desc)
-		set_light(brightness_on)
+		OL.turn_on()
 		clothing_flags |= visor_flags
 		flags_cover |= HEADCOVERSEYES | HEADCOVERSMOUTH
 		flags_inv |= visor_flags_inv
@@ -300,7 +303,7 @@
 		to_chat(user, "<span class='notice'>You switch your hardsuit to combat mode and can now run at full speed.</span>")
 		name += " (combat)"
 		desc = alt_desc
-		set_light(0)
+		OL.turn_off()
 		clothing_flags &= ~visor_flags
 		flags_cover &= ~(HEADCOVERSEYES | HEADCOVERSMOUTH)
 		flags_inv &= ~visor_flags_inv
@@ -899,11 +902,11 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/lavaknight/attack_self(mob/user)
 	on = !on
-
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 	if(on)
-		set_light(brightness_on)
+		OL.turn_on()
 	else
-		set_light(0)
+		OL.turn_off()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
@@ -936,7 +939,7 @@
 /obj/item/clothing/suit/space/hardsuit/lavaknight/Initialize()
 	..()
 	light_color = energy_color
-	set_light(1)
+	AddComponent(/datum/component/overlay_lighting, light_color, 1.5, 1, FALSE) //Skyrat change
 	update_icon()
 
 /obj/item/clothing/suit/space/hardsuit/lavaknight/update_overlays()

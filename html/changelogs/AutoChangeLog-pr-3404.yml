@@ -1,5 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "Genitals now actually respect the measurement preferences of the viewer, and not the owner of the genital."
-  - tweak: "Genital sizes don't round down to 0 decimals anymore, now it's 1 (e.g. 1.85 becomes 1.9 instead of 2)"

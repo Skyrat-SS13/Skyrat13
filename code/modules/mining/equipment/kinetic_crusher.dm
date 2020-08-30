@@ -42,6 +42,7 @@
 /obj/item/kinetic_crusher/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 110) //technically it's huge and bulky, but this provides an incentive to use it
+	AddComponent(/datum/component/overlay_lighting, "#FFFFFF", brightness_on, 1, FALSE) //Skyrat change
 	AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=20)
 
 /obj/item/kinetic_crusher/Destroy()
@@ -160,10 +161,11 @@
 	update_icon()
 
 /obj/item/kinetic_crusher/proc/update_brightness(mob/user = null)
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 	if(light_on)
-		set_light(brightness_on)
+		OL.turn_on()
 	else
-		set_light(0)
+		OL.turn_off()
 
 /obj/item/kinetic_crusher/update_icon_state()
 	item_state = "crusher[wielded]" // this is not icon_state and not supported by 2hcomponent
