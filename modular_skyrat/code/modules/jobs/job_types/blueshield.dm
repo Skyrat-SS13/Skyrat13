@@ -56,7 +56,7 @@
 
 /obj/item/choice_beacon/blueshield
 	name = "blueshield's shotgun beacon"
-	desc = "A beacon, allowing the warden to select between two available models of personal shotguns."
+	desc = "A beacon, allowing the blueshield to select between two available models of personal shotguns."
 
 /obj/item/choice_beacon/blueshield/generate_display_names()
 	var/static/list/bshield
