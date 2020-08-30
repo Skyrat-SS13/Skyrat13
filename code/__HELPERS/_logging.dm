@@ -295,7 +295,7 @@
 
 	return .
 
-/proc/key_name_admin(whom, include_name = TRUE, ticket) // Skyrat change
+/proc/key_name_admin(whom, include_name = FALSE, ticket) // Skyrat change
 	return key_name(whom, TRUE, include_name, ticket)
 
 /proc/loc_name(atom/A)
