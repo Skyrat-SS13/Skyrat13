@@ -1,0 +1,10 @@
+author: "ShadeAware"
+delete-after: True
+changes: 
+  - balance: "Security Armor has been largely replaced by a new Security Techarmor, sporting full body coverage and a slight +5 boost to melee defense alongside a built in helmet with flash resistant HUD Visor and headlamp. This suit has an equip delay similar to hardsuits. CREDIT TO JUNGLERAT FOR SPRITES."
+  - balance: "Security Disablers have been largely replaced by the new Energy Rifle, a far more bulky energy gun which cannot be put into backpacks but sports a longer cell lifespan, able to fire 25 disabler shots and 12 lethal blasts."
+  - rscadd: "Energy Rifle."
+  - rscadd: "Security Techarmor. CREDIT TO JUNGLERAT FOR SPRITES."
+  - rscadd: "Head of Security Techarmor."
+  - rscadd: "Energy Rifle and Security Techarmor cargo crates; Armory Access is required to open them."
+  - tweak: "Replaced standard Security Armor spawns with the new Security Techarmor; Energy Rifles added to every map armory."

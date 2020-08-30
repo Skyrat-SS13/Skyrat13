@@ -364,6 +364,14 @@
 	slowdown = 0
 	mutantrace_variation = STYLE_DIGITIGRADE | STYLE_NO_ANTHRO_ICON
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	unique_reskin = list(
+		"Full-Body Slayer" = "praetor",
+		"Eternal Slayer" = "praetor_sleeveless",
+	)
+	unique_reskin = list(
+		"Full-Body Slayer" = "praetor",
+		"Eternal Slayer" = "praetor_sleeveless",
+	)
 
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit helmet"
@@ -517,7 +525,7 @@
 
 //normal chests
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,34)
+	var/loot = rand(1,35)
 	new /obj/item/stock_parts/cell/high/plus/argent(src)
 	switch(loot)
 		if(1)
@@ -632,6 +640,9 @@
 		if(34)
 			new /obj/item/clothing/accessory/lavawalk(src)
 			return list(/obj/item/clothing/accessory/lavawalk)
+		if(35)
+			new /obj/item/gun/energy/kinetic_accelerator/premiumka/ashenka(src)
+			return list(/obj/item/gun/energy/kinetic_accelerator/premiumka/ashenka)
 
 /obj/item/gun/magic/staff/locker/trashy
 	max_charges = 1

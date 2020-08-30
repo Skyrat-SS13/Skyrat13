@@ -36,6 +36,7 @@
 
 /obj/item/weldingtool/Initialize()
 	. = ..()
+	AddComponent(/datum/component/overlay_lighting, LIGHT_COLOR_FIRE, light_intensity, 0.75, FALSE) //Skyrat change
 	create_reagents(max_fuel)
 	reagents.add_reagent(/datum/reagent/fuel, max_fuel)
 	update_icon()
@@ -132,7 +133,8 @@
 		var/turf/location = get_turf(user)
 		location.hotspot_expose(550, 10, 1)
 		if(get_fuel() <= 0)
-			set_light(0)
+			var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+			OL.turn_off()
 
 		if(isliving(O))
 			var/mob/living/L = O
@@ -147,7 +149,8 @@
 		explode()
 	switched_on(user)
 	if(welding)
-		set_light(light_intensity, 0.75, LIGHT_COLOR_FIRE)
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.turn_on()
 
 	update_icon()
 
@@ -206,7 +209,8 @@
 //Switches the welder off
 /obj/item/weldingtool/proc/switched_off(mob/user)
 	welding = 0
-	set_light(0)
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+	OL.turn_off()
 
 	force = 3
 	damtype = "brute"

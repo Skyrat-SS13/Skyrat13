@@ -233,7 +233,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/needs_update = savefile_needs_update(S)
 	if(needs_update == -2)		//fatal, can't load any data
 		return 0
-	
+
 	. = TRUE
 
 	//general preferences
@@ -282,8 +282,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["pda_style"]			>> pda_style
 	S["pda_color"]			>> pda_color
 	S["pda_skin"]			>> pda_skin
-	// SKYRAT EDIT: Credits
+	// SKYRAT EDIT START
 	S["show_credits"] 		>> show_credits
+	S["eorg_teleport"]		>> eorg_teleport
+	// SKYRAT EDIT END
 
 	// Custom hotkeys
 	S["key_bindings"]		>> key_bindings
@@ -351,6 +353,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	event_participation = sanitize_integer(event_participation, 0, 1, initial(event_participation))
 	event_prefs = sanitize_text(event_prefs)
 	appear_in_round_end_report	= sanitize_integer(appear_in_round_end_report, 0, 1, initial(appear_in_round_end_report))
+	eorg_teleport			= sanitize_integer(eorg_teleport, 0, 1, initial(eorg_teleport))
 	//SKYRAT CHANGES END
 
 	verify_keybindings_valid()		// one of these days this will runtime and you'll be glad that i put it in a different proc so no one gets their saves wiped
@@ -447,6 +450,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["event_participation"], event_participation)
 	WRITE_FILE(S["event_prefs"], event_prefs)
 	WRITE_FILE(S["appear_in_round_end_report"], appear_in_round_end_report)
+	WRITE_FILE(S["eorg_teleport"], eorg_teleport)
 	//SKYRAT CHANGES END
 
 	return 1
@@ -478,7 +482,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return 0
 
 	. = TRUE
-	
+
 	//Species
 	var/species_id
 	S["species"]			>> species_id
