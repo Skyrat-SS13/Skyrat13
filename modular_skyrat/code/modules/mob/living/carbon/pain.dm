@@ -15,7 +15,7 @@
 	for(var/obj/item/bodypart/BP in bodyparts)
 		if(!BP.can_feel_pain())
 			continue
-		var/dam = BP.get_damage(include_pain = TRUE)
+		var/dam = BP.get_damage()
 		// make the choice of the organ depend on damage,
 		// but also sometimes use one of the less damaged ones
 		if(dam >= maxdam && (maxdam <= 0 || prob(70)) )
@@ -83,6 +83,15 @@
 	if(!client || !hud_used)
 		return
 	if(hud_used.pains)
+		switch(client.prefs?.pain_style)
+			if("Pain Guy")
+				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain.dmi'
+			if("Marine Guy")
+				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain_marine.dmi'
+			if("Clown Guy")
+				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain_clown.dmi'
+			else
+				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain.dmi'
 		if(stat != DEAD)
 			. = 1
 			if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))

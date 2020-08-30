@@ -135,6 +135,15 @@
 		heal_overall_damage(brute = abs(amount), only_organic = TRUE, only_robotic = FALSE, updating_health = updating_health)
 	return amount
 
+/mob/living/carbon/adjustPainLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(!forced && (status_flags & GODMODE))
+		return FALSE
+	if(amount > 0)
+		take_overall_damage(pain = amount, updating_health = updating_health)
+	else
+		heal_overall_damage(pain = abs(amount), only_organic = TRUE, only_robotic = FALSE, updating_health = updating_health)
+	return amount
+
 /mob/living/carbon/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && amount < 0 && HAS_TRAIT(src,TRAIT_NONATURALHEAL))	//Vamps don't heal naturally.
 		return FALSE
