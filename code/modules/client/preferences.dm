@@ -30,6 +30,7 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 		"BFG Division" = 'modular_skyrat/sound/ambience/bfgdivision.ogg',
 		"Pebble Man" = 'modular_skyrat/sound/ambience/lisapebbleman.ogg',
 		"Behemoth" = 'modular_skyrat/sound/music/behemoth.ogg',
+		"Fahkeet" = 'modular_skyrat/sound/music/fahkeet.ogg',
 	))
 
 /datum/preferences
