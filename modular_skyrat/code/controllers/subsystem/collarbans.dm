@@ -5,8 +5,7 @@ SUBSYSTEM_DEF(pacifybans)
 	can_fire = 0 //Let's enable it if I actually ever see a person slipping out of it
 
 /datum/controller/subsystem/pacifybans/fire()
-	for(var/mob/living/carbon/human/H in GLOB.mob_list)
-		if(H.client)
-			if(jobban_isbanned(H, COLLARBAN))
-				H.update_pacification_ban()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(jobban_isbanned(H, COLLARBAN))
+			H.update_pacification_ban()
 	return FALSE

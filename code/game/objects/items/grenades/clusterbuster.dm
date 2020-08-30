@@ -30,6 +30,9 @@
 
 	new payload_spawner(drop_location(), payload, numspawned)//Launches payload
 	playsound(src, prime_sound, 75, 1, -3)
+	/* skyrat edit
+	qdel(src)
+	*/
 	qdel(src)
 
 //////////////////////
@@ -63,6 +66,9 @@
 /obj/item/grenade/clusterbuster/segment/prime(mob/living/lanced_by)
 	new payload_spawner(drop_location(), payload, rand(min_spawned,max_spawned))
 	playsound(src, prime_sound, 75, 1, -3)
+	/* skyrat edit
+	qdel(src)
+	*/
 	qdel(src)
 
 //////////////////////////////////
