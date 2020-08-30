@@ -261,6 +261,6 @@
 		Unconscious(800)
 
 /mob/living/carbon/fully_heal(admin_revive)
-	. = ..()
+	..()
 	shock_stage = 0
 	setPainLoss(0, FALSE)

@@ -9,6 +9,7 @@
 	var/damage_threshold_value = 0
 	var/healed_threshold = 1
 	var/oxygen_reserve = 5
+	pain_multiplier = 0 //We don't count towards bodypart pain
 
 /obj/item/organ/brain/Initialize()
 	. = ..()

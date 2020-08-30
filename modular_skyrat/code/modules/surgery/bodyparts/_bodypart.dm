@@ -858,8 +858,6 @@
 	for(var/datum/wound/W in wounds)
 		extra_pain += W.pain_amount
 	for(var/obj/item/organ/O in get_organs())
-		if(O.slot == ORGAN_SLOT_BRAIN)
-			continue
 		extra_pain += O.get_pain()
 	return clamp(pain_dam + extra_pain, 0, max_pain_damage)
 
