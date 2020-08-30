@@ -364,6 +364,14 @@
 	slowdown = 0
 	mutantrace_variation = STYLE_DIGITIGRADE | STYLE_NO_ANTHRO_ICON
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	unique_reskin = list(
+		"Full-Body Slayer" = "praetor",
+		"Eternal Slayer" = "praetor_sleeveless",
+	)
+	unique_reskin = list(
+		"Full-Body Slayer" = "praetor",
+		"Eternal Slayer" = "praetor_sleeveless",
+	)
 
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit helmet"
