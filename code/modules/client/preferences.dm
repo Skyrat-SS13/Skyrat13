@@ -29,6 +29,7 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 		"Armed To The Teeth" = 'modular_skyrat/sound/music/armedtotheteeth.ogg',
 		"BFG Division" = 'modular_skyrat/sound/ambience/bfgdivision.ogg',
 		"Pebble Man" = 'modular_skyrat/sound/ambience/lisapebbleman.ogg',
+		"Behemoth" = 'modular_skyrat/sound/music/behemoth.ogg',
 	))
 
 /datum/preferences
