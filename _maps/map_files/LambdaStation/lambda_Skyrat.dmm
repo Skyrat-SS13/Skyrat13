@@ -8725,12 +8725,25 @@
 	dir = 1;
 	layer = 2.9
 	},
-/obj/item/clothing/suit/space/hardsuit/security_armor{
+/obj/item/clothing/suit/armor/vest{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/clothing/suit/space/hardsuit/security_armor,
-/obj/item/clothing/suit/space/hardsuit/security_armor{
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/helmet{
+	layer = 3.00001;
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/head/helmet{
+	layer = 3.00001
+	},
+/obj/item/clothing/head/helmet{
+	layer = 3.00001;
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -69350,20 +69363,6 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
-	},
-/obj/structure/rack,
-/obj/item/gun/energy/e_gun/large{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/gun/energy/e_gun/large,
-/obj/item/gun/energy/e_gun/large{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	pixel_x = -4
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/armory)

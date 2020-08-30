@@ -11268,16 +11268,8 @@
 /obj/structure/sign/poster/official/nt_storm_officer{
 	pixel_x = -32
 	},
-/obj/structure/rack,
-/obj/item/gun/energy/e_gun/large{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/gun/energy/e_gun/large,
-/obj/item/gun/energy/e_gun/large{
-	pixel_x = 3;
-	pixel_y = -3
-	},
+/obj/vehicle/ridden/secway,
+/obj/item/key/security,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "axg" = (
@@ -11372,8 +11364,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
-/obj/vehicle/ridden/secway,
-/obj/item/key/security,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "axp" = (
@@ -18231,6 +18221,32 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "aKM" = (
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = -8;
+	pixel_y = -2
+	},
+/obj/item/clothing/suit/armor/vest{
+	pixel_y = -2
+	},
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = 8;
+	pixel_y = -2
+	},
+/obj/item/clothing/head/helmet{
+	layer = 3.00001;
+	pixel_x = -9;
+	pixel_y = 7
+	},
+/obj/item/clothing/head/helmet{
+	layer = 3.00001;
+	pixel_x = -1;
+	pixel_y = 7
+	},
+/obj/item/clothing/head/helmet{
+	layer = 3.00001;
+	pixel_x = 8;
+	pixel_y = 7
+	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
@@ -18238,15 +18254,6 @@
 	pixel_y = -24
 	},
 /obj/structure/rack,
-/obj/item/clothing/suit/space/hardsuit/security_armor{
-	pixel_x = 1
-	},
-/obj/item/clothing/suit/space/hardsuit/security_armor{
-	pixel_x = 10
-	},
-/obj/item/clothing/suit/space/hardsuit/security_armor{
-	pixel_x = -8
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aKN" = (

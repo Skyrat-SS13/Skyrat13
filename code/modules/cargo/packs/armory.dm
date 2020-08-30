@@ -69,7 +69,7 @@
 	crate_name = "energy gun crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
-/datum/supply_pack/security/armory/energy_rifle
+/*/datum/supply_pack/security/armory/energy_rifle
 	name = "Energy Rifles Crate"
 	desc = "Contains three Energy Rifles, capable of firing both nonlethal and lethal blasts of light. Requires Armory access to open."
 	cost = 5000
@@ -77,7 +77,7 @@
 					/obj/item/gun/energy/e_gun/large,
 					/obj/item/gun/energy/e_gun/large)
 	crate_name = "energy rifle crate"
-	crate_type = /obj/structure/closet/crate/secure/plasma
+	crate_type = /obj/structure/closet/crate/secure/plasma*/
 
 /datum/supply_pack/security/armory/exileimp // Theres boxes in 2 lockers as well as gateway never realy being used sad
 	name = "Exile Implants Crate"
