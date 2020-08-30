@@ -111,7 +111,7 @@
 	msg += "<span class='notice'>In general: </span>"
 	if(stat != DEAD)
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
-			switch(get_shock())
+			switch(getPainLoss() - chem_effects[CE_PAINKILLER])
 				if(-INFINITY to 5) //pain0
 					msg += "<span class='nicegreen'>I feel healthy.</span>\n"
 				if(5 to 15) //pain1
