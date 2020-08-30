@@ -255,6 +255,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["event_participation"] >> event_participation
 	S["event_prefs"] >> event_prefs
 	S["appear_in_round_end_report"]	>> appear_in_round_end_report
+	S["combat_music"]	>> combat_music
 	//SKYRAT CHANGES END
 
 
@@ -354,6 +355,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	event_prefs = sanitize_text(event_prefs)
 	appear_in_round_end_report	= sanitize_integer(appear_in_round_end_report, 0, 1, initial(appear_in_round_end_report))
 	eorg_teleport			= sanitize_integer(eorg_teleport, 0, 1, initial(eorg_teleport))
+	if(combat_music)
+		combat_music = sanitize_inlist(combat_music, GLOB.combat_music_options)
 	//SKYRAT CHANGES END
 
 	verify_keybindings_valid()		// one of these days this will runtime and you'll be glad that i put it in a different proc so no one gets their saves wiped
@@ -451,6 +454,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["event_prefs"], event_prefs)
 	WRITE_FILE(S["appear_in_round_end_report"], appear_in_round_end_report)
 	WRITE_FILE(S["eorg_teleport"], eorg_teleport)
+	WRITE_FILE(S["combat_music"], combat_music)
 	//SKYRAT CHANGES END
 
 	return 1
