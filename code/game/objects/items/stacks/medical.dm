@@ -5,8 +5,8 @@
 	name = "medical pack"
 	singular_name = "medical pack"
 	icon = 'modular_skyrat/icons/obj/stack_objects.dmi'
-	amount = 15
-	max_amount = 15
+	amount = 16
+	max_amount = 16
 	w_class = WEIGHT_CLASS_TINY
 	full_w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
@@ -363,7 +363,7 @@
 	other_delay = 20
 	amount = 12
 	max_amount = 12
-	heal_burn = 5
+	heal_burn = 20
 	flesh_regeneration = 2.5
 	sanitization = 0.25
 	grind_results = list(/datum/reagent/medicine/silver_sulfadiazine = 10)
