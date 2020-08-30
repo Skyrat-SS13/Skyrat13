@@ -20,6 +20,7 @@
 
 /obj/item/clothing/head/hardhat/ComponentInitialize()
 	. = ..()
+	AddComponent(/datum/component/overlay_lighting, light_color, brightness_on, power_on, FALSE) //Skyrat change
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/clothing/head/hardhat/attack_self(mob/living/user)
@@ -38,10 +39,12 @@
 	item_state = "hardhat[on]_[hat_type]"
 
 /obj/item/clothing/head/hardhat/proc/turn_on(mob/user)
-	set_light(brightness_on, power_on)
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+	OL.turn_on()
 
 /obj/item/clothing/head/hardhat/proc/turn_off(mob/user)
-	set_light(0)
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+	OL.turn_off()
 
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"
