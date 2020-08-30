@@ -129,7 +129,7 @@
 		airlock.AICtrlClick(src)
 	return // End of skyrat edit
 	
-	/mob/living/silicon/ai/AltClickOn(var/atom/A)
+/mob/living/silicon/ai/AltClickOn(var/atom/A)
 	if(!A.AIAltClick(src))
 		altclick_listed_turf(A)
 
