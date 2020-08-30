@@ -580,7 +580,8 @@
 	return TRUE
 //Skyrat changes - snowflake blood color
 /atom/proc/blood_DNA_to_color()
-	blood_DNA |= list("color" = BLOOD_COLOR_HUMAN)
+	if(!blood_DNA)
+		blood_DNA = list("color" = BLOOD_COLOR_HUMAN, "ANIMAL DNA" = "Y-")
 	return blood_DNA["color"]
 
 /proc/blood_DNA_list_to_color(list/dna)
