@@ -16,12 +16,19 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 	// **DOES NOT FUNCTION** unique_reskin = list("Revolver" = "bsgun", "Militia PDW" = "pdw9pistol")
 
-/obj/item/gun/energy/gun/blueshield/pdw9
+/obj/item/gun/energy/e_gun/blueshield/pdw9
 	name = "PDW-9 taser pistol"
-	desc = "A military grade energy sidearm, used by many militia forces throughout the local sector."
+	desc = "A military grade energy sidearm, used by many militia forces throughout the local sector. It comes with an internally recharging battery which is slow to recharge."
 	icon_state = "pdw9pistol"
+	cell_type = /obj/item/stock_parts/cell/pdw9
 
 /obj/item/stock_parts/cell/blueshield
 	name = "internal revolver power cell"
 	maxcharge = 1500
 	chargerate = 300
+
+/obj/item/stock_parts/cell/pdw9
+	name = "internal pistol power cell"
+	maxcharge = 1000
+	chargerate = 300
+	self_recharge = TRUE
