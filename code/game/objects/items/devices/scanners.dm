@@ -143,7 +143,7 @@ GENETICS SCANNER
 	var/tox_loss = M.getToxLoss()
 	var/fire_loss = M.getFireLoss()
 	var/brute_loss = M.getBruteLoss()
-	var/mob_status = (M.stat == DEAD ? "<span class='alert'><b>Deceased</b></span>" : "<b>[round(M.health/M.maxHealth,0.01)*100] % healthy</b>")
+	var/mob_status = (M.stat == DEAD ? "<span class='alert'><b>Deceased</b></span>" : "<b>[round(M.get_physical_damage()/M.maxHealth,0.01)*100] % healthy</b>")
 
 	if(HAS_TRAIT(M, TRAIT_FAKEDEATH) && !advanced)
 		mob_status = "<span class='alert'><b>Deceased</b></span>"
@@ -355,6 +355,7 @@ GENETICS SCANNER
 				blooded = FALSE
 		var/has_liver = C.dna && !(NOLIVER in C.dna.species.species_traits)
 		var/has_stomach = C.dna && !(NOSTOMACH in C.dna.species.species_traits)
+		var/has_kidneys = C.dna && !(NOKIDNEYS in C.dna.species.species_traits)
 		if(!M.getorganslot(ORGAN_SLOT_EYES))
 			msg += "<span class='alert'><b>Subject does not have eyes.</b></span>\n"
 		if(!M.getorganslot(ORGAN_SLOT_EARS))
@@ -369,13 +370,12 @@ GENETICS SCANNER
 			msg += "<span class='alert'><b>Subject's lungs are missing!</b></span>\n"
 		if(has_stomach && !M.getorganslot(ORGAN_SLOT_STOMACH))
 			msg += "<span class='alert'><b>Subject's stomach is missing!</span>\n"
-
+		if(has_kidneys && !M.getorganslot(ORGAN_SLOT_KIDNEYS))
+			msg += "<span class='alert'><b>Subject's kidneys are missing!</span>\n"
 
 		if(M.radiation)
 			msg += "<span class='alert'>Subject is irradiated.</span>\n"
 			msg += "<span class='info'>Radiation Level: [M.radiation] rad</span>\n"
-
-
 
 	// Species and body temperature
 	var/mob/living/carbon/human/H = M //Start to use human only stuff here
@@ -459,17 +459,18 @@ GENETICS SCANNER
 					msg += "<span class='danger'>Subject is bleeding!</span>\n"
 			var/blood_percent =  round((C.scan_blood_volume() / (BLOOD_VOLUME_NORMAL * C.blood_ratio))*100)
 			var/blood_type = C.dna.blood_type
+			var/blood_oxy_percent = round(C.get_blood_oxygenation() / (BLOOD_VOLUME_NORMAL * C.blood_ratio) * 100)
 			if(!(blood_typepath in GLOB.blood_reagent_types))
 				var/datum/reagent/R = GLOB.chemical_reagents_list[blood_typepath]
 				if(R)
 					blood_type = R.name
 			if(C.scan_blood_volume() <= (BLOOD_VOLUME_SAFE*C.blood_ratio) && C.scan_blood_volume() > (BLOOD_VOLUME_OKAY*C.blood_ratio))
-				msg += "<span class='danger'>LOW blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type]</span>\n"
+				msg += "<span class='danger'>LOW blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type], blood oxygenation [blood_oxy_percent] %</span>\n"
 			else if(C.scan_blood_volume() <= (BLOOD_VOLUME_OKAY*C.blood_ratio))
-				msg += "<span class='danger'>CRITICAL blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type]</span>\n"
+				msg += "<span class='danger'>CRITICAL blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type], blood oxygenation [blood_oxy_percent] %</span>\n"
 			else
-				msg += "<span class='info'>Blood level [blood_percent] %, [C.scan_blood_volume()] cl, type: [blood_type]</span>\n"
-
+				msg += "<span class='info'>Blood level [blood_percent] %, [C.scan_blood_volume()] cl, type: [blood_type], blood oxygenation [blood_oxy_percent] %</span>\n"
+		
 		var/cyberimp_detect
 		for(var/obj/item/organ/cyberimp/CI in C.internal_organs)
 			if(CI.status == ORGAN_ROBOTIC && !CI.syndicate_implant)

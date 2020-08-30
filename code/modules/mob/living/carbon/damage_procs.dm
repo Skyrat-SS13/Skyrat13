@@ -86,12 +86,6 @@
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
 		. += BP.tox_dam
-	for(var/X in getCurrentOrgans())
-		var/obj/item/organ/O = X
-		//We don't count brain damage
-		if(O.slot == ORGAN_SLOT_BRAIN)
-			continue
-		. += (O.damage * O.toxin_modifier)
 
 /mob/living/carbon/getCloneLoss()
 	. = 0
@@ -106,6 +100,20 @@
 		if(!lungs)
 			return maxHealth/2
 		return lungs.get_oxygen_deprivation()
+
+/mob/living/carbon/adjustOxyLoss(amount, updating_health = TRUE, forced = FALSE)
+	. = 0
+	if(!needs_lungs())
+		return
+	var/obj/item/organ/lungs/breathe_organ = getorganslot(ORGAN_SLOT_LUNGS)
+	if(breathe_organ)
+		if(amount > 0)
+			breathe_organ.add_oxygen_deprivation(abs(amount))
+		else
+			breathe_organ.remove_oxygen_deprivation(abs(amount))
+	if(updating_health)
+		updatehealth()
+		update_health_hud()
 
 /mob/living/carbon/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && amount < 0 && HAS_TRAIT(src,TRAIT_NONATURALHEAL))

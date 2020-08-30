@@ -414,28 +414,34 @@
 			if(IsSleeping())
 				consciousness = LOOKS_SLEEPY
 				consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
-			if(InCritical())
+			if(InShock())
 				consciousness = LOOKS_UNCONSCIOUS
 				consciousness_msg = "<span class='warning'>[t_His] life signs are shallow and labored[lying ? ", and [t_he] is unconscious" : ""].</span>"
-			if(InFullCritical())
+			if(InFullShock())
 				consciousness = LOOKS_VERYUNCONSCIOUS
 				consciousness_msg = "<span class='warning'>[t_His] life signs are very shallow and labored, [lying ? "[t_he] is completely unconscious and " : ""][t_he] appears to be undergoing shock.</span>"
 			if(stat == DEAD)
 				consciousness = LOOKS_DEAD
 				consciousness_msg = "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.[length(bleeding_limbs) ? "\n[t_His] bleeding has pooled, and is not flowing." : ""]</span>"
+				if(suiciding)
+					consciousness_msg += "\n<span class='deadsay'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>"
+				if(hellbound)
+					consciousness_msg += "\n<span class='deadsay'>[t_His] soul seems to have been ripped out of [t_his] body. Revival is impossible.</span>"
+				if(!getorgan(/obj/item/organ/brain) || (!key && !get_ghost(FALSE)))
+					consciousness_msg += "\n<span class='deadsay'>[t_His] body seems empty, [t_his] soul has since departed.</span>"
 		else
 			if(IsSleeping() || HAS_TRAIT(src, TRAIT_LOOKSSLEEPY) || (consciousness == LOOKS_SLEEPY))
 				consciousness = LOOKS_SLEEPY
 				if((dist <= 3) || (dist <= 7 && lying))
 					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
-			if(InCritical() || HAS_TRAIT(src, TRAIT_LOOKSUNCONSCIOUS) || (consciousness == LOOKS_UNCONSCIOUS))
+			if(InShock() || HAS_TRAIT(src, TRAIT_LOOKSUNCONSCIOUS) || (consciousness == LOOKS_UNCONSCIOUS))
 				consciousness = LOOKS_UNCONSCIOUS
 				if(dist <= 1 && is_face_visible() && !HAS_TRAIT(src, TRAIT_NOBREATH))
 					consciousness_msg = "<span class='warning'>[t_His] breathing is shallow and labored[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
 				else if((dist <= 3) || (dist <= 7 && lying))
 					consciousness = LOOKS_SLEEPY
 					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
-			if(InFullCritical() || HAS_TRAIT(src, TRAIT_LOOKSVERYUNCONSCIOUS) || (consciousness == LOOKS_VERYUNCONSCIOUS))
+			if(InFullShock() || HAS_TRAIT(src, TRAIT_LOOKSVERYUNCONSCIOUS) || (consciousness == LOOKS_VERYUNCONSCIOUS))
 				consciousness = LOOKS_VERYUNCONSCIOUS
 				var/thicc = FALSE
 				var/obj/item/clothing/clothes = wear_suit

@@ -2338,6 +2338,12 @@
 	var/significant = FALSE
 	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 
+/datum/reagent/determination/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 10)
+
 /datum/reagent/determination/on_mob_end_metabolize(mob/living/carbon/M)
 	if(significant)
 		var/stam_crash = 0
@@ -2346,6 +2352,9 @@
 			if(istype(W))
 				stam_crash += (W.severity + 1) * 3 // spike of 3 stam damage per wound severity (moderate = 6, severe = 9, critical = 12) when the determination wears off if it was a combat rush
 		M.adjustStaminaLoss(stam_crash)
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.remove_chem_effect(CE_PAINKILLER, 10)
 	M.remove_status_effect(STATUS_EFFECT_DETERMINED)
 	..()
 
@@ -2363,4 +2372,5 @@
 			if(istype(wounded_part))
 				wounded_part.heal_damage(0.25, 0.25)
 			M.adjustStaminaLoss(-0.25*REM) // the more wounds, the more stamina regen
+			M.adjustPainLoss(-0.1*REM) //The more wounds, the more pain regen
 	..()

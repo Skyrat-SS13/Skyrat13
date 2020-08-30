@@ -853,7 +853,7 @@
 	var/extra_pain = 0
 	extra_pain += 0.5 * brute_dam
 	extra_pain += 0.6 * burn_dam
-	extra_pain += 0.9 * tox_dam // Toxin damage gets filtered, but causes a lot of pain while on the bodypart
+	extra_pain += 1 * tox_dam // Toxin damage gets filtered, but causes a lot of pain while on the bodypart
 	extra_pain += 0.7 * clone_dam // Damage at a cellular level is quite painful
 	for(var/datum/wound/W in wounds)
 		extra_pain += W.pain_amount
