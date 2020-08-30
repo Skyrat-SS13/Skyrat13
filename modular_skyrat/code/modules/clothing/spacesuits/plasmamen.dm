@@ -21,5 +21,5 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	icon_state = "bs_envirohelm"
 	item_state = "bs_envirohelm"
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20,"energy" = 20, "bomb" = 25, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 90)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20,"energy" = 20, "bomb" = 25, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 90, "wound" = 15)
 	resistance_flags = FIRE_PROOF

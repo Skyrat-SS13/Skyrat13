@@ -32705,6 +32705,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"aZS" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/limbgrower,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/zone3)
 "aZU" = (
 /obj/machinery/recharge_station,
 /obj/effect/landmark/start/cyborg,
@@ -33302,16 +33313,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
-"bbp" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/zone3)
 "bbq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/white{
@@ -84582,7 +84583,7 @@ aXT
 aYM
 aZI
 baz
-bbp
+aZS
 bch
 bcY
 bdU

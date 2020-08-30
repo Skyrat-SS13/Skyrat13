@@ -1,23 +1,34 @@
-
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = "Your armor absorbs the blow!", soften_text = "Your armor softens the blow!", armour_penetration, penetrated_text = "Your armor was penetrated!", silent=FALSE)
+//skyrat edit pretty much the whole proc is different
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = null, soften_text = null, armour_penetration, penetrated_text, silent=FALSE)
 	var/armor = getarmor(def_zone, attack_flag)
 	
 	if(silent)
 		return max(0, armor - armour_penetration)
 
+	if(armor <= 0)
+		return armor
+	if(silent)
+		return max(0, armor - armour_penetration)
+
 	//the if "armor" check is because this is used for everything on /living, including humans
-	if(armor && armour_penetration)
+	if(armour_penetration)
 		armor = max(0, armor - armour_penetration)
 		if(penetrated_text)
-			to_chat(src, "<span class='danger'>[penetrated_text]</span>")
+			to_chat(src, "<span class='userdanger'>[penetrated_text]</span>")
+		else
+			to_chat(src, "<span class='userdanger'>Your armor was penetrated!</span>")
 	else if(armor >= 100)
 		if(absorb_text)
-			to_chat(src, "<span class='danger'>[absorb_text]</span>")
-	else if(armor > 0)
+			to_chat(src, "<span class='notice'>[absorb_text]</span>")
+		else
+			to_chat(src, "<span class='notice'>Your armor absorbs the blow!</span>")
+	else
 		if(soften_text)
-			to_chat(src, "<span class='danger'>[soften_text]</span>")
+			to_chat(src, "<span class='warning'>[soften_text]</span>")
+		else
+			to_chat(src, "<span class='warning'>Your armor softens the blow!</span>")
 	return armor
-
+//
 
 /mob/living/proc/getarmor(def_zone, type)
 	return 0
@@ -85,7 +96,7 @@
 		totaldamage = block_calculate_resultant_damage(totaldamage, returnlist)
 	var/armor = run_armor_check(def_zone, P.flag, null, null, P.armour_penetration, null)
 	if(!P.nodamage)
-		apply_damage(totaldamage, P.damage_type, def_zone, armor)
+		apply_damage(totaldamage, P.damage_type, def_zone, armor, wound_bonus=P.wound_bonus, bare_wound_bonus=P.bare_wound_bonus, sharpness=P.sharpness) //skyrat edit
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
 	var/missing = 100 - final_percent
@@ -131,16 +142,26 @@
 		if(!skipcatch && isturf(I.loc) && catch_item(I))
 			return TRUE
 		var/dtype = BRUTE
-
+		//var/volume = I.get_volume_by_throwforce_and_or_w_class() //skyrat edit
+		//skyrat edit
+		var/zone = ran_zone(BODY_ZONE_CHEST, 65)//Hits a random part of the body, geared towards the chest
+		if(nosell_hit)
+			skipcatch = TRUE
+			hitpush = FALSE
+		//
 		dtype = I.damtype
 
 		if(!blocked)
-			visible_message("<span class='danger'>[src] has been hit by [I].</span>", \
-							"<span class='userdanger'>You have been hit by [I].</span>")
-			var/armor = run_armor_check(impacting_zone, "melee", "Your armor has protected your [parse_zone(impacting_zone)].", "Your armor has softened hit to your [parse_zone(impacting_zone)].",I.armour_penetration)
-			apply_damage(total_damage, dtype, impacting_zone, armor)
 			if(I.thrownby)
 				log_combat(I.thrownby, src, "threw and hit", I)
+			if(!nosell_hit)
+				visible_message("<span class='danger'>[src] is hit by [I]!</span>", \
+								"<span class='userdanger'>You're hit by [I]!</span>")
+				if(!I.throwforce)
+					return
+				var/armor = run_armor_check(zone, "melee", "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].",I.armour_penetration)
+				apply_damage(I.throwforce, dtype, zone, armor, sharpness=I.get_sharpness(), wound_bonus=(nosell_hit * CANT_WOUND))
+			
 		else
 			return 1
 	else

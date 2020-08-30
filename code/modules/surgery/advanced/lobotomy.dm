@@ -20,11 +20,11 @@
 		return FALSE
 	return TRUE
 /datum/surgery_step/lobotomize
-	name = "perform lobotomy"
+	name = "Perform lobotomy"
 	implements = list(TOOL_SCALPEL = 85, /obj/item/melee/transforming/energy/sword = 55, /obj/item/kitchen/knife = 35,
 		/obj/item/shard = 25, /obj/item = 20)
 	time = 100
-/datum/surgery_step/lobotomize/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/lobotomize/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == /obj/item && !tool.get_sharpness())
 		return FALSE
 	return TRUE
@@ -48,7 +48,7 @@
 			target.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_SURGERY)
 		if(3)
 			target.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_SURGERY)
-	// you're cutting off a part of the brain.w
+	// you're cutting off a part of the brain.
 	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
 	B.applyOrganDamage(50, 100)
 	return TRUE

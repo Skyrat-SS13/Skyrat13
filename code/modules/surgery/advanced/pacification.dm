@@ -16,8 +16,9 @@
 	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
 	if(!B)
 		return FALSE
+
 /datum/surgery_step/pacify
-	name = "rewire brain"
+	name = "Rewire brain"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCREWDRIVER = 35, /obj/item/pen = 15)
 	time = 40
 
