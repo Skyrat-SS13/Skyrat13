@@ -164,9 +164,10 @@
 
 
 
-/obj/item/organ/brain/examine(mob/user)
+/obj/item/organ/brain/surgical_examine(mob/user)
 	. = ..()
-
+	if(owner)
+		return
 	if(user.suiciding)
 		. += "<span class='info'>It's started turning slightly grey. They must not have been able to handle the stress of it all.</span>"
 	else if(brainmob)
