@@ -1,4 +1,0 @@
-author: "KathrinBailey"
-delete-after: True
-changes: 
-  - bugfix: "Plasma heaters now don't connect to engine heaters via their exhaust when facing North or South."

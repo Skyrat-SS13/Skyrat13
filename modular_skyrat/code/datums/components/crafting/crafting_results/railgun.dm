@@ -60,13 +60,16 @@
 /obj/item/gun/ballistic/automatic/railgun/attack_self(mob/living/user)
 	. = ..()
 	if(chambered)
-		if(chambered.BB)
-			user.visible_message("<span class='notice'>[user] removes the [chambered.BB] from the [src].</span>", \
-								"<span class='notice'>You remove the [chambered.BB] from the [src].</span>")
-			user.put_in_hands(new /obj/item/stack/rods)
-			chambered = null
-			playsound(user, insert_sound, 50, 1)
-			update_icon()
+		user.visible_message("<span class='notice'>[user] removes the [chambered.BB] from the [src].</span>", \
+							"<span class='notice'>You remove the [chambered.BB] from the [src].</span>")
+		if(!user.get_inactive_held_item())
+			user.put_in_inactive_hand(new /obj/item/stack/rods)
+		else
+			new /obj/item/stack/rods(user.loc)
+		QDEL_NULL(chambered)
+		playsound(user, insert_sound, 50, 1)
+		update_icon()
+		return TRUE
 
 /obj/item/gun/ballistic/automatic/railgun/examine(mob/user)
 	. = ..()
