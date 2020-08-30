@@ -3,7 +3,7 @@
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 20
-	light_range = 2
+	//light_range = 2 //Skyrat change
 	damage_type = BURN
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
@@ -18,6 +18,10 @@
 	wound_bonus = -20
 	bare_wound_bonus = 10
 	//
+
+/obj/item/projectile/beam/Initialize()
+	 . = ..()
+	 AddComponent(/datum/component/overlay_lighting, light_color, 2, 1)
 
 /obj/item/projectile/beam/laser
 	tracer_type = /obj/effect/projectile/tracer/laser

@@ -479,10 +479,13 @@
 
 /obj/item/gun/proc/update_gunlight(mob/user = null)
 	if(gun_light)
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		if(!OL)
+			OL = AddComponent(/datum/component/overlay_lighting, gun_light.light_color, gun_light.brightness_on, gun_light.flashlight_power, FALSE)
 		if(gun_light.on)
-			set_light(gun_light.brightness_on, gun_light.flashlight_power, custom_light_color ? custom_light_color : gun_light.light_color)
+			OL.turn_on()
 		else
-			set_light(0)
+			OL.turn_off()
 		cut_overlays(flashlight_overlay, TRUE)
 		var/icon2use = 'icons/obj/guns/flashlights.dmi'
 		var/state = "flight[gun_light.on? "_on":""]"	//Generic state.
@@ -498,7 +501,7 @@
 			flashlight_overlay.pixel_y = flight_y_offset
 		add_overlay(flashlight_overlay, TRUE)
 	else
-		set_light(0)
+		//set_light(0)
 		cut_overlays(flashlight_overlay, TRUE)
 		flashlight_overlay = null
 	update_icon(TRUE)

@@ -10,11 +10,13 @@
 
 /obj/item/melee/transforming/energy/Initialize()
 	. = ..()
+	AddComponent(/datum/component/overlay_lighting, light_color, brightness_on, 1, FALSE) //Skyrat change
 	total_mass_on = (total_mass_on ? total_mass_on : (w_class_on * 0.75))
 	if(active)
 		if(sword_color)
 			icon_state = "sword[sword_color]"
-		set_light(brightness_on)
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.turn_on()
 		START_PROCESSING(SSobj, src)
 
 /obj/item/melee/transforming/energy/Destroy()
@@ -39,14 +41,15 @@
 /obj/item/melee/transforming/energy/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
 	if(.)
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 		if(active)
 			if(sword_color)
 				icon_state = "sword[sword_color]"
 			START_PROCESSING(SSobj, src)
-			set_light(brightness_on)
+			OL.turn_on()
 		else
 			STOP_PROCESSING(SSobj, src)
-			set_light(0)
+			OL.turn_off()
 
 /obj/item/melee/transforming/energy/get_temperature()
 	return active * heat
@@ -136,6 +139,8 @@
 /obj/item/melee/transforming/energy/sword/proc/set_sword_color()
 	if(LAZYLEN(possible_colors))
 		light_color = possible_colors[pick(possible_colors)]
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.set_color(light_color)
 
 /obj/item/melee/transforming/energy/sword/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
@@ -192,13 +197,16 @@
 	if(LAZYLEN(possible_colors))
 		sword_color = pick(possible_colors)
 		light_color = possible_colors[sword_color]
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.set_color(light_color)
 
 /obj/item/melee/transforming/energy/sword/saber/process()
 	. = ..()
 	if(hacked)
 		var/set_color = pick(possible_colors)
 		light_color = possible_colors[set_color]
-		update_light()
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.set_color(light_color)
 
 /obj/item/melee/transforming/energy/sword/saber/red
 	possible_colors = list("red" = LIGHT_COLOR_RED)
@@ -343,7 +351,8 @@
 		if(energy_color_input)
 			light_color = sanitize_hexcolor(energy_color_input, desired_format=6, include_crunch=1)
 		update_icon()
-		update_light()
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.set_color(light_color)
 	return TRUE
 
 /obj/item/melee/transforming/energy/sword/cx/examine(mob/user)
