@@ -49,6 +49,13 @@
 	if(linked_organ_slot || (linked_organ && !owner))
 		update_link()
 
+/obj/item/organ/genital/examine(mob/user)
+	. = ..()
+	. |= genital_examine(user)
+
+/obj/item/organ/genital/proc/genital_examine(mob/user)
+	return
+
 //exposure and through-clothing code
 /mob/living/carbon
 	var/list/exposed_genitals = list() //Keeping track of them so we don't have to iterate through every genitalia and see if exposed
