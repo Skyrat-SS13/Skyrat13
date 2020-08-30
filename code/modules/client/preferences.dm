@@ -3339,6 +3339,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						if("Marine Guy")
 							pain_style = "Clown Guy"
 						if("Clown Guy")
+							pain_style = "Mood Guy"
+						if("Mood Guy")
 							pain_style = "Pain Guy"
 				if("persistent_scars")
 					persistent_scars = !persistent_scars

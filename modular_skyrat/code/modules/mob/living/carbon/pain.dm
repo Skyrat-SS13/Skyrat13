@@ -90,6 +90,8 @@
 				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain_marine.dmi'
 			if("Clown Guy")
 				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain_clown.dmi'
+			if("Mood Guy")
+				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain_mood.dmi'
 			else
 				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain.dmi'
 		if(stat != DEAD)
