@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - balance: "Candy bloodcrawl now requires large pool of blood, and takes away 5% of the user's maximum blood volume when cast (eg you lose 28 blood if you're a normal human). It also cannot be used while in critical condition."
