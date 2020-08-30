@@ -216,7 +216,7 @@
 //BYOKA
 /obj/item/gun/energy/kinetic_accelerator/premiumka/byoka
 	name = "Custom accelerator"
-	desc = "You're not sure how it's made, but it is truly a kinetic accelerator fit for a clown, its handle smells faintly of bananas."
+	desc = "You're not sure how it's made, but it is truly a kinetic accelerator fit for a clown. Its handle smells faintly of bananas."
 	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
 	icon_state = "byoka"
 	item_state = "kineticgun"
