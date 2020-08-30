@@ -910,7 +910,7 @@
 			return BODYPART_DISABLED_DAMAGE
 		if(stamina_dam >= max_stamina_damage)
 			return BODYPART_DISABLED_DAMAGE	
-		if(pain_dam >= pain_disability_threshold)
+		if((pain_dam - owner?.chem_effects[CE_PAINKILLER]) >= pain_disability_threshold)
 			return BODYPART_DISABLED_PAIN
 		if(disabled && (get_damage(include_stamina = TRUE) <= (max_damage * 0.8)) && (pain_dam < pain_disability_threshold)) // reenabled at 80% now instead of 50% as of wounds update
 			last_maxed = FALSE
