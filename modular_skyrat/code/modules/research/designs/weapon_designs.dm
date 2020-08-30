@@ -74,7 +74,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 //Advanced techarmor vest
-/*/datum/design/adv_techvest
+/datum/design/adv_techvest
 	name = "Advanced Techarmor Vest"
 	desc = "Post-Future of law enforcement."
 	id = "adv_armor_vest_tech"
@@ -82,7 +82,7 @@
 	materials = list(/datum/material/titanium = 9000, /datum/material/plasma = 6000, /datum/material/plastic = 3000)
 	build_path = /obj/item/clothing/suit/space/hardsuit/security_armor/cloaker
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY*/
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 //Advanced night vision helmet
 /datum/design/adv_helmet

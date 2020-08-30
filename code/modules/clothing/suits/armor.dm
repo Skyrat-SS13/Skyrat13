@@ -413,49 +413,21 @@
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/cloaker //YOU CALL THIS RESISTING ARREST?
 	name = "type II full-body techarmor"
-	desc = "An advanced version of the standard techarmor, sporting better protection and built-in night vision in place of an integrated light."
+	desc = "An advanced version of the standard techarmor, sporting far better protection. It does lack the night vision of its non-tech counterpart, however."
 	icon_state = "hardsuit-cloaker" 
 	item_state = "hardsuit-cloaker"
 	armor = list("melee" = 40, "bullet" = 35, "laser" = 35, "energy" = 50, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker
 
-/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker //I couldn't get the NV to work. If someone else figures out how, please feel free to implement it here.
 	name = "type II techhelmet"
-	desc = "THIS IS WHAT WE CALL A DIFFICULTY TWEAK!"
+	desc = "An advanced version of the standard techhelmet, sporting far better protection. Unfortunately, it lacks the night vision of its non-tech counterpart."
 	icon_state = "hardsuit0-cloaker"
 	item_state = "hardsuit0-cloaker"
 	armor = list("melee" = 40, "bullet" = 35, "laser" = 35, "energy" = 50, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100)
-	actions_types = list(/datum/action/item_action/toggle_nv)
 	hardsuit_type = "cloaker"
 	var/activated = FALSE
 	var/stored_nv = 0
-
-/datum/action/item_action/toggle_nv
-	name = "Toggle Night-Vision"
-	desc = "Toggle your helmet's night vision."
-
-/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/item_action_slot_check(slot, mob/living/carbon/human/user, datum/action/A)
-	. = ..()
-	if(. && (slot == SLOT_HEAD))
-		return TRUE
-
-/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/dropped(mob/living/carbon/human/user)
-	. = ..()
-	if(activated)
-		activated = !activated
-		user.see_in_dark = stored_nv
-
-/obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker/ui_action_click(mob/living/carbon/human/user, action)
-	if(istype(action, /datum/action/item_action/toggle_nv))
-		if(!activated)
-			activated = !activated
-			stored_nv = user.see_in_dark
-			user.see_in_dark = 8
-			to_chat(user, "<span class='notice'>You activate [src]'s night vision.</span>")
-		else
-			activated = !activated
-			user.see_in_dark = stored_nv
-			to_chat(user, "<span class='notice'>You deactivate [src]'s night vision.</span>")
 
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/hos
 	name = "head of security's techhelmet"
