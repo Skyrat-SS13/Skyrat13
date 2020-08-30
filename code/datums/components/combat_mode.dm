@@ -88,10 +88,10 @@
 		else
 			to_chat(source, self_message)
 		if(playsound)
-			source.playsound_local(source, 'sound/misc/ui_toggle.ogg', 75, FALSE, pressure_affected = FALSE) //Sound from interbay!
+			source.playsound_local(source, 'sound/misc/ui_toggle.ogg', 50, FALSE, pressure_affected = FALSE) //Sound from interbay!
 		if(source.client.prefs?.combat_music && GLOB.combat_music_options[source.client.prefs.combat_music])
 			source.stop_sound_channel(CHANNEL_COMBAT)
-			source.playsound_local(source, GLOB.combat_music_options[source.client.prefs.combat_music], 50, 0, channel = CHANNEL_COMBAT)
+			source.playsound_local(source, GLOB.combat_music_options[source.client.prefs.combat_music], 75, 0, channel = CHANNEL_COMBAT)
 	//RegisterSignal(source, COMSIG_MOB_CLIENT_MOUSEMOVE, .proc/onMouseMove) //Skyrat change
 	RegisterSignal(source, COMSIG_MOVABLE_MOVED, .proc/on_move)
 	RegisterSignal(source, COMSIG_MOVABLE_BUMP, .proc/on_bump) //Skyrat change
