@@ -21,6 +21,14 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	))
 GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 		"Hot Plates" = 'modular_skyrat/sound/music/hot_plates.ogg',
+		"Thunderdome" = 'modular_skyrat/sound/music/thunderdome.ogg',
+		"Battle Theme 1" = 'modular_skyrat/sound/music/battletheme1.ogg',
+		"Death Squads" = 'modular_skyrat/sound/music/deathsquads.ogg',
+		"Burning Coals" = 'modular_skyrat/sound/music/burningcoals.ogg',
+		"Le Perv" = 'modular_skyrat/sound/music/leperv.ogg',
+		"Armed To The Teeth" = 'modular_skyrat/sound/music/armedtotheteeth.ogg',
+		"BFG Division" = 'modular_skyrat/sound/ambience/bfgdivision.ogg',
+		"Pebble Man" = 'modular_skyrat/sound/ambience/lisapebbleman.ogg',
 	))
 
 /datum/preferences
