@@ -133,7 +133,7 @@
 //Heavy KA
 /obj/item/gun/energy/kinetic_accelerator/premiumka/heavy
 	name = "Heavy accelerator"
-	desc = "A rather bulky Kinetic Accelerator, Featuring a bigger pressure tank and a heavier air pump"
+	desc = "A rather bulky Kinetic Accelerator capable of splitting large groups of rocks and hurting those near its impact"
 	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
 	icon_state = "heavyka"
 	item_state = "kineticgun"
@@ -216,7 +216,7 @@
 //BYOKA
 /obj/item/gun/energy/kinetic_accelerator/premiumka/byoka
 	name = "Custom accelerator"
-	desc = "You're not sure how it's made, but it is truly a kinetic accelerator fit for a clown."
+	desc = "You're not sure how it's made, but it is truly a kinetic accelerator fit for a clown, its handle smells faintly of bananas."
 	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
 	icon_state = "byoka"
 	item_state = "kineticgun"
