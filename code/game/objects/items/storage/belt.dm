@@ -134,7 +134,7 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_BULKY
-	STR.can_hold = typecacheof(list(
+	STR.can_hold = typecacheof(list( //skyrat edited
 		/obj/item/healthanalyzer,
 		/obj/item/dnainjector,
 		/obj/item/reagent_containers/dropper,
@@ -159,10 +159,12 @@
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/mask/breath,
 		/obj/item/clothing/mask/breath/medical,
-		/obj/item/surgical_drapes, //for true paramedics
+		/obj/item/surgical_drapes,
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
 		/obj/item/surgicaldrill,
+		/obj/item/bonesetter,
+		/obj/item/stack/sticky_tape,
 		/obj/item/retractor,
 		/obj/item/cautery,
 		/obj/item/hemostat,
@@ -444,11 +446,11 @@
 
 /obj/item/storage/belt/durathread
 	name = "durathread toolbelt"
-	desc = "A toolbelt made out of durathread, it seems resistant enough to hold even big tools like an RCD, it also has higher capacity."
+	desc = "A toolbelt made out of durathread, it seems robust enough to hold bigger tools like RCDs or RPDs, with enough pouches to hold more gear than a normal belt."
 	icon_state = "webbing-durathread"
 	item_state = "webbing-durathread"
 	resistance_flags = FIRE_PROOF
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE //Skyrat edit
+	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE //If normal belts get this, the upgraded version should too
 
 /obj/item/storage/belt/durathread/ComponentInitialize()
 	. = ..()
@@ -468,7 +470,7 @@
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/geiger_counter,
-		/obj/item/extinguisher/mini,
+		/obj/item/extinguisher,
 		/obj/item/radio,
 		/obj/item/clothing/gloves,
 		/obj/item/holosign_creator,
@@ -491,7 +493,8 @@
 	desc = "A belt for holding grenades."
 	icon_state = "grenadebeltnew"
 	item_state = "security"
-
+	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	
 /obj/item/storage/belt/grenade/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)

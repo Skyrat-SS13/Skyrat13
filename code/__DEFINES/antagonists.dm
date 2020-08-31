@@ -89,9 +89,12 @@
 
 //Blob
 #define BLOB_REROLL_TIME 2400 // blob gets a free reroll every X time
-#define BLOB_SPREAD_COST 4
-#define BLOB_ATTACK_REFUND 3 //blob refunds this much if it attacks and doesn't spread also SKYRAT CHANGE FROM 2
-#define BLOB_REFLECTOR_COST 15
+//#define BLOB_SPREAD_COST 4
+#define BLOB_SPREAD_COST 3 //SKYRAT EDIT - BLOB
+//#define BLOB_ATTACK_REFUND 3 //blob refunds this much if it attacks and doesn't spread also SKYRAT CHANGE FROM 2
+#define BLOB_ATTACK_REFUND 0 //blob refunds this much if it attacks and doesn't spread also SKYRAT EDIT - BLOB
+//#define BLOB_REFLECTOR_COST 15
+#define BLOB_REFLECTOR_COST 5 //SKYRAT EDIT - BLOB
 
 //SKYRAT CHANGES BEGIN
 

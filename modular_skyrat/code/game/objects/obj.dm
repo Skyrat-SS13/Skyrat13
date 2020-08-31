@@ -61,3 +61,69 @@
 	icon_state = unique_reskin[choice]
 	to_chat(M, "[src] is now skinned as '[choice]'.")
 	return TRUE
+
+//Armor stats on examine
+/obj
+	var/shows_armor = ARMOR_SHOW_DONT
+
+/obj/examine_more(mob/user)
+	if(armor)
+		var/msg = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
+		var/show_the_armor = FALSE
+		if(shows_armor == ARMOR_SHOW_ALWAYS)
+			show_the_armor = TRUE
+		else if((shows_armor == ARMOR_SHOW_WEARABLE) && isitem(src))
+			var/obj/item/I = src
+			for(var/i in list(ITEM_SLOT_ICLOTHING,
+							ITEM_SLOT_OCLOTHING,
+							ITEM_SLOT_BELT,
+							ITEM_SLOT_FEET,
+							ITEM_SLOT_GLOVES,
+							ITEM_SLOT_MASK,
+							ITEM_SLOT_EYES,
+							ITEM_SLOT_HEAD,
+							ITEM_SLOT_NECK,
+							ITEM_SLOT_BACK))
+				if(I.slot_flags & i)
+					show_the_armor = TRUE
+					break
+		if(show_the_armor)
+			var/list/stat_strings = list("<span class='notice'>\The [src] has the following armor specifications:</span>")
+			var/list/armorlist = armor.getList()
+			for(var/i in armorlist)
+				var/value = armorlist[i]
+				switch(value)
+					if(-INFINITY to -1)
+						value = "\t[capitalize(i)] - Nulla" //Roman numerals do not have a 0, romans just said "null" instead - they don't have negative numbers either
+					if(-1 to 1)
+						value = null //we don't show armor stats if we have none, but are not vulnerable to it either
+					if(1 to 10)
+						value = "\t[capitalize(i)] - I"
+					if(10 to 20)
+						value = "\t[capitalize(i)] - II"
+					if(20 to 30)
+						value = "\t[capitalize(i)] - III"
+					if(30 to 40)
+						value = "\t[capitalize(i)] - IV"
+					if(40 to 50)
+						value = "\t[capitalize(i)] - V"
+					if(50 to 60)
+						value = "\t[capitalize(i)] - VI"
+					if(60 to 70)
+						value = "\t[capitalize(i)] - VII"
+					if(70 to 80)
+						value = "\t[capitalize(i)] - VIII"
+					if(80 to 90)
+						value = "\t[capitalize(i)] - IX"
+					if(90 to 100)
+						value = "\t[capitalize(i)] - X"
+					if(100 to INFINITY)
+						value = "\t[capitalize(i)] - M"
+				if(value)
+					stat_strings |= "<span class='notice'>[value]</span>"
+			if(length(stat_strings) <= 1)
+				msg |= "<span class='notice'>\The [src] has no noticeable armoring.</span>"
+			else
+				msg |= stat_strings
+			return msg
+	return ..()

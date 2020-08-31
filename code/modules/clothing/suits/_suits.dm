@@ -33,7 +33,7 @@
 					. += U.accessory_overlay
 			//SKYRAT EDIT END
 
-/obj/item/clothing/suit/update_clothes_damaged_state(damaging = TRUE)
+/obj/item/clothing/suit/update_clothes_damaged_state() //skyrat edit
 	..()
 	if(ismob(loc))
 		var/mob/M = loc

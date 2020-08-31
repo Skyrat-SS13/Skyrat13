@@ -57,7 +57,7 @@
 			if(H.w_socks.body_parts_covered & FEET)
 				damage *= 0.75
 		//
-		H.apply_damage(damage, BRUTE, picked_def_zone)
+		H.apply_damage(damage, BRUTE, picked_def_zone, wound_bonus = CANT_WOUND) //skyrat edit
 
 		if(cooldown < world.time - 10) //cooldown to avoid message spam.
 			if(!H.incapacitated(ignore_restraints = TRUE))
