@@ -4737,9 +4737,15 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "esY" = (
-/obj/structure/rack,
+/obj/machinery/button/door{
+	id = "ghostcafecabin3";
+	name = "Dorm Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = -25;
+	specialfunctions = 4
+	},
 /turf/open/indestructible/hotelwood,
-/area/centcom/holding/cafe)
+/area/centcom/holding/cafedorms)
 "etx" = (
 /turf/open/floor/plating,
 /area/fabric_of_reality)
@@ -4945,10 +4951,12 @@
 /turf/open/floor/plating,
 /area/fabric_of_reality)
 "eDl" = (
-/obj/vehicle/ridden/janicart/upgraded,
-/obj/item/key/janitor,
+/obj/machinery/door/airlock/wood{
+	id_tag = "ghostcafecabin3";
+	name = "Wooden Cabin"
+	},
 /turf/open/indestructible/hotelwood,
-/area/centcom/holding/cafe)
+/area/centcom/holding/cafedorms)
 "eDm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -12223,6 +12231,10 @@
 /obj/structure/flora/ausbushes/genericbush,
 /turf/open/floor/plating/smooth/grass,
 /area/centcom/holding/cafepark)
+"lML" = (
+/obj/structure/rack,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding/cafe)
 "lNb" = (
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
@@ -20488,6 +20500,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/plasteel/white,
 /area/centcom/ferry)
+"uSB" = (
+/obj/vehicle/ridden/janicart/upgraded,
+/obj/item/key/janitor,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding/cafe)
 "uSV" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -34208,7 +34225,7 @@ xOf
 xOf
 pUB
 evg
-esY
+lML
 xOf
 grn
 bKt
@@ -35493,7 +35510,7 @@ bKt
 bKt
 bKt
 xOf
-eDl
+uSB
 bKt
 bKt
 vWE
@@ -47571,7 +47588,7 @@ bok
 aUm
 aUm
 aUm
-eFz
+eDl
 aUm
 aUm
 qGZ
@@ -47827,7 +47844,7 @@ eBI
 eFz
 eFz
 fgR
-eFz
+esY
 eFz
 ghk
 aUm
