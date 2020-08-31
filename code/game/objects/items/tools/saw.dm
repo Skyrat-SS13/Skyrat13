@@ -1,9 +1,9 @@
 /obj/item/hatchet/saw
 	name = "handsaw"
 	desc = "A very sharp handsaw, it's compact."
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "saw"
-	item_state = "sawhandle_greyscale"
+	icon = 'modular_skyrat/icons/obj/tools.dmi'	//Skyrat Edit: I made better sprites for it so it's moving.
+	icon_state = "sawblade"	// Skyrat Edit
+	item_state = "sawblade"	//Skyrat Edit
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	tool_behaviour = TOOL_SAW
@@ -14,7 +14,7 @@
 	custom_materials = list(/datum/material/iron = 5000)
 	attack_verb = list("sawed", "sliced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	var/random_color = TRUE //code taken from screwdrivers.dm; cool handles are cool.
 	var/static/list/saw_colors = list(
 		"blue" = rgb(24, 97, 213),
@@ -29,7 +29,7 @@
 /obj/item/hatchet/saw/Initialize()
 	. = ..()
 	if(random_color)
-		icon_state = "sawhandle_greyscale"
+		icon_state = "sawhandle"	//Skrat Edit
 		var/our_color = pick(saw_colors)
 		add_atom_colour(saw_colors[our_color], FIXED_COLOUR_PRIORITY)
 		update_icon()

@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 /obj/item/organ/cyberimp/arm
 	name = "arm-mounted implant"
 	desc = "You shouldn't see this! Adminhelp and report this as an issue on github!"
@@ -299,4 +300,5 @@
 	name = "advanced mining implant"
 	desc = "An advanced implant with minified variants of all you need for a standard mining expedition, GPS and satchel included!"
 	contents = newlist(/obj/item/gun/energy/kinetic_accelerator, /obj/item/gun/energy/plasmacutter/adv, /obj/item/pickaxe/drill/diamonddrill, /obj/item/resonator/upgraded, /obj/item/t_scanner/adv_mining_scanner/lesser, /obj/item/storage/bag/ore/holding, /obj/item/gps)
-*/ //Shits broken to high hell, someone else can fix it lmao
+*///Shits broken to high hell, someone else can fix it lmao
+*/

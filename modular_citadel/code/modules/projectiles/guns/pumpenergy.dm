@@ -153,7 +153,7 @@
 
 /obj/item/ammo_casing/energy/laser/pump
 	projectile_type = /obj/item/projectile/beam/pump
-	e_cost = 350
+	e_cost = 200
 	select_name = "kill"
 	pellets = 6
 	variance = 15
@@ -163,7 +163,7 @@
 	projectile_type = /obj/item/projectile/energy/disabler/pump
 	select_name = "disable"
 	fire_sound = 'sound/weapons/LaserSlugv3.ogg'
-	e_cost = 150
+	e_cost = 120
 	pellets = 6
 	variance = 20
 
@@ -182,12 +182,12 @@
 	icon_state = "disablerslug"
 
 /obj/item/projectile/beam/pump
-	damage = 9
+	damage = 10
 	range = 6
 
 /obj/item/projectile/energy/disabler/pump
 	name = "disabling blast"
 	icon_state = "disablerslug"
 	color = null
-	stamina = 13
+	stamina = 15
 	range = 6

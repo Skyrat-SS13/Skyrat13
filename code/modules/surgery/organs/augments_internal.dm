@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 #define STUN_SET_AMOUNT 40
 
 /obj/item/organ/cyberimp
@@ -176,3 +177,4 @@
 	if(prob(60/severity))
 		to_chat(owner, "<span class='warning'>Your breathing tube suddenly closes!</span>")
 		owner.losebreath += 2
+*/

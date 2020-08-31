@@ -44,6 +44,17 @@
 	update_mob()
 	qdel(src)
 
+/obj/item/grenade/frag/mega
+	name = "FRAG grenade"
+	desc = "An anti-everything fragmentation grenade, this weapon excels at killing anything any everything by shredding them with metal shrapnel."
+	shrapnel_type = /obj/item/projectile/bullet/shrapnel/mega
+	shrapnel_radius = 12
+
+/obj/item/grenade/frag/prime(mob/living/lanced_by)
+	. = ..()
+	update_mob()
+	qdel(src)
+//
 /obj/item/grenade/gluon
 	desc = "An advanced grenade that releases a harmful stream of gluons inducing radiation in those nearby. These gluon streams will also make victims feel exhausted, and induce shivering. This extreme coldness will also likely wet any nearby floors."
 	name = "gluon frag grenade"

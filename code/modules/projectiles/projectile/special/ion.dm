@@ -7,6 +7,7 @@
 	flag = "energy"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/ion
 	var/emp_radius = 1
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/ion/on_hit(atom/target, blocked = FALSE)
 	..()
