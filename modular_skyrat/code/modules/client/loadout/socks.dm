@@ -3,6 +3,7 @@
 	category = SLOT_W_SOCKS
 	has_colors = TRUE
 	path = /obj/item/clothing/underwear/socks
+	cost = 0
 
 /datum/gear/socks/bee
 	name = "Bee Socks"

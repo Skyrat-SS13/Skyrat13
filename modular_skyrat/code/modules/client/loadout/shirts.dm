@@ -3,6 +3,7 @@
 	category = SLOT_W_SHIRT
 	has_colors = TRUE
 	path = /obj/item/clothing/underwear/shirt
+	cost = 0
 
 /datum/gear/shirt/bra
 	name = "Bra"

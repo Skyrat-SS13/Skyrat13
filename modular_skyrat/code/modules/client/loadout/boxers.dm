@@ -3,6 +3,7 @@
 	category = SLOT_W_UNDERWEAR
 	has_colors = TRUE
 	path = /obj/item/clothing/underwear/briefs
+	cost = 0
 
 /datum/gear/underwear/jockstrap
 	name = "Jockstrap"
