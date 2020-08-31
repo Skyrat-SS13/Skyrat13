@@ -313,6 +313,10 @@
 	name = "Delta Station Research and Development"
 	icon_state = "toxlab"
 
+/area/ruin/space/has_grav/ancientstation/hivebot
+	name = "Hivebot Mothership"
+	icon_state = "teleporter"
+
 /area/ruin/space/has_grav/ancientstation/xenobio
 	name = "Delta Xenobiology Lab"
 	icon_state = "teleporter"
