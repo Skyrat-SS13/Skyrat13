@@ -48,7 +48,7 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 #define ID_LAYER				26
 #define HANDS_PART_LAYER		25
 #define DAMAGE_LAYER			24		//damage indicators (cuts and burns)
-#define LOWER_MEDICINE_LAYER	23
+#define LOWER_MEDICINE_LAYER	23		//Medicine, like gauze and tourniquets
 #define MEDICINE_LAYER			22		//Medicine, like gauze and tourniquets
 #define SHOES_LAYER				21
 #define GLOVES_LAYER			20
