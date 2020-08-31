@@ -36,7 +36,7 @@
 	var/relative_size = 25 // Relative size of the organ. Roughly % of space they take in the limb
 	var/damage_modifier = 0.25 // Modifier when the limb gets damaged, and fricks up the organs inside
 	var/damage_reduction = 0 // Flat reduction of the damage when the limb affects us
-	var/germ_level = 0 // Geeeerms!
+	germ_level = 0 // Geeeerms!
 	var/pain_multiplier = 1 // How much pain this causes in relation to damage (pain_multiplier * damage)
 	var/toxin_multiplier = 0.65 // When filtering toxins, how much of the brunt we actually take.
 

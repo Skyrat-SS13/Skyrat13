@@ -105,9 +105,10 @@
 //Bodypart status flags
 #define BODYPART_ORGANIC	(1<<0)
 #define BODYPART_ROBOTIC	(1<<1)
-#define BODYPART_NOBLEED	(1<<2)
-#define BODYPART_NOEMBED	(1<<3)
-#define BODYPART_NOPAIN 	(1<<4)
+#define BODYPART_DEAD		(1<<2) //Completely septic and unusable limb
+#define BODYPART_NOBLEED	(1<<3)
+#define BODYPART_NOEMBED	(1<<4)
+#define BODYPART_NOPAIN 	(1<<5)
 
 //Bodypart disabling defines
 #define BODYPART_NOT_DISABLED 0
@@ -154,11 +155,12 @@
 #define ORGAN_SYNTHETIC			(1<<0)	//Synthetic organs, or cybernetic organs. Reacts to EMPs and don't deteriorate or heal
 #define ORGAN_FROZEN			(1<<1)	//Frozen organs, don't deteriorate
 #define ORGAN_FAILING			(1<<2)	//Failing organs perform damaging effects until replaced or fixed
-#define ORGAN_EXTERNAL			(1<<3)	//Was this organ implanted/inserted/etc, if true will not be removed during species change.
-#define ORGAN_VITAL				(1<<4)	//Currently only the brain
-#define ORGAN_NO_SPOIL			(1<<5)	//Do not spoil under any circumstances
-#define ORGAN_NO_DISMEMBERMENT	(1<<6)	//Immune to disembowelment.
-#define ORGAN_EDIBLE			(1<<7)	//is a snack? :D
+#define ORGAN_DEAD				(1<<3)  //Not only is the organ failing, it is completely septic and spreading it around
+#define ORGAN_EXTERNAL			(1<<4)	//Was this organ implanted/inserted/etc, if true will not be removed during species change.
+#define ORGAN_VITAL				(1<<5)	//Currently only the brain
+#define ORGAN_NO_SPOIL			(1<<6)	//Do not spoil under any circumstances
+#define ORGAN_NO_DISMEMBERMENT	(1<<7)	//Immune to disembowelment.
+#define ORGAN_EDIBLE			(1<<8)	//is a snack? :D
 
 // Pulse levels, very simplified.
 #define PULSE_NONE    0   // So !M.pulse checks would be possible.

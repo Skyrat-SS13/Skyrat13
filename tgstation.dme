@@ -3608,6 +3608,7 @@
 #include "modular_skyrat\code\datums\wounds\mechanical\pierce.dm"
 #include "modular_skyrat\code\datums\wounds\mechanical\slash.dm"
 #include "modular_skyrat\code\datums\wounds\scars\_scars.dm"
+#include "modular_skyrat\code\game\atoms.dm"
 #include "modular_skyrat\code\game\world.dm"
 #include "modular_skyrat\code\game\area\lavalandelevator.dm"
 #include "modular_skyrat\code\game\area\Space_Station_13_areas.dm"
