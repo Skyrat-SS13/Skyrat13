@@ -196,3 +196,24 @@
 
 /obj/item/ammo_box/shotgun/loaded/dart
 	ammo_type = /obj/item/ammo_casing/shotgun/dart
+
+//skyrat h
+/obj/item/ammo_box/a357/match
+	name = "speed loader (.357 Match)"
+	desc = "Designed to quickly reload revolvers. These rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	ammo_type = /obj/item/ammo_casing/a357/match
+
+/obj/item/ammo_box/c38/match
+	name = "speed loader (.38 Match)"
+	desc = "Designed to quickly reload revolvers. These rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	ammo_type = /obj/item/ammo_casing/c38/match
+
+/obj/item/ammo_box/c38/match/bouncy
+	name = "speed loader (.38 Rubber)"
+	desc = "Designed to quickly reload revolvers. These rounds are incredibly bouncy and MOSTLY nonlethal, making them great to show off trickshots with."
+	ammo_type = /obj/item/ammo_casing/c38/match/bouncy
+
+/obj/item/ammo_box/c38/dumdum
+	name = "speed loader (.38 DumDum)"
+	desc = "Designed to quickly reload revolvers. These rounds expand on impact, allowing them to shred the target and cause massive bleeding. Very weak against armor and distant targets."
+	ammo_type = /obj/item/ammo_casing/c38/dumdum

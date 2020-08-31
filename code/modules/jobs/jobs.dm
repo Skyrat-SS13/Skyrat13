@@ -31,10 +31,13 @@ GLOBAL_LIST_INIT(science_positions, list(
 	"Scientist",
 	"Roboticist"))
 
+//Added Mining Foreman, Mining Engineer SKYRAT EDIT
 GLOBAL_LIST_INIT(supply_positions, list(
 	"Quartermaster",
 	"Cargo Technician",
-	"Shaft Miner"))
+	"Shaft Miner",
+	"Mining Foreman",
+	"Mining Technician"))
 // Added Prisoner SKYRAT EDIT
 GLOBAL_LIST_INIT(civilian_positions, list(
 	"Head of Personnel",

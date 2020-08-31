@@ -1,11 +1,17 @@
 /obj/item/projectile/bullet/shotgun_slug
 	name = "12g shotgun slug"
 	damage = 60
+	sharpness = SHARP_POINTY
+	wound_bonus = 35
 
 /obj/item/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
-	damage = 5
 	stamina = 70
+	//skyrat edit
+	damage = 10
+	wound_bonus = 10
+	sharpness = SHARP_NONE
+	//
 
 /obj/item/projectile/bullet/incendiary/shotgun
 	name = "incendiary slug"
@@ -48,6 +54,7 @@
 	damage = 20
 	knockdown = 80
 	hitsound = 'sound/effects/meteorimpact.ogg'
+	embedding = EMBED_NONE
 
 /obj/item/projectile/bullet/shotgun_meteorslug/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -76,10 +83,17 @@
 
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
-	damage = 12.5
+	//skyrat edit
+	embedding = list(embed_chance=33, fall_chance=0, jostle_chance=6, ignore_throwspeed_threshold=TRUE, pain_stam_pct=1, pain_mult=6, rip_time=60)
+	damage = 7.5
+	wound_bonus = 20
+	//
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
+	wound_bonus = 5
+	sharpness = SHARP_NONE
+	embedding = list(embed_chance=10, fall_chance=25, jostle_chance=0, ignore_throwspeed_threshold=TRUE, pain_stam_pct=5, pain_mult=1, rip_time=30)
 	damage = 2
 	stamina = 15
 
@@ -113,6 +127,17 @@
 	damage = 4
 	stamina = 1
 
+//skyrat fucking edit
+/obj/item/projectile/bullet/shotgun_slug/executioner
+	name = "executioner slug" // admin only, can dismember limbs
+	sharpness = SHARP_EDGED
+	wound_bonus = 0
+
+/obj/item/projectile/bullet/shotgun_slug/pulverizer
+	name = "pulverizer slug" // admin only, can crush bones
+	sharpness = SHARP_EDGED
+	wound_bonus = 0
+	
 /obj/item/projectile/bullet/pellet/shotgun_incapacitate
 	name = "incapacitating pellet"
 	damage = 1
