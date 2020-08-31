@@ -1,3 +1,4 @@
+/* skyrat edit - commented out in favor of our own
 /*
 	* This component is used when you want to create a bunch of shrapnel or projectiles (say, shrapnel from a fragmentation grenade, or buckshot from a shotgun) from a central point,
 	* without necessarily printing a separate message for every single impact. This component should be instantiated right when you need it (like the moment of firing), then activated
@@ -281,3 +282,4 @@
 	targets_hit -= target
 	bodies -= target
 	purple_hearts -= target
+*/

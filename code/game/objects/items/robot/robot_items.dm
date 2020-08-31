@@ -490,13 +490,13 @@
 	projectile_type = /obj/item/projectile/bullet/reusable/gumball
 	click_cooldown_override = 2
 
-
 /obj/item/projectile/bullet/reusable/gumball
 	name = "gumball"
 	desc = "Oh noes! A fast-moving gumball!"
 	icon_state = "gumball"
 	ammo_type = /obj/item/reagent_containers/food/snacks/gumball/cyborg
 	nodamage = TRUE
+	embedding = EMBED_NONE
 
 /obj/item/projectile/bullet/reusable/gumball/handle_drop()
 	if(!dropped)
@@ -518,6 +518,7 @@
 	ammo_type = /obj/item/reagent_containers/food/snacks/lollipop/cyborg
 	var/color2 = rgb(0, 0, 0)
 	nodamage = TRUE
+	embedding = EMBED_NONE
 
 /obj/item/projectile/bullet/reusable/lollipop/New()
 	var/obj/item/reagent_containers/food/snacks/lollipop/S = new ammo_type(src)

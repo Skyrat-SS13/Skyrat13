@@ -8,4 +8,7 @@
 	. = ..()
 	update_mob()
 	empulse(src, 4, 10)
+	/* skyrat edit
+	qdel(src)
+	*/
 	qdel(src)

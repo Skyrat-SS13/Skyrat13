@@ -63,3 +63,7 @@
 /obj/item/gun/ballistic/revolver/doublebarrel/upgraded/sawoff(mob/user)
 	to_chat(user, "<span class='warning'>Considering the modifications, sawing it off probably would break it entirely.</span>")
 	return
+
+//Warden's combat shotgun
+/obj/item/gun/ballistic/shotgun/automatic/combat/compact/warden
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact/warden

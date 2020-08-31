@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 #define BLURRY_VISION_ONE	1
 #define BLURRY_VISION_TWO	2
 #define BLIND_VISION_THREE	3
@@ -225,7 +226,7 @@
 	var/active = FALSE
 	var/max_light_beam_distance = 5
 	var/light_beam_distance = 5
-	var/light_object_range = 1
+	var/light_object_range = 2 //Skyrat edit
 	var/light_object_power = 2
 	var/list/obj/effect/abstract/eye_lighting/eye_lighting
 	var/obj/effect/abstract/eye_lighting/on_mob
@@ -372,9 +373,17 @@
 /obj/item/organ/eyes/robotic/glow/proc/sync_light_effects()
 	for(var/I in eye_lighting)
 		var/obj/effect/abstract/eye_lighting/L = I
-		L.set_light(light_object_range, light_object_power, current_color_string)
+		var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
+		if(!OL)
+			L.AddComponent(/datum/component/overlay_lighting, current_color_string, light_object_range, light_object_power)
+		else
+			OL.set_color(current_color_string)
 	if(on_mob)
-		on_mob.set_light(1, 1, current_color_string)
+		var/datum/component/overlay_lighting/OL = on_mob.GetComponent(/datum/component/overlay_lighting)
+		if(!OL)
+			on_mob.AddComponent(/datum/component/overlay_lighting, current_color_string, light_object_range, 1)
+		else
+			OL.set_color(current_color_string)
 
 /obj/effect/abstract/eye_lighting
 	var/obj/item/organ/eyes/robotic/glow/parent
@@ -397,3 +406,4 @@
 #undef BLURRY_VISION_ONE
 #undef BLURRY_VISION_TWO
 #undef BLIND_VISION_THREE
+*/

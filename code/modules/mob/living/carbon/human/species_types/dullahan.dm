@@ -2,7 +2,7 @@
 	name = "Dullahan"
 	id = "dullahan"
 	default_color = "FFFFFF"
-	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
+	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,CAN_SCAR,HAS_SKIN,HAS_FLESH,HAS_BONE)
 	inherent_traits = list(TRAIT_NOHUNGER,TRAIT_NOBREATH)
 	mutant_bodyparts = list("tail_human" = "None", "ears" = "None", "deco_wings" = "None")
 	use_skintones = USE_SKINTONES_GRAYSCALE_CUSTOM

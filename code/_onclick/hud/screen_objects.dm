@@ -406,7 +406,7 @@
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
-	var/overlay_icon = 'icons/mob/screen_gen.dmi'
+	var/overlay_icon = 'modular_skyrat/icons/mob/screen_gen.dmi' //skyrat edit
 	var/static/list/hover_overlays_cache = list()
 	var/hovering
 
@@ -448,7 +448,7 @@
 	vis_contents += overlay_object
 
 /obj/effect/overlay/zone_sel
-	icon = 'icons/mob/screen_gen.dmi'
+	icon = 'modular_skyrat/icons/mob/screen_gen.dmi' //skyrat edit
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 128
 	anchored = TRUE
@@ -461,8 +461,15 @@
 		hovering = null
 
 /obj/screen/zone_sel/proc/get_zone_at(icon_x, icon_y)
+	//skyrat edit - more bodyparts
 	switch(icon_y)
-		if(1 to 9) //Legs
+		if(1 to 3) //Feet
+			switch(icon_x)
+				if(10 to 15)
+					return BODY_ZONE_PRECISE_R_FOOT
+				if(17 to 22)
+					return BODY_ZONE_PRECISE_L_FOOT
+		if(4 to 9) //Legs
 			switch(icon_x)
 				if(10 to 15)
 					return BODY_ZONE_R_LEG
@@ -471,11 +478,11 @@
 		if(10 to 13) //Hands and groin
 			switch(icon_x)
 				if(8 to 11)
-					return BODY_ZONE_R_ARM
+					return BODY_ZONE_PRECISE_R_HAND
 				if(12 to 20)
 					return BODY_ZONE_PRECISE_GROIN
 				if(21 to 24)
-					return BODY_ZONE_L_ARM
+					return BODY_ZONE_PRECISE_L_HAND
 		if(14 to 22) //Chest and arms to shoulders
 			switch(icon_x)
 				if(8 to 11)
@@ -497,6 +504,7 @@
 						if(icon_x in 15 to 17)
 							return BODY_ZONE_PRECISE_EYES
 				return BODY_ZONE_HEAD
+	//
 
 /obj/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
 	if(user != hud?.mymob)
@@ -521,7 +529,6 @@
 /obj/screen/zone_sel/robot
 	icon = 'icons/mob/screen_cyborg.dmi'
 
-
 /obj/screen/flash
 	name = "flash"
 	icon_state = "blank"
@@ -544,6 +551,13 @@
 	name = "health"
 	icon_state = "health0"
 	screen_loc = ui_health
+
+//skyrat edit
+/obj/screen/healths/Click(location, control, params)
+	var/mob/living/carbon/C = usr
+	if(istype(C))
+		C.check_self_for_injuries()
+//
 
 /obj/screen/healths/alien
 	icon = 'icons/mob/screen_alien.dmi'
@@ -609,6 +623,17 @@
 /obj/screen/healthdoll
 	name = "health doll"
 	screen_loc = ui_healthdoll
+	//skyrat edit
+	icon = 'modular_skyrat/icons/mob/screen_gen.dmi'
+	//
+
+//skyrat edit
+/obj/screen/healthdoll/Click()
+	var/mob/living/carbon/C = usr
+	if(istype(C))
+		C.check_self_for_injuries()
+	C.update_health_hud()
+//
 
 /obj/screen/mood
 	name = "mood"

@@ -4,7 +4,9 @@
 	icon_state = "blob_shield"
 	desc = "A solid wall of slightly twitching tendrils."
 	var/damaged_desc = "A wall of twitching tendrils."
-	max_integrity = 150
+	//skyrat changes
+	max_integrity = 300
+	//
 	brute_resist = 0.25
 	explosion_block = 3
 	point_return = 4
@@ -45,6 +47,9 @@
 	desc = "A solid wall of slightly twitching tendrils with a reflective glow."
 	damaged_desc = "A wall of twitching tendrils with a reflective glow."
 	icon_state = "blob_glow"
+	//skyrat edit
+	flags_ricochet = RICOCHET_SHINY
+	//
 	point_return = 8
 	max_integrity = 100
 	brute_resist = 1
