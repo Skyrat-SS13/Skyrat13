@@ -165,6 +165,12 @@
 
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762
 
+/obj/item/gun/ballistic/revolver/old
+	name = "410 Bore Revolver"
+	desc = "An old model of revolver that used to be carried by NT station captains for self defense. Uses shotgun shells."
+	icon_state = "410bore"
+	w_class = WEIGHT_CLASS_SMALL
+	mag_type = /obj/item/ammo_box/magazine/internal/shot
 
 // A gun to play Russian Roulette!
 // You can spin the chamber to randomize the position of the bullet.
