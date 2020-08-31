@@ -57676,6 +57676,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"jIl" = (
+/obj/machinery/camera{
+	c_tag = "Virology Module";
+	dir = 4;
+	network = list("ss13","medbay")
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "jIr" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -104420,7 +104428,7 @@ bNd
 bNd
 bNd
 bZN
-bOr
+jIl
 bVa
 bOr
 bWX
