@@ -33,6 +33,8 @@
 	heat = 3800
 	tool_behaviour = TOOL_WELDER
 	toolspeed = 1
+	wound_bonus = 10
+	bare_wound_bonus = 15
 
 /obj/item/weldingtool/Initialize()
 	. = ..()
@@ -108,14 +110,20 @@
 
 	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 
-	if(affecting && affecting.status == BODYPART_ROBOTIC && user.a_intent != INTENT_HARM)
+	if(affecting && (affecting.status & BODYPART_ROBOTIC) && (user.a_intent == INTENT_HELP))
+		if(INTERACTING_WITH(user, H))
+			to_chat(user, "<span class='warning'>You are already interacting with [H]!</span>")
+			return
+		if(!affecting.brute_dam)
+			to_chat(user, "<span class='notice'>\The [affecting] is already fully repaired!</span>")
+			return
 		if(src.use_tool(H, user, 0, volume=50, amount=1))
-			if(user == H)
-				user.visible_message("<span class='notice'>[user] starts to fix some of the dents on [H]'s [affecting.name].</span>",
-					"<span class='notice'>You start fixing some of the dents on [H]'s [affecting.name].</span>")
-				if(!do_mob(user, H, 50))
-					return
+			user.visible_message("<span class='notice'>[user] starts to fix some of the dents on [H]'s [affecting.name].</span>",
+				"<span class='notice'>You start fixing some of the dents on [H]'s [affecting.name].</span>")
+			if(!do_mob(user, H, 30))
+				return
 			item_heal_robotic(H, user, 15, 0)
+			attack(H, user)
 	else
 		return ..()
 

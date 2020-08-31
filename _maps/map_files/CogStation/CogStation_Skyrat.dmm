@@ -22384,6 +22384,22 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/department/eva)
+"aWr" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/structure/window/reinforced/spawner/west,
+/obj/machinery/limbgrower,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/zone2{
+	name = "Medbay Treatment Center"
+	})
 "aWs" = (
 /obj/machinery/light{
 	dir = 8;
@@ -40532,26 +40548,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/medical/chemistry)
-"bJg" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/item/storage/box/rxglasses{
-	pixel_x = 2
-	},
-/obj/item/pen,
-/obj/structure/window/reinforced/spawner/west,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/zone2{
-	name = "Medbay Treatment Center"
-	})
 "bJh" = (
 /obj/structure/sign/warning/biohazard,
 /obj/structure/disposalpipe/segment{
@@ -101295,7 +101291,7 @@ bPP
 bQa
 cEY
 cqW
-bJg
+aWr
 bQl
 bYG
 cFw

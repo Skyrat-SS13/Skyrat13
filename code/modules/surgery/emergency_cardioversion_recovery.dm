@@ -6,7 +6,7 @@
 	requires_bodypart_type = BODYPART_ORGANIC //Skyrat change
 
 /datum/surgery_step/ventricular_electrotherapy
-	name = "ventricular electrotherapy"
+	name = "Ventricular electrotherapy"
 	implements = list(/obj/item/shockpaddles = 90, /obj/item/defibrillator = 75, /obj/item/inducer = 55, /obj/item/stock_parts/cell = 25) //Just because the idea of a new player using the whole magine to defib is hillarious to me
 	time = 50
 	repeatable = TRUE //So you can retry

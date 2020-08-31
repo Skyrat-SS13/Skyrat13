@@ -610,8 +610,10 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			throw_alert("drunk", /obj/screen/alert/drunk)
 		else if(drunkenness > 121)
 			throw_alert("drunk", /obj/screen/alert/drunk/drunker)
+			ADD_TRAIT(src, TRAIT_PAINKILLER, "drunk")
 		else if(drunkenness <= 20) //drunk goes away very slowly so we need to be nice here to the players and NOT pollute their screen
 			clear_alert("drunk")
+			REMOVE_TRAIT(src, TRAIT_PAINKILLER, "drunk")
 		//
 		if(drunkenness >= 40) //skyrat-edit
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "drunk", /datum/mood_event/drunk)
@@ -763,3 +765,10 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		return
 
 	heart.beating = !status
+
+//skyrat edit
+/mob/living/carbon/handle_wounds()
+	for(var/thing in all_wounds)
+		var/datum/wound/W = thing
+		if(istype(W) && W.processes) // meh
+			W.handle_process()

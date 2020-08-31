@@ -4,7 +4,7 @@
 	id = "jelly"
 	default_color = "00FF90"
 	say_mod = "chirps"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,WINGCOLOR)
+	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,WINGCOLOR,CAN_SCAR,HAS_SKIN,HAS_FLESH)
 	mutantlungs = /obj/item/organ/lungs/slime
 	mutant_heart = /obj/item/organ/heart/slime
 	mutant_bodyparts = list("mcolor" = "FFF", "mam_tail" = "None", "mam_ears" = "None", "mam_snouts" = "None", "taur" = "None", "deco_wings" = "None")
@@ -172,7 +172,7 @@
 	name = "Xenobiological Slime Entity"
 	id = "slime"
 	default_color = "00FFFF"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR)
+	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,CAN_SCAR,HAS_SKIN,HAS_FLESH)
 	say_mod = "says"
 	hair_color = "mutcolor"
 	hair_alpha = 150
@@ -449,7 +449,7 @@
 	id = "slimeperson"
 	limbs_id = "slime"
 	default_color = "00FFFF"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR)
+	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,CAN_SCAR,HAS_SKIN,HAS_FLESH)
 	inherent_traits = list(TRAIT_TOXINLOVER)
 	mutant_bodyparts = list("mcolor" = "FFF", "mcolor2" = "FFF","mcolor3" = "FFF", "mam_tail" = "None", "mam_ears" = "None", "mam_body_markings" = "Plain", "mam_snouts" = "None", "taur" = "None")
 	say_mod = "says"

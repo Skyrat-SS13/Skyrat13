@@ -1,0 +1,8 @@
+author: "Linuxtesting(Jamini)"
+delete-after: True
+changes: 
+  - rscadd: "Mining Foreman Jumpsuit"
+  - rscadd: "Mining Tech Jumpsuit"
+  - balance: "Constructed turrets no longer shoot borgs"
+  - balance: "Constructed turrets start off"
+  - imageadd: "Durathread jumpsuits now have a rolled-down icon"

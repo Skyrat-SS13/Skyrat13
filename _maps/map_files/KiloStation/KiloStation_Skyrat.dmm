@@ -132,6 +132,10 @@
 	},
 /turf/open/floor/engine,
 /area/ai_monitored/turret_protected/ai)
+"aat" = (
+/obj/machinery/limbgrower,
+/turf/open/floor/plasteel/dark,
+/area/medical/surgery)
 "aau" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
@@ -252,6 +256,23 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"aaJ" = (
+/obj/structure/table,
+/obj/item/clipboard{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/book/manual/wiki/surgery,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/mask/surgical,
+/obj/item/clothing/suit/apron/surgical,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 28
+	},
+/obj/machinery/computer/med_data/laptop,
+/turf/open/floor/plasteel/dark,
+/area/medical/surgery)
 "aaK" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -479,6 +500,15 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
+"abd" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/radio/intercom{
+	pixel_y = 22
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/detectives_office)
 "abe" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -681,18 +711,6 @@
 	},
 /turf/open/floor/engine,
 /area/ai_monitored/turret_protected/ai)
-"abA" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/table/optable{
-	name = "Forensics Operating Table"
-	},
-/obj/item/radio/intercom{
-	pixel_y = 22
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/detectives_office)
 "abB" = (
 /obj/machinery/flasher{
 	id = "AI";
@@ -25999,14 +26017,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
-"bas" = (
-/obj/structure/table,
-/obj/machinery/computer/med_data/laptop,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -26
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/surgery)
 "bat" = (
 /obj/structure/table,
 /obj/item/folder/white,
@@ -26093,22 +26103,6 @@
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel/showroomfloor,
 /area/science/storage)
-"baA" = (
-/obj/structure/table,
-/obj/item/clipboard{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/book/manual/wiki/surgery,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/mask/surgical,
-/obj/item/clothing/suit/apron/surgical,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/surgery)
 "baB" = (
 /obj/machinery/computer/med_data{
 	dir = 4
@@ -85991,7 +85985,7 @@ aPC
 aPI
 aSA
 rPL
-bas
+aat
 bcG
 bef
 aQN
@@ -87019,7 +87013,7 @@ aQQ
 aTI
 aVV
 aQI
-baA
+aaJ
 bcP
 bej
 bjs
@@ -93470,7 +93464,7 @@ bGq
 bOP
 bJy
 bOU
-abA
+abd
 bMr
 aaY
 bPX

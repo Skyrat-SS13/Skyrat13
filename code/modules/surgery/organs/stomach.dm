@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 /obj/item/organ/stomach
 	name = "stomach"
 	icon_state = "stomach"
@@ -91,3 +92,4 @@
 /obj/item/organ/stomach/ipc
 	name = "ipc stomach"
 	icon_state = "stomach-ipc"
+*/
