@@ -1,0 +1,4 @@
+author: "KathrinBailey"
+delete-after: True
+changes: 
+  - bugfix: "Ghost Cafe 2 fixes: Invisible trees fixed, crematorium now faces the right way, VR sleepers removed, infinite dorms added back in, bio luminescent plants are weaker."
