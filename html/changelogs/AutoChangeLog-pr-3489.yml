@@ -1,0 +1,4 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "IPC burn wounds can now get cabled proper."
