@@ -70,3 +70,10 @@
 	results = list(/datum/reagent/medicine/paracetamol = 3)
 	required_reagents = list(/datum/reagent/medicine/tramadol = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/water = 1)
 	mix_message = "The mixture wafts a sickly sugary smell."
+
+/datum/chemical_reaction/nalidixic_acid
+	name = "Naxidilic Acid"
+	id = /datum/reagent/medicine/nalidixic_acid
+	results = list(/datum/reagent/medicine/nalidixic_acid = 3)
+	required_reagents = list(/datum/reagent/medicine/sal_acid = 1, /datum/reagent/nitrogen = 1, /datum/reagent/water = 1)
+	mix_message = "The mixture wafts a soapy smell."

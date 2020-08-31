@@ -11,6 +11,7 @@
 	bloodiness = BLOOD_AMOUNT_PER_DECAL
 	mergeable_decal = FALSE
 	beauty = -50
+	dirtiness = 20
 
 /obj/effect/decal/cleanable/robot_debris/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()

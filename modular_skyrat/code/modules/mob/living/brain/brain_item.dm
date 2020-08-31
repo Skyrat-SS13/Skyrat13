@@ -5,6 +5,7 @@
 	damage_reduction = 0
 	low_threshold = 50
 	high_threshold = 150
+	var/brain_can_heal = TRUE
 	var/damage_threshold_count = 10
 	var/damage_threshold_value = 0
 	var/healed_threshold = 1
@@ -34,7 +35,7 @@
 			oxygen_reserve = min(initial(oxygen_reserve), oxygen_reserve+1)
 		if(!oxygen_reserve) //(hardcrit)
 			owner.Paralyze(300)
-		var/can_heal = damage && (damage < maxHealth) && (damage % damage_threshold_value || owner.chem_effects[CE_BRAIN_REGEN] || (!past_damage_threshold(3) && owner.chem_effects[CE_STABLE]))
+		var/can_heal = damage && brain_can_heal && (damage < maxHealth) && (damage % damage_threshold_value || owner.chem_effects[CE_BRAIN_REGEN] || (!past_damage_threshold(3) && owner.chem_effects[CE_STABLE]))
 		var/damprob = 0
 		//Effects of bloodloss
 		switch(blood_volume)
@@ -79,6 +80,10 @@
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. It is usually slotted into the chest of synthetic crewmembers."
 	icon = 'modular_skyrat/icons/obj/surgery.dmi'
 	icon_state = "posibrain-ipc"
+	low_threshold = 25
+	high_threshold = 100
+	maxHealth = 75
+	brain_can_heal = FALSE
 
 /obj/item/organ/brain/ipc_positron/Insert(mob/living/carbon/C, special = 0, drop_if_replaced = TRUE)
 	..()

@@ -439,7 +439,17 @@ GENETICS SCANNER
 			for(var/k in wounded_part.wounds)
 				var/datum/wound/W = k
 				msg += "\n"
-				msg += "<div class='ml-2'>Type: [W.name]\nSeverity: [W.severity_text()]\nRecommended Treatment: [W.treat_text]</div>" // less lines than in woundscan() so we don't overload people trying to get basic med info
+				var/infection_level = "None"
+				switch(W.germ_level)
+					if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
+						infection_level = "Moderate"
+					if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
+						infection_level = "Severe"
+					if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
+						infection_level = "<span class='deadsay'>CRITICAL</span>"
+					if(WOUND_INFECTION_SEPTIC to INFINITY)
+						infection_level = "<span class='deadsay'>LOSS IMMINENT</span>"
+				msg += "<div class='ml-2'>Type: [W.name]\nSeverity: [W.severity_text()]\nRecommended Treatment: [W.treat_text]\nInfection Level: [infection_level]\n</div>" // less lines than in woundscan() so we don't overload people trying to get basic med info
 			msg += "</span>"
 			msg += "\n"
 	//

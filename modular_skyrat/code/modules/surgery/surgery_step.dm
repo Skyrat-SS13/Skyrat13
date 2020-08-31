@@ -21,7 +21,7 @@
 			prob_chance = implements[implement_type]
 		prob_chance *= surgery.get_probability_multiplier()
 
-		if(ishuman(target) && affecting && affecting.is_organic_limb() && (target.stat == CONSCIOUS) && (target.mob_biotypes & MOB_ORGANIC) && !target.IsUnconscious() && !target.InCritical() && !HAS_TRAIT(target, TRAIT_PAINKILLER) && !(target.chem_effects[CE_PAINKILLER] >= 50))
+		if((ishuman(target) || ismonkey(target)) && affecting && affecting.is_organic_limb() && (target.stat == CONSCIOUS) && (target.mob_biotypes & MOB_ORGANIC) && !target.IsUnconscious() && !target.InCritical() && !HAS_TRAIT(target, TRAIT_PAINKILLER) && !(target.chem_effects[CE_PAINKILLER] >= 50))
 			prob_chance *= 0.4
 			to_chat(user, "<span class='notice'>You feel like anesthetics could make this much easier.</span>")
 			target.visible_message("<span class='warning'>[target] [pick("writhes in pain", "squirms and kicks in agony", "cries in pain as [target.p_their()] body violently jerks")], impeding the surgery!</span>", \
@@ -37,9 +37,20 @@
 		else
 			if(failure(user, target, target_zone, tool, surgery))
 				advance = TRUE
+		spread_germs_to_bodypart(affecting, user)
 		if(advance && !repeatable)
 			surgery.status++
 			if(surgery.status > surgery.steps.len)
 				surgery.complete()
 	surgery.step_in_progress = FALSE
 	return advance
+
+/proc/spread_germs_to_bodypart(obj/item/bodypart/BP, mob/living/carbon/human/user)
+	if(!istype(user) || !istype(BP))
+		return
+
+	var/our_germ_level = user.germ_level
+	if(user.gloves)
+		our_germ_level = user.gloves.germ_level
+
+	BP.germ_level = max(our_germ_level, BP.germ_level)

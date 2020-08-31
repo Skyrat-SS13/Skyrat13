@@ -10,4 +10,4 @@
 	/// How long between UV fryings
 	var/uv_cooldown_length = 30 SECONDS
 	/// How much sanitization to apply to the burn wound
-	var/uv_power = 1
+	var/uv_power = WOUND_SANITIZATION_STERILIZER

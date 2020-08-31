@@ -60,7 +60,7 @@
 		active_trauma = victim.gain_trauma_type(brain_trauma_group, TRAUMA_RESILIENCE_WOUND)
 		next_trauma_cycle = world.time + (rand(100-WOUND_BONE_HEAD_TIME_VARIANCE, 100+WOUND_BONE_HEAD_TIME_VARIANCE) * 0.01 * trauma_cycle_cooldown)
 
-	//RegisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/attack_with_hurt_hand)
+	RegisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/attack_with_hurt_hand)
 	if(limb.held_index && victim.get_item_for_held_index(limb.held_index) && (disabling || prob(30 * severity)))
 		var/obj/item/I = victim.get_item_for_held_index(limb.held_index)
 		if(istype(I, /obj/item/offhand))
@@ -74,10 +74,8 @@
 /datum/wound/blunt/remove_wound(ignore_limb, replaced)
 	limp_slowdown = 0
 	QDEL_NULL(active_trauma)
-	/*
 	if(victim)
 		UnregisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
-	*/
 	return ..()
 
 /datum/wound/blunt/handle_process()
@@ -178,6 +176,9 @@
 /datum/wound/blunt/get_examine_description(mob/user)
 	if(!limb.current_gauze && !gelled && !taped)
 		return ..()
+
+	if(strikes_to_lose_limb <= 0)
+		return "<span class='deadsay'><B>[victim.p_their(TRUE)] [limb.name] is completely dead and unrecognizable as organic.</B></span>"
 
 	var/msg = ""
 	if(!limb.current_gauze)
@@ -677,6 +678,7 @@
 	internal_bleeding_chance = 60
 	pain_amount = 12
 	flat_damage_roll_increase = 15
+	infection_chance = 20
 
 // doesn't make much sense for "a" bone to stick out of your head
 /datum/wound/blunt/critical/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)
@@ -715,7 +717,7 @@
 			if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/medicine/morphine))
 				painkiller_bonus += 10
 			if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/determination))
-				painkiller_bonus += 5		
+				painkiller_bonus += 5
 
 			if(prob(25 + (20 * severity - 2) - painkiller_bonus)) // 25%/45% chance to fail self-applying with severe and critical wounds, modded by painkillers
 				victim.visible_message("<span class='danger'>[victim] fails to finish applying [I] to [victim.p_their()] [limb.name], passing out from the pain!</span>", "<span class='notice'>You black out from the pain of applying [I] to your [limb.name] before you can finish!</span>")

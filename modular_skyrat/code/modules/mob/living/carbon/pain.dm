@@ -46,15 +46,16 @@
 	for(var/obj/item/organ/O in internal_organs)
 		if(prob(1) && !((O.organ_flags & ORGAN_FAILING) || (O.status & ORGAN_ROBOTIC)) && O.damage >= 5)
 			var/obj/item/bodypart/parent = get_bodypart(O.zone)
-			var/pain = 10
-			var/message = "You feel a dull pain in your [parent.name]"
-			if(O.damage >= O.low_threshold)
-				pain = 25
-				message = "You feel a pain in your [parent.name]"
-			if((O.damage >= O.high_threshold) || (O.organ_flags & ORGAN_FAILING))
-				pain = 50
-				message = "You feel a sharp pain in your [parent.name]"
-			custom_pain(message, pain, FALSE, parent)
+			if(parent)
+				var/pain = 10
+				var/message = "You feel a dull pain in your [parent.name]"
+				if(O.damage >= O.low_threshold)
+					pain = 25
+					message = "You feel a pain in your [parent.name]"
+				if((O.damage >= O.high_threshold) || (O.organ_flags & ORGAN_FAILING))
+					pain = 50
+					message = "You feel a sharp pain in your [parent.name]"
+				custom_pain(message, pain, FALSE, parent)
 
 	var/toxDamageMessage = null
 	var/toxMessageProb = 1

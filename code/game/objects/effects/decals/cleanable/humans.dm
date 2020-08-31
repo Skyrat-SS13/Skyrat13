@@ -8,6 +8,7 @@
 	bloodiness = BLOOD_AMOUNT_PER_DECAL
 	color = BLOOD_COLOR_HUMAN //default so we don't have white splotches everywhere.
 	beauty = -100
+	dirtiness = 25
 
 /obj/effect/decal/cleanable/blood/replace_decal(obj/effect/decal/cleanable/blood/C)
 	if (C.blood_DNA)

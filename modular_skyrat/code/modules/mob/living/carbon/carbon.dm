@@ -63,3 +63,6 @@
 		var/dir = get_dir(get_turf(gunpointing.source),get_turf(gunpointing.target))
 		if(dir)
 			setDir(dir)
+	// Moving around increases germ_level faster
+	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
+		germ_level++

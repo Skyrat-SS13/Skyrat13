@@ -389,3 +389,51 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.remove_chem_effect(CE_PAINKILLER, 100)
+
+//Sterilizine actually does double the cleaning since it calls the parent
+/datum/reagent/space_cleaner/sterilizine/reaction_obj(obj/O, reac_volume)
+	. = ..()
+	if(O.germ_level)
+		O.germ_level = max(0, reac_volume * 20)
+
+/datum/reagent/space_cleaner/sterilizine/reaction_turf(turf/T, reac_volume)
+	. = ..()
+	if(T.germ_level)
+		T.germ_level = max(0, reac_volume * 20)
+
+/datum/reagent/space_cleaner/sterilizine/reaction_mob(mob/living/M, method, reac_volume)
+	. = ..()
+	if(M.germ_level < INFECTION_LEVEL_TWO)
+		M.janitize(-(reac_volume * 20))
+
+//Antibiotics
+/datum/reagent/medicine/spaceacillin/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_ANTIBIOTIC, 50)
+
+/datum/reagent/medicine/spaceacillin/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_ANTIBIOTIC, 50)
+
+/datum/reagent/medicine/nalidixic_acid
+	name = "Nalidixic Acid"
+	description = "A weak, but synthetizable, antibiotic."
+	color = "#fc7a7a"
+	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	pH = 8.1
+
+/datum/reagent/medicine/nalidixic_acid/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_ANTIBIOTIC, 35)
+
+/datum/reagent/medicine/nalidixic_acid/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_ANTIBIOTIC, 35)

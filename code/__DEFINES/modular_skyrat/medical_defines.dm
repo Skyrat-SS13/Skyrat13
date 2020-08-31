@@ -52,14 +52,13 @@
 #define WOUND_LIST_BURN		list(/datum/wound/burn/critical, /datum/wound/burn/severe, /datum/wound/burn/moderate)
 #define WOUND_LIST_BURN_MECHANICAL		list(/datum/wound/mechanical/burn/critical, /datum/wound/mechanical/burn/severe, /datum/wound/mechanical/burn/moderate)
 
-// Thresholds for infection for burn wounds, once infestation hits each threshold, things get steadily worse
-#define WOUND_INFECTION_MODERATE	4 // below this has no ill effects from infection
-#define WOUND_INFECTION_SEVERE		8 // then below here, you ooze some pus and suffer minor tox damage, but nothing serious
-#define WOUND_INFECTION_CRITICAL	12 // then below here, your limb occasionally locks up from damage and infection and briefly becomes disabled. Things are getting really bad
-#define WOUND_INFECTION_SEPTIC		20 // below here, your skin is almost entirely falling off and your limb locks up more frequently. You are within a stone's throw of septic paralysis and losing the limb
+// Thresholds for infection for wounds, once infestation hits each threshold, things get steadily worse
+#define WOUND_INFECTION_MODERATE	250 // below this has no ill effects from germs
+#define WOUND_INFECTION_SEVERE		330 // then below here, you ooze some pus and suffer minor tox damage, but nothing serious
+#define WOUND_INFECTION_CRITICAL	600 // then below here, your limb occasionally locks up from damage and infection and briefly becomes disabled. Things are getting really bad
+#define WOUND_INFECTION_SEPTIC		1000 // below here, your skin is almost entirely falling off and your limb locks up more frequently. You are within a stone's throw of septic paralysis and losing the limb
 // Above WOUND_INFECTION_SEPTIC, your limb is completely putrid and you start rolling to lose the entire limb by way of paralyzation. After 3 failed rolls (~4-5% each probably), the limb is paralyzed
 
-#define WOUND_BURN_SANITIZATION_RATE 0.15 // how quickly sanitization removes infestation and decays per tick
 #define WOUND_SLASH_MAX_BLOODFLOW		8 // how much blood you can lose per tick per slash max. 8 is a LOT of blood for one cut so don't worry about hitting it easily
 #define WOUND_PIERCE_MAX_BLOODFLOW		8 // same as above, but for piercing wounds
 #define WOUND_INTERNAL_MAX_BLOODFLOW	10 // same as above, but for internal bleeding
@@ -106,9 +105,11 @@
 #define BODYPART_ORGANIC	(1<<0)
 #define BODYPART_ROBOTIC	(1<<1)
 #define BODYPART_DEAD		(1<<2) //Completely septic and unusable limb
-#define BODYPART_NOBLEED	(1<<3)
-#define BODYPART_NOEMBED	(1<<4)
-#define BODYPART_NOPAIN 	(1<<5)
+#define BODYPART_SYNTHETIC	(1<<3) //Synthetic bodypart, can't get infected
+#define BODYPART_FROZEN		(1<<3) //Cold, doesn't rot
+#define BODYPART_NOBLEED	(1<<4)
+#define BODYPART_NOEMBED	(1<<5)
+#define BODYPART_NOPAIN 	(1<<6)
 
 //Bodypart disabling defines
 #define BODYPART_NOT_DISABLED 0
@@ -184,10 +185,27 @@
 #define SHOCK_STAGE_8 200
 
 //Infection defines
-
 #define GERM_LEVEL_AMBIENT  275 // Maximum germ level you can reach by standing still.
 #define GERM_LEVEL_MOVE_CAP 300 // Maximum germ level you can reach by running around.
+
+//Sanitization
+#define MAXIMUM_GERM_LEVEL	1000
+#define SANITIZATION_SPACE_CLEANER 100
 
 #define INFECTION_LEVEL_ONE   250
 #define INFECTION_LEVEL_TWO   500  // infections grow from ambient to two in ~5 minutes
 #define INFECTION_LEVEL_THREE 1000 // infections grow from two to three in ~10 minutes
+
+#define WOUND_INFECTION_SANITIZATION_RATE	10 // how quickly sanitization removes infestation and decays per tick
+#define WOUND_SANITIZATION_PER_ANTIBIOTIC 1 // Sanitization for each point in the antibiotic chem effect
+#define WOUND_SANITIZATION_STERILIZER	100 // How much sterilizer sanitizes a wound
+#define WOUND_INFECTION_SEEP_RATE		0.15 // How much we seep gauze per life tick
+
+//How much time it takes for a dead organ to recover
+#define ORGAN_RECOVERY_THRESHOLD (5 MINUTES)
+
+//Rejection levels
+#define REJECTION_LEVEL_1 1
+#define REJECTION_LEVEL_2 50
+#define REJECTION_LEVEL_3 200
+#define REJECTION_LEVEL_4 500

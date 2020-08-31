@@ -74,6 +74,7 @@
 	var/heavy_burn_msg = "peeling away"
 
 	/// Bobmed variables
+	germ_level = 0 //Germs.
 	var/parent_bodyzone //body zone that is considered a "parent" of this bodypart's zone
 	var/dismember_bodyzone //body zone that receives wound when this limb is dismembered
 	var/list/starting_children = list() //children that are already "inside" this limb on spawn. could be organs or limbs.
@@ -168,6 +169,13 @@
 	var/organ_damage_hit_minimum = 0
 	/// The bones that encase us
 	var/encased
+	// Used to check if we can recover from complete sepsis
+	var/death_time = 0
+	// Used to handle rejection
+	var/rejecting = 0
+	var/decay_factor = 0.01 //Multiplier of max_tox_damage applied when rotting
+	var/datum/dna/original_dna
+	var/datum/species/original_species
 
 /obj/item/bodypart/Initialize()
 	. = ..()
@@ -185,6 +193,173 @@
 		organ_damage_requirement = max_damage * 0.2
 	if(!organ_damage_hit_minimum)
 		organ_damage_hit_minimum = 5
+	START_PROCESSING(SSobj, src) //runs decay when outside of a person AND ONLY WHEN OUTSIDE (i.e. long obj).
+
+//Processing outside the body
+/obj/item/bodypart/process()
+	if(owner)
+		STOP_PROCESSING(SSobj, src)
+		return
+	on_death()
+
+/obj/item/bodypart/proc/on_death()
+	decay()
+
+//Appliess the slow damage over time decay
+/obj/item/bodypart/proc/decay()
+	if(!can_decay())
+		STOP_PROCESSING(SSobj, src)
+		return
+	is_cold()
+	if((status & BODYPART_FROZEN) || (status & BODYPART_DEAD))
+		return
+	germ_level += rand(2,6)
+	if(germ_level >= INFECTION_LEVEL_TWO)
+		germ_level += rand(2,6)
+	if(germ_level >= INFECTION_LEVEL_THREE)
+		kill_limb()
+	tox_dam = min(max_tox_damage, tox_dam + (max_tox_damage * decay_factor))
+
+//Checks to see if the bodypart is frozen from temperature
+/obj/item/bodypart/proc/is_cold()
+	if(istype(loc, /obj/))//Freezer of some kind, I hope.
+		if(is_type_in_typecache(loc, GLOB.freezing_objects))
+			if(!(status & BODYPART_FROZEN))//Incase someone puts them in when cold, but they warm up inside of the thing. (i.e. they have the flag, the thing turns it off, this rights it.)
+				status |= BODYPART_FROZEN
+			return TRUE
+		return (status & BODYPART_FROZEN) //Incase something else toggles it
+
+	var/local_temp
+	if(istype(loc, /turf/))//Only concern is adding an organ to a freezer when the area around it is cold.
+		var/turf/T = loc
+		var/datum/gas_mixture/enviro = T.return_air()
+		local_temp = enviro.temperature
+
+	else if(!owner && ismob(loc))
+		var/mob/M = loc
+		if(is_type_in_typecache(M.loc, GLOB.freezing_objects))
+			if(!(status & BODYPART_FROZEN))
+				status |= BODYPART_FROZEN
+			return TRUE
+		var/turf/T = M.loc
+		var/datum/gas_mixture/enviro = T.return_air()
+		local_temp = enviro.temperature
+
+	if(owner)
+		//Don't interfere with bodies frozen by structures.
+		if(is_type_in_typecache(owner.loc, GLOB.freezing_objects))
+			if(!(status & BODYPART_FROZEN))
+				status |= BODYPART_FROZEN
+			return TRUE
+		local_temp = owner.bodytemperature
+
+	if(!local_temp)//Shouldn't happen but in case
+		return
+	if(local_temp < 154)//I have a pretty shaky citation that states -120 allows indefinite cyrostorage
+		status |= BODYPART_FROZEN
+		return TRUE
+	status &= ~BODYPART_FROZEN
+	return FALSE
+
+//Germs
+/obj/item/bodypart/proc/handle_antibiotics()
+	if(!owner || !germ_level)
+		return
+
+	var/antibiotics = owner.get_antibiotics()
+	if(!antibiotics)
+		return
+
+	if(germ_level < INFECTION_LEVEL_ONE)
+		germ_level = 0	//cure instantly
+	else if (germ_level < INFECTION_LEVEL_TWO)
+		germ_level -= 5	//at germ_level == 500, this should cure the infection in 5 minutes
+	else
+		germ_level -= 3 //at germ_level == 1000, this will cure the infection in 10 minutes
+	if(owner && owner.lying)
+		germ_level -= 2
+	germ_level = max(0, germ_level)
+
+/obj/item/bodypart/proc/handle_germ_effects()
+	//Handle infection effects
+	var/virus_immunity = owner.virus_immunity()
+	var/antibiotics = owner.get_antibiotics()
+
+	if(germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(virus_immunity*0.3))
+		germ_level--
+	
+	if(germ_level >= INFECTION_LEVEL_ONE/2)
+		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes, when immunity is full.
+		if(antibiotics < 5 && prob(round(germ_level/6 * owner.immunity_weakness() * 0.01)))
+			if(virus_immunity > 0)
+				germ_level += clamp(round(1/virus_immunity), 1, 10) // Immunity starts at 100. This doubles infection rate at 50% immunity. Rounded to nearest whole.
+			else // Will only trigger if immunity has hit zero. Once it does, 10x infection rate.
+				germ_level += 10
+	
+	if(germ_level >= INFECTION_LEVEL_ONE)
+		var/fever_temperature = (BODYTEMP_HEAT_DAMAGE_LIMIT - BODYTEMP_NORMAL - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + BODYTEMP_NORMAL
+		owner.bodytemperature += clamp((fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, 0, fever_temperature - owner.bodytemperature)
+	
+	//Spread the infection to internal organs, child and parent bodyparts
+	if(germ_level >= INFECTION_LEVEL_TWO)
+		var/obj/item/organ/target_organ //make internal organs become infected one at a time instead of all at once
+		for(var/obj/item/organ/O in get_organs())
+			//once the organ reaches whatever we can give it, or level two, switch to a different one
+			if(O.germ_level > 0 && O.germ_level < min(germ_level, INFECTION_LEVEL_TWO))
+				//choose the organ with the highest germ_level
+				if(!target_organ || (O.germ_level > target_organ.germ_level))
+					target_organ = O
+
+		//Infect the target organ
+		if(target_organ)
+			target_organ.germ_level++
+		
+		//Spread the infection to child and parent organs
+		var/zones = list()
+		zones |= parent_bodyzone
+		zones |= children_zones
+		if(length(zones))
+			for(var/child in zones)
+				var/obj/item/bodypart/bodypart = owner.get_bodypart(child)
+				if(bodypart && (bodypart.germ_level < germ_level))
+					if(bodypart.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
+						bodypart.germ_level++
+
+	//Overdosing is necessary to stop severe infections
+	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 45)
+		if(!(status & BODYPART_DEAD))
+			status |= BODYPART_DEAD
+			to_chat(owner, "<span class='notice'>You can't feel your [name] anymore...</span>")
+			update_disabled()
+		
+		germ_level++
+		owner.adjustToxLoss(rand(1, 2) * 0.5)
+
+//Rejection
+/obj/item/bodypart/proc/handle_rejection()
+	// Process unsuitable transplants. TODO: consider some kind of
+	// immunosuppressant that changes transplant data to make it match.
+	if(owner.virus_immunity() < 10) //for now just having shit immunity will suppress it
+		return
+	if(is_robotic_limb() || is_synthetic_limb())
+		return
+	if(original_dna)
+		if(!rejecting)
+			if(!(owner.dna.blood_type in get_safe_blood(original_dna?.blood_type)))
+				rejecting = REJECTION_LEVEL_1
+		else
+			rejecting++ //Rejection severity increases over time.
+			if(rejecting % 10 == 0) //Only fire every ten rejection ticks.
+				switch(rejecting)
+					if(REJECTION_LEVEL_1 to REJECTION_LEVEL_2)
+						germ_level++
+					if(REJECTION_LEVEL_2 to REJECTION_LEVEL_3)
+						germ_level += rand(1,2)
+					if(REJECTION_LEVEL_3 to REJECTION_LEVEL_4)
+						germ_level += rand(2,3)
+					if(REJECTION_LEVEL_4 to INFINITY)
+						germ_level += rand(3,5)
+						owner.reagents.add_reagent(/datum/reagent/toxin, rand(1,2))
 
 /obj/item/bodypart/Topic(href, href_list)
 	. = ..()
@@ -230,6 +405,8 @@
 		. += "<span class='notice'>[src] is seemingly of organic nature.</span>"
 	if(status & BODYPART_NOBLEED)
 		. += "<span class='notice'>[src] is impervious to [status & BODYPART_ORGANIC ? "bleeding" : "leakage"].</span>"
+	if(status & BODYPART_DEAD)
+		. += "<span class='deadsay'>[src] seems to have decayed, reaching a putrid state...</span>"
 	for(var/obj/item/bodypart/BP in src)
 		if(BP.body_zone in children_zones)
 			. += "<span class='notice'>[src] has \a [lowertext(BP.name)] attached. Use a sharp item to cut it off!</span>"
@@ -272,7 +449,7 @@
 			"<span class='notice'>You begin to cut open [src]...</span>")
 		if(do_after(user, 54, target = src))
 			drop_organs(user)
-	else if(istype(W, /obj/item/cautery) && user.a_intent == INTENT_HELP)
+	else if((istype(W, /obj/item/cautery) || istype(W, /obj/item/pen)) && user.a_intent == INTENT_HELP)
 		var/badboy = input(user, "What do you want to inscribe on [src]?", "Malpractice", "") as text
 		if(badboy)
 			badboy = strip_html_simple(badboy)
@@ -335,12 +512,72 @@
 		return our_organs
 
 /obj/item/bodypart/proc/consider_processing()
-	if((stamina_dam > DAMAGE_PRECISION) || (get_pain() > DAMAGE_PRECISION) || (tox_dam > DAMAGE_PRECISION))
+	if(stamina_dam > DAMAGE_PRECISION)
 		. = TRUE
 	//else if.. else if.. so on.
+	else if(get_pain() > DAMAGE_PRECISION)
+		. = TRUE
+	else if(tox_dam > DAMAGE_PRECISION)
+		. = TRUE
+	else if(can_decay() && germ_level)
+		. = TRUE
+	else if(rejecting || !(owner.dna.blood_type in get_safe_blood(original_dna?.blood_type)))
+		. = TRUE
 	else
 		. = FALSE
 	needs_processing = .
+
+//The bodypart can rot and get infected
+/obj/item/bodypart/proc/can_decay()
+	if(CHECK_BITFIELD(status, BODYPART_ROBOTIC | BODYPART_SYNTHETIC | BODYPART_DEAD))
+		return FALSE
+	return TRUE
+
+//Medical scans
+/obj/item/bodypart/proc/get_scan_results(tag = FALSE)
+	. = list()
+	if(is_robotic_limb())
+		. += tag ? "<span class='warning'>Mechanical</span>" : "Mechanical"
+	if(is_synthetic_limb())
+		. += tag ? "<span class='warning'>Synthetic</span>" : "Synthetic"
+	if(status & BODYPART_DEAD)
+		if(can_recover())
+			. += tag ? "<span class='danger'>Decaying</span>" : "Decaying"
+		else
+			. += tag ? "<span class='deadsay'>Necrotic</span>" : "Necrotic"
+
+	switch(germ_level)
+		if(INFECTION_LEVEL_ONE to INFECTION_LEVEL_ONE + ((INFECTION_LEVEL_TWO - INFECTION_LEVEL_ONE) / 3))
+			. +=  "Mild Infection"
+		if(INFECTION_LEVEL_ONE + ((INFECTION_LEVEL_TWO - INFECTION_LEVEL_ONE) / 3) to INFECTION_LEVEL_ONE + (2 * (INFECTION_LEVEL_TWO - INFECTION_LEVEL_ONE) / 3))
+			. +=  "Mild Infection+"
+		if(INFECTION_LEVEL_ONE + (2 * (INFECTION_LEVEL_TWO - INFECTION_LEVEL_ONE) / 3) to INFECTION_LEVEL_TWO)
+			. +=  "Mild Infection++"
+		if(INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + ((INFECTION_LEVEL_THREE - INFECTION_LEVEL_THREE) / 3))
+			if(tag)
+				. += "<span class='warning'>Acute Infection</span>"
+			else
+				. +=  "Acute Infection"
+		if(INFECTION_LEVEL_TWO + ((INFECTION_LEVEL_THREE - INFECTION_LEVEL_THREE) / 3) to INFECTION_LEVEL_TWO + (2 * (INFECTION_LEVEL_THREE - INFECTION_LEVEL_TWO) / 3))
+			if(tag)
+				. += "<span class='warning'>Acute Infection+</span>"
+			else
+				. +=  "Acute Infection+"
+		if(INFECTION_LEVEL_TWO + (2 * (INFECTION_LEVEL_THREE - INFECTION_LEVEL_TWO) / 3) to INFECTION_LEVEL_THREE)
+			if(tag)
+				. += "<span class='warning'>Acute Infection++</span>"
+			else
+				. +=  "Acute Infection++"
+		if(INFECTION_LEVEL_THREE to INFINITY)
+			if(tag)
+				. += "<span class='danger'>Septic</span>"
+			else
+				. +=  "Septic"
+	if(rejecting)
+		if(tag)
+			. += "<span class='danger'>Genetic Rejection</span>"
+		else
+			. += "Genetic Rejection"
 
 //Return TRUE to get whatever mob this is in to update health.
 /obj/item/bodypart/proc/on_life()
@@ -357,6 +594,44 @@
 	if(tox_filter_per_tick && tox_dam > DAMAGE_PRECISION)
 		if(filter_toxins(toxins = tox_filter_per_tick, only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
+	if(rejecting)
+		handle_rejection()
+		. |= BODYPART_LIFE_UPDATE_HEALTH
+	if(germ_level && can_decay() && !(NOINFECTION in owner?.dna?.species?.species_traits) && !(owner && owner.bodytemperature <= 170))
+		update_germs()
+		if(germ_level)
+			. |= BODYPART_LIFE_UPDATE_HEALTH
+
+/obj/item/bodypart/proc/update_germs()
+	if(!can_decay())
+		germ_level = 0
+		return
+	//Cryo stops germs from moving and doing their bad stuffs
+	if(owner.bodytemperature <= 170)
+		return
+	handle_germ_sync()
+	handle_antibiotics()
+	handle_germ_effects()
+
+/obj/item/bodypart/proc/handle_germ_sync()
+	var/turf/open/floor/T = get_turf(owner)
+	var/owner_germ_level = 2*owner.germ_level
+	for(var/obj/item/embeddies in embedded_objects)
+		if(!embeddies.isEmbedHarmless())
+			owner_germ_level += (embeddies.germ_level/10)
+	
+	for(var/datum/wound/W in wounds)
+		//Open wounds can become infected
+		if(istype(T) && W.infection_check() && (max(2*T.dirtiness, owner_germ_level) > W.germ_level))
+			W.germ_level++
+
+	var/antibiotics = owner.get_antibiotics()
+	if(!antibiotics)
+		for(var/datum/wound/W in wounds)
+			//Infected wounds raise the bodypart's germ level
+			if(W.germ_level > germ_level || prob(min(W.germ_level, 30)))
+				germ_level++
+				break	//limit increase to a maximum of one per second
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
@@ -730,7 +1005,7 @@
 		damage_amt += W.flat_damage_roll_increase
 		organ_damage_threshold = max(1, organ_damage_threshold - (organ_damage_hit_minimum * W.organ_threshold_reduction))
 		organ_damage_required = max(1, organ_damage_required - (organ_damage_requirement * W.organ_required_reduction))
-		if((W.wound_type == WOUND_LIST_BLUNT) && (W.severity >= WOUND_SEVERITY_SEVERE)) //We have a fracture
+		if(((W.wound_type == WOUND_LIST_BLUNT) || (W.wound_type == WOUND_LIST_BLUNT_MECHANICAL)) && (W.severity >= WOUND_SEVERITY_SEVERE)) //We have a fracture
 			broken = TRUE
 	if(!(cur_damage + damage_amt >= organ_damage_required) && !(damage_amt >= organ_damage_threshold))
 		return FALSE
@@ -886,7 +1161,7 @@
 /obj/item/bodypart/proc/is_disabled()
 	if(!owner)
 		return FALSE
-	if(HAS_TRAIT(owner, TRAIT_PARALYSIS))
+	if(HAS_TRAIT(owner, TRAIT_PARALYSIS) || (status & BODYPART_DEAD))
 		return BODYPART_DISABLED_PARALYSIS
 	for(var/i in wounds)
 		var/datum/wound/W = i
@@ -985,13 +1260,32 @@
 /obj/item/bodypart/proc/is_robotic_limb()
 	return (status & BODYPART_ROBOTIC)
 
+/obj/item/bodypart/proc/is_synthetic_limb()
+	return (status & BODYPART_SYNTHETIC)
+
 /obj/item/bodypart/proc/is_mixed_limb()
 	return (is_organic_limb() && is_robotic_limb())
 
 /obj/item/bodypart/proc/can_bleed()
-	return (status & BODYPART_NOBLEED)
+	return !(status & BODYPART_NOBLEED)
 
-//to update the bodypart's icon when not attached to a mob
+/obj/item/bodypart/proc/is_dead()
+	return (status & BODYPART_DEAD)
+
+/obj/item/bodypart/proc/kill_limb()
+	status |= BODYPART_DEAD
+
+/obj/item/bodypart/proc/revive_limb()
+	status &= ~BODYPART_DEAD
+
+/obj/item/bodypart/proc/can_recover()
+	return ((max_damage > 0) && !(status & BODYPART_DEAD)) || (death_time >= world.time - ORGAN_RECOVERY_THRESHOLD)
+
+//Used by some medical tools
+/obj/item/bodypart/proc/listen()
+	return
+
+//To update the bodypart's icon when not attached to a mob
 /obj/item/bodypart/proc/update_icon_dropped()
 	cut_overlays()
 	var/list/standing = get_limb_icon(1)
@@ -1138,7 +1432,7 @@
 		if(possible_wound.threshold_minimum * CONFIG_GET(number/wound_threshold_multiplier) < injury_roll)
 			var/datum/wound/new_wound
 			if(replaced_wound)
-				new_wound = replaced_wound.replace_wound(possible_wound.type)
+				new_wound = replaced_wound.replace_wound(possible_wound.type, FALSE, TRUE)
 				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll)
 				qdel(possible_wound)
 			else
@@ -1157,7 +1451,7 @@
 	for(var/datum/wound/existing_wound in wounds)
 		if(existing_wound.wound_type == new_wound.wound_type)
 			if(existing_wound.severity < initial(new_wound.severity)) // we only try if the existing one is inferior to the one we're trying to force
-				existing_wound.replace_wound(new_wound, smited)
+				existing_wound.replace_wound(new_wound, smited, TRUE)
 			return
 
 	var/severity = new_wound.severity
@@ -1332,6 +1626,10 @@
 		C = source
 		if(!original_owner)
 			original_owner = source
+			if(!original_dna && source.dna)
+				original_dna = source.dna
+				if(!original_species && source.dna.species)
+					original_species = source.dna.species
 	else if((owner && original_owner) && (owner != original_owner)) //Foreign limb
 		no_update = TRUE
 	else
