@@ -251,3 +251,141 @@
 						reac_volume = max(0, reac_volume - 10)
 	else
 		M.adjustToxLoss(reac_volume * 0.8)
+
+//Painkiller medicine
+/datum/reagent/medicine/paracetamol
+	name = "Paracetamol"
+	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller."
+	taste_description = "sickness"
+	reagent_state = LIQUID
+	color = "#c8a5dc"
+	overdose_threshold = 30
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+
+/datum/reagent/medicine/paracetamol/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 25)
+
+/datum/reagent/medicine/paracetamol/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 25)
+
+/datum/reagent/medicine/paracetamol/overdose_process(mob/living/M)
+	. = ..()
+	if(iscarbon(M) && prob(25))
+		var/mob/living/carbon/C = M
+		C.custom_pain("<span class='danger'>Your head feels like it's going to explode!</span>", 20, FALSE, C.get_bodypart(BODY_ZONE_HEAD))
+
+/datum/reagent/medicine/tramadol
+	name = "Tramadol"
+	description = "A simple, yet effective painkiller. Don't mix with alcohol."
+	taste_description = "sourness"
+	reagent_state = LIQUID
+	color = "#c86dfd"
+
+/datum/reagent/medicine/tramadol/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 15)
+
+/datum/reagent/medicine/tramadol/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 15)
+
+/datum/reagent/medicine/tramadol/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(M.drunkenness)
+		M.applyOrganDamage(ORGAN_SLOT_LIVER, 0.5)
+
+/datum/reagent/medicine/bicaridine/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 10)
+
+/datum/reagent/medicine/bicaridine/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 10)
+
+/datum/reagent/medicine/kelotane/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 10)
+
+/datum/reagent/medicine/kelotane/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 10)
+
+/datum/reagent/medicine/tricordrazine/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 15)
+
+/datum/reagent/medicine/tricordrazine/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 15)
+
+/datum/reagent/medicine/modafinil/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 30)
+
+/datum/reagent/medicine/modafinil/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 30)
+
+/datum/reagent/medicine/antitoxin/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	for(var/obj/item/organ/O in M.internal_organs)
+		if(prob(20) && !(O.slot == ORGAN_SLOT_BRAIN))
+			O.applyOrganDamage(5 * REM)
+
+/datum/reagent/medicine/charcoal/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	for(var/obj/item/organ/O in M.internal_organs)
+		if(prob(20) && !(O.slot == ORGAN_SLOT_BRAIN))
+			O.applyOrganDamage(5 * REM)
+
+/datum/reagent/medicine/cryoxadone/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(M.bodytemperature < T0C)
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			C.add_chem_effect(CE_PAINKILLER, 100)
+
+/datum/reagent/medicine/cryoxadone/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 100)
+
+/datum/reagent/medicine/pyroxadone/on_mob_metabolize(mob/living/L)
+	. = ..()
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			if(C.bodytemperature >= BODYTEMP_HEAT_DAMAGE_LIMIT)
+				C.add_chem_effect(CE_PAINKILLER, 100)
+
+/datum/reagent/medicine/pyroxadone/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 100)

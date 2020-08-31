@@ -56,3 +56,17 @@
 	results = list(/datum/reagent/medicine/fibrin = 20)
 	required_reagents = list(/datum/reagent/blood/synthetics = 10, /datum/reagent/oxygen = 10, /datum/reagent/water = 10, /datum/reagent/medicine/bicaridine = 10)
 	mix_message = "The mixture bubbles into a browned color."
+
+/datum/chemical_reaction/tramadol
+	name = "Tramadol"
+	id = /datum/reagent/medicine/tramadol
+	results = list(/datum/reagent/medicine/tramadol = 3)
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 1, /datum/reagent/ethanol = 1, /datum/reagent/acetone = 1)
+	mix_message = "The mixture wafts a sickly smell."
+
+/datum/chemical_reaction/paracetamol
+	name = "Paracetamol"
+	id = /datum/reagent/medicine/paracetamol
+	results = list(/datum/reagent/medicine/paracetamol = 3)
+	required_reagents = list(/datum/reagent/tramadol = 1, /datum/reagent/sugar = 1, /datum/reagent/water = 1)
+	mix_message = "The mixture wafts a sickly sugary smell."
