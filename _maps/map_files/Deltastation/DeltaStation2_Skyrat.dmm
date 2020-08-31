@@ -129,6 +129,18 @@
 	},
 /turf/open/floor/plating/smooth/grass,
 /area/security/prison)
+"aar" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	name = "Station Intercom";
+	pixel_x = 26
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/machinery/limbgrower,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "aas" = (
 /obj/docking_port/stationary/random{
 	id = "pod_lavaland1";
@@ -7305,8 +7317,7 @@
 /area/engine/atmospherics_engine)
 "avi" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
-	dir = 8;
-	name = "scrubbers pipe"
+	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -13806,7 +13817,6 @@
 "aKh" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plasteel,
@@ -81035,17 +81045,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
-"dxp" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	name = "Station Intercom";
-	pixel_x = 26
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "dxq" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -93764,6 +93763,7 @@
 /obj/structure/cable/white{
 	icon_state = "1-8"
 	},
+/mob/living/simple_animal/opossum,
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "eau" = (
@@ -97351,6 +97351,13 @@
 /obj/machinery/flasher/portable,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"gaG" = (
+/obj/structure/cable/white{
+	icon_state = "2-4"
+	},
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "gaP" = (
 /obj/structure/closet/crate/large,
 /obj/effect/spawner/lootdrop/tenpercent_basic_tool,
@@ -101889,6 +101896,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"sRA" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plasteel,
+/area/maintenance/port)
 "sSu" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -102463,6 +102474,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"ujC" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plasteel,
+/area/maintenance/port)
 "ujT" = (
 /obj/machinery/light/small,
 /obj/structure/table,
@@ -102890,6 +102908,13 @@
 	},
 /turf/open/floor/wood,
 /area/security/prison)
+"vxz" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plasteel,
+/area/maintenance/starboard/fore)
 "vAb" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -129911,7 +129936,7 @@ cwo
 cKb
 dBY
 cIu
-dfa
+ujC
 cMY
 cNd
 cNd
@@ -132972,7 +132997,7 @@ bYM
 caE
 cck
 cea
-dBY
+sRA
 cEy
 cea
 cea
@@ -137540,7 +137565,7 @@ anf
 ama
 aqb
 aky
-arC
+gaG
 asR
 ami
 bOo
@@ -145504,7 +145529,7 @@ alD
 amz
 amz
 aov
-ara
+vxz
 aqv
 ara
 amz
@@ -152805,7 +152830,7 @@ dro
 dsR
 dtU
 dvI
-dxp
+aar
 dyK
 dma
 dBB

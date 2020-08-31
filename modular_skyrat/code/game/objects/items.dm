@@ -2,6 +2,7 @@
 /obj/item
 	var/grabtext
 	var/grabsound
+	shows_armor = ARMOR_SHOW_WEARABLE
 
 /obj/item/pickup(mob/living/user)
 	. = ..()

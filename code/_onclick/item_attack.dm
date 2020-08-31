@@ -61,6 +61,17 @@
 	if(!I.attack_delay_done) //Otherwise, pre_attacked_by() should handle it.
 		user.changeNext_move(I.click_delay)
 
+/**
+  * Called when someone uses us to attack a mob in melee combat.
+  *
+  * This proc respects CheckAttackCooldown() default clickdelay handling.
+  *
+  * @params
+  * * mob/living/M - target
+  * * mob/living/user - attacker
+  * * attackchain_Flags - see [code/__DEFINES/_flags/return_values.dm]
+  * * damage_multiplier - what to multiply the damage by
+  */
 /obj/item/proc/attack(mob/living/M, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
 		return
@@ -148,10 +159,18 @@
 		if(I.damtype == BRUTE)
 			if(prob(33))
 				I.add_mob_blood(src)
-				var/turf/location = get_turf(src)
-				add_splatter_floor(location)
 				if(totitemdamage >= 10 && get_dist(user, src) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(src)
+				var/dist = rand(0,max(min(round(totitemdamage/5, 1),3), 1))
+				var/turf/location = get_turf(src)
+				if(istype(location))
+					add_splatter_floor(location)
+				var/turf/targ = get_ranged_target_turf(user, get_dir(user, src), dist)
+				if(istype(targ) && dist > 0 && ((mob_biotypes & MOB_ORGANIC) || (mob_biotypes & MOB_HUMANOID)))
+					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(loc, get_blood_dna_list())
+					B.add_blood_DNA(get_blood_dna_list())
+					B.GoTo(targ, dist)
+
 		return TRUE //successful attack
 
 /mob/living/simple_animal/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
@@ -184,9 +203,9 @@
 		if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
 			bad_trait = SKILL_COMBAT_MODE //blacklist combat skills.
 			if(SEND_SIGNAL(src, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))
-				. *= 0.5
+				. *= 0.8
 		else if(SEND_SIGNAL(src, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
-			. *= 1.5
+			. *= 1.2
 
 	if(!user.mind || !I.used_skills)
 		return
@@ -197,8 +216,20 @@
 			continue
 		user.mind.auto_gain_experience(skill, I.skill_gain)
 
-// Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
-// Click parameters is the params string from byond Click() code, see that documentation.
+// Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.		//Skyrat Edit
+// Click parameters is the params string from byond Click() code, see that documentation.		//Skyrat Edit
+/**
+  * Called after attacking something if the melee attack chain isn't interrupted before.
+  * Also called when clicking on something with an item without being in melee range
+  *
+  * WARNING: This does not automatically check clickdelay if not in a melee attack! Be sure to account for this!
+  *
+  * @params
+  * * target - The thing we clicked
+  * * user - mob of person clicking
+  * * proximity_flag - are we in melee range/doing it in a melee attack
+  * * click_parameters - mouse control parameters, check BYOND ref.
+  */
 /obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
@@ -210,13 +241,13 @@
 		else
 			return clamp(w_class * 6, 10, 100) // Multiply the item's weight class by 6, then clamp the value between 10 and 100
 
-/mob/living/proc/send_item_attack_message(obj/item/I, mob/living/user, hit_area, current_force)
+/mob/living/proc/send_item_attack_message(obj/item/I, mob/living/user, hit_area, current_force, obj/item/bodypart/hit_BP)
 	var/message_verb = "attacked"
 	if(I.attack_verb && I.attack_verb.len)
 		message_verb = "[pick(I.attack_verb)]"
 	if(current_force < I.force * FEEBLE_ATTACK_MSG_THRESHOLD)
 		message_verb = "[pick("feebly", "limply", "saplessly")] [message_verb]"
-	else if(!I.force)
+	if(!I.force) //skyrat edit
 		return
 	var/message_hit_area = ""
 	if(hit_area)

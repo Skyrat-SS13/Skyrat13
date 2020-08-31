@@ -48,7 +48,7 @@
 		D.visible_message("<span class='warning'>[A] slams [D] into the ground!</span>", \
 						  	"<span class='userdanger'>[A] slams you into the ground!</span>")
 		playsound(get_turf(A), 'sound/weapons/slam.ogg', 50, 1, -1)
-		D.apply_damage(damage, BRUTE)
+		D.apply_damage(damage, BRUTE, wound_bonus = CANT_WOUND) //skyrat edit
 		D.DefaultCombatKnockdown(120)
 		log_combat(A, D, "slammed (CQC)")
 	return TRUE
@@ -82,7 +82,7 @@
 	var/damage = (damage_roll(A,D) + 55)
 	log_combat(A, D, "pressured (CQC)")
 	D.visible_message("<span class='warning'>[A] punches [D]'s neck!</span>")
-	D.apply_damage(damage, STAMINA)
+	D.apply_damage(damage, STAMINA, wound_bonus = CANT_WOUND) //skyrat edit
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	return TRUE
 
@@ -96,7 +96,7 @@
 		log_combat(A, D, "restrained (CQC)")
 		D.visible_message("<span class='warning'>[A] locks [D] into a restraining position!</span>", \
 							"<span class='userdanger'>[A] locks you into a restraining position!</span>")
-		D.apply_damage(damage, STAMINA)
+		D.apply_damage(damage, STAMINA, wound_bonus = CANT_WOUND) //skyrat edit
 		D.Stun(100)
 		restraining = TRUE
 		addtimer(VARSET_CALLBACK(src, restraining, FALSE), 50, TIMER_UNIQUE)
@@ -114,7 +114,7 @@
 		var/obj/item/I = D.get_active_held_item()
 		if(I && D.temporarilyRemoveItemFromInventory(I))
 			A.put_in_hands(I)
-		D.apply_damage(damage + 45, STAMINA)
+		D.apply_damage(damage + 45, STAMINA, wound_bonus = CANT_WOUND) //skyrat edit
 		D.apply_damage(damage + 20, BRUTE)
 	return TRUE
 
@@ -159,7 +159,7 @@
 		D.visible_message("<span class='warning'>[A] leg sweeps [D]!", \
 							"<span class='userdanger'>[A] leg sweeps you!</span>")
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
-		D.apply_damage(bonus_damage, BRUTE)
+		D.apply_damage(bonus_damage, BRUTE, wound_bonus = CANT_WOUND) //skyrat edit
 		D.DefaultCombatKnockdown(60)
 		log_combat(A, D, "sweeped (CQC)")
 	return TRUE
@@ -183,13 +183,13 @@
 			D.drop_all_held_items()
 			D.Jitter(2)
 			D.Dizzy(damage)
-			D.apply_damage(damage*2 + 20, STAMINA)
+			D.apply_damage(damage*2 + 20, STAMINA, wound_bonus = CANT_WOUND) //skyrat edit
 			D.apply_damage(damage*0.5, BRUTE)
 		else
 			D.visible_message("<span class='danger'>[A] strikes [D] in the chest!</span>", \
 							"<span class='userdanger'>[A] strikes in chest!</span>")
 			playsound(D, 'sound/weapons/cqchit1.ogg', 25, 1, -1)
-			D.apply_damage(damage + 15, STAMINA)
+			D.apply_damage(damage + 15, STAMINA, wound_bonus = CANT_WOUND) //skyrat edit
 			D.apply_damage(damage*0.5, BRUTE)
 		log_combat(A, D, "disarmed (CQC)", "[I ? " grabbing \the [I]" : ""]")
 	if(restraining && A.pulling == D)
