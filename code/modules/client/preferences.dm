@@ -145,13 +145,9 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 	var/list/body_descriptors = list()
 
 	var/list/alt_titles_preferences = list()
-<<<<<<< HEAD
 
 	var/combat_music = "None"
 	var/sound/custom_combat_music
-=======
-	var/combat_music = "None"
->>>>>>> combatmusic
 	
 	var/accept_ERG = FALSE
 	
