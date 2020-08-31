@@ -3,6 +3,8 @@
 	icon_state = "cbbolt"
 	damage = 6
 	var/piercing = FALSE
+	wound_bonus = CANT_WOUND
+	embedding = list(embed_chance=0, fall_chance=2, jostle_chance=0, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.5, pain_mult=3, rip_time=10)
 
 /obj/item/projectile/bullet/dart/Initialize()
 	. = ..()

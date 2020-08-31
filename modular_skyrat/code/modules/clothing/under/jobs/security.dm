@@ -19,7 +19,7 @@
 	desc = "No inner armoring, but full of combine style."
 	icon_state = "cpcasual"
 	item_state = "cpcasual"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 0)
 
 //Blueshield
 /obj/item/clothing/under/rank/security/blueshield
@@ -30,7 +30,7 @@
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "blueshield"
 	item_state = "blueshield"
-	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 10, "bomb" =10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 10, "bomb" =10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 15)
 	can_adjust = FALSE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
@@ -44,7 +44,7 @@
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "bs_turtleneck"
 	item_state = "bs_turtleneck"
-	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 10, "bomb" =10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 10, "bomb" =10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 15)
 	can_adjust = FALSE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE

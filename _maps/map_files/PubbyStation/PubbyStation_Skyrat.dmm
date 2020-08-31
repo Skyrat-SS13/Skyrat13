@@ -47,6 +47,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aah" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Surgery";
+	network = list("ss13","surgery")
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	pixel_y = 22
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/limbgrower,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "abf" = (
 /obj/structure/bed,
 /turf/open/floor/plating,
@@ -37551,28 +37574,6 @@
 	},
 /obj/structure/sink{
 	pixel_y = 28
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
-"bIq" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Surgery";
-	network = list("ss13","surgery")
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/airalarm{
-	pixel_y = 22
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -96098,7 +96099,7 @@ bDy
 bEI
 bFV
 bFU
-bIq
+aah
 bKF
 bKF
 bLO

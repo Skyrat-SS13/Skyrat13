@@ -5,6 +5,7 @@
 	damage_type = CLONE
 	irradiate = 100
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/energy/dart //ninja throwing dart
 	name = "dart"
@@ -13,6 +14,7 @@
 	damage_type = TOX
 	knockdown = 100
 	range = 7
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/energy/pickle //projectile for adminspawn only gun
 	name = "pickle-izing beam"

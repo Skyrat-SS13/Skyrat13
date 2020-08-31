@@ -5,7 +5,7 @@
 	permeability_coefficient = 0.9
 	block_priority = BLOCK_PRIORITY_UNIFORM
 	slot_flags = ITEM_SLOT_ICLOTHING
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 0)
 	mutantrace_variation = STYLE_DIGITIGRADE|USE_TAUR_CLIP_MASK
 	var/fitted = FEMALE_UNIFORM_FULL // For use in alternate clothing styles for women
 	var/has_sensor = HAS_SENSORS // For the crew computer
@@ -39,7 +39,7 @@
 	if(!attach_accessory(I, user))
 		return ..()
 
-/obj/item/clothing/under/update_clothes_damaged_state(damaging = TRUE)
+/obj/item/clothing/under/update_clothes_damaged_state() //skyrat edit
 	..()
 	if(ismob(loc))
 		var/mob/M = loc
@@ -261,13 +261,25 @@
 	if(adjusted)
 		if(fitted != FEMALE_UNIFORM_TOP)
 			fitted = NO_FEMALE_UNIFORM
-		if(!alt_covers_chest) // for the special snowflake suits that expose the chest when adjusted
-			body_parts_covered &= ~CHEST
-			mutantrace_variation &= ~USE_TAUR_CLIP_MASK //How are we supposed to see the uniform otherwise?
+		//skyrat edit
+	if(!alt_covers_chest) // for the special snowflake suits that expose the chest when adjusted (and also the arms, realistically)
+		body_parts_covered &= ~ARMS
+		body_parts_covered &= ~CHEST
+		mutantrace_variation &= ~USE_TAUR_CLIP_MASK //How are we supposed to see the uniform otherwise?
+		//
 	else
 		fitted = initial(fitted)
 		if(!alt_covers_chest)
 			body_parts_covered |= CHEST
+			//skyrat edit
+			body_parts_covered |= ARMS
+			if(!LAZYLEN(damage_by_parts))
+				return adjusted
+			for(var/zone in list(BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)) // ugly check to make sure we don't reenable protection on a disabled part
+				if(damage_by_parts[zone] > limb_integrity)
+					for(var/part in zone2body_parts_covered(zone))
+						body_parts_covered &= part
+			//
 			if(initial(mutantrace_variation) & USE_TAUR_CLIP_MASK)
 				mutantrace_variation |= USE_TAUR_CLIP_MASK
 

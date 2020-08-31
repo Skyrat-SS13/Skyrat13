@@ -671,3 +671,28 @@
 			return 'modular_citadel/icons/ui/screen_clockwork.dmi'
 		else
 			return 'modular_citadel/icons/ui/screen_midnight.dmi'
+
+//skyrat stuff
+/// For finding out what body parts a body zone covers, the inverse of the below basically
+/proc/zone2body_parts_covered(def_zone)
+	switch(def_zone)
+		if(BODY_ZONE_CHEST)
+			return list(CHEST, GROIN)
+		if(BODY_ZONE_HEAD)
+			return list(HEAD)
+		if(BODY_ZONE_L_ARM)
+			return list(ARM_LEFT)
+		if(BODY_ZONE_PRECISE_L_HAND)
+			return list(HAND_LEFT)
+		if(BODY_ZONE_R_ARM)
+			return list(ARM_RIGHT)
+		if(BODY_ZONE_PRECISE_R_HAND)
+			return list(HAND_RIGHT)
+		if(BODY_ZONE_L_LEG)
+			return list(LEG_LEFT)
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			return list(FOOT_LEFT)
+		if(BODY_ZONE_R_LEG)
+			return list(LEG_RIGHT)
+		if(BODY_ZONE_PRECISE_R_FOOT)
+			return list(FOOT_RIGHT)

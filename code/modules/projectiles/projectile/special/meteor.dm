@@ -6,6 +6,8 @@
 	damage_type = BRUTE
 	nodamage = 1
 	flag = "bullet"
+	wound_bonus = 60
+	sharpness = SHARP_NONE
 
 /obj/item/projectile/meteor/Bump(atom/A)
 	if(A == firer)
