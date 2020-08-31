@@ -1,4 +1,0 @@
-author: "Bob Joga, Ryll-Ryll, TG Station coders, Baystation and Paradise Station for some small stuffies"
-delete-after: True
-changes: 
-  - refactor: "Medicine has been pretty much entirely overhauled. See PR #2575 on github for more info."
