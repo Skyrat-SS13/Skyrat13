@@ -2,6 +2,7 @@
 /obj/item/organ/eyes/night_vision
 	name = "shadow eyes"
 	desc = "A spooky set of eyes that can see in the dark."
+	icon_state = "shadow_eyes"
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	actions_types = list(/datum/action/item_action/organ_action/use)
@@ -24,11 +25,13 @@
 /obj/item/organ/eyes/night_vision/alien
 	name = "alien eyes"
 	desc = "It turned out they had them after all!"
+	icon_state = "alien_eyes"
 	sight_flags = SEE_MOBS
 
 /obj/item/organ/eyes/night_vision/zombie
 	name = "undead eyes"
-	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
+	desc = "The infected eyes of a Nanite Horror, swarming with millions of tiny nanomachines which work to stave off the effects of their disease."
+	icon_state = "rotten_eyes"
 	//sight_flags = SEE_MOBS        SKYRAT CHANGE - No more free thermals. Why did they keep this for so long?
 
 /obj/item/organ/eyes/night_vision/nightmare
