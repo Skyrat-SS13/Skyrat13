@@ -423,7 +423,7 @@
 			else
 				E.enthrallTally += 20
 				to_chat(src, "<span class='notice'>You give into [E.master]'s influence.</span>")
-	if (InCritical())
+	if(InCritical())
 		log_message("Has succumbed to death while in [InFullCritical() ? "hard":"soft"] critical with [round(health, 0.1)] points of health!", LOG_ATTACK)
 		adjustOxyLoss(health - HEALTH_THRESHOLD_DEAD)
 		updatehealth()
