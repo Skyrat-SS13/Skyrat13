@@ -302,7 +302,7 @@
 /datum/reagent/medicine/tramadol/on_mob_life(mob/living/carbon/M)
 	. = ..()
 	if(M.drunkenness)
-		M.applyOrganDamage(ORGAN_SLOT_LIVER, 0.5)
+		M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.5)
 
 /datum/reagent/medicine/bicaridine/on_mob_metabolize(mob/living/L)
 	. = ..()
@@ -366,7 +366,7 @@
 
 /datum/reagent/medicine/cryoxadone/on_mob_metabolize(mob/living/L)
 	. = ..()
-	if(M.bodytemperature < T0C)
+	if(L.bodytemperature < T0C)
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			C.add_chem_effect(CE_PAINKILLER, 100)
@@ -379,10 +379,10 @@
 
 /datum/reagent/medicine/pyroxadone/on_mob_metabolize(mob/living/L)
 	. = ..()
-		if(iscarbon(L))
-			var/mob/living/carbon/C = L
-			if(C.bodytemperature >= BODYTEMP_HEAT_DAMAGE_LIMIT)
-				C.add_chem_effect(CE_PAINKILLER, 100)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(C.bodytemperature >= BODYTEMP_HEAT_DAMAGE_LIMIT)
+			C.add_chem_effect(CE_PAINKILLER, 100)
 
 /datum/reagent/medicine/pyroxadone/on_mob_end_metabolize(mob/living/L)
 	. = ..()

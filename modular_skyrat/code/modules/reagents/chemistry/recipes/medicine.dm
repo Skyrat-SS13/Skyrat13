@@ -61,12 +61,12 @@
 	name = "Tramadol"
 	id = /datum/reagent/medicine/tramadol
 	results = list(/datum/reagent/medicine/tramadol = 3)
-	required_reagents = list(/datum/reagent/medicine/bicaridine = 1, /datum/reagent/ethanol = 1, /datum/reagent/acetone = 1)
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 1, /datum/reagent/consumable/ethanol = 1, /datum/reagent/acetone = 1)
 	mix_message = "The mixture wafts a sickly smell."
 
 /datum/chemical_reaction/paracetamol
 	name = "Paracetamol"
 	id = /datum/reagent/medicine/paracetamol
 	results = list(/datum/reagent/medicine/paracetamol = 3)
-	required_reagents = list(/datum/reagent/tramadol = 1, /datum/reagent/sugar = 1, /datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/medicine/tramadol = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/water = 1)
 	mix_message = "The mixture wafts a sickly sugary smell."
