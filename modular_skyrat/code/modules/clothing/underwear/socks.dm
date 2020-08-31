@@ -29,6 +29,7 @@
 /obj/item/clothing/underwear/socks/knee
 	name = "knee socks"
 	icon_state = "socks_knee"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/underwear/socks/knee/thin
 	name = "thin knee socks"
@@ -80,6 +81,7 @@
 /obj/item/clothing/underwear/socks/thigh
 	name = "thigh high socks"
 	icon_state = "socks_thigh"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/underwear/socks/thigh/thin
 	name = "thin thigh high socks"
@@ -133,6 +135,7 @@
 	desc = "A pair of stockings."
 	body_parts_covered = LEGS | FEET
 	icon_state = "stockings_lpink"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/underwear/socks/thigh/stockings/fishnet
 	name = "fishnet stockings"
@@ -171,3 +174,4 @@
 	desc = "Pantyhose."
 	body_parts_covered = FEET | LEGS | GROIN
 	icon_state = "socks_pantyhose"
+	mutantrace_variation = STYLE_DIGITIGRADE

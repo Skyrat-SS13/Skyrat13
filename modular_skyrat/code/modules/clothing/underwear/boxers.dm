@@ -18,6 +18,7 @@
 /obj/item/clothing/underwear/briefs/boxers
 	name = "boxers"
 	icon_state = "boxers"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/underwear/briefs/boxers/heart
 	name = "heart boxers"

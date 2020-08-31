@@ -563,6 +563,10 @@
 		//skyrat edit
 		if(wear_suit.flags_inv & HIDEWRISTS)
 			obscured |= SLOT_WRISTS
+		if(wear_suit.flags_inv & HIDEUNDERWEAR)
+			obscured |= SLOT_W_UNDERWEAR
+			obscured |= SLOT_W_SHIRT
+			obscured |= SLOT_W_SOCKS
 		//
 		if(wear_suit.flags_inv & HIDEJUMPSUIT)
 			obscured |= SLOT_W_UNIFORM
@@ -575,6 +579,10 @@
 			obscured |= SLOT_GLOVES
 		if(w_uniform.flags_inv & HIDEWRISTS)
 			obscured |= SLOT_WRISTS
+		if(w_uniform.flags_inv & HIDEUNDERWEAR)
+			obscured |= SLOT_W_UNDERWEAR
+			obscured |= SLOT_W_SHIRT
+			obscured |= SLOT_W_SOCKS
 	//
 
 	if(head)
