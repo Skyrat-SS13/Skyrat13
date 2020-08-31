@@ -1170,7 +1170,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_WRISTS) )
 				return FALSE
-			if(num_arms < 2)
+			if(num_hands < 2)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		//
