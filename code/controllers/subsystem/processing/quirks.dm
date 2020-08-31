@@ -14,20 +14,43 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	var/list/quirk_objects = list()	//A list of all quirk objects in the game, since some may process
 	var/list/quirk_blacklist = list() //A list a list of quirks that can not be used with each other. Format: list(quirk1,quirk2),list(quirk3,quirk4)
 
-	//SKYRAT CHANGE - Blood
+	//SKYRAT CHANGE
+	//yes this is terrible, but i'd rather not deal with creating more useless subsystems
 	var/list/all_bloodtypes = list()
-	//yes this is terrible but i want to make it automatic
+	var/list/associated_bodyparts = list()
+	var/list/bodypart_child_to_parent = list()
+	//
 
 /datum/controller/subsystem/processing/quirks/Initialize(timeofday)
 	if(!quirks.len)
 		SetupQuirks()
-		quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic"),list("Ageusia","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"),list("Alcohol Tolerance","Alcohol Intolerance"),list("Alcohol Intolerance","Drunken Resilience"),list("Speech impediment (r as l)","Speech impediment (l as w)","Speech impediment (r as w)", "Speech impediment (r and l as w)")) // Skyrat edit
+		quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic"),list("Ageusia","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"),list("Alcohol Tolerance","Alcohol Intolerance"),list("Alcohol Intolerance","Drunken Resilience"),list("Speech impediment (r as l)","Speech impediment (l as w)","Speech impediment (r as w)", "Speech impediment (r and l as w)"), list("Do Not Clone", "Do Not Revive")) // Skyrat edit
 	//skyrat edit
+	//this is awful but it makes my life easier.
 	if(!all_bloodtypes.len)
 		for(var/datum/species/S in subtypesof(/datum/species))
 			all_bloodtypes |= S.exotic_bloodtype
+	//this is awful, but byond doesn't let me use bodypart typepaths
+	//for the scar configuration in the setup.
+	if(!associated_bodyparts.len)
+		for(var/i in SSPARTS)
+			var/obj/item/bodypart/BP = new i()
+			associated_bodyparts[BP.body_zone] = BP
+			bodypart_child_to_parent[BP.body_zone] = BP.parent_bodyzone
+			BP.moveToNullspace()
 	//
 	return ..()
+
+/datum/controller/subsystem/processing/proc/atomize_bodypart_heritage(body_zone)
+	. = list()
+	if(!body_zone)
+		return
+	var/obj/item/bodypart/BP = SSquirks.associated_bodyparts[body_zone]
+	. |= BP.body_zone
+	for(var/i in BP.children_zones)
+		var/obj/item/bodypart/BoPa = SSquirks.associated_bodyparts[i]
+		. |= BoPa.body_zone
+		. |= BoPa.children_zones
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
 // Sort by Positive, Negative, Neutral; and then by name
@@ -57,7 +80,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		cli.prefs.save_character()
 	if (!silent && LAZYLEN(cut))
 		to_chat(to_chat_target || user, "<span class='boldwarning'>Some quirks have been cut from your character because of these quirks conflicting with your job assignment: [english_list(cut)].</span>")
-	//SKYRAT CHANGE - Blood
+	//SKYRAT CHANGE
 	//You might be asking... "bobyot y u do dis in quirk soobsistem it make no sense"
 	//i just don't want to create a whole other subsystem, along with a new proc, for doing this one time stuff
 	if(cli.prefs.bloodtype)
@@ -98,6 +121,15 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 			H.dna.species.disliked_food = 0
 			for(var/V in cli.prefs.fooddislikes)
 				H.dna.species.disliked_food |= cli.prefs.fooddislikes[V]
+	//Yes, i am using the quirk subsystem to assign scars. Too bad!
+	if(istype(H))
+		for(var/i in cli.prefs.cosmetic_scars)
+			if(H.get_bodypart(i))
+				for(var/y in cli.prefs.cosmetic_scars[i])
+					var/datum/scar/S = new()
+					S.permanent = TRUE
+					if(cli.prefs.cosmetic_scars[i][y]["desc"] && (cli.prefs.cosmetic_scars[i][y]["desc"] != "None"))
+						S.pref_apply(H.get_bodypart(i), y, cli.prefs.cosmetic_scars[i][y]["desc"], cli.prefs.cosmetic_scars[i][y]["severity"])
 		if(LAZYLEN(cli.prefs.body_descriptors) && LAZYLEN(H.dna.species.descriptors))
 			for(var/entry in H.dna.species.descriptors)
 				if(cli.prefs.body_descriptors[entry])

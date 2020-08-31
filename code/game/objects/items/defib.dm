@@ -401,15 +401,14 @@
 		do_disarm(M, user)
 		return
 
-	if(!iscarbon(M))
+	if(!iscarbon(M) || HAS_TRAIT(M, TRAIT_NODEFIB))
 		if(req_defib)
 			to_chat(user, "<span class='warning'>The instructions on [defib] don't mention how to revive that...</span>")
 		else
 			to_chat(user, "<span class='warning'>You aren't sure how to revive that...</span>")
 		return
+
 	var/mob/living/carbon/H = M
-
-
 	if(user.zone_selected != BODY_ZONE_CHEST)
 		to_chat(user, "<span class='warning'>You need to target your patient's chest with [src]!</span>")
 		return

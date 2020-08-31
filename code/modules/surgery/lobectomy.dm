@@ -1,7 +1,11 @@
 /datum/surgery/lobectomy
 	name = "Lobectomy"	//not to be confused with lobotomy
-	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/saw, /datum/surgery_step/clamp_bleeders,
-				 /datum/surgery_step/lobectomy, /datum/surgery_step/close)
+	steps = list(/datum/surgery_step/incise,
+				/datum/surgery_step/retract_skin,
+				/datum/surgery_step/saw,
+				/datum/surgery_step/clamp_bleeders,
+				/datum/surgery_step/lobectomy,
+				/datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_CHEST)
 	requires_bodypart_type = BODYPART_ORGANIC //Skyrat change
 
@@ -15,7 +19,7 @@
 
 //lobectomy, removes the most damaged lung lobe with a 95% base success chance
 /datum/surgery_step/lobectomy
-	name = "excise damaged lung node"
+	name = "Excise damaged lung node"
 	implements = list(TOOL_SCALPEL = 95, /obj/item/melee/transforming/energy/sword = 65, /obj/item/kitchen/knife = 45,
 		/obj/item/shard = 35)
 	time = 42
