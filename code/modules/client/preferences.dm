@@ -145,13 +145,9 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 	var/list/body_descriptors = list()
 
 	var/list/alt_titles_preferences = list()
-<<<<<<< HEAD
 
 	var/combat_music = "None"
 	var/sound/custom_combat_music
-=======
-	var/combat_music = "None"
->>>>>>> combatmusic
 	
 	var/accept_ERG = FALSE
 	
@@ -3350,7 +3346,6 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 						custom_combat_music = null
 					else
 						combat_music = sanitize_inlist(combat_music, GLOB.combat_music_options)
-						custom_combat_music = null
 						if(combat_music == "Custom")
 							var/custom_music = input(user, "What sound file do you want to use as your custom combat mode music?", "Combat music", null) as sound
 							if(custom_music)
