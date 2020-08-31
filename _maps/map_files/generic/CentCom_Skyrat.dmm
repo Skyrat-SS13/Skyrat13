@@ -3366,7 +3366,6 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/control)
 "dnf" = (
-/obj/effect/landmark/start/medical_doctor,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
@@ -4738,11 +4737,9 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "esY" = (
-/obj/structure/flora/tree/jungle/small{
-	icon_state = "tree1"
-	},
-/turf/open/floor/plating/smooth/grass,
-/area/centcom/holding/cafepark)
+/obj/structure/rack,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding/cafe)
 "etx" = (
 /turf/open/floor/plating,
 /area/fabric_of_reality)
@@ -4948,11 +4945,10 @@
 /turf/open/floor/plating,
 /area/fabric_of_reality)
 "eDl" = (
-/obj/structure/flora/tree/jungle/small{
-	icon_state = "tree2"
-	},
-/turf/open/floor/plating/smooth/grass,
-/area/centcom/holding/cafepark)
+/obj/vehicle/ridden/janicart/upgraded,
+/obj/item/key/janitor,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding/cafe)
 "eDm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -6373,7 +6369,7 @@
 /area/fabric_of_reality)
 "fZB" = (
 /obj/structure/bodycontainer/crematorium{
-	dir = 8;
+	dir = 4;
 	id = "crematoriumGhostDojo"
 	},
 /obj/machinery/button/crematorium{
@@ -6438,8 +6434,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ctf)
 "gbQ" = (
-/obj/vehicle/ridden/janicart/upgraded,
-/obj/item/key/janitor,
+/obj/item/hilbertshotel/ghostdojo,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "gbW" = (
@@ -6787,7 +6782,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "grn" = (
-/obj/machinery/vr_sleeper{
+/obj/machinery/cryopod{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
@@ -6894,10 +6889,10 @@
 	},
 /area/holodeck/rec_center/chapelcourt)
 "gwm" = (
-/obj/machinery/vr_sleeper{
+/obj/machinery/light,
+/obj/machinery/cryopod{
 	dir = 1
 	},
-/obj/machinery/light,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "gwG" = (
@@ -12228,12 +12223,6 @@
 /obj/structure/flora/ausbushes/genericbush,
 /turf/open/floor/plating/smooth/grass,
 /area/centcom/holding/cafepark)
-"lML" = (
-/obj/machinery/cryopod{
-	dir = 4
-	},
-/turf/open/indestructible/hotelwood,
-/area/centcom/holding/cafe)
 "lNb" = (
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
@@ -20499,12 +20488,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/plasteel/white,
 /area/centcom/ferry)
-"uSB" = (
-/obj/machinery/cryopod{
-	dir = 8
-	},
-/turf/open/indestructible/hotelwood,
-/area/centcom/holding/cafe)
 "uSV" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -21547,23 +21530,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"wie" = (
-/obj/effect/landmark/start/medical_doctor,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	alpha = 255;
-	dir = 1;
-	name = "strong blue corner"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/indestructible/hoteltile{
-	icon_state = "white"
-	},
-/area/centcom/holding/cafe)
 "wiq" = (
 /obj/effect/turf_decal/box,
 /obj/effect/turf_decal/caution/stand_clear,
@@ -24207,7 +24173,7 @@ voM
 voM
 voM
 mjx
-brP
+eaA
 fXU
 nrS
 wLl
@@ -24216,7 +24182,7 @@ wXN
 wXN
 wXN
 wXN
-brP
+eaA
 vzE
 wXN
 wXN
@@ -26010,7 +25976,7 @@ vWE
 vzE
 vWE
 vWE
-nqC
+eZX
 vXD
 vWE
 vWE
@@ -26518,7 +26484,7 @@ mjx
 vWE
 vWE
 vWE
-gUA
+eZX
 aSp
 tFP
 tgH
@@ -26771,7 +26737,7 @@ baq
 vWE
 fjp
 vWE
-brP
+eaA
 vWE
 atF
 vWE
@@ -27043,7 +27009,7 @@ vWE
 lMF
 vWE
 vWE
-eDl
+eZX
 fXU
 vWE
 vWE
@@ -27541,7 +27507,7 @@ vWE
 suj
 vWE
 vWE
-rNj
+eZX
 vWE
 shB
 wLl
@@ -27808,7 +27774,7 @@ vWE
 aOt
 vWE
 aAG
-brP
+eaA
 vWE
 vWE
 vWE
@@ -28065,7 +28031,7 @@ dqH
 vWE
 suj
 vWE
-gUA
+eZX
 vWE
 vWE
 vWE
@@ -28074,14 +28040,14 @@ clx
 vWE
 vWE
 vWE
-esY
+eZX
 wLl
 vWE
 vWE
 vWE
 vWE
 vWE
-brP
+eaA
 wXN
 yjB
 yjB
@@ -28329,7 +28295,7 @@ faX
 vWE
 vWE
 aOt
-brP
+eaA
 vWE
 vWE
 qvY
@@ -28566,7 +28532,7 @@ atF
 vWE
 vWE
 vWE
-brP
+eaA
 aSp
 uua
 vWE
@@ -29857,7 +29823,7 @@ vWE
 aSp
 avj
 vWE
-gUA
+eZX
 vWE
 vWE
 vWE
@@ -29873,7 +29839,7 @@ gJs
 lSN
 lDf
 bKS
-brP
+eaA
 tgH
 aOt
 wLl
@@ -30873,7 +30839,7 @@ wDN
 yjB
 bKt
 pan
-wie
+cZI
 hcZ
 jLB
 aaA
@@ -31160,7 +31126,7 @@ lDf
 vWE
 aOt
 oyV
-brP
+eaA
 fjp
 mjx
 vWE
@@ -33239,7 +33205,7 @@ wXN
 wXN
 suj
 vWE
-vWE
+brP
 iOc
 iTS
 iSh
@@ -34242,7 +34208,7 @@ xOf
 xOf
 pUB
 evg
-xOf
+esY
 xOf
 grn
 bKt
@@ -34756,7 +34722,7 @@ otC
 ffP
 dlx
 xOf
-uSB
+xOf
 xOf
 grn
 bKt
@@ -35013,7 +34979,7 @@ bKt
 bKt
 ipi
 xOf
-lML
+xOf
 xOf
 bKt
 bKt
@@ -35527,7 +35493,7 @@ bKt
 bKt
 bKt
 xOf
-xOf
+eDl
 bKt
 bKt
 vWE
@@ -36053,7 +36019,7 @@ bKS
 baq
 vWE
 vWE
-brP
+eaA
 vXD
 aRk
 rGW
@@ -37855,7 +37821,7 @@ vWE
 vWE
 vWE
 vWE
-rNj
+eZX
 vWE
 shB
 wLl
@@ -38115,7 +38081,7 @@ vWE
 rGW
 bKS
 vWE
-brP
+eaA
 faX
 vWE
 jto
@@ -39374,7 +39340,7 @@ vWE
 vWE
 aOt
 suj
-brP
+eaA
 cer
 cer
 baq
@@ -39908,7 +39874,7 @@ aSp
 vWE
 vWE
 vWE
-brP
+eaA
 vXD
 vWE
 vWE
@@ -40433,7 +40399,7 @@ vWE
 vzE
 vWE
 vWE
-nqC
+eZX
 qGZ
 qGZ
 qGZ
@@ -40687,7 +40653,7 @@ vWE
 vWE
 wLl
 jto
-brP
+eaA
 vWE
 vWE
 vWE
@@ -40941,7 +40907,7 @@ vWE
 vWE
 vWE
 vWE
-gUA
+eZX
 aSp
 tFP
 tgH
@@ -41953,7 +41919,7 @@ jto
 atF
 vWE
 vWE
-gUA
+eZX
 aSp
 tFP
 vWE
@@ -42221,7 +42187,7 @@ suj
 vWE
 vWE
 vWE
-brP
+eaA
 aSp
 vWE
 wLl
@@ -42711,12 +42677,12 @@ yjB
 yjB
 yjB
 vWE
-brP
+eaA
 vWE
 tXw
 cer
 aOt
-brP
+eaA
 xTp
 vWE
 vWE
@@ -42982,7 +42948,7 @@ vWE
 vzE
 vWE
 vWE
-nqC
+eZX
 vXD
 vWE
 vWE
@@ -42999,7 +42965,7 @@ vWE
 vzE
 vWE
 vWE
-nqC
+eZX
 vXD
 vWE
 suj
@@ -43490,7 +43456,7 @@ mjx
 vWE
 vWE
 vWE
-gUA
+eZX
 aSp
 tFP
 tgH
@@ -43507,14 +43473,14 @@ mjx
 vWE
 vWE
 vWE
-gUA
+eZX
 aSp
 tFP
 tgH
 aOt
 vWE
 jto
-brP
+eaA
 vWE
 faX
 vWE
@@ -44513,8 +44479,8 @@ vWE
 suj
 vWE
 vWE
-rNj
-brP
+eZX
+eaA
 shB
 wLl
 qvY
@@ -44530,7 +44496,7 @@ vWE
 vWE
 vWE
 vWE
-rNj
+eZX
 vWE
 shB
 wLl
@@ -44789,7 +44755,7 @@ vWE
 vWE
 rGW
 bKS
-brP
+eaA
 vWE
 faX
 fSm
@@ -45037,7 +45003,7 @@ dqH
 vWE
 suj
 vWE
-gUA
+eZX
 vWE
 vWE
 vWE
@@ -45054,7 +45020,7 @@ dqH
 vWE
 suj
 vWE
-gUA
+vWE
 vWE
 vWE
 qGZ
@@ -45292,7 +45258,7 @@ vWE
 vWE
 vWE
 vWE
-dnP
+eZX
 eaA
 aOt
 vWE
@@ -45308,7 +45274,7 @@ cQF
 vWE
 vWE
 vWE
-dnP
+eZX
 vWE
 vWE
 aOt
@@ -48895,7 +48861,7 @@ eFz
 aUm
 qGZ
 qGZ
-gIN
+geL
 gBp
 qGZ
 qGZ
