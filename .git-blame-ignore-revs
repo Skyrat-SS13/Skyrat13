@@ -1,0 +1,16 @@
+# Include any commits in this file which bloat gitblame with tiny mass changes (CRLF TO LF for instance)
+# Include the 40 character hash, and include a comment relating to the commit that it ignores.
+
+# To use this file and unclutter your blame, use the command below (without the '#')
+# git config blame.ignorerevsfile .git-blame-ignore-revs
+
+# Formatting for each commit
+
+# Commit Message
+# Author: 
+#Commit Hash
+
+
+# Standardises all files from CRLF to LF
+# Author: AffectedArc07
+16a37e276922ce88e70483f0a8f44651f9e0241a
