@@ -3422,6 +3422,19 @@
 /mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
+"ahi" = (
+/obj/machinery/light,
+/obj/machinery/camera{
+	c_tag = "Medbay Surgery";
+	dir = 1;
+	network = list("ss13","medbay")
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/obj/machinery/limbgrower,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "ahj" = (
 /obj/structure/chair,
 /obj/effect/landmark/start/assistant,
@@ -59573,18 +59586,6 @@
 	dir = 1
 	},
 /area/medical/surgery)
-"csl" = (
-/obj/machinery/light,
-/obj/machinery/camera{
-	c_tag = "Medbay Surgery";
-	dir = 1;
-	network = list("ss13","medbay")
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "csm" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -99026,7 +99027,7 @@ cno
 coA
 cpU
 cpU
-csl
+ahi
 cia
 ceu
 ndm

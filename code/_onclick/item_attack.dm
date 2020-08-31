@@ -159,10 +159,18 @@
 		if(I.damtype == BRUTE)
 			if(prob(33))
 				I.add_mob_blood(src)
-				var/turf/location = get_turf(src)
-				add_splatter_floor(location)
 				if(totitemdamage >= 10 && get_dist(user, src) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(src)
+				var/dist = rand(0,max(min(round(totitemdamage/5, 1),3), 1))
+				var/turf/location = get_turf(src)
+				if(istype(location))
+					add_splatter_floor(location)
+				var/turf/targ = get_ranged_target_turf(user, get_dir(user, src), dist)
+				if(istype(targ) && dist > 0 && ((mob_biotypes & MOB_ORGANIC) || (mob_biotypes & MOB_HUMANOID)))
+					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(loc, get_blood_dna_list())
+					B.add_blood_DNA(get_blood_dna_list())
+					B.GoTo(targ, dist)
+
 		return TRUE //successful attack
 
 /mob/living/simple_animal/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
@@ -233,13 +241,13 @@
 		else
 			return clamp(w_class * 6, 10, 100) // Multiply the item's weight class by 6, then clamp the value between 10 and 100
 
-/mob/living/proc/send_item_attack_message(obj/item/I, mob/living/user, hit_area, current_force)
+/mob/living/proc/send_item_attack_message(obj/item/I, mob/living/user, hit_area, current_force, obj/item/bodypart/hit_BP)
 	var/message_verb = "attacked"
 	if(I.attack_verb && I.attack_verb.len)
 		message_verb = "[pick(I.attack_verb)]"
 	if(current_force < I.force * FEEBLE_ATTACK_MSG_THRESHOLD)
 		message_verb = "[pick("feebly", "limply", "saplessly")] [message_verb]"
-	else if(!I.force)
+	if(!I.force) //skyrat edit
 		return
 	var/message_hit_area = ""
 	if(hit_area)

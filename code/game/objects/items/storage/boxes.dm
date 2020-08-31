@@ -1460,3 +1460,15 @@ obj/item/storage/box/stingbangs
 /obj/item/storage/box/strange_seeds_5pack/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/seeds/random(src)
+
+//skyrat edit
+/obj/item/storage/box/stingbangs
+	name = "box of stingbangs (WARNING)"
+	desc = "<B>WARNING: These devices are extremely dangerous and can cause severe injuries or death in repeated use.</B>"
+	icon_state = "secbox"
+	illustration = "flashbang"
+
+/obj/item/storage/box/stingbangs/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/grenade/stingbang(src)
+//
