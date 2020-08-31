@@ -105,7 +105,7 @@
 	D.visible_message("<span class='warning'>[A] leg sweeps [D]!</span>", \
 					  	"<span class='userdanger'>[A] leg sweeps you!</span>")
 	playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
-	D.apply_damage(damage, STAMINA, affecting, armor_block)
+	D.apply_damage(damage, STAMINA, affecting, armor_block, wound_bonus = CANT_WOUND) //skyrat edit
 	D.DefaultCombatKnockdown(80, override_hardstun = 1, override_stamdmg = 0)
 	log_combat(A, D, "leg sweeped")
 	return TRUE
@@ -126,7 +126,7 @@
 	D.visible_message("<span class='warning'>[A] karate chops [D]'s neck!</span>", \
 				  	"<span class='userdanger'>[A] karate chops your neck, rendering you unable to speak!</span>")
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, 1, -1)
-	D.apply_damage(damage, BRUTE)
+	D.apply_damage(damage, BRUTE, wound_bonus = CANT_WOUND) //skyrat edit
 	if(D.silent <= 10)
 		D.silent = clamp(D.silent + 10, 0, 10)
 	log_combat(A, D, "neck chopped")
@@ -174,7 +174,7 @@
 		to_chat(A, "<span class='danger'>You jab [D]!</span>")
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		playsound(D, 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
-		D.apply_damage(damage*2 + 15, STAMINA, affecting, armor_block)
+		D.apply_damage(damage*2 + 15, STAMINA, affecting, armor_block, wound_bonus = CANT_WOUND) //skyrat edit
 		log_combat(A, D, "punched nonlethally")
 	else
 		D.visible_message("<span class='danger'>[A] reprimands [D]!</span>", \
@@ -182,7 +182,7 @@
 		to_chat(A, "<span class='danger'>You stomp [D]!</span>")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		playsound(D, 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
-		D.apply_damage(damage*2 + 20, STAMINA, affecting, armor_block)
+		D.apply_damage(damage*2 + 20, STAMINA, affecting, armor_block, wound_bonus = CANT_WOUND) //skyrat edit
 		log_combat(A, D, "stomped nonlethally")
 	if(damage >= stunthreshold)
 		D.visible_message("<span class='warning'>[D] sputters and recoils in pain!</span>", "<span class='userdanger'>You recoil in pain as you are jabbed in a nerve!</span>")

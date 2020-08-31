@@ -82,4 +82,4 @@
 		C.updatehealth()
 		C.update_mobility()
 		C.update_stamina()
-	update_total() 
+	update_total()

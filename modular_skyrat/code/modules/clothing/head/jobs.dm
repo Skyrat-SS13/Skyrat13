@@ -12,7 +12,7 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	icon_state = "blueshield"
 	item_state = "blueshield"
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 75)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 75, "wound" = 20)
 	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/head/beret/blueshield/navy
