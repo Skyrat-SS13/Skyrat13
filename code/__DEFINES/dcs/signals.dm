@@ -449,8 +449,7 @@
 #define COMSIG_XENO_TURF_CLICK_CTRL "xeno_turf_click_alt"					//from turf AltClickOn(): (/mob)
 #define COMSIG_XENO_MONKEY_CLICK_CTRL "xeno_monkey_click_ctrl"				//from monkey CtrlClickOn(): (/mob)
 
-// Skyrat signals
-
+//skyrat funnies
 // Movable signals
 #define COMSIG_MOVABLE_RADIO_TALK_INTO "movable_radio_talk_into"				//from radio talk_into(): (obj/item/radio/radio, message, channel, list/spans, datum/language/language, direct)
 // Mob signals
@@ -459,6 +458,14 @@
 #define COMSIG_LIVING_FLASH_ACT "living_flash_act"				///from base of [/mob/living/proc/flash_act] //moth
 
 #define COMSIG_EVENTPREF_UPDATE "observer_eventpref_update"
+
+// /mob/living/carbon physiology signals
+#define COMSIG_CARBON_GAIN_WOUND "carbon_gain_wound"				//from /datum/wound/proc/apply_wound() (/mob/living/carbon/C, /datum/wound/W, /obj/item/bodypart/L)
+#define COMSIG_CARBON_LOSE_WOUND "carbon_lose_wound"				//from /datum/wound/proc/remove_wound() (/mob/living/carbon/C, /datum/wound/W, /obj/item/bodypart/L)
+///from base of /obj/item/bodypart/proc/attach_limb(): (new_limb, special) allows you to fail limb attachment
+#define COMSIG_CARBON_ATTACH_LIMB "carbon_attach_limb"
+#define COMSIG_CARBON_REMOVE_LIMB "carbon_remove_limb"			//from base of /obj/item/bodypart/proc/drop_limb(special, dismembered)
+#define COMPONENT_NO_ATTACH (1<<0)
 
 //Mob stuff
 #define COMSIG_MOB_CLIENT_MOUSEUP "mob_client_mouseup" ///from base of [client/MouseUp()] (datum/source, object, location, control, params)

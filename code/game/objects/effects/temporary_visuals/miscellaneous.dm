@@ -6,9 +6,13 @@
 	layer = BELOW_MOB_LAYER
 	var/splatter_type = "splatter"
 
-/obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, set_dir, new_color)
+/obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, set_dir, new_color, list/blood_dna)
 	if(new_color)
 		color = new_color
+	if(blood_dna)
+		color = blood_dna["color"]
+	if(!color)
+		color = BLOOD_COLOR_HUMAN
 	if(set_dir in GLOB.diagonals)
 		icon_state = "[splatter_type][pick(1, 2, 6)]"
 	else

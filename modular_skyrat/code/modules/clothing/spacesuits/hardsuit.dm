@@ -8,7 +8,7 @@
 	icon_state = "hardsuit0-metrocop"
 	item_state = "hardsuit0-metrocop"
 	hardsuit_type = "metrocop"
-	armor = list("melee" = 50, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 60, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 50, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 60, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100, "wound" = 10)
 	resistance_flags = FIRE_PROOF | ACID_PROOF | GOLIATH_RESISTANCE
 	mutantrace_variation = STYLE_MUZZLE
 
@@ -21,7 +21,7 @@
 	icon_state = "hardsuit-metrocop"
 	item_state = "hardsuit-metrocop"
 	hardsuit_type = "metrocop"
-	armor = list("melee" = 50, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 60, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 50, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 60, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100, "wound" = 10)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/metrocop
 	resistance_flags = FIRE_PROOF | ACID_PROOF | GOLIATH_RESISTANCE
 	mutantrace_variation = STYLE_DIGITIGRADE
@@ -32,8 +32,8 @@
 	desc = "A pointy, murdery blade that can be attached to your hardsuit."
 	force = 0
 	force_on = 20
-	sharpness = IS_BLUNT
-	var/sharpness_on = IS_SHARP
+	sharpness = SHARP_NONE
+	var/sharpness_on = SHARP_EDGED
 	throwforce = 0
 	throwforce_on = 0
 	hitsound_on = 'sound/weapons/bladeslice.ogg'
@@ -214,7 +214,7 @@
 	item_state = "hardsuit0-powerarmor-1"
 	hardsuit_type = "powerarmor"
 	clothing_flags = THICKMATERIAL //Ouchie oofie my bones
-	armor = list("melee" = 40, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100, "wound" = 30)
 	resistance_flags = ACID_PROOF
 	mutantrace_variation = STYLE_MUZZLE | STYLE_NO_ANTHRO_ICON
 
@@ -268,7 +268,7 @@
 	item_state = "hardsuit-powerarmor-1"
 	slowdown = -0.1
 	clothing_flags = THICKMATERIAL //Not spaceproof. No, it isn't Spaceproof in Rimworld either.
-	armor = list("melee" = 40, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100) //I was asked to buff this again. Here, fine.
+	armor = list("melee" = 40, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100, "wound" = 30) //I was asked to buff this again. Here, fine.
 	resistance_flags = ACID_PROOF
 	var/explodioprobemp = 1
 	var/stamdamageemp = 200

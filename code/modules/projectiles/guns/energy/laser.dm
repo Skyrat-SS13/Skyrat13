@@ -43,7 +43,7 @@
 	desc = "First generation lasergun, developed by Nanotrasen. Suffers from ammo issues but its unique ability to recharge its ammo without the need of a magazine helps compensate. You really hope someone has developed a better lasergun while you were in cryo."
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/old)
 	ammo_x_offset = 3
-
+/* Moved to modular_skyrat
 /obj/item/gun/energy/laser/captain
 	name = "antique laser gun"
 	icon_state = "caplaser"
@@ -53,7 +53,7 @@
 	ammo_x_offset = 3
 	selfcharge = EGUN_SELFCHARGE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-
+*/
 /obj/item/gun/energy/laser/carbine
 	name = "laser carbine"
 	desc = "A ruggedized laser carbine featuring much higher capacity and improved handling when compared to a normal laser gun."
@@ -241,6 +241,14 @@
 
 	process_fire(target, user, TRUE, params)
 
+//skyrat edit
+/obj/item/gun/energy/laser/hellgun
+	name ="hellfire laser gun"
+	desc = "A relic of a weapon, built before NT began installing regulators on its laser weaponry. This pattern of laser gun became infamous for the gruesome burn wounds it caused, and was quietly discontinued once it began to affect NT's reputation."
+	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	icon_state = "hellgun"
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire)
+
 ////////////////
 // IMPROVISED //
 ////////////////
@@ -257,3 +265,4 @@
 	name = "makeshift energy rifle"
 	desc = "The new lens and upgraded parts gives this a higher capacity and more energy output, however, the shoddy construction still leaves it inferior to Nanotrasen's own energy weapons."
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/improvised/upgraded)
+

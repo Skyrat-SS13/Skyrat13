@@ -340,9 +340,18 @@
 		/obj/item/surgicaldrill,
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
+		//skyrat edit
+		/obj/item/bonesetter,
+		//
 		/obj/item/roller/robo,
 		/obj/item/borg/cyborghug/medical,
 		/obj/item/stack/medical/gauze/cyborg,
+		//skyrat edit
+		/obj/item/stack/medical/bone_gel/cyborg,
+		/obj/item/stack/medical/fixovein/cyborg,
+		/obj/item/stack/medical/gauze/splint/cyborg,
+		/obj/item/stack/medical/nanopaste/cyborg,
+		//
 		/obj/item/organ_storage,
 		/obj/item/borg/lollipop,
 		/obj/item/sensor_device,
