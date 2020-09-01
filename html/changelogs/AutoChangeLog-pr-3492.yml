@@ -1,0 +1,4 @@
+author: "Funce"
+delete-after: True
+changes: 
+  - bugfix: "Bloodsucker's won't be forced on those who have the preference turned off anymore."
