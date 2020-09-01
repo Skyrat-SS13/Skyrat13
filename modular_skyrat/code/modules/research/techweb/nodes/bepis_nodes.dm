@@ -17,3 +17,13 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 8000)
 	hidden = TRUE
 	experimental = TRUE
+
+/datum/techweb_node/hacking_equipment
+	id = "hacking_equipment"
+	display_name = "Advanced Technological Interfacing"
+	description = "Experimental implants designed made to interface with and modify machines and technology better than anything thought of previously."
+	prereq_ids = list("adv_cyber_implants")
+	design_ids = list("ci-hacker")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 12000)
+	hidden = TRUE
+	experimental = TRUE
