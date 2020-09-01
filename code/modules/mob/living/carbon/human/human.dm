@@ -182,7 +182,7 @@
 		dat += "<tr><td><B>Gloves:</B></td><td><A href='?src=[REF(src)];item=[SLOT_GLOVES]'>[(gloves && !(gloves.item_flags & ABSTRACT))		? gloves	: "<font color=grey>Empty</font>"]</A></td></tr>"
 	//skyrat edit
 	if(SLOT_WRISTS in obscured)
-		dat += "<tr><td><font color=grey><B>Shirt:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+		dat += "<tr><td><font color=grey><B>Wrists:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
 		dat += "<tr><td><B>Wrists:</B></td><td><A href='?src=[REF(src)];item=[SLOT_WRISTS]'>[(wrists && !(wrists.item_flags & ABSTRACT)) ? wrists : "<font color=grey>Empty</font>"]</A></td></tr>"
 	//
