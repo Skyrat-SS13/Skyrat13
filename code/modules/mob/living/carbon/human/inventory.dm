@@ -45,7 +45,7 @@
 			return w_underwear
 		if(SLOT_W_SOCKS)
 			return w_socks
-		if(SLOT_W_UNDERWEAR)
+		if(SLOT_W_SHIRT)
 			return w_shirt
 		//
 		if(SLOT_L_STORE)
