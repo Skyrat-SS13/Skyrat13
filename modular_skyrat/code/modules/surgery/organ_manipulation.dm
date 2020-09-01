@@ -318,7 +318,7 @@
 		for(var/obj/item/organ/O in target.getorganszone(target_zone))
 			if(O.germ_level && !(O.status & ORGAN_ROBOTIC))
 				O.applyOrganDamage(-disinfect_amount)
-				O.janitize(-disinfect_amount, 0, O.germ_level)
+				O.janitize(-disinfect_germs, 0, O.germ_level)
 				disinfectedatall = TRUE
 		if(disinfectedatall)
 			display_results(user, target, "<span class='notice'>You have succesfully disinfected [target]'s [parse_zone(target_zone)] organs.</span>",
