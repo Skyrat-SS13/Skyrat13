@@ -109,6 +109,7 @@
 	biology_required = list()
 	sound_effect = 'sound/misc/splort.ogg'
 	pain_amount = 30 //Just absolutely unbearable. Will send you into shock most of the time.
+	infection_chance = 90
 
 /datum/wound/slash/critical/incision/disembowel/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)
 	. = ..()

@@ -115,6 +115,7 @@
 	required_status = BODYPART_ORGANIC
 	biology_required = list()
 	pain_amount = 24 //Horrible, but could be worse.
+	infection_chance = 90
 
 /datum/wound/slash/loss/get_examine_description(mob/user)
 	. = ..()
