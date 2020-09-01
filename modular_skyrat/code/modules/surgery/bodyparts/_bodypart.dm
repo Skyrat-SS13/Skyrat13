@@ -1005,8 +1005,6 @@
 		damage_amt += W.flat_damage_roll_increase
 		organ_damage_threshold = max(1, organ_damage_threshold - (organ_damage_hit_minimum * W.organ_threshold_reduction))
 		organ_damage_required = max(1, organ_damage_required - (organ_damage_requirement * W.organ_required_reduction))
-		if(((W.wound_type == WOUND_LIST_BLUNT) || (W.wound_type == WOUND_LIST_BLUNT_MECHANICAL)) && (W.severity >= WOUND_SEVERITY_SEVERE)) //We have a fracture
-			broken = TRUE
 	if(!(cur_damage + damage_amt >= organ_damage_required) && !(damage_amt >= organ_damage_threshold))
 		return FALSE
 	
@@ -1271,6 +1269,12 @@
 
 /obj/item/bodypart/proc/is_dead()
 	return (status & BODYPART_DEAD)
+
+/obj/item/bodypart/proc/is_broken()
+	. = FALSE
+	for(var/datum/wound/W in wounds)
+		if(((W.wound_type == WOUND_LIST_BLUNT) || (W.wound_type == WOUND_LIST_BLUNT_MECHANICAL)) && (W.severity >= WOUND_SEVERITY_SEVERE)) //We have a fracture
+			. = TRUE
 
 /obj/item/bodypart/proc/kill_limb()
 	status |= BODYPART_DEAD

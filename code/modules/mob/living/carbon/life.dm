@@ -394,6 +394,15 @@
 		var/obj/item/bodypart/BP = I
 		if(BP.needs_processing)
 			. |= BP.on_life()
+			if(!lying && !buckled && world.time - last_move_time < 15)
+				//Moving around with broken bones won't do you any good
+				if(prob(10) && !stat && can_feel_pain() && chem_effects[CE_PAINKILLER] < 50 && BP.is_broken() && BP.get_organs())
+					custom_pain("Pain jolts through your broken [BP.encased ? BP.encased : BP.name], staggering you!", 50, affecting = E)
+					Stun(20)
+				//Moving makes open wounds get infected much faster
+				for(var/datum/wound/W in BP.wounds)
+					if(W.infection_check())
+						W.germ_level += 1
 
 /mob/living/carbon/proc/handle_organs()
 	if(stat != DEAD)
