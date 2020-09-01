@@ -206,6 +206,7 @@
 			return TRUE
 
 	AM.reagents.add_reagent(blood_id, amount, blood_data, bodytemperature)
+	AM.janitize(WOUND_SANITIZATION_STERILIZER * 2)
 	return TRUE
 
 

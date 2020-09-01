@@ -10,6 +10,13 @@
 	beauty = -100
 	dirtiness = 25
 
+/obj/effect/decal/cleanable/blood/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	janitize(WOUND_SANITIZATION_STERILIZER * 2)
+	var/turf/open/floor/floor = get_turf(src)
+	if(istype(floor))
+		floor.update_dirtiness()
+
 /obj/effect/decal/cleanable/blood/replace_decal(obj/effect/decal/cleanable/blood/C)
 	if (C.blood_DNA)
 		blood_DNA |= (C.blood_DNA - "color")
@@ -21,10 +28,16 @@
 /obj/effect/decal/cleanable/blood/transfer_blood_dna()
 	..()
 	update_icon()
+	var/turf/open/floor/floor = get_turf(src)
+	if(istype(floor))
+		floor.update_dirtiness()
 
 /obj/effect/decal/cleanable/blood/transfer_mob_blood_dna()
 	. = ..()
 	update_icon()
+	var/turf/open/floor/floor = get_turf(src)
+	if(istype(floor))
+		floor.update_dirtiness()
 
 /obj/effect/decal/cleanable/blood/update_icon()
 	color = blood_DNA_to_color()
