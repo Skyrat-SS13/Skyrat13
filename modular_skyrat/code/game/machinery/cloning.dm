@@ -439,7 +439,6 @@
 			O.setOrganDamage(0)
 			O.janitize(0, 0, 0)
 		for(var/obj/item/bodypart/BP in C.bodyparts)
-			BP.setOrganDamage(0)
 			BP.janitize(0, 0, 0)
 		C.setToxLoss(0, TRUE)
 	occupant.forceMove(T)
