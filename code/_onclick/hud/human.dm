@@ -456,7 +456,7 @@
 	zone_select.update_icon()
 	static_inventory += zone_select
 
-	for(var/obj/screen/inventory/inv in (static_inventory + toggleable_inventory + extra_inventory)) //skyrat edit
+	for(var/obj/screen/inventory/inv in (static_inventory + toggleable_inventory)) //skyrat edit
 		if(inv.slot_id)
 			inv.hud = src
 			inv_slots[inv.slot_id] = inv

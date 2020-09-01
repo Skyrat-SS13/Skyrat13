@@ -168,7 +168,7 @@ There are several things that need to be remembered:
 	if(istype(w_underwear, /obj/item/clothing/underwear))
 		var/obj/item/clothing/underwear/U = w_underwear
 		U.screen_loc = ui_boxers
-		if(client && hud_used && hud_used.hud_shown)
+		if(client && hud_used && hud_used.hud_shown && hud_used.extra_shown)
 			if(hud_used.inventory_shown)
 				client.screen += w_underwear
 		update_observer_view(w_underwear,1)
@@ -214,7 +214,7 @@ There are several things that need to be remembered:
 	if(istype(w_socks, /obj/item/clothing/underwear))
 		var/obj/item/clothing/underwear/U = w_socks
 		U.screen_loc = ui_socks
-		if(client && hud_used && hud_used.hud_shown)
+		if(client && hud_used && hud_used.hud_shown && hud_used.extra_shown)
 			if(hud_used.inventory_shown)
 				client.screen += w_socks
 		update_observer_view(w_socks,1)
@@ -260,7 +260,7 @@ There are several things that need to be remembered:
 	if(istype(w_shirt, /obj/item/clothing/underwear))
 		var/obj/item/clothing/underwear/U = w_shirt
 		U.screen_loc = ui_shirt
-		if(client && hud_used && hud_used.hud_shown)
+		if(client && hud_used && hud_used.hud_shown && hud_used.extra_shown)
 			if(hud_used.inventory_shown)
 				client.screen += w_shirt
 		update_observer_view(w_shirt,1)
@@ -374,7 +374,7 @@ There are several things that need to be remembered:
 	var/mutable_appearance/wrists_overlay = overlays_standing[WRISTS_LAYER]
 	if(wrists)
 		wrists.screen_loc = ui_wrists
-		if(client && hud_used && hud_used.hud_shown)
+		if(client && hud_used && hud_used.hud_shown && hud_used.extra_shown)
 			if(hud_used.inventory_shown)
 				client.screen += wrists
 		update_observer_view(wrists,1)
@@ -456,7 +456,7 @@ There are several things that need to be remembered:
 
 	if(ears_extra)
 		ears_extra.screen_loc = ui_ears_extra	//move the item to the appropriate screen loc
-		if(client && hud_used && hud_used.hud_shown)
+		if(client && hud_used && hud_used.hud_shown && hud_used.extra_shown)
 			if(hud_used.inventory_shown)			//if the inventory is open
 				client.screen += ears_extra			//add it to the client's screen
 		update_observer_view(ears_extra,1)

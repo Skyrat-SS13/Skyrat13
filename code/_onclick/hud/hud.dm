@@ -16,12 +16,12 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 //skyrat edit
 GLOBAL_LIST_INIT(modular_ui_styles, list(
-	'modular_skyrat/icons/mob/screen_midnight.dmi' = 'modular_skyrat/icons/mob/screen_midnight.dmi',
-	'modular_skyrat/icons/mob/screen_retro.dmi' = 'icons/mob/screen_retro.dmi',
-	'modular_skyrat/icons/mob/screen_plasmafire.dmi' = 'icons/mob/screen_plasmafire.dmi',
-	'modular_skyrat/icons/mob/screen_slimecore.dmi' = 'icons/mob/screen_slimecore.dmi',
-	'modular_skyrat/icons/mob/screen_operative.dmi' = 'icons/mob/screen_operative.dmi',
-	'modular_skyrat/icons/mob/screen_clockwork.dmi' = 'icons/mob/screen_clockwork.dmi'
+	'icons/mob/screen_midnight.dmi' = 'modular_skyrat/icons/mob/screen_midnight.dmi',
+	'icons/mob/screen_retro.dmi' = 'modular_skyrat/icons/mob/screen_retro.dmi',
+	'icons/mob/screen_plasmafire.dmi' = 'modular_skyrat/icons/mob/screen_plasmafire.dmi',
+	'icons/mob/screen_slimecore.dmi' = 'modular_skyrat/icons/mob/screen_slimecore.dmi',
+	'icons/mob/screen_operative.dmi' = 'modular_skyrat/icons/mob/screen_operative.dmi',
+	'icons/mob/screen_clockwork.dmi' = 'modular_skyrat/icons/mob/screen_clockwork.dmi'
 ))
 //
 

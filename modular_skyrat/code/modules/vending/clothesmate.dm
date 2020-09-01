@@ -1,17 +1,11 @@
 /obj/machinery/vending/clothing/New(loc, ...)
 	. = ..()
 	products[/obj/item/clothing/shoes/heels/poly] = 5
-	products[/obj/item/clothing/head/wig] = 3
-	products[/obj/item/skin_kit] = 30
-	for(var/i in typesof(/datum/gear/underwear))
-		var/datum/gear/G = i
-		if(istype(G))
-			products[G.path] = 5
-	for(var/i in typesof(/datum/gear/shirt))
-		var/datum/gear/G = i
-		if(istype(G))
-			products[G.path] = 5
+	products[/obj/item/clothing/head/wig] = 5
+	for(var/datum/gear/G in typesof(/datum/gear/underwear))
+		products[initial(G.path)] = 5
+	for(var/datum/gear/G in typesof(/datum/gear/shirt))
+		products[initial(G.path)] = 5
 	for(var/i in typesof(/datum/gear/socks))
-		var/datum/gear/G = i
-		if(istype(G))
-			products[G.path] = 5
+		products[initial(G.path)] = 5
+	products[/obj/item/skin_kit] = 30
