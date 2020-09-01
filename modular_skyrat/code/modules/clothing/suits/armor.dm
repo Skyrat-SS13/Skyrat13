@@ -22,7 +22,7 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	icon_state = "blueshield"
 	item_state = "blueshield"
-	armor = list("melee" = 40, "bullet" = 35, "laser" = 35, "energy" = 50, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100, "wound" = 25)
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 75, "wound" = 25)
 	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 
 //makeshift armor
