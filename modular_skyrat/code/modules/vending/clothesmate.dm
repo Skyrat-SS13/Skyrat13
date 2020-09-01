@@ -6,6 +6,6 @@
 		products[initial(G.path)] = 5
 	for(var/datum/gear/G in typesof(/datum/gear/shirt))
 		products[initial(G.path)] = 5
-	for(var/i in typesof(/datum/gear/socks))
+	for(var/datum/gear/G in typesof(/datum/gear/socks))
 		products[initial(G.path)] = 5
 	products[/obj/item/skin_kit] = 30
