@@ -261,8 +261,9 @@
 	if(limb && !already_scarred && !replaced)
 		already_scarred = TRUE
 		if(limb.is_organic_limb())
-			var/datum/scar/new_scar = new
-			new_scar.generate(limb, src)
+			if(CAN_SCAR in victim.dna?.species?.species_traits)
+				var/datum/scar/new_scar = new
+				new_scar.generate(limb, src)
 	if(victim)
 		LAZYREMOVE(victim.all_wounds, src)
 		if(!victim.all_wounds)
