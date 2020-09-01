@@ -260,8 +260,3 @@
 			to_chat(src, "<span class='warning'>[dna.species.painloss_message_self]</span>")
 			visible_message("<span class='warning'>[dna.species.painloss_message]</span>", "<span class='danger'>[dna.species.painloss_message_self]</span>")
 		Unconscious(800)
-
-/mob/living/carbon/fully_heal(admin_revive)
-	..()
-	shock_stage = 0
-	setPainLoss(0, FALSE)

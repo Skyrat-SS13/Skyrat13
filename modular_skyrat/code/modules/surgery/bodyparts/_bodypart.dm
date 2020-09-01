@@ -534,17 +534,17 @@
 	return TRUE
 
 //Medical scans
-/obj/item/bodypart/proc/get_scan_results(tag = FALSE)
+/obj/item/bodypart/proc/get_scan_results(do_tag = FALSE)
 	. = list()
 	if(is_robotic_limb())
-		. += tag ? "<span class='warning'>Mechanical</span>" : "Mechanical"
+		. += do_tag ? "<span class='warning'>Mechanical</span>" : "Mechanical"
 	if(is_synthetic_limb())
-		. += tag ? "<span class='warning'>Synthetic</span>" : "Synthetic"
+		. += do_tag ? "<span class='warning'>Synthetic</span>" : "Synthetic"
 	if(status & BODYPART_DEAD)
 		if(can_recover())
-			. += tag ? "<span class='danger'>Decaying</span>" : "Decaying"
+			. += do_tag ? "<span class='danger'>Decaying</span>" : "Decaying"
 		else
-			. += tag ? "<span class='deadsay'>Necrotic</span>" : "Necrotic"
+			. += do_tag ? "<span class='deadsay'>Necrotic</span>" : "Necrotic"
 
 	switch(germ_level)
 		if(INFECTION_LEVEL_ONE to INFECTION_LEVEL_ONE + ((INFECTION_LEVEL_TWO - INFECTION_LEVEL_ONE) / 3))
@@ -554,27 +554,27 @@
 		if(INFECTION_LEVEL_ONE + (2 * (INFECTION_LEVEL_TWO - INFECTION_LEVEL_ONE) / 3) to INFECTION_LEVEL_TWO)
 			. +=  "Mild Infection++"
 		if(INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + ((INFECTION_LEVEL_THREE - INFECTION_LEVEL_THREE) / 3))
-			if(tag)
+			if(do_tag)
 				. += "<span class='warning'>Acute Infection</span>"
 			else
 				. +=  "Acute Infection"
 		if(INFECTION_LEVEL_TWO + ((INFECTION_LEVEL_THREE - INFECTION_LEVEL_THREE) / 3) to INFECTION_LEVEL_TWO + (2 * (INFECTION_LEVEL_THREE - INFECTION_LEVEL_TWO) / 3))
-			if(tag)
+			if(do_tag)
 				. += "<span class='warning'>Acute Infection+</span>"
 			else
 				. +=  "Acute Infection+"
 		if(INFECTION_LEVEL_TWO + (2 * (INFECTION_LEVEL_THREE - INFECTION_LEVEL_TWO) / 3) to INFECTION_LEVEL_THREE)
-			if(tag)
+			if(do_tag)
 				. += "<span class='warning'>Acute Infection++</span>"
 			else
 				. +=  "Acute Infection++"
 		if(INFECTION_LEVEL_THREE to INFINITY)
-			if(tag)
+			if(do_tag)
 				. += "<span class='danger'>Septic</span>"
 			else
 				. +=  "Septic"
 	if(rejecting)
-		if(tag)
+		if(do_tag)
 			. += "<span class='danger'>Genetic Rejection</span>"
 		else
 			. += "Genetic Rejection"

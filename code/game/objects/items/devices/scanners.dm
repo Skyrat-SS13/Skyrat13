@@ -14,6 +14,7 @@ GENETICS SCANNER
 #define SCANMODE_HEALTH 0
 #define SCANMODE_CHEMICAL 1
 #define SCANMODE_WOUND 2
+#define SCANMODE_PAIN 3
 #define SCANNER_CONDENSED 0
 #define SCANNER_VERBOSE 1
 //
@@ -105,6 +106,8 @@ GENETICS SCANNER
 			to_chat(user, "<span class='notice'>You switch the health analyzer to scan chemical contents.</span>")
 		if(SCANMODE_WOUND)
 			to_chat(user, "<span class='notice'>You switch the health analyzer to report extra info on wounds.</span>")
+		if(SCANMODE_PAIN)
+			to_chat(user, "<span class='notice'>You switch the health analyzer to report extra info on patient wellbeing.</span>")
 //
 
 /obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
@@ -127,8 +130,10 @@ GENETICS SCANNER
 		healthscan(user, M, mode, advanced)
 	else if(scanmode == SCANMODE_CHEMICAL)
 		chemscan(user, M)
-	else
+	else if(scanmode == SCANMODE_WOUND)
 		woundscan(user, M, src)
+	else if(scanmode == SCANMODE_PAIN)
+		painscan(user, M, advanced)
 	//
 
 	add_fingerprint(user)
@@ -535,6 +540,38 @@ GENETICS SCANNER
 
 			msg += "*---------*</span>"
 			to_chat(user, msg)
+
+/proc/painscan(mob/user, mob/living/M, advanced = FALSE)
+	var/mob/living/carbon/C = M
+	if(!iscarbon(M))
+		to_chat(user, "<span class='warning'>ERROR: Wellbeing scan can only be used on complex lifeforms.</span>")
+		return
+	var/msg = "<span class='info'>*---------*\n"
+	msg += "<span class='info'>Bodypart info:</span>\n"
+	for(var/obj/item/bodypart/BP in C.bodyparts)
+		var/result = "<span class='info'><b>[BP.name]:</b> "
+		var/list/results = BP.get_scan_results(TRUE)
+		var/pain = BP.get_pain()
+		if(!advanced)
+			pain = (round(pain/10, 1) * 10)
+		if(pain)
+			results += "[pain] pain"
+		if(length(results))
+			for(var/r in results)
+				result += r
+			result += "</span>\n"
+			msg += result
+	msg += "<span class='info'>Organ info:</span>\n"
+	for(var/obj/item/organ/O in C.internal_organs)
+		var/result = "<span class='info'><b>[O.name]:</b> "
+		var/list/results = O.get_scan_results(TRUE)
+		if(length(results))
+			for(var/r in results)
+				result += r
+			result += "</span>\n"
+			msg += result
+	msg += "*---------*</span>"
+	to_chat(user, msg)
 
 /obj/item/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"
