@@ -15,7 +15,7 @@
 
 /turf/open/floor/proc/update_dirtiness()
 	dirtiness = 0
-	for(var/obj/effect/decal/cleanable/cleanable)
+	for(var/obj/effect/decal/cleanable/cleanable in src)
 		dirtiness += cleanable.dirtiness
 		dirtiness += (cleanable.bloodiness/2)
 	dirtiness = min(max_dirtiness, dirtiness)
