@@ -20,6 +20,7 @@
 	biology_required = list(HAS_FLESH)
 	required_status = BODYPART_ORGANIC
 	pain_amount = 5 //Burns are awful
+	infection_chance = 25
 
 /datum/wound/burn/handle_process()
 	. = ..()
@@ -145,6 +146,7 @@
 	flesh_damage = 5
 	scarring_descriptions = list("small amoeba-shaped skinmarks", "a faded streak of depressed skin")
 	pain_amount = 7 //Burns are awful
+	infection_chance = 25
 
 /datum/wound/burn/severe
 	name = "Third Degree Burns"
@@ -162,6 +164,7 @@
 	flesh_damage = 12.5
 	scarring_descriptions = list("a large, jagged patch of faded skin", "random spots of shiny, smooth skin", "spots of taut, leathery skin")
 	pain_amount = 10 //Burns are awful
+	infection_chance = 40
 
 /datum/wound/burn/critical
 	name = "Catastrophic Burns"
@@ -180,3 +183,4 @@
 	flesh_damage = 20
 	scarring_descriptions = list("massive, disfiguring keloid scars", "several long streaks of badly discolored and malformed skin", "unmistakeable splotches of dead tissue from serious burns")
 	pain_amount = 16 //Burns are awful
+	infection_chance = 65
