@@ -9,7 +9,8 @@
 				/datum/surgery_step/dissection,
 				/datum/surgery_step/clamp_bleeders,
 				/datum/surgery_step/close)
-	possible_locs = list(BODY_ZONE_CHEST)
+	possible_locs = TORSO_BODYPARTS //skyrat edit
+	requires_bodypart_type = BODYPART_ORGANIC
 	target_mobtypes = list(/mob/living) //Feel free to dissect devils but they're magic.
 	replaced_by = /datum/surgery/advanced/experimental_dissection/adv
 	requires_tech = FALSE
@@ -23,7 +24,7 @@
 		return FALSE
 
 /datum/surgery_step/dissection
-	name = "dissection"
+	name = "Dissection"
 	implements = list(/obj/item/scalpel/alien = 100, /obj/item/scalpel/advanced = 99, /obj/item/scalpel = 90, /obj/item/kitchen/knife = 45, /obj/item/shard = 25)// special tools not only cut down time but also improve probability, doesn't use TOOL_SCALPEL because different scalpels have different probs
 	time = 100
 	silicons_obey_prob = TRUE
@@ -78,7 +79,7 @@
 	"[user] dissects [target]!")
 	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = points_earned))
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
-	target.apply_damage(80, BRUTE, L)
+	target.apply_damage(80, BRUTE, L, wound_bonus=CANT_WOUND) //skyrat edit
 	ADD_TRAIT(target, TRAIT_DISSECTED, "[surgery.name]")
 	repeatable = FALSE
 	return TRUE
@@ -89,7 +90,7 @@
 	"[user] dissects [target], but looks a little dissapointed.")
 	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = (round(check_value(target, surgery) * 0.01))))
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
-	target.apply_damage(80, BRUTE, L)
+	target.apply_damage(80, BRUTE, L, wound_bonus=CANT_WOUND) //skyrat edit
 	return TRUE
 
 /datum/surgery/advanced/experimental_dissection/adv

@@ -76,6 +76,7 @@
 	var/parrot_lastmove = null //Updates/Stores position of the parrot while it's moving
 	var/parrot_stuck = 0	//If parrot_lastmove hasnt changed, this will increment until it reaches parrot_stuck_threshold
 	var/parrot_stuck_threshold = 10 //if this == parrot_stuck, it'll force the parrot back to wandering
+	var/buckled_to_human = FALSE // Skyrat - if she's on someone's shoulder
 
 	var/list/speech_buffer = list()
 	var/speech_shuffle_rate = 20
@@ -150,6 +151,8 @@
 
 /mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode, atom/movable/source)
 	. = ..()
+	if(check_command(message, speaker)) // Skyrat edit: Poly checks commands. Squawk. The code for this is in modularskyrat.
+		return
 	if(speaker != src && prob(50)) //Dont imitate ourselves
 		if(!radio_freq || prob(10))
 			if(speech_buffer.len >= 500)
@@ -849,6 +852,7 @@
 		pixel_x = pick(-8,8) //pick left or right shoulder
 		icon_state = icon_sit
 		parrot_state = PARROT_PERCH
+		buckled_to_human = TRUE // Skyrat edit
 		to_chat(src, "<span class='notice'>You sit on [H]'s shoulder.</span>")
 
 

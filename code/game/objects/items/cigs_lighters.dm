@@ -513,6 +513,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/lighter/Initialize()
 	. = ..()
+	AddComponent(/datum/component/overlay_lighting, LIGHT_COLOR_FIRE, 2, 0.6, FALSE) //Skyrat change
 	if(!overlay_state)
 		overlay_state = pick(overlay_list)
 	update_icon()
@@ -540,18 +541,19 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/lighter/proc/set_lit(new_lit)
 	lit = new_lit
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 	if(lit)
 		force = 5
 		damtype = "fire"
 		hitsound = 'sound/items/welder.ogg'
 		attack_verb = list("burnt", "singed")
-		set_light(2, 0.6, LIGHT_COLOR_FIRE)
+		OL.turn_on()
 		START_PROCESSING(SSobj, src)
 	else
 		hitsound = "swing_hit"
 		force = 0
 		attack_verb = null //human_defense.dm takes care of it
-		set_light(0)
+		OL.turn_off()
 		STOP_PROCESSING(SSobj, src)
 	update_icon()
 

@@ -9,6 +9,7 @@
 	knockdown = 160
 	stamina = 60
 	knockdown_stamoverride = 0
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/energy/bolt/halloween
 	name = "candy corn"

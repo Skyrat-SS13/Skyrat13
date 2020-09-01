@@ -251,18 +251,18 @@
 	. = ..()
 
 /obj/effect/mob_spawn/robot/ghostcafe
-	name = "Ghost Cafe Robotic Storage"
+	name = "Cafe Robotic Storage"
 	uses = -1
 	icon = 'modular_skyrat/icons/obj/machines/robot_storage.dmi'
 	icon_state = "robostorage"
-	mob_name = "a ghost cafe robot"
+	mob_name = "a cafe robot"
 	roundstart = FALSE
 	anchored = TRUE
 	density = FALSE
 	death = FALSE
-	assignedrole = "Ghost Cafe Robot"
-	short_desc = "You are a Ghost Cafe Robot!"
-	flavour_text = "You know one thing for sure. You arent actually alive. Are you in a simulation?"
+	assignedrole = "Cafe Robot"
+	short_desc = "You are a Cafe Robot!"
+	flavour_text = "Who could have thought? This awesome local cafe accepts cyborgs too!"
 	skip_reentry_check = TRUE
 	banType = ROLE_GHOSTCAFE
 	mob_type = /mob/living/silicon/robot/modules/roleplay
@@ -274,11 +274,11 @@
 		var/area/A = get_area(src)
 		new_spawn.AddElement(/datum/element/ghost_role_eligibility, free_ghosting = TRUE)
 		new_spawn.AddElement(/datum/element/dusts_on_catatonia)
-		new_spawn.AddElement(/datum/element/dusts_on_leaving_area,list(A.type,/area/hilbertshotel))
+		new_spawn.AddElement(/datum/element/dusts_on_leaving_area,list(A.type, /area/hilbertshotel, /area/centcom/holding/cafe, /area/centcom/holding/cafewar, /area/centcom/holding/cafebotany,
+		/area/centcom/holding/cafebuild, /area/centcom/holding/cafevox, /area/centcom/holding/cafedorms, /area/centcom/holding/cafepark))
 		ADD_TRAIT(new_spawn, TRAIT_SIXTHSENSE, GHOSTROLE_TRAIT)
 		ADD_TRAIT(new_spawn, TRAIT_EXEMPT_HEALTH_EVENTS, GHOSTROLE_TRAIT)
 		ADD_TRAIT(new_spawn, TRAIT_NO_MIDROUND_ANTAG, GHOSTROLE_TRAIT) //The mob can't be made into a random antag, they are still eligible for ghost roles popups.
-		ADD_TRAIT(new_spawn, TRAIT_PACIFISM, GHOSTROLE_TRAIT)
 		to_chat(new_spawn,"<span class='boldwarning'>Ghosting is free!</span>")
 		var/datum/action/toggle_dead_chat_mob/D = new(new_spawn)
 		D.Grant(new_spawn)

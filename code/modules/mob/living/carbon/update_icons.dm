@@ -75,7 +75,7 @@
 			bloody = BLOOD_COLOR_HUMAN
 		dam_colors = bloody
 
-	var/mutable_appearance/damage_overlay = mutable_appearance('icons/mob/dam_mob.dmi', "blank", -DAMAGE_LAYER, color = dam_colors)
+	var/mutable_appearance/damage_overlay = mutable_appearance('modular_skyrat/icons/mob/dam_mob.dmi', "blank", -DAMAGE_LAYER, color = dam_colors)
 	overlays_standing[DAMAGE_LAYER] = damage_overlay
 
 	for(var/X in bodyparts)
@@ -87,6 +87,26 @@
 				damage_overlay.add_overlay("[BP.dmg_overlay_type]_[BP.body_zone]_0[BP.burnstate]")
 
 	apply_overlay(DAMAGE_LAYER)
+
+/mob/living/carbon/proc/update_medicine_overlays()
+	remove_overlay(MEDICINE_LAYER)
+	remove_overlay(LOWER_MEDICINE_LAYER)
+
+	var/mutable_appearance/medicine_overlays = mutable_appearance('modular_skyrat/icons/mob/medicine_overlays.dmi', "blank", -MEDICINE_LAYER)
+	var/mutable_appearance/lower_medicine_overlays = mutable_appearance('modular_skyrat/icons/mob/medicine_overlays.dmi', "blank", -LOWER_MEDICINE_LAYER)
+	overlays_standing[MEDICINE_LAYER] = medicine_overlays
+	overlays_standing[LOWER_MEDICINE_LAYER] = lower_medicine_overlays
+
+
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/BP = X
+		if(BP.current_gauze)
+			medicine_overlays.add_overlay("gauze_[check_zone(BP.body_zone)]")
+			if(BP.body_zone in list(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND))
+				lower_medicine_overlays.add_overlay("gauze_[check_zone(BP.body_zone)]_behind")
+
+	apply_overlay(MEDICINE_LAYER)
+	apply_overlay(LOWER_MEDICINE_LAYER)
 
 
 /mob/living/carbon/update_inv_wear_mask()
@@ -224,7 +244,7 @@
 		return
 
 	//GENERATE NEW LIMBS
-	var/static/list/leg_day = typecacheof(list(/obj/item/bodypart/r_leg, /obj/item/bodypart/l_leg))
+	var/static/list/leg_day = typecacheof(list(/obj/item/bodypart/r_leg, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_foot, /obj/item/bodypart/l_foot))
 	var/list/new_limbs = list()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X

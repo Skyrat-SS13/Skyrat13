@@ -13,8 +13,7 @@
 	gib_type = /obj/effect/decal/cleanable/blood/gibs
 	unique_name = TRUE
 	//blocks_emissive = EMISSIVE_BLOCK_UNIQUE // Skyrat edit -- 512 compatibility
-	bodyparts = list(/obj/item/bodypart/chest/monkey, /obj/item/bodypart/head/monkey, /obj/item/bodypart/l_arm/monkey,
-					 /obj/item/bodypart/r_arm/monkey, /obj/item/bodypart/r_leg/monkey, /obj/item/bodypart/l_leg/monkey)
+	bodyparts = MONKEY_BODYPARTS_PATH
 	hud_type = /datum/hud/monkey
 
 /mob/living/carbon/monkey/Initialize(mapload, cubespawned=FALSE, mob/spawner)
@@ -41,6 +40,7 @@
 
 	create_dna(src)
 	dna.initialize_dna(random_blood_type())
+	dna.monkey_aspect = TRUE
 
 /mob/living/carbon/monkey/ComponentInitialize()
 	. = ..()
@@ -179,7 +179,7 @@
 	aggressive = TRUE
 	verb_say = "criticizes"
 
-/mob/living/carbon/monkey/coder/Initialize()
+/mob/living/carbon/monkey/coder/Initialize() //Skyrats edit, donor hair removed.
 	. = ..()
 	var/list/possible_hats = list(
 		/obj/item/clothing/head/cone = 2,
@@ -188,7 +188,6 @@
 		//obj/item/clothing/head/foilhat = 1, SKYRAT EDIT: This shit creates errors
 		/obj/item/clothing/head/hardhat/cakehat = 1,
 		/obj/item/clothing/head/helmet/justice = 2,
-		/obj/item/clothing/head/mikuhair = 2,
 		/obj/item/clothing/head/papersack = 2,
 		/obj/item/clothing/head/sombrero/shamebrero = 1
 	)
@@ -196,3 +195,5 @@
 	H = new H(src)
 	equip_to_slot_or_del(H,SLOT_HEAD)
 
+/mob/living/carbon/monkey/get_biological_state()
+	. = BIO_FULL

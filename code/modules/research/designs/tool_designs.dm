@@ -92,16 +92,6 @@
 	category = list("Tool Designs")
 	departmental_flags =  DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
 
-/datum/design/ranged_analyzer // Skyrat addition
-	name = "Long-range Analyzer"
-	desc = "A new advanced atmospheric analyzer design, capable of performing scans at long range."
-	id = "ranged_analyzer"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 400, /datum/material/glass = 1000, /datum/material/uranium = 800, /datum/material/gold = 200, /datum/material/plastic = 200)
-	build_path = /obj/item/analyzer/ranged
-	category = list("Tool Designs")
-	departmental_flags =  DEPARTMENTAL_FLAG_ENGINEERING
-
 /////////////////////////////////////////
 //////////////Alien Tools////////////////
 /////////////////////////////////////////
@@ -272,5 +262,18 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1500, /datum/material/glass = 1500, /datum/material/silver = 4000, /datum/material/gold = 2500)
 	build_path = /obj/item/scalpel/advanced
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
+////////////////////////
+//Skyrat Surgery Tools//
+////////////////////////
+/datum/design/fixovein
+	name = "Fix O' Vein"
+	desc = "Synthetic veins for repairing non-synthetic veins."
+	id = "fixovein"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron=12000, /datum/material/silver=4500)
+	build_path = /obj/item/stack/medical/fixovein
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE

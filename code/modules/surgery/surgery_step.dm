@@ -18,7 +18,7 @@
 		if(iscyborg(user))
 			success = TRUE
 	if(accept_any_item)
-		if(tool && tool_check(user, tool))
+		if(tool && tool_check(user, tool, target))
 			success = TRUE
 	else if(tool)
 		for(var/key in implements)
@@ -29,7 +29,7 @@
 				match = TRUE
 			if(match)
 				implement_type = key
-				if(tool_check(user, tool))
+				if(tool_check(user, tool, target))
 					success = TRUE
 					break
 	if(success)
@@ -65,7 +65,7 @@
 		var/prob_chance = 100
 		if(implement_type)	//this means it isn't a require hand or any item step.
 			prob_chance = implements[implement_type]
-		prob_chance *= surgery.get_propability_multiplier()
+		prob_chance *= surgery.get_probability_multiplier()
 
 		if((prob(prob_chance) || (iscyborg(user) && !silicons_obey_prob)) && chem_check(target) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
@@ -101,7 +101,7 @@
 		"[user] finishes.", TRUE) //By default the patient will notice if the wrong thing has been cut
 	return FALSE
 
-/datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/proc/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	return TRUE
 
 /datum/surgery_step/proc/chem_check(mob/living/target)
@@ -117,6 +117,7 @@
 		for(var/R in chems_needed)
 			if(target.reagents.has_reagent(R))
 				return TRUE
+
 /datum/surgery_step/proc/get_chem_list()
 	if(!LAZYLEN(chems_needed))
 		return

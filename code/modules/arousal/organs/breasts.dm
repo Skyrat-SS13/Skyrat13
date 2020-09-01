@@ -30,28 +30,6 @@
 
 /obj/item/organ/genital/breasts/update_appearance()
 	. = ..()
-	var/lowershape = lowertext(shape)
-	switch(lowershape)
-		if("pair")
-			desc = "You see a pair of breasts."
-		if("quad")
-			desc = "You see two pairs of breast, one just under the other."
-		if("sextuple")
-			desc = "You see three sets of breasts, running from their chest to their belly."
-		else
-			desc = "You see some breasts, they seem to be quite exotic."
-	if(size == "huge")
-		desc = "You see [pick("some serious honkers", "a real set of badonkers", "some dobonhonkeros", "massive dohoonkabhankoloos", "two big old tonhongerekoogers", "a couple of giant bonkhonagahoogs", "a pair of humongous hungolomghnonoloughongous")]. Their volume is way beyond cupsize now, measuring in about [round(cached_size)]cm in diameter."
-	else
-		if (size == "flat")
-			desc += " They're very small and flatchested, however."
-		else
-			desc += " You estimate that they're [uppertext(size)]-cups."
-
-	if(CHECK_BITFIELD(genital_flags, GENITAL_FUID_PRODUCTION) && aroused_state)
-		var/datum/reagent/R = GLOB.chemical_reagents_list[fluid_id]
-		if(R)
-			desc += " They're leaking [lowertext(R.name)]."
 	var/datum/sprite_accessory/S = GLOB.breasts_shapes_list[shape]
 	var/icon_shape = S ? S.icon_state : "pair"
 	var/icon_size = clamp(breast_values[size], BREASTS_ICON_MIN_SIZE, BREASTS_ICON_MAX_SIZE)
@@ -65,6 +43,33 @@
 					icon_state += "_s"
 		else
 			color = "#[owner.dna.features["breasts_color"]]"
+
+/obj/item/organ/genital/breasts/genital_examine(mob/user)
+	. = list()
+	var/lowershape = lowertext(shape)
+	var/txt = "<span class='notice'>"
+	switch(lowershape)
+		if("pair")
+			txt += "You see a pair of breasts."
+		if("quad")
+			txt += "You see two pairs of breast, one just under the other."
+		if("sextuple")
+			txt += "You see three sets of breasts, running from their chest to their belly."
+		else
+			txt += "You see some breasts, they seem to be quite exotic."
+	if(size == "huge")
+		txt = "<span class='notice'>You see [pick("some serious honkers", "a real set of badonkers", "some dobonhonkeros", "massive dohoonkabhankoloos", "two big old tonhongerekoogers", "a couple of giant bonkhonagahoogs", "a pair of humongous hungolomghnonoloughongous")]. Their volume is way beyond cupsize now, measuring in about [round(cached_size)]cm in diameter."
+	else
+		if (size == "flat")
+			txt += " They're very small and flatchested, however."
+		else
+			txt += " You estimate that they're [uppertext(size)]-cups."
+	if(CHECK_BITFIELD(genital_flags, GENITAL_FUID_PRODUCTION) && aroused_state)
+		var/datum/reagent/R = GLOB.chemical_reagents_list[fluid_id]
+		if(R)
+			txt += " They're leaking [lowertext(R.name)]."
+	txt += "</span>"
+	. |= txt
 
 //Allows breasts to grow and change size, with sprite changes too.
 //maximum wah
