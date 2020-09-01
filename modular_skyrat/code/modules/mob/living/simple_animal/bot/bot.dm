@@ -6,8 +6,9 @@
 
 //Proc for a bot to react upon someone trying to pick them up
 /mob/living/simple_animal/bot/proc/pickup_react(mob/living/user)
-	emote("scream")
-	emote("shiver")
+	if(!(bot_core.allowed(usr) || !locked) && iscarbon(user))
+		emote("scream")
+		emote("shiver")
 	return
 
 //Kill the signal
