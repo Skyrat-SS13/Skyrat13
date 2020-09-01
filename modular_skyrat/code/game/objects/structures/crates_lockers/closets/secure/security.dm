@@ -55,6 +55,6 @@
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/clothing/head/beret/blueshield(src)
 	new /obj/item/clothing/head/beret/blueshield/navy(src)
-	new /obj/item/clothing/suit/armor/vest/blueshield(src)
+	new /obj/item/clothing/suit/armor/vest/blueshield/old(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/clothing/under/rank/security/blueshield(src)

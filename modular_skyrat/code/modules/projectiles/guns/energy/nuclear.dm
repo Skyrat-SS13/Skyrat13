@@ -4,7 +4,6 @@
 	force = 7
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/blueshield, /obj/item/ammo_casing/energy/laser)
 	ammo_x_offset = 1
-	shaded_charge = 1
 	charge_sections = 4
 	icon = 'modular_skyrat/icons/obj/guns/blueshieldenergy.dmi'
 	icon_state = "bsgun"
@@ -19,7 +18,9 @@
 /obj/item/gun/energy/e_gun/blueshield/pdw9
 	name = "PDW-9 taser pistol"
 	desc = "A military grade energy sidearm, used by many militia forces throughout the local sector. It comes with an internally recharging battery which is slow to recharge."
+	ammo_x_offset = 2
 	icon_state = "pdw9pistol"
+	item_state = null
 	cell_type = /obj/item/stock_parts/cell/pdw9
 
 /obj/item/stock_parts/cell/blueshield
