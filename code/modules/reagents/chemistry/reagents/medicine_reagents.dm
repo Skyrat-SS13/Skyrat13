@@ -1700,4 +1700,3 @@
 	if(prob(3))
 		to_chat(C, "[pick(GLOB.wisdoms)]") //give them a random wisdom
 	..()
-
