@@ -1,10 +1,10 @@
 /obj/item/clothing/underwear/socks
 	name = "socks"
 	desc = "A pair of socks."
-	body_parts_covered = FEET
-	slot_flags = ITEM_SLOT_SOCKS
 	icon_state = "socks"
 	under_type = /obj/item/clothing/underwear/socks
+	body_parts_covered = FEET
+	slot_flags = ITEM_SLOT_SOCKS
 
 /obj/item/clothing/underwear/socks/short
 	name = "short socks"

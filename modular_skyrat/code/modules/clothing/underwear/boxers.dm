@@ -1,10 +1,10 @@
 /obj/item/clothing/underwear/briefs
 	name = "briefs"
 	desc = "Not going commando."
-	body_parts_covered = GROIN
-	slot_flags = ITEM_SLOT_UNDERWEAR
 	icon_state = "briefs"
 	under_type = /obj/item/clothing/underwear/briefs
+	body_parts_covered = GROIN
+	slot_flags = ITEM_SLOT_UNDERWEAR
 
 /obj/item/clothing/underwear/briefs/jockstrap
 	name = "jockstrap"

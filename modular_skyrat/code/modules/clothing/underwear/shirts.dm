@@ -3,7 +3,6 @@
 	desc = "A shirt."
 	icon_state = "undershirt"
 	under_type = /obj/item/clothing/underwear/shirt
-	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	body_parts_covered = CHEST | ARMS
 	slot_flags = ITEM_SLOT_SHIRT
 
