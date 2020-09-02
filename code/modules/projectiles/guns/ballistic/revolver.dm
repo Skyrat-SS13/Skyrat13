@@ -320,7 +320,7 @@
 /////////////////////////////
 //   IMPROVISED SHOTGUN    //
 /////////////////////////////
-
+/*
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised
 	name = "improvised shotgun"
 	desc = "A shoddy break-action breechloaded shotgun. Its lacklustre construction will probably result in it hurting people less than a normal shotgun."
@@ -369,6 +369,9 @@
 	sawn_off = TRUE
 	slot_flags = ITEM_SLOT_BELT
 
+// This is now modular. It is no longer a revolver and now a shotgun.
+// This was done to mawke the shotgun break-action, instead of a giant 12G revolver.
+*/
 
 /obj/item/gun/ballistic/revolver/reverse //Fires directly at its user... unless the user is a clown, of course.
 	clumsy_check = 0

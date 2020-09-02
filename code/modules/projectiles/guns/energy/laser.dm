@@ -242,18 +242,18 @@
 	process_fire(target, user, TRUE, params)
 
 ////////////////
-// IMPROVISED //
+// IMPROVISED // This is a Skyrat Edit
 ////////////////
 
 /obj/item/gun/energy/e_gun/old/improvised
-	name = "improvised energy rifle"
-	desc = "A crude imitation of an energy gun. It works, however the beams are poorly focused and most of the energy is wasted before it reaches the target. Welp, it still burns things."
+	name = "improvised burst energy gun"
+	desc = "A crude imitation of an energy gun. It lacks the parts for firing disabler bolts, and fires in bursts instead."
 	icon_state = "improvised"
+	burst_size = 3
+	burst_shot_delay = 1.5
+	burst_spread = 30
+	spread = 30
+	fire_delay = 10
 	ammo_x_offset = 1
 	shaded_charge = 1
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/improvised)
-
-/obj/item/gun/energy/e_gun/old/improvised/upgraded
-	name = "makeshift energy rifle"
-	desc = "The new lens and upgraded parts gives this a higher capacity and more energy output, however, the shoddy construction still leaves it inferior to Nanotrasen's own energy weapons."
-	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/improvised/upgraded)

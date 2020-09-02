@@ -668,14 +668,11 @@
 	lootcount = 1
 	spawn_on_turf = FALSE
 	loot = list("" = 50,
-		/obj/item/weaponcrafting/improvised_parts/barrel_rifle = 10,
-		/obj/item/weaponcrafting/improvised_parts/barrel_shotgun = 5,
-		/obj/item/weaponcrafting/improvised_parts/barrel_pistol = 5,
 		/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 10,
-		/obj/item/weaponcrafting/improvised_parts/shotgun_receiver = 3,
-		/obj/item/weaponcrafting/improvised_parts/pistol_receiver = 3,
+		/obj/item/weaponcrafting/improvised_parts/shotgun_receiver = 8,
+		/obj/item/weaponcrafting/improvised_parts/pistol_receiver = 8,
 		/obj/item/weaponcrafting/improvised_parts/laser_receiver = 1,
-		/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 10,
+		/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 20,
 		/obj/item/weaponcrafting/improvised_parts/makeshift_lens = 3,
 		)
 
@@ -684,11 +681,9 @@
 	lootcount = 1
 	spawn_on_turf = FALSE
 	loot = list("" = 75,
-		/obj/item/weaponcrafting/improvised_parts/barrel_rifle = 5,
-		/obj/item/weaponcrafting/improvised_parts/barrel_pistol = 5,
-		/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 5,
+		/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 10,
 		/obj/item/weaponcrafting/improvised_parts/pistol_receiver = 2,
-		/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 5,
+		/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 10,
 		/obj/item/weaponcrafting/improvised_parts/makeshift_lens = 3,
 		)
 
