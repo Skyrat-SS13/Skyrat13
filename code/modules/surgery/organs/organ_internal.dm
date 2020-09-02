@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 /obj/item/organ
 	name = "organ"
 	icon = 'icons/obj/surgery.dmi'
@@ -29,6 +30,9 @@
 	///When you take a bite you cant jam it in for surgery anymore.
 	var/useable = TRUE
 	var/list/food_reagents = list(/datum/reagent/consumable/nutriment = 5)
+
+	//Bobmed variables
+	var/etching = ""
 
 /obj/item/organ/Initialize()
 	. = ..()
@@ -164,17 +168,40 @@
 
 /obj/item/organ/examine(mob/user)
 	. = ..()
+	. |= surgical_examine(user)
+
+/obj/item/organ/proc/surgical_examine(mob/user)
+	. = list()
+	var/failing = FALSE
+	var/damaged = FALSE
 	if(organ_flags & ORGAN_FAILING)
+		failing = TRUE
 		if(status == ORGAN_ROBOTIC)
-			. += "<span class='warning'>[src] seems to be broken!</span>"
-			return
-		. += "<span class='warning'>[src] has decayed for too long, and has turned a sickly color! It doesn't look like it will work anymore!</span>"
-		return
+			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : ""][src] seems to be broken!</span>"
+		else
+			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : ""][src] has decayed for too long, and has turned a sickly color! It doesn't look like it will work anymore!</span>"
 	if(damage > high_threshold)
-		. += "<span class='warning'>[src] is starting to look discolored.</span>"
+		if(!failing)
+			damaged = TRUE
+			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : ""][src] is starting to look discolored.</span>"
+	if(!failing && !damaged)
+		. += "<span class='notice'>[owner ? "[capitalize(owner.p_their())] " : ""][src] seems to be quite healthy.</span>"
+	if(etching)
+		. += "<span class='notice'>[owner ? "[capitalize(owner.p_their())] " : ""][src] has <b>\"[etching]\"</b> inscribed on it.</span>"
 
 /obj/item/organ/proc/OnEatFrom(eater, feeder)
 	useable = FALSE //You can't use it anymore after eating it you spaztic
+
+/obj/item/organ/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/cautery) && user.a_intent == INTENT_HELP)
+		var/badboy = input(user, "What do you want to etch on [src]?", "Malpractice", "") as text
+		if(badboy)
+			badboy = strip_html_simple(badboy)
+			etching = "[badboy]"
+			user.visible_message("<span class='notice'>[user] etches something on \the [src] with \the [I].</span>, <span class='notice'>You etch <b>\"[badboy]\"</b> on [src] with \the [I]. Hehe.</span>")
+		else
+			return ..()
 
 /obj/item/organ/item_action_slot_check(slot,mob/user)
 	return //so we don't grant the organ's action to mobs who pick up the organ.
@@ -359,3 +386,4 @@
 	var/newtype = pick(list)
 	new newtype(loc)
 	return INITIALIZE_HINT_QDEL
+*/

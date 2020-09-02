@@ -45,6 +45,10 @@ GLOBAL_LIST_EMPTY(electrochromatic_window_lookup)
 	var/electrochromatic_status = NOT_ELECTROCHROMATIC
 	/// Electrochromatic ID. Set the first character to ! to replace with a SSmapping generated pseudorandom obfuscated ID for mapping purposes.
 	var/electrochromatic_id
+	//skyratatouille edit
+	flags_ricochet = RICOCHET_HARD
+	ricochet_chance_mod = 0.4
+	//
 
 /obj/structure/window/examine(mob/user)
 	. = ..()
