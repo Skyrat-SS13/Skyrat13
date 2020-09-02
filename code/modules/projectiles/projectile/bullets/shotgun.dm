@@ -10,6 +10,7 @@
 	//skyrat edit
 	damage = 10
 	wound_bonus = 10
+	pain = 25 //hurts a lot
 	sharpness = SHARP_NONE
 	//
 
@@ -96,6 +97,7 @@
 	embedding = list(embed_chance=10, fall_chance=25, jostle_chance=0, ignore_throwspeed_threshold=TRUE, pain_stam_pct=5, pain_mult=1, rip_time=30)
 	damage = 2
 	stamina = 15
+	pain = 7.5 //hurts a bit
 
 /obj/item/projectile/bullet/pellet/Range()
 	..()

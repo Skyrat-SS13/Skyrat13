@@ -212,11 +212,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/should_have_brain = TRUE
 	var/should_have_heart = !(NOBLOOD in species_traits)
 	var/should_have_lungs = !(TRAIT_NOBREATH in inherent_traits)
-	var/should_have_appendix = !(TRAIT_NOHUNGER in inherent_traits)
 	var/should_have_eyes = TRUE
 	var/should_have_ears = TRUE
 	var/should_have_tongue = TRUE
 	var/should_have_liver = !(NOLIVER in species_traits)
+	var/should_have_appendix = !(NOAPPENDIX in species_traits)
 	var/should_have_kidneys = !(NOKIDNEYS in species_traits)
 	var/should_have_stomach = !(NOSTOMACH in species_traits)
 	var/should_have_intestines = !(NOINTESTINES in species_traits)

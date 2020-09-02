@@ -16,6 +16,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
 
 	var/stamforce = 35
+	var/painforce = 15 //Stunbatons hurt a lot
 	var/turned_on = FALSE
 	var/knockdown = TRUE
 	var/obj/item/stock_parts/cell/cell
@@ -176,6 +177,8 @@
 		return FALSE
 	var/stunpwr = stamforce
 	stunpwr = block_calculate_resultant_damage(stunpwr, return_list)
+	var/painpwr = painforce
+	painpwr = block_calculate_resultant_damage(painforce, return_list)
 	var/obj/item/stock_parts/cell/our_cell = get_cell()
 	if(!our_cell)
 		switch_status(FALSE)
@@ -197,6 +200,17 @@
 		L.adjustStaminaLoss(stunpwr)
 	else
 		L.drop_all_held_items()					//no knockdown/stamina damage, instead disarm.
+
+	//Always apply the pain damage however
+	var/obj/item/bodypart/painpart
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		var/obj/item/bodypart/painpart = C.get_bodypart(user.zone_selected)
+	
+	if(painpart)
+		painpart.receive_damage(pain = painpwr)
+	else
+		L.adjustPainLoss(painpwr)
 
 	L.apply_effect(EFFECT_STUTTER, stamforce)
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
