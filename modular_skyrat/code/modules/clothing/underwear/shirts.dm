@@ -1,3 +1,12 @@
+/obj/item/clothing/underwear/shirt
+	name = "shirt"
+	desc = "A shirt."
+	icon_state = "undershirt"
+	under_type = /obj/item/clothing/underwear/shirt
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
+	body_parts_covered = CHEST | ARMS
+	slot_flags = ITEM_SLOT_SHIRT
+
 /obj/item/clothing/underwear/shirt/bra
 	name = "bra"
 	desc = "A bra."
@@ -114,14 +123,6 @@
 	name = "gloved fishnet bra"
 	body_parts_covered = CHEST | ARMS | HANDS
 	icon_state = "bra_fishnet_gloves"
-
-/obj/item/clothing/underwear/shirt
-	name = "shirt"
-	desc = "A shirt."
-	body_parts_covered = CHEST | ARMS
-	slot_flags = ITEM_SLOT_SHIRT
-	icon_state = "undershirt"
-	under_type = /obj/item/clothing/underwear/shirt
 
 /obj/item/clothing/underwear/shirt/shortsleeve
 	name = "shortsleeve shirt"
