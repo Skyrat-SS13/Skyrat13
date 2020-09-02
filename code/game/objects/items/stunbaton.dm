@@ -205,7 +205,7 @@
 	var/obj/item/bodypart/painpart
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		var/obj/item/bodypart/painpart = C.get_bodypart(user.zone_selected)
+		painpart = C.get_bodypart(user.zone_selected)
 	
 	if(painpart)
 		painpart.receive_damage(pain = painpwr)
