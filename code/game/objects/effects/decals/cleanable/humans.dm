@@ -103,7 +103,7 @@
 	beauty = -50
 	var/list/existing_dirs = list()
 
-/obj/effect/decal/cleanable/verb/run_finger()
+/obj/effect/decal/cleanable/trail_holder/verb/run_finger()
 	set category = "Object"
 	set name = "Run finger"
 	set desc = "Run your finger through a blood splatter to check if it's fresh."
