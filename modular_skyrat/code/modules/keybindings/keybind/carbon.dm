@@ -1,5 +1,5 @@
 /datum/keybinding/carbon/wield_act
-	hotkey_keys = list("v")
+	hotkey_keys = list("CtrlX")
 	name = "wield_act"
 	full_name = "Wield active item"
 	description = ""
