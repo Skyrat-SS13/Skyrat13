@@ -51,11 +51,11 @@
 		. += "[t_He] [t_is] [prefix_a_or_an(dna.species.name)] [dna.species.name]!"
 
 	//underwear
-	if(w_underwear && !(SLOT_W_UNDERWEAR in obscured) && (!w_uniform || w_uniform.hide_underwear_examine))
+	if(w_underwear && !(SLOT_W_UNDERWEAR in obscured) && (!w_uniform || !w_uniform.hide_underwear_examine))
 		. += "[t_He] [t_is] wearing [w_underwear.get_examine_string(user)]."
-	if(w_socks && !(SLOT_W_UNDERWEAR in obscured) && (!w_uniform || w_uniform.hide_underwear_examine))
+	if(w_socks && !(SLOT_W_UNDERWEAR in obscured) && (!w_uniform || !w_uniform.hide_underwear_examine))
 		. += "[t_He] [t_is] wearing [w_socks.get_examine_string(user)]."
-	if(w_shirt && !(SLOT_W_UNDERWEAR in obscured) && (!w_uniform || w_uniform.hide_underwear_examine))
+	if(w_shirt && !(SLOT_W_UNDERWEAR in obscured) && (!w_uniform || !w_uniform.hide_underwear_examine))
 		. += "[t_He] [t_is] wearing [w_shirt.get_examine_string(user)]."
 	
 	//wrist slot because you're epic
