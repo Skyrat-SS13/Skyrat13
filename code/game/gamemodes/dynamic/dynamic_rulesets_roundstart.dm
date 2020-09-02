@@ -48,7 +48,7 @@
 //           BLOOD BROTHERS             //
 //                                      //
 //////////////////////////////////////////
-
+/*
 /datum/dynamic_ruleset/roundstart/traitorbro
 	name = "Blood Brothers"
 	config_tag = "traitorbro"
@@ -91,6 +91,7 @@
 		team.update_name()
 	mode.brother_teams += pre_brother_teams
 	return TRUE
+*/
 
 //////////////////////////////////////////////
 //                                          //
