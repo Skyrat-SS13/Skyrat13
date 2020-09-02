@@ -3,7 +3,7 @@
 	desc = "A vending machine which dispenses hot drinks. Nothing to see here."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "coffee"
-	var/cooldown_time = 45 SECONDS
+	var/cooldown_time = 5 MINUTES
 	var/cooldown = 0
 
 /obj/machinery/scp294/attack_hand(mob/living/user)
