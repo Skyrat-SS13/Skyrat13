@@ -34,9 +34,9 @@
 	// Excessive pain is horrible, just give them enough to make it visible.
 	if(!nopainloss && power)
 		if(affecting)
-			affecting.receive_damage(pain = CEILING(power/2))
+			affecting.receive_damage(pain = CEILING(power/2, 1))
 		else
-			adjustPainLoss(CEILING(power/2))
+			adjustPainLoss(CEILING(power/2, 1))
 
 	// Anti message spam checks
 	if(force || (message != last_pain_message) || (world.time >= next_pain_time))
