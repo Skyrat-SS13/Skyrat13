@@ -10,6 +10,37 @@
 	beauty = -100
 	dirtiness = 25
 
+/obj/effect/decal/cleanable/blood/verb/run_finger()
+	set category = "Object"
+	set name = "Run finger"
+	set desc = "Run your finger through a blood splatter to check if it's fresh."
+	set src in view(1)
+
+	if(!usr.canUseTopic(src, TRUE) || INTERACTING_WITH(usr, src))
+		return FALSE
+	
+	to_chat(usr, "<span class='notice'>You begin wiping your finger across \the [src.name]...</span>")
+
+	if(!do_after(usr, 2 SECONDS, TRUE, src))
+		return FALSE
+	
+	if(bloodiness)
+		to_chat(usr, "<span class='warning'>\The [src] seems to be fresh...</span>")
+		bloodiness = max(0, bloodiness - 5)
+		if(ishuman(usr))
+			var/mob/living/carbon/human/H = usr
+			if(H.gloves)
+				H.gloves.add_blood_DNA(blood_DNA)
+				H.gloves.add_blood_overlay()
+			else
+				H.bloody_hands = (H.bloody_hands + rand(2, 4))
+				H.update_inv_gloves()
+				H.janitize(WOUND_SANITIZATION_STERILIZER)
+		else
+			usr.add_blood_DNA(blood_DNA)
+	else
+		to_chat(usr, "<span class='notice'>\The [src] seems to have dried up.</span>")
+
 /obj/effect/decal/cleanable/blood/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
 	janitize(WOUND_SANITIZATION_STERILIZER * 2)
@@ -71,6 +102,37 @@
 	random_icon_states = null
 	beauty = -50
 	var/list/existing_dirs = list()
+
+/obj/effect/decal/cleanable/verb//run_finger()
+	set category = "Object"
+	set name = "Run finger"
+	set desc = "Run your finger through a blood splatter to check if it's fresh."
+	set src in view(1)
+
+	if(!usr.canUseTopic(src, TRUE) || INTERACTING_WITH(usr, src))
+		return FALSE
+	
+	to_chat(usr, "<span class='notice'>You begin wiping your finger across \the [src.name]...</span>")
+
+	if(!do_after(usr, 2 SECONDS, TRUE, src))
+		return FALSE
+	
+	if(bloodiness)
+		to_chat(usr, "<span class='warning'>\The [src] seems to be fresh...</span>")
+		bloodiness = max(0, bloodiness - 5)
+		if(ishuman(usr))
+			var/mob/living/carbon/human/H = usr
+			if(H.gloves)
+				H.gloves.add_blood_DNA(blood_DNA)
+				H.gloves.add_blood_overlay()
+			else
+				H.bloody_hands = (H.bloody_hands + rand(2, 4))
+				H.update_inv_gloves()
+				H.janitize(WOUND_SANITIZATION_STERILIZER)
+		else
+			usr.add_blood_DNA(blood_DNA)
+	else
+		to_chat(usr, "<span class='notice'>\The [src] seems to have dried up.</span>")
 
 /obj/effect/decal/cleanable/trail_holder/update_icon()
 	color = blood_DNA_to_color()

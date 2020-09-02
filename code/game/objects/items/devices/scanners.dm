@@ -485,7 +485,7 @@ GENETICS SCANNER
 				msg += "<span class='danger'>CRITICAL blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type], blood oxygenation [blood_oxy_percent] %</span>\n"
 			else
 				msg += "<span class='info'>Blood level [blood_percent] %, [C.scan_blood_volume()] cl, type: [blood_type], blood oxygenation [blood_oxy_percent] %</span>\n"
-		
+			msg += "<span class='[C.get_pulse_as_number() ? "notice" : "danger"]'>Pulse: [capitalize(C.get_pulse(advanced ? GETPULSE_TOOL : GETPULSE_HAND))]</span>"
 		var/cyberimp_detect
 		for(var/obj/item/organ/cyberimp/CI in C.internal_organs)
 			if(CI.status == ORGAN_ROBOTIC && !CI.syndicate_implant)

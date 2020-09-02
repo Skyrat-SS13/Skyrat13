@@ -66,3 +66,37 @@
 	// Moving around increases germ_level faster
 	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 		germ_level++
+
+/mob/living/carbon/verb/check_pulse()
+	set category = "Object"
+	set name = "Check pulse"
+	set desc = "Approximately count somebody's pulse. Requires you to stand still at least 6 seconds."
+	set src in view(1)
+
+	if(!usr.canUseTopic(src, TRUE) || INTERACTING_WITH(usr, src))
+		return FALSE
+	
+	var/self = FALSE
+	if(usr == src)
+		self = TRUE
+	
+	if(!self)
+		usr.visible_message("<span class='notice'>[usr] puts \his hand on [src]'s wrist and begins counting their pulse.</span>",\
+		"<span class='notice'>You begin counting [src]'s pulse...</span>")
+	else
+		usr.visible_message("<span class='notice'>[usr] begins counting their own pulse.</span>",\
+		"<span class='notice'>You begin counting your pulse...</span>")
+
+	if(!do_mob(usr, src, 1 SECONDS))
+		return FALSE
+
+	if(pulse())
+		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
+	else
+		to_chat(usr, "<span class='danger'>[self ? "You have no" : "[src] has no"] pulse!</span>")
+		return FALSE
+	
+	if(do_mob(usr, src, 5 SECONDS))
+		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is approximately <b>[src.get_pulse(GETPULSE_HAND)] BPM</b>.</span>")
+	else
+		to_chat(usr, "<span class='warning'>You failed to check [self ? "your" : "[src]'s"] pulse.</span>")

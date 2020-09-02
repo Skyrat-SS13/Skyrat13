@@ -454,7 +454,7 @@
 				if(NOBLOOD in dna?.species?.species_traits)
 					thicc = TRUE
 				if(dist <= 1 && !thicc)
-					consciousness_msg = "<span class='warning'>[t_He] seems to have no identifiable pulse[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
+					consciousness_msg = "<span class='warning'>[t_He] seems to have no identifiable breath[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
 				else if((dist <= 3) || (dist <= 7 && lying))
 					consciousness = LOOKS_SLEEPY
 					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be either asleep or unconscious..."
