@@ -12,7 +12,7 @@
 		/datum/mob_descriptor/height = "default",
 		/datum/mob_descriptor/build = "default",
 	)
-	var/list/pain_emote_by_power = list(
+	var/static/list/pain_emote_by_power = list(
 	"100" = "scream",
 	"90" = "whimper",
 	"80" = "moan",
