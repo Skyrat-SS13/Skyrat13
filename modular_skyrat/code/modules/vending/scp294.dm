@@ -9,6 +9,9 @@
 	var/malf_chance = 5
 	var/malf_chance_powerchem = 50
 	var/list/power_chems = list(
+		/datum/reagent/romerol,
+		/datum/reagent/medicine/adminordrazine,
+
 	)
 
 /obj/machinery/scp294/attack_hand(mob/living/user)
@@ -32,7 +35,7 @@
 	if(drinkie)
 		var/obj/item/reagent_containers/food/drinks/mug/mug = new(get_turf(src))
 		mug.name = "cup of [reagent]"
-		mug.reagents.add_reagent(drinkie, mug.reagents.maximum_volume)
+		mug.reagents.add_reagent(drinkie, 30)
 		say("Enjoy your drink! Beep.")
 	else
 		say("Invalid drink!")
