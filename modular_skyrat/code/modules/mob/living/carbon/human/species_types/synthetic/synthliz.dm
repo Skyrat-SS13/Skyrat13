@@ -25,6 +25,7 @@
 	mutantlungs = /obj/item/organ/lungs/robot_ipc
 	mutant_heart = /obj/item/organ/heart/robot_ipc
 	mutantliver = /obj/item/organ/liver/robot_ipc
+	mutantkidneys = /obj/item/organ/kidneys/robot_ipc
 	//exotic_blood = /datum/reagent/oil
 	exotic_bloodtype = "S"
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_TOXIMMUNE,TRAIT_CLONEIMMUNE,TRAIT_NODEFIB,TRAIT_DNC)

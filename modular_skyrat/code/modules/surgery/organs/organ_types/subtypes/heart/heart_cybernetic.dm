@@ -1,4 +1,3 @@
-
 /obj/item/organ/heart/cybernetic
 	name = "cybernetic heart"
 	desc = "An electronic device designed to mimic the functions of an organic human heart. Offers no benefit over an organic heart other than being easy to make."

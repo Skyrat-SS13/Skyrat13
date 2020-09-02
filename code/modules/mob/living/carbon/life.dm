@@ -488,7 +488,6 @@
 					M.adjustBruteLoss(5)
 				adjust_nutrition(10)
 
-
 /*
 Alcohol Poisoning Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)

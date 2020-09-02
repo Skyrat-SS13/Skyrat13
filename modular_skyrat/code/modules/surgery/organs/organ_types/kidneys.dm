@@ -27,9 +27,6 @@
 
 /obj/item/organ/kidneys/on_life()
 	. = ..()
-	if(!owner)
-		return
-
 	for(var/i in bad_reagents)
 		var/bad = owner.reagents.get_reagent_amount(i)
 		if(bad)

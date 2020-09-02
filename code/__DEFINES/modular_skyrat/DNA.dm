@@ -8,7 +8,8 @@
 #define HAS_SKIN		56
 #define NOPAIN			57
 #define NOKIDNEYS		58
-#define NOINFECTION		59
+#define NOINTESTINES	59
+#define NOINFECTION		60
 
 //Defines for processing reagents, for synths, IPC's and Vox
 #define PROCESS_ORGANIC (1<<0)		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC"
