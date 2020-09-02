@@ -14,7 +14,7 @@
 	biology_required = list()
 	required_status = null
 
-/datum/wound/disembowel/proc/apply_disembowel(obj/item/bodypart/L, wounding_type=WOUND_SLASH)
+/datum/wound/disembowel/proc/apply_disembowel(obj/item/bodypart/L, wounding_type  =WOUND_SLASH)
 	var/list/organs = L?.owner?.getorganszone(L.body_zone)
 	for(var/obj/item/organ/genital/G in organs)
 		organs -= G

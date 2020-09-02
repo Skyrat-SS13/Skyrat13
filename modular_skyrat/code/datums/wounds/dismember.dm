@@ -15,7 +15,7 @@
 	biology_required = list()
 	required_status = null
 
-/datum/wound/loss/proc/apply_dismember(obj/item/bodypart/L, wounding_type=WOUND_SLASH)
+/datum/wound/loss/proc/apply_dismember(obj/item/bodypart/L, wounding_type = WOUND_SLASH)
 	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.can_dismember())
 		qdel(src)
 		return
