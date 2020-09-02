@@ -88,20 +88,28 @@
 /obj/machinery/limbgrower/Topic(href, href_list)
 	if(..())
 		return
-	if (!busy)
+	if(!busy)
 		if(href_list["menu"])
 			screen = text2num(href_list["menu"])
 
 		if(href_list["category"])
 			selected_category = href_list["category"]
 
+			//Validate the category to avoid href exploits.
+			if(!(selected_category in categories))
+				if(length(categories))
+					selected_category = categories[1]
+				else
+					selected_category = null
+
 		if(href_list["disposeI"])  //Get rid of a reagent incase you add the wrong one by mistake
 			reagents.del_reagent(text2path(href_list["disposeI"]))
 
 		if(href_list["make"])
 
-			/////////////////
-			//href protection
+			///////////////////
+			//href protection//
+			///////////////////
 			being_built = stored_research.isDesignResearchedID(href_list["make"]) //check if it's a valid design
 			if(!being_built)
 				return
