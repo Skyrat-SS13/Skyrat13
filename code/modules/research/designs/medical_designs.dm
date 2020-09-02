@@ -556,6 +556,17 @@
 	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/cyberimp_NV
+	name = "Night Vision Eyes"
+	desc = "These cybernetic eyes will give you Night Vision. Big, mean, and green."
+	id = "ci-nv"
+	build_type = MECHFAB
+	construction_time = 60
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/uranium = 1000,)
+	build_path = /obj/item/organ/eyes/night_vision/cyber
+	category = list("Misc", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/cyberimp_antidrop
 	name = "Anti-Drop Implant"
 	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ear to toggle."
@@ -597,6 +608,17 @@
 	construction_time = 40
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/gold = 500)
 	build_path = /obj/item/organ/cyberimp/chest/nutriment
+	category = list("Misc", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/cyberimp_scanner
+	name = "Internal Medical Analyzer"
+	desc = "This implant interfaces with a host's body, sending detailed readouts of the vessel's condition on command via the mind."
+	id = "ci-scanner"
+	build_type = MECHFAB
+	construction_time = 40
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 2000, /datum/material/gold = 1500)
+	build_path = /obj/item/organ/cyberimp/chest/scanner
 	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 

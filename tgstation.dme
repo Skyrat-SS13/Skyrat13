@@ -4182,6 +4182,7 @@
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\subtypes\augments_arms\toolset.dm"
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\subtypes\augments_chest\nutriment.dm"
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\subtypes\augments_chest\reviver.dm"
+#include "modular_skyrat\code\modules\surgery\organs\organ_types\subtypes\augments_chest\scanner.dm"
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\subtypes\augments_chest\thrusters.dm"
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\subtypes\augments_eyes\diaghud.dm"
 #include "modular_skyrat\code\modules\surgery\organs\organ_types\subtypes\augments_eyes\medihud.dm"

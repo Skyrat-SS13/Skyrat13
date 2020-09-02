@@ -71,7 +71,7 @@
 	display_name = "Cybernetic Implants"
 	description = "Electronic implants that improve humans."
 	prereq_ids = list("adv_biotech", "adv_datatheory")
-	design_ids = list("ci-nutriment", "ci-breather", "ci-gloweyes", "ci-welding", "ci-medhud", "ci-sechud", "ci-diaghud", "ci-service", "ci-botany")
+	design_ids = list("ci-nutriment", "ci-scanner", "ci-breather", "ci-gloweyes", "ci-welding", "ci-medhud", "ci-sechud", "ci-diaghud", "ci-service", "ci-botany")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 
 /datum/techweb_node/adv_cyber_implants
@@ -87,7 +87,7 @@
 	display_name = "Combat Cybernetic Implants"
 	description = "Military grade combat implants to improve performance."
 	prereq_ids = list("adv_cyber_implants","weaponry","NVGtech","high_efficiency")
-	design_ids = list("ci-xray", "ci-thermals", "ci-antidrop", "ci-antistun", "ci-antisleep", "ci-thrusters", "ci-shield", "ci-mantis", "ci-flash")
+	design_ids = list("ci-xray", "ci-thermals", "ci-nv", "ci-antidrop", "ci-antistun", "ci-antisleep", "ci-thrusters", "ci-shield", "ci-mantis", "ci-flash")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 12000)
 
 /*/datum/techweb_node/mining_cyber_implants

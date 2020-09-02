@@ -19,7 +19,7 @@
 	name = "\improper X-ray eyes"
 	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile."
 	icon_state = "xray_eyes"
-	eye_color = "000"
+	eye_color = "00ffe5"
 	see_in_dark = 8
 	sight_flags = SEE_MOBS | SEE_OBJS | SEE_TURFS
 
@@ -67,6 +67,7 @@
 /obj/item/organ/eyes/robotic/shield
 	name = "shielded robotic eyes"
 	desc = "These reactive micro-shields will protect you from welders and flashes without obscuring your vision."
+	eye_color = "ff2700"
 	icon_state = "shielded_eyes"
 	flash_protect = 2
 
@@ -249,3 +250,11 @@
     RegisterSignal(M,COMSIG_LIVING_STATUS_UNCONSCIOUS,.proc/deactivate)
     . = ..()
 	// makes High lum eyes depower upon conciousness loss
+
+/obj/item/organ/eyes/night_vision/cyber
+	name = "nightvision eyes"
+	icon_state = "eyes_nvcyber"
+	desc = "A pair of eyes with built-in nightvision optics, with the additional bonus of being rad as hell."
+	eye_color = "0ffc03"
+	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_SYNTHETIC
