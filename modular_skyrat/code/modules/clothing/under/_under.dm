@@ -1,2 +1,3 @@
-/obj/item/clothing/under
-	hide_underwear_examine = TRUE
+/obj/item/clothing/under/Initialize()
+	. = ..()
+	item_flags |= HIDEUNDERWEAR
