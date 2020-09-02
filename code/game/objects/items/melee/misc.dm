@@ -403,6 +403,7 @@
 	total_mass = TOTAL_MASS_NORMAL_ITEM
 	//skyrat edit
 	bare_wound_bonus = 5
+	pain = 20 //Batons actually hurt a lot, there is a reason they stun
 	//
 
 /obj/item/melee/classic_baton/telescopic/suicide_act(mob/user)

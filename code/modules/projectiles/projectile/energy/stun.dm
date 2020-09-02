@@ -17,6 +17,7 @@
 	var/tase_duration = 50
 	var/strong_tase = TRUE
 	wound_bonus = CANT_WOUND
+	pain = 20 //WHAT DO YOU MEAN TASERS ACTUALLY HURT A LOT?
 
 /obj/item/projectile/energy/electrode/on_hit(atom/target, blocked = FALSE)
 	. = ..()
