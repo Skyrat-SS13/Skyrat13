@@ -96,7 +96,7 @@
 			selected_category = href_list["category"]
 
 			//Validate the category to avoid href exploits.
-			if(!(selected_category in categories))
+			if(!categories[selected_category])
 				if(length(categories))
 					selected_category = categories[1]
 				else
