@@ -9,7 +9,7 @@
 	low_threshold = 25
 	high_threshold = 45
 	maxHealth = 70
-	relative_size = 20
+	relative_size = 40 //Makes sense if you consider how the groin only has the kidneys, appendix and maybe some mutant organs and genetools
 	//Reagents associated with the damage they deal when metabolized, if the kidney is damaged
 	var/list/bad_reagents = list(
 		/datum/reagent/consumable/coffee = 0.1,

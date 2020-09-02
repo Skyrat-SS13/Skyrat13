@@ -10,7 +10,7 @@
 	low_threshold = 25
 	high_threshold = 40
 	maxHealth = 50
-	relative_size = 40
+	relative_size = 25
 	var/extra_nutrition_gain = 0
 	var/extra_nutrition_loss = 0
 

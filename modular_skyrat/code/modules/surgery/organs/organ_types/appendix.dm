@@ -9,7 +9,7 @@
 	maxHealth = 0.45 * STANDARD_ORGAN_THRESHOLD
 	high_threshold = 0.3 * STANDARD_ORGAN_THRESHOLD
 	low_threshold = 0.2 * STANDARD_ORGAN_THRESHOLD
-	relative_size = 15
+	relative_size = 20 //Makes sense if you consider how the groin only has the kidneys, appendix and maybe some mutant organs and genetools
 
 	now_failing = "<span class='warning'>An explosion of pain erupts in your lower right abdomen!</span>"
 	now_fixed = "<span class='info'>The pain in your abdomen has subsided.</span>"

@@ -1,5 +1,4 @@
 /obj/item/organ/brain
-	relative_size = 85
 	damage_reduction = 0
 	damage_modifier = 0
 	damage_reduction = 0
@@ -10,6 +9,7 @@
 	var/damage_threshold_value = 0
 	var/healed_threshold = 1
 	var/oxygen_reserve = 5
+	relative_size = 70 //Cum is stored in the brain, and i have a headache
 	pain_multiplier = 0 //We don't count towards bodypart pain
 
 /obj/item/organ/brain/Initialize()

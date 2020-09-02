@@ -32,6 +32,7 @@
 	var/bang_protect = 0
 	// Multiplier for both long term and short term ear damage
 	var/damage_multiplier = 1
+	relative_size = 10
 
 /obj/item/organ/ears/on_life()
 	. = ..()

@@ -34,6 +34,7 @@
 	var/see_invisible = SEE_INVISIBLE_LIVING
 	var/lighting_alpha
 	var/eye_damaged	= FALSE	//indicates that our eyes are undergoing some level of negative effect
+	relative_size = 15
 
 /obj/item/organ/eyes/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
 	. = ..()
