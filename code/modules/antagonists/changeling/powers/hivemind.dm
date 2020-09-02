@@ -3,7 +3,7 @@
 	name = "Hivemind Communication"
 	desc = "We tune our senses to the airwaves to allow us to discreetly communicate and exchange DNA with other changelings."
 	helptext = "We will be able to talk with other changelings with :g. Exchanged DNA do not count towards absorb objectives." //MODE_TOKEN_CHANGELING needs to be manually updated here.
-	dna_cost = 1
+	dna_cost = 0	//Skyrats change. Clings not having Cloud storage for DNA entices murderbone. 
 	chemical_cost = -1
 	action_icon = 'icons/mob/actions/actions_xeno.dmi'
 	action_icon_state = "alien_whisper"
