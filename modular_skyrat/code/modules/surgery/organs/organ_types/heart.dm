@@ -95,7 +95,7 @@
 			applyOrganDamage(1)
 
 /obj/item/organ/heart/proc/handle_pulse()
-	// pulse mod starts out as just the chemical effect amount
+	// Pulse mod starts out as just the chemical effect amount
 	var/pulse_mod = owner.chem_effects[CE_PULSE]
 	var/is_stable = owner.chem_effects[CE_STABLE]
 		
@@ -112,13 +112,13 @@
 		pulse_mod++
 
 	var/oxy = owner.get_blood_oxygenation()
-	if(oxy < BLOOD_VOLUME_OKAY) //brain wants us to get MOAR OXY
+	if(oxy < BLOOD_VOLUME_OKAY) //Brain wants us to get MOAR OXY
 		pulse_mod++
 	if(oxy < BLOOD_VOLUME_BAD) //MOAR
 		pulse_mod++
 
 	if(HAS_TRAIT(owner, TRAIT_FAKEDEATH) || owner.chem_effects[CE_NOPULSE])
-		pulse = clamp(PULSE_NONE + pulse_mod, PULSE_NONE, PULSE_2FAST) //pretend that we're dead. unlike actual death, can be inflienced by meds
+		pulse = clamp(PULSE_NONE + pulse_mod, PULSE_NONE, PULSE_2FAST) //Pretend that we're dead. unlike actual death, can be inflienced by meds
 		return
 
 	//If heart is stopped, it isn't going to restart itself randomly.

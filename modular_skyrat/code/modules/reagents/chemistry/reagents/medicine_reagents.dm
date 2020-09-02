@@ -437,3 +437,16 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.remove_chem_effect(CE_ANTIBIOTIC, 35)
+
+//Stabilizing medicine
+/datum/reagent/medicine/epinephrine/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_STABLE)
+
+/datum/reagent/medicine/epinephrine/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_STABLE)
