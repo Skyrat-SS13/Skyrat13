@@ -114,6 +114,7 @@
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
 	required_status = BODYPART_ORGANIC
 	biology_required = list()
+	occur_text = null
 
 /datum/wound/slash/loss/get_examine_description(mob/user)
 	. = ..()
@@ -178,6 +179,7 @@
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
 	required_status = BODYPART_ROBOTIC
 	biology_required = list()
+	occur_text = null
 
 /datum/wound/mechanical/slash/loss/get_examine_description(mob/user)
 	. = ..()
