@@ -1,4 +1,4 @@
-//fuck it we making underwear actual items
+//Fuck it we making underwear actual items
 /obj/item/clothing/underwear
 	name = "Underwear"
 	desc = "If you're reading this, something went wrong."
@@ -14,3 +14,10 @@
 	var/under_type = /obj/item/clothing/underwear //i don't know what i'm gonna use this for
 	var/fitted = NO_FEMALE_UNIFORM
 	var/has_colors = TRUE
+
+//Proc to check if underwear is hidden
+/mob/living/carbon/human/proc/underwear_hidden()
+	for(var/obj/item/I in list(w_uniform, wear_suit, shoes))
+		if(istype(I) && ((I.hide_underwear_examine) || (I.flags_inv & HIDEUNDERWEAR)))
+			return TRUE
+	return FALSE
