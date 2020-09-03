@@ -505,3 +505,23 @@
 	item_state = "hardsuit0-blueexo"
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 20,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 75, "wound" = 20)
 	hardsuit_type = "blueexo"
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/suits.dmi',
+	"MKI" = 'icons/obj/clothing/suits.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/clothing/suit.dmi',
+	"MKI" = 'icons/mob/clothing/suit.dmi',
+	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
+	"MKI" = 'icons/mob/clothing/suit_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = "hardsuit-blueexo",
+	"MKI" = "hardsuit-blueexoX",
+	)
+	unique_hardsuit_type = list(
+	"Default" = "blueexo",
+	"MKI" = "blueexoX",
+	)
