@@ -1429,3 +1429,14 @@
 /mob/living/carbon/proc/remove_chem_effect(effect, magnitude = 1)
 	if(effect in chem_effects)
 		chem_effects[effect] = max(0, chem_effects[effect] - magnitude)
+
+//Replaces crit with shock
+/mob/living/carbon/InCritical()
+	if(isalien(src)) //Horrible.
+		return ..()
+	return InShock()
+
+/mob/living/carbon/InFullCritical()
+	if(isalien(src)) //Horrible.
+		return ..()
+	return InFullShock()
