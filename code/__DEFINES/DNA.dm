@@ -174,11 +174,8 @@
 #define ORGAN_SLOT_ALCOHOL_GLAND "alcohol_gland"
 #define ORGAN_SLOT_ESOPHAGUS "esophagus" //soon (TM)
 #define ORGAN_SLOT_INTESTINES "intestines"
-#define ORGAN_SLOT_SPLEEN "spleen" //soon (TM)
-#define ORGAN_SLOT_PANCREAS "pancreas" //soon (TM)
 #define ORGAN_SLOT_KIDNEYS "kidneys"
 #define ORGAN_SLOT_BLADDER "bladder" //soon (TM)
-#define ORGAN_SLOT_COLON "colon" //soon (TM)
 //
 
 ////organ defines
