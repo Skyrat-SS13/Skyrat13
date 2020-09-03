@@ -154,7 +154,7 @@
 	var/tox_reduction = 0
 	/// How many toxins this bodyparts filters when processed on Life()
 	/// Filtering toxins turns the bodypart toxin damage into organ damage
-	var/tox_filter_per_tick =  0.2
+	var/tox_filter_per_tick =  0.1
 
 	/// Clone/cellular damage
 	var/clone_dam = 0
