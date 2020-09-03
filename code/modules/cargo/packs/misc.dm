@@ -105,7 +105,7 @@
 					/obj/item/bedsheet/black,
 					/obj/item/bedsheet/rainbow)
 	crate_name = "colored bedsheet crate"
-/* Commented out because it's a memey overpowered vehicle and many exploits made it accessible
+
 /datum/supply_pack/misc/bicycle
 	name = "Bicycle"
 	desc = "Nanotrasen reminds all employees to never toy with powers outside their control."
@@ -113,7 +113,7 @@
 	contains = list(/obj/vehicle/ridden/bicycle)
 	crate_name = "Bicycle Crate"
 	crate_type = /obj/structure/closet/crate/large
-*/
+
 /datum/supply_pack/misc/bigband
 	name = "Big Band Instrument Collection"
 	desc = "Get your sad station movin' and groovin' with this fine collection! Contains nine different instruments!"
