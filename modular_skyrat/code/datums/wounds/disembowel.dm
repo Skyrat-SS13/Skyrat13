@@ -110,6 +110,7 @@
 	sound_effect = 'sound/misc/splort.ogg'
 	pain_amount = 30 //Just absolutely unbearable. Will send you into shock most of the time.
 	infection_chance = 90
+	occur_text = null
 
 /datum/wound/slash/critical/incision/disembowel/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)
 	. = ..()
@@ -169,6 +170,7 @@
 	required_status = BODYPART_ROBOTIC
 	biology_required = list()
 	pain_amount = 30 //Just absolutely unbearable. Will send you into shock most of the time.
+	occur_text = null
 
 /datum/wound/mechanical/slash/critical/incision/disembowel/get_examine_description(mob/user)
 	. = ..()

@@ -116,6 +116,7 @@
 	biology_required = list()
 	pain_amount = 24 //Horrible, but could be worse.
 	infection_chance = 90
+	occur_text = null
 
 /datum/wound/slash/loss/get_examine_description(mob/user)
 	. = ..()
@@ -181,6 +182,7 @@
 	required_status = BODYPART_ROBOTIC
 	biology_required = list()
 	pain_amount = 24
+	occur_text = null
 
 /datum/wound/mechanical/slash/loss/get_examine_description(mob/user)
 	. = ..()

@@ -28,6 +28,7 @@
 
 /mob/living/carbon/fully_heal(admin_revive)
 	..()
+	remove_all_embedded_objects()
 	shock_stage = 0
 	setPainLoss(0, FALSE)
 	janitize(0, 0, 0)
