@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "Cable coil and welding tools no longer try fixing limbs that are fine"
+  - bugfix: "Disembowelment/dismemberment no longer cause \"surgically cut open\" messages"
