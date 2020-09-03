@@ -128,9 +128,11 @@
 
 	/// Chance of this wound getting infected
 	var/infection_chance = 0
+	/// How many germs we add once we pass the infection check
+	var/infection_rate = 1
 	/// Germ level of the wound
 	var/germ_level = 0
-	// Our current level of sanitization/anti-infection, from disinfectants/alcohol/UV lights. While positive, totally pauses and slowly reverses germ_level effects each tick
+	/// Our current level of sanitization/anti-infection, from disinfectants/alcohol/UV lights. While positive, totally pauses and slowly reverses germ_level effects each tick
 	var/sanitization = 0
 	/// Once we reach germ_level beyond WOUND_germ_level_SEPSIS, we get this many warnings before the limb is completely paralyzed (you'd have to ignore a really bad burn for a really long time for this to happen)
 	var/strikes_to_lose_limb = 3

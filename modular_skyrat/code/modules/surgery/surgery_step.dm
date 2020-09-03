@@ -37,7 +37,7 @@
 		else
 			if(failure(user, target, target_zone, tool, surgery))
 				advance = TRUE
-		spread_germs_to_bodypart(affecting, user)
+		spread_germs_to_bodypart(affecting, user, tool)
 		if(advance && !repeatable)
 			surgery.status++
 			if(surgery.status > surgery.steps.len)
@@ -45,12 +45,18 @@
 	surgery.step_in_progress = FALSE
 	return advance
 
-/proc/spread_germs_to_bodypart(obj/item/bodypart/BP, mob/living/carbon/human/user)
+/proc/spread_germs_to_bodypart(obj/item/bodypart/BP, mob/living/carbon/human/user, obj/item/tool)
 	if(!istype(user) || !istype(BP))
 		return
 
 	var/our_germ_level = user.germ_level
 	if(user.gloves)
 		our_germ_level = user.gloves.germ_level
+	
+	if(tool && (tool.germ_level >= our_germ_level))
+		our_germ_level += tool.germ_level
+	
+	our_germ_level = CEILING(our_germ_level/10, 1)
 
-	BP.germ_level = max(our_germ_level, BP.germ_level)
+	if(BP.germ_level < INFECTION_LEVEL_TWO)
+		BP.germ_level += our_germ_level

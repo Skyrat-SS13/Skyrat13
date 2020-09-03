@@ -623,7 +623,7 @@
 	for(var/datum/wound/W in wounds)
 		//Open wounds can become infected
 		if(istype(T) && W.infection_check() && (max(2*T.dirtiness, owner_germ_level) > W.germ_level))
-			W.germ_level++
+			W.germ_level += W.infection_rate
 
 	var/antibiotics = owner.get_antibiotics()
 	if(!antibiotics)
