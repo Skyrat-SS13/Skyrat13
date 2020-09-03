@@ -178,6 +178,7 @@
 #define ORGAN_SLOT_PANCREAS "pancreas" //soon (TM)
 #define ORGAN_SLOT_KIDNEYS "kidneys"
 #define ORGAN_SLOT_BLADDER "bladder" //soon (TM)
+#define ORGAN_SLOT_COLON "colon" //soon (TM)
 //
 
 ////organ defines
