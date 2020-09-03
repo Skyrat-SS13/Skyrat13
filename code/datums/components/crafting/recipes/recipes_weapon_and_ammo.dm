@@ -257,7 +257,7 @@
 				/obj/item/weaponcrafting/improvised_parts/wooden_body = 1,
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/stack/packageWrap = 5)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(TOOL_SCREWDRIVER, TOOL_SAW)
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -271,7 +271,7 @@
 				/obj/item/weaponcrafting/improvised_parts/wooden_body = 1,
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/stack/packageWrap = 5)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(TOOL_SCREWDRIVER, TOOL_SAW)
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -473,7 +473,7 @@
 	result = /obj/item/weaponcrafting/improvised_parts/shotgun_receiver
 	reqs = list(/obj/item/stack/sheet/metal = 10,
 				/obj/item/stack/sheet/plasteel = 1)
-	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER) // Dual wielding has been removed, plasteel is a soft timesink to obtain for most to make mass production harder.
+	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
 	time = 50
 	category = CAT_WEAPONRY
 	subcategory = CAT_PARTS

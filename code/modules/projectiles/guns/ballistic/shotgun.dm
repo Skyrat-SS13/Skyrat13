@@ -325,7 +325,7 @@
 	pump()
 	return TRUE
 
-// DOUBLE BARRELED SHOTGUN and IMPROVISED SHOTGUN are in revolver.dm
+// DOUBLE BARRELED SHOTGUN is in revolver.dm
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/hook
 	name = "hook modified sawn-off shotgun"

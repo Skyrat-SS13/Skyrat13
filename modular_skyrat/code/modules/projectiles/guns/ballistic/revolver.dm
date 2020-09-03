@@ -92,7 +92,7 @@
 	name = "\improper Improvised .38 Revolving Rifle"
 	desc = "A crudely made revolving rifle. It fires .38 rounds. The cylinder doesn't rotate very well."
 	icon_state = "revolving-rifle"
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38	//TAs far as improvised weapons go, this is fairly decent, this isn't half bad.
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38	//As far as improvised weapons go, this is fairly decent, this isn't half bad.
 	fire_delay = 15
 	recoil = 1
 
