@@ -65,10 +65,10 @@
 	U.cut_overlays()
 	U.attached_accessories -= src
 	if(length(U.attached_accessories))
-		U.accessory_overlay = mutable_appearance('icons/mob/clothing/accessories.dmi', "blank")
+		U.accessory_overlay = mutable_appearance('icons/mob/clothing/accessories.dmi', "blank", WRISTS_LAYER, U.plane)
 		for(var/obj/item/clothing/accessory/attached_accessory in U.attached_accessories)
 			attached_accessory.force_unto(U)
-			var/mutable_appearance/Y = mutable_appearance(attached_accessory.mob_overlay_icon, attached_accessory.icon_state, ABOVE_HUD_LAYER)
+			var/mutable_appearance/Y = mutable_appearance(attached_accessory.mob_overlay_icon, attached_accessory.icon_state, WRISTS_LAYER, U.plane)
 			Y.alpha = attached_accessory.alpha
 			Y.color = attached_accessory.color
 			U.accessory_overlay.add_overlay(Y)
