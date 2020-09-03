@@ -47,7 +47,7 @@
 	id = "wt550"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2500, /datum/material/silver = 2000, /datum/material/titanium = 6000)
-	build_path = /obj/item/gun/ballistic/automatic/wt550
+	build_path = /obj/item/gun/ballistic/automatic/wt550/nopin
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
@@ -65,11 +65,22 @@
 //Advanced armor vest
 /datum/design/adv_vest
 	name = "Advanced Armor Vest"
-	desc = "Furniture of law enforcement."
+	desc = "Future of law enforcement."
 	id = "adv_armor_vest"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/titanium = 5000, /datum/material/plasma = 5000, /datum/material/plastic = 2000)
 	build_path = /obj/item/clothing/suit/armor/vest/advanced
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+//Advanced techarmor vest
+/datum/design/adv_techvest
+	name = "Advanced Techarmor Vest"
+	desc = "Post-Future of law enforcement."
+	id = "adv_armor_vest_tech"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/titanium = 9000, /datum/material/plasma = 6000, /datum/material/plastic = 3000)
+	build_path = /obj/item/clothing/suit/space/hardsuit/security_armor/cloaker
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 

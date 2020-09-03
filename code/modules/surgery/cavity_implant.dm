@@ -2,22 +2,26 @@
 	name = "Cavity implant"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/incise, /datum/surgery_step/handle_cavity, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = list(BODY_ZONE_CHEST)
+	possible_locs = ALL_BODYPARTS //skyrat edit
+	requires_bodypart_type = BODYPART_ORGANIC
+
 //handle cavity
 /datum/surgery_step/handle_cavity
-	name = "implant item"
+	name = "Implant item"
 	accept_hand = 1
 	accept_any_item = 1
 	implements = list(/obj/item = 100)
 	repeatable = TRUE
 	time = 32
 	var/obj/item/IC = null
-/datum/surgery_step/handle_cavity/tool_check(mob/user, obj/item/tool)
+
+/datum/surgery_step/handle_cavity/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(istype(tool, /obj/item/cautery) || istype(tool, /obj/item/gun/energy/laser))
 		return FALSE
 	return !tool.get_temperature()
+
 /datum/surgery_step/handle_cavity/preop(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	var/obj/item/bodypart/chest/CH = target.get_bodypart(BODY_ZONE_CHEST)
+	var/obj/item/bodypart/CH = target.get_bodypart(target_zone) //skyrat edit
 	IC = CH.cavity_item
 	if(tool)
 		display_results(user, target, "<span class='notice'>You begin to insert [tool] into [target]'s [target_zone]...</span>",
@@ -29,9 +33,9 @@
 			"[user] looks for something in [target]'s [target_zone].")
 
 /datum/surgery_step/handle_cavity/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	var/obj/item/bodypart/chest/CH = target.get_bodypart(BODY_ZONE_CHEST)
+	var/obj/item/bodypart/CH = target.get_bodypart(target_zone) //skyrat edit
 	if(tool)
-		if(IC || tool.w_class > WEIGHT_CLASS_NORMAL || HAS_TRAIT(tool, TRAIT_NODROP) || istype(tool, /obj/item/organ))
+		if(IC || tool.w_class > CH.max_cavity_size || HAS_TRAIT(tool, TRAIT_NODROP) || istype(tool, /obj/item/organ))
 			to_chat(user, "<span class='warning'>You can't seem to fit [tool] in [target]'s [target_zone]!</span>")
 			return 0
 		else
