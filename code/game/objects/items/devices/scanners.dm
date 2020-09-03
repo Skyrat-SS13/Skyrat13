@@ -98,7 +98,9 @@ GENETICS SCANNER
 
 //i had to edit this shit as a whole because this is piss
 /obj/item/healthanalyzer/attack_self(mob/user)
-	scanmode = (scanmode + 1) % 4
+	scanmode = (scanmode + 1)
+	if(scanmode > SCANMODE_PAIN)
+		scanmode = SCANMODE_HEALTH
 	switch(scanmode)
 		if(SCANMODE_HEALTH)
 			to_chat(user, "<span class='notice'>You switch the health analyzer to check physical health.</span>")
