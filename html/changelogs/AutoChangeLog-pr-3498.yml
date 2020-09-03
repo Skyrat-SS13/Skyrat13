@@ -1,0 +1,4 @@
+author: "MMMiracles, ArcaneMusic, MrMelbert, ported by coldud13"
+delete-after: True
+changes: 
+  - rscadd: "Railings can now be constructed with rods."
