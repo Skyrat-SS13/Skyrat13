@@ -114,4 +114,5 @@
 
 /datum/techweb_node/cyber_organs/New()
 	design_ids += "cybernetic_kidneys"
+	design_ids += "cybernetic_intestines"
 	. = ..()	

@@ -358,6 +358,7 @@ GENETICS SCANNER
 				breathes = FALSE
 			if(NOBLOOD in C.dna.species.species_traits)
 				blooded = FALSE
+		var/has_intestines = C.dna && !(NOSTOMACH in C.dna.species.species_traits)
 		var/has_liver = C.dna && !(NOLIVER in C.dna.species.species_traits)
 		var/has_stomach = C.dna && !(NOSTOMACH in C.dna.species.species_traits)
 		var/has_kidneys = C.dna && !(NOKIDNEYS in C.dna.species.species_traits)
@@ -375,6 +376,8 @@ GENETICS SCANNER
 			msg += "<span class='alert'><b>Subject's lungs are missing!</b></span>\n"
 		if(has_stomach && !M.getorganslot(ORGAN_SLOT_STOMACH))
 			msg += "<span class='alert'><b>Subject's stomach is missing!</span>\n"
+		if(has_intestines && !M.getorganslot(ORGAN_SLOT_INTESTINES))
+			msg += "<span class='alert'><b>Subject's intestines are missing!</span>\n"
 		if(has_kidneys && !M.getorganslot(ORGAN_SLOT_KIDNEYS))
 			msg += "<span class='alert'><b>Subject's kidneys are missing!</span>\n"
 
@@ -485,7 +488,7 @@ GENETICS SCANNER
 				msg += "<span class='danger'>CRITICAL blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type], blood oxygenation [blood_oxy_percent] %</span>\n"
 			else
 				msg += "<span class='info'>Blood level [blood_percent] %, [C.scan_blood_volume()] cl, type: [blood_type], blood oxygenation [blood_oxy_percent] %</span>\n"
-			msg += "<span class='[C.get_pulse_as_number() ? "notice" : "danger"]'>Pulse: [capitalize(C.get_pulse(advanced ? GETPULSE_TOOL : GETPULSE_HAND))]</span>"
+			msg += "<span class='[C.get_pulse_as_number() ? "notice" : "danger"]'>Pulse: [capitalize(C.get_pulse(advanced ? GETPULSE_TOOL : GETPULSE_HAND))]</span>\n"
 		var/cyberimp_detect
 		for(var/obj/item/organ/cyberimp/CI in C.internal_organs)
 			if(CI.status == ORGAN_ROBOTIC && !CI.syndicate_implant)

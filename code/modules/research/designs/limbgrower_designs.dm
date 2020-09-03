@@ -148,6 +148,14 @@
 	build_path = /obj/item/organ/kidneys
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
+/datum/design/intestines
+	name = "Intestines"
+	id = "intestines"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
+	build_path = /obj/item/organ/intestines
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
+
 /datum/design/appendix
 	name = "Appendix"
 	id = "appendix"

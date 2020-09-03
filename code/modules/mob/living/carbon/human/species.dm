@@ -99,10 +99,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/obj/item/organ/heart/mutant_heart = /obj/item/organ/heart
 	var/obj/item/organ/eyes/mutanteyes = /obj/item/organ/eyes
 	var/obj/item/organ/ears/mutantears = /obj/item/organ/ears
-	var/obj/item/organ/liver/mutantliver
-	var/obj/item/organ/kidneys/mutantkidneys
-	var/obj/item/organ/stomach/mutantstomach
-	var/obj/item/organ/intestines/mutantintestines
+	var/obj/item/organ/liver/mutantliver = /obj/item/organ/liver
+	var/obj/item/organ/kidneys/mutantkidneys = /obj/item/organ/kidneys
+	var/obj/item/organ/stomach/mutantstomach = /obj/item/organ/stomach
+	var/obj/item/organ/intestines/mutantintestines = /obj/item/organ/intestines
 	var/obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue
 	var/obj/item/organ/tail/mutanttail
 
