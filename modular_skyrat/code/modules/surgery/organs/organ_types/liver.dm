@@ -26,7 +26,7 @@
 	var/filterToxins = TRUE //whether to filter toxins
 	var/cachedmoveCalc = 1
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/iron = 5)
-	relative_size = 20
+	relative_size = 25
 
 /obj/item/organ/liver/on_life()
 	. = ..()

@@ -11,7 +11,6 @@
 	maxHealth = 0.5 * STANDARD_ORGAN_THRESHOLD		//half the normal health max since we go blind at 30, a permanent blindness at 50 therefore makes sense unless medicine is administered
 	high_threshold = 0.25 * STANDARD_ORGAN_THRESHOLD	//threshold at 20
 	low_threshold = 0.1 * STANDARD_ORGAN_THRESHOLD	//threshold at 10
-	relative_size = 15 //Covered by the intestines, for the most part
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
 
@@ -19,6 +18,7 @@
 	high_threshold_passed = "<span class='warning'>Your stomach flares up with constant pain- you can hardly stomach the idea of food right now!</span>"
 	high_threshold_cleared = "<span class='info'>The pain in your stomach dies down for now, but food still seems unappealing.</span>"
 	low_threshold_cleared = "<span class='info'>The last bouts of pain in your stomach have died out.</span>"
+	relative_size = 25
 
 /obj/item/organ/stomach/on_life()
 	. = ..()

@@ -19,7 +19,6 @@
 	decay_factor = STANDARD_ORGAN_DECAY
 	high_threshold = 0.45 * LUNGS_MAX_HEALTH	//threshold at 45
 	low_threshold = 0.25 * LUNGS_MAX_HEALTH	//threshold at 25
-	relative_size = 35 //Chest has many organs, we need to cut some chances off to round up to 100
 
 	high_threshold_passed = "<span class='warning'>You feel some sort of constriction around your chest as your breathing becomes shallow and rapid.</span>"
 	now_fixed = "<span class='warning'>Your lungs seem to once again be able to hold air.</span>"
@@ -83,6 +82,7 @@
 	var/last_int_pressure = 0
 	var/last_ext_pressure = 0
 	var/max_pressure_diff = 60
+	relative_size = 30 //Chest has many organs, we need to cut some chances off to round up to 100
 
 /obj/item/organ/lungs/proc/remove_oxygen_deprivation(amount)
 	var/last_suffocation = oxygen_deprivation
