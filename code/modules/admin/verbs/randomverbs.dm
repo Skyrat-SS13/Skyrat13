@@ -1271,6 +1271,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 								ADMIN_PUNISHMENT_MEDIC,
 								ADMIN_PUNISHMENT_PAPAJOHNS,
 								ADMIN_PUNISHMENT_PHANTOM_PAIN,
+								ADMIN_PUNISHMENT_SHARETHEPAIN,
 								)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
@@ -1636,6 +1637,14 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			var/mob/living/carbon/C = target
 			for(var/obj/item/bodypart/BP in C.bodyparts)
 				BP.drop_limb(TRUE, TRUE, FALSE, FALSE)
+		if(ADMIN_PUNISHMENT_SHARETHEPAIN)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			C.say("I regret nothing.")
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				BP.receive_damage(pain = BP.max_pain_damage)
 		//
 
 	punish_log(target, punishment)

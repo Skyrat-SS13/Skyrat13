@@ -278,7 +278,7 @@
 //It automatically updates damage overlays if necessary
 //It automatically updates health status
 /mob/living/carbon/heal_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, only_robotic = FALSE, only_organic = TRUE, pain = 0, toxin = 0, clone = 0)
-	var/list/obj/item/bodypart/parts = get_damaged_bodyparts(brute, burn, stamina, status, toxin, pain, clone)
+	var/list/obj/item/bodypart/parts = get_damaged_bodyparts(brute, burn, stamina, NONE, toxin, pain, clone)
 	if(!parts.len)
 		return
 	var/obj/item/bodypart/picked = pick(parts)
@@ -298,7 +298,7 @@
 
 //Heal MANY bodyparts, in random order
 /mob/living/carbon/heal_overall_damage(brute = 0, burn = 0, stamina = 0, only_robotic = FALSE, only_organic = TRUE, updating_health = TRUE, pain = 0, toxin = 0, clone = 0)
-	var/list/obj/item/bodypart/parts = get_damaged_bodyparts(brute, burn, stamina, status, toxin, pain, clone)
+	var/list/obj/item/bodypart/parts = get_damaged_bodyparts(brute, burn, stamina, NONE, toxin, pain, clone)
 
 	var/update = 0
 	while(parts.len && (brute > 0 || burn > 0 || stamina > 0 || pain > 0 || toxin > 0 || clone > 0))
