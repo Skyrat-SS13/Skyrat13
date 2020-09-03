@@ -552,9 +552,10 @@ GENETICS SCANNER
 		to_chat(user, "<span class='warning'>ERROR: Wellbeing scan can only be used on complex lifeforms.</span>")
 		return
 	var/msg = "<span class='info'>*---------*\n"
-	msg += "<span class='info'>Bodypart info:</span>\n"
+	msg += "<span class='info'><b>Bodypart info:</b></span>\n"
+	var/list/bodypart_info = list()
 	for(var/obj/item/bodypart/BP in C.bodyparts)
-		var/result = "<span class='info'><b>[BP.name]:</b> "
+		var/result = "<span class='info'>[BP.name]: "
 		var/list/results = BP.get_scan_results(TRUE)
 		var/pain = BP.get_pain()
 		if(!advanced)
@@ -562,13 +563,16 @@ GENETICS SCANNER
 		if(pain)
 			results += "[pain] pain"
 		if(length(results))
-			for(var/r in results)
-				result += r
+			result += results.Join(", ")
 			result += "</span>\n"
-			msg += result
-	msg += "<span class='info'>Organ info:</span>\n"
+			bodypart_info += result
+	if(!length(bodypart_info))
+		msg += "<span class='info'>N/A</span>\n"
+	else
+		msg += bodypart_info.Join("")
+	msg += "<span class='info'><b>Organ info:</b></span>\n"
 	for(var/obj/item/organ/O in C.internal_organs)
-		var/result = "<span class='info'><b>[O.name]:</b> "
+		var/result = "<span class='info'>[O.name]: "
 		var/list/results = O.get_scan_results(TRUE)
 		if(length(results))
 			for(var/r in results)
