@@ -555,7 +555,7 @@ GENETICS SCANNER
 	msg += "<span class='info'><b>Bodypart info:</b></span>\n"
 	var/list/bodypart_info = list()
 	for(var/obj/item/bodypart/BP in C.bodyparts)
-		var/result = "<span class='info'>[BP.name]: "
+		var/result = "<span class='info'>[capitalize(BP.name)]: "
 		var/list/results = BP.get_scan_results(TRUE)
 		var/pain = BP.get_pain()
 		if(!advanced)
@@ -572,7 +572,7 @@ GENETICS SCANNER
 		msg += bodypart_info.Join("")
 	msg += "<span class='info'><b>Organ info:</b></span>\n"
 	for(var/obj/item/organ/O in C.internal_organs)
-		var/result = "<span class='info'>[O.name]: "
+		var/result = "<span class='info'>[capitalize(O.name)]: "
 		var/list/results = O.get_scan_results(TRUE)
 		if(length(results))
 			for(var/r in results)
