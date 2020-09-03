@@ -592,8 +592,8 @@
 		if(heal_damage(pain = (pain_heal_tick * (owner?.lying ? pain_heal_rest_multiplier : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(tox_filter_per_tick && tox_dam > DAMAGE_PRECISION)
-		if(filter_toxins(toxins = tox_filter_per_tick, only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
-			. |= BODYPART_LIFE_UPDATE_HEALTH
+		filter_toxins(toxins = tox_filter_per_tick, only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE)
+		. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(rejecting)
 		handle_rejection()
 		. |= BODYPART_LIFE_UPDATE_HEALTH
@@ -1054,7 +1054,12 @@
 		return
 	
 	// Heal the bodypart toxin damage.
+	var/tox_before = tox_dam
 	heal_damage(toxin = toxins, only_robotic = only_robotic, only_organic = only_organic, updating_health = updating_health)
+
+	// Just to be sure nothing will go wrong
+	if(tox_before >= tox_dam)
+		return
 
 	// Get a list of the organs we should damage.
 	var/list/pick_organs = list()
