@@ -139,9 +139,6 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	if(cli.prefs.toggles & METRIC_OR_BUST)
 		for(var/obj/item/organ/genital/genetool in H.internal_organs)
 			genetool.update()
-	if(user.name == "Lea Heatherholm")
-		to_chat(user, "FUCK YOU FUCK YOU FFUCKGFBJNMDFJKMNFDKNMNMKDFNMKMSDRMBSJBNSHINESIGHJISEJHESJHBJI")
-		user.gib()
 	//
 
 /datum/controller/subsystem/processing/quirks/proc/quirk_path_by_name(name)
