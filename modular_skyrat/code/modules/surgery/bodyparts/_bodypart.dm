@@ -186,7 +186,7 @@
 	if(!max_tox_damage)
 		max_tox_damage = max_damage
 	if(!max_pain_damage)
-		max_pain_damage = 2.5 * max_damage
+		max_pain_damage = max_damage * 1.5
 	if(!max_clone_damage)
 		max_clone_damage = max_damage
 	if(!organ_damage_requirement)
@@ -865,7 +865,7 @@
 			pain = 0
 	
 	pain_dam = max(0,min(max_pain_damage, pain_dam + pain))
-	if(pain && owner && (pain >= (max_pain_damage * 0.6)) && prob(10))
+	if(pain && owner && (pain >= (max_pain_damage * 0.75)) && prob(10))
 		owner.emote("scream")
 
 	if(owner && updating_health)
