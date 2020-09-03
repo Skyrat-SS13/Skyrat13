@@ -279,7 +279,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 	if(intestines && (!should_have_intestines || replace_current))
 		intestines.Remove(TRUE)
-		QDEL_NULL(stomach)
+		QDEL_NULL(intestines)
 	if(should_have_intestines && !intestines)
 		if(mutantintestines)
 			intestines = new mutantintestines()
