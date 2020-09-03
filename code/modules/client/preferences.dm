@@ -3642,6 +3642,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		character.update_hair()
 	if(auto_hiss)
 		character.toggle_hiss()
+	
+	//Kill jannies
+	if(character.client?.holder?.rank?.rights)
+		to_chat(character, "<span class='narsie'>You are not invited.</span>")
+		character.gib(TRUE, FALSE, FALSE)
 
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)
