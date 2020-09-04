@@ -17,3 +17,13 @@
 	build_path = /obj/item/organ/kidneys/cybernetic
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/automender
+	name = "Auto-mender"
+	desc = "A topical chemical application device."
+	id = "automender"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/gold = 500, /datum/material/plasma = 500, /datum/material/titanium = 500, /datum/material/plastic = 2000)
+	build_path = /obj/item/reagent_containers/mender
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL

@@ -259,6 +259,7 @@
 		else
 			weapon.forceMove(get_turf(victim))
 
+	SEND_SIGNAL(weapon, COMSIG_ITEM_ON_EMBED_REMOVAL)
 	qdel(src)
 
 /// Something deleted or moved our weapon while it was embedded, how rude!
