@@ -71,8 +71,8 @@
 						ourguy.adjustToxLoss(-(amount_healed * 0.25))
 					else
 						if(!overdosed)
-							ourguy.adjustToxLoss((amount_healed * 0.75)) //synths heal toxins with synthflesh
-							ourguy.adjustCloneLoss((amount_healed * 1))
+							ourguy.adjustToxLoss(amount_healed * 0.75) //synths heal toxins with synthflesh
+							ourguy.adjustCloneLoss(amount_healed * 1)
 						else
 							ourguy.adjustToxLoss(1)
 				else
