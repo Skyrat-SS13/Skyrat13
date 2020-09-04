@@ -165,7 +165,7 @@
 		/obj/item/melee/baton/loaded=1,\
 		/obj/item/clothing/mask/gas/sechailer=1,\
 		/obj/item/gun/energy/e_gun=1,\
-		/obj/item/pipe_dispenser/bluespace,\
+		/obj/item/pipe_dispenser/bluespace=1,\
 		/obj/item/construction/rcd/loaded/upgraded=1)
 
 /datum/outfit/ert/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
@@ -186,7 +186,7 @@
 		/obj/item/melee/baton/loaded=1,\
 		/obj/item/clothing/mask/gas/sechailer/swat=1,\
 		/obj/item/gun/energy/e_gun=1,\
-		/obj/item/pipe_dispenser/bluespace,\
+		/obj/item/pipe_dispenser/bluespace=1,\
 		/obj/item/construction/rcd/combat=1)
 
 /datum/outfit/ert/engineer/alert/delta //Skyrat change
@@ -195,7 +195,7 @@
 		/obj/item/melee/baton/loaded=1,\
 		/obj/item/clothing/mask/gas/sechailer/swat=1,\
 		/obj/item/gun/energy/pulse/pistol/loyalpin=1,\
-		/obj/item/pipe_dispenser/bluespace, \
+		/obj/item/pipe_dispenser/bluespace=1, \
 		/obj/item/construction/rcd/combat=1)
 
 /datum/outfit/ert/greybois
