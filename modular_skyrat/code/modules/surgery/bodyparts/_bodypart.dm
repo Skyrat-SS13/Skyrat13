@@ -978,7 +978,7 @@
 	if(!length(internal_organs) || (!brute && !burn && !toxin && !clone))
 		return
 	
-	var/broken = FALSE
+	var/broken = is_broken()
 	var/initial_damage_amt = brute
 	var/cur_damage = brute_dam
 	//Robotic limbs count burns for organ damage
