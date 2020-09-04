@@ -150,6 +150,8 @@
 					turret.name = finish_name
 					turret.installation = installed_gun.type
 					turret.setup(installed_gun)
+					turret.faction = list("silicon","turret") //SKYRAT EDIT: Constructed turrets no longer shoot silicons or bots.
+					turret.on = FALSE//SKYRAT EDIT: constructed turrets start OFF and must be turned on.
 					qdel(src)
 
 			else if(istype(I, /obj/item/crowbar))
