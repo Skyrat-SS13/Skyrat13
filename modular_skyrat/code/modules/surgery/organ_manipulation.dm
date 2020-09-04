@@ -316,7 +316,7 @@
 	else if(current_type == "disinfect")
 		var/disinfectedatall = FALSE
 		for(var/obj/item/organ/O in target.getorganszone(target_zone))
-			if(O.germ_level && !(O.status & ORGAN_ROBOTIC))
+			if(((O.germ_level) || (O.damage >= O.high_threshold)) && !(O.status & ORGAN_ROBOTIC))
 				O.applyOrganDamage(-disinfect_amount)
 				O.janitize(-disinfect_germs, 0, O.germ_level)
 				disinfectedatall = TRUE
