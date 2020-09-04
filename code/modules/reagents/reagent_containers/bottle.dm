@@ -221,6 +221,18 @@
 	icon_state = "bottle1"
 	list_reagents = list(/datum/reagent/medicine/salglu_solution = 30)
 
+/obj/item/reagent_containers/glass/bottle/fibrin
+	name = "fibrin bottle"
+	desc = "A small bottle of fibrin."
+	icon_state = "bottle1"
+	list_reagents = list(/datum/reagent/medicine/fibrin = 30)
+
+/obj/item/reagent_containers/glass/bottle/corticosteroids
+	name = "corticosteroids bottle"
+	desc = "A small bottle of corticosteroids."
+	icon_state = "bottle1"
+	list_reagents = list(/datum/reagent/medicine/corticosteroids = 30)
+
 /obj/item/reagent_containers/glass/bottle/atropine
 	name = "atropine bottle"
 	desc = "A small bottle of atropine."

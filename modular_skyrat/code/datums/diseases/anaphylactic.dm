@@ -13,6 +13,7 @@
 	cure_chance = 20
 	bypasses_immunity = TRUE
 	severity = DISEASE_SEVERITY_DANGEROUS
+	infectable_biotypes = MOB_ORGANIC | MOB_HUMANOID
 
 /datum/disease/anaphylactic_shock/stage_act()
 	..()
@@ -21,15 +22,16 @@
 		return FALSE
 	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "allergyshock", /datum/mood_event/allergyshock)
 	if(prob(20))
-		H.Jitter(1000)
+		H.Jitter(100)
 	if(prob(10))
 		to_chat(H, "<span class='userdanger'>You can feel your throat constricting!</span>")
-		H.adjustOxyLoss(rand(5, 10))
-	if(prob(6))
+		H.adjustOxyLoss(rand(5, 25))
+	else if(prob(5))
 		H.vomit(10, 10, 1)
-	if(prob(3))
+	else if(prob(5))
 		H.Unconscious(200)
 
-/datum/disease/anaphylactic_shock/cure(add_resistance)
+/datum/disease/anaphylactic_shock/Destroy()
 	. = ..()
 	affected_mob.jitteriness = 0
+	affected_mob.Jitter(0)

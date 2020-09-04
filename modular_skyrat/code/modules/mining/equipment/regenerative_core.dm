@@ -29,6 +29,11 @@
 	if(inert)
 		to_chat(user, "<span class='notice'>[src] has decayed and can no longer be used to heal.</span>")
 		return
+	if(AmBloodsucker(H))
+		to_chat(user, "<span class='notice'>[src] shrivels up and turns into dust as it touches [H].</span>")
+		new /obj/effect/decal/cleanable/ash(get_turf(H))
+		qdel(src)
+		return
 	if(H.stat == DEAD)
 		to_chat(user, "<span class='notice'>[src] are useless on the dead.</span>")
 		return
@@ -44,6 +49,7 @@
 		for(var/obj/item/organ/O in H)
 			O.damage = 0
 	else
+		H.reagents.remove_reagent(/datum/reagent/determination, 2000, TRUE, TRUE)
 		H.revive(full_heal = 1)
 	qdel(src)
 	user.log_message("[user] used [src] to heal [H == user ? "[H.p_them()]self" : H]! Wake the fuck up, Samurai!", LOG_ATTACK, color="green") //Logging for 'old' style legion core use, when clicking on a sprite of yourself or another.

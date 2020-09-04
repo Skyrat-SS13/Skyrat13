@@ -228,25 +228,27 @@
 			SEND_SIGNAL(src, COMSIG_CARBON_EMBED_RIP, I, L)
 			return
 		if(href_list["toggle_helmet"])
-			var/hardsuit_head = head && istype(head, /obj/item/clothing/head/helmet/space/hardsuit)
+			if(!istype(head, /obj/item/clothing/head/helmet/space/hardsuit))
+				return
+			var/obj/item/clothing/head/helmet/space/hardsuit/hardsuit_head = head
 			visible_message("<span class='danger'>[usr] tries to [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>", \
 								"<span class='userdanger'>[usr] tries to [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>", \
 								target = usr, target_message = "<span class='danger'>You try to [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>")
-			if(!do_mob(usr, src, POCKET_STRIP_DELAY))
+			if(!do_mob(usr, src, hardsuit_head ? head.strip_delay : POCKET_STRIP_DELAY))
 				return
-			visible_message("<span class='danger'>[usr] [hardsuit_head ? "retract" : "extend"] [src]'s helmet</span>", \
-									"<span class='userdanger'>[usr] [hardsuit_head ? "retract" : "extend"] [src]'s helmet</span>", \
-									target = usr, target_message = "<span class='danger'>You [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>")
-			if(!istype(wear_suit, /obj/item/clothing/suit/space/hardsuit))
+			if(!istype(wear_suit, /obj/item/clothing/suit/space/hardsuit) || (hardsuit_head ? (!head || head != hardsuit_head) : head))
 				return
 			var/obj/item/clothing/suit/space/hardsuit/hardsuit = wear_suit //This should be an hardsuit given all our checks
-			hardsuit.ToggleHelmet()
+			if(hardsuit.ToggleHelmet(FALSE))
+				visible_message("<span class='danger'>[usr] [hardsuit_head ? "retract" : "extend"] [src]'s helmet</span>", \
+										"<span class='userdanger'>[usr] [hardsuit_head ? "retract" : "extend"] [src]'s helmet</span>", \
+										target = usr, target_message = "<span class='danger'>You [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>")
 			return
 		if(href_list["item"])
 			var/slot = text2num(href_list["item"])
 			if(slot in check_obscured_slots())
 				to_chat(usr, "<span class='warning'>You can't reach that! Something is covering it.</span>")
-				return							
+				return
 		if(href_list["pockets"])
 			var/strip_mod = 1
 			var/strip_silence = FALSE
@@ -783,35 +785,40 @@
 						hud_used.healths.icon_state = "health7"
 					if(SCREWYHUD_HEALTHY)
 						hud_used.healths.icon_state = "health0"
+			if(HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
+				hud_used.healths.icon_state = "health0"
 		if(hud_used.healthdoll)
 			hud_used.healthdoll.cut_overlays()
 			if(stat != DEAD)
 				hud_used.healthdoll.icon_state = "healthdoll_OVERLAY"
-				for(var/X in bodyparts)
-					var/obj/item/bodypart/BP = X
-					var/damage = BP.burn_dam + BP.brute_dam
-					var/comparison = (BP.max_damage/5)
-					var/icon_num = 0
-					if(damage)
-						icon_num = 1
-					if(damage > (comparison))
-						icon_num = 2
-					if(damage > (comparison*2))
-						icon_num = 3
-					if(damage > (comparison*3))
-						icon_num = 4
-					if(damage > (comparison*4))
-						icon_num = 5
-					if(hal_screwyhud == SCREWYHUD_HEALTHY)
-						icon_num = 0
-					if(icon_num)
-						hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[BP.body_zone][icon_num]"))
-				for(var/t in get_missing_limbs()) //Missing limbs
-					hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[t]6"))
-				for(var/t in get_disabled_limbs()) //Disabled limbs
-					hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[t]7"))
+				if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
+					for(var/X in bodyparts)
+						var/obj/item/bodypart/BP = X
+						var/damage = BP.burn_dam + BP.brute_dam
+						var/comparison = (BP.max_damage/5)
+						var/icon_num = 0
+						if(damage)
+							icon_num = 1
+						if(damage > (comparison))
+							icon_num = 2
+						if(damage > (comparison*2))
+							icon_num = 3
+						if(damage > (comparison*3))
+							icon_num = 4
+						if(damage > (comparison*4))
+							icon_num = 5
+						if(hal_screwyhud == SCREWYHUD_HEALTHY)
+							icon_num = 0
+						if(icon_num)
+			//skyrat edit - modular health doll
+							hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[BP.body_zone][icon_num]"))
+					for(var/t in get_missing_limbs()) //Missing limbs
+						hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[t]6"))
+					for(var/t in get_disabled_limbs()) //Disabled limbs
+						hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[t]7"))
 			else
 				hud_used.healthdoll.icon_state = "healthdoll_DEAD"
+			//
 
 		hud_used.staminas?.update_icon_state()
 		hud_used.staminabuffer?.update_icon_state()
@@ -1265,3 +1272,24 @@
 
 /mob/living/carbon/human/species/roundstartslime
 	race = /datum/species/jelly/roundstartslime
+
+//skyrat edit
+/mob/living/carbon/human/is_bleeding()
+	if(NOBLOOD in dna.species.species_traits)
+		return FALSE
+	return ..()
+
+/mob/living/carbon/human/has_gauze()
+	if(NOBLOOD in dna.species.species_traits)
+		return FALSE
+	return ..()
+
+/mob/living/carbon/human/get_total_bleed_rate()
+	if(NOBLOOD in dna.species.species_traits)
+		return FALSE
+	return ..()
+
+/mob/living/carbon/human/get_biological_state()
+	if(!length(dna?.species?.species_traits))
+		return BIO_INORGANIC
+	return dna.species.get_biological_state()

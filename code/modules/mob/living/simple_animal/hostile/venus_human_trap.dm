@@ -18,7 +18,8 @@
 	canSmoothWith = list()
 	smooth = SMOOTH_FALSE
 	/// The amount of time it takes to create a venus human trap, in deciseconds
-	var/growth_time = 1200
+	//var/growth_time = 1200
+	var/growth_time = 1 MINUTES //SKYRAT EDIT - VINES
 
 /obj/structure/alien/resin/flower_bud_enemy/Initialize()
 	. = ..()
@@ -96,6 +97,10 @@
 	var/vine_grab_distance = 5
 	/// Whether or not this plant is ghost possessable
 	var/playable_plant = FALSE //Normal plants can **not** have players.
+	// SKYRAT EDIT START - VINES
+	/// copied over from the code from eyeballs (the mob) to make it easier for venus human traps to see in kudzu that doesn't have the transparency mutation
+	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
+	// SKYRAT EDIT END - VINES
 
 /mob/living/simple_animal/hostile/venus_human_trap/ghost_playable
 	health = 75 // Skyrat change: slight health buff
@@ -120,7 +125,8 @@
 			pull_vines()
 			ranged_cooldown = world.time + (ranged_cooldown_time * 0.5)
 			return
-	if(get_dist(src,the_target) > vine_grab_distance || vines.len == max_vines)
+	//if(get_dist(src,the_target) > vine_grab_distance || vines.len == max_vines)
+	if(get_dist(src,the_target) > vine_grab_distance || vines.len >= max_vines) //SKYRAT EDIT - VINES
 		return
 	for(var/turf/T in getline(src,target))
 		if (T.density)
@@ -134,7 +140,8 @@
 	vines += newVine
 	if(isliving(the_target))
 		var/mob/living/L = the_target
-		L.Paralyze(20)
+		//L.Paralyze(20)
+		L.Knockdown(2 SECONDS) //SKYRAT EDIT - VINES
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/venus_human_trap/Login()
