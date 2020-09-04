@@ -256,8 +256,6 @@
 	W.registered_name = H.real_name
 	W.update_label()
 		
-	var/obj/item/implant/mindshield/L = new
-	L.implant(H, null, 1)
 
 /datum/outfit/ert/commander/inquisitor
 	name = "Inquisition Commander"
