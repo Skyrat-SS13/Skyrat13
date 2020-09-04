@@ -1,6 +1,0 @@
-author: "ShadeAware"
-delete-after: True
-changes: 
-  - rscadd: "Blueshield Techarmor."
-  - bugfix: "Techarmor now has proper wound shielding."
-  - bugfix: "Techarmor MKII now has digi sprites."
