@@ -166,7 +166,7 @@
 		/obj/item/clothing/mask/gas/sechailer=1,\
 		/obj/item/gun/energy/e_gun=1,\
 		/obj/item/pipe_dispenser/bluespace,\
-		/obj/item/construction/rcd/loaded=1)
+		/obj/item/construction/rcd/loaded/upgraded=1)
 
 /datum/outfit/ert/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
 	..()
