@@ -24879,8 +24879,13 @@
 /turf/closed/wall,
 /area/maintenance/department/medical/morgue)
 "bez" = (
+/obj/machinery/power/apc{
+	areastring = "/area/hallway/primary/starboard";
+	name = "Starboard Primary Hallway APC";
+	pixel_y = -24
+	},
 /obj/structure/cable{
-	icon_state = "2-4"
+	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
@@ -27468,17 +27473,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "blo" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
+	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
@@ -29922,7 +29918,7 @@
 	pixel_y = 24
 	},
 /obj/structure/cable{
-	icon_state = "0-2"
+	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
@@ -30922,6 +30918,10 @@
 /obj/item/storage/toolbox/electrical,
 /obj/item/storage/box/lights/mixed,
 /obj/item/extinguisher,
+/obj/machinery/light/small{
+	dir = 1;
+	light_color = "#ffc1c1"
+	},
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
 "bui" = (
@@ -34504,6 +34504,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bCC" = (
@@ -34530,6 +34533,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
@@ -34877,6 +34883,13 @@
 	},
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/machinery/power/apc{
+	areastring = "/area/medical/sleeper";
+	dir = 8;
+	name = "Treatment Center APC";
+	pixel_x = -26
+	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -44502,12 +44515,8 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "cbN" = (
-/obj/structure/bodycontainer/morgue,
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
@@ -44515,6 +44524,14 @@
 /obj/structure/table,
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "Morgue Maintenance APC";
+	pixel_x = -26
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
 "cbP" = (
@@ -47241,9 +47258,17 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "ciI" = (
-/obj/structure/bodycontainer/morgue,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
@@ -53929,18 +53954,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
-"cTM" = (
-/obj/machinery/power/apc{
-	areastring = "/area/maintenance/department/medical/morgue";
-	dir = 4;
-	name = "Morgue Maintenance APC";
-	pixel_x = 26
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
 "cTO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -53950,6 +53963,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
@@ -56513,9 +56529,6 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "hwJ" = (
@@ -57594,9 +57607,6 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -64274,19 +64284,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/processing)
-"wfz" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "wfA" = (
 /obj/machinery/button/door{
 	id = "armory3";
@@ -104920,7 +104917,7 @@ ttV
 gbT
 hvD
 jEf
-wfz
+bkO
 brj
 dIj
 bum
@@ -105940,11 +105937,11 @@ aYV
 aYV
 aYV
 bfL
-bhm
-bhm
-bhm
-bhm
-uyA
+blo
+cbN
+cbN
+cbN
+ciI
 mXe
 bpJ
 brc
@@ -106198,10 +106195,10 @@ aYV
 aYV
 bfL
 brD
-ciI
-ciI
-cbN
-blo
+bQD
+bQD
+bQD
+uyA
 mXe
 bpI
 bre
@@ -106457,7 +106454,7 @@ bfL
 bhm
 bRQ
 bkf
-cTM
+bhm
 uyA
 mXe
 bpL
