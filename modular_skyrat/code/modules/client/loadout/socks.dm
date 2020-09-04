@@ -131,7 +131,7 @@
 	has_colors = TRUE
 	path = /obj/item/clothing/underwear/socks/thigh/commie
 
-/datum/gear/socks/thigh
+/datum/gear/socks/thigh/rainbow
 	name = "Thigh High Rainbow Socks"
 	category = SLOT_W_SOCKS
 	has_colors = TRUE
