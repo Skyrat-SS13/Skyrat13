@@ -41,3 +41,7 @@
 		hud_used.wielded.active = FALSE
 		hud_used.wielded.update_overlays()
 		return TRUE
+
+/mob/living/carbon/fully_heal(admin_revive)
+	. = ..()
+	remove_all_embedded_objects()
