@@ -50,6 +50,7 @@
 		icon_state = icon_active
 	else
 		icon_state = icon_inactive
+	update_overlays()
 
 /obj/item/reagent_containers/mender/update_overlays()
 	. = ..()
