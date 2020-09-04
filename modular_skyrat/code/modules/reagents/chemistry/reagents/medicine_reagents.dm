@@ -266,17 +266,17 @@
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.add_chem_effect(CE_PAINKILLER, 25)
+		C.add_chem_effect(CE_PAINKILLER, 40) //Very effective painkiller
 
 /datum/reagent/medicine/paracetamol/on_mob_end_metabolize(mob/living/L)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.remove_chem_effect(CE_PAINKILLER, 25)
+		C.remove_chem_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/medicine/paracetamol/overdose_process(mob/living/M)
 	. = ..()
-	if(iscarbon(M) && prob(25))
+	if(iscarbon(M) && prob(15))
 		var/mob/living/carbon/C = M
 		C.custom_pain("<span class='danger'>Your head feels like it's going to explode!</span>", 20, FALSE, C.get_bodypart(BODY_ZONE_HEAD))
 
@@ -286,23 +286,28 @@
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#c86dfd"
+	var/initial_volume = 0 //Hacky way to make tramadol heal pain about equal to the quantity consumed
+
+/datum/reagent/medicine/tramadol/reaction_mob(mob/living/M, method, reac_volume, show_message, touch_protection)
+	. = ..()
+	initial_volume = reac_volume
 
 /datum/reagent/medicine/tramadol/on_mob_metabolize(mob/living/L)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.add_chem_effect(CE_PAINKILLER, 15)
+		C.add_chem_effect(CE_PAINKILLER, min(initial_volume, 30))
 
 /datum/reagent/medicine/tramadol/on_mob_end_metabolize(mob/living/L)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.remove_chem_effect(CE_PAINKILLER, 15)
+		C.remove_chem_effect(CE_PAINKILLER, min(initial_volume, 30))
 
 /datum/reagent/medicine/tramadol/on_mob_life(mob/living/carbon/M)
 	. = ..()
 	if(M.drunkenness)
-		M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.5)
+		M.adjustOrganLoss(ORGAN_SLOT_LIVER, initial_volume/30) // More tramadol = More liver destruction
 
 /datum/reagent/medicine/bicaridine/on_mob_metabolize(mob/living/L)
 	. = ..()
@@ -344,13 +349,13 @@
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.add_chem_effect(CE_PAINKILLER, 30)
+		C.add_chem_effect(CE_PAINKILLER, 50)
 
 /datum/reagent/medicine/modafinil/on_mob_end_metabolize(mob/living/L)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.remove_chem_effect(CE_PAINKILLER, 30)
+		C.remove_chem_effect(CE_PAINKILLER, 50)
 
 /datum/reagent/medicine/antitoxin/on_mob_life(mob/living/carbon/M)
 	. = ..()
