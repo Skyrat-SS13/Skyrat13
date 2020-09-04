@@ -999,6 +999,9 @@
 	//Piercing damage is more likely to damage internal organs
 	if(wounding_type == WOUND_PIERCE)
 		organ_damage_threshold *= 0.5
+	//Slashing damage is *slightly* more likely to damage internal organs
+	else if(wounding_type == WOUND_SLASH)
+		organ_damage_threshold *= 0.75
 	//Wounds can alter our odds of harming organs
 	for(var/datum/wound/W in wounds)
 		damage_amt += initial_damage_amt * W.damage_roll_increase
@@ -1008,11 +1011,14 @@
 	if(!(cur_damage + damage_amt >= organ_damage_required) && !(damage_amt >= organ_damage_threshold))
 		return FALSE
 	
-	var/organ_hit_chance = (5 * damage_amt/organ_damage_threshold)
+	var/organ_hit_chance = (25 * damage_amt/organ_damage_threshold)
+
 	if(encased && !broken)
 		organ_hit_chance *= 0.6
 	
+	organ_hit_chance = CEILING(organ_hit_chance, 1)
 	organ_hit_chance = min(organ_hit_chance, 100)
+
 	if(prob(organ_hit_chance))
 		var/obj/item/organ/victim = pickweight(internal_organs)
 		damage_amt = max(0, damage_amt - victim.damage_reduction - (damage_amt * victim.damage_modifier))
