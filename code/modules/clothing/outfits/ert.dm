@@ -251,6 +251,9 @@
 	pda.ownjob = "CentCom Official"
 	pda.update_label()
 
+	var/obj/item/implant/mindshield/L = new
+	L.implant(H, null, 1)
+
 	var/obj/item/card/id/W = H.wear_id
 	W.icon_state = "centcom"
 	W.access = get_centcom_access("CentCom Official")
