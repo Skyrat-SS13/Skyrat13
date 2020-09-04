@@ -13,6 +13,7 @@
 	var/application_method = TOUCH
 	var/mob/living/carbon/attached_mob
 	var/mutable_appearance/chem_overlay
+	container_flags = APTFT_VERB | APTFT_ALTCLICK
 
 /obj/item/reagent_containers/mender/examine(mob/user)
 	. = ..()

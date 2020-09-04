@@ -77,7 +77,8 @@
 	organ_flags |= ORGAN_DEAD
 	death_time = world.time
 	if(organ_flags & ORGAN_VITAL)
-		owner.death()
+		if(owner)
+			owner.death()
 
 /obj/item/organ/proc/can_recover()
 	return ((maxHealth > 0) && !(organ_flags & ORGAN_DEAD)) || (death_time >= world.time - ORGAN_RECOVERY_THRESHOLD)
