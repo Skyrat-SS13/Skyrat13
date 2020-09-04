@@ -5,7 +5,6 @@
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	ears = /obj/item/radio/headset/headset_cent/alt
-	implants = list(/obj/item/implant/mindshield)
 
 /datum/outfit/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
 	if(visualsOnly)
@@ -256,6 +255,9 @@
 	W.assignment = "CentCom Official"
 	W.registered_name = H.real_name
 	W.update_label()
+		
+	var/obj/item/implant/mindshield/L = new
+	L.implant(H, null, 1)
 
 /datum/outfit/ert/commander/inquisitor
 	name = "Inquisition Commander"
