@@ -123,6 +123,7 @@
 /obj/item/reagent_containers/mender/cmo
 	name = "Mk. II Auto-mender"
 	desc = "An advanced model of the Deforest Co. Auto-mender, with extended reagent capacity and application power."
+	volume = 100
 	possible_transfer_amounts = list(0.25,0.5,1,2,4)
 	icon_inactive = "mender-cmo"
 	icon_active = "mender-cmo-active"
