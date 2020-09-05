@@ -289,6 +289,9 @@
 		germ_level--
 	
 	if(germ_level >= INFECTION_LEVEL_ONE/2)
+		//Warn the user that they're a bit fucked
+		if(prob(4) && germ_level < INFECTION_LEVEL_ONE)
+			owner.custom_pain("<span class='warning'>Your [src.name] feels a bit warm and swollen...</span>", 5, FALSE, src)
 		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes, when immunity is full.
 		if(antibiotics < 5 && prob(round(germ_level/6 * owner.immunity_weakness() * 0.01)))
 			if(virus_immunity > 0)
@@ -297,11 +300,15 @@
 				germ_level += 10
 	
 	if(germ_level >= INFECTION_LEVEL_ONE)
+		if(prob(6) && germ_level < INFECTION_LEVEL_TWO)
+			owner.custom_pain("<span class='warning'>Your [src.name] feels hotter than normal...</span>", 7, FALSE, src)
 		var/fever_temperature = (BODYTEMP_HEAT_DAMAGE_LIMIT - BODYTEMP_NORMAL - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + BODYTEMP_NORMAL
 		owner.bodytemperature += clamp((fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, 0, fever_temperature - owner.bodytemperature)
 	
 	//Spread the infection to internal organs, child and parent bodyparts
 	if(germ_level >= INFECTION_LEVEL_TWO)
+		if(prob(8))
+			owner.custom_pain("<span class='danger'>Your [src.name] starts leaking some pus...</span>", 12, FALSE, src)
 		var/obj/item/organ/target_organ //make internal organs become infected one at a time instead of all at once
 		for(var/obj/item/organ/O in get_organs())
 			//once the organ reaches whatever we can give it, or level two, switch to a different one
@@ -329,7 +336,7 @@
 	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 45)
 		if(!(status & BODYPART_DEAD))
 			status |= BODYPART_DEAD
-			to_chat(owner, "<span class='notice'>You can't feel your [name] anymore...</span>")
+			to_chat(owner, "<span class='danger'>You can't feel your [name] anymore...</span>")
 			update_disabled()
 		
 		germ_level++
@@ -340,9 +347,14 @@
 	// Process unsuitable transplants. TODO: consider some kind of
 	// immunosuppressant that changes transplant data to make it match.
 	if(owner.virus_immunity() < 10) //for now just having shit immunity will suppress it
+		original_dna = owner.dna
+		original_species = owner.dna?.species
+		rejecting = 0
 		return
+	
 	if(is_robotic_limb() || is_synthetic_limb())
 		return
+	
 	if(original_dna)
 		if(!rejecting)
 			if(!(owner.dna.blood_type in get_safe_blood(original_dna?.blood_type)))

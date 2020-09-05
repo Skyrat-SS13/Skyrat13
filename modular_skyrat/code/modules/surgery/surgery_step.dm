@@ -49,14 +49,41 @@
 	if(!istype(user) || !istype(BP))
 		return
 
+	//Germs from the surgeon
 	var/our_germ_level = user.germ_level
 	if(user.gloves)
 		our_germ_level = user.gloves.germ_level
 	
+	//Germs from the tool
 	if(tool && (tool.germ_level >= our_germ_level))
 		our_germ_level += tool.germ_level
 	
-	our_germ_level = CEILING(our_germ_level/10, 1)
+	//Germs from the dirtiness on the surgery room
+	for(var/turf/open/floor/floor in view(2, get_turf(BP.owner)))
+		our_germ_level += floor.dirtiness
+	
+	//Germs from the wounds on the bodypart
+	for(var/datum/wound/W in BP.wounds)
+		our_germ_level += W.germ_level
+	
+	//Germs from organs inside the bodypart
+	for(var/obj/item/organ/O in BP.get_organs())
+		if(O.germ_level)
+			our_germ_level += O.germ_level
+	
+	//Divide it by 6 to be reasonable
+	our_germ_level = CEILING(our_germ_level/6, 1)
 
+	//Infect the wounds on the bodypart
+	for(var/datum/wound/W in BP.wounds)
+		if(W.germ_level < INFECTION_LEVEL_TWO)
+			W.germ_level += our_germ_level
+	
+	//Infect the organs on the bodypart
+	for(var/obj/item/organ/O in BP.get_organs())
+		if(O.germ_level < INFECTION_LEVEL_TWO)
+			O.germ_level += our_germ_level
+
+	//Infect the bodypart
 	if(BP.germ_level < INFECTION_LEVEL_TWO)
 		BP.germ_level += our_germ_level

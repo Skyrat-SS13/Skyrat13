@@ -434,7 +434,7 @@
 			if(prob(30))
 				victim.adjustToxLoss(0.2)
 				if(prob(6))
-					to_chat(victim, "<span class='warning'>The blisters on your [limb.name] ooze a strange pus...</span>")
+					to_chat(victim, "<span class='warning'>The [src.name] on your [limb.name] oozes a strange pus...</span>")
 		if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
 			if(!disabling && prob(2))
 				to_chat(victim, "<span class='warning'><b>Your [limb.name] completely locks up, as you struggle for control against the infection!</b></span>")
