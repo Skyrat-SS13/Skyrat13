@@ -170,7 +170,7 @@
 
 	//SKYRAT CHANGES - Wield button
 	wielded = new /obj/screen/wield
-	wielded.icon = ui_style_modular_skyrat(ui_style)
+	wielded.icon = ui_style_modular(ui_style)
 	wielded.icon_state = "act_wield"
 	wielded.screen_loc = ui_wield
 	wielded.hud = src
@@ -429,7 +429,7 @@
 	infodisplay += healthdoll
 
 	pull_icon = new /obj/screen/pull()
-	pull_icon.icon = ui_style_modular_skyrat(ui_style) //SKYRAT EDIT
+	pull_icon.icon = ui_style_modular(ui_style) //SKYRAT EDIT
 	pull_icon.hud = src
 	pull_icon.update_icon()
 	pull_icon.screen_loc = ui_pull_resist
