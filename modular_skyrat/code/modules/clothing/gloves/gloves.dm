@@ -179,7 +179,7 @@
 	. = ..()
 	slot_flags |= ITEM_SLOT_WRISTS
 
-/obj/item/clothing/gloves/fingerless/pugilist
+/obj/item/clothing/gloves/fingerless/pugilist/Initialize()
 	. = ..()
 	slot_flags |= ITEM_SLOT_WRISTS
 
