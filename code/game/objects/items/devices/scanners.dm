@@ -575,8 +575,7 @@ GENETICS SCANNER
 		var/result = "<span class='info'>[capitalize(O.name)]: "
 		var/list/results = O.get_scan_results(TRUE)
 		if(length(results))
-			for(var/r in results)
-				result += r
+			result += results.Join(", ")
 			result += "</span>\n"
 			msg += result
 	msg += "*---------*</span>"
