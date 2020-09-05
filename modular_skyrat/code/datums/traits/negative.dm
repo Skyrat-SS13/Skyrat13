@@ -114,6 +114,7 @@
 
 /datum/quirk/allergic/proc/inform(allergy = "bad coders")
 	to_chat(quirk_holder, "<span class='boldwarning'>You are allergic to [lowertext(allergy)].</span>")
+	quirk_holder.add_memory("You are allergic to [lowertext(allergy)].")
 
 //bobmed quirks
 

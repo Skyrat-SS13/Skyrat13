@@ -21,10 +21,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/has_field_of_vision = TRUE
 
 	//Species Icon Drawing Offsets - Pixel X, Pixel Y, Aka X = Horizontal and Y = Vertical, from bottom left corner
-	var/list/offset_features = list(
+	var/list/offset_features = list( //skyrat edit
 		OFFSET_UNIFORM = list(0,0),
+		OFFSET_UNDERWEAR = list(0,0),
+		OFFSET_SOCKS = list(0,0),
+		OFFSET_SHIRT = list(0,0),
 		OFFSET_ID = list(0,0),
 		OFFSET_GLOVES = list(0,0),
+		OFFSET_WRISTS = list(0,0),
 		OFFSET_GLASSES = list(0,0),
 		OFFSET_EARS = list(0,0),
 		OFFSET_SHOES = list(0,0),
@@ -631,7 +635,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				eye_overlay.pixel_y += H.dna.species.offset_features[OFFSET_EYES][2]
 
 			standing += eye_overlay
-
+	/* skyrat edit
 	//Underwear, Undershirts & Socks
 	if(!(NO_UNDERWEAR in species_traits))
 		var/datum/sprite_accessory/taur/TA
@@ -676,7 +680,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				if(T.has_color)
 					MA.color = "#[H.shirt_color]"
 				standing += MA
-
+	*/
 	if(standing.len)
 		H.overlays_standing[BODY_LAYER] = standing
 
@@ -813,6 +817,17 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		if(H.w_uniform && !H.wear_suit)
 			if(!(H.w_uniform.mutantrace_variation & STYLE_DIGITIGRADE))
 				should_be_squished = TRUE
+		//skyrat edit
+		if(H.w_underwear && !H.wear_suit && !H.w_uniform)
+			if(!(H.w_underwear.mutantrace_variation & STYLE_DIGITIGRADE))
+				should_be_squished = TRUE
+		if(H.w_socks && !H.wear_suit && !H.w_uniform)
+			if(!(H.w_socks.mutantrace_variation & STYLE_DIGITIGRADE))
+				should_be_squished = TRUE
+		if(H.w_shirt && !H.wear_suit && !H.w_uniform)
+			if(!(H.w_shirt.mutantrace_variation & STYLE_DIGITIGRADE))
+				should_be_squished = TRUE
+		//
 		if(O.use_digitigrade == FULL_DIGITIGRADE && should_be_squished)
 			O.use_digitigrade = SQUISHED_DIGITIGRADE
 			update_needed = TRUE
@@ -1179,6 +1194,16 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			if(num_hands < 2) //skyrat edit
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		//skyrat edit
+		if(SLOT_WRISTS)
+			if(H.wrists)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_WRISTS) )
+				return FALSE
+			if(num_hands < 2)
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		//
 		if(SLOT_SHOES)
 			if(H.shoes)
 				return FALSE
@@ -1220,7 +1245,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
-		if(SLOT_EARS)
+		if(SLOT_EARS_LEFT) //skyrat edit
 			if(H.ears)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_EARS))
@@ -1228,6 +1253,34 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		//skyrat edit
+		if(SLOT_EARS_RIGHT)
+			if(H.ears_extra)
+				return FALSE
+			if(!(I.slot_flags & ITEM_SLOT_EARS))
+				return FALSE
+			if(!H.get_bodypart(BODY_ZONE_HEAD))
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_W_UNDERWEAR)
+			if(H.w_underwear)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_UNDERWEAR) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_W_SOCKS)
+			if(H.w_socks)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_SOCKS) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_W_SHIRT)
+			if(H.w_shirt)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_SHIRT) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		//
 		if(SLOT_W_UNIFORM)
 			if(H.w_uniform)
 				return FALSE
@@ -1365,6 +1418,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			REMOVE_TRAIT(H, TRAIT_FAT, OBESITY)
 			H.remove_movespeed_modifier(/datum/movespeed_modifier/obesity)
 			H.update_inv_w_uniform()
+			//skyrat edit
+			H.update_inv_w_underwear()
+			H.update_inv_w_socks()
+			H.update_inv_w_shirt()
+			//
 			H.update_inv_wear_suit()
 	else
 		if(H.overeatduration >= 100)
@@ -1372,6 +1430,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			ADD_TRAIT(H, TRAIT_FAT, OBESITY)
 			H.add_movespeed_modifier(/datum/movespeed_modifier/obesity)
 			H.update_inv_w_uniform()
+			//skyrat edit
+			H.update_inv_w_underwear()
+			H.update_inv_w_socks()
+			H.update_inv_w_shirt()
+			//
 			H.update_inv_wear_suit()
 
 	var/obj/item/organ/intestines/intestines = H.getorganslot(ORGAN_SLOT_INTESTINES)
@@ -1715,6 +1778,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 		if(target.w_uniform)
 			target.w_uniform.add_fingerprint(user)
+		//skyrat edit
+		else if(target.w_underwear)
+			target.w_underwear.add_fingerprint(user)
+		else if(target.w_socks)
+			target.w_socks.add_fingerprint(user)
+		else if(target.w_shirt)
+			target.w_shirt.add_fingerprint(user)
+		//
 		//var/randomized_zone = ran_zone(user.zone_selected) CIT CHANGE - comments out to prevent compiling errors
 		SEND_SIGNAL(target, COMSIG_HUMAN_DISARM_HIT, user, user.zone_selected)
 		if(target.pulling == user)
@@ -1904,6 +1975,17 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 						H.visible_message("<span class='danger'>[H] has been knocked down!</span>", \
 									"<span class='userdanger'>[H] has been knocked down!</span>")
 						H.apply_effect(60, EFFECT_KNOCKDOWN, armor_block)
+					//skyrat edit
+					if(H.w_underwear)
+						H.w_underwear.add_mob_blood(H)
+						H.update_inv_w_underwear()
+					if(H.w_socks)
+						H.w_socks.add_mob_blood(H)
+						H.update_inv_w_socks()
+					if(H.w_shirt)
+						H.w_underwear.add_mob_blood(H)
+						H.update_inv_w_shirt()
+					//
 
 				if(bloody)
 					if(H.wear_suit)
@@ -1985,6 +2067,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 		if(target.w_uniform)
 			target.w_uniform.add_fingerprint(user)
+		//skyrat edit
+		else if(target.w_shirt)
+			target.w_shirt.add_fingerprint(user)
+		else if(target.w_socks)
+			target.w_socks.add_fingerprint(user)
+		else if(target.w_underwear)
+			target.w_underwear.add_fingerprint(user)
+		//
 		SEND_SIGNAL(target, COMSIG_HUMAN_DISARM_HIT, user, user.zone_selected)
 
 		if(CHECK_MOBILITY(target, MOBILITY_STAND))
@@ -2289,6 +2379,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 		//CHEST//
 		var/obj/item/clothing/chest_clothes = null
+		//skyrat edit
+		if(H.w_underwear && (H.w_underwear.body_parts_covered & CHEST))
+			chest_clothes = H.w_underwear
+		if(H.w_socks && (H.w_socks.body_parts_covered & CHEST))
+			chest_clothes = H.w_socks
+		if(H.w_shirt && (H.w_shirt.body_parts_covered & CHEST))
+			chest_clothes = H.w_shirt
+		//
 		if(H.w_uniform)
 			chest_clothes = H.w_uniform
 		if(H.wear_suit)
@@ -2299,6 +2397,16 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 		//ARMS & HANDS//
 		var/obj/item/clothing/arm_clothes = null
+		//skyrat edit
+		if(H.wrists)
+			arm_clothes = H.wrists
+		if(H.w_underwear && (H.w_underwear.body_parts_covered & ARMS))
+			arm_clothes = H.w_underwear
+		if(H.w_socks && (H.w_socks.body_parts_covered & ARMS))
+			arm_clothes = H.w_socks
+		if(H.w_shirt && (H.w_shirt.body_parts_covered & ARMS))
+			arm_clothes = H.w_shirt
+		//
 		if(H.gloves)
 			arm_clothes = H.gloves
 		if(H.w_uniform && ((H.w_uniform.body_parts_covered & HANDS) || (H.w_uniform.body_parts_covered & ARMS)))
@@ -2310,6 +2418,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 		//LEGS & FEET//
 		var/obj/item/clothing/leg_clothes = null
+		//skyrat edit
+		if(H.w_underwear && (H.w_underwear.body_parts_covered & LEGS))
+			leg_clothes = H.w_underwear
+		if(H.w_socks && (H.w_socks.body_parts_covered & LEGS))
+			leg_clothes = H.w_socks
+		if(H.w_shirt && (H.w_shirt.body_parts_covered & LEGS))
+			leg_clothes = H.w_shirt
+		//
 		if(H.shoes)
 			leg_clothes = H.shoes
 		if(H.w_uniform && ((H.w_uniform.body_parts_covered & FEET) || (H.w_uniform.body_parts_covered & LEGS)))

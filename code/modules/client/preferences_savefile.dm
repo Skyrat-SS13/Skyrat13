@@ -556,6 +556,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["scars4"]							>> scars_list["4"]
 	S["scars5"]							>> scars_list["5"]
 	S["cosmetic_scars"]					>> cosmetic_scars		
+	S["color_gear"]			>> color_gear
+	S["bloodreagent"]		>> bloodreagent
+	S["bloodtype"]			>> bloodtype
+	S["bloodcolor"]			>> bloodcolor
 	//
 
 	//Custom names
@@ -870,6 +874,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["scars4"]						, scars_list["4"])
 	WRITE_FILE(S["scars5"]						, scars_list["5"])
 	WRITE_FILE(S["cosmetic_scars"]				, cosmetic_scars)
+	WRITE_FILE(S["color_gear"]						, color_gear)
+	WRITE_FILE(S["bloodtype"]						, bloodtype)
+	WRITE_FILE(S["bloodcolor"]						, bloodcolor)
+	WRITE_FILE(S["bloodtype"]						, bloodtype)
+	WRITE_FILE(S["bloodreagent"]					, bloodreagent)
 	//
 
 	WRITE_FILE(S["feature_has_cock"], features["has_cock"])
