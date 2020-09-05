@@ -21,18 +21,21 @@
 	. = ..()
 	if(icon_state == "[initial(icon_state)]-on")
 		on = TRUE
+	AddComponent(/datum/component/overlay_lighting, light_color, brightness_on, flashlight_power, FALSE) //Skyrat change
 	update_brightness()
 
 /obj/item/flashlight/proc/update_brightness(mob/user = null)
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		if(flashlight_power)
+		/*if(flashlight_power)
 			set_light(l_range = brightness_on, l_power = flashlight_power)
 		else
-			set_light(brightness_on)
+			set_light(brightness_on)*/
+		OL.turn_on()
 	else
 		icon_state = initial(icon_state)
-		set_light(0)
+		OL.turn_off()
 
 /obj/item/flashlight/attack_self(mob/user)
 	on = !on
@@ -183,7 +186,7 @@
 		var/T = get_turf(target)
 		if(locate(/mob/living) in T)
 			new /obj/effect/temp_visual/medical_holosign(T,user) //produce a holographic glow
-			holo_cooldown = world.time + 30 //skyrat change
+			holo_cooldown = world.time + 10 SECONDS //skyrat change
 			return
 
 /obj/effect/temp_visual/medical_holosign
@@ -481,16 +484,17 @@
 /obj/item/flashlight/glowstick/update_icon_state()
 	item_state = "glowstick"
 	cut_overlays()
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 	if(!fuel)
 		icon_state = "glowstick-empty"
 		cut_overlays()
-		set_light(0)
+		OL.turn_off()
 	else if(on)
 		var/mutable_appearance/glowstick_overlay = mutable_appearance(icon, "glowstick-glow")
 		glowstick_overlay.color = color
 		add_overlay(glowstick_overlay)
 		item_state = "glowstick-on"
-		set_light(brightness_on)
+		OL.turn_on()
 	else
 		icon_state = "glowstick"
 		cut_overlays()
@@ -560,6 +564,7 @@
 	item_state = "flashdark"
 	brightness_on = 2.5
 	flashlight_power = -3
+	color = "#000000" //Skyrat change
 
 /obj/item/flashlight/eyelight
 	name = "eyelight"

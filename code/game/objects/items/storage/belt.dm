@@ -104,6 +104,14 @@
 	new /obj/item/multitool(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 
+/obj/item/storage/belt/utility/full/power/PopulateContents() // For ERTs
+	new /obj/item/screwdriver/power(src)
+	new /obj/item/crowbar/power(src)
+	new /obj/item/weldingtool/experimental(src)
+	new /obj/item/multitool(src)
+	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
+	new /obj/item/holosign_creator/combifan(src)
+	new /obj/item/analyzer/ranged(src)
 
 /obj/item/storage/belt/utility/atmostech/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -134,7 +142,7 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_BULKY
-	STR.can_hold = typecacheof(list(
+	STR.can_hold = typecacheof(list( //skyrat edited
 		/obj/item/healthanalyzer,
 		/obj/item/dnainjector,
 		/obj/item/reagent_containers/dropper,
@@ -159,10 +167,12 @@
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/mask/breath,
 		/obj/item/clothing/mask/breath/medical,
-		/obj/item/surgical_drapes, //for true paramedics
+		/obj/item/surgical_drapes,
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
 		/obj/item/surgicaldrill,
+		/obj/item/bonesetter,
+		/obj/item/stack/sticky_tape,
 		/obj/item/retractor,
 		/obj/item/cautery,
 		/obj/item/hemostat,

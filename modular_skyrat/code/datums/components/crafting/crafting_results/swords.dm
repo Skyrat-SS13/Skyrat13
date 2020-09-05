@@ -11,7 +11,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/belt.dmi'
 	force = 15
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	hitsound = 'modular_skyrat/sound/weapons/bloodyslice.ogg'
 	var/obj/item/reagent_containers/syringe/poison
 
@@ -74,7 +74,7 @@
 	hitsound = 'modular_skyrat/sound/weapons/smash.ogg'
 	icon_state = "executioners_sword"
 	item_state = "executioners_sword"
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	var/delimb_chance = 15
 	var/armorthreshold = 25
 
@@ -97,7 +97,7 @@
 	name = "shortsword"
 	desc = "A short-bladed sword, used for close combat agility, over overpowering your foes."
 	icon_state = "shortsword"
-	item_state = "sword"
+	item_state = "shortsword"
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = "sound/weapons/slash.ogg"
 	force = 12

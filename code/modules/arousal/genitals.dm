@@ -1,7 +1,7 @@
 /obj/item/organ/genital
 	color = "#fcccb3"
 	w_class = WEIGHT_CLASS_SMALL
-	organ_flags = ORGAN_NO_DISMEMBERMENT|ORGAN_EDIBLE
+	organ_flags = ORGAN_NO_DISMEMBERMENT //skyrat edit - fuck this shit i want to castrate people with a cleaver
 	var/shape
 	var/sensitivity = 1 // wow if this were ever used that'd be cool but it's not but i'm keeping it for my unshit code
 	var/genital_flags //see citadel_defines.dm
@@ -48,6 +48,13 @@
 		H.update_genitals()
 	if(linked_organ_slot || (linked_organ && !owner))
 		update_link()
+
+/obj/item/organ/genital/examine(mob/user)
+	. = ..()
+	. |= genital_examine(user)
+
+/obj/item/organ/genital/proc/genital_examine(mob/user)
+	return
 
 //exposure and through-clothing code
 /mob/living/carbon

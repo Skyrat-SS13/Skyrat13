@@ -42,3 +42,11 @@
 	name = "1.95x129mm incendiary bullet"
 	damage = 15   //Skyrat Edit: 5 less damage, but double the firestacks. Burn baby burn!
 	fire_stacks = 6
+
+//skyrat edit
+/obj/item/projectile/bullet/mm712x82/match
+	name = "7.12x82mm match bullet"
+	ricochets_max = 2
+	ricochet_chance = 60
+	ricochet_auto_aim_range = 4
+	ricochet_incidence_leeway = 35
