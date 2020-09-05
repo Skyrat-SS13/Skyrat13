@@ -571,13 +571,18 @@ GENETICS SCANNER
 	else
 		msg += bodypart_info.Join("")
 	msg += "<span class='info'><b>Organ info:</b></span>\n"
+	var/list/organ_info = list()
 	for(var/obj/item/organ/O in C.internal_organs)
 		var/result = "<span class='info'>[capitalize(O.name)]: "
 		var/list/results = O.get_scan_results(TRUE)
 		if(length(results))
 			result += results.Join(", ")
 			result += "</span>\n"
-			msg += result
+			organ_info += result
+	if(!length(organ_info))
+		msg += "<span class='info'>N/A</span>\n"
+	else
+		msg += organ_info.Join("")
 	msg += "*---------*</span>"
 	to_chat(user, msg)
 
