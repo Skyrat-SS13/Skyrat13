@@ -29,7 +29,7 @@
 	var/icon_wielded = FALSE						/// The icon that will be used when wielded
 
 /obj/item/Initialize()
-	. = ..()
+	..()
 	WieldInitialize()
 
 /obj/item/proc/WieldInitialize()
