@@ -28864,7 +28864,6 @@
 /obj/structure/table/reinforced,
 /obj/item/clothing/gloves/color/latex,
 /obj/item/stack/medical/nanopaste,
-/obj/item/stack/medical/nanopaste,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "boM" = (
