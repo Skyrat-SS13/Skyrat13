@@ -60,12 +60,12 @@
 	if(reagents?.total_volume)
 		chem_color = mix_color_from_reagents(reagents.reagent_list)
 	if(attached_mob)
-		chem_overlay = mutable_appearance(icon, "mender-overlay-active", src.layer + 1, src.plane, chem_color)
+		chem_overlay = mutable_appearance(icon, "mender-overlay-active", color = chem_color)
 	else
-		chem_overlay = mutable_appearance(icon, "mender-overlay", src.layer + 1, src.plane, chem_color)
+		chem_overlay = mutable_appearance(icon, "mender-overlay", color = chem_color)
 
 	if(chem_overlay)
-		var/mutable_appearance/broje = mutable_appearance(icon, "mender-fluid", src.layer + 1, src.plane, chem_color)
+		var/mutable_appearance/broje = mutable_appearance(icon, "mender-fluid", color = chem_color)
 		chem_overlay.add_overlay(broje)
 	
 	if(chem_overlay)
