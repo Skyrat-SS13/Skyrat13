@@ -146,6 +146,11 @@
 	"Vaper" = "A cheap white T-shirt with a big tacky \"VN\" on the front... Why would anyone wear this unironically?"
 	)
 
+//Shirts go on the shirt slot bro
+/obj/item/clothing/suit/wornshirt/Initialize()
+	. = ..()
+	slot_flags |= ITEM_SLOT_SHIRT
+
 /obj/item/clothing/suit/wornshirt/polychromic
 	name = "polychromic worn shirt"
 	unique_reskin = null

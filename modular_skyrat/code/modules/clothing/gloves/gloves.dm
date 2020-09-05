@@ -173,3 +173,17 @@
 	ourcell = new /obj/item/stock_parts/cell()
 	ourcell.maxcharge = 9999999
 	ourcell.charge = 9999999
+
+//Some gloves are more like bracelets, so they can go on the wrist slot
+/obj/item/clothing/gloves/bracer/Initialize()
+	. = ..()
+	slot_flags |= ITEM_SLOT_WRISTS
+
+/obj/item/clothing/gloves/fingerless/pugilist
+	. = ..()
+	slot_flags |= ITEM_SLOT_WRISTS
+
+//Rings don't go on the wrist, but this means i can wear them with gloves, which is cool
+/obj/item/clothing/gloves/ring/Initialize()
+	. = ..()
+	slot_flags |= ITEM_SLOT_WRISTS

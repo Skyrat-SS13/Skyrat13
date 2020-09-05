@@ -32,3 +32,8 @@
 	name = "nanite bottle"
 	desc = "A small bottle containing some type of greyish black goop. It swirls with dazzling glints of light, like glitter."
 	list_reagents = list(/datum/reagent/romerol = 30)
+
+//The thought of carrying a pill on my ear makes me laugh
+/obj/item/reagent_containers/pill/Initialize()
+	. = ..()
+	slot_flags |= ITEM_SLOT_EARS

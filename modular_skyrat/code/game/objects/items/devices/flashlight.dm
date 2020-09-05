@@ -11,3 +11,7 @@
 	var/uv_cooldown_length = 30 SECONDS
 	/// How much sanitization to apply to the burn wound
 	var/uv_power = 1
+
+//The pen goes on the ear
+/obj/item/flashlight/pen
+	slot_flags = ITEM_SLOT_EARS

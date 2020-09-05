@@ -1,4 +1,9 @@
-//syndicate stuff whatever
+//Ear ids fuck it lmao
+/obj/item/card/id/Initialize(mapload)
+	. = ..()
+	slot_flags |= ITEM_SLOT_EARS
+
+//Syndicate stuff whatever
 /obj/item/card/id/syndicate_command/crew_id
 	name = "syndicate ID card"
 	desc = "An ID straight from the Syndicate."
@@ -26,6 +31,11 @@
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
 	var/prox_check = TRUE
+
+//Skeleton key goes on the wrist, because it's a key dude
+/obj/item/card/skeletonkey/Initialize()
+	. = ..()
+	slot_flags |= ITEM_SLOT_WRISTS
 
 /obj/item/card/skeletonkey/attack()
 	return
