@@ -19,6 +19,9 @@
 /datum/martial_art/proc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	return FALSE
 
+/datum/martial_art/proc/help_act(mob/living/carbon/human/A, mob/living/carbon/human/D) //SKYRAT EDIT
+	return FALSE
+
 /datum/martial_art/proc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	return FALSE
 

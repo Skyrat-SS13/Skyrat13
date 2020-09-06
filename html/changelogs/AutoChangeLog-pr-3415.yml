@@ -1,0 +1,8 @@
+author: "Yawet330"
+delete-after: True
+changes: 
+  - code_imp: "literally makes it so help intent is checked for martial arts and other actions... come on guys."
+  - refactor: "refactors martial arts slightly to support the new intent."
+  - rscadd: "Armstrong style from hippiestation (Credits to the original coders!)"
+  - imageadd: "hippiestation icons"
+  - soundadd: "hippiestation sounds."
