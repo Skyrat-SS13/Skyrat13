@@ -1,3 +1,8 @@
+//Pens can go on the ear so why not
+/obj/item/reagent_containers/hypospray/medipen/Initialize(mapload, vol)
+	. = ..()
+	slot_flags |= ITEM_SLOT_EARS
+
 //Emergency medipens
 /obj/item/reagent_containers/hypospray/medipen/ekit
 	name = "emergency first-aid autoinjector"
