@@ -399,10 +399,10 @@
 		if(SLOT_BACK, SLOT_WEAR_SUIT, SLOT_W_UNIFORM, SLOT_BELT, SLOT_WEAR_ID)
 			return BODY_ZONE_CHEST
 
-		if(SLOT_GLOVES, SLOT_HANDS, SLOT_HANDCUFFED)
+		if(SLOT_GLOVES, SLOT_HANDS, SLOT_HANDCUFFED, SLOT_WRISTS) //SKYRAT EDIT
 			return pick(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 
-		if(SLOT_HEAD, SLOT_NECK, SLOT_NECK, SLOT_EARS)
+		if(SLOT_HEAD, SLOT_NECK, SLOT_NECK, SLOT_EARS_LEFT, SLOT_EARS_RIGHT) //skyrat edit
 			return BODY_ZONE_HEAD
 
 		if(SLOT_WEAR_MASK)
@@ -640,8 +640,20 @@
 			return "Hands"
 		if(SLOT_BELT)
 			return "Belt"
-		if(SLOT_EARS)
-			return "Ears"
+		//skyrat edit
+		if(SLOT_EARS_LEFT)
+			return "Left ear"
+		if(SLOT_EARS_RIGHT)
+			return "Right ear"
+		if(SLOT_W_UNDERWEAR)
+			return "Underwear"
+		if(SLOT_W_SOCKS)
+			return "Socks"
+		if(SLOT_W_SHIRT)
+			return "Shirt"
+		if(SLOT_WRISTS)
+			return "Wrist"
+		//
 		if(SLOT_GLASSES)
 			return "Glasses"
 		if(SLOT_GLOVES)
@@ -671,3 +683,28 @@
 			return 'modular_citadel/icons/ui/screen_clockwork.dmi'
 		else
 			return 'modular_citadel/icons/ui/screen_midnight.dmi'
+
+//skyrat stuff
+/// For finding out what body parts a body zone covers, the inverse of the below basically
+/proc/zone2body_parts_covered(def_zone)
+	switch(def_zone)
+		if(BODY_ZONE_CHEST)
+			return list(CHEST, GROIN)
+		if(BODY_ZONE_HEAD)
+			return list(HEAD)
+		if(BODY_ZONE_L_ARM)
+			return list(ARM_LEFT)
+		if(BODY_ZONE_PRECISE_L_HAND)
+			return list(HAND_LEFT)
+		if(BODY_ZONE_R_ARM)
+			return list(ARM_RIGHT)
+		if(BODY_ZONE_PRECISE_R_HAND)
+			return list(HAND_RIGHT)
+		if(BODY_ZONE_L_LEG)
+			return list(LEG_LEFT)
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			return list(FOOT_LEFT)
+		if(BODY_ZONE_R_LEG)
+			return list(LEG_RIGHT)
+		if(BODY_ZONE_PRECISE_R_FOOT)
+			return list(FOOT_RIGHT)

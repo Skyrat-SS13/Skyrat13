@@ -5,7 +5,7 @@
 	permeability_coefficient = 0.9
 	block_priority = BLOCK_PRIORITY_UNIFORM
 	slot_flags = ITEM_SLOT_ICLOTHING
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 0)
 	mutantrace_variation = STYLE_DIGITIGRADE|USE_TAUR_CLIP_MASK
 	var/fitted = FEMALE_UNIFORM_FULL // For use in alternate clothing styles for women
 	var/has_sensor = HAS_SENSORS // For the crew computer
@@ -15,7 +15,10 @@
 	var/adjusted = NORMAL_STYLE
 	var/alt_covers_chest = FALSE // for adjusted/rolled-down jumpsuits, FALSE = exposes chest and arms, TRUE = exposes arms only
 	var/dummy_thick = FALSE // is able to hold accessories on its item
-	var/obj/item/clothing/accessory/attached_accessory
+	//SKYRAT EDIT - Removed the old attached accessory system. We use a list of accessories instead.
+	var/list/obj/item/clothing/accessory/attached_accessories = list()
+	var/max_accessories = 3
+	//SKYRAT EDIT END
 	var/mutable_appearance/accessory_overlay
 
 /obj/item/clothing/under/worn_overlays(isinhands = FALSE, icon_file, used_state, style_flags = NONE)
@@ -39,7 +42,7 @@
 	if(!attach_accessory(I, user))
 		return ..()
 
-/obj/item/clothing/under/update_clothes_damaged_state(damaging = TRUE)
+/obj/item/clothing/under/update_clothes_damaged_state() //skyrat edit
 	..()
 	if(ismob(loc))
 		var/mob/M = loc
@@ -60,30 +63,33 @@
 		fitted = initial(fitted)
 		if(!alt_covers_chest)
 			body_parts_covered |= CHEST
-
-	if(attached_accessory && slot != SLOT_HANDS && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		attached_accessory.on_uniform_equip(src, user)
-		if(attached_accessory.above_suit)
-			H.update_inv_wear_suit()
+	//SKYRAT EDIT
+	for(var/obj/item/clothing/accessory/attached_accessory in attached_accessories)
+		if(attached_accessory && slot != SLOT_HANDS && ishuman(user))
+			var/mob/living/carbon/human/H = user
+			attached_accessory.on_uniform_equip(src, user)
+			if(attached_accessory.above_suit)
+				H.update_inv_wear_suit()
+	//SKYRAT EDIT END
 
 /obj/item/clothing/under/dropped(mob/user)
-	if(attached_accessory)
+	//SKYRAT EDIT
+	for(var/obj/item/clothing/accessory/attached_accessory in attached_accessories)
 		attached_accessory.on_uniform_dropped(src, user)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(attached_accessory.above_suit)
 				H.update_inv_wear_suit()
-
+	//SKYRAT EDIT END
 	..()
 
 /obj/item/clothing/under/proc/attach_accessory(obj/item/I, mob/user, notifyAttach = 1)
 	. = FALSE
 	if(istype(I, /obj/item/clothing/accessory))
 		var/obj/item/clothing/accessory/A = I
-		if(attached_accessory)
+		if(length(attached_accessories) >= max_accessories)
 			if(user)
-				to_chat(user, "<span class='warning'>[src] already has an accessory.</span>")
+				to_chat(user, "<span class='warning'>[src] already has [length(attached_accessories)] accessories.</span>")
 			return
 		if(dummy_thick)
 			if(user)
@@ -100,10 +106,14 @@
 
 			if((flags_inv & HIDEACCESSORY) || (A.flags_inv & HIDEACCESSORY))
 				return TRUE
-
-			accessory_overlay = mutable_appearance('icons/mob/clothing/accessories.dmi', attached_accessory.icon_state)
-			accessory_overlay.alpha = attached_accessory.alpha
-			accessory_overlay.color = attached_accessory.color
+			//SKYRAT EDIT
+			accessory_overlay = mutable_appearance('icons/mob/clothing/accessories.dmi', "blank")
+			for(var/obj/item/clothing/accessory/attached_accessory in attached_accessories)
+				var/mutable_appearance/Y = mutable_appearance(attached_accessory.mob_overlay_icon, attached_accessory.icon_state, ABOVE_HUD_LAYER)
+				Y.alpha = attached_accessory.alpha
+				Y.color = attached_accessory.color
+				accessory_overlay.add_overlay(Y)
+			//SKYRAT EDIT END
 
 			if(ishuman(loc))
 				var/mob/living/carbon/human/H = loc
@@ -117,10 +127,11 @@
 		return
 	if(!can_use(user))
 		return
-
-	if(attached_accessory)
-		var/obj/item/clothing/accessory/A = attached_accessory
-		attached_accessory.detach(src, user)
+	//SKYRAT EDIT
+	if(length(attached_accessories))
+		var/obj/item/clothing/accessory/A = attached_accessories[length(attached_accessories)]
+	//SKYRAT EDIT END
+		A.detach(src, user)
 		if(user.put_in_hands(A))
 			to_chat(user, "<span class='notice'>You detach [A] from [src].</span>")
 		else
@@ -151,8 +162,11 @@
 				. += "Its vital tracker appears to be enabled."
 			if(SENSOR_COORDS)
 				. += "Its vital tracker and tracking beacon appear to be enabled."
-	if(attached_accessory)
-		. += "\A [attached_accessory] is attached to it."
+	//SKYRAT EDIT
+	if(length(attached_accessories))
+		for(var/obj/item/clothing/accessory/attached_accessory in attached_accessories)
+			. += "\A [attached_accessory] is attached to it."
+	//SKYRAT EDIT END
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Adjust Suit Sensors"
@@ -229,7 +243,7 @@
 	. = ..()
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
-	if(attached_accessory)
+	if(length(attached_accessories)) //SKYRAT EDIT
 		remove_accessory(user)
 	else
 		rolldown()
@@ -261,13 +275,25 @@
 	if(adjusted)
 		if(fitted != FEMALE_UNIFORM_TOP)
 			fitted = NO_FEMALE_UNIFORM
-		if(!alt_covers_chest) // for the special snowflake suits that expose the chest when adjusted
-			body_parts_covered &= ~CHEST
-			mutantrace_variation &= ~USE_TAUR_CLIP_MASK //How are we supposed to see the uniform otherwise?
+		//skyrat edit
+	if(!alt_covers_chest) // for the special snowflake suits that expose the chest when adjusted (and also the arms, realistically)
+		body_parts_covered &= ~ARMS
+		body_parts_covered &= ~CHEST
+		mutantrace_variation &= ~USE_TAUR_CLIP_MASK //How are we supposed to see the uniform otherwise?
+		//
 	else
 		fitted = initial(fitted)
 		if(!alt_covers_chest)
 			body_parts_covered |= CHEST
+			//skyrat edit
+			body_parts_covered |= ARMS
+			if(!LAZYLEN(damage_by_parts))
+				return adjusted
+			for(var/zone in list(BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)) // ugly check to make sure we don't reenable protection on a disabled part
+				if(damage_by_parts[zone] > limb_integrity)
+					for(var/part in zone2body_parts_covered(zone))
+						body_parts_covered &= part
+			//
 			if(initial(mutantrace_variation) & USE_TAUR_CLIP_MASK)
 				mutantrace_variation |= USE_TAUR_CLIP_MASK
 

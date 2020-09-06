@@ -1453,9 +1453,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
-"cR" = (
-/turf/closed/indestructible/rock/snow,
-/area/template_noop)
 "cS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -1693,17 +1690,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/hippie/infiltrator_base/outside)
-"dq" = (
-/turf/open/floor/plating/asteroid/snow/airless,
-/area/template_noop)
-"dr" = (
-/obj/structure/flora/grass/brown,
-/turf/open/floor/plating/asteroid/snow/airless,
-/area/template_noop)
-"ds" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/snow/airless,
-/area/template_noop)
 
 (1,1,1) = {"
 aa
@@ -2586,13 +2572,13 @@ ac
 aa
 "}
 (21,1,1) = {"
-cR
-cR
-dq
-dr
-dq
-ds
-dq
+ac
+ac
+ae
+bb
+ae
+af
+ae
 ae
 ae
 ae
@@ -2631,12 +2617,12 @@ aa
 "}
 (22,1,1) = {"
 aa
-cR
-dq
-dq
-dq
-dq
-dq
+ac
+ae
+ae
+ae
+ae
+ae
 af
 ae
 ae
@@ -2675,12 +2661,12 @@ aa
 "}
 (23,1,1) = {"
 aa
-cR
-dq
-dq
-dq
-dr
-dq
+ac
+ae
+ae
+ae
+bb
+ae
 ae
 ae
 ae
@@ -2719,12 +2705,12 @@ aa
 "}
 (24,1,1) = {"
 aa
-cR
-cR
-dq
-ds
-dq
-dq
+ac
+ac
+ae
+af
+ae
+ae
 ae
 bb
 ae
@@ -2764,11 +2750,11 @@ aa
 (25,1,1) = {"
 aa
 aa
-cR
-dq
-dq
-dq
-dq
+ac
+ae
+ae
+ae
+ae
 af
 ae
 ae
@@ -2808,11 +2794,11 @@ aa
 (26,1,1) = {"
 aa
 aa
-cR
-dq
-dq
-dr
-dq
+ac
+ae
+ae
+bb
+ae
 ae
 ae
 af
@@ -2852,11 +2838,11 @@ aa
 (27,1,1) = {"
 aa
 aa
-cR
-cR
-dq
-dq
-dq
+ac
+ac
+ae
+ae
+ae
 ae
 ae
 ae
@@ -2897,10 +2883,10 @@ aa
 aa
 aa
 aa
-cR
-dq
-dq
-dq
+ac
+ae
+ae
+ae
 ae
 ae
 ae
@@ -2941,10 +2927,10 @@ aa
 aa
 aa
 aa
-cR
-cR
-dq
-dq
+ac
+ac
+ae
+ae
 ae
 ae
 af
@@ -2986,9 +2972,9 @@ aa
 aa
 aa
 aa
-cR
-cR
-dq
+ac
+ac
+ae
 ae
 ae
 ae
@@ -3031,8 +3017,8 @@ aa
 aa
 aa
 aa
-cR
-cR
+ac
+ac
 ac
 ae
 ae

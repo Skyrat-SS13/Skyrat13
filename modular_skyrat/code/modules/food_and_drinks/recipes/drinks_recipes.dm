@@ -46,3 +46,18 @@
 	results = list(/datum/reagent/consumable/ethanol/synthanol/synthignon = 2)
 	required_reagents = list(/datum/reagent/consumable/ethanol/synthanol = 1, /datum/reagent/consumable/ethanol/wine = 1)
 	mix_message = "The chemicals mix to create a fine, red substance." 
+
+/datum/chemical_reaction/ethanol
+	name = "ethanol"
+	id = /datum/reagent/consumable/ethanol
+	results = list(/datum/reagent/consumable/ethanol = 1)
+	required_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 1,/datum/reagent/water = 1)
+	mix_message = "The diluted nutriment quickly turns into a foul smelling liquid"
+
+/datum/chemical_reaction/balikitwine
+	name = "Balikit Wine"
+	id = /datum/reagent/consumable/ethanol/balikitwine
+	results = list(/datum/reagent/consumable/ethanol/balikitwine = 5)
+	required_reagents = list(/datum/reagent/consumable/ethanol/wine = 5, /datum/reagent/toxin = 2, /datum/reagent/toxin/mindbreaker = 3)
+	mix_message = "The ingredients mix and sizzle, a green shade consuming and replacing the wine's red."
