@@ -554,6 +554,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<b>Descriptors:</b><BR>"
 				for(var/entry in pref_species.descriptors)
 					var/datum/mob_descriptor/descriptor = pref_species.descriptors[entry]
+					if(!descriptor)
+						continue
 					dat += "<b>[capitalize(descriptor.chargen_label)]:</b> [descriptor.get_standalone_value_descriptor(body_descriptors[entry]) ? descriptor.get_standalone_value_descriptor(body_descriptors[entry]) : "None"] <a href='?_src_=prefs;preference=descriptors;task=input;change_descriptor=[entry]'>Change</a><BR>"
 				dat += "<BR>"
 			dat += "<b>Random Body:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=all;task=random'>Randomize!</A><BR>"
