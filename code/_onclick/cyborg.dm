@@ -111,19 +111,20 @@
 	return // End of skyrat edit
 
 /mob/living/silicon/robot/ShiftClickOn(atom/A)
-	A.BorgShiftClick(src)
-	A.AIShiftClick(src)
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A // Skyrat edit
-	if(airlock)
-		airlock.AIShiftClick(src)
-	return // End of skyrat edit
-
+	if(isturf(A)) // Skyrat edit
+		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A // Skyrat edit
+		if(airlock)
+			airlock.BorgShiftClick(src)
+		A.BorgShiftClick(src)
+	A.BorgShiftClick(src) // End of skyrat edit
+	
 /mob/living/silicon/robot/CtrlClickOn(atom/A)
-	A.BorgCtrlClick(src)
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A // Skyrat edit
-	if(airlock)
-		airlock.AICtrlClick(src)
-	return // End of skyrat edit
+	if(isturf(A)) // Skyrat edit
+		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A // Skyrat edit
+		if(airlock)
+			airlock.BorgCtrlClick(src)
+		A.BorgCtrlClick(src)
+	A.BorgCtrlClick(src) // End of skyrat edit
 
 /mob/living/silicon/robot/AltClickOn(atom/A)
 	if(!A.BorgAltClick(src))
