@@ -77,9 +77,9 @@
 						weehoo += "\a [attached_accessory]"
 						dumb_icons = "[dumb_icons][icon2html(attached_accessory, user)]"
 				if(length(weehoo))
-					accessory_msg += " with [dumb_icons]"
+					accessory_msg += " with [dumb_icons] "
 					if(length(U.attached_accessories) >= 2)
-						accessory_msg += jointext(weehoo, ", ", 1, length(weehoo) - 1)
+						accessory_msg += jointext(weehoo, ", ", 1, max(1, length(weehoo) - 1))
 						accessory_msg += " and [weehoo[length(weehoo)]]"
 					else
 						accessory_msg += weehoo[1]
