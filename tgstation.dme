@@ -3832,6 +3832,7 @@
 #include "modular_skyrat\code\modules\clothing\traitor\ghostface.dm"
 #include "modular_skyrat\code\modules\clothing\traitor\graycowl.dm"
 #include "modular_skyrat\code\modules\clothing\under\_under.dm"
+#include "modular_skyrat\code\modules\clothing\under\accessories.dm"
 #include "modular_skyrat\code\modules\clothing\under\stealth.dm"
 #include "modular_skyrat\code\modules\clothing\under\suits.dm"
 #include "modular_skyrat\code\modules\clothing\under\jobs\medsci.dm"
