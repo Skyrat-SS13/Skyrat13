@@ -117,7 +117,7 @@
 	A.AICtrlShiftClick(src) // End of skyrat edit
 
 /mob/living/silicon/ai/ShiftClickOn(var/atom/A)
-		if(isturf(A)) // Skyrat edit
+	if(isturf(A)) // Skyrat edit
 		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A 
 		if(airlock)
 			airlock.AIShiftClick(src)
