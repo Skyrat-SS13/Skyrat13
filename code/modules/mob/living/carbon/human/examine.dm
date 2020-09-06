@@ -483,13 +483,13 @@
 			if(InFullCritical() || HAS_TRAIT(src, TRAIT_LOOKSVERYUNCONSCIOUS) || (consciousness == LOOKS_VERYUNCONSCIOUS))
 				consciousness = LOOKS_VERYUNCONSCIOUS
 				if((dist <= 2) || (damage >= 75))
-					consciousness_msg = "<span class='warning'>[t_He] seems to have no identifiable breath[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
+					consciousness_msg = "<span class='warning'>[t_He] seems to have no identifiable breath[IsUnconscious() ? ", and [t_he] seems to be unconscious" : ""].</span>"
 				else if((dist <= 10) && IsUnconscious())
 					consciousness = LOOKS_SLEEPY
 					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be either asleep or unconscious. Hard to tell without getting closer."
 			if((stat == DEAD) || (mob_biotypes & MOB_UNDEAD) || HAS_TRAIT(src, TRAIT_LOOKSDEAD) || HAS_TRAIT(src, TRAIT_FAKEDEATH) || (consciousness == LOOKS_DEAD))
 				consciousness = LOOKS_DEAD
-				if((dist <= 2) || (damage >= 75))
+				if((dist <= 2) || (damage >= 75) || (mob_biotypes & MOB_UNDEAD))
 					consciousness_msg = "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.[(length(bleeding_limbs) && !(mob_biotypes & MOB_UNDEAD)) || (length(bleeding_limbs) && (mob_biotypes & MOB_UNDEAD) && (stat == DEAD)) ? "\n[t_His] bleeding has pooled, and is not flowing." : ""]</span>"
 					if(suiciding)
 						consciousness_msg += "\n<span class='deadsay'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>"
