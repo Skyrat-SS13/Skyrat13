@@ -11,7 +11,9 @@
 					/obj/item/reagent_containers/pill/patch/silver_sulf = 5,
 					/obj/item/reagent_containers/pill/charcoal = 2,
 					/obj/item/reagent_containers/syringe = 3,
-					/obj/item/reagent_containers/syringe/dart = 10)
+					/obj/item/reagent_containers/syringe/dart = 10,
+					/obj/item/healthanalyzer/wound = 2,
+					/obj/item/stack/medical/bone_gel = 2)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 2,
 					/obj/item/reagent_containers/pill/morphine = 2)
 	premium = list(/obj/item/reagent_containers/medspray/synthflesh = 2)

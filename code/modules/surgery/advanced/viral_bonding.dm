@@ -9,20 +9,22 @@
 				/datum/surgery_step/close)
 
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = list(BODY_ZONE_CHEST)
+	possible_locs = TORSO_BODYPARTS //skyrat edit
+
 /datum/surgery/advanced/viral_bonding/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
 	if(!..())
 		return FALSE
 	if(!LAZYLEN(target.diseases))
 		return FALSE
 	return TRUE
+
 /datum/surgery_step/viral_bond
-	name = "viral bond"
+	name = "Viral bond"
 	implements = list(TOOL_CAUTERY  = 100, TOOL_WELDER = 50, /obj/item = 30) // 30% success with any hot item.
 	time = 100
 	chems_needed = list(/datum/reagent/medicine/spaceacillin, /datum/reagent/consumable/virus_food,/datum/reagent/toxin/formaldehyde)
 
-/datum/surgery_step/viral_bond/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/viral_bond/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == TOOL_WELDER || implement_type == /obj/item)
 		return tool.get_temperature()
 	return TRUE

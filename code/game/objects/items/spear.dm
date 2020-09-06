@@ -15,7 +15,7 @@
 	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
-	sharpness = IS_SHARP
+	sharpness = SHARP_POINTY
 	max_integrity = 200
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
 	var/obj/item/grenade/explosive = null
@@ -177,7 +177,7 @@
 	custom_materials = null
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
-	sharpness = IS_SHARP
+	sharpness = SHARP_POINTY
 	icon_prefix = "bone_spear"
 
 /obj/item/spear/bonespear/ComponentInitialize()

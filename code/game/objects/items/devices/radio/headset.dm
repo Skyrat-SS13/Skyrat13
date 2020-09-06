@@ -27,6 +27,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/obj/item/encryptionkey/keyslot2 = null
 	dog_fashion = null
 	var/bowman = FALSE
+	var/radiosound = 'modular_skyrat/sound/radio/common.ogg'
 
 /obj/item/radio/headset/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins putting \the [src]'s antenna up [user.p_their()] nose! It looks like [user.p_theyre()] trying to give [user.p_them()]self cancer!</span>")
@@ -56,7 +57,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/ComponentInitialize()
 	. = ..()
 	if (bowman)
-		AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+		AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS_LEFT, SLOT_EARS_RIGHT)) //skyrat edit
 
 /obj/item/radio/headset/Initialize()
 	. = ..()
@@ -67,20 +68,27 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	return ..()
 
 /obj/item/radio/headset/talk_into(mob/living/M, message, channel, list/spans,datum/language/language, direct = TRUE) //Skyrat change
+	. = ..()
 	if (!listening)
 		return ITALICS | REDUCE_RANGE
-	return ..()
+	if(. && ishuman(M) && radiosound)
+		playsound(M, radiosound, rand(20, 30), 0, 0, 0)
 
 /obj/item/radio/headset/can_receive(freq, level, AIuser)
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/H = src.loc
 		if(H.ears == src)
 			return ..(freq, level)
+		//skyrat edit
+		else if(H.ears_extra == src)
+			return ..(freq, level)
+		//
 	else if(AIuser)
 		return ..(freq, level)
 	return FALSE
 
 /obj/item/radio/headset/syndicate //disguised to look like a normal headset for stealth ops
+	radiosound = 'modular_skyrat/sound/radio/syndie.ogg'
 
 /obj/item/radio/headset/syndicate/alt //undisguised bowman with flash protection
 	name = "syndicate headset"
@@ -109,6 +117,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	desc = "This is used by your elite security force."
 	icon_state = "sec_headset"
 	keyslot = new /obj/item/encryptionkey/headset_sec
+	radiosound = 'modular_skyrat/sound/radio/security.ogg'
 
 /obj/item/radio/headset/headset_sec/alt
 	name = "security bowman headset"
@@ -364,4 +373,4 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = replacetext(name,"headset", "bowman headset")
 	desc = "[desc] Protects ears from flashbangs."
 	bowman = TRUE
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS_LEFT, SLOT_EARS_RIGHT)) //skyrat edit

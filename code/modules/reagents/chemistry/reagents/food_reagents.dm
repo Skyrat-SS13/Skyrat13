@@ -133,7 +133,7 @@
 			M.emote("scream")
 			playsound(M, 'sound/machines/fryer/deep_fryer_emerge.ogg', 25, TRUE)
 			var/oil_damage = max((holder.chem_temp / fry_temperature) * 0.33,1) //Damage taken per unit
-			M.apply_damage(damage=max(oil_damage * reac_volume, 20), damagetype=BURN, blocked=M.getarmor(, BURN)) //New era -- Actually capped damage and armor matters
+			M.apply_damage(damage=max(oil_damage * reac_volume, 40), damagetype=BURN, blocked=M.getarmor(, BURN)) //New era -- Actually capped damage and armor matters
 	else
 		..()
 	return TRUE

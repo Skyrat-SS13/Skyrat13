@@ -171,26 +171,29 @@
 	return !held_items[hand_index]
 
 /mob/proc/put_in_hand(obj/item/I, hand_index, forced = FALSE, ignore_anim = TRUE)
-	if(forced || can_put_in_hand(I, hand_index))
-		if(isturf(I.loc) && !ignore_anim)
-			I.do_pickup_animation(src)
-		if(hand_index == null)
-			return FALSE
-		if(get_item_for_held_index(hand_index) != null)
-			dropItemToGround(get_item_for_held_index(hand_index), force = TRUE)
-		I.forceMove(src)
-		held_items[hand_index] = I
-		I.layer = ABOVE_HUD_LAYER
-		I.plane = ABOVE_HUD_PLANE
-		I.equipped(src, SLOT_HANDS)
-		if(I.pulledby)
-			I.pulledby.stop_pulling()
-		update_inv_hands()
-		I.pixel_x = initial(I.pixel_x)
-		I.pixel_y = initial(I.pixel_y)
-		I.transform = initial(I.transform)
-		return hand_index || TRUE
-	return FALSE
+	if(!forced && !can_put_in_hand(I, hand_index) || hand_index == null)
+		return FALSE
+	if(isturf(I.loc) && !ignore_anim)
+		I.do_pickup_animation(src)
+	if(hand_index == null)
+		return FALSE
+	if(get_item_for_held_index(hand_index) != null)
+		dropItemToGround(get_item_for_held_index(hand_index), force = TRUE)
+	I.forceMove(src)
+	held_items[hand_index] = I
+	I.layer = ABOVE_HUD_LAYER
+	I.plane = ABOVE_HUD_PLANE
+	I.equipped(src, SLOT_HANDS)
+	if(QDELETED(I)) // this is here because some ABSTRACT items like slappers and circle hands could be moved from hand to hand then delete, which meant you'd have a null in your hand until you cleared it (say, by dropping it)
+		held_items[hand_index] = null
+		return FALSE
+	if(I.pulledby)
+		I.pulledby.stop_pulling()
+	update_inv_hands()
+	I.pixel_x = initial(I.pixel_x)
+	I.pixel_y = initial(I.pixel_y)
+	I.transform = initial(I.transform)
+	return hand_index || TRUE
 
 //Puts the item into the first available left hand if possible and calls all necessary triggers/updates. returns 1 on success.
 /mob/proc/put_in_l_hand(obj/item/I)
@@ -384,6 +387,18 @@
 		items += wear_suit
 	if(w_uniform)
 		items += w_uniform
+	//skyrat edit
+	if(ears_extra)
+		items += ears_extra
+	if(w_underwear)
+		items += w_underwear
+	if(w_socks)
+		items += w_socks
+	if(w_shirt)
+		items += w_shirt
+	if(wrists)
+		items += wrists
+	//
 	if(include_pockets)
 		if(l_store)
 			items += l_store

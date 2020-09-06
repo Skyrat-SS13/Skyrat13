@@ -111,8 +111,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	var/flags_cover = 0 //for flags such as GLASSESCOVERSEYES
 	var/heat = 0
-	///All items with sharpness of IS_SHARP or higher will automatically get the butchering component.
-	var/sharpness = IS_BLUNT
+	///All items with sharpness of SHARP_EDGED or higher will automatically get the butchering component.
+	var/sharpness = SHARP_NONE
 
 	var/tool_behaviour = NONE
 	var/toolspeed = 1
@@ -158,7 +158,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/skill_gain = DEF_SKILL_GAIN //base skill value gain from using this item.
 	var/canMouseDown = FALSE
 
-	//SKYRAT CHANGE - self equip delays
+	//SKYRAT CHANGE
+	//self equip delay
 	//Time in ticks needed to equip something on yourself. Uses the equip_delay_self var.
 	//Set use_standard_equip_delay to false if you want to set a custom delay by changing equip_delay_self.
 	var/use_standard_equip_delay = FALSE //Basically sets the self equip delay on initialize to self_equip_mod * equip_delay_other
@@ -166,6 +167,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/strip_self_delay = 0
 	var/use_standard_strip_self_delay = TRUE //Basically makes the unequip delay take as long as strip_self_delay_mod * equip_delay on initialize
 	var/strip_self_delay_mod = 0.85
+	//
+	var/hide_underwear_examine = FALSE
 	//
 
 /obj/item/Initialize()
@@ -177,7 +180,6 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	for(var/path in actions_types)
 		new path(src)
 	actions_types = null
-
 	if(force_string)
 		item_flags |= FORCE_STRING_OVERRIDE
 
@@ -186,7 +188,6 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 			hitsound = 'sound/items/welder.ogg'
 		if(damtype == "brute")
 			hitsound = "swing_hit"
-
 	//skyrat change
 	if(use_standard_equip_delay && !equip_delay_self)
 		equip_delay_self = self_equip_mod * equip_delay_other
@@ -378,7 +379,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	if(throwing)
 		throwing.finalize(FALSE)
 	if(loc == user)
-		if(!allow_attack_hand_drop(user) || !user.temporarilyRemoveItemFromInventory(I = src, ignore_strip_self = FALSE))
+		if(!user.temporarilyRemoveItemFromInventory(I = src, ignore_strip_self = FALSE))
 			return
 	pickup(user)
 	add_fingerprint(user)
@@ -702,6 +703,18 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		owner.update_inv_wear_suit()
 	if(flags & ITEM_SLOT_ICLOTHING)
 		owner.update_inv_w_uniform()
+	//skyrat edit
+	if(flags & ITEM_SLOT_UNDERWEAR)
+		owner.update_inv_w_underwear()
+	if(flags & ITEM_SLOT_SOCKS)
+		owner.update_inv_w_socks()
+	if(flags & ITEM_SLOT_SHIRT)
+		owner.update_inv_w_shirt()
+	if(flags & ITEM_SLOT_EARS)
+		owner.update_inv_ears_extra()
+	if(flags & ITEM_SLOT_WRISTS)
+		owner.update_inv_wrists()
+	//
 	if(flags & ITEM_SLOT_GLOVES)
 		owner.update_inv_gloves()
 	if(flags & ITEM_SLOT_EYES)
@@ -728,12 +741,12 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 /obj/item/proc/get_sharpness()
 	return sharpness
-
+/*
 /obj/item/proc/get_dismemberment_chance(obj/item/bodypart/affecting)
 	if(affecting.can_dismember(src))
 		if((sharpness || damtype == BURN) && w_class >= WEIGHT_CLASS_NORMAL && force >= 10)
 			. = force * (affecting.get_damage() / affecting.max_damage)
-
+*/
 /obj/item/proc/get_dismember_sound()
 	if(damtype == BURN)
 		. = 'sound/weapons/sear.ogg'
@@ -991,106 +1004,32 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		QDEL_NULL(src)
 		return TRUE
 
+
 /**
-
-
-
   * tryEmbed() is for when you want to try embedding something without dealing with the damage + hit messages of calling hitby() on the item while targetting the target.
-
-
-
   *
-
-
-
   * Really, this is used mostly with projectiles with shrapnel payloads, from [/datum/element/embed/proc/checkEmbedProjectile], and called on said shrapnel. Mostly acts as an intermediate between different embed elements.
-
-
-
   *
-
-
-
   * Arguments:
-
-
-
   * * target- Either a body part, a carbon, or a closed turf. What are we hitting?
-
-
-
   * * forced- Do we want this to go through 100%?
-
-
-
   */
-
-
-
 /obj/item/proc/tryEmbed(atom/target, forced=FALSE, silent=FALSE)
-
-
-
-	if(!isbodypart(target) && !iscarbon(target) && !isclosedturf(target))
-
-
-
+	if(!isbodypart(target) && !iscarbon(target))
 		return
-
-
-
 	if(!forced && !LAZYLEN(embedding))
-
-
-
 		return
-
-
-
-
-
-
 
 	if(SEND_SIGNAL(src, COMSIG_EMBED_TRY_FORCE, target, forced, silent))
-
-
-
 		return TRUE
-
-
-
 	failedEmbed()
 
-
-
-
-
-
-
 ///For when you want to disable an item's embedding capabilities (like transforming weapons and such), this proc will detach any active embed elements from it.
-
-
-
 /obj/item/proc/disableEmbedding()
-
-
-
 	SEND_SIGNAL(src, COMSIG_ITEM_DISABLE_EMBED)
-
-
-
 	return
 
-
-
-
-
-
-
 ///For when you want to add/update the embedding on an item. Uses the vars in [/obj/item/embedding], and defaults to config values for values that aren't set. Will automatically detach previous embed elements on this item.
-
-
-
 /obj/item/proc/updateEmbedding()
 	if(!islist(embedding) || !LAZYLEN(embedding))
 		return
@@ -1106,6 +1045,6 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		impact_pain_mult = (!isnull(embedding["impact_pain_mult"]) ? embedding["impact_pain_mult"] : EMBEDDED_IMPACT_PAIN_MULTIPLIER),\
 		jostle_chance = (!isnull(embedding["jostle_chance"]) ? embedding["jostle_chance"] : EMBEDDED_JOSTLE_CHANCE),\
 		jostle_pain_mult = (!isnull(embedding["jostle_pain_mult"]) ? embedding["jostle_pain_mult"] : EMBEDDED_JOSTLE_PAIN_MULTIPLIER),\
-		pain_stam_pct = (!isnull(embedding["pain_stam_pct"]) ? embedding["pain_stam_pct"] : EMBEDDED_PAIN_STAM_PCT),\
-		embed_chance_turf_mod = (!isnull(embedding["embed_chance_turf_mod"]) ? embedding["embed_chance_turf_mod"] : EMBED_CHANCE_TURF_MOD))
+		pain_stam_pct = (!isnull(embedding["pain_stam_pct"]) ? embedding["pain_stam_pct"] : EMBEDDED_PAIN_STAM_PCT)) //skyrat edit
+		//embed_chance_turf_mod = (!isnull(embedding["embed_chance_turf_mod"]) ? embedding["embed_chance_turf_mod"] : EMBED_CHANCE_TURF_MOD)) //skyrat edit
 	return TRUE
