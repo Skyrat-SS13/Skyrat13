@@ -25,6 +25,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 		"Hot Plates" = 'modular_skyrat/sound/music/hot_plates.ogg',
 		"Thunderdome" = 'modular_skyrat/sound/music/thunderdome.ogg',
+		"Death Squad" ='modular_skyrat/sound/music/deathsquads.ogg',
 		"Custom" = "Custom",
 	))
 
