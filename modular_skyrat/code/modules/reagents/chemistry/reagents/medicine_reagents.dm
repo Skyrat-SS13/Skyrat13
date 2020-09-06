@@ -59,16 +59,20 @@
 			C.vomit()
 			if(show_message) to_chat(C, "<span class='danger'>Your stomach starts to hurt!</span>")
 		if(PATCH,TOUCH,VAPOR)
-			var/amount_healed = -(M.adjustBruteLoss(-1.25 * reac_volume) + M.adjustFireLoss(-1.25 * reac_volume))
+			var/current_brute_damage = M.getBruteLoss()
+			var/current_fire_damage = M.getFireLoss()
+			M.adjustBruteLoss(-1.25 * reac_volume)
+			M.adjustFireLoss(-1.25 * reac_volume)
+			var/amount_healed = ((current_brute_damage - M.bruteloss) + (current_fire_damage - M.fireloss))
 			if(amount_healed && M.stat != DEAD)
 				var/mob/living/carbon/human/ourguy = M
 				if(ourguy)
 					if(ourguy.dna.species.type != /datum/species/synth)
-						ourguy.adjustToxLoss(amount_healed * 0.25)
+						ourguy.adjustToxLoss(-(amount_healed * 0.25))
 					else
 						if(!overdosed)
-							ourguy.adjustToxLoss(-(amount_healed * 0.75)) //synths heal toxins with synthflesh
-							ourguy.adjustCloneLoss(-(amount_healed * 1))
+							ourguy.adjustToxLoss(amount_healed * 0.75) //synths heal toxins with synthflesh
+							ourguy.adjustCloneLoss(amount_healed * 1)
 						else
 							ourguy.adjustToxLoss(1)
 				else
@@ -146,7 +150,7 @@
 	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3*REM)
 	if(prob(10))
 		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
-	..() 
+	..()
 
 /datum/reagent/medicine/nanite_slurry
 	name = "Nanite Slurry"

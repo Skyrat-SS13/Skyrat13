@@ -204,7 +204,7 @@
 			return
 
 		if(A.hasPower())
-			user.visible_message("<span class='warning'>[user] jams [src] into the airlock and starts prying it open!</span>", "<span class='warning'>We start forcing [src] open.</span>", \
+			user.visible_message("<span class='warning'>[user] jams [src] into the airlock and starts prying it open!</span>", "<span class='warning'>We start forcing [A] open.</span>", \
 			"<span class='italics'>You hear a metal screeching sound.</span>")
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
 			if(!do_after(user, 100, target = A))
