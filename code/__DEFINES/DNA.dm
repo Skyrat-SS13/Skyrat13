@@ -169,14 +169,6 @@
 #define ORGAN_SLOT_VAGINA "vagina"
 #define ORGAN_SLOT_TESTICLES "testicles"
 #define ORGAN_SLOT_BREASTS "breasts"
-//skyrat organs
-#define ORGAN_SLOT_PARASITES "parasite"
-#define ORGAN_SLOT_ALCOHOL_GLAND "alcohol_gland"
-#define ORGAN_SLOT_ESOPHAGUS "esophagus" //soon (TM)
-#define ORGAN_SLOT_INTESTINES "intestines"
-#define ORGAN_SLOT_KIDNEYS "kidneys"
-#define ORGAN_SLOT_BLADDER "bladder" //soon (TM)
-//
 
 ////organ defines
 #define STANDARD_ORGAN_THRESHOLD 	100
