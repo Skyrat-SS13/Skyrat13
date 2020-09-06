@@ -203,8 +203,8 @@
 	
 	//CONSCIOUSNESS
 	var/dist = get_dist(user, src)
-	var/damage = (getBruteLoss() + getFireLoss()) //If we are very damaged, it's easier to recognize whether or not we are dead
 	var/consciousness = LOOKS_CONSCIOUS
+	var/damage = (getBruteLoss() + getFireLoss()) //If we are very damaged, it's easier to recognize whether or not we are dead
 
 	var/mob/living/carbon/human/H = user
 	var/has_health_hud = FALSE
