@@ -13,4 +13,3 @@
 #define REAGENT_SYNTHETIC 2 
 */
 
-#define ORGAN_SLOT_SCANNER "scanner"
