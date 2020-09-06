@@ -109,26 +109,29 @@
 */
 
 /mob/living/silicon/ai/CtrlShiftClickOn(var/atom/A)
-	A.AICtrlShiftClick(src)
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A // Skyrat edit
-	if(airlock)
-		airlock.AICtrlShiftClick(src)
-	return // End of skyrat edit
+	if(isturf(A)) // Skyrat edit
+		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A 
+		if(airlock)
+			airlock.AICtrlShiftClick(src)
+		A.AICtrlShiftClick(src)
+	A.AICtrlShiftClick(src) // End of skyrat edit
 
 /mob/living/silicon/ai/ShiftClickOn(var/atom/A)
-	A.AIShiftClick(src)
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A // Skyrat edit
-	if(airlock)
-		airlock.AIShiftClick(src)
-	return // End of skyrat edit 
+		if(isturf(A)) // Skyrat edit
+		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A 
+		if(airlock)
+			airlock.AIShiftClick(src)
+		A.AIShiftClick(src)
+	A.AIShiftClick(src) // End of skyrat edit
 
 /mob/living/silicon/ai/CtrlClickOn(var/atom/A)
-	A.AICtrlClick(src)
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A    // Skyrat edit 
-	if(airlock)                              
-		airlock.AICtrlClick(src)
-	return // End of skyrat edit
-	
+	if(isturf(A)) // Skyrat edit
+		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A 
+		if(airlock)
+			airlock.AICtrlClick(src)
+		A.AICtrlClick(src)
+	A.AICtrlClick(src) // End of skyrat edit
+
 /mob/living/silicon/ai/AltClickOn(var/atom/A)
 	if(!A.AIAltClick(src))
 		altclick_listed_turf(A)
