@@ -6,7 +6,7 @@
 
 //For when you say something really awful IC.
 /datum/mood_event/cringe
-	description = "<span class='boldwarning'>God, they're gonna put me in a cringe compilation after that...</span>\n"
+	description = "<span class='boldwarning'>This is so embarassing...</span>\n"
 	mood_change = -20
 	timeout = 5 MINUTES
 
