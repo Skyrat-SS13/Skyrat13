@@ -182,7 +182,6 @@
 #define ORGAN_SLOT_KIDNEYS "kidneys" //soon (TM)
 #define ORGAN_SLOT_ADRENAL "adrenal_gland" //soon (TM)
 #define ORGAN_SLOT_BLADDER "bladder" //soon (TM)
-#define ORGAN_SLOT_SCANNER "scanner"
 //
 
 ////organ defines
