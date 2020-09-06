@@ -104,11 +104,12 @@
 //Give cyborgs hotkey clicks without breaking existing uses of hotkey clicks
 // for non-doors/apcs
 /mob/living/silicon/robot/CtrlShiftClickOn(atom/A)
-	A.BorgCtrlShiftClick(src)
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A // Skyrat edit
-	if(airlock)
-		airlock.AICtrlShiftClick(src)
-	return // End of skyrat edit
+	if(isturf(A)) // Skyrat edit
+		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A // Skyrat edit
+		if(airlock)
+			airlock.BorgCtrlShiftClick(src)
+		A.BorgCtrlShiftClick(src)
+	A.BorgCtrlShiftClick(src) // End of skyrat edit
 
 /mob/living/silicon/robot/ShiftClickOn(atom/A)
 	if(isturf(A)) // Skyrat edit
