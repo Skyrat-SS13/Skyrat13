@@ -97,7 +97,7 @@
 	var/active = FALSE
 	var/obj/item/gps/gps
 	var/credits_stored = 0
-	var/siphon_per_tick = 250 // Steals 7,500 per minute (on SSmachine's 2s tickrate). Enough to be a significant problem, not enough to be instawin.
+	var/siphon_per_tick = 200 // Steals 6000 per minute (on SSmachine's 2s tickrate). Enough to be a significant problem, not enough to be instawin.
 
 /obj/machinery/shuttle_scrambler/Initialize(mapload)
 	. = ..()
