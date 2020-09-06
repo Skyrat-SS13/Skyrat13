@@ -211,7 +211,6 @@
 		limb.receive_damage(brute=(1-pain_stam_pct) * damage, stamina=pain_stam_pct * damage, sharpness=weapon.sharpness, wound_bonus = CANT_WOUND)
 		to_chat(victim, "<span class='userdanger'>[weapon] embedded in your [limb.name] jostles and stings!</span>")
 
-
 /// Called when then item randomly falls out of a carbon. This handles the damage and descriptors, then calls safe_remove()
 /datum/component/embedded/proc/fallOut()
 	var/mob/living/carbon/victim = parent
@@ -260,6 +259,7 @@
 		else
 			weapon.forceMove(get_turf(victim))
 
+	SEND_SIGNAL(weapon, COMSIG_ITEM_ON_EMBED_REMOVAL)
 	qdel(src)
 
 /// Something deleted or moved our weapon while it was embedded, how rude!

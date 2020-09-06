@@ -1,5 +1,5 @@
 /datum/species/ipc
-	species_traits = list(MUTCOLORS_PARTSONLY,NOEYES,NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY,HAIR,HAS_SKIN,HAS_FLESH,HAS_BONE)
+	species_traits = list(MUTCOLORS_PARTSONLY,NOEYES,NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY,HAIR,HAS_SKIN,HAS_FLESH,HAS_BONE,NOAPPENDIX)
 	mutant_bodyparts = list("ipc_screen" = "Blank", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)")
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_TOXIMMUNE,TRAIT_CLONEIMMUNE,TRAIT_NODEFIB,TRAIT_DNC)
 	coldmod = 0.5
@@ -20,6 +20,7 @@
 	mutantlungs = /obj/item/organ/lungs/robot_ipc
 	mutant_heart = /obj/item/organ/heart/robot_ipc
 	mutantliver = /obj/item/organ/liver/robot_ipc
+	mutantkidneys = /obj/item/organ/kidneys/robot_ipc
 	//exotic_blood = /datum/reagent/oil
 	exotic_bloodtype = "HF"
 	icon_limbs = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'

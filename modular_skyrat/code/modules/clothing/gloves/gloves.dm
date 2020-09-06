@@ -173,3 +173,7 @@
 	ourcell = new /obj/item/stock_parts/cell()
 	ourcell.maxcharge = 9999999
 	ourcell.charge = 9999999
+
+//Sterile gloves
+/obj/item/clothing/gloves/color/latex
+	germ_level = 0

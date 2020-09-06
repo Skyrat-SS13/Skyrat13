@@ -1574,6 +1574,18 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Painkiller"
 	glass_desc = "A combination of tropical juices and rum. Surely this will make you feel better."
 
+/datum/reagent/consumable/ethanol/painkiller/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 15)
+
+/datum/reagent/consumable/ethanol/painkiller/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 15)
+
 /datum/reagent/consumable/ethanol/pina_colada
 	name = "Pina Colada"
 	description = "A fresh pineapple drink with coconut rum. Yum."

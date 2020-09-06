@@ -5,6 +5,7 @@
 //Damage defines //TODO: merge these down to reduce on defines
 #define BRUTE		"brute"
 #define BURN		"fire"
+#define PAIN		"pain"
 #define TOX			"tox"
 #define OXY			"oxy"
 #define CLONE		"clone"
@@ -14,10 +15,11 @@
 //bitflag damage defines used for suicide_act
 #define BRUTELOSS 		(1<<0)
 #define FIRELOSS 		(1<<1)
-#define TOXLOSS 		(1<<2)
-#define OXYLOSS 		(1<<3)
-#define SHAME 			(1<<4)
-#define MANUAL_SUICIDE	(1<<5)	//suicide_act will do the actual killing.
+#define PAINLOSS		(1<<2)
+#define TOXLOSS 		(1<<3)
+#define OXYLOSS 		(1<<4)
+#define SHAME 			(1<<5)
+#define MANUAL_SUICIDE	(1<<6)	//suicide_act will do the actual killing.
 
 #define EFFECT_STUN		"stun"
 #define EFFECT_KNOCKDOWN		"knockdown"

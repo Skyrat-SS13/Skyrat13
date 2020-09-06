@@ -36,7 +36,7 @@
 	*/
 	var/list/msg = list()
 
-	var/list/missing = ALL_BODYPARTS
+	var/list/missing = get_missing_limbs()
 	var/list/disabled = list()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
@@ -217,10 +217,10 @@
 		if(IsSleeping())
 			consciousness = LOOKS_SLEEPY
 			consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be either asleep or unconscious..."
-		if(InCritical())
+		if(InShock())
 			consciousness = LOOKS_UNCONSCIOUS
 			consciousness_msg = "<span class='warning'>[t_His] life signs are shallow and labored[lying ? ", and [t_he] is unconscious" : ""].</span>"
-		if(InFullCritical())
+		if(InFullShock())
 			consciousness = LOOKS_VERYUNCONSCIOUS
 			consciousness_msg = "<span class='warning'>[t_His] life signs are very shallow and labored, [lying ? "[t_he] is completely unconscious and " : ""][t_he] appears to be undergoing shock.</span>"
 		if(stat == DEAD)
@@ -247,7 +247,7 @@
 		if(InFullCritical() || HAS_TRAIT(src, TRAIT_LOOKSVERYUNCONSCIOUS) || (consciousness == LOOKS_VERYUNCONSCIOUS))
 			consciousness = LOOKS_VERYUNCONSCIOUS
 			if(dist <= 1)
-				consciousness_msg = "<span class='warning'>[t_He] seems to have no identifiable pulse[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
+				consciousness_msg = "<span class='warning'>[t_He] seems to have no identifiable breath[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
 			else if((dist <= 3) || (dist <= 7 && lying))
 				consciousness = LOOKS_SLEEPY
 				consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be either asleep or unconscious..."

@@ -112,8 +112,8 @@
 					Unconscious(rand(20,60))
 					to_chat(src, "<span class='warning'>You feel extremely [word].</span>")
 			if(-INFINITY to BLOOD_VOLUME_SURVIVE)
-				if(!HAS_TRAIT(src, TRAIT_NODEATH))
-					death()
+				adjustOxyLoss(10)
+				adjustOrganLoss(ORGAN_SLOT_HEART, 5)
 
 		var/temp_bleed = 0
 		//Bleeding out
@@ -123,7 +123,7 @@
 			temp_bleed += BP.get_bleed_rate()
 			BP.generic_bleedstacks = max(0, BP.generic_bleedstacks - 1)
 		if(temp_bleed)
-			if(temp_bleed >= (WOUND_SLASH_MAX_BLOODFLOW/4))
+			if(temp_bleed >= (WOUND_SLASH_MAX_BLOODFLOW/2))
 				throw_alert("bleeding", /obj/screen/alert/status_effect/wound/bleed)
 			bleed(temp_bleed)
 		else
@@ -206,6 +206,7 @@
 			return TRUE
 
 	AM.reagents.add_reagent(blood_id, amount, blood_data, bodytemperature)
+	AM.janitize(WOUND_SANITIZATION_STERILIZER * 2)
 	return TRUE
 
 

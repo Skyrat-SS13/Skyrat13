@@ -293,7 +293,7 @@
 		var/list/boozereagents = list()
 		var/list/boozepowers = list(0)
 		var/multiplier = 0
-		for(var/datum/reagent/consumable/ethanol/E in M.reagents)
+		for(var/datum/reagent/consumable/ethanol/E in M.reagents.reagent_list)
 			boozereagents += E
 		for(var/datum/reagent/consumable/ethanol/E in boozereagents)
 			boozepowers += E.boozepwr

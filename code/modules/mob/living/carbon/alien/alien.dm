@@ -152,3 +152,12 @@ Des: Removes all infected images from the alien.
 
 /mob/living/carbon/alien/can_hold_items()
 	return has_fine_manipulation
+
+/mob/living/carbon/alien/needs_lungs()
+	return FALSE
+
+/mob/living/carbon/alien/needs_heart()
+	return FALSE
+
+/mob/living/carbon/alien/blood_carries_oxygen()
+	return FALSE

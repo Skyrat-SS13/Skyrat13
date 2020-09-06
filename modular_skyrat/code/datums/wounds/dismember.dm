@@ -15,7 +15,7 @@
 	biology_required = list()
 	required_status = null
 
-/datum/wound/loss/proc/apply_dismember(obj/item/bodypart/L, wounding_type=WOUND_SLASH)
+/datum/wound/loss/proc/apply_dismember(obj/item/bodypart/L, wounding_type = WOUND_SLASH)
 	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.can_dismember())
 		qdel(src)
 		return
@@ -114,6 +114,8 @@
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
 	required_status = BODYPART_ORGANIC
 	biology_required = list()
+	pain_amount = 24 //Horrible, but could be worse.
+	infection_chance = 90
 	occur_text = null
 
 /datum/wound/slash/loss/get_examine_description(mob/user)
@@ -179,6 +181,7 @@
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
 	required_status = BODYPART_ROBOTIC
 	biology_required = list()
+	pain_amount = 24
 	occur_text = null
 
 /datum/wound/mechanical/slash/loss/get_examine_description(mob/user)

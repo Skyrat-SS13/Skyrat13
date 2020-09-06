@@ -9,8 +9,8 @@
 	desc = "Oofie ouchie my bones."
 	self_delay = 75
 	other_delay = 30
-	amount = 15
-	max_amount = 15
+	amount = 16
+	max_amount = 16
 	custom_price = 150
 	absorption_rate = 0.1
 	absorption_capacity = 1

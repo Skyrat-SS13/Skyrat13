@@ -98,3 +98,35 @@
 	current_size = newsize
 	H.update_transform()
 	..()
+
+//Space cleaner
+/datum/reagent/space_cleaner/reaction_obj(obj/O, reac_volume)
+	. = ..()
+	if(O.germ_level)
+		O.germ_level = max(0, reac_volume * 20)
+
+/datum/reagent/space_cleaner/reaction_turf(turf/T, reac_volume)
+	. = ..()
+	if(T.germ_level)
+		T.germ_level = max(0, reac_volume * 20)
+
+//Worter cleans stuff minorly
+/datum/reagent/water/reaction_mob(mob/living/M, method, reac_volume)
+	. = ..()
+	if(M.germ_level < INFECTION_LEVEL_TWO)
+		M.janitize(-(reac_volume))
+
+/datum/reagent/water/reaction_obj(obj/O, reac_volume)
+	. = ..()
+	if(O.germ_level)
+		O.germ_level = max(0, reac_volume)
+
+/datum/reagent/water/reaction_turf(turf/T, reac_volume)
+	. = ..()
+	if(T.germ_level)
+		T.germ_level = max(0, reac_volume)
+
+/datum/reagent/water/reaction_mob(mob/living/M, method, reac_volume)
+	. = ..()
+	if(M.germ_level < INFECTION_LEVEL_TWO)
+		M.janitize(-(reac_volume))

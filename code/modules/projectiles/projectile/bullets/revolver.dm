@@ -42,6 +42,7 @@
 	name = ".38 Rubber bullet"
 	damage = 10
 	stamina = 30
+	pain = 10
 	armour_penetration = -30
 	ricochets_max = 6
 	ricochet_incidence_leeway = 70
@@ -66,6 +67,7 @@
 	name = ".38 rubber bullet"
 	damage = 12      //Skyrat edit: A rubber pistol bullet of this caliber should NOT deal 15 brute.
 	stamina = 48
+	pain = 12.5
 	embedding = EMBED_NONE
 
 /obj/item/projectile/bullet/c38/trac

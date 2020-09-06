@@ -1,3 +1,76 @@
+/obj/item/organ/brain
+	damage_reduction = 0
+	damage_modifier = 0
+	damage_reduction = 0
+	low_threshold = 50
+	high_threshold = 150
+	var/brain_can_heal = TRUE
+	var/damage_threshold_count = 10
+	var/damage_threshold_value = 0
+	var/healed_threshold = 1
+	var/oxygen_reserve = 5
+	relative_size = 70 //Cum is stored in the brain, and i have a headache
+	pain_multiplier = 0 //We don't count towards bodypart pain
+
+/obj/item/organ/brain/Initialize()
+	. = ..()
+	damage_threshold_value = round(maxHealth / damage_threshold_count)
+
+/obj/item/organ/brain/proc/get_current_damage_threshold()
+	return round(damage / damage_threshold_value)
+
+/obj/item/organ/brain/proc/past_damage_threshold(threshold)
+	return (get_current_damage_threshold() > threshold)
+
+/obj/item/organ/brain/on_life()
+	. = ..()
+	// Brain damage from low oxygenation or lack of blood.
+	if(owner.needs_heart())
+		// No heart? You are going to have a very bad time. Not 100% lethal because heart transplants should be a thing.
+		var/blood_volume = owner.get_blood_oxygenation()
+		if(blood_volume < BLOOD_VOLUME_SURVIVE)
+			if(!owner.chem_effects[CE_STABLE] || prob(60))
+				oxygen_reserve = max(0, oxygen_reserve-1)
+		else
+			oxygen_reserve = min(initial(oxygen_reserve), oxygen_reserve+1)
+		if(!oxygen_reserve) //(hardcrit)
+			owner.Paralyze(300)
+		var/can_heal = damage && brain_can_heal && (damage < maxHealth) && (damage % damage_threshold_value || owner.chem_effects[CE_BRAIN_REGEN] || (!past_damage_threshold(3) && owner.chem_effects[CE_STABLE]))
+		var/damprob = 0
+		//Effects of bloodloss
+		switch(blood_volume)
+			if(BLOOD_VOLUME_SAFE to INFINITY)
+				if(can_heal)
+					damage = max(damage-1, 0)
+			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
+				damprob = owner.chem_effects[CE_STABLE] ? 30 : 60
+				if(!past_damage_threshold(2) && prob(damprob))
+					applyOrganDamage(1)
+			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
+				owner.eye_blurry = max(owner.eye_blurry,6)
+				damprob = owner.chem_effects[CE_STABLE] ? 40 : 80
+				if(!past_damage_threshold(4) && prob(damprob))
+					applyOrganDamage(1)
+				if(!owner.IsParalyzed() && prob(10))
+					owner.Paralyze(rand(1,3))
+					to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")
+			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
+				owner.eye_blurry = max(owner.eye_blurry,6)
+				damprob = owner.chem_effects[CE_STABLE] ? 60 : 100
+				if(!past_damage_threshold(6) && prob(damprob))
+					applyOrganDamage(1)
+				if(!owner.IsParalyzed() && prob(15))
+					owner.Paralyze(500)
+					to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")
+			// Also see heart.dm, being below this point puts you into cardiac arrest.
+			if(-(INFINITY) to BLOOD_VOLUME_SURVIVE)
+				owner.eye_blurry = max(owner.eye_blurry,6)
+				damprob = owner.chem_effects[CE_STABLE] ? 80 : 100
+				if(prob(damprob))
+					applyOrganDamage(2)
+				if(prob(damprob))
+					applyOrganDamage(2)
+
 /obj/item/organ/brain/ipc_positron
 	name = "positronic brain carcass"
 	slot = ORGAN_SLOT_BRAIN
@@ -7,6 +80,10 @@
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. It is usually slotted into the chest of synthetic crewmembers."
 	icon = 'modular_skyrat/icons/obj/surgery.dmi'
 	icon_state = "posibrain-ipc"
+	low_threshold = 25
+	high_threshold = 100
+	maxHealth = 75
+	brain_can_heal = FALSE
 
 /obj/item/organ/brain/ipc_positron/Insert(mob/living/carbon/C, special = 0, drop_if_replaced = TRUE)
 	..()

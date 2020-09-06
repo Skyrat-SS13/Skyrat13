@@ -7,6 +7,10 @@
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_TAIL
 	var/tail_type = "None"
+	maxHealth = 0.3 * STANDARD_ORGAN_THRESHOLD
+	high_threshold = 0.2 * STANDARD_ORGAN_THRESHOLD	//threshold at 20
+	low_threshold = 0.1 * STANDARD_ORGAN_THRESHOLD	//threshold at 10
+	relative_size = 10 //tail damage doesn't do much
 
 /obj/item/organ/tail/Remove(special = FALSE)
 	if(owner?.dna?.species)

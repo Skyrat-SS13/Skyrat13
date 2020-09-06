@@ -249,7 +249,7 @@
 
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
-	description = "Spaceacillin will prevent a patient from conventionally spreading any diseases they are currently infected with. Also reduces infection in serious burns." //skyrat edit
+	description = "Spaceacillin will prevent a patient from conventionally spreading any diseases they are currently infected with. Also reduces infections."
 	color = "#f2f2f2"
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
 	pH = 8.1
@@ -436,6 +436,12 @@
 	pH = 2.6
 	value = REAGENT_VALUE_COMMON
 
+/datum/reagent/medicine/mine_salve/on_mob_metabolize(mob/living/M) //modularisation for miners salve painkiller.
+	..()
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.add_chem_effect(CE_PAINKILLER, 75)
+
 /datum/reagent/medicine/mine_salve/on_mob_life(mob/living/carbon/C)
 	C.hal_screwyhud = SCREWYHUD_HEALTHY
 	C.adjustBruteLoss(-0.25*REM, 0)
@@ -465,7 +471,7 @@
 	if(iscarbon(M))
 		var/mob/living/carbon/N = M
 		N.hal_screwyhud = SCREWYHUD_NONE
-		REMOVE_TRAIT(M, TRAIT_PAINKILLER, PAINKILLER_MINERSSALVE) //SKYRAT EDIT, Painkiller.
+		N.remove_chem_effect(CE_PAINKILLER, 75)
 	..()
 
 /datum/reagent/medicine/synthflesh
@@ -635,6 +641,17 @@
 	pH = 2.1
 	value = REAGENT_VALUE_COMMON
 
+/datum/reagent/medicine/sal_acid/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 40)
+
+/datum/reagent/medicine/sal_acid/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/medicine/sal_acid/on_mob_life(mob/living/carbon/M)
 	if(M.getBruteLoss() > 25)
@@ -766,12 +783,20 @@
 
 /datum/reagent/medicine/morphine/on_mob_metabolize(mob/living/L)
 	..()
-	ADD_TRAIT(L, TRAIT_PAINKILLER, PAINKILLER_MORPHINE) //SKYRAT EDIT, Painkiller.
+	//SKYRAT EDIT, Painkiller.
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 90) //Morphine is very strong.
+	//
 	L.add_movespeed_mod_immunities(type, list(/datum/movespeed_modifier/damage_slowdown, /datum/movespeed_modifier/damage_slowdown_flying, /datum/movespeed_modifier/monkey_health_speedmod))
 
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_mod_immunities(type, list(/datum/movespeed_modifier/damage_slowdown, /datum/movespeed_modifier/damage_slowdown_flying, /datum/movespeed_modifier/monkey_health_speedmod))
-	REMOVE_TRAIT(L, TRAIT_PAINKILLER, PAINKILLER_MORPHINE) //SKYRAT EDIT, Painkiller.
+	//SKYRAT EDIT, Painkiller.
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 90) //Morphine is very strong.
+	//
 	..()
 
 /datum/reagent/medicine/morphine/on_mob_life(mob/living/carbon/M)
@@ -1675,4 +1700,3 @@
 	if(prob(3))
 		to_chat(C, "[pick(GLOB.wisdoms)]") //give them a random wisdom
 	..()
-

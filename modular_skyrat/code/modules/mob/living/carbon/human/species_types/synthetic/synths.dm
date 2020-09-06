@@ -15,19 +15,22 @@
 	limbs_id = "synth"
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
 	mutant_bodyparts = list()
-	initial_species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //for getting these values back for assume_disguise()
+	initial_species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY,NOAPPENDIX) //for getting these values back for assume_disguise()
 	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_TOXIMMUNE,TRAIT_CLONEIMMUNE,TRAIT_NODEFIB,TRAIT_DNC) //blah blah i explained above
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/actualhealth = 100 //value we calculate to assume disguise and etc
 	//Same organs as an IPC basically, to share functionality.
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
+	mutant_brain = /obj/item/organ/brain/ipc_positron
 	mutantstomach = /obj/item/organ/stomach/robot_ipc
 	mutantears = /obj/item/organ/ears/robot_ipc
 	mutanteyes = /obj/item/organ/eyes/robot_ipc
 	mutantlungs = /obj/item/organ/lungs/robot_ipc
 	mutant_heart = /obj/item/organ/heart/robot_ipc
 	mutantliver = /obj/item/organ/liver/robot_ipc
+	mutantkidneys = /obj/item/organ/kidneys/robot_ipc
 	exotic_blood = /datum/reagent/blood/synthetics
 	//same damage as ipcs
 	coldmod = 0.5
@@ -41,8 +44,6 @@
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
 	exotic_bloodtype = "SY"
-	//Power cord so they no die hungry
-	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))

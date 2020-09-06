@@ -136,7 +136,7 @@
 	. = FALSE
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant)
-		. = (100 * ((mob_occupant.health + 100) / (heal_level + 100)))
+		. = (100 * ((mob_occupant.get_physical_damage() + 100) / (heal_level + 100)))
 
 /obj/machinery/clonepod/attack_ai(mob/user)
 	return examine(user)
@@ -433,6 +433,14 @@
 			mob_occupant.apply_status_effect(/datum/status_effect/cloneill, cloneill_healthpenalty, cloneill_cloneloss, cloneill_hallucination)
 		SEND_SIGNAL(mob_occupant, COMSIG_ADD_MOOD_EVENT, "clooned", /datum/mood_event/clooned)
 
+	var/mob/living/carbon/C = mob_occupant
+	if(istype(C))
+		for(var/obj/item/organ/O in C.bodyparts)
+			O.setOrganDamage(0)
+			O.janitize(0, 0, 0)
+		for(var/obj/item/bodypart/BP in C.bodyparts)
+			BP.janitize(0, 0, 0)
+		C.setToxLoss(0, TRUE)
 	occupant.forceMove(T)
 	update_icon()
 	mob_occupant.domutcheck(1) //Waiting until they're out before possible monkeyizing. The 1 argument forces powers to manifest.
@@ -519,6 +527,7 @@
 			if(BP)
 				BP.drop_limb()
 				BP.forceMove(src)
+				BP.status |= BODYPART_FROZEN
 				unattached_flesh += BP
 
 	for(var/o in H.internal_organs)

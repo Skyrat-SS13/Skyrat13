@@ -74,13 +74,11 @@
 		..()
 
 /mob/living/carbon/human/check_breath(datum/gas_mixture/breath)
-
 	var/L = getorganslot(ORGAN_SLOT_LUNGS)
-
-	if(!L)
-		if(health >= crit_threshold)
+	if(!(L || nervous_system_failure()))
+		if(InShock())
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)
-		else if(!HAS_TRAIT(src, TRAIT_NOCRITDAMAGE))
+		else if(!HAS_TRAIT(src, TRAIT_NOCRITDAMAGE) && InFullShock())
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
 		failed_last_breath = 1
@@ -314,13 +312,7 @@
 		return
 
 	if(we_breath)
-		adjustOxyLoss(8)
 		Unconscious(80)
-	// Tissues die without blood circulation
-	adjustBruteLoss(2)
-
-
-
 
 #undef THERMAL_PROTECTION_HEAD
 #undef THERMAL_PROTECTION_CHEST

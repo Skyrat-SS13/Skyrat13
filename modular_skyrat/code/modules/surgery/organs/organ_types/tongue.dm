@@ -10,7 +10,6 @@
 	var/list/languages_possible
 	var/say_mod = null
 	var/taste_sensitivity = 15 // lower is more sensitive.
-	maxHealth = TONGUE_MAX_HEALTH
 	var/modifies_speech = FALSE
 	var/static/list/languages_possible_base = typecacheof(list(
 		/datum/language/common,
@@ -35,8 +34,12 @@
 		/datum/language/sylvan, //Skyrat change - plantpeople langauge
 		/datum/language/technorussian //Skyrat change - russian stereotype language
 	))
+	maxHealth = 0.35 * STANDARD_ORGAN_THRESHOLD
+	high_threshold = 0.2 * STANDARD_ORGAN_THRESHOLD	//threshold at 20
+	low_threshold = 0.1 * STANDARD_ORGAN_THRESHOLD	//threshold at 10
 	healing_factor = STANDARD_ORGAN_HEALING*5 //Fast!!
 	decay_factor = STANDARD_ORGAN_DECAY/2
+	relative_size = 5
 
 /obj/item/organ/tongue/Initialize(mapload)
 	. = ..()

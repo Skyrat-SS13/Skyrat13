@@ -77,9 +77,9 @@
 						weehoo += "\a [attached_accessory]"
 						dumb_icons = "[dumb_icons][icon2html(attached_accessory, user)]"
 				if(length(weehoo))
-					accessory_msg += " with [dumb_icons]"
+					accessory_msg += " with [dumb_icons] "
 					if(length(U.attached_accessories) >= 2)
-						accessory_msg += jointext(weehoo, ", ", 1, length(weehoo) - 1)
+						accessory_msg += jointext(weehoo, ", ", 1, max(1, length(weehoo) - 1))
 						accessory_msg += " and [weehoo[length(weehoo)]]"
 					else
 						accessory_msg += weehoo[1]
@@ -450,10 +450,10 @@
 			if(IsSleeping())
 				consciousness = LOOKS_SLEEPY
 				consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be either asleep or unconscious..."
-			if(InCritical())
+			if(InShock())
 				consciousness = LOOKS_UNCONSCIOUS
 				consciousness_msg = "<span class='warning'>[t_His] life signs are shallow and labored[lying ? ", and [t_he] is unconscious" : ""].</span>"
-			if(InFullCritical())
+			if(InFullShock())
 				consciousness = LOOKS_VERYUNCONSCIOUS
 				consciousness_msg = "<span class='warning'>[t_His] life signs are very shallow and labored, [lying ? "[t_he] is completely unconscious and " : ""][t_he] appears to be undergoing shock.</span>"
 			if(stat == DEAD)
@@ -470,14 +470,14 @@
 				consciousness = LOOKS_SLEEPY
 				if((dist <= 3) || (dist <= 7 && lying))
 					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be either asleep or unconscious..."
-			if(InCritical() || HAS_TRAIT(src, TRAIT_LOOKSUNCONSCIOUS) || (consciousness == LOOKS_UNCONSCIOUS))
+			if(InShock() || HAS_TRAIT(src, TRAIT_LOOKSUNCONSCIOUS) || (consciousness == LOOKS_UNCONSCIOUS))
 				consciousness = LOOKS_UNCONSCIOUS
 				if(dist <= 1 && is_face_visible() && !HAS_TRAIT(src, TRAIT_NOBREATH))
 					consciousness_msg = "<span class='warning'>[t_His] breathing is shallow and labored[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
 				else if((dist <= 3) || (dist <= 7 && lying))
 					consciousness = LOOKS_SLEEPY
 					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be either asleep or unconscious..."
-			if(InFullCritical() || HAS_TRAIT(src, TRAIT_LOOKSVERYUNCONSCIOUS) || (consciousness == LOOKS_VERYUNCONSCIOUS))
+			if(InFullShock() || HAS_TRAIT(src, TRAIT_LOOKSVERYUNCONSCIOUS) || (consciousness == LOOKS_VERYUNCONSCIOUS))
 				consciousness = LOOKS_VERYUNCONSCIOUS
 				var/thicc = FALSE
 				var/obj/item/clothing/clothes = wear_suit
@@ -490,7 +490,7 @@
 				if(NOBLOOD in dna?.species?.species_traits)
 					thicc = TRUE
 				if(dist <= 1 && !thicc)
-					consciousness_msg = "<span class='warning'>[t_He] seems to have no identifiable pulse[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
+					consciousness_msg = "<span class='warning'>[t_He] seems to have no identifiable breath[lying ? ", and [t_he] seems to be unconscious" : ""].</span>"
 				else if((dist <= 3) || (dist <= 7 && lying))
 					consciousness = LOOKS_SLEEPY
 					consciousness_msg = "[t_He] [t_is]n't responding to anything around [t_him] and seems to be either asleep or unconscious..."

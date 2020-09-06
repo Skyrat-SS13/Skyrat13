@@ -274,6 +274,7 @@
 
 	//skyrat edit
 	wound_bonus = 15
+	var/pain = 20 //Batons actually hurt a lot, there is a reason they stun
 	//
 
 /obj/item/melee/classic_baton/Initialize()
@@ -365,6 +366,11 @@
 				user.do_attack_animation(target)
 			playsound(get_turf(src), on_stun_sound, 75, 1, -1)
 			target.DefaultCombatKnockdown(softstun_ds, TRUE, FALSE, hardstun_ds, stam_dmg)
+			if(iscarbon(target))
+				var/mob/living/carbon/C = target
+				var/obj/item/bodypart/bodypart = C.get_bodypart(user.zone_selected)
+				if(bodypart)
+					bodypart.receive_damage(pain = src.pain)
 			additional_effects_carbon(target, user)
 			log_combat(user, target, "stunned", src)
 			add_fingerprint(user)

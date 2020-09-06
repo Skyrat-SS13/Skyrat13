@@ -42,6 +42,7 @@
 	var/obj/item/stack/sticky_tape/tapered = null
 	dismember_mod = 0.7
 	disembowel_mod = 0.7
+	encased = "skull"
 
 /obj/item/bodypart/head/update_limb(dropping_limb, mob/living/carbon/source)
 	var/mob/living/carbon/C

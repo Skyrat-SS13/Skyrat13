@@ -10,7 +10,9 @@
 	slot = ORGAN_SLOT_LIVER
 	desc = "Pairing suggestion: chianti and fava beans."
 
-	maxHealth = STANDARD_ORGAN_THRESHOLD
+	maxHealth = 0.7 * STANDARD_ORGAN_THRESHOLD
+	high_threshold = 0.45 * STANDARD_ORGAN_THRESHOLD
+	low_threshold = 0.25 * STANDARD_ORGAN_THRESHOLD
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
 
@@ -24,6 +26,7 @@
 	var/filterToxins = TRUE //whether to filter toxins
 	var/cachedmoveCalc = 1
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/iron = 5)
+	relative_size = 25
 
 /obj/item/organ/liver/on_life()
 	. = ..()

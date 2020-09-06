@@ -42,7 +42,7 @@
 	path = /obj/item/clothing/underwear/briefs/boxers/usa
 
 /datum/gear/underwear/boxers/commie
-	name = "Heart Boxers"
+	name = "Commie Boxers"
 	category = SLOT_W_UNDERWEAR
 	has_colors = TRUE
 	path = /obj/item/clothing/underwear/briefs/boxers/commie

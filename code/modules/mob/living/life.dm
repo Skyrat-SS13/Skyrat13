@@ -66,6 +66,9 @@
 
 	handle_block_parry(seconds)
 
+	// Pain
+	handle_pain()
+
 	// These two MIGHT need to be moved to base Life() if we get any in the future that's a "physical" effect that needs to fire even while in stasis.
 	handle_traits() // eye, ear, brain damages
 	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
