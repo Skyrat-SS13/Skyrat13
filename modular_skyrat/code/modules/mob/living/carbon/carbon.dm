@@ -28,7 +28,7 @@
 	if(istype(active))
 		active.wield_act(src)
 	else
-		to_chat(src, "<span class='warning'>You have nothing to wield!span>")
+		to_chat(src, "<span class='warning'>You have nothing to wield!</span>")
 
 /mob/living/carbon/proc/wield_ui_on()
 	if(hud_used)
