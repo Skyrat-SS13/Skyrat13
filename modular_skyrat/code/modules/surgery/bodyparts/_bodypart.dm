@@ -267,7 +267,7 @@
 		return
 
 	var/antibiotics = owner.get_antibiotics()
-	if(!antibiotics)
+	if(antibiotics <= 0)
 		return
 
 	if(germ_level < INFECTION_LEVEL_ONE)
@@ -371,7 +371,7 @@
 						germ_level += rand(2,3)
 					if(REJECTION_LEVEL_4 to INFINITY)
 						germ_level += rand(3,5)
-						owner.reagents.add_reagent(/datum/reagent/toxin, rand(1,2))
+						receive_damage(toxin = rand(1,2))
 
 /obj/item/bodypart/Topic(href, href_list)
 	. = ..()
@@ -626,24 +626,25 @@
 	handle_germ_effects()
 
 /obj/item/bodypart/proc/handle_germ_sync()
+	//If we have antibiotics, then skip over, the infection is going away
+	var/antibiotics = owner.get_antibiotics()
+	if(antibiotics > 0)
+		return
+	
 	var/turf/open/floor/T = get_turf(owner)
 	var/owner_germ_level = 2*owner.germ_level
 	for(var/obj/item/embeddies in embedded_objects)
 		if(!embeddies.isEmbedHarmless())
 			owner_germ_level += (embeddies.germ_level/10)
-	
+
 	for(var/datum/wound/W in wounds)
 		//Open wounds can become infected
 		if(istype(T) && W.infection_check() && (max(2*T.dirtiness, owner_germ_level) > W.germ_level))
 			W.germ_level += W.infection_rate
-
-	var/antibiotics = owner.get_antibiotics()
-	if(!antibiotics)
-		for(var/datum/wound/W in wounds)
-			//Infected wounds raise the bodypart's germ level
-			if(W.germ_level > germ_level || prob(min(W.germ_level, 30)))
-				germ_level++
-				break	//limit increase to a maximum of one per second
+		//Infected wounds raise the bodypart's germ level
+		if(W.germ_level > germ_level || prob(min(W.germ_level, 30)))
+			germ_level += W.infection_rate
+			break	//Limit increase to a maximum of one wound infection per second
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
@@ -1159,8 +1160,6 @@
 
 //Returns whether or not the bodypart can feel pain
 /obj/item/bodypart/proc/can_feel_pain()
-	if(status & BODYPART_ROBOTIC)
-		return FALSE
 	return TRUE
 
 //Checks disabled status thresholds

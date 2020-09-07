@@ -1001,7 +1001,7 @@ Proc for attack log creation, because really why not
 	var/starget = key_name(target)
 
 	var/mob/living/living_target = target
-	var/hp = istype(living_target) ? " (NEWHP: [living_target.health]) " : ""
+	var/hp = istype(living_target) ? " (NEWHP: [living_target.get_physical_damage()]) " : ""
 
 	var/sobject = ""
 	if(object)

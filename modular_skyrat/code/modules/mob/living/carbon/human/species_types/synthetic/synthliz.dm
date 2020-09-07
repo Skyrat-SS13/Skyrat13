@@ -28,7 +28,7 @@
 	mutantkidneys = /obj/item/organ/kidneys/robot_ipc
 	//exotic_blood = /datum/reagent/oil
 	exotic_bloodtype = "S"
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_TOXIMMUNE,TRAIT_CLONEIMMUNE,TRAIT_NODEFIB,TRAIT_DNC)
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_TOXIMMUNE,TRAIT_CLONEIMMUNE,TRAIT_DNC)
 	languagewhitelist = list("Encoded Audio Language")
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc/synthliz
 

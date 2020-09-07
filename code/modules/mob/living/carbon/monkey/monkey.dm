@@ -62,6 +62,8 @@
 	internal_organs += new /obj/item/organ/ears
 	internal_organs += new /obj/item/organ/liver
 	internal_organs += new /obj/item/organ/stomach
+	internal_organs += new /obj/item/organ/intestines
+	internal_organs += new /obj/item/organ/kidneys
 	..()
 
 /mob/living/carbon/monkey/on_reagent_change()

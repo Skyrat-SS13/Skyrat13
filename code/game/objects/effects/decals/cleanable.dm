@@ -90,7 +90,7 @@
 				S.add_blood_DNA(blood_DNA)
 				S.add_blood_overlay()
 			S.blood_state = blood_state
-			S.janitize(WOUND_SANITIZATION_STERILIZER * 2)
+			S.janitize(WOUND_SANITIZATION_STERILIZER * (bloodiness/50))
 			update_icon()
 			H.update_inv_shoes()
 

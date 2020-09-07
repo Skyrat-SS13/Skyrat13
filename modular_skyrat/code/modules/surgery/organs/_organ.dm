@@ -244,12 +244,12 @@
 		return
 
 	var/antibiotics = owner.get_antibiotics()
-	if (!antibiotics)
+	if(antibiotics <= 0)
 		return
 
-	if (germ_level < INFECTION_LEVEL_ONE)
+	if(germ_level < INFECTION_LEVEL_ONE)
 		germ_level = 0	//cure instantly
-	else if (germ_level < INFECTION_LEVEL_TWO)
+	else if(germ_level < INFECTION_LEVEL_TWO)
 		germ_level -= 5	//at germ_level == 500, this should cure the infection in 5 minutes
 	else
 		germ_level -= 3 //at germ_level == 1000, this will cure the infection in 10 minutes
@@ -312,7 +312,9 @@
 						germ_level += rand(2,3)
 					if(REJECTION_LEVEL_4 to INFINITY)
 						germ_level += rand(3,5)
-						owner.reagents.add_reagent(/datum/reagent/toxin, rand(1,2))
+						var/obj/item/bodypart/affected = owner.get_bodypart(zone)
+						if(affected)
+							affected.receive_damage(toxin = rand(1,2))
 
 //Medical scans
 /obj/item/organ/proc/get_scan_results(do_tag = FALSE)

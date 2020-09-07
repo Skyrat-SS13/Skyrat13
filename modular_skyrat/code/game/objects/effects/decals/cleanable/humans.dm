@@ -1,4 +1,4 @@
-//blood splattering, taken from hippiestation
+//Blood splattering, taken from hippiestation
 /obj/effect/decal/cleanable/blood/hitsplatter
 	name = "blood splatter"
 	pass_flags = PASSTABLE | PASSGRILLE

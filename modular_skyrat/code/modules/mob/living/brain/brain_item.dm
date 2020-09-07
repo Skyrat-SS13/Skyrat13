@@ -80,10 +80,6 @@
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. It is usually slotted into the chest of synthetic crewmembers."
 	icon = 'modular_skyrat/icons/obj/surgery.dmi'
 	icon_state = "posibrain-ipc"
-	low_threshold = 25
-	high_threshold = 100
-	maxHealth = 75
-	brain_can_heal = FALSE
 
 /obj/item/organ/brain/ipc_positron/Insert(mob/living/carbon/C, special = 0, drop_if_replaced = TRUE)
 	..()
