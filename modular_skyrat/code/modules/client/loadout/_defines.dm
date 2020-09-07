@@ -3,7 +3,7 @@
 						"Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster",\
 						"Medical Doctor", "Chemist", "Paramedic", "Virologist", "Geneticist", "Scientist", "Roboticist", "Psychologist",\
 						"Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer", "Blueshield", "Brig Physician",\
-						"Cargo Technician", "Shaft Miner"\
+						"Cargo Technician", "Shaft Miner", "Mining Foreman", "Mining Technician"\
 						)
 
 // Literally everyone, but Prisoners. Hopefully tempoary, until proper blacklist.
@@ -11,7 +11,8 @@
 							"Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster",\
 							"Medical Doctor", "Chemist", "Paramedic", "Virologist", "Geneticist", "Scientist", "Roboticist", "Psychologist",\
 							"Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer", "Blueshield", "Brig Physician",\
-							"Cargo Technician", "Shaft Miner", "Bartender", "Botanist", "Cook", "Curator", "Chaplain", "Janitor",\
+							"Cargo Technician", "Shaft Miner", "Mining Foreman", "Mining Technician",\
+							"Bartender", "Botanist", "Cook", "Curator", "Chaplain", "Janitor",\
 							"Clown", "Mime", "Lawyer", "Assistant"\
 							)
 
@@ -21,7 +22,7 @@
 #define SCI_ROLES list("Research Director", "Scientist", "Roboticist")
 #define SEC_ROLES list("Head of Security", "Security Officer", "Warden", "Brig Physician", "Blueshield")
 #define ENG_ROLES list("Chief Engineer", "Atmospheric Technician", "Station Engineer")
-#define CRG_ROLES list("Quartermaster", "Cargo Technician", "Shaft Miner")
+#define CRG_ROLES list("Quartermaster", "Cargo Technician", "Shaft Miner", "Mining Foreman", "Mining Technician")
 #define CIV_ROLES list("Head of Personnel", "Bartender", "Botanist", "Cook", "Curator", "Chaplain", "Janitor", "Clown", "Mime", "Lawyer", "Assistant")
 #define FUN_ROLES list("Clown", "Mime")
 
@@ -33,5 +34,5 @@
 #define OPRS_ROLES list(\
 						"Head of Security", "Security Officer", "Warden", "Brig Physician", "Blueshield",\
 						"Chief Engineer", "Atmospheric Technician", "Station Engineer",\
-						"Quartermaster", "Cargo Technician", "Shaft Miner"\
+						"Quartermaster", "Cargo Technician", "Shaft Miner", "Mining Foreman", "Mining Technician"\
 						)
