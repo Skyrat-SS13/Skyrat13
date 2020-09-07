@@ -153,16 +153,11 @@
 	taste_mult = 1.5 // stop sugar drowning out other flavours
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 	metabolization_rate = 2 * REAGENTS_METABOLISM
-	overdose_threshold = 65 // Hyperglycaemic shock
+	overdose_threshold = 200 // Hyperglycaemic shock
 	taste_description = "sweetness"
 	value = REAGENT_VALUE_NONE
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		var/obj/item/organ/pancreas/pancreas = C.getorganslot(ORGAN_SLOT_PANCREAS)
-		if(pancreas)
-			C.reagents?.add_reagent(/datum/reagent/medicine/insulin, pancreas.get_insulin())
 	to_chat(M, "<span class='userdanger'>You go into hyperglycaemic shock! Lay off the twinkies!</span>")
 	M.AdjustSleeping(600, FALSE)
 	. = 1

@@ -11,7 +11,7 @@
 #define NOAPPENDIX		59
 #define NOKIDNEYS		60
 #define NOINTESTINES	61
-#define NOPANCREAS		62
+#define NOSPLEEN		62
 
 // Defines for processing reagents, for synths, IPC's and Vox
 #define PROCESS_ORGANIC (1<<0)		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC"
@@ -26,7 +26,7 @@
 #define ORGAN_SLOT_ALCOHOL_GLAND "alcohol_gland"
 #define ORGAN_SLOT_INTESTINES "intestines"
 #define ORGAN_SLOT_KIDNEYS "kidneys"
-#define ORGAN_SLOT_PANCREAS "pancreas"
+#define ORGAN_SLOT_SPLEEN "spleen"
 #define ORGAN_SLOT_INNARDS "innards"
 
 ////organ defines

@@ -483,6 +483,9 @@
 			blooded = FALSE
 		var/has_liver = (!(NOLIVER in dna.species.species_traits))
 		var/has_stomach = (!(NOSTOMACH in dna.species.species_traits))
+		var/has_kidneys = (!(NOKIDNEYS in dna.species.species_traits))
+		var/has_intestines = (!(NOINTESTINES in dna.species.species_traits))
+		var/has_spleen = (!(NOSPLEEN in dna.species.species_traits))
 
 		for(var/obj/item/organ/O in internal_organs)
 			if(O.organ_flags & ORGAN_FAILING)
@@ -511,6 +514,39 @@
 			else
 				S = new()
 			S.Insert(src)
+			if(only_one)
+				return TRUE
+
+		if(has_kidneys && !getorganslot(ORGAN_SLOT_KIDNEYS))
+			var/obj/item/organ/kidneys/K
+
+			if(dna.species.mutantkidneys)
+				K = new dna.species.mutantkidneys()
+			else
+				K = new()
+			K.Insert(src)
+			if(only_one)
+				return TRUE
+
+		if(has_intestines && !getorganslot(ORGAN_SLOT_INTESTINES))
+			var/obj/item/organ/intestines/IN
+
+			if(dna.species.mutantintestines)
+				IN = new dna.species.mutantintestines()
+			else
+				IN = new()
+			IN.Insert(src)
+			if(only_one)
+				return TRUE
+
+		if(has_spleen && !getorganslot(ORGAN_SLOT_SPLEEN))
+			var/obj/item/organ/spleen/SP
+
+			if(dna.species.mutantspleen)
+				SP = new dna.species.mutantspleen()
+			else
+				SP = new()
+			SP.Insert(src)
 			if(only_one)
 				return TRUE
 

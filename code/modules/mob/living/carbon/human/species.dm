@@ -107,7 +107,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/obj/item/organ/kidneys/mutantkidneys = /obj/item/organ/kidneys
 	var/obj/item/organ/stomach/mutantstomach = /obj/item/organ/stomach
 	var/obj/item/organ/intestines/mutantintestines = /obj/item/organ/intestines
-	var/obj/item/organ/pancreas/mutantpancreas = /obj/item/organ/pancreas
+	var/obj/item/organ/spleen/mutantspleen = /obj/item/organ/spleen
 	var/obj/item/organ/innards/mutant_mystery_organ
 	var/obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue
 	var/obj/item/organ/tail/mutanttail
@@ -213,7 +213,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/obj/item/organ/kidneys/kidneys = C.getorganslot(ORGAN_SLOT_KIDNEYS)
 	var/obj/item/organ/stomach/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
 	var/obj/item/organ/intestines/intestines = C.getorganslot(ORGAN_SLOT_INTESTINES)
-	var/obj/item/organ/pancreas/pancreas = C.getorganslot(ORGAN_SLOT_PANCREAS)
+	var/obj/item/organ/spleen/spleen = C.getorganslot(ORGAN_SLOT_SPLEEN)
 	var/obj/item/organ/innards/mystery_organ = C.getorganslot(ORGAN_SLOT_INNARDS)
 	var/obj/item/organ/tail/tail = C.getorganslot(ORGAN_SLOT_TAIL)
 
@@ -227,7 +227,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/should_have_appendix = !(NOAPPENDIX in species_traits)
 	var/should_have_kidneys = !(NOKIDNEYS in species_traits)
 	var/should_have_stomach = !(NOSTOMACH in species_traits)
-	var/should_have_pancreas = !(NOPANCREAS in species_traits)
+	var/should_have_spleen = !(NOSPLEEN in species_traits)
 	var/should_have_intestines = !(NOINTESTINES in species_traits)
 	var/should_have_mystery_organ = !(NOAPPENDIX in species_traits) //Mystery organ is like a second appendix anyways
 	var/should_have_tail = mutanttail
@@ -287,15 +287,15 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			stomach = new()
 		stomach.Insert(C)
 
-	if(pancreas && (!should_have_pancreas || replace_current))
-		pancreas.Remove(TRUE)
-		QDEL_NULL(pancreas)
-	if(should_have_pancreas && !pancreas)
-		if(mutantpancreas)
-			pancreas = new mutantpancreas()
+	if(spleen && (!should_have_spleen || replace_current))
+		spleen.Remove(TRUE)
+		QDEL_NULL(spleen)
+	if(should_have_spleen && !spleen)
+		if(mutantspleen)
+			spleen = new mutantspleen()
 		else
-			pancreas = new()
-		pancreas.Insert(C)
+			spleen = new()
+		spleen.Insert(C)
 
 	if(intestines && (!should_have_intestines || replace_current))
 		intestines.Remove(TRUE)

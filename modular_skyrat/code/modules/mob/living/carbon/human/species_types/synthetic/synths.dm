@@ -31,7 +31,7 @@
 	mutant_heart = /obj/item/organ/heart/robot_ipc
 	mutantliver = /obj/item/organ/liver/robot_ipc
 	mutantkidneys = /obj/item/organ/kidneys/robot_ipc
-	mutantpancreas =  /obj/item/organ/pancreas/robot_ipc
+	mutantspleen =  /obj/item/organ/spleen/robot_ipc
 	//same damage as ipcs
 	coldmod = 0.5
 	burnmod = 1.1

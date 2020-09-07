@@ -156,12 +156,12 @@
 	build_path = /obj/item/organ/intestines
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
-/datum/design/pancreas
-	name = "Pancreas"
-	id = "pancreas"
+/datum/design/spleen
+	name = "Spleen"
+	id = "spleen"
 	build_type = LIMBGROWER
-	reagents_list = list(/datum/reagent/medicine/synthflesh = 15)
-	build_path = /obj/item/organ/pancreas
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
+	build_path = /obj/item/organ/spleen
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
 /datum/design/innards
