@@ -164,13 +164,12 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		message_mode = MODE_WHISPER
 		src.log_talk(message, LOG_WHISPER)
 		if(fullcrit)
-			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + health)
+			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + (maxHealth - get_physical_damage()))
 			// If we cut our message short, abruptly end it with a-..
 			var/message_len = length_char(message)
 			message = copytext_char(message, 1, health_diff) + "[message_len > health_diff ? "-.." : "..."]"
 			message = Ellipsis(message, 10, 1)
 			message_mode = MODE_WHISPER_CRIT
-			succumbed = TRUE
 	else
 		src.log_talk(message, LOG_SAY, forced_by=forced)
 
