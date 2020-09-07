@@ -61347,7 +61347,6 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "cvR" = (
-/obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/power/apc{
 	areastring = "/area/science/robotics/lab";
 	dir = 1;
@@ -61706,12 +61705,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"cwH" = (
-/turf/open/floor/circuit/green,
-/area/science/robotics/mechbay)
 "cwI" = (
-/obj/effect/landmark/start/roboticist,
-/turf/open/floor/circuit/green,
+/turf/open/floor/circuit,
 /area/science/robotics/mechbay)
 "cwJ" = (
 /obj/machinery/camera{
@@ -61719,13 +61714,10 @@
 	dir = 8;
 	network = list("ss13","rd")
 	},
-/obj/machinery/recharge_station,
-/obj/effect/landmark/start/cyborg,
-/turf/open/floor/circuit/green,
+/turf/open/floor/circuit,
 /area/science/robotics/mechbay)
 "cwK" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/vending/robotics,
 /obj/structure/disposalpipe/sorting/mail{
 	dir = 4;
 	name = "Robotics Junction";
@@ -61737,6 +61729,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/autolathe,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "cwL" = (
@@ -61749,6 +61742,32 @@
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/folder/white{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/obj/item/folder/white{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "robotics_shutters";
+	name = "robotics shutters"
+	},
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/pen/fourcolor{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/machinery/door/window/eastright{
+	name = "Robotics Desk";
+	req_access_txt = "29"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -62160,14 +62179,31 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "cxE" = (
-/turf/open/floor/circuit,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "cxF" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/circuit,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/mech_bay_recharge_floor,
 /area/science/robotics/mechbay)
 "cxG" = (
 /obj/machinery/airalarm{
@@ -62177,9 +62213,13 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/recharge_station,
-/obj/effect/landmark/start/cyborg,
-/turf/open/floor/circuit,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/mech_bay_recharge_port{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/science/robotics/mechbay)
 "cxI" = (
 /obj/effect/turf_decal/stripes/line{
@@ -62484,34 +62524,15 @@
 	pixel_y = -2
 	},
 /obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
-/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
-"cyr" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/obj/machinery/computer/mech_bay_power_console{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
 "cys" = (
-/obj/machinery/mech_bay_recharge_port{
-	dir = 8
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
+/obj/machinery/recharge_station,
+/obj/effect/landmark/start/cyborg,
+/turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "cyu" = (
 /obj/structure/table/reinforced,
@@ -62867,27 +62888,18 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
+/obj/machinery/recharge_station,
+/obj/effect/landmark/start/cyborg,
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "czl" = (
 /obj/effect/turf_decal/bot,
-/obj/structure/rack,
-/obj/item/tank/internals/anesthetic{
-	pixel_x = -3
-	},
-/obj/item/tank/internals/anesthetic{
-	pixel_x = 3
-	},
-/obj/item/storage/box/bodybags,
-/obj/item/storage/belt/medical,
-/obj/item/clothing/mask/breath/medical,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/surgical_drapes,
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/machinery/camera{
 	c_tag = "Robotics - Surgery";
 	network = list("ss13","rd")
 	},
+/obj/structure/table,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "czm" = (
@@ -62957,9 +62969,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "czw" = (
-/obj/structure/chair/sofa/corp/right{
-	dir = 4
-	},
 /obj/machinery/requests_console{
 	department = "Robotics";
 	departmentType = 2;
@@ -62967,6 +62976,7 @@
 	pixel_x = -31;
 	receive_ore_updates = 1
 	},
+/obj/machinery/rnd/production/circuit_imprinter,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "czx" = (
@@ -63721,12 +63731,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "cBg" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "robotics_shutters";
-	name = "robotics shutters"
-	},
-/turf/open/floor/plating,
+/obj/machinery/computer/cargo/request,
+/turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "cBj" = (
 /obj/machinery/mecha_part_fabricator,
@@ -64157,31 +64163,18 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/toilet/auxiliary)
 "cCn" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/eastright{
-	name = "Robotics Desk";
-	req_access_txt = "29"
-	},
-/obj/item/folder/white{
-	pixel_x = 4;
-	pixel_y = -3
-	},
-/obj/item/folder/white{
-	pixel_x = 4;
-	pixel_y = -3
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "robotics_shutters";
-	name = "robotics shutters"
-	},
-/turf/open/floor/plating,
-/area/science/robotics/lab)
-"cCo" = (
+/obj/effect/landmark/start/roboticist,
 /obj/structure/chair/office/light{
 	dir = 8
 	},
-/obj/effect/landmark/start/roboticist,
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
+"cCo" = (
+/obj/structure/curtain{
+	color = "#ffffff";
+	desc = "Not the prettiest place to spend the last few minutes of your life.";
+	name = "Robotics Surgery"
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "cCp" = (
@@ -64510,11 +64503,15 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "cDb" = (
-/obj/structure/noticeboard{
-	dir = 4;
-	pixel_x = -27
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/rack,
+/obj/item/tank/internals/anesthetic{
+	pixel_x = 3
+	},
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "cDc" = (
 /obj/effect/turf_decal/stripes/line{
@@ -65060,11 +65057,11 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "cEj" = (
-/obj/structure/chair/sofa/corp/left{
-	dir = 4
-	},
 /obj/machinery/light/small{
 	dir = 8
+	},
+/obj/machinery/computer/rdconsole/robotics{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
@@ -65084,20 +65081,33 @@
 "cEo" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/table,
-/obj/item/clothing/head/welding,
-/obj/item/assembly/flash/handheld{
-	pixel_x = -4;
-	pixel_y = 3
-	},
-/obj/item/assembly/flash/handheld{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/book/manual/wiki/robotics_cyborgs,
-/obj/item/storage/firstaid,
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_x = 27
+	},
+/obj/item/storage/firstaid/regular{
+	empty = 1;
+	name = "First-Aid (empty)"
+	},
+/obj/item/storage/firstaid/regular{
+	empty = 1;
+	name = "First-Aid (empty)"
+	},
+/obj/item/storage/firstaid/regular{
+	empty = 1;
+	name = "First-Aid (empty)"
+	},
+/obj/item/healthanalyzer{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/obj/item/healthanalyzer{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/obj/item/healthanalyzer{
+	pixel_x = 4;
+	pixel_y = -4
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
@@ -65467,10 +65477,7 @@
 /obj/effect/turf_decal/bot,
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/stock_parts/cell/high/plus,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "cFk" = (
@@ -65875,26 +65882,14 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "cGf" = (
-/obj/structure/flora/ausbushes/fernybush{
-	pixel_x = -3;
-	pixel_y = -3
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -2;
+	pixel_y = 4
 	},
-/obj/structure/flora/ausbushes/fullgrass{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/structure/flora/ausbushes/brflowers{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/structure/window/reinforced{
-	dir = 4;
-	layer = 2.9
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/grass,
+/obj/item/stack/packageWrap,
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "cGg" = (
 /obj/structure/cable/yellow{
@@ -75790,8 +75785,12 @@
 /turf/open/floor/plasteel,
 /area/science/research)
 "dxP" = (
-/obj/machinery/rnd/production/circuit_imprinter,
-/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate/science,
+/obj/item/assembly/flash/handheld,
+/obj/item/assembly/flash/handheld,
+/obj/item/assembly/flash/handheld,
+/obj/item/assembly/flash/handheld,
+/obj/item/assembly/flash/handheld,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "dxQ" = (
@@ -76425,13 +76424,7 @@
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "dDz" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/open/floor/mech_bay_recharge_floor,
+/turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "dDA" = (
 /obj/structure/cable/yellow{
@@ -76643,8 +76636,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/obj/structure/table,
 /obj/item/mmi,
+/obj/structure/table,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "eoK" = (
@@ -76979,9 +76972,7 @@
 	dir = 10
 	},
 /obj/machinery/light/small,
-/obj/structure/bodycontainer/morgue{
-	dir = 1
-	},
+/obj/machinery/aug_manipulator,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "ghq" = (
@@ -77000,7 +76991,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/item/storage/box/bodybags,
 /obj/structure/table,
+/obj/item/clothing/gloves/color/latex,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "giD" = (
@@ -77080,6 +77073,12 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "gxw" = (
@@ -77159,11 +77158,11 @@
 /area/maintenance/aft)
 "gPA" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/research{
-	name = "Robotics Surgery";
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/airlock/medical{
+	name = "Operating Theatre";
 	req_access_txt = "29"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "gXY" = (
@@ -77186,6 +77185,14 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
+"hbH" = (
+/obj/structure/noticeboard{
+	dir = 4;
+	pixel_x = -27
+	},
+/obj/structure/filingcabinet/chestdrawer,
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "hdv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -77272,26 +77279,12 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "hKh" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "robotics_shutters";
+	name = "robotics shutters"
 	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/obj/item/paper_bin{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/obj/item/pen/fourcolor{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
 /area/hallway/primary/aft)
 "hLY" = (
 /obj/structure/cable/yellow{
@@ -78038,6 +78031,9 @@
 /area/maintenance/starboard/fore)
 "lOi" = (
 /obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/box,
+/obj/effect/turf_decal/bot,
+/obj/effect/landmark/start/cyborg,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "lQK" = (
@@ -78227,12 +78223,15 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "mIf" = (
-/obj/machinery/aug_manipulator,
 /obj/effect/turf_decal/bot,
 /obj/structure/disposalpipe/segment,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
+/obj/structure/rack,
+/obj/item/stock_parts/cell/high/plus,
+/obj/item/stock_parts/cell/high/plus,
+/obj/item/stock_parts/cell/high/plus,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "mQd" = (
@@ -79652,10 +79651,21 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "uYS" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/computer/rdconsole/robotics{
-	dir = 1
+/obj/structure/table,
+/obj/item/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
 	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/borg/upgrade/rename,
+/obj/item/borg/upgrade/rename,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "vep" = (
@@ -79704,6 +79714,7 @@
 	pixel_x = 3
 	},
 /obj/item/clothing/glasses/welding,
+/obj/item/clothing/head/welding,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "vhG" = (
@@ -108290,7 +108301,7 @@ czi
 cAo
 cBg
 cCn
-cCq
+hbH
 cEj
 czw
 cGf
@@ -108540,14 +108551,14 @@ cLh
 ctJ
 bTs
 cuF
-cwH
+cwI
 cxE
-cyr
+dDz
 cvL
 cAo
 cvR
-cCo
-cDb
+cQD
+cQD
 cQD
 cQD
 uYS
@@ -109569,8 +109580,8 @@ alc
 bTs
 czl
 cBc
-tKT
-cCp
+cCo
+cDb
 ghc
 tKT
 cBj
@@ -110083,7 +110094,7 @@ cJl
 bTs
 cAp
 cJR
-tKT
+cCo
 enL
 giC
 tKT
