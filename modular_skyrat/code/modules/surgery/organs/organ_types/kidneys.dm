@@ -13,7 +13,7 @@
 	var/static/list/bad_reagents = list(
 		/datum/reagent/consumable/coffee = 0.1,
 	)
-	relative_size = 8
+	relative_size = 15
 
 /obj/item/organ/kidneys/proc/get_adrenaline_multiplier()
 	var/multiplier = 1
