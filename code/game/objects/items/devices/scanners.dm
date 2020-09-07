@@ -96,11 +96,11 @@ GENETICS SCANNER
 	user.visible_message("<span class='suicide'>[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!</span>")
 	return BRUTELOSS
 
-//i had to edit this shit as a whole because this is piss
+//I had to edit this shit as a whole because this is piss
 /obj/item/healthanalyzer/attack_self(mob/user)
-	scanmode = (scanmode + 1)
-	if(scanmode > SCANMODE_PAIN)
-		scanmode = SCANMODE_HEALTH
+	var/list/scam_list = list("Physical health" = SCANMODE_HEALTH, "Chemicals" = SCANMODE_CHEMICAL, "Wounds" = SCANMODE_WOUND, "Wellbeing" = SCANMODE_PAIN)
+	var/scam = input(user, "What health analyzer mode do you wish to use?", "[capitalize(src.name)]") as anything in scam_list
+	scanmode = scam_list[scam]
 	switch(scanmode)
 		if(SCANMODE_HEALTH)
 			to_chat(user, "<span class='notice'>You switch the health analyzer to check physical health.</span>")
@@ -110,7 +110,6 @@ GENETICS SCANNER
 			to_chat(user, "<span class='notice'>You switch the health analyzer to report extra info on wounds.</span>")
 		if(SCANMODE_PAIN)
 			to_chat(user, "<span class='notice'>You switch the health analyzer to report extra info on patient wellbeing.</span>")
-//
 
 /obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
 
