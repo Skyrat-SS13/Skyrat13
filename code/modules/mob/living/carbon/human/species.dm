@@ -1503,7 +1503,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				H.remove_movespeed_modifier(/datum/movespeed_modifier/hunger)
 	
 	var/obj/item/organ/O = H.getorganslot(ORGAN_SLOT_STOMACH)
-	if(O.organ_flags & ORGAN_ROBOTIC)
+	if(istype(O) && (O.status & ORGAN_ROBOTIC))
 		switch(H.nutrition)
 			if(NUTRITION_LEVEL_FULL to INFINITY)
 				H.throw_alert("nutrition", /obj/screen/alert/fat/synth)
