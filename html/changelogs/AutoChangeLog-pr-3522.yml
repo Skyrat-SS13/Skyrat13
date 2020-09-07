@@ -1,0 +1,5 @@
+author: "NotRanged"
+delete-after: True
+changes: 
+  - bugfix: "Space Pirates can no longer ransom their own crew for 1k credits. (generally by accident)"
+  - bugfix: "The space pirate credit siphon now siphons at 6000 cr/min. It also actually works now, and can be toggled off with an alt-click."
