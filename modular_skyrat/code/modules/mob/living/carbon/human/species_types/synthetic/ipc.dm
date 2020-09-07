@@ -21,7 +21,7 @@
 	mutant_heart = /obj/item/organ/heart/robot_ipc
 	mutantliver = /obj/item/organ/liver/robot_ipc
 	mutantkidneys = /obj/item/organ/kidneys/robot_ipc
-	//exotic_blood = /datum/reagent/oil
+	mutantpancreas = /obj/item/organ/pancreas/robot_ipc
 	exotic_bloodtype = "HF"
 	icon_limbs = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
 	hair_alpha = 210

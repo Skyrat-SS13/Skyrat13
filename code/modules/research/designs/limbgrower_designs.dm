@@ -156,6 +156,22 @@
 	build_path = /obj/item/organ/intestines
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
+/datum/design/pancreas
+	name = "Pancreas"
+	id = "pancreas"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 15)
+	build_path = /obj/item/organ/pancreas
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
+
+/datum/design/innards
+	name = "Innards"
+	id = "innards"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 10)
+	build_path = /obj/item/organ/innards
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
+
 /datum/design/appendix
 	name = "Appendix"
 	id = "appendix"

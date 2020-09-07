@@ -147,7 +147,7 @@
 		if(-99 to -85)
 			return "health-85"
 		else
-			if(stat != DEAD)
+			if(M.stat != DEAD)
 				return "health-85"
 			else
 				return "health-100"

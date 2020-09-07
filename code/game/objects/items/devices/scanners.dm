@@ -362,6 +362,7 @@ GENETICS SCANNER
 		var/has_intestines = C.dna && !(NOSTOMACH in C.dna.species.species_traits)
 		var/has_liver = C.dna && !(NOLIVER in C.dna.species.species_traits)
 		var/has_stomach = C.dna && !(NOSTOMACH in C.dna.species.species_traits)
+		var/has_pancreas = C.dna && !(NOPANCREAS in C.dna.species.species_traits)
 		var/has_kidneys = C.dna && !(NOKIDNEYS in C.dna.species.species_traits)
 		if(!M.getorganslot(ORGAN_SLOT_EYES))
 			msg += "<span class='alert'><b>Subject does not have eyes.</b></span>\n"
@@ -377,6 +378,8 @@ GENETICS SCANNER
 			msg += "<span class='alert'><b>Subject's lungs are missing!</b></span>\n"
 		if(has_stomach && !M.getorganslot(ORGAN_SLOT_STOMACH))
 			msg += "<span class='alert'><b>Subject's stomach is missing!</span>\n"
+		if(has_pancreas && !M.getorganslot(ORGAN_SLOT_PANCREAS))
+			msg += "<span class='alert'><b>Subject's pancreas is missing!</span>\n"
 		if(has_intestines && !M.getorganslot(ORGAN_SLOT_INTESTINES))
 			msg += "<span class='alert'><b>Subject's intestines are missing!</span>\n"
 		if(has_kidneys && !M.getorganslot(ORGAN_SLOT_KIDNEYS))

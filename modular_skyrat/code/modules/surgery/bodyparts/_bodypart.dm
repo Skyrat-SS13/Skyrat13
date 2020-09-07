@@ -1024,7 +1024,7 @@
 	if(!(cur_damage + damage_amt >= organ_damage_required) && !(damage_amt >= organ_damage_threshold))
 		return FALSE
 	
-	var/organ_hit_chance = (25 * damage_amt/organ_damage_threshold)
+	var/organ_hit_chance = (15 * damage_amt/organ_damage_threshold)
 
 	if(encased && !broken)
 		organ_hit_chance *= 0.6

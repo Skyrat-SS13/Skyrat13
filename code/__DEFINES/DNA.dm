@@ -170,12 +170,6 @@
 #define ORGAN_SLOT_TESTICLES "testicles"
 #define ORGAN_SLOT_BREASTS "breasts"
 
-////organ defines
-#define STANDARD_ORGAN_THRESHOLD 	100
-#define STANDARD_ORGAN_HEALING 		(1/(15 MINUTES / (2 SECONDS)))
-#define STANDARD_ORGAN_DECAY		(1/(15 MINUTES / (2 SECONDS)))		//designed to fail organs when left to decay for ~15 minutes. 2 SECOND is SSmobs tickrate.
-
-
 //used for the can_chromosome var on mutations
 #define CHROMOSOME_NEVER 0
 #define CHROMOSOME_NONE 1

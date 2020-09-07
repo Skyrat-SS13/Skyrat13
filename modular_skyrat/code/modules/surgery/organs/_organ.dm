@@ -12,8 +12,8 @@
 	var/maxHealth = STANDARD_ORGAN_THRESHOLD
 	var/damage = 0		//total damage this organ has sustained
 	///Healing factor and decay factor function on % of maxhealth, and do not work by applying a static number per tick
-	var/healing_factor 	= 0										//fraction of maxhealth healed per on_life(), set to 0 for generic organs
-	var/decay_factor 	= 0										//same as above but when without a living owner, set to 0 for generic organs
+	var/healing_factor 	= STANDARD_ORGAN_HEALING				//fraction of maxhealth healed per on_life(), set to 0 for generic organs
+	var/decay_factor 	= STANDARD_ORGAN_DECAY					//same as above but when without a living owner, set to 0 for generic organs
 	var/high_threshold	= STANDARD_ORGAN_THRESHOLD * 0.45		//when severe organ damage occurs
 	var/low_threshold	= STANDARD_ORGAN_THRESHOLD * 0.1		//when minor organ damage occurs
 
@@ -34,7 +34,7 @@
 	var/etching = ""
 	var/surface_accessible = FALSE
 	var/relative_size = 25 // Relative size of the organ. Roughly % of space they take in the limb
-	var/damage_modifier = 0.25 // Modifier when the limb gets damaged, and fricks up the organs inside
+	var/damage_modifier = 0.2 // Modifier when the limb gets damaged, and fricks up the organs inside
 	var/damage_reduction = 0 // Flat reduction of the damage when the limb affects us
 	germ_level = 0 // Geeeerms!
 	var/death_time = 0 // Used to check if we can recover from complete sepsis
@@ -164,9 +164,9 @@
 	is_cold()
 	if((organ_flags & ORGAN_FROZEN) || (organ_flags & ORGAN_DEAD))
 		return
-	germ_level += rand(2,6)
+	germ_level += rand(MIN_ORGAN_DECAY_INFECTION,MAX_ORGAN_DECAY_INFECTION)
 	if(germ_level >= INFECTION_LEVEL_TWO)
-		germ_level += rand(2,6)
+		germ_level += rand(MIN_ORGAN_DECAY_INFECTION,MAX_ORGAN_DECAY_INFECTION)
 	if(germ_level >= INFECTION_LEVEL_THREE)
 		kill_organ()
 	applyOrganDamage(maxHealth * decay_factor)

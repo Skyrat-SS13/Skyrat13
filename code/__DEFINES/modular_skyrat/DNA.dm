@@ -11,6 +11,7 @@
 #define NOAPPENDIX		59
 #define NOKIDNEYS		60
 #define NOINTESTINES	61
+#define NOPANCREAS		62
 
 // Defines for processing reagents, for synths, IPC's and Vox
 #define PROCESS_ORGANIC (1<<0)		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC"
@@ -23,7 +24,14 @@
 // Organ slots
 #define ORGAN_SLOT_PARASITES "parasite"
 #define ORGAN_SLOT_ALCOHOL_GLAND "alcohol_gland"
-#define ORGAN_SLOT_ESOPHAGUS "esophagus" //soon (TM)
 #define ORGAN_SLOT_INTESTINES "intestines"
 #define ORGAN_SLOT_KIDNEYS "kidneys"
-#define ORGAN_SLOT_BLADDER "bladder" //soon (TM)
+#define ORGAN_SLOT_PANCREAS "pancreas"
+#define ORGAN_SLOT_INNARDS "innards"
+
+////organ defines
+#define STANDARD_ORGAN_THRESHOLD 	100
+#define STANDARD_ORGAN_HEALING 		(1/(5 MINUTES / (2 SECONDS)))
+#define STANDARD_ORGAN_DECAY		(1/(15 MINUTES / (2 SECONDS)))		//designed to fail organs when left to decay for ~15 minutes. 2 SECOND is SSmobs tickrate.
+#define MIN_ORGAN_DECAY_INFECTION	2
+#define MAX_ORGAN_DECAY_INFECTION	6

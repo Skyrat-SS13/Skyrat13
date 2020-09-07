@@ -4,6 +4,8 @@
 	damage_reduction = 0
 	low_threshold = 50
 	high_threshold = 150
+	healing_factor = 0 //We use our own system to heal up
+	
 	var/brain_can_heal = TRUE
 	var/damage_threshold_count = 10
 	var/damage_threshold_value = 0

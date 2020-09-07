@@ -1,3 +1,4 @@
+//Intestines: Help with nutrition and stuff
 //Most intestine code is done in species.dm
 /obj/item/organ/intestines
 	name = "intestines"

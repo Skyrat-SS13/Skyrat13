@@ -30,7 +30,7 @@
 
 	//Bobmed variables
 	damage_reduction = 0.7
-	relative_size = 5 //Chance is low because getting shot in the chest once and going into crit ain't good
+	relative_size = 4 //Chance is low because getting shot in the chest once and going into crit ain't good
 	var/pulse = PULSE_NORM
 	var/heartbeat = 0
 	var/open = 0
