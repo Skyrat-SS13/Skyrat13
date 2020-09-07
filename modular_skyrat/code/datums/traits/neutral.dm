@@ -211,3 +211,13 @@
 	gain_text = "<span class='notice'>Your spirit gets too scarred to accept revival.</span>"
 	lose_text = "<span class='notice'>You can feel your soul healing again.</span>"
 	mob_trait = TRAIT_DNR
+
+//tailwag from the pat
+/datum/quirk/excitable
+	name = "Excitable"
+	desc = "Headpats will cause your tail to wag, if you have any."
+	value = 0
+	gain_text = "<span class='notice'>You feel like wagging your tail from the pats.</span>"
+	lose_text = "<span class='notice'>You don't feel like wagging your tail from the pats.</span>"
+	mob_trait = TRAIT_EXCITABLE
+	medical_record_text = "Patient will wag their tail if happy."
