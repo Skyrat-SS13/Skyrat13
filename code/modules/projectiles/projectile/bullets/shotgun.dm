@@ -2,14 +2,14 @@
 	name = "12g shotgun slug"
 	damage = 60
 	sharpness = SHARP_POINTY
-	wound_bonus = 35
+	bare_wound_bonus = 10
 
 /obj/item/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
 	stamina = 70
 	//skyrat edit
 	damage = 10
-	wound_bonus = 10
+	bare_wound_bonus = 10
 	sharpness = SHARP_NONE
 	//
 
@@ -86,7 +86,7 @@
 	//skyrat edit
 	embedding = list(embed_chance=33, fall_chance=0, jostle_chance=6, ignore_throwspeed_threshold=TRUE, pain_stam_pct=1, pain_mult=6, rip_time=60)
 	damage = 7.5
-	wound_bonus = 20
+	bare_wound_bonus = 10
 	//
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
@@ -137,7 +137,7 @@
 	name = "pulverizer slug" // admin only, can crush bones
 	sharpness = SHARP_EDGED
 	wound_bonus = 0
-	
+
 /obj/item/projectile/bullet/pellet/shotgun_incapacitate
 	name = "incapacitating pellet"
 	damage = 1
