@@ -45,12 +45,12 @@
 				if(can_heal)
 					damage = max(damage-1, 0)
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
-				damprob = owner.chem_effects[CE_STABLE] ? 30 : 60
+				damprob = owner.chem_effects[CE_STABLE] ? 10 : 60
 				if(!past_damage_threshold(2) && prob(damprob))
 					applyOrganDamage(1)
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
 				owner.eye_blurry = max(owner.eye_blurry,6)
-				damprob = owner.chem_effects[CE_STABLE] ? 40 : 80
+				damprob = owner.chem_effects[CE_STABLE] ? 20 : 80
 				if(!past_damage_threshold(4) && prob(damprob))
 					applyOrganDamage(1)
 				if(!owner.IsParalyzed() && prob(10))
@@ -58,7 +58,7 @@
 					to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				owner.eye_blurry = max(owner.eye_blurry,6)
-				damprob = owner.chem_effects[CE_STABLE] ? 60 : 100
+				damprob = owner.chem_effects[CE_STABLE] ? 30 : 100
 				if(!past_damage_threshold(6) && prob(damprob))
 					applyOrganDamage(1)
 				if(!owner.IsParalyzed() && prob(15))
@@ -67,9 +67,7 @@
 			// Also see heart.dm, being below this point puts you into cardiac arrest.
 			if(-(INFINITY) to BLOOD_VOLUME_SURVIVE)
 				owner.eye_blurry = max(owner.eye_blurry,6)
-				damprob = owner.chem_effects[CE_STABLE] ? 80 : 100
-				if(prob(damprob))
-					applyOrganDamage(2)
+				damprob = owner.chem_effects[CE_STABLE] ? 40 : 100
 				if(prob(damprob))
 					applyOrganDamage(2)
 
