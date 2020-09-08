@@ -1359,7 +1359,7 @@
 //Get the pulse integer
 /mob/living/carbon/proc/pulse()
 	var/obj/item/organ/heart/H = getorganslot(ORGAN_SLOT_HEART)
-	return H ? H.pulse : PULSE_NONE
+	return ((stat != DEAD) && H) ? H.pulse : PULSE_NONE
 
 //A pulse to be read by players
 /mob/living/carbon/proc/get_pulse_as_number()
