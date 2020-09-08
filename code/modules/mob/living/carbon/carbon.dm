@@ -1395,12 +1395,12 @@
 
 	var/bpm = get_pulse_as_number()
 	if(bpm >= PULSE_MAX_BPM)
-		if(method == GETPULSE_TOOL)
+		if(method == GETPULSE_ADVANCED)
 			return ">[PULSE_MAX_BPM]"
 		else
 			return "extremely weak and fast, patient's artery feels like a thread"
 
-	if(method == GETPULSE_TOOL)
+	if(method == GETPULSE_ADVANCED)
 		return "[bpm]"
 	else
 		return "[bpm + rand(-10, 10)]"

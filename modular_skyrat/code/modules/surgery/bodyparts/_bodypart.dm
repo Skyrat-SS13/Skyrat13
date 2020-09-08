@@ -272,12 +272,10 @@
 
 	if(germ_level < INFECTION_LEVEL_ONE)
 		germ_level = 0	//cure instantly
-	else if (germ_level < INFECTION_LEVEL_TWO)
-		germ_level -= 5	//at germ_level == 500, this should cure the infection in 5 minutes
-	else
-		germ_level -= 3 //at germ_level == 1000, this will cure the infection in 10 minutes
+	else if(germ_level < INFECTION_LEVEL_TWO)
+		germ_level -= antibiotics * SANITIZATION_ANTIBIOTIC	//at germ_level == 500 and 50 antibiotic, this should cure the infection in 5 minutes
 	if(owner && owner.lying)
-		germ_level -= 2
+		germ_level -= SANITIZATION_LYING
 	germ_level = max(0, germ_level)
 
 /obj/item/bodypart/proc/handle_germ_effects()

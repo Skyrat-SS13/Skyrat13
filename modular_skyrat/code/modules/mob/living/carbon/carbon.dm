@@ -97,6 +97,6 @@
 		return FALSE
 	
 	if(do_mob(usr, src, 5 SECONDS))
-		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is approximately <b>[src.get_pulse(GETPULSE_HAND)] BPM</b>.</span>")
+		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is approximately <b>[src.get_pulse(GETPULSE_BASIC)] BPM</b>.</span>")
 	else
 		to_chat(usr, "<span class='warning'>You failed to check [self ? "your" : "[src]'s"] pulse.</span>")

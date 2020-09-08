@@ -171,8 +171,8 @@
 #define PULSE_2FAST   4   // >120    bpm
 #define PULSE_THREADY 5   // Occurs during hypovolemic shock
 #define PULSE_MAX_BPM 250 // Highest, readable BPM by machines and humans.
-#define GETPULSE_HAND 0   // Less accurate. (hand)
-#define GETPULSE_TOOL 1   // More accurate. (med scanner, sleeper, etc.)
+#define GETPULSE_BASIC 0   // Less accurate. (hand, health analyzer, etc.)
+#define GETPULSE_ADVANCED 1   // More accurate. (med scanner, sleeper, etc.)
 
 // Shock defines
 #define SHOCK_STAGE_1 10
@@ -191,6 +191,8 @@
 //Sanitization
 #define MAXIMUM_GERM_LEVEL	1000
 #define SANITIZATION_SPACE_CLEANER 100
+#define SANITIZATION_ANTIBIOTIC 0.1 // CE_ANTIBIOTIC sanitization
+#define SANITIZATION_LYING 2
 
 #define INFECTION_LEVEL_ONE   250
 #define INFECTION_LEVEL_TWO   500  // infections grow from ambient to two in ~5 minutes
