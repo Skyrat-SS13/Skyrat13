@@ -97,7 +97,7 @@
 	var/active = FALSE
 	var/obj/item/gps/gps
 	var/credits_stored = 0
-	var/siphon_per_tick = 5
+	var/siphon_per_tick = 200 // Steals 6000 per minute (on SSmachine's 2s tickrate). Enough to be a significant problem, not enough to be instawin.
 
 /obj/machinery/shuttle_scrambler/Initialize(mapload)
 	. = ..()
@@ -112,6 +112,7 @@
 			if(D)
 				var/siphoned = min(D.account_balance,siphon_per_tick)
 				D.adjust_money(-siphoned)
+				credits_stored += siphoned
 			interrupt_research()
 		else
 			return
@@ -137,6 +138,13 @@
 		send_notification()
 	else
 		dump_loot(user)
+
+/obj/machinery/shuttle_scrambler/AltClick(mob/user)
+	toggle_off()
+
+/obj/machinery/shuttle_scrambler/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>It can be toggled off with an alt-click.</span>"
 
 //interrupt_research
 /obj/machinery/shuttle_scrambler/proc/interrupt_research()
@@ -352,6 +360,12 @@
 	for(var/atom/movable/AM in get_turf(pad))
 		if(AM == pad)
 			continue
+
+		if(istype(AM, /mob/living/carbon/)) // Don't hostage our own pirate crew, please.
+			var/mob/living/carbon/C = AM
+			if(C.mind && C.mind.assigned_role == "Space Pirate")
+				continue
+
 		export_item_and_contents(AM, EXPORT_PIRATE | EXPORT_CARGO | EXPORT_CONTRABAND | EXPORT_EMAG, apply_elastic = FALSE, delete_unsold = FALSE, external_report = ex)
 
 	status_report = "Sold:<br>"
