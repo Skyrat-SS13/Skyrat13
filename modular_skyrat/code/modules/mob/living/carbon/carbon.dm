@@ -22,3 +22,7 @@
 		var/dir = get_dir(get_turf(gunpointing.source),get_turf(gunpointing.target))
 		if(dir)
 			setDir(dir)
+
+/mob/living/carbon/fully_heal(admin_revive)
+	. = ..()
+	remove_all_embedded_objects()
