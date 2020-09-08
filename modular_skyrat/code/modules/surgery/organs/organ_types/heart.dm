@@ -35,6 +35,10 @@
 	var/heartbeat = 0
 	var/open = 0
 
+/obj/item/organ/heart/on_death()
+	. = ..()
+	stop_if_unowned()
+
 /obj/item/organ/heart/proc/is_working()
 	if((organ_flags & ORGAN_FAILING) || (damage >= high_threshold))
 		return FALSE

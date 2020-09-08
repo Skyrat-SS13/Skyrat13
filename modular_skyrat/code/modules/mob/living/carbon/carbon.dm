@@ -100,15 +100,3 @@
 		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is approximately <b>[src.get_pulse(GETPULSE_BASIC)] BPM</b>.</span>")
 	else
 		to_chat(usr, "<span class='warning'>You failed to check [self ? "your" : "[src]'s"] pulse.</span>")
-
-/mob/living/carbon/death(gibbed)
-	. = ..()
-	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
-	if(heart)
-		heart.Stop()
-
-/mob/living/carbon/revive(full_heal, admin_revive)
-	. = ..()
-	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
-	if((full_heal || admin_revive) && heart)
-		heart.Restart()
