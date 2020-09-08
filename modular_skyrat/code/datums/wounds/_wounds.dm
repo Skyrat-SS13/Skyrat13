@@ -415,9 +415,6 @@
 	
 	var/antibiotics = victim.get_antibiotics()
 	sanitization += (antibiotics * WOUND_SANITIZATION_PER_ANTIBIOTIC)
-	if(victim.reagents)
-		if(victim.reagents.has_reagent(/datum/reagent/space_cleaner/sterilizine))
-			sanitization += WOUND_SANITIZATION_STERILIZER
 
 	if(limb.current_gauze)
 		limb.seep_gauze(WOUND_INFECTION_SEEP_RATE)

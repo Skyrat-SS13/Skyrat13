@@ -440,17 +440,29 @@
 		M.janitize(-(reac_volume * 20))
 
 //Antibiotics
+/datum/reagent/space_cleaner/sterilizine/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_ANTIBIOTIC, 35)
+
+/datum/reagent/space_cleaner/sterilizine/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_ANTIBIOTIC, 35)
+
 /datum/reagent/medicine/spaceacillin/on_mob_metabolize(mob/living/L)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.add_chem_effect(CE_ANTIBIOTIC, 50)
+		C.add_chem_effect(CE_ANTIBIOTIC, 75)
 
 /datum/reagent/medicine/spaceacillin/on_mob_end_metabolize(mob/living/L)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.remove_chem_effect(CE_ANTIBIOTIC, 50)
+		C.remove_chem_effect(CE_ANTIBIOTIC, 75)
 
 /datum/reagent/medicine/nalidixic_acid
 	name = "Nalidixic Acid"
@@ -463,13 +475,13 @@
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.add_chem_effect(CE_ANTIBIOTIC, 35)
+		C.add_chem_effect(CE_ANTIBIOTIC, 50)
 
 /datum/reagent/medicine/nalidixic_acid/on_mob_end_metabolize(mob/living/L)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.remove_chem_effect(CE_ANTIBIOTIC, 35)
+		C.remove_chem_effect(CE_ANTIBIOTIC, 50)
 
 //Stabilizing medicine
 /datum/reagent/medicine/inaprovaline/on_mob_metabolize(mob/living/L)
