@@ -282,6 +282,7 @@
 	var/tlimit = DEFIB_TIME_LIMIT * 10
 	var/disarm_shock_time = 10
 	var/wielded = FALSE // track wielded status on item
+	var/gaming_timer // Awfully hacky fix to prevent paddles from going autismo
 
 /obj/item/shockpaddles/Initialize()
 	. = ..()
@@ -294,6 +295,9 @@
 	defib = loc
 	busy = FALSE
 	update_icon()
+
+/obj/item/shockpaddles/proc/reset_gaming()
+	busy = FALSE
 
 /obj/item/shockpaddles/ComponentInitialize()
 	. = ..()
@@ -444,6 +448,9 @@
 	M.visible_message("<span class='danger'>[user] hastily places [src] on [M]'s chest!</span>", \
 			"<span class='userdanger'>[user] hastily places [src] on [M]'s chest!</span>")
 	busy = TRUE
+	if(gaming_timer)
+		qdel(gaming_timer)
+	gaming_timer = addtimer(CALLBACK(src, .proc/reset_gaming), 20 SECONDS, TIMER_STOPPABLE) //If we go idiotic, fix in 20 seconds just to be sure
 	if(do_mob(user = user, target = M, time = (isnull(defib?.disarm_shock_time)? disarm_shock_time : defib.disarm_shock_time)))
 		M.visible_message("<span class='danger'>[user] zaps [M] with [src]!</span>", \
 				"<span class='userdanger'>[user] zaps [M] with [src]!</span>")
@@ -472,6 +479,9 @@
 	user.visible_message("<span class='warning'>[user] begins to place [src] on [H]'s chest.</span>",
 		"<span class='warning'>You overcharge the paddles and begin to place them onto [H]'s chest...</span>")
 	busy = TRUE
+	if(gaming_timer)
+		qdel(gaming_timer)
+	gaming_timer = addtimer(CALLBACK(src, .proc/reset_gaming), 20 SECONDS, TIMER_STOPPABLE) //If we go idiotic, fix in 20 seconds just to be sure
 	update_icon()
 	if(do_mob(user = user, target = H, time = 30))
 		user.visible_message("<span class='notice'>[user] places [src] on [H]'s chest.</span>",
@@ -522,6 +532,9 @@
 /obj/item/shockpaddles/proc/do_help(mob/living/carbon/H, mob/living/user)
 	user.visible_message("<span class='warning'>[user] begins to place [src] on [H]'s chest.</span>", "<span class='warning'>You begin to place [src] on [H]'s chest...</span>")
 	busy = TRUE
+	if(gaming_timer)
+		qdel(gaming_timer)
+	gaming_timer = addtimer(CALLBACK(src, .proc/reset_gaming), 20 SECONDS, TIMER_STOPPABLE) //If we go idiotic, fix in 20 seconds just to be sure
 	update_icon()
 
 	var/primetimer
