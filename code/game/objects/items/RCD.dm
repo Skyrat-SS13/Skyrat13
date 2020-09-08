@@ -580,7 +580,7 @@ RLD
 	no_ammo_message = "<span class='warning'>Insufficient charge.</span>"
 	desc = "A device used to rapidly build walls and floors."
 	canRturf = TRUE
-	upgrade = RCD_FULLY_UPGRADED
+	upgrade = TRUE
 	var/energyfactor = 72
 
 
@@ -620,7 +620,7 @@ RLD
 	matter = 160
 
 /obj/item/construction/rcd/loaded/upgraded
-	upgrade = RCD_FULLY_UPGRADED
+	upgrade = TRUE
 
 /obj/item/construction/rcd/combat
 	name = "Combat RCD"
@@ -630,7 +630,6 @@ RLD
 	max_matter = 500
 	matter = 500
 	canRturf = TRUE
-	upgrade = RCD_FULLY_UPGRADED
 
 /obj/item/construction/rcd/industrial
 	name = "industrial RCD"
@@ -663,7 +662,7 @@ RLD
 	name = "admin RCD"
 	max_matter = INFINITY
 	matter = INFINITY
-	upgrade = RCD_FULLY_UPGRADED
+	upgrade = TRUE
 	ranged = TRUE
 
 // Ranged RCD

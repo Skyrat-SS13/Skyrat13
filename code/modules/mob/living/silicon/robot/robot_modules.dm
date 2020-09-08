@@ -403,7 +403,6 @@
 			cyborg_base_icon = "medical"
 		if("Zoomba")
 			cyborg_base_icon = "zoomba_med"
-			hat_offset = -12
 		if("Droid")
 			cyborg_base_icon = "medical"
 			cyborg_icon_override = 'modular_citadel/icons/mob/robots.dmi'
@@ -558,7 +557,6 @@
 			cyborg_base_icon = "engineer"
 		if("Zoomba")
 			cyborg_base_icon = "zoomba_engi"
-			hat_offset = -12
 		if("Default - Treads")
 			cyborg_base_icon = "engi-tread"
 			special_light_key = "engineer"
@@ -697,7 +695,6 @@
 			cyborg_base_icon = "sec"
 		if("Zoomba")
 			cyborg_base_icon = "zoomba_sec"
-			hat_offset = -12
 		if("Default - Treads")
 			cyborg_base_icon = "sec-tread"
 			special_light_key = "sec"
@@ -1002,7 +999,6 @@
 	switch(service_robot_icon)
 		if("Zoomba")
 			cyborg_base_icon = "zoomba_jani"
-			hat_offset = -12
 		if("(Service) Waitress")
 			cyborg_base_icon = "service_f"
 			special_light_key = "service"
@@ -1210,7 +1206,6 @@
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 		if("Zoomba")
 			cyborg_base_icon = "zoomba_miner"
-			hat_offset = -12
 		if("RoboMaid") //skyrat change
 			cyborg_base_icon = "robomaid_miner"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'

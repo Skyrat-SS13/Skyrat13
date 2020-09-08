@@ -836,7 +836,7 @@
 	else
 		throw_alert("gravity", /obj/screen/alert/weightless)
 	if(!override && !is_flying())
-		INVOKE_ASYNC(src, /atom/movable.proc/float, !has_gravity) //skyratfix
+		float(!has_gravity)
 
 /mob/living/float(on)
 	if(throwing)

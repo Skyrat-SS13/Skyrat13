@@ -23,12 +23,6 @@
 #define ITEM_SLOT_HANDS			(1<<14)
 #define ITEM_SLOT_BACKPACK		(1<<15)
 #define ITEM_SLOT_SUITSTORE		(1<<16)
-//skyrat edit
-#define ITEM_SLOT_UNDERWEAR		(1<<17)
-#define ITEM_SLOT_SOCKS			(1<<18)
-#define ITEM_SLOT_SHIRT			(1<<19)
-#define ITEM_SLOT_WRISTS		(1<<20)
-//
 
 //SLOTS
 #define SLOT_BACK			1
@@ -38,7 +32,7 @@
 								//SLOT_HANDS as a slot will pick ANY available hand
 #define SLOT_BELT			5
 #define SLOT_WEAR_ID		6
-#define SLOT_EARS_LEFT		7 //skyrat edit
+#define SLOT_EARS			7
 #define SLOT_GLASSES		8
 #define SLOT_GLOVES			9
 #define SLOT_NECK			10
@@ -52,16 +46,9 @@
 #define SLOT_IN_BACKPACK	18
 #define SLOT_LEGCUFFED		19
 #define SLOT_GENERC_DEXTROUS_STORAGE	20
-//skyrat edit
-#define SLOT_W_UNDERWEAR	21
-#define	SLOT_W_SOCKS		22
-#define	SLOT_W_SHIRT		23
-#define SLOT_EARS_RIGHT		24
-#define SLOT_WRISTS			25
-//
 
 
-#define SLOTS_AMT			25 // Keep this up to date! //skyrat edit - extra slots
+#define SLOTS_AMT			20 // Keep this up to date!
 
 //I hate that this has to exist
 /proc/slotdefine2slotbit(slotdefine) //Keep this up to date with the value of SLOT BITMASKS and SLOTS (the two define sections above)
@@ -77,20 +64,12 @@
 			. = ITEM_SLOT_BELT
 		if(SLOT_WEAR_ID)
 			. = ITEM_SLOT_ID
-		//skyrat edit
-		if(SLOT_EARS_RIGHT)
+		if(SLOT_EARS)
 			. = ITEM_SLOT_EARS
-		if(SLOT_EARS_LEFT)
-			. = ITEM_SLOT_EARS
-		//
 		if(SLOT_GLASSES)
 			. = ITEM_SLOT_EYES
 		if(SLOT_GLOVES)
 			. = ITEM_SLOT_GLOVES
-		//skyrat edit
-		if(SLOT_WRISTS)
-			. = ITEM_SLOT_WRISTS
-		//
 		if(SLOT_HEAD)
 			. = ITEM_SLOT_HEAD
 		if(SLOT_SHOES)
@@ -107,14 +86,6 @@
 			. = ITEM_SLOT_BACKPACK
 		if(SLOT_S_STORE)
 			. = ITEM_SLOT_SUITSTORE
-		//skyrat edit
-		if(SLOT_W_UNDERWEAR)
-			. = ITEM_SLOT_UNDERWEAR
-		if(SLOT_W_SOCKS)
-			. = ITEM_SLOT_SOCKS
-		if(SLOT_W_SHIRT)
-			. = ITEM_SLOT_SHIRT
-		//
 
 
 //Bit flags for the flags_inv variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
@@ -132,10 +103,6 @@
 #define HIDETAUR		(1<<11) //gotta hide that snowflake
 #define HIDESNOUT		(1<<12) //or do we actually hide our snoots
 #define HIDEACCESSORY	(1<<13) //hides the jumpsuit accessory.
-//skyrat edit
-#define HIDEUNDERWEAR	(1<<14) //hides underwear, socks and shirt
-#define HIDEWRISTS		(1<<15) //hides wrists
-//
 
 //bitflags for clothing coverage - also used for limbs
 #define HEAD		(1<<0)

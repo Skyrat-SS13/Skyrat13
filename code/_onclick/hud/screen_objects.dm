@@ -210,6 +210,7 @@
 		user.swap_hand(held_index)
 	return TRUE
 
+
 /obj/screen/drop
 	name = "drop"
 	icon = 'icons/mob/screen_midnight.dmi'
