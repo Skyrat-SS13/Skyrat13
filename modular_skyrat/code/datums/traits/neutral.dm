@@ -217,7 +217,4 @@
 	name = "Excitable"
 	desc = "Headpats will cause your tail to wag, if you have any."
 	value = 0
-	gain_text = "<span class='notice'>You feel like wagging your tail from the pats.</span>"
-	lose_text = "<span class='notice'>You don't feel like wagging your tail from the pats.</span>"
 	mob_trait = TRAIT_EXCITABLE
-	medical_record_text = "Patient will wag their tail if happy."
