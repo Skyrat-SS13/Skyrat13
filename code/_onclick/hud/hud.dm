@@ -14,8 +14,27 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Clockwork" = 'icons/mob/screen_clockwork.dmi'
 ))
 
+//skyrat edit
+GLOBAL_LIST_INIT(modular_ui_styles, list(
+	'icons/mob/screen_midnight.dmi' = 'modular_skyrat/icons/mob/screen_midnight.dmi',
+	'icons/mob/screen_retro.dmi' = 'modular_skyrat/icons/mob/screen_retro.dmi',
+	'icons/mob/screen_plasmafire.dmi' = 'modular_skyrat/icons/mob/screen_plasmafire.dmi',
+	'icons/mob/screen_slimecore.dmi' = 'modular_skyrat/icons/mob/screen_slimecore.dmi',
+	'icons/mob/screen_operative.dmi' = 'modular_skyrat/icons/mob/screen_operative.dmi',
+	'icons/mob/screen_clockwork.dmi' = 'modular_skyrat/icons/mob/screen_clockwork.dmi'
+))
+//
+
 /proc/ui_style2icon(ui_style)
 	return GLOB.available_ui_styles[ui_style] || GLOB.available_ui_styles[GLOB.available_ui_styles[1]]
+
+//skyrat edit
+/proc/ui_style_modular(ui_style)
+	if(isfile(ui_style))
+		return GLOB.modular_ui_styles[ui_style] || GLOB.modular_ui_styles[GLOB.modular_ui_styles[1]]
+	else
+		return GLOB.modular_ui_styles[ui_style] || GLOB.modular_ui_styles[GLOB.modular_ui_styles[1]]
+//
 
 /datum/hud
 	var/mob/mymob
@@ -23,6 +42,9 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/hud_shown = TRUE			//Used for the HUD toggle (F12)
 	var/hud_version = HUD_STYLE_STANDARD	//Current displayed version of the HUD
 	var/inventory_shown = FALSE		//Equipped item inventory
+	//skyrat edit
+	var/extra_shown = FALSE
+	//
 	var/hotkey_ui_hidden = FALSE	//This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
 
 	var/obj/screen/ling/chems/lingchemdisplay
@@ -44,6 +66,9 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	var/list/static_inventory = list() //the screen objects which are static
 	var/list/toggleable_inventory = list() //the screen objects which can be hidden
+	//skyrat edit
+	var/list/extra_inventory = list() //equipped item screens that don't show up even if using the initial toggle
+	//
 	var/list/obj/screen/hotkeybuttons = list() //the buttons that can be used via hotkeys
 	var/list/infodisplay = list() //the screen objects that display mob info (health, alien plasma, etc...)
 	var/list/screenoverlays = list() //the screen objects used as whole screen overlays (flash, damageoverlay, etc...)
@@ -94,6 +119,9 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	pull_icon = null
 
 	QDEL_LIST(toggleable_inventory)
+	//skyrat edit
+	QDEL_LIST(extra_inventory)
+	//
 	QDEL_LIST(hotkeybuttons)
 	throw_icon = null
 	QDEL_LIST(infodisplay)
@@ -146,6 +174,10 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 				screenmob.client.screen += static_inventory
 			if(toggleable_inventory.len && screenmob.hud_used && screenmob.hud_used.inventory_shown)
 				screenmob.client.screen += toggleable_inventory
+			//skyrat edit
+			if(extra_inventory.len && screenmob.hud_used && screenmob.hud_used.extra_shown)
+				screenmob.client.screen += extra_inventory
+			//
 			if(hotkeybuttons.len && !hotkey_ui_hidden)
 				screenmob.client.screen += hotkeybuttons
 			if(infodisplay.len)
@@ -162,6 +194,10 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 				screenmob.client.screen -= static_inventory
 			if(toggleable_inventory.len)
 				screenmob.client.screen -= toggleable_inventory
+			//skyrat edit
+			if(extra_inventory.len)
+				screenmob.client.screen -= extra_inventory
+			//
 			if(hotkeybuttons.len)
 				screenmob.client.screen -= hotkeybuttons
 			if(infodisplay.len)
@@ -182,6 +218,10 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 				screenmob.client.screen -= static_inventory
 			if(toggleable_inventory.len)
 				screenmob.client.screen -= toggleable_inventory
+			//skyrat edit
+			if(extra_inventory.len)
+				screenmob.client.screen -= extra_inventory
+			//
 			if(hotkeybuttons.len)
 				screenmob.client.screen -= hotkeybuttons
 			if(infodisplay.len)
@@ -227,6 +267,11 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 /datum/hud/proc/hidden_inventory_update()
 	return
 
+//skyrat edit
+/datum/hud/proc/extra_inventory_update()
+	return
+//
+
 /datum/hud/proc/persistent_inventory_update(mob/viewer)
 	if(!mymob)
 		return
@@ -236,7 +281,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	if (initial(ui_style) || ui_style == new_ui_style)
 		return
 
-	for(var/atom/item in static_inventory + toggleable_inventory + hotkeybuttons + infodisplay + screenoverlays + inv_slots)
+	for(var/atom/item in static_inventory + toggleable_inventory + extra_inventory + hotkeybuttons + infodisplay + screenoverlays + inv_slots) //skyrat edit
 		if (item.icon == ui_style)
 			item.icon = new_ui_style
 

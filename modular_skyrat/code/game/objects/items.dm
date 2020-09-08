@@ -2,6 +2,7 @@
 	var/grabtext
 	var/grabsound
 	shows_armor = ARMOR_SHOW_WEARABLE
+	hide_underwear_examine = TRUE
 
 /obj/item/pickup(mob/living/user)
 	. = ..()
