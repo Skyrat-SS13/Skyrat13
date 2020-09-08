@@ -48,6 +48,7 @@
 		to_chat(M, "<span class='warning'>This wall is far too strong for you to destroy.</span>")
 
 /turf/closed/wall/r_wall/try_destroy(obj/item/I, mob/user, turf/T)
+	/* Skyrat edit: begone powergame item
 	if(istype(I, /obj/item/pickaxe/drill/jackhammer))
 		to_chat(user, "<span class='notice'>You begin to smash though [src]...</span>")
 		if(do_after(user, 50, target = src))
@@ -57,6 +58,7 @@
 			visible_message("<span class='warning'>[user] smashes through [src] with [I]!</span>", "<span class='italics'>You hear the grinding of metal.</span>")
 			dismantle_wall()
 			return TRUE
+			*/
 	return FALSE
 
 /turf/closed/wall/r_wall/try_decon(obj/item/W, mob/user, turf/T)
