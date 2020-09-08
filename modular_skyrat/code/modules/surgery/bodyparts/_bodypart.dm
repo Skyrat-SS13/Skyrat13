@@ -419,6 +419,14 @@
 		. += "<span class='notice'>[src] is impervious to [status & BODYPART_ORGANIC ? "bleeding" : "leakage"].</span>"
 	if(status & BODYPART_DEAD)
 		. += "<span class='deadsay'>[src] seems to have decayed, reaching a putrid state...</span>"
+	if(germ_level)
+		switch(germ_level)
+			if(INFECTION_LEVEL_ONE to INFECTION_LEVEL_TWO)
+				. +=  "<span class='deadsay'>[src] seems to be mildly infected.</span>"
+			if(INFECTION_LEVEL_TWO to INFECTION_LEVEL_THREE)
+				. +=  "<span class='deadsay'>[src] seems to be oozing some foul pus...</span>"
+			if(INFECTION_LEVEL_THREE to INFINITY)
+				. += "<span class='deadsay'>[src] seems to be awfully necrotic and riddled with dead tissue!</span>"
 	for(var/obj/item/bodypart/BP in src)
 		if(BP.body_zone in children_zones)
 			. += "<span class='notice'>[src] has \a [lowertext(BP.name)] attached. Use a sharp item to cut it off!</span>"

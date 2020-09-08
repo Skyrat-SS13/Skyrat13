@@ -387,6 +387,14 @@
 		. += "<span class='notice'>[owner ? "[owner.p_their(TRUE)] " : ""][owner ? src.name : capitalize(src.name)] seems to be quite healthy.</span>"
 	if(decayed)
 		. += "<span class='deadsay'>[owner ? "[owner.p_their(TRUE)] " : ""][owner ? src.name : capitalize(src.name)] seems to have decayed, reaching a putrid state...</span>"
+	if(germ_level)
+		switch(germ_level)
+			if(INFECTION_LEVEL_ONE to INFECTION_LEVEL_TWO)
+				. +=  "<span class='deadsay'>[owner ? "[owner.p_their(TRUE)] " : ""][owner ? src.name : capitalize(src.name)] seems to be mildly infected.</span>"
+			if(INFECTION_LEVEL_TWO to INFECTION_LEVEL_THREE)
+				. +=  "<span class='deadsay'>[owner ? "[owner.p_their(TRUE)] " : ""][owner ? src.name : capitalize(src.name)] seems to be oozing some foul pus...</span>"
+			if(INFECTION_LEVEL_THREE to INFINITY)
+				. += "<span class='deadsay'>[owner ? "[owner.p_their(TRUE)] " : ""][owner ? src.name : capitalize(src.name)] seems to be awfully necrotic and riddled with dead tissue!</span>"
 	if(etching)
 		. += "<span class='notice'>[owner ? "[owner.p_their(TRUE)] " : ""][src] has <b>\"[etching]\"</b> inscribed on it.</span>"
 	if(!owner)
