@@ -50,7 +50,7 @@ SUBSYSTEM_DEF(persistence)
 	var/path
 	if(fexists("data/npc_saves/SecretSatchels.sav")) //legacy conversion. Will only ever run once.
 		var/savefile/secret_satchels = new /savefile("data/npc_saves/SecretSatchels.sav")
-		for(var/map in secret_satchels)
+		for(var/map in secret_satchels.dir)
 			var/json_file = file("data/npc_saves/SecretSatchels[map].json")
 			var/list/legacy_secret_satchels = splittext(secret_satchels[map],"#")
 			var/list/satchels = list()
