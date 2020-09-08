@@ -228,6 +228,7 @@
 #define TRAIT_LOOKSUNCONSCIOUS	"looks_unconscious" //fake fainting
 #define TRAIT_LOOKSVERYUNCONSCIOUS	"looks_very_unconscious" //fake shock
 #define TRAIT_LOOKSDEAD			"looks_dead" //fake death
+#define TRAIT_STERN				"nopats" //will not wag from headpats
 //
 
 // mobility flag traits

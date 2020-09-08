@@ -211,3 +211,10 @@
 	gain_text = "<span class='notice'>Your spirit gets too scarred to accept revival.</span>"
 	lose_text = "<span class='notice'>You can feel your soul healing again.</span>"
 	mob_trait = TRAIT_DNR
+
+//no tailwag from the pats
+/datum/quirk/stern
+	name = "Stern"
+	desc = "Headpats will not cause your tail to wag, if you have any."
+	value = 0
+	mob_trait = TRAIT_STERN
