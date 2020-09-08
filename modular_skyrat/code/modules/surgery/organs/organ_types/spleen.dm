@@ -11,7 +11,7 @@
 	high_threshold = 40
 	maxHealth = 50
 	relative_size = 8
-	var/blood_amount = 0.7
+	var/blood_amount = 0.5
 
 /obj/item/organ/spleen/proc/get_blood()
 	var/blood = blood_amount

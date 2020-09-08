@@ -397,11 +397,14 @@
 /datum/reagent/medicine/salglu_solution/on_mob_life(mob/living/carbon/M)
 	if((HAS_TRAIT(M, TRAIT_NOMARROW)))
 		return
+	var/obj/item/organ/spleen/spleen = M.getorganslot(ORGAN_SLOT_SPLEEN)
+	if(!spleen)
+		return
 	if(last_added)
 		M.blood_volume -= last_added
 		last_added = 0
 	if(M.blood_volume < maximum_reachable)	//Can only up to double your effective blood level.
-		var/amount_to_add = min(M.blood_volume, volume*5)
+		var/amount_to_add = min(M.blood_volume, volume*5) * (spleen.get_blood() * 2)
 		var/new_blood_level = min(M.blood_volume + amount_to_add, maximum_reachable)
 		last_added = new_blood_level - M.blood_volume
 		M.blood_volume = new_blood_level
@@ -1270,7 +1273,9 @@
 	M.adjustCloneLoss(-3*REM, FALSE)
 	M.adjustStaminaLoss(-25*REM,FALSE)
 	if(M.blood_volume < (BLOOD_VOLUME_NORMAL*M.blood_ratio))
-		M.blood_volume += 40 // blood fall out man bad
+		var/obj/item/organ/spleen/spleen = M.getorganslot(ORGAN_SLOT_SPLEEN)
+		if(spleen)
+			M.blood_volume += (40 * (2 * spleen.get_blood())) // blood fall out man bad
 	..()
 	. = 1
 
@@ -1291,7 +1296,9 @@
 	M.adjustCloneLoss(-1.25*REM, FALSE)
 	M.adjustStaminaLoss(-4*REM,FALSE)
 	if(M.blood_volume < (BLOOD_VOLUME_NORMAL*M.blood_ratio))
-		M.blood_volume += 3
+		var/obj/item/organ/spleen/spleen = M.getorganslot(ORGAN_SLOT_SPLEEN)
+		if(spleen)
+			M.blood_volume += (6 * spleen.get_blood())
 	..()
 	. = 1
 
