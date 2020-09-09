@@ -15,9 +15,9 @@
 	attack_verb = list("beaten")
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
 
-	var/stamforce = 35
+	var/stamforce = 55
 	var/turned_on = FALSE
-	var/knockdown = TRUE
+	var/knockdown = FALSE
 	var/obj/item/stock_parts/cell/cell
 	var/hitcost = 750
 	var/throw_hit_chance = 35
