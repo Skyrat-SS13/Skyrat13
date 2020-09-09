@@ -300,13 +300,13 @@
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.add_chem_effect(CE_PAINKILLER, min(initial_volume, 30))
+		C.add_chem_effect(CE_PAINKILLER, min(initial_volume, 20))
 
 /datum/reagent/medicine/tramadol/on_mob_end_metabolize(mob/living/L)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.remove_chem_effect(CE_PAINKILLER, min(initial_volume, 30))
+		C.remove_chem_effect(CE_PAINKILLER, min(initial_volume, 20))
 
 /datum/reagent/medicine/tramadol/on_mob_life(mob/living/carbon/M)
 	. = ..()
@@ -353,13 +353,13 @@
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.add_chem_effect(CE_PAINKILLER, 50)
+		C.add_chem_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/medicine/modafinil/on_mob_end_metabolize(mob/living/L)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.remove_chem_effect(CE_PAINKILLER, 50)
+		C.remove_chem_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/medicine/antitoxin/on_mob_life(mob/living/carbon/M)
 	. = ..()
@@ -531,14 +531,14 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.add_chem_effect(CE_STABLE)
-		C.add_chem_effect(CE_PAINKILLER, 25)
+		C.add_chem_effect(CE_PAINKILLER, 20)
 
 /datum/reagent/medicine/earthsblood/on_mob_end_metabolize(mob/living/L)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.remove_chem_effect(CE_STABLE)
-		C.remove_chem_effect(CE_PAINKILLER, 25)
+		C.remove_chem_effect(CE_PAINKILLER, 20)
 
 /datum/reagent/medicine/adminordrazine/on_mob_metabolize(mob/living/L)
 	. = ..()

@@ -1413,23 +1413,6 @@
 /mob/living/carbon/nervous_system_failure()
 	return (getOrganLoss(ORGAN_SLOT_BRAIN) >= maxHealth * 0.75)
 
-//Add a chemical effect
-/mob/living/carbon/proc/add_chem_effect(effect, magnitude = 1)
-	if(effect in chem_effects)
-		chem_effects[effect] += magnitude
-	else
-		chem_effects[effect] = magnitude
-
-/mob/living/carbon/proc/add_up_to_chem_effect(effect, magnitude = 1)
-	if(effect in chem_effects)
-		chem_effects[effect] = max(magnitude, chem_effects[effect])
-	else
-		chem_effects[effect] = magnitude
-
-/mob/living/carbon/proc/remove_chem_effect(effect, magnitude = 1)
-	if(effect in chem_effects)
-		chem_effects[effect] = max(0, chem_effects[effect] - magnitude)
-
 //Replaces crit with shock
 /mob/living/carbon/InCritical()
 	if(isalien(src)) //Horrible.

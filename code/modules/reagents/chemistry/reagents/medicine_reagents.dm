@@ -443,7 +443,7 @@
 	..()
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
-		C.add_chem_effect(CE_PAINKILLER, 75)
+		C.add_chem_effect(CE_PAINKILLER, 60)
 
 /datum/reagent/medicine/mine_salve/on_mob_life(mob/living/carbon/C)
 	C.hal_screwyhud = SCREWYHUD_HEALTHY
@@ -474,7 +474,7 @@
 	if(iscarbon(M))
 		var/mob/living/carbon/N = M
 		N.hal_screwyhud = SCREWYHUD_NONE
-		N.remove_chem_effect(CE_PAINKILLER, 75)
+		N.remove_chem_effect(CE_PAINKILLER, 60)
 	..()
 
 /datum/reagent/medicine/synthflesh
@@ -648,13 +648,13 @@
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.add_chem_effect(CE_PAINKILLER, 40)
+		C.add_chem_effect(CE_PAINKILLER, 25)
 
 /datum/reagent/medicine/sal_acid/on_mob_end_metabolize(mob/living/L)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.remove_chem_effect(CE_PAINKILLER, 40)
+		C.remove_chem_effect(CE_PAINKILLER, 25)
 
 /datum/reagent/medicine/sal_acid/on_mob_life(mob/living/carbon/M)
 	if(M.getBruteLoss() > 25)
