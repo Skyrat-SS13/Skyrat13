@@ -134,6 +134,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 	var/list/foodlikes = list()
 	var/list/fooddislikes = list()
+	var/list/color_gear = list()
 	var/maxlikes = 3
 	var/maxdislikes = 3
 
@@ -570,8 +571,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Custom Species Name:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=custom_species;task=input'>[custom_species ? custom_species : "None"]</a><BR>"
 			if(LAZYLEN(pref_species.descriptors) && LAZYLEN(body_descriptors))
 				dat += "<b>Descriptors:</b><BR>"
-				for(var/entry in body_descriptors)
+				for(var/entry in pref_species.descriptors)
 					var/datum/mob_descriptor/descriptor = pref_species.descriptors[entry]
+					if(!descriptor)
+						continue
 					dat += "<b>[capitalize(descriptor.chargen_label)]:</b> [descriptor.get_standalone_value_descriptor(body_descriptors[entry]) ? descriptor.get_standalone_value_descriptor(body_descriptors[entry]) : "None"] <a href='?_src_=prefs;preference=descriptors;task=input;change_descriptor=[entry]'>Change</a><BR>"
 				dat += "<BR>"
 			dat += "<b>Random Body:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=all;task=random'>Randomize!</A><BR>"
@@ -1015,6 +1018,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=menu'>Configure Scars</a><BR>"
 			//
 			dat += "<h2>Clothing & Equipment</h2>"
+			/* skyrat change
 			dat += "<b>Underwear:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=underwear;task=input'>[underwear]</a><br>"
 			if(GLOB.underwear_list[underwear]?.has_color)
 				dat += "<b>Underwear Color:</b>"
@@ -1030,6 +1034,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<b>Socks Color:</b>"
 				dat += "<BR>"
 				dat += "<span style='border:1px solid #161616; background-color: #[socks_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=socks_color;task=input'>Change</a><BR>"
+			*/
 			dat += "<b>Backpack:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=bag;task=input'>[backbag]</a><br>"
 			dat += "<b>Jumpsuit:</b><BR><a href ='?_src_=prefs;preference=suit;task=input'>[jumpsuit_style]</a><br>"
 			dat += "<b>Uplink Location:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a>"
@@ -1316,7 +1321,13 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					class_link = "style='white-space:normal;background:#ebc42e;' href='?_src_=prefs;preference=gear;toggle_gear_path=[html_encode(j)];toggle_gear=1'"
 				else
 					class_link = "style='white-space:normal;' href='?_src_=prefs;preference=gear;toggle_gear_path=[html_encode(j)];toggle_gear=1'"
-				dat += "<tr style='vertical-align:top;'><td width=15%><a [class_link]>[j]</a></td>"
+				//skyrat edit
+				if(gear.has_colors && (gear.name in color_gear))
+					var/colore = "<a href='?_src_=prefs;preference=gear;toggle_gear_path=[html_encode(j)];toggle_gear=color'>Color</a><span style='border: 1px solid #161616; background-color: [color_gear[gear.name]];'>&nbsp;&nbsp;&nbsp;</span>"
+					dat += "<tr style='vertical-align:top;'><td width=15%><a [class_link]>[j]</a>[colore]</td>"
+				else
+					dat += "<tr style='vertical-align:top;'><td width=15%><a [class_link]>[j]</a></td>"
+				//
 				dat += "<td width = 5% style='vertical-align:top'>[gear.cost]</td><td>"
 				if(islist(gear.restricted_roles))
 					if(gear.restricted_roles.len)
@@ -1995,14 +2006,13 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 	//skyrat edit
 	if(href_list["preference"] == "descriptors")
-		if(href_list["change_descriptor"])
-			if(LAZYLEN(pref_species.descriptors))
-				var/desc_id = href_list["change_descriptor"]
-				if(body_descriptors[desc_id])
-					var/datum/mob_descriptor/descriptor = pref_species.descriptors[desc_id]
-					var/choice = input("Please select a descriptor", "Descriptor") as null|anything in descriptor.chargen_value_descriptors
-					if(choice && pref_species.descriptors[desc_id]) // Check in case they sneakily changed species.
-						body_descriptors[descriptor.name] = descriptor.chargen_value_descriptors[choice]
+		var/desc_id = href_list["change_descriptor"]
+		if(desc_id)
+			if(LAZYLEN(pref_species.descriptors) && pref_species.descriptors[desc_id])
+				var/datum/mob_descriptor/descriptor = pref_species.descriptors[desc_id]
+				var/choice = input("Please select a descriptor", "Descriptor") as null|anything in descriptor.chargen_value_descriptors
+				if(choice && pref_species.descriptors[desc_id]) // Check in case they sneakily changed species.
+					body_descriptors[descriptor.name] = descriptor.chargen_value_descriptors[choice]
 		ShowChoices(user)
 		return 1
 	//
@@ -2258,6 +2268,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					facial_hair_color = random_short_color()
 				if("facial_hair_style")
 					facial_hair_style = random_facial_hair_style(gender)
+				/* skyrat edit
 				if("underwear")
 					underwear = random_underwear(gender)
 					undie_color = random_short_color()
@@ -2267,6 +2278,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("socks")
 					socks = random_socks()
 					socks_color = random_short_color()
+				*/
 				if(BODY_ZONE_PRECISE_EYES)
 					eye_color = random_eye_color()
 				if("s_tone")
@@ -2451,7 +2463,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("cycle_bg")
 					bgstate = next_list_item(bgstate, bgstate_options)
-
+				/* skyrat edit
 				if("underwear")
 					var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference")  as null|anything in GLOB.underwear_list
 					if(new_underwear)
@@ -2481,7 +2493,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/n_socks_color = input(user, "Choose your socks' color.", "Character Preference", "#[socks_color]") as color|null
 					if(n_socks_color)
 						socks_color = sanitize_hexcolor(n_socks_color)
-
+				*/
 				if("eyes")
 					var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference","#"+eye_color) as color|null
 					if(new_eyes)
@@ -3522,20 +3534,32 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			var/datum/gear/G = GLOB.loadout_items[gear_tab][html_decode(href_list["toggle_gear_path"])]
 			if(!G)
 				return
-			var/toggle = text2num(href_list["toggle_gear"])
-			if(!toggle && (G.type in chosen_gear))//toggling off and the item effectively is in chosen gear)
-				chosen_gear -= G.type
-				gear_points += initial(G.cost)
-			else if(toggle && (!(is_type_in_ref_list(G, chosen_gear))))
-				if(!is_loadout_slot_available(G.category))
-					to_chat(user, "<span class='danger'>You cannot take this loadout, as you've already chosen too many of the same category!</span>")
-					return
-				if(G.donoritem && !G.donator_ckey_check(user.ckey))
-					to_chat(user, "<span class='danger'>This is an item intended for donator use only. You are not authorized to use this item.</span>")
-					return
-				if(gear_points >= initial(G.cost))
-					chosen_gear += G.type
-					gear_points -= initial(G.cost)
+			//skyrat edit
+			if(href_list["toggle_gear"] != "color")
+				var/toggle = text2num(href_list["toggle_gear"])
+				if(!toggle && (G.type in chosen_gear))//toggling off and the item effectively is in chosen gear)
+					chosen_gear -= G.type
+					gear_points += initial(G.cost)
+				else if(toggle && (!(is_type_in_ref_list(G, chosen_gear))))
+					if(!is_loadout_slot_available(G.category))
+						to_chat(user, "<span class='danger'>You cannot take this loadout, as you've already chosen too many of the same category!</span>")
+						return
+					if(G.donoritem && !G.donator_ckey_check(user.ckey))
+						to_chat(user, "<span class='danger'>This is an item intended for donator use only. You are not authorized to use this item.</span>")
+						return
+					if(gear_points >= initial(G.cost))
+						chosen_gear += G.type
+						if(!color_gear)
+							color_gear = list()
+						color_gear |= list(G.name = G.color)
+						gear_points -= initial(G.cost)
+			else
+				var/choice = input(user, "Select a color for [G.name].", "Gear Color") as color
+				if(choice)
+					if(!color_gear)
+						color_gear = list()
+					color_gear[G.name] = choice
+			//
 
 	ShowChoices(user)
 	return 1
@@ -3578,6 +3602,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	character.dna.skin_tone_override = use_custom_skin_tone ? skin_tone : null
 	character.hair_style = hair_style
 	character.facial_hair_style = facial_hair_style
+	/* skyrat edit
 	character.underwear = underwear
 
 	character.saved_underwear = underwear
@@ -3585,6 +3610,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	character.saved_undershirt = undershirt
 	character.socks = socks
 	character.saved_socks = socks
+	*/
 	character.undie_color = undie_color
 	character.shirt_color = shirt_color
 	character.socks_color = socks_color

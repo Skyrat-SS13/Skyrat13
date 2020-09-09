@@ -104,6 +104,14 @@
 	new /obj/item/multitool(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 
+/obj/item/storage/belt/utility/full/power/PopulateContents() // For ERTs
+	new /obj/item/screwdriver/power(src)
+	new /obj/item/crowbar/power(src)
+	new /obj/item/weldingtool/experimental(src)
+	new /obj/item/multitool(src)
+	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
+	new /obj/item/holosign_creator/combifan(src)
+	new /obj/item/analyzer/ranged(src)
 
 /obj/item/storage/belt/utility/atmostech/PopulateContents()
 	new /obj/item/screwdriver(src)
