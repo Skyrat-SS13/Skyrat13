@@ -115,11 +115,9 @@
 
 /obj/item/gun/proc/on_wield()
 	is_wielded = TRUE
-	return is_wielded
 
 /obj/item/gun/proc/on_unwield()
 	is_wielded = FALSE
-	return !is_wielded
 
 /obj/item/gun/Destroy()
 	if(pin)
