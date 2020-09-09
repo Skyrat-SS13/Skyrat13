@@ -335,7 +335,7 @@
 
 	var/list/obj/item/bodypart/parts = get_damageable_bodyparts()
 	var/update = 0
-	while(parts.len && (brute > 0 || burn > 0 || stamina > 0 || pain > 0 || toxin > 0))
+	while(parts.len && (brute > 0 || burn > 0 || stamina > 0 || pain > 0 || toxin > 0 || clone > 0))
 		var/obj/item/bodypart/picked = pick(parts)
 		var/brute_per_part = round(brute/parts.len, DAMAGE_PRECISION)
 		var/burn_per_part = round(burn/parts.len, DAMAGE_PRECISION)
@@ -350,7 +350,6 @@
 		var/tox_was = picked.tox_dam
 		var/pain_was = picked.pain_dam
 		var/clone_was = picked.clone_dam
-
 
 		update |= picked.receive_damage(brute = brute_per_part, burn = burn_per_part, stamina = stamina_per_part, pain = pain_per_part, toxin = tox_per_part, clone = clone_per_part, blocked = FALSE, updating_health = FALSE)
 
