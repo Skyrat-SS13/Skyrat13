@@ -568,9 +568,13 @@
 			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
 				condition += ", <span class='deadsay'>with streaks of rotten infection pulsating outward</span>"
 			if(WOUND_INFECTION_SEPTIC to INFINITY)
-				return "<span class='deadsay'><B>[victim.p_their(TRUE)] [limb.name] is a mess of pus and rot, skin literally dripping off the bone with infection</B></span>"
+				return "<span class='deadsay'><B>[victim.p_their(TRUE)] [limb.name] is a mess of pus and rot, skin literally dripping off the bone with infection!</B></span>"
 
-	return "<B>[victim.p_their(TRUE)] [limb.name] [examine_desc][condition]!</B>"
+	. = "[victim.p_their(TRUE)] [fake_limb ? fake_limb : limb.name] [examine_desc][condition]"
+	if(severity >= WOUND_SEVERITY_MODERATE)
+		. = "<B>[.]</B>"
+	else
+		. = "[.]."
 
 /datum/wound/proc/get_scanner_description(mob/user)
 	var/infection_level = "None"
