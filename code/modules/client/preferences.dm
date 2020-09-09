@@ -1225,9 +1225,9 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 
 			dat += "<b>Income Updates:</b> <a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Allowed" : "Muted"]</a><br>"
 			
-			dat += "<b>Combat Wound Messages (Other):</b> <a href='?_src_=prefs;preference=wounds_other'>[(chat_toggles & CHAT_WOUNDS_OTHER) ? "Allowed" : "Muted"]</a><br>"
+			dat += "<b>Combat Wound Messages (Other):</b> <a href='?_src_=prefs;preference=wounds_other'>[(chat_toggles & CHAT_WOUNDS_OTHER) ? "Muted" : "Allowed"]</a><br>"
 
-			dat += "<b>Combat Wound Messages (Self):</b> <a href='?_src_=prefs;preference=wounds_self'>[(chat_toggles & CHAT_WOUNDS_SELF) ? "Allowed" : "Muted"]</a><br>"
+			dat += "<b>Combat Wound Messages (Self):</b> <a href='?_src_=prefs;preference=wounds_self'>[(chat_toggles & CHAT_WOUNDS_SELF) ? "Muted" : "Allowed"]</a><br>"
 			
 			dat += "<br>"
 

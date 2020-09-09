@@ -177,9 +177,6 @@
 	if(!limb.current_gauze && !gelled && !taped)
 		return ..()
 
-	if(strikes_to_lose_limb <= 0)
-		return "<span class='deadsay'><B>[victim.p_their(TRUE)] [limb.name] is completely dead and unrecognizable as organic.</B></span>"
-
 	var/msg = ""
 	if(!limb.current_gauze)
 		msg = "[victim.p_their(TRUE)] [limb.name] [examine_desc]"

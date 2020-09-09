@@ -541,17 +541,36 @@
   * Arguments:
   * * mob/user: The user examining the wound's owner, if that matters
   */
-/datum/wound/proc/get_examine_description(mob/user, check_victim = TRUE)
+/datum/wound/proc/get_examine_description(mob/user)
 	if(strikes_to_lose_limb <= 0)
 		return "<span class='deadsay'><B>[victim.p_their(TRUE)] [limb.name] is completely dead and unrecognizable as organic.</B></span>"
 
-	if(check_victim && victim)
-		. = "[victim.p_their(TRUE)] [fake_limb ? fake_limb : limb.name] [examine_desc]"
+	var/condition = ""
+	if(limb.current_gauze)
+		var/bandage_condition
+		switch(limb.current_gauze.absorption_capacity)
+			if(0 to 1.25)
+				bandage_condition = "nearly ruined "
+			if(1.25 to 2.75)
+				bandage_condition = "badly worn "
+			if(2.75 to 4)
+				bandage_condition = "slightly bloodied "
+			if(4 to INFINITY)
+				bandage_condition = "clean "
+
+		condition += " underneath a dressing of [bandage_condition] [limb.current_gauze.name]"
 	else
-		. = "[fake_limb ? fake_limb : limb.name] [examine_desc]"
-		if(severity == WOUND_SEVERITY_LOSS)
-			. = "It's [fake_limb ? fake_limb : limb.name] [examine_desc]"
-	. = (severity <= WOUND_SEVERITY_MODERATE) ? "[.]." : "<B>[.]!</B>"
+		switch(germ_level)
+			if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
+				condition += ", <span class='deadsay'>with small spots of discoloration along the nearby veins</span>"
+			if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
+				condition += ", <span class='deadsay'>with dark clouds spreading outwards under the skin</span>"
+			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
+				condition += ", <span class='deadsay'>with streaks of rotten infection pulsating outward</span>"
+			if(WOUND_INFECTION_SEPTIC to INFINITY)
+				return "<span class='deadsay'><B>[victim.p_their(TRUE)] [limb.name] is a mess of pus and rot, skin literally dripping off the bone with infection</B></span>"
+
+	return "<B>[victim.p_their(TRUE)] [limb.name] [examine_desc][condition]!</B>"
 
 /datum/wound/proc/get_scanner_description(mob/user)
 	var/infection_level = "None"
