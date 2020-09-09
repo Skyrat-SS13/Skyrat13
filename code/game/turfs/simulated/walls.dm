@@ -241,8 +241,9 @@
 
 /turf/closed/wall/proc/try_destroy(obj/item/I, mob/user, turf/T)
 	if(istype(I, /obj/item/pickaxe/drill/jackhammer))
+		var/obj/item/pickaxe/drill/jackhammer/J = I
 		to_chat(user, "<span class='notice'>You begin to smash though [src]...</span>")
-		if(do_after(user, 50, target = src))
+		if(do_after(user, J.wallsmash_time, target = src))
 			if(!istype(src, /turf/closed/wall/))
 				return TRUE
 			I.play_tool_sound(src)
