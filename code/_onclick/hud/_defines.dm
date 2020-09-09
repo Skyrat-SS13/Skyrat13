@@ -76,6 +76,9 @@
 #define ui_drone_head "CENTER-3:14,SOUTH:5"     //maintenance drones
 
 //Lower right, persistent menu
+//SKYRAT CHANGE - wield button
+#define ui_wield "EAST-3:24,SOUTH+1:7"
+//END OF SKYRAT CHANGES
 #define ui_drop_throw "EAST-1:28,SOUTH+1:7"
 #define ui_pull_resist "EAST-2:26,SOUTH+1:7"
 #define ui_movi "EAST-2:26,SOUTH:5"
