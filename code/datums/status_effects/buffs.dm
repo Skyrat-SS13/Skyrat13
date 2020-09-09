@@ -382,7 +382,7 @@
 		var/new_painloss = owner.getPainLoss()
 		if(new_painloss < last_painloss)
 			var/heal_amount = (new_painloss - last_painloss) * 10
-			owner.adjustPainLoss(pain_amount, FALSE)
+			owner.adjustPainLoss(heal_amount, FALSE)
 			new_painloss = owner.getPainLoss()
 			needs_health_update = TRUE
 		last_painloss = new_painloss
