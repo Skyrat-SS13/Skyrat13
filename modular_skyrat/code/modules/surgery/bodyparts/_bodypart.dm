@@ -615,10 +615,6 @@
 	if(rejecting)
 		handle_rejection()
 		. |= BODYPART_LIFE_UPDATE_HEALTH
-	if(germ_level && can_decay() && !(NOINFECTION in owner?.dna?.species?.species_traits) && !(owner && owner.bodytemperature <= 170))
-		update_germs()
-		if(germ_level)
-			. |= BODYPART_LIFE_UPDATE_HEALTH
 
 /obj/item/bodypart/proc/update_germs()
 	if(!can_decay())
@@ -632,6 +628,10 @@
 	handle_germ_effects()
 
 /obj/item/bodypart/proc/handle_germ_sync()
+	//If we have no wounds, nor germ level, no point in trying to update
+	if(!length(wounds) && germ_level)
+		return
+	
 	//If we have antibiotics, then skip over, the infection is going away
 	var/antibiotics = owner.get_antibiotics()
 	if(antibiotics > 0)

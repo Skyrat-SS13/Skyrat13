@@ -402,7 +402,9 @@
 				//Moving makes open wounds get infected much faster
 				for(var/datum/wound/W in BP.wounds)
 					if(W.infection_check())
-						W.germ_level += 1
+						W.germ_level += W.infection_rate
+		//Always try to update the germ level of bodyparts
+		BP.update_germs()
 
 /mob/living/carbon/proc/handle_organs()
 	if(stat != DEAD)
