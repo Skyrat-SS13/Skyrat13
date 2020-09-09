@@ -232,7 +232,7 @@
 			visible_message("<b>[src]</b>'s body becomes limp.")
 		if(prob(2))
 			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nopainloss = TRUE)
-			Knockdown(400)
+			DefaultCombatKnockdown(400)
 
 	if(shock_stage >= SHOCK_STAGE_5)
 		if(prob(5))
@@ -243,12 +243,12 @@
 		if(prob(2))
 			if(!IsUnconscious())
 				custom_pain("[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!", shock_stage, nopainloss = TRUE)
-			Unconscious(rand(500, 1000))
+			Unconscious(rand(500, 800))
 
 	if(shock_stage == SHOCK_STAGE_7)
 		if(IsKnockdown())
 			visible_message("<b>[src]</b> can no longer stand, collapsing!")
-		Knockdown(500)
+		DefaultCombatKnockdown(500)
 
 	if(shock_stage >= SHOCK_STAGE_7)
 		Paralyze(500)
