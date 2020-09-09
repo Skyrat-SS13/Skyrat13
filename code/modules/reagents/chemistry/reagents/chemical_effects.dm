@@ -1,5 +1,5 @@
 GLOBAL_LIST_INIT(chem_effect_caps, list(
-	CE_PAINKILLER = 100,
+	CE_PAINKILLER = 125,
 ))
 
 //Add a chemical effect
