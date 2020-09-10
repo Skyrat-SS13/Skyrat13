@@ -213,9 +213,9 @@
 	is_cold()
 	if((status & BODYPART_FROZEN) || (status & BODYPART_DEAD))
 		return
-	germ_level += rand(2,6)
+	germ_level += rand(MIN_ORGAN_DECAY_INFECTION,MAX_ORGAN_DECAY_INFECTION)
 	if(germ_level >= INFECTION_LEVEL_TWO)
-		germ_level += rand(2,6)
+		germ_level += rand(MIN_ORGAN_DECAY_INFECTION,MAX_ORGAN_DECAY_INFECTION)
 	if(germ_level >= INFECTION_LEVEL_THREE)
 		kill_limb()
 	tox_dam = min(max_tox_damage, tox_dam + (max_tox_damage * decay_factor))
