@@ -767,6 +767,7 @@
 			wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
 		else if(wounding_type == WOUND_INTERNALBLEED)
 			wounding_dmg *= 1.25 // No bones encasing the organs and blood vessels
+		
 		if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
 
@@ -782,13 +783,17 @@
 		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
 		// So a big sharp weapon is still all you need to destroy a limb
 		if(mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE))
-			playsound(src, "sound/effects/crackandbleed.ogg", 100)
+			playsound(src, "modular_skyrat/sound/effects/crackandbleed.ogg", 100)
 			if(wounding_type == WOUND_SLASH && !easy_dismember)
 				wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
 			if(wounding_type == WOUND_PIERCE && !easy_dismember)
 				wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
+			if(wounding_type == WOUND_BLUNT && !easy_dismember)
+				wounding_dmg *= 0.5
 			if((wounding_type == WOUND_SLASH) || (wounding_type == WOUND_PIERCE))
 				wounding_type = WOUND_BLUNT
+			else if(wounding_type == WOUND_BLUNT)
+				wounding_type = WOUND_SLASH
 		// A big blunt weapon too can dismember a limb
 		// If we already have a mangled bone, we start rolling (inefficiently) for slashes
 		if((mangled_state & BODYPART_MANGLED_BONE) && !sharpness)
@@ -796,6 +801,7 @@
 			if(!easy_dismember)
 				wounding_dmg *= 0.5
 			wounding_type = WOUND_SLASH
+		
 		if(mangled_state & BODYPART_MANGLED_BOTH && (try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
 	/*
@@ -974,20 +980,25 @@
 		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
 		// So a big sharp weapon is still all you need to destroy a limb
 		if((mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE)) && sharpness)
-			playsound(src, "sound/effects/crackandbleed.ogg", 100)
+			playsound(src, "modular_skyrat/sound/effects/crackandbleed.ogg", 100)
 			if(wounding_type == WOUND_SLASH && !easy_dismember)
 				phantom_wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
 			if(wounding_type == WOUND_PIERCE && !easy_dismember)
 				phantom_wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
+			if(wounding_type == WOUND_BLUNT && !easy_dismember)
+				phantom_wounding_dmg *= 0.5
 			if((wounding_type == WOUND_SLASH) || (wounding_type == WOUND_PIERCE))
 				wounding_type = WOUND_BLUNT
+			else if(wounding_type == WOUND_BLUNT)
+				wounding_type = WOUND_SLASH
 		// A big blunt weapon too can dismember a limb
 		// If we already have a mangled bone, we start rolling (inefficiently) for slashes
 		if((mangled_state & BODYPART_MANGLED_BONE) && !sharpness)
-			playsound(src, "sound/effects/crackandbleed.ogg", 100)
+			playsound(src, "modular_skyrat/sound/effects/crackandbleed.ogg", 100)
 			if(!easy_dismember)
 				phantom_wounding_dmg *= 0.5
 			wounding_type = WOUND_SLASH
+		
 		if((mangled_state & BODYPART_MANGLED_BOTH) && (try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
 
