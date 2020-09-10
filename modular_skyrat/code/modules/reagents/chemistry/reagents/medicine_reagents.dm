@@ -439,12 +439,12 @@
 /datum/reagent/space_cleaner/sterilizine/reaction_obj(obj/O, reac_volume)
 	. = ..()
 	if(O.germ_level)
-		O.germ_level = max(0, reac_volume * 20)
+		O.janitize(-(reac_volume * 20))
 
 /datum/reagent/space_cleaner/sterilizine/reaction_turf(turf/T, reac_volume)
 	. = ..()
 	if(T.germ_level)
-		T.germ_level = max(0, reac_volume * 20)
+		T.janitize(-(reac_volume * 20))
 
 /datum/reagent/space_cleaner/sterilizine/reaction_mob(mob/living/M, method, reac_volume)
 	. = ..()
