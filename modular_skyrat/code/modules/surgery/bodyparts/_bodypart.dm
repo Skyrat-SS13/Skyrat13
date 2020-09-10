@@ -789,10 +789,13 @@
 				wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
 			if((wounding_type == WOUND_SLASH) || (wounding_type == WOUND_PIERCE))
 				wounding_type = WOUND_BLUNT
-			else if(wounding_type == WOUND_BLUNT)
-				if(!easy_dismember)
-					wounding_dmg *= 0.4 // blunt weapons pass along 40% of their wounding damage to the tissue, since they could tear off limbs with enough force
-				wounding_type = WOUND_SLASH
+		// A big blunt weapon too can dismember a limb
+		// If we already have a mangled bone, we start rolling (inefficiently) for slashes
+		if((mangled_state & BODYPART_MANGLED_BONE) && !sharpness)
+			playsound(src, "sound/effects/crackandbleed.ogg", 100)
+			if(!easy_dismember)
+				wounding_dmg *= 0.4
+			wounding_type = WOUND_SLASH
 		if(mangled_state & BODYPART_MANGLED_BOTH && (try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
 	/*
@@ -978,10 +981,13 @@
 				phantom_wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
 			if((wounding_type == WOUND_SLASH) || (wounding_type == WOUND_PIERCE))
 				wounding_type = WOUND_BLUNT
-			else if(wounding_type == WOUND_BLUNT)
-				if(!easy_dismember)
-					phantom_wounding_dmg *= 0.4 // blunt weapons pass along 40% of their wounding damage to the tissue, since they could tear off limbs with enough force
-				wounding_type = WOUND_SLASH
+		// A big blunt weapon too can dismember a limb
+		// If we already have a mangled bone, we start rolling (inefficiently) for slashes
+		if((mangled_state & BODYPART_MANGLED_BONE) && !sharpness)
+			playsound(src, "sound/effects/crackandbleed.ogg", 100)
+			if(!easy_dismember)
+				phantom_wounding_dmg *= 0.4
+			wounding_type = WOUND_SLASH
 		if((mangled_state & BODYPART_MANGLED_BOTH) && (try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
 
