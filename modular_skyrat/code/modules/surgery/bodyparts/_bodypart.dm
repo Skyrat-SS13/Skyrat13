@@ -182,7 +182,8 @@
 	if(starting_children.len)
 		for(var/I in starting_children)
 			new I(src)
-	pain_disability_threshold = (max_damage * 0.8)
+	if(!pain_disability_threshold)
+		pain_disability_threshold = (max_damage * 0.75)
 	if(!max_tox_damage)
 		max_tox_damage = max_damage
 	if(!max_pain_damage)
@@ -610,7 +611,7 @@
 	if(stam_heal_tick && stamina_dam > DAMAGE_PRECISION)
 		//Pain makes you regenerate stamina slower.
 		//At maximum pain, you barely regenerate stamina on the limb.
-		var/pain_multiplier = max(0.1, 1- (get_pain()/max_pain_damage))
+		var/pain_multiplier = max(0.1, 1 - (get_pain()/max_pain_damage))
 		if(heal_damage(stamina = (stam_heal_tick * (disabled ? 2 : 1) * pain_multiplier), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(pain_heal_tick && pain_dam > DAMAGE_PRECISION)
@@ -838,70 +839,90 @@
 	var/can_inflict = max_damage - get_damage()
 	var/can_inflict_brute = max(0, (brute/max(1, total_damage)) * can_inflict)
 	var/can_inflict_burn = max(0, (burn/max(1, total_damage)) * can_inflict)
+	var/can_inflict_stamina = max(0, max_stamina_damage - stamina_dam)
+	var/can_inflict_toxin = max(0, max_tox_damage - tox_dam)
+	var/can_inflict_clone = max(0, max_clone_damage - clone_dam)
+	var/can_inflict_pain = max(0, max_pain_damage - get_pain())
 
 	//We save these values to spread out to other limbs
 	var/extrabrute = max(0, brute - can_inflict_brute)
 	var/extraburn = max(0, burn - can_inflict_burn)
-
+	var/extrastamina = max(0, stamina - can_inflict_stamina)
+	var/extratoxin = max(0, toxin - can_inflict_toxin)
+	var/extraclone = max(0, clone - can_inflict_clone)
+	var/extrapain = max(0, pain - can_inflict_pain)
+	
+	if(stamina && (stamina > can_inflict_stamina))
+		stamina = can_inflict_stamina
+	if(toxin && (toxin > can_inflict_toxin))
+		stamina = can_inflict_toxin
+	if(clone && (clone > can_inflict_clone))
+		clone = can_inflict_clone
+	if(pain && (pain > can_inflict_pain))
+		pain = can_inflict_pain
+	
 	if(total_damage && (total_damage > can_inflict))
 		brute = can_inflict_brute
 		burn = can_inflict_burn
-		if(owner && spread_damage && (extrabrute || extraburn))
-			//We still have damage left. Time to spread.
-			//First we get the body zones.
-			var/list/spreadable_limbs = list()
-			if(dismember_bodyzone)
-				spreadable_limbs |= dismember_bodyzone
-			if(parent_bodyzone)
-				spreadable_limbs |= parent_bodyzone
-			if(length(children_zones))
-				spreadable_limbs |= children_zones
-			
-			//We replace the body zones with the appropriate limbs
-			for(var/i in spreadable_limbs)
-				spreadable_limbs -= i
-				var/obj/item/bodypart/BP = owner.get_bodypart(i)
-				if(BP && ((BP.brute_dam + BP.burn_dam) < BP.max_damage))
-					spreadable_limbs |= BP
-				else if(BP && ((BP.brute_dam + BP.burn_dam) >= BP.max_damage) && owner.get_bodypart(BP.dismember_bodyzone))
-					spreadable_limbs |= owner.get_bodypart(BP.dismember_bodyzone)
-			
-			//We have the limbs. Now we divide the damage appropriately between children and parent.
-			if(length(spreadable_limbs))
-				extrabrute = round(extrabrute/length(spreadable_limbs), 1)
-				extraburn = round(extraburn/length(spreadable_limbs), 1)
-				for(var/obj/item/bodypart/damage_limb in spreadable_limbs)
-					//We apply damage without any armor checks, because the limb that made it suffer damage is absolutely FUCKED anyways.
-					damage_limb.receive_damage(brute = extrabrute, burn = extraburn, sharpness = sharpness, spread_damage = FALSE)
+	
+	if(owner && spread_damage && (extrabrute || extraburn || extrastamina || extraclone || extrapain))
+		//We still have damage left. Time to spread.
+		//First we get the body zones.
+		var/list/spreadable_limbs = list()
+		if(dismember_bodyzone)
+			spreadable_limbs |= dismember_bodyzone
+		if(parent_bodyzone)
+			spreadable_limbs |= parent_bodyzone
+		if(length(children_zones))
+			spreadable_limbs |= children_zones
+		
+		//We replace the body zones with the appropriate limbs
+		for(var/i in spreadable_limbs)
+			spreadable_limbs -= i
+			var/obj/item/bodypart/BP = owner.get_bodypart(i)
+			if(BP && ((BP.brute_dam + BP.burn_dam) < BP.max_damage))
+				spreadable_limbs |= BP
+			else if(BP && ((BP.brute_dam + BP.burn_dam) >= BP.max_damage) && owner.get_bodypart(BP.dismember_bodyzone))
+				spreadable_limbs |= owner.get_bodypart(BP.dismember_bodyzone)
+		
+		//We have the limbs. Now we divide the damage appropriately between children and parent.
+		if(length(spreadable_limbs))
+			extrabrute = round(extrabrute/length(spreadable_limbs), 1)
+			extraburn = round(extraburn/length(spreadable_limbs), 1)
+			extrastamina = round(extrastamina/length(spreadable_limbs), 1)
+			extratoxin = round(extratoxin/length(spreadable_limbs), 1)
+			extraclone = round(extraclone/length(spreadable_limbs), 1)
+			extrapain = round(extrapain/length(spreadable_limbs), 1)
+			for(var/obj/item/bodypart/damage_limb in spreadable_limbs)
+				//We apply damage without any armor checks, because the limb that made it suffer damage is absolutely FUCKED anyways.
+				damage_limb.receive_damage(brute = extrabrute, burn = extraburn, stamina = extrastamina, toxin = extratoxin, clone = extraclone, pain = extrapain, sharpness = sharpness, spread_damage = FALSE)
 
 	brute_dam += brute
 	burn_dam += burn
-
-	if((status & BODYPART_ROBOTIC) && owner)
-		if((brute+burn)>3 && prob((20+brute+burn)))
-			do_sparks(3,FALSE,src.owner)
-
-	for(var/i in wounds)
-		var/datum/wound/W = i
-		W.receive_damage(sharpness, wounding_dmg, wound_bonus, pain)
-
-	//We've dealt the physical damages, if there's room lets apply the stamina, toxin and clone damage.
-	stamina_dam += round(clamp(stamina, 0, max_stamina_damage - stamina_dam), DAMAGE_PRECISION)
-	tox_dam += round(clamp(toxin, 0, max_tox_damage - tox_dam), DAMAGE_PRECISION)
-	clone_dam += round(clamp(clone, 0, max_clone_damage - clone_dam), DAMAGE_PRECISION)
+	stamina_dam += stamina
+	tox_dam += toxin
+	clone_dam += clone
 
 	//We've dealt with everything else, so let's share the pain
 	if(!can_feel_pain())
 		//Or not - The trip was cut short
 		pain = 0
-
-	if(owner)
-		pain = max(0, pain - (owner.chem_effects[CE_PAINKILLER]/3))
 	
-	pain_dam = max(0,min(max_pain_damage, pain_dam + pain))
-	if(pain && owner && (pain >= (max_pain_damage * 0.75)) && prob(10))
-		owner.emote("scream")
+	pain_dam += (pain - (owner?.chem_effects[CE_PAINKILLER]/3))
 
+	if(pain && owner && (pain >= (max_pain_damage * 0.5)) && prob(10))
+		owner.emote("scream")
+	
+	if((status & BODYPART_ROBOTIC) && owner)
+		if((brute+burn)>3 && prob((20+brute+burn)))
+			do_sparks(3,FALSE,src.owner)
+
+	//Damage the wounds, too
+	for(var/i in wounds)
+		var/datum/wound/W = i
+		W.receive_damage(sharpness, wounding_dmg, wound_bonus, pain)
+
+	//Update the owner's health stuffies
 	if(owner && updating_health)
 		owner.updatehealth()
 		if(stamina > DAMAGE_PRECISION)

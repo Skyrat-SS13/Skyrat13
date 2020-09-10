@@ -3,6 +3,7 @@
 	desc = "Some say groin came from  Grynde, which is middle-ages speak for depression. Makes sense for the situation."
 	icon_state = "default_human_groin"
 	max_damage = 100
+	max_stamina_damage = 100
 	body_zone = BODY_ZONE_PRECISE_GROIN
 	body_part = GROIN
 	px_x = 0

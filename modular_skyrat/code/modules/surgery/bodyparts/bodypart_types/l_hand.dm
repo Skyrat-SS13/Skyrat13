@@ -4,8 +4,8 @@
 	icon_state = "default_human_l_hand"
 	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
 	attack_verb = list("slapped", "punched")
-	max_damage = 50
-	max_stamina_damage = 50
+	max_damage = 30
+	max_stamina_damage = 30
 	body_zone = BODY_ZONE_PRECISE_L_HAND
 	body_part = HAND_LEFT
 	held_index = 1
