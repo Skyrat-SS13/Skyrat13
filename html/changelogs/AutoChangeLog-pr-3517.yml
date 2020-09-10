@@ -1,5 +1,0 @@
-author: "coldud13"
-delete-after: True
-changes: 
-  - rscadd: "things contaminated with radiation now glow."
-  - rscadd: "Engineering scanners in the radiation mode can provide more info."
