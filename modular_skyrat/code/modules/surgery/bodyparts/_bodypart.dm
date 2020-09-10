@@ -194,7 +194,8 @@
 		organ_damage_requirement = max_damage * 0.2
 	if(!organ_damage_hit_minimum)
 		organ_damage_hit_minimum = 5
-	START_PROCESSING(SSobj, src) //runs decay when outside of a person AND ONLY WHEN OUTSIDE (i.e. long obj).
+	//Runs decay when outside of a person AND ONLY WHEN OUTSIDE (i.e. long obj).
+	START_PROCESSING(SSobj, src)
 
 //Processing outside the body
 /obj/item/bodypart/process()

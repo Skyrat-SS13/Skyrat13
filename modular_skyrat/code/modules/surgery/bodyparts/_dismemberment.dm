@@ -185,6 +185,10 @@
 		for(var/obj/item/organ/O in src)
 			O.applyOrganDamage(O.maxHealth/10 * 9)
 			O.forceMove(get_turf(src))
+	
+	//Start processing rotting
+	START_PROCESSING(SSobj, src)
+	
 	C.update_health_hud() //update the healthdoll
 	C.update_body()
 	C.update_hair()
