@@ -781,7 +781,7 @@
 			wounding_dmg *= 1.1
 		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
 		// So a big sharp weapon is still all you need to destroy a limb
-		else if(mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE))
+		if(mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE))
 			playsound(src, "sound/effects/crackandbleed.ogg", 100)
 			if(wounding_type == WOUND_SLASH && !easy_dismember)
 				wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
@@ -793,7 +793,7 @@
 				if(!easy_dismember)
 					wounding_dmg *= 0.4 // blunt weapons pass along 40% of their wounding damage to the tissue, since they could tear off limbs with enough force
 				wounding_type = WOUND_SLASH
-		else if(mangled_state & BODYPART_MANGLED_BOTH && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
+		if(mangled_state & BODYPART_MANGLED_BOTH && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
 	/*
 	// END WOUND HANDLING
@@ -970,7 +970,7 @@
 			phantom_wounding_dmg *= 1.1
 		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
 		// So a big sharp weapon is still all you need to destroy a limb
-		else if((mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE)) && sharpness)
+		if((mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE)) && sharpness)
 			playsound(src, "sound/effects/crackandbleed.ogg", 100)
 			if(wounding_type == WOUND_SLASH && !easy_dismember)
 				phantom_wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
@@ -982,7 +982,7 @@
 				if(!easy_dismember)
 					phantom_wounding_dmg *= 0.4 // blunt weapons pass along 40% of their wounding damage to the tissue, since they could tear off limbs with enough force
 				wounding_type = WOUND_SLASH
-		else if((mangled_state & BODYPART_MANGLED_BOTH) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
+		if((mangled_state & BODYPART_MANGLED_BOTH) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
 			return
 
 	check_wounding(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)
