@@ -113,10 +113,10 @@
 
 /mob/living/carbon/send_item_attack_message(obj/item/I, mob/living/user, hit_area, current_force, obj/item/bodypart/hit_BP)
 	var/extra_wound_details = ""
-	if(I.damtype == BRUTE && hit_BP.can_dismember())
+	if(I.damtype == BRUTE && hit_BP && hit_BP.can_dismember())
 		var/mangled_state = hit_BP.get_mangled_state()
 		var/bio_state = get_biological_state()
-		if(mangled_state & BODYPART_MANGLED_BOTH)
+		if(mangled_state == BODYPART_MANGLED_BOTH)
 			extra_wound_details = ", threatening to sever it entirely"
 			if(hit_BP.body_zone == BODY_ZONE_CHEST)
 				extra_wound_details = ", threatening to disembowel it entirely"
