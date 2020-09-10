@@ -789,7 +789,7 @@
 	//SKYRAT EDIT, Painkiller.
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.add_chem_effect(CE_PAINKILLER, 90) //Morphine is very strong.
+		C.add_chem_effect(CE_PAINKILLER, 100) //Morphine is very strong.
 	//
 	L.add_movespeed_mod_immunities(type, list(/datum/movespeed_modifier/damage_slowdown, /datum/movespeed_modifier/damage_slowdown_flying, /datum/movespeed_modifier/monkey_health_speedmod))
 
@@ -798,7 +798,7 @@
 	//SKYRAT EDIT, Painkiller.
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.remove_chem_effect(CE_PAINKILLER, 90) //Morphine is very strong.
+		C.remove_chem_effect(CE_PAINKILLER, 100) //Morphine is very strong.
 	//
 	..()
 
