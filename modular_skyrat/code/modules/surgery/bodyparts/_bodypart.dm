@@ -1715,8 +1715,6 @@
 
 	if(!animal_origin)
 		var/mob/living/carbon/human/H = C
-		color_src = FALSE
-
 		var/datum/species/S = H.dna.species
 		base_bp_icon = S?.icon_limbs || DEFAULT_BODYPART_ICON
 		species_id = S.limbs_id
@@ -1899,38 +1897,6 @@
 						auxmarking += image(body_markings_icon, "[body_markings]_[I]", -aux_layer, image_dir)
 			. += aux
 			. += auxmarking
-		/*
-		if((body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_CHEST)) && (!owner || dropped))
-			for(var/obj/item/organ/genital/G in src)
-				var/datum/sprite_accessory/S
-				var/size = G.size
-				switch(G.type)
-					if(/obj/item/organ/genital/penis)
-						S = GLOB.cock_shapes_list[G.shape]
-					if(/obj/item/organ/genital/testicles)
-						S = GLOB.balls_shapes_list[G.shape]
-					if(/obj/item/organ/genital/vagina)
-						S = GLOB.vagina_shapes_list[G.shape]
-					if(/obj/item/organ/genital/breasts)
-						S = GLOB.breasts_shapes_list[G.shape]
-
-				if(!S || S.icon_state == "none")
-					continue
-				var/aroused_state = FALSE
-				var/accessory_icon = S.icon
-				var/do_center = S.center
-				var/dim_x = S.dimension_x
-				var/dim_y = S.dimension_y
-
-				var/mutable_appearance/genital_overlay = mutable_appearance(accessory_icon, layer = -GENITALS_EXPOSED_LAYER)
-				if(do_center)
-					genital_overlay = center_image(genital_overlay, dim_x, dim_y)
-
-				genital_overlay.color = G.color
-
-				genital_overlay.icon_state = "[G.slot]_[S.icon_state]_[size][(original_owner?.dna?.species?.use_skintones && !original_owner?.dna?.skin_tone_override) ? "_s" : ""]_[aroused_state]_FRONT"
-				. += genital_overlay
-		*/
 	else
 		limb.icon = icon
 		if(should_draw_gender)
@@ -1965,38 +1931,6 @@
 				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
 			. += marking
 		
-		/*
-		if((body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_CHEST)) && (!owner || dropped))
-			for(var/obj/item/organ/genital/G in src)
-				var/datum/sprite_accessory/S
-				var/size = G.size
-				switch(G.type)
-					if(/obj/item/organ/genital/penis)
-						S = GLOB.cock_shapes_list[G.shape]
-					if(/obj/item/organ/genital/testicles)
-						S = GLOB.balls_shapes_list[G.shape]
-					if(/obj/item/organ/genital/vagina)
-						S = GLOB.vagina_shapes_list[G.shape]
-					if(/obj/item/organ/genital/breasts)
-						S = GLOB.breasts_shapes_list[G.shape]
-
-				if(!S || S.icon_state == "none")
-					continue
-				var/aroused_state = FALSE
-				var/accessory_icon = S.icon
-				var/do_center = S.center
-				var/dim_x = S.dimension_x
-				var/dim_y = S.dimension_y
-
-				var/mutable_appearance/genital_overlay = mutable_appearance(accessory_icon, layer = -GENITALS_EXPOSED_LAYER)
-				if(do_center)
-					genital_overlay = center_image(genital_overlay, dim_x, dim_y)
-
-				genital_overlay.color = G.color
-
-				genital_overlay.icon_state = "[G.slot]_[S.icon_state]_[size][(original_owner?.dna?.species?.use_skintones && !original_owner?.dna?.skin_tone_override) ? "_s" : ""]_[aroused_state]_FRONT"
-				. += genital_overlay
-		*/
 	if(color_src) //TODO - add color matrix support for base species limbs
 		var/draw_color = mutation_color || species_color
 		var/grayscale = FALSE
