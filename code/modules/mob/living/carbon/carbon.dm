@@ -944,7 +944,13 @@
 		B.brain_death = FALSE
 	for(var/O in internal_organs)
 		var/obj/item/organ/organ = O
+		organ.rejecting = FALSE
 		organ.setOrganDamage(0)
+		organ.janitize(0, 0, 0)
+	for(var/BP in bodyparts)
+		var/obj/item/bodypart/bodypart = BP
+		bodypart.rejecting = FALSE
+		bodypart.janitize(0, 0, 0)
 	for(var/thing in diseases)
 		var/datum/disease/D = thing
 		if(D.severity != DISEASE_SEVERITY_POSITIVE)
@@ -1290,7 +1296,7 @@
 	. = BIO_INORGANIC
 
 /mob/living/carbon/is_asystole()
-	if(!needs_heart())
+	if(!needs_heart() || HAS_TRAIT(src, TRAIT_STABLEHEART))
 		return FALSE
 	
 	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
@@ -1302,6 +1308,8 @@
 /mob/living/carbon/proc/get_blood_circulation()
 	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
 	var/apparent_blood_volume = blood_volume
+	if(HAS_TRAIT(src, TRAIT_STABLEHEART))
+		return blood_volume
 	if(!heart && needs_heart())
 		return 0.1 * apparent_blood_volume
 
@@ -1403,7 +1411,7 @@
 	if(method == GETPULSE_ADVANCED)
 		return "[bpm]"
 	else
-		return "[bpm + rand(-10, 10)]"
+		return "[bpm > 0 ? max(0, bpm + rand(-10, 10)) : 0]"
 
 //Get how damaged the mob is, regardless of how fucked the brain is.
 /mob/living/carbon/get_physical_damage()

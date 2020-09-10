@@ -39,8 +39,9 @@
 	. = ..()
 	stop_if_unowned()
 
-/obj/item/organ/heart/proc/is_working()
-	if((organ_flags & ORGAN_FAILING) || (damage >= high_threshold))
+/obj/item/organ/heart/is_working()
+	. = ..()
+	if(!. || (damage >= high_threshold))
 		return FALSE
 	
 	return pulse > PULSE_NONE || (owner && HAS_TRAIT(owner, TRAIT_FAKEDEATH))
@@ -167,7 +168,7 @@
 		else
 			heartbeat++
 	
-	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
+	if(!is_working())	//heart broke, stopped beating, death imminent
 		if(owner.stat == CONSCIOUS)
 			owner.visible_message("<span class='userdanger'>[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!</span>")
 		owner.set_heartattack(TRUE)

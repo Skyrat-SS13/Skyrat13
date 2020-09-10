@@ -127,7 +127,7 @@
 	. = FALSE
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant)
-		. = (100 * (mob_occupant.get_physical_damage() / (heal_level + 100)))
+		. = (100 * ((mob_occupant.get_physical_damage() + 100) / (heal_level + 100)))
 
 /obj/machinery/clonepod/attack_ai(mob/user)
 	return examine(user)
@@ -201,6 +201,7 @@
 	ADD_TRAIT(H, TRAIT_MUTE, CLONING_POD_TRAIT)
 	ADD_TRAIT(H, TRAIT_NOBREATH, CLONING_POD_TRAIT)
 	ADD_TRAIT(H, TRAIT_NOCRITDAMAGE, CLONING_POD_TRAIT)
+	ADD_TRAIT(H, TRAIT_NOPAIN, CLONING_POD_TRAIT)
 	H.Unconscious(80)
 
 	clonemind.transfer_to(H)
@@ -404,6 +405,7 @@
 	REMOVE_TRAIT(mob_occupant, TRAIT_EMOTEMUTE, CLONING_POD_TRAIT)
 	REMOVE_TRAIT(mob_occupant, TRAIT_MUTE, CLONING_POD_TRAIT)
 	REMOVE_TRAIT(mob_occupant, TRAIT_NOCRITDAMAGE, CLONING_POD_TRAIT)
+	REMOVE_TRAIT(mob_occupant, TRAIT_NOPAIN, CLONING_POD_TRAIT)
 	REMOVE_TRAIT(mob_occupant, TRAIT_NOBREATH, CLONING_POD_TRAIT)
 
 	if(grab_ghost_when == CLONER_MATURE_CLONE)

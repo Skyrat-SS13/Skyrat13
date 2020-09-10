@@ -247,13 +247,13 @@
 				REMOVE_SKILL_MODIFIER_BODY(/datum/skill_modifier/heavy_brain_damage, null, owner)
 		return
 	damage_delta = damage - prev_damage
-	if(damage > BRAIN_DAMAGE_MILD)
+	if((damage > BRAIN_DAMAGE_MILD) && (damage_delta > MINIMUM_DAMAGE_TRAUMA_ROLL))
 		if(prob(damage_delta * (1 + max(0, (damage - BRAIN_DAMAGE_MILD)/100)))) //Base chance is the hit damage; for every point of damage past the threshold the chance is increased by 1% //learn how to do your bloody math properly goddamnit
 			gain_trauma_type(BRAIN_TRAUMA_MILD, natural_gain = TRUE)
 			if(prev_damage <= BRAIN_DAMAGE_MILD && owner)
 				var/datum/skill_modifier/S
 				ADD_SKILL_MODIFIER_BODY(/datum/skill_modifier/brain_damage, null, owner, S)
-	if(damage > BRAIN_DAMAGE_SEVERE)
+	if((damage > BRAIN_DAMAGE_SEVERE) && (damage_delta > MINIMUM_DAMAGE_TRAUMA_ROLL))
 		if(prob(damage_delta * (1 + max(0, (damage - BRAIN_DAMAGE_SEVERE)/100)))) //Base chance is the hit damage; for every point of damage past the threshold the chance is increased by 1%
 			if(prob(20))
 				gain_trauma_type(BRAIN_TRAUMA_SPECIAL, natural_gain = TRUE)
@@ -262,7 +262,7 @@
 			if(prev_damage <= BRAIN_DAMAGE_SEVERE && owner)
 				var/datum/skill_modifier/S
 				ADD_SKILL_MODIFIER_BODY(/datum/skill_modifier/heavy_brain_damage, null, owner, S)
-	if (owner)
+	if(owner && (damage_delta > MINIMUM_DAMAGE_TRAUMA_ROLL)) //Don't spam the owner if we didn't roll for traumas
 		if(owner.stat < UNCONSCIOUS) //conscious or soft-crit
 			var/brain_message
 			if(prev_damage < BRAIN_DAMAGE_MILD && damage >= BRAIN_DAMAGE_MILD)

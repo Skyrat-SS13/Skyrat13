@@ -96,7 +96,7 @@
 	var/datum/gas_mixture/breath
 
 	if(is_asystole() && !getorganslot(ORGAN_SLOT_BREATHING_TUBE) && !chem_effects[CE_STABLE])
-		if(nervous_system_failure() || (pulledby && pulledby.grab_state >= GRAB_KILL) || HAS_TRAIT(src, TRAIT_MAGIC_CHOKE) || (lungs && lungs.organ_flags & ORGAN_FAILING))
+		if(nervous_system_failure() || (pulledby && pulledby.grab_state >= GRAB_KILL) || HAS_TRAIT(src, TRAIT_MAGIC_CHOKE) || (lungs && CHECK_BITFIELD(lungs.organ_flags, ORGAN_FAILING | ORGAN_DEAD)))
 			losebreath++  //You can't breath at all!
 		else
 			losebreath += 0.25 //You're having trouble breathing.
@@ -723,7 +723,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	var/obj/item/organ/liver/liver = getorganslot(ORGAN_SLOT_LIVER)
 	if((!dna && !liver) || (NOLIVER in dna.species.species_traits))
 		return
-	if(!liver || liver.organ_flags & ORGAN_FAILING)
+	if(!liver || CHECK_BITFIELD(liver.organ_flags, ORGAN_FAILING | ORGAN_DEAD))
 		liver_failure()
 
 /mob/living/carbon/proc/liver_failure()
@@ -742,7 +742,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	var/obj/item/organ/kidneys/kidneys = getorganslot(ORGAN_SLOT_LIVER)
 	if((!dna && !kidneys) || (NOKIDNEYS in dna.species.species_traits))
 		return
-	if(!kidneys || kidneys.organ_flags & ORGAN_FAILING)
+	if(!kidneys || CHECK_BITFIELD(kidneys.organ_flags, ORGAN_FAILING | ORGAN_DEAD))
 		liver_failure()
 
 /mob/living/carbon/proc/kidney_failure()
@@ -779,7 +779,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		return FALSE
 	
 	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
-	if(!heart || (heart.organ_flags & ORGAN_SYNTHETIC))
+	if(!heart || CHECK_BITFIELD(heart.organ_flags, ORGAN_SYNTHETIC) || CHECK_BITFIELD(heart.status, ORGAN_ROBOTIC))
 		return FALSE
 	return TRUE
 

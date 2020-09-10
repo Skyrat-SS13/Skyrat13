@@ -58,6 +58,16 @@
 		Remove(TRUE)
 	return ..()
 
+/obj/item/organ/janitize(add_germs, minimum_germs, maximum_germs)
+	..()
+	if(germ_level >= INFECTION_LEVEL_THREE)
+		kill_organ()
+	else
+		revive_organ()
+
+/obj/item/organ/proc/is_working()
+	return !CHECK_BITFIELD(organ_flags, ORGAN_FAILING | ORGAN_DEAD)
+
 /obj/item/organ/proc/is_bruised()
 	return damage >= low_threshold
 
@@ -80,6 +90,9 @@
 		if(owner)
 			owner.death()
 
+/obj/item/organ/proc/revive_organ()
+	organ_flags &= ~ORGAN_DEAD
+
 /obj/item/organ/proc/can_recover()
 	return ((maxHealth > 0) && !(organ_flags & ORGAN_DEAD)) || (death_time >= world.time - ORGAN_RECOVERY_THRESHOLD)
 
@@ -88,8 +101,11 @@
 
 /obj/item/organ/proc/get_pain()
 	var/damage_mult = 1
+	//Robotic organs do not feel pain, simply for balancing reasons
+	//Thus lowering the shock of IPCs and other synths is easier, as
+	//they don't have many painkillers
 	if(status & ORGAN_ROBOTIC)
-		damage_mult *= 0.5
+		damage_mult *= 0
 	return (damage * damage_mult * pain_multiplier)
 
 /obj/item/organ/proc/is_robotic()

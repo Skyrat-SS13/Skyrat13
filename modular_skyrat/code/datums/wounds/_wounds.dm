@@ -53,6 +53,8 @@
 	var/fake_limb = null
 	/// The body zone of the phantom limb
 	var/fake_body_zone = null
+	/// Wound flags, mostly used to handle mangling
+	var/wound_flags = 0
 
 	/// Specific items such as bandages or sutures that can try directly treating this wound
 	var/list/treatable_by

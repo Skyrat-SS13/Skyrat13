@@ -210,48 +210,31 @@
   * Returns: BODYPART_MANGLED_NONE if we're fine, BODYPART_MANGLED_SKIN if our skin is broken, BODYPART_MANGLED_BONE if our bone is broken, or BODYPART_MANGLED_BOTH if both are broken and we're up for dismembering
   */
 /obj/item/bodypart/proc/get_mangled_state()
-	if(!owner)
-		return FALSE
 	. = BODYPART_MANGLED_NONE
+
+	var/biological_state = owner?.get_biological_state()
 	var/required_bone_severity = WOUND_SEVERITY_SEVERE
-	var/required_flesh_severity = WOUND_SEVERITY_SEVERE
+	var/required_muscle_severity = WOUND_SEVERITY_SEVERE
 	var/required_skin_severity = WOUND_SEVERITY_MODERATE
 
-	if(owner && (owner.get_biological_state() == BIO_BONE || owner.get_biological_state() == BIO_BONE|BIO_SKIN) && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
+	if(biological_state && (biological_state & BIO_BONE) && !(biological_state & BIO_FLESH) && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		required_bone_severity = WOUND_SEVERITY_CRITICAL
 	
-	if(owner && (owner.get_biological_state() == BIO_FLESH || owner.get_biological_state() == BIO_FLESH|BIO_SKIN) && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
-		required_flesh_severity = WOUND_SEVERITY_CRITICAL
+	if(biological_state && (biological_state & BIO_FLESH) && !(biological_state & BIO_FLESH) && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
+		required_muscle_severity = WOUND_SEVERITY_CRITICAL
 
-	if(owner && owner.get_biological_state() == BIO_SKIN && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
+	if(biological_state && (biological_state == BIO_SKIN) && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		required_skin_severity = WOUND_SEVERITY_CRITICAL
 
 	// we can (generally) only have one wound per type, but remember there's multiple types
-	for(var/datum/wound/W in wounds)
-		//using the wound_type variable DOES NOT FUCKING WORK AT ALL.
-		//we have to settle for stupidity.
-		if((istype(W, /datum/wound/blunt)) && (W.severity >= required_bone_severity))
+	for(var/i in wounds)
+		var/datum/wound/W = i
+		if((W.wound_flags & MANGLES_SKIN) && (W.severity >= required_skin_severity))
+			. |= BODYPART_MANGLED_SKIN
+		if((W.wound_flags & MANGLES_MUSCLE) && (W.severity >= required_muscle_severity))
+			. |= BODYPART_MANGLED_MUSCLE
+		if((W.wound_flags & MANGLES_BONE) && (W.severity >= required_bone_severity))
 			. |= BODYPART_MANGLED_BONE
-		else if((istype(W, /datum/wound/mechanical/blunt)) && (W.severity >= required_bone_severity))
-			. |= BODYPART_MANGLED_BONE
-		
-		if((istype(W, /datum/wound/slash)) && (W.severity >= required_flesh_severity))
-			. |= BODYPART_MANGLED_MUSCLE
-		else if((istype(W, /datum/wound/pierce)) && (W.severity >= required_flesh_severity))
-			. |= BODYPART_MANGLED_MUSCLE
-		else if((istype(W, /datum/wound/mechanical/slash)) && (W.severity >= required_flesh_severity))
-			. |= BODYPART_MANGLED_MUSCLE
-		else if((istype(W, /datum/wound/mechanical/pierce)) && (W.severity >= required_flesh_severity))
-			. |= BODYPART_MANGLED_MUSCLE
-		
-		if((istype(W, /datum/wound/slash)) && (W.severity >= required_skin_severity))
-			. |= BODYPART_MANGLED_SKIN
-		else if((istype(W, /datum/wound/pierce)) && (W.severity >= required_skin_severity))
-			. |= BODYPART_MANGLED_SKIN
-		else if((istype(W, /datum/wound/mechanical/slash)) && (W.severity >= required_skin_severity))
-			. |= BODYPART_MANGLED_SKIN
-		else if((istype(W, /datum/wound/mechanical/pierce)) && (W.severity >= required_skin_severity))
-			. |= BODYPART_MANGLED_SKIN
 
 /**
   * try_dismember() is used, once we've confirmed that a flesh and bone bodypart has both the skin, muscle and bone mangled, to actually roll for it

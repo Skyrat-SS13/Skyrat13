@@ -96,7 +96,7 @@
 
 // Returns a percentage value for use by GetOxyloss().
 /obj/item/organ/lungs/proc/get_oxygen_deprivation()
-	if(status & ORGAN_FAILING)
+	if(!is_working())
 		return 100
 	return round((oxygen_deprivation/owner.maxHealth)*100)
 
@@ -570,10 +570,10 @@
 	. = ..()
 	if(!.)
 		return
-	if(!failed && organ_flags & ORGAN_FAILING)
+	if(!failed && !is_working())
 		if(owner && owner.stat == CONSCIOUS)
 			owner.visible_message("<span class='danger'>[owner] grabs [owner.p_their()] throat, struggling for breath!</span>", \
 								"<span class='userdanger'>You suddenly feel like you can't breathe!</span>")
 		failed = TRUE
-	else if(!(organ_flags & ORGAN_FAILING))
+	else if(is_working())
 		failed = FALSE

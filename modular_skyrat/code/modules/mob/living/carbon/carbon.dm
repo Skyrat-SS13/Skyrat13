@@ -37,26 +37,6 @@
 	. = 0
 	. += chem_effects[CE_ANTIBIOTIC]
 
-/mob/living/carbon/succumb()
-	set name = "Succumb"
-	set category = "IC"
-	if(src.has_status_effect(/datum/status_effect/chem/enthrall))
-		var/datum/status_effect/chem/enthrall/E = src.has_status_effect(/datum/status_effect/chem/enthrall)
-		if(E.phase < 3)
-			if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
-				to_chat(src, "<span class='notice'>Your mindshield prevents your mind from giving in!</span>")
-			else if(src.mind.assigned_role in GLOB.command_positions)
-				to_chat(src, "<span class='notice'>Your dedication to your department prevents you from giving in!</span>")
-			else
-				E.enthrallTally += 20
-				to_chat(src, "<span class='notice'>You give into [E.master]'s influence.</span>")
-	if(InShock())
-		log_message("Has succumbed to death while in [InFullShock() ? "hard":"soft"] shock with [round(health, 0.1)] points of health!", LOG_ATTACK)
-		adjustOxyLoss(health - HEALTH_THRESHOLD_DEAD)
-		updatehealth()
-		to_chat(src, "<span class='notice'>You have given up life and succumbed to death.</span>")
-		death()
-
 /mob/living/carbon/Move(atom/newloc, direct = 0)
 	. = ..()
 	if(gunpointing)
@@ -90,18 +70,45 @@
 	. = ..()
 	remove_all_embedded_objects()
 
+/mob/living/carbon/revive(full_heal, admin_revive)
+	. = ..()
+	//Regardless of full heal or not, we cap brain damage to 150 max
+	if(getOrganLoss(ORGAN_SLOT_BRAIN) > 150)
+		setOrganLoss(ORGAN_SLOT_BRAIN, 150)
+
+/mob/living/carbon/succumb()
+	set name = "Succumb"
+	set category = "IC"
+	if(src.has_status_effect(/datum/status_effect/chem/enthrall))
+		var/datum/status_effect/chem/enthrall/E = src.has_status_effect(/datum/status_effect/chem/enthrall)
+		if(E.phase < 3)
+			if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
+				to_chat(src, "<span class='notice'>Your mindshield prevents your mind from giving in!</span>")
+			else if(src.mind.assigned_role in GLOB.command_positions)
+				to_chat(src, "<span class='notice'>Your dedication to your department prevents you from giving in!</span>")
+			else
+				E.enthrallTally += 20
+				to_chat(src, "<span class='notice'>You give into [E.master]'s influence.</span>")
+	if(InShock())
+		log_message("Has succumbed to death while in [InFullShock() ? "hard":"soft"] shock with [round(health, 0.1)] points of health!", LOG_ATTACK)
+		adjustOxyLoss(health - HEALTH_THRESHOLD_DEAD)
+		updatehealth()
+		to_chat(src, "<span class='notice'>You have given up life and succumbed to death.</span>")
+		death()
+
 /mob/living/carbon/verb/check_pulse()
 	set category = "Object"
 	set name = "Check pulse"
 	set desc = "Approximately count somebody's pulse. Requires you to stand still at least 6 seconds."
 	set src in view(1)
 
-	if(!usr.canUseTopic(src, TRUE) || INTERACTING_WITH(usr, src))
-		return FALSE
-	
 	var/self = FALSE
 	if(usr == src)
 		self = TRUE
+	
+	if(!usr.canUseTopic(src, TRUE) || INTERACTING_WITH(usr, src))
+		to_chat(usr, "<span class='warning'>You're unable to check [self ? "your" : "[src]'s"] pulse.</</span>")
+		return FALSE
 	
 	if(!self)
 		usr.visible_message("<span class='notice'>[usr] puts \his hand on [src]'s wrist and begins counting their pulse.</span>",\
@@ -111,6 +118,7 @@
 		"<span class='notice'>You begin counting your pulse...</span>")
 
 	if(!do_mob(usr, src, 1 SECONDS))
+		to_chat(usr, "<span class='warning'>You failed to check [self ? "your" : "[src]'s"] pulse.</span>")
 		return FALSE
 
 	if(pulse())

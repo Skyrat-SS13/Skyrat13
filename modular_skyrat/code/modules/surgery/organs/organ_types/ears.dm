@@ -52,6 +52,7 @@
 	deaf = 0
 	ear_damage = 0
 	organ_flags &= ~ORGAN_FAILING
+	organ_flags &= ~ORGAN_DEAD
 
 	var/mob/living/carbon/C = owner
 

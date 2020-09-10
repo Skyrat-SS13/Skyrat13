@@ -390,6 +390,7 @@
 	shock_chance = 45
 	pain_amount = 12
 	flat_damage_roll_increase = 15
+	wound_flags = (MANGLES_BONE)
 
 /// if someone is using a reagent container
 /datum/wound/mechanical/blunt/proc/wrench(obj/item/I, mob/user)

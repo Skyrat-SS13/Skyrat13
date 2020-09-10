@@ -36,6 +36,7 @@
 	biology_required = list(HAS_BONE)
 	required_status = BODYPART_ORGANIC
 	pain_amount = 3
+	wound_flags = (MANGLES_BONE)
 
 /*
 	Overwriting of base procs

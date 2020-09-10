@@ -96,6 +96,11 @@
 #define BIO_SKIN	(1<<2) // literally nothing right now
 #define BIO_FULL	(BIO_BONE | BIO_FLESH | BIO_SKIN) // standard humanoids, can suffer all wounds, needs mangled bone and flesh to dismember
 
+// Wound flags
+#define MANGLES_SKIN (1<<0)
+#define MANGLES_MUSCLE (1<<1)
+#define MANGLES_BONE (1<<2)
+
 //Organ status flags
 #define ORGAN_ORGANIC   (1<<0)
 #define ORGAN_ROBOTIC   (1<<1)
@@ -211,3 +216,8 @@
 #define REJECTION_LEVEL_2 50
 #define REJECTION_LEVEL_3 200
 #define REJECTION_LEVEL_4 500
+
+//Brain damage related defines
+#define MINIMUM_DAMAGE_TRAUMA_ROLL 3 //We need to take at least this much brainloss gained at once to roll for traumas, any less it won't roll
+#define DAMAGE_LOW_OXYGENATION 1 //Brainloss caused by low blood oxygenation
+#define DAMAGE_VERY_LOW_OXYGENATION 2 //The above but low

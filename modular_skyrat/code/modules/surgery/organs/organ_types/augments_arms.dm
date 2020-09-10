@@ -134,7 +134,7 @@
 	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
 
 /obj/item/organ/cyberimp/arm/ui_action_click()
-	if(crit_fail || (organ_flags & ORGAN_FAILING) || (!holder && !contents.len))
+	if(crit_fail || !is_working() || (!holder && !contents.len))
 		to_chat(owner, "<span class='warning'>The implant doesn't respond. It seems to be broken...</span>")
 		return
 

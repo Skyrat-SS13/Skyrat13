@@ -28,6 +28,7 @@
 	biology_required = list(HAS_FLESH)
 	required_status = BODYPART_ROBOTIC
 	can_self_treat = TRUE
+	wound_flags = (MANGLES_SKIN | MANGLES_MUSCLE)
 
 /datum/wound/mechanical/pierce/self_treat(mob/living/carbon/user, first_time = FALSE)
 	. = ..()

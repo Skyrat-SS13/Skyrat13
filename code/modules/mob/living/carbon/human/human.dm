@@ -1338,9 +1338,7 @@
 	return ..()
 
 /mob/living/carbon/human/get_biological_state()
-	if(!length(dna?.species?.species_traits))
-		return BIO_INORGANIC
-	return dna.species.get_biological_state()
+	return dna?.species?.get_biological_state()
 
 /mob/living/carbon/human/needs_lungs()
 	return !(TRAIT_NOBREATH in dna?.species?.inherent_traits)

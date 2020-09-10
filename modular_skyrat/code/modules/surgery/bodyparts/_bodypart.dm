@@ -262,6 +262,13 @@
 	return FALSE
 
 //Germs
+/obj/item/bodypart/janitize(add_germs, minimum_germs, maximum_germs)
+	..()
+	if(germ_level >= INFECTION_LEVEL_THREE)
+		kill_limb()
+	else
+		revive_limb()
+
 /obj/item/bodypart/proc/handle_antibiotics()
 	if(!owner || !germ_level)
 		return
@@ -815,9 +822,10 @@
 	//We add the pain values before we scale damage down
 	//Pain does not care about your feelings, nor if your limb was already damaged
 	//to it's maximum
-	pain += 0.6 * clone
-	pain += 0.5 * burn
-	pain += 0.4 * brute
+	pain += 0.75 * clone
+	pain += 0.7 * burn
+	pain += 0.6 * brute
+	pain += 0.5 * toxin
 	
 	//We damage the organs, if possible, before adding onto the limb's damage
 	//Doing so later would fuck up with calculations
@@ -888,9 +896,7 @@
 		pain = 0
 
 	if(owner)
-		pain -= (owner.chem_effects[CE_PAINKILLER]/3)
-		if(pain < 0)
-			pain = 0
+		pain = max(0, pain - (owner.chem_effects[CE_PAINKILLER]/3))
 	
 	pain_dam = max(0,min(max_pain_damage, pain_dam + pain))
 	if(pain && owner && (pain >= (max_pain_damage * 0.75)) && prob(10))
@@ -1170,6 +1176,13 @@
 /obj/item/bodypart/proc/get_pain()
 	if(!can_feel_pain())
 		return 0
+	var/multiplier = 1 //Multiply our total pain damage by this
+	if(is_robotic_limb())
+		//Robotic limbs feel a bit less pain, but are not immune to it
+		multiplier *= 0.75
+	if(grasped_by)
+		//Being grasped lowers the pain just a bit
+		multiplier *= 0.8
 	var/extra_pain = 0
 	extra_pain += 0.5 * brute_dam
 	extra_pain += 0.6 * burn_dam
@@ -1179,7 +1192,7 @@
 		extra_pain += W.pain_amount
 	for(var/obj/item/organ/O in get_organs())
 		extra_pain += O.get_pain()
-	return clamp(pain_dam + extra_pain, 0, max_pain_damage)
+	return clamp((pain_dam + extra_pain) * multiplier, 0, max_pain_damage)
 
 //Returns whether or not the bodypart can feel pain
 /obj/item/bodypart/proc/can_feel_pain()
@@ -1204,6 +1217,8 @@
 /obj/item/bodypart/proc/is_disabled()
 	if(!owner)
 		return FALSE
+	if(is_dead())
+		return BODYPART_DISABLED_PARALYSIS
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS) || (status & BODYPART_DEAD))
 		return BODYPART_DISABLED_PARALYSIS
 	for(var/i in wounds)
@@ -1592,7 +1607,7 @@
 	update_disabled()
 
 /obj/item/bodypart/proc/get_bleed_rate()
-	if(status & BODYPART_NOBLEED)
+	if(!can_bleed())
 		return 0
 
 	var/bleed_rate = 0

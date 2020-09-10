@@ -1,5 +1,5 @@
 /mob/living/carbon/can_feel_pain()
-	if(HAS_TRAIT(src, TRAIT_PAINLESS))
+	if(HAS_TRAIT(src, TRAIT_NOPAIN))
 		return FALSE
 	return TRUE
 
@@ -178,7 +178,6 @@
 
 	var/traumatic_shock = getPainLoss() //How much pain we are in
 	traumatic_shock -= chem_effects[CE_PAINKILLER]
-
 	return max(0,traumatic_shock)
 
 /mob/living/carbon/proc/InShock()

@@ -361,6 +361,18 @@
 		var/mob/living/carbon/C = L
 		C.remove_chem_effect(CE_PAINKILLER, 45)
 
+/datum/reagent/medicine/lavaland_extract/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 30)
+
+/datum/reagent/medicine/lavaland_extract/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 30)
+
 /datum/reagent/medicine/antitoxin/on_mob_life(mob/living/carbon/M)
 	. = ..()
 	for(var/obj/item/organ/O in M.internal_organs)
