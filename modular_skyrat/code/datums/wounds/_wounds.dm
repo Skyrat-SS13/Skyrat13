@@ -572,7 +572,7 @@
 
 	. = "[victim.p_their(TRUE)] [fake_limb ? fake_limb : limb.name] [examine_desc][condition]"
 	if(severity >= WOUND_SEVERITY_MODERATE)
-		. = "<B>[.]</B>"
+		. = "<B>[.]!</B>"
 	else
 		. = "[.]."
 

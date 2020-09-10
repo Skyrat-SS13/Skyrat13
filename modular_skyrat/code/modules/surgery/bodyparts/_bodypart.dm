@@ -754,7 +754,7 @@
 			if(!easy_dismember)
 				wounding_dmg *= 0.65
 		
-		if((mangled_state & BODYPART_MANGLED_BONE) && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
+		if((mangled_state & BODYPART_MANGLED_BONE) && (try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
 	
 	// slime people p much they dont have bone
@@ -767,7 +767,7 @@
 			wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
 		else if(wounding_type == WOUND_INTERNALBLEED)
 			wounding_dmg *= 1.25 // No bones encasing the organs and blood vessels
-		if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
+		if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
 
 	// nothing uses only skin just yet
@@ -793,7 +793,7 @@
 				if(!easy_dismember)
 					wounding_dmg *= 0.4 // blunt weapons pass along 40% of their wounding damage to the tissue, since they could tear off limbs with enough force
 				wounding_type = WOUND_SLASH
-		if(mangled_state & BODYPART_MANGLED_BOTH && (try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))))
+		if(mangled_state & BODYPART_MANGLED_BOTH && (try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
 	/*
 	// END WOUND HANDLING
@@ -945,7 +945,7 @@
 			if(!easy_dismember)
 				phantom_wounding_dmg *= 0.75
 		
-		if((mangled_state & BODYPART_MANGLED_BONE) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
+		if((mangled_state & BODYPART_MANGLED_BONE) && (try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
 	
 	// slime people p much, they dont have bone
@@ -956,7 +956,7 @@
 				phantom_wounding_dmg *= 0.5
 		else if(wounding_type == WOUND_PIERCE)
 			phantom_wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
-		if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
+		if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
 
 	// nothing uses only skin just yet
@@ -982,7 +982,7 @@
 				if(!easy_dismember)
 					phantom_wounding_dmg *= 0.4 // blunt weapons pass along 40% of their wounding damage to the tissue, since they could tear off limbs with enough force
 				wounding_type = WOUND_SLASH
-		if((mangled_state & BODYPART_MANGLED_BOTH) && (try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus || try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))))
+		if((mangled_state & BODYPART_MANGLED_BOTH) && (try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
 
 	check_wounding(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)
