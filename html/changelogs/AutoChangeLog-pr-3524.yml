@@ -1,0 +1,4 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - tweak: "Cloning no longer talks about a supposed credit cost, whatever that was."
