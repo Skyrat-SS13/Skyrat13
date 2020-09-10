@@ -377,7 +377,7 @@
 	. = ..()
 	for(var/obj/item/organ/O in M.internal_organs)
 		if(prob(20) && !(O.slot == ORGAN_SLOT_BRAIN))
-			O.applyOrganDamage(5 * REM)
+			O.applyOrganDamage(-5 * REM)
 
 /datum/reagent/medicine/antitoxin/on_mob_metabolize(mob/living/L)
 	. = ..()
@@ -395,7 +395,7 @@
 	. = ..()
 	for(var/obj/item/organ/O in M.internal_organs)
 		if(prob(20) && !(O.slot == ORGAN_SLOT_BRAIN))
-			O.applyOrganDamage(5 * REM)
+			O.applyOrganDamage(=5 * REM)
 
 /datum/reagent/medicine/charcoal/on_mob_metabolize(mob/living/L)
 	. = ..()
