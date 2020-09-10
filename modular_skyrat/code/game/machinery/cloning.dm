@@ -46,12 +46,6 @@
 	var/max_biomass = 1200
 	var/biomass_per_clone = 400
 
-	var/pays_for_clone = FALSE
-	var/cost_per_clone = 1000 //cost in credits for a clone, of course.
-	var/dep_id = ACCOUNT_MED
-	var/datum/bank_account/currently_linked_account
-	var/datum/bank_account/initial_account
-
 /obj/item/encryptionkey/headset_med/cloningpod
 	channels = list(RADIO_CHANNEL_MEDICAL = 1, RADIO_CHANNEL_SECURITY = 1, RADIO_CHANNEL_COMMON = 1)
 
@@ -71,9 +65,6 @@
 		radio.subspace_transmission = TRUE
 		radio.canhear_range = 0
 		radio.recalculateChannels()
-	
-	initial_account = SSeconomy.get_dep_account(dep_id)
-	currently_linked_account = initial_account
 
 	update_icon()
 
@@ -143,10 +134,6 @@
 
 //Start growing a human clone in the pod!
 /obj/machinery/clonepod/proc/growclone(ckey, clonename, ui, mutation_index, mindref, datum/species/mrace, list/features, factions, list/quirks)
-	if(pays_for_clone && !currently_linked_account.adjust_money(-cost_per_clone))
-		if(radio)
-			SPEAK("Insufficient amount of credits to initiate cloning procedure.")
-		return FALSE
 	if(biomass < biomass_per_clone)
 		if(radio)
 			SPEAK("Insufficient amount of biomass to initiate cloning procedure.")
