@@ -2,14 +2,14 @@
 	name = "12g shotgun slug"
 	damage = 60
 	sharpness = SHARP_POINTY
-	wound_bonus = 35
+	bare_wound_bonus = 10
 
 /obj/item/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
 	stamina = 70
 	//skyrat edit
 	damage = 10
-	wound_bonus = 10
+	bare_wound_bonus = 10
 	sharpness = SHARP_NONE
 	//
 
@@ -84,16 +84,16 @@
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
 	//skyrat edit
-	embedding = list(embed_chance=33, fall_chance=0, jostle_chance=6, ignore_throwspeed_threshold=TRUE, pain_stam_pct=1, pain_mult=6, rip_time=60)
 	damage = 7.5
-	wound_bonus = 20
+	bare_wound_bonus = 10
+	wound_falloff_tile = -2.5 // TG does this; it makes sense to do.
 	//
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
-	wound_bonus = 5
 	sharpness = SHARP_NONE
-	embedding = list(embed_chance=10, fall_chance=25, jostle_chance=0, ignore_throwspeed_threshold=TRUE, pain_stam_pct=5, pain_mult=1, rip_time=30)
+	embedding = null
+	bare_wound_bonus = 10
 	damage = 2
 	stamina = 15
 
@@ -131,14 +131,15 @@
 /obj/item/projectile/bullet/shotgun_slug/executioner
 	name = "executioner slug" // admin only, can dismember limbs
 	sharpness = SHARP_EDGED
-	wound_bonus = 0
+	wound_bonus = 80
 
 /obj/item/projectile/bullet/shotgun_slug/pulverizer
 	name = "pulverizer slug" // admin only, can crush bones
-	sharpness = SHARP_EDGED
-	wound_bonus = 0
-	
+	sharpness = SHARP_NONE
+	wound_bonus = 80
+
 /obj/item/projectile/bullet/pellet/shotgun_incapacitate
 	name = "incapacitating pellet"
 	damage = 1
 	stamina = 6
+	embedding = null
