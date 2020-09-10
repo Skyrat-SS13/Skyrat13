@@ -413,7 +413,7 @@
 			if(O)
 				O.on_life()
 	else
-		if(reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/medicine/preservahyde, 1)) // No  organ decay if the body contains formaldehyde. Orpreservahyde. Skyrat Edit - repaths perservahyde
+		if(reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/medicine/preservahyde, 1)) // No  organ decay if the body contains formaldehyde. Or preservahyde. Skyrat Edit - repaths perservahyde
 			return
 		for(var/V in internal_organs)
 			var/obj/item/organ/O = V
