@@ -33,3 +33,12 @@
 	maxcharge = 1000
 	chargerate = 300
 	self_recharge = TRUE
+	var/obj/item/gun/energy/e_gun/blueshield/pdw9/parent
+
+/obj/item/stock_parts/cell/pdw9/Initialize()
+	. = ..()
+	parent = loc
+
+/obj/item/stock_parts/cell/pdw9/process()
+	. = ..()
+	parent.update_icon()
