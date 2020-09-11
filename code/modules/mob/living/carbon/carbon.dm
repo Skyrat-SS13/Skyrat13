@@ -624,17 +624,23 @@
 	var/total_brute	= 0
 	var/total_stamina = 0
 	var/total_pain = 0
+	var/total_clone = 0
+	var/total_toxin = 0
 	for(var/X in bodyparts)	//hardcoded to streamline things a bit
 		var/obj/item/bodypart/BP = X
 		total_brute	+= (BP.brute_dam * BP.body_damage_coeff)
 		total_burn	+= (BP.burn_dam * BP.body_damage_coeff)
 		total_stamina += (BP.stamina_dam * BP.stam_damage_coeff)
 		total_pain += (BP.get_pain() * BP.pain_damage_coeff)
+		total_clone += (BP.clone_dam * BP.body_damage_coeff)
+		total_pain += (BP.tox_dam * BP.body_damage_coeff)
 	health = round(maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute, DAMAGE_PRECISION)
 	if(ishuman(src) || ismonkey(src)) //Kind of terrible.
 		health = round(maxHealth - getOrganLoss(ORGAN_SLOT_BRAIN))
 	staminaloss = round(total_stamina, DAMAGE_PRECISION)
 	painloss = round(total_pain, DAMAGE_PRECISION)
+	cloneloss = round(total_clone, DAMAGE_PRECISION)
+	toxloss = round(total_toxin, DAMAGE_PRECISION)
 	update_stat()
 	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD*2) && stat == DEAD)
 		become_husk("burn")

@@ -195,6 +195,13 @@
 		return
 	adjustStaminaLoss(diff, updating, forced)
 
+/mob/living/carbon/setToxLoss(amount, updating = TRUE, forced = FALSE)
+	var/current = getToxLoss()
+	var/diff = amount - current
+	if(!diff)
+		return
+	adjustToxLoss(diff, updating, forced)
+
 /mob/living/carbon/setPainLoss(amount, updating = TRUE, forced = FALSE)
 	var/current = getPainLoss()
 	var/diff = amount - current

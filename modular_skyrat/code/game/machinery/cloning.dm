@@ -127,7 +127,7 @@
 	. = FALSE
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant)
-		. = (100 * ((mob_occupant.get_physical_damage() + 100) / (heal_level + 100)))
+		. = min(100, 100 * ((mob_occupant.get_physical_damage() + 100) / (heal_level + 100)))
 
 /obj/machinery/clonepod/attack_ai(mob/user)
 	return examine(user)
@@ -262,10 +262,10 @@
 			go_out()
 			mob_occupant.copy_from_prefs_vr()
 
-		else if(mob_occupant.cloneloss > (100 - heal_level))
+		else if(mob_occupant.getCloneLoss() > (100 - heal_level))
 			mob_occupant.Unconscious(80)
 			var/dmg_mult = CONFIG_GET(number/damage_multiplier)
-			 //Slowly get that clone healed and finished.
+			//Slowly get that clone healed and finished.
 			mob_occupant.adjustCloneLoss(-((speed_coeff / 2) * dmg_mult))
 			var/progress = CLONE_INITIAL_DAMAGE - mob_occupant.getCloneLoss()
 			// To avoid the default cloner making incomplete clones
@@ -289,7 +289,7 @@
 
 			use_power(7500) //This might need tweaking.
 
-		else if((mob_occupant.cloneloss <= (100 - heal_level)))
+		else if((mob_occupant.getCloneLoss() <= (100 - heal_level)))
 			connected_message("Cloning Process Complete.")
 			if(internal_radio)
 				SPEAK("The cloning cycle is complete.")
