@@ -1,5 +1,0 @@
-author: "Anonymous"
-delete-after: True
-changes: 
-  - bugfix: "Psychologist now should be able to get medical loadout items."
-  - bugfix: "Mining Foreman and Mining Technicians now should be able to get cargo loadout items."
