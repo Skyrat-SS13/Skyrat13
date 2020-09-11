@@ -1,4 +1,21 @@
-//joker bundle, also i'm gonna do all items here because i'm lazy
+//armstrong CBT
+/datum/uplink_item/dangerous/armstrong
+	name = "Armstrong Style Kit"
+	desc = "A kit with the necessary equipment to become an excellent martial artist, and terrible parent!"
+	item = /obj/item/storage/box/syndie_kit/armstrong
+	cost = 20 //bumped up from 14 because by god this has murderbone potential.
+	surplus = 20 // someone who respects the eldritch god Nar-Sie a little (((too much))) complained
+
+/obj/item/storage/box/syndie_kit/armstrong
+	name = "\improper Brad Armstrong Family Style Karate Kit"
+	desc = "A kit with the necessary tools to become the best karate master on the planet!\
+	Contains a paper letting you know how to fight. \
+	The only cost is your right to not suck at parenting."
+
+/obj/item/storage/box/syndie_kit/armstrong/PopulateContents()
+	new /obj/item/armstrong_scroll(src)
+//joker kit
+
 /datum/uplink_item/bundles_TC/joker
 	name = "Society Box"
 	desc = "A crate with a .38 revolver with ammo, special knife and special clothing to enact revenge on society as a whole."

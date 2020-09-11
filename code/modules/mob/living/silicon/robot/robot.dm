@@ -544,9 +544,7 @@
 
 /mob/living/silicon/robot/proc/self_destruct()
 	if(emagged)
-		if(mmi)
-			qdel(mmi)
-		explosion(src.loc,1,2,4,flame_range = 2)
+		return to_chat(usr, "<span class='notice'>Unable to execute selfdestruct sequence</span>") //skyrat addition
 	else
 		explosion(src.loc,-1,0,2)
 	gib()
@@ -580,6 +578,9 @@
 
 /mob/living/silicon/robot/proc/SetLockdown(state = 1)
 	// They stay locked down if their wire is cut.
+	if(emagged)
+		state = 0
+		to_chat(usr, "<span class='notice'>Unable to engage lockdown protocol</span>") // Skyrat addition 
 	if(wires.is_cut(WIRE_LOCKDOWN))
 		state = 1
 	if(state)
