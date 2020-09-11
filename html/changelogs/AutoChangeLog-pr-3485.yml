@@ -1,0 +1,5 @@
+author: "Gandalf2k15"
+delete-after: True
+changes: 
+  - rscadd: "Gave the blueshield a weapon beacon, and access to the PDW-9."
+  - bugfix: "Fixed the blueshield armour for anthros."
