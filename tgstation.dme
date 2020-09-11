@@ -3581,6 +3581,7 @@
 #include "modular_skyrat\code\datums\interactions\lewd\lewd_interactions.dm"
 #include "modular_skyrat\code\datums\interactions\lewd\lewd_species.dm"
 #include "modular_skyrat\code\datums\interactions\lewd\objects.dm"
+#include "modular_skyrat\code\datums\martial\armstrong.dm"
 #include "modular_skyrat\code\datums\mood_events\generic_negative_events.dm"
 #include "modular_skyrat\code\datums\ruins\lavaland.dm"
 #include "modular_skyrat\code\datums\ruins\space.dm"
@@ -4284,5 +4285,4 @@
 #include "modular_skyrat\modules\horrorform\code\modules\antagonists\changeling\powers\horror_form.dm"
 #include "modular_skyrat\modules\horrorform\code\modules\mob\hostile\true_changeling.dm"
 #include "modular_skyrat\tools\Redirector\textprocs.dm"
-#include "modular_skyrat\code\datums\martial\armstrong.dm"
 // END_INCLUDE
