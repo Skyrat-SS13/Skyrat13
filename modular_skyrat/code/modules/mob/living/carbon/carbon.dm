@@ -52,7 +52,7 @@
 	if(istype(active))
 		active.wield_act(src)
 	else
-		to_chat(src, "<span class='warning'>You have nothing to wield!</span>")
+		pull_up_punches() //see punching.dm
 
 /mob/living/carbon/proc/wield_ui_on()
 	if(hud_used)
