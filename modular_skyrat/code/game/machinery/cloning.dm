@@ -262,7 +262,7 @@
 			go_out()
 			mob_occupant.copy_from_prefs_vr()
 
-		else if(mob_occupant.getCloneLoss() > (100 - heal_level))
+		else if(mob_occupant.cloneloss > (100 - heal_level))
 			mob_occupant.Unconscious(80)
 			var/dmg_mult = CONFIG_GET(number/damage_multiplier)
 			//Slowly get that clone healed and finished.
@@ -289,7 +289,7 @@
 
 			use_power(7500) //This might need tweaking.
 
-		else if((mob_occupant.getCloneLoss() <= (100 - heal_level)))
+		else if((mob_occupant.cloneloss <= (100 - heal_level)))
 			connected_message("Cloning Process Complete.")
 			if(internal_radio)
 				SPEAK("The cloning cycle is complete.")
