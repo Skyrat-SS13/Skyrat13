@@ -123,52 +123,95 @@
 	msg += "<span class='notice'>In general: </span>"
 	if(stat != DEAD)
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
-			switch(getPainLoss() - chem_effects[CE_PAINKILLER])
-				if(-INFINITY to 5) //pain0
-					msg += "<span class='nicegreen'>I feel healthy.</span>\n"
-				if(5 to 15) //pain1
-					msg += "<span class='nicegreen'>I'm a bit sore.</span>\n"
-				if(15 to 30) //pain2
-					msg += "<span class='notice'>I'm a bit hurt.</span>\n"
-				if(30 to 45) //pain3
-					msg += "<span class='danger'>I don't feel great...</span>\n"
-				if(45 to 60) //pain4
-					msg += "<span class='bolddanger'>I feel terrible!</span>\n"
-				if(60 to 75) //pain5
-					msg += "<span class='mediumdanger'>I'm miserable!</span>\n"
-				if(75 to INFINITY) //pain6
-					msg += "<span class='bigdanger'>I want to die!</span>\n"
+			if(!(ROBOTIC_LIMBS in dna?.species?.species_traits))
+				switch(getPainLoss() - chem_effects[CE_PAINKILLER])
+					if(-INFINITY to 5) //pain0
+						msg += "<span class='nicegreen'>I feel healthy.</span>\n"
+					if(5 to 15) //pain1
+						msg += "<span class='nicegreen'>I'm a bit sore.</span>\n"
+					if(15 to 30) //pain2
+						msg += "<span class='notice'>I'm a bit hurt.</span>\n"
+					if(30 to 45) //pain3
+						msg += "<span class='danger'>I don't feel great...</span>\n"
+					if(45 to 60) //pain4
+						msg += "<span class='bolddanger'>I feel terrible!</span>\n"
+					if(60 to 75) //pain5
+						msg += "<span class='mediumdanger'>I'm miserable!</span>\n"
+					if(75 to INFINITY) //pain6
+						msg += "<span class='bigdanger'>I want to die!</span>\n"
+			else
+				switch(getPainLoss() - chem_effects[CE_PAINKILLER])
+					if(-INFINITY to 5) //pain0
+						msg += "<span class='nicegreen'>All systems nominal.</span>\n"
+					if(5 to 15) //pain1
+						msg += "<span class='nicegreen'>Warning: Minor damage.</span>\n"
+					if(15 to 30) //pain2
+						msg += "<span class='notice'>Danger: Medium damage.</span>\n"
+					if(30 to 45) //pain3
+						msg += "<span class='danger'>Danger: Heavy damage.</span>\n"
+					if(45 to 60) //pain4
+						msg += "<span class='bolddanger'>DANGER: Systems compromised.</span>\n"
+					if(60 to 75) //pain5
+						msg += "<span class='mediumdanger'>DANGER: Vital signs critical.</span>\n"
+					if(75 to INFINITY) //pain6
+						msg += "<span class='bigdanger'>DANGER: Critical failure.</span>\n"
 		else
-			msg += "<span class='nicegreen'>I feel healthy.</span>\n"
+			if(!(ROBOTIC_LIMBS in dna?.species?.species_traits))
+				msg += "<span class='nicegreen'>I feel healthy.</span>\n"
+			else
+				msg += "<span class='nicegreen'>All systems nominal.</span>\n"
 	else
-		msg += "<span class='deadsay'>I am dead!</span>\n"
+		if(!(ROBOTIC_LIMBS in dna?.species?.species_traits))
+			msg += "<span class='deadsay'>I am dead!</span>\n"
+		else
+			msg += "<span class='deadsay'>Unit disabled.</span>\n"
 	msg += "<span class='notice'>Bodyparts:\n</span>"
 	if(stat != DEAD)
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 			var/list/damaged_bodyparts = list()
 			for(var/obj/item/bodypart/BP in bodyparts)
 				var/bpain = max(0, BP.get_pain() - chem_effects[CE_PAINKILLER])
-				if(bpain >= BP.max_damage)
-					damaged_bodyparts += "<span class='bigdanger'>I want to tear my [BP.name] off!</span>\n"
-				else if(bpain > BP.max_damage*0.8)
-					damaged_bodyparts += "<span class='mediumdanger'>My [BP.name] feels horrendous!</span>\n"
-				else if(bpain > BP.max_damage*0.6)
-					damaged_bodyparts += "<span class='bolddanger'>My [BP.name] feels terrible!</span>\n"
-				else if(bpain > BP.max_damage*0.4)
-					damaged_bodyparts += "<span class='danger'>My [BP.name] feels a bit battered...</span>\n"
-				else if(bpain > BP.max_damage*0.2)
-					damaged_bodyparts += "<span class='notice'>My [BP.name] feels somewhat damaged.</span>\n"
-				else if(bpain > 0)
-					damaged_bodyparts += "<span class='notice'>My [BP.name] is just a bit sore.</span>\n"
+				if(!BP.is_robotic_limb())
+					if(bpain >= BP.max_damage)
+						damaged_bodyparts += "<span class='bigdanger'>I want to tear my [BP.name] off!</span>\n"
+					else if(bpain > BP.max_damage*0.8)
+						damaged_bodyparts += "<span class='mediumdanger'>My [BP.name] feels horrendous!</span>\n"
+					else if(bpain > BP.max_damage*0.6)
+						damaged_bodyparts += "<span class='bolddanger'>My [BP.name] feels terrible!</span>\n"
+					else if(bpain > BP.max_damage*0.4)
+						damaged_bodyparts += "<span class='danger'>My [BP.name] feels a bit battered...</span>\n"
+					else if(bpain > BP.max_damage*0.2)
+						damaged_bodyparts += "<span class='notice'>My [BP.name] feels somewhat damaged.</span>\n"
+					else if(bpain > 0)
+						damaged_bodyparts += "<span class='notice'>My [BP.name] is just a bit sore.</span>\n"
+				else
+					if(bpain >= BP.max_damage)
+						damaged_bodyparts += "<span class='bigdanger'>DANGER: [BP.name] shutting down!</span>\n"
+					else if(bpain > BP.max_damage*0.8)
+						damaged_bodyparts += "<span class='mediumdanger'>DANGER: [BP.name] highly compromised!</span>\n"
+					else if(bpain > BP.max_damage*0.6)
+						damaged_bodyparts += "<span class='bolddanger'>Danger: [BP.name] highly damaged.</span>\n"
+					else if(bpain > BP.max_damage*0.4)
+						damaged_bodyparts += "<span class='danger'>Danger: [BP.name] suffering medium-grade damage.</span>\n"
+					else if(bpain > BP.max_damage*0.2)
+						damaged_bodyparts += "<span class='notice'>Warning: [BP.name] suffering minor damage.</span>\n"
+					else if(bpain > 0)
+						damaged_bodyparts += "<span class='notice'>Warning: [BP.name] under mild stress.</span>\n"
 			if(!length(damaged_bodyparts))
-				msg += "<span class='nicegreen'>My whole body feels just fine.</span>\n"
+				if(!(ROBOTIC_LIMBS in dna?.species?.species_traits))
+					msg += "<span class='nicegreen'>My whole body feels just fine.</span>\n"
+				else
+					msg += "<span class='nicegreen'>All modules nominal.</span>\n"
 			else
 				for(var/i in damaged_bodyparts)
 					msg += i
 		else
-			msg += "<span class='nicegreen'>My whole body feels just fine.</span>\n"
+			if(!(ROBOTIC_LIMBS in dna?.species?.species_traits))
+				msg += "<span class='nicegreen'>My whole body feels just fine.</span>\n"
+			else
+				msg += "<span class='nicegreen'>All modules nominal.</span>\n"
 	else
-		msg += "<span class='deadsay'>All of my bodyparts are lifeless!</span>\n"
+		msg += "<span class='deadsay'>All modules shut down.</span>\n"
 	to_chat(src, msg)
 
 //How much we are actually in shock

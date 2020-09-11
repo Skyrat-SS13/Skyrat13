@@ -22,8 +22,9 @@
 // Message is the custom message to be displayed
 // Power decides how much painkillers will stop the message
 // Force means it ignores anti-spam timer
-/mob/living/proc/custom_pain(message, power, force, obj/item/bodypart/affecting, nopainloss)
-	if(!message || (stat >= UNCONSCIOUS) || !can_feel_pain() || chem_effects[CE_PAINKILLER] > power)
+// Robo_message is the message that gets used if it's a robotic limb instead
+/mob/living/proc/custom_pain(message, power, force, obj/item/bodypart/affecting, nopainloss, robo_mesage)
+	if((!message && !robo_mesage) || (stat >= UNCONSCIOUS) || !can_feel_pain() || chem_effects[CE_PAINKILLER] > power)
 		return FALSE
 	
 	if(affecting?.status & BODYPART_NOPAIN)

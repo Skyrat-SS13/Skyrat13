@@ -113,7 +113,7 @@
 			B.render_like_organic = FALSE
 
 /datum/species/proc/get_pain_emote(power)
-	if(NOPAIN in species_traits)
+	if((NOPAIN in species_traits) || (ROBOTIC_LIMBS in species_traits)) //Synthetics don't grunt because of "pain"
 		return
 	power = round(min(100, power), 10)
 	var/emote_string
