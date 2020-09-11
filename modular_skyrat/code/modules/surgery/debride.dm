@@ -12,7 +12,14 @@
 /datum/surgery/debride/can_start(mob/living/user, mob/living/carbon/target)
 	if(..())
 		var/obj/item/bodypart/targeted_bodypart = target.get_bodypart(user.zone_selected)
-		return (targeted_bodypart && targeted_bodypart.germ_level > WOUND_INFECTION_SANITIZATION_RATE)
+		if(targeted_bodypart)
+			if(targeted_bodypart.germ_level >= INFECTION_LEVEL_ONE)
+				return TRUE
+			for(var/i in targeted_bodypart.wounds)
+				var/datum/wound/wound = i
+				if(wound.germ_level)
+					return TRUE
+		return FALSE
 
 //SURGERY STEPS
 
