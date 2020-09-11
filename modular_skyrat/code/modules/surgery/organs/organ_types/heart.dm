@@ -99,6 +99,9 @@
 		if(pulse == PULSE_THREADY && prob(5))
 			applyOrganDamage(1)
 
+/obj/item/organ/heart/proc/can_stop() //Can the heart stop beating? Used to prevent bloodsucker hearts from failing under normal circumstances
+	return TRUE
+
 /obj/item/organ/heart/proc/handle_pulse()
 	// Pulse mod starts out as just the chemical effect amount
 	var/pulse_mod = owner.chem_effects[CE_PULSE]
@@ -134,7 +137,7 @@
 		var/should_stop = prob(80) && owner.get_blood_circulation() < BLOOD_VOLUME_SURVIVE //cardiovascular shock, not enough liquid to pump
 		should_stop = should_stop || prob(max(0, owner.getOrganLoss(ORGAN_SLOT_BRAIN) - owner.maxHealth * 0.75)) //brain failing to work heart properly
 		should_stop = should_stop || (prob(5) && pulse == PULSE_THREADY) //erratic heart patterns, usually caused by oxyloss
-		if(should_stop) // The heart has stopped due to going into traumatic or cardiovascular shock.
+		if(should_stop && can_stop()) // The heart has stopped due to going into traumatic or cardiovascular shock.
 			to_chat(owner, "<span class='danger'>Your heart has stopped!</span>")
 			pulse = PULSE_NONE
 			return

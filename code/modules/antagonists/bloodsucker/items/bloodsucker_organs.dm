@@ -31,6 +31,9 @@
 	pulse = 0
 	var/fakingit = 0
 
+/obj/item/organ/heart/vampheart/can_stop() //We don't stop beating in normal circumstances
+	return FALSE
+
 /obj/item/organ/heart/vampheart/Restart()
 	pulse = 0	// DONT run ..(). We don't want to start beating again.
 	return 0
