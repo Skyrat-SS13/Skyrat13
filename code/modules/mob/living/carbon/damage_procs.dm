@@ -195,6 +195,13 @@
 		return
 	adjustStaminaLoss(diff, updating, forced)
 
+/mob/living/carbon/setCloneLoss(amount, updating = TRUE, forced = FALSE)
+	var/current = getCloneLoss()
+	var/diff = amount - current
+	if(!diff)
+		return
+	adjustCloneLoss(diff, updating, forced)
+
 /mob/living/carbon/setToxLoss(amount, updating = TRUE, forced = FALSE)
 	var/current = getToxLoss()
 	var/diff = amount - current
