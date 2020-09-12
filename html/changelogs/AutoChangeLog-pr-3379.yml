@@ -1,6 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - balance: "Resonant lifesteal crystal no longer stacks healing with shotgun mod"
-  - balance: "Shotgun PKA mod can no longer be stacked, though the code would support it"
-  - balance: "Wall PKA modkit now has a cooldoown equal to 2.25x the duration of the wall by the moment a wall is created, but capacity cost has been lowered to 40"
