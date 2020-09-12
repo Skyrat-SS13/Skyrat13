@@ -15,10 +15,11 @@
 		if(targeted_bodypart)
 			if(targeted_bodypart.germ_level >= INFECTION_LEVEL_ONE)
 				return TRUE
-			for(var/i in targeted_bodypart.wounds)
-				var/datum/wound/wound = i
-				if(wound.germ_level)
-					return TRUE
+			else
+				for(var/i in targeted_bodypart.wounds)
+					var/datum/wound/wound = i
+					if(wound.germ_level)
+						return TRUE
 		return FALSE
 
 //SURGERY STEPS
