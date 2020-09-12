@@ -356,8 +356,8 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/hijack/single //For incursion
 	name = "hijack"
-	explanation_text = "Hijack the shuttle to ensure no loyalist Nanotrasen crew escape alive and out of custody."
-	team_explanation_text = "Hijack the shuttle to ensure no loyalist Nanotrasen crew escape alive and out of custody. Team members lost is not a concern for this operation."
+	explanation_text = "Hijack the emergency shuttle by hacking its navigational protocols through the control console (alt click emergency shuttle console)."
+	team_explanation_text = "Hijack the emergency shuttle by hacking its navigational protocols through the control console (alt click emergency shuttle console). Team members lost is not a concern for this operation."
 	martyr_compatible = 0 //Technically you won't get both anyway.
 
 /datum/objective/hijack/single/check_completion() // Requires all owners to escape.
