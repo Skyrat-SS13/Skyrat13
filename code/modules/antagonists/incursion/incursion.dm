@@ -137,7 +137,7 @@
 /datum/team/incursion/proc/add_objective(datum/objective/O, needs_target = FALSE)
 	O.team = src
 	if(needs_target)
-		O.find_target(dupe_search_range = list(src))
+		O.find_target()
 	O.update_explanation_text()
 	objectives += O
 
