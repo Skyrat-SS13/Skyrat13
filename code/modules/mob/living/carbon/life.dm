@@ -17,6 +17,10 @@
 		var/bprv = handle_bodyparts()
 		if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
 			updatehealth()
+	else
+		//Rot the bodyparts if we are dead
+		for(var/obj/item/bodypart/BP in bodyparts)
+			BP.on_death()
 	update_stamina()
 	doSprintBufferRegen()
 
@@ -403,10 +407,6 @@
 				for(var/datum/wound/W in BP.wounds)
 					if(W.infection_check())
 						W.germ_level += W.infection_rate
-
-		//Rot the bodypart if we are dead
-		if(stat == DEAD)
-			BP.on_death()
 		
 		//Always try to update the germ level of bodyparts
 		BP.update_germs()
