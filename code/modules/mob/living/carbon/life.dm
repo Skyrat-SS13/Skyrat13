@@ -19,8 +19,10 @@
 			updatehealth()
 	else
 		//Rot the bodyparts if we are dead
-		for(var/obj/item/bodypart/BP in bodyparts)
+		for(var/bopa in bodyparts)
+			var/obj/item/bodypart/BP = bopa
 			BP.on_death()
+			BP.update_germs()
 	update_stamina()
 	doSprintBufferRegen()
 

@@ -272,7 +272,7 @@
 		revive_limb()
 
 /obj/item/bodypart/proc/handle_antibiotics()
-	if(!owner || !germ_level)
+	if(!owner || (owner.stat == DEAD) || !germ_level)
 		return
 
 	var/antibiotics = owner.get_antibiotics()
@@ -298,7 +298,8 @@
 	if(germ_level >= INFECTION_LEVEL_ONE/2)
 		//Warn the user that they're a bit fucked
 		if(prob(4) && germ_level < INFECTION_LEVEL_ONE)
-			owner.custom_pain("<span class='warning'>Your [src.name] feels a bit warm and swollen...</span>", 5, FALSE, src)
+			if(owner.stat != DEAD)
+				owner.custom_pain("<span class='warning'>Your [src.name] feels a bit warm and swollen...</span>", 5, FALSE, src)
 		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes, when immunity is full.
 		if(antibiotics < 5 && prob(round(germ_level/6 * owner.immunity_weakness() * 0.01)))
 			if(virus_immunity > 0)
@@ -308,14 +309,16 @@
 	
 	if(germ_level >= INFECTION_LEVEL_ONE)
 		if(prob(6) && germ_level < INFECTION_LEVEL_TWO)
-			owner.custom_pain("<span class='warning'>Your [src.name] feels hotter than normal...</span>", 7, FALSE, src)
+			if(owner.stat != DEAD)
+				owner.custom_pain("<span class='warning'>Your [src.name] feels hotter than normal...</span>", 7, FALSE, src)
 		var/fever_temperature = (BODYTEMP_HEAT_DAMAGE_LIMIT - BODYTEMP_NORMAL - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + BODYTEMP_NORMAL
 		owner.bodytemperature += clamp((fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, 0, fever_temperature - owner.bodytemperature)
 	
 	//Spread the infection to internal organs, child and parent bodyparts
 	if(germ_level >= INFECTION_LEVEL_TWO)
 		if(prob(8))
-			owner.custom_pain("<span class='danger'>Your [src.name] starts leaking some pus...</span>", 12, FALSE, src)
+			if(owner.stat != DEAD)
+				owner.custom_pain("<span class='danger'>Your [src.name] starts leaking some pus...</span>", 12, FALSE, src)
 		var/obj/item/organ/target_organ //make internal organs become infected one at a time instead of all at once
 		for(var/obj/item/organ/O in get_organs())
 			//once the organ reaches whatever we can give it, or level two, switch to a different one
@@ -343,11 +346,12 @@
 	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 45)
 		if(!(status & BODYPART_DEAD))
 			status |= BODYPART_DEAD
-			to_chat(owner, "<span class='danger'>You can't feel your [name] anymore...</span>")
+			if(owner.stat != DEAD)
+				to_chat(owner, "<span class='danger'>You can't feel your [name] anymore...</span>")
 			update_disabled()
 		
 		germ_level++
-		owner.adjustToxLoss(rand(1, 2) * 0.5)
+		receive_damage(toxin = (rand(1, 2) * 0.5))
 
 //Rejection
 /obj/item/bodypart/proc/handle_rejection()
@@ -638,7 +642,7 @@
 
 /obj/item/bodypart/proc/handle_germ_sync()
 	//If we have no wounds, nor germ level, no point in trying to update
-	if(!length(wounds) && germ_level)
+	if(!length(wounds) && !germ_level)
 		return
 	
 	//If we have antibiotics, then skip over, the infection is going away

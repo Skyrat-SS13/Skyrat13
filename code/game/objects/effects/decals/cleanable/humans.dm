@@ -35,7 +35,7 @@
 			else
 				H.bloody_hands = (H.bloody_hands + rand(2, 4))
 				H.update_inv_gloves()
-				H.janitize(WOUND_SANITIZATION_STERILIZER)
+				H.janitize(WOUND_SANITIZATION_STERILIZER * 2)
 		else
 			usr.add_blood_DNA(blood_DNA)
 	else
