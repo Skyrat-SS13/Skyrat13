@@ -53,8 +53,9 @@
 			"<span class='notice'>[user] successfully excises some of the infected flesh from  [target]'s [parse_zone(target_zone)]!</span>")
 		log_combat(user, target, "excised infected flesh in", addition="INTENT: [uppertext(user.a_intent)]")
 		targeted_bodypart.receive_damage(brute=3, wound_bonus=CANT_WOUND)
+		targeted_bodypart.germ_level -= (WOUND_SANITIZATION_STERILIZER * 2)
 		for(var/datum/wound/infected_wound in targeted_bodypart.wounds)
-			infected_wound.germ_level -= 0.5
+			infected_wound.germ_level -= WOUND_SANITIZATION_STERILIZER
 			infected_wound.sanitization += 0.5
 		if(targeted_bodypart.germ_level <= 0)
 			repeatable = FALSE
@@ -100,6 +101,7 @@
 			"<span class='notice'>[user] successfully wraps [target]'s [parse_zone(target_zone)]!</span>")
 		log_combat(user, target, "dressed infection in", addition="INTENT: [uppertext(user.a_intent)]")
 		targeted_bodypart.apply_gauze(tool)
+		targeted_bodypart.germ_level -= WOUND_SANITIZATION_STERILIZER
 		for(var/datum/wound/infected_wound in targeted_bodypart.wounds)
 			infected_wound.sanitization += 3
 			if(istype(infected_wound, /datum/wound/burn))
