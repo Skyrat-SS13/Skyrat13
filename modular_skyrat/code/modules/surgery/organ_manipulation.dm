@@ -19,7 +19,7 @@
 	I = null
 	var/hasnecroticorgans = FALSE
 	for(var/obj/item/organ/O in target.getorganszone(target_zone))
-		if(O.damage >= (O.maxHealth - O.maxHealth/10)  && !(O.status == ORGAN_ROBOTIC))
+		if((O.germ_level) || (O.damage >= (O.maxHealth - O.maxHealth/10))  && !(O.status == ORGAN_ROBOTIC))
 			hasnecroticorgans = TRUE
 	if(istype(tool, /obj/item/organ_storage))
 		if(!tool.contents.len)
