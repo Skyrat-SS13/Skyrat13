@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/spacevine
 	weight = 15
 	max_occurrences = 3
-	min_players = 10
+	min_players = 20
 
 /datum/round_event/spacevine
 	fakeable = FALSE
@@ -414,9 +414,9 @@
 	var/list/vine_mutations_list
 	var/mutativeness = 1
 
-#define MINIMUM_SPACEVINES_EFFECTIVENESS 0.4
-#define MAXIMUM_SPACEVINES_EFFECTIVENESS 1.5
-#define SPACEVINES_PLAYER_BALANCED_NUMBER 70
+#define MINIMUM_SPACEVINES_EFFECTIVENESS 0.4 //Minimum multiplier that the effectivess of vines can reach
+#define MAXIMUM_SPACEVINES_EFFECTIVENESS 1.3 //Maximum multiplier
+#define SPACEVINES_PLAYER_BALANCED_NUMBER 70 //The multiplier is balanced around this, and will be 1 if amount of players is equal to this
 
 /datum/spacevine_controller/New(turf/location, list/muts, potency, production, datum/round_event/event = null)
 	spread_multiplier *= clamp((length(GLOB.joined_player_list) / SPACEVINES_PLAYER_BALANCED_NUMBER), MINIMUM_SPACEVINES_EFFECTIVENESS, MAXIMUM_SPACEVINES_EFFECTIVENESS)
@@ -512,7 +512,7 @@
 			SM.process_mutation(SV)
 		if(SV.energy < 2) //If tile isn't fully grown
 			//if(prob(20)) // SKYRAT EDIT - VINES (ORIGINAL)
-			if(prob(50)) // SKYRAT EDIT - VINES
+			if(prob(35)) // SKYRAT EDIT - VINES
 				SV.grow()
 		else //If tile is fully grown
 			SV.entangle_mob()
