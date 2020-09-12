@@ -419,7 +419,7 @@
 #define SPACEVINES_PLAYER_BALANCED_NUMBER 70 //The multiplier is balanced around this, and will be 1 if amount of players is equal to this
 
 /datum/spacevine_controller/New(turf/location, list/muts, potency, production, datum/round_event/event = null)
-	spread_multiplier *= clamp((length(GLOB.joined_player_list) / SPACEVINES_PLAYER_BALANCED_NUMBER), MINIMUM_SPACEVINES_EFFECTIVENESS, MAXIMUM_SPACEVINES_EFFECTIVENESS)
+	spread_multiplier /= clamp((length(GLOB.joined_player_list) / SPACEVINES_PLAYER_BALANCED_NUMBER), MINIMUM_SPACEVINES_EFFECTIVENESS, MAXIMUM_SPACEVINES_EFFECTIVENESS)
 	spread_cap *= clamp((length(GLOB.joined_player_list) / SPACEVINES_PLAYER_BALANCED_NUMBER), MINIMUM_SPACEVINES_EFFECTIVENESS, MAXIMUM_SPACEVINES_EFFECTIVENESS)
 	vines = list()
 	growth_queue = list()
