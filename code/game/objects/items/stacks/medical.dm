@@ -15,6 +15,7 @@
 	max_integrity = 40
 	novariants = FALSE
 	item_flags = NOBLUDGEON
+	germ_level = 0
 	var/self_delay = 50
 	var/other_delay = 10
 	var/repeating = TRUE
