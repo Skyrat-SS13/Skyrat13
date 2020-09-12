@@ -198,7 +198,7 @@
 
 	if(!safe_oxygen_min && !safe_nitro_min && !safe_toxins_min && !safe_co2_min)
 		H.failed_last_breath = FALSE
-		if(H.InFullShock())
+		if(!H.InFullShock())
 			H.adjustOxyLoss(-breathModifier) //More damaged lungs = slower oxy rate up to a factor of half
 		H.clear_alert("not_enough_oxy")
 		return TRUE
