@@ -5,6 +5,7 @@
 	item = /obj/item/storage/box/syndie_kit/armstrong
 	cost = 20 //bumped up from 14 because by god this has murderbone potential.
 	surplus = 20 // someone who respects the eldritch god Nar-Sie a little (((too much))) complained
+	exclude_modes = list(/datum/game_mode/incursion) //lol
 
 /obj/item/storage/box/syndie_kit/armstrong
 	name = "\improper Brad Armstrong Family Style Karate Kit"
@@ -78,7 +79,7 @@
 	desc = "A kit containing the essentials for any 'big boss'. Contains a tactical turtleneck, thermal eyepatch, sneaking boots and a robotic CQC arm implanter."
 	item = /obj/item/storage/box/syndie_kit/snake
 	cost = 20
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/incursion)
 	cant_discount = TRUE
 
 /obj/item/storage/box/syndie_kit/snake

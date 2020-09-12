@@ -76,3 +76,9 @@
 	hidden_uplink.set_gamemode(/datum/game_mode/nuclear)
 	hidden_uplink.name = "debug nuclear uplink"
 	hidden_uplink.debug = TRUE
+
+/obj/item/uplink/incursion/Initialize(mapload, owner, tc_amount = 20)
+	. = ..()
+	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
+	hidden_uplink.set_gamemode(/datum/game_mode/incursion)
+	hidden_uplink.non_traitor_allowed = FALSE

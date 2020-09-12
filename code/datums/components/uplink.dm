@@ -29,6 +29,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/debug = FALSE
 	var/saved_player_population = 0
 	var/list/filters = list()
+	var/non_traitor_allowed = TRUE
 
 /datum/component/uplink/Initialize(_owner, _lockable = TRUE, _enabled = FALSE, datum/game_mode/_gamemode, starting_tc = 20, datum/ui_state/_checkstate, datum/traitor_class/traitor_class)
 	if(!isitem(parent))
@@ -116,6 +117,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 
 /datum/component/uplink/proc/interact(datum/source, mob/user)
 	if(locked)
+		return
+	if(!non_traitor_allowed && !user.mind.special_role)
 		return
 	active = TRUE
 	if(user)

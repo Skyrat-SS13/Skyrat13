@@ -39,7 +39,7 @@
 	item = /obj/item/storage/box/syndie_kit/contract_kit
 	cost = 20
 	player_minimum = 15 // Skyrat edit - lowered it from 30 back to 15
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/incursion)
 	restricted = TRUE
 
 /datum/uplink_item/bundles_TC/northstar_bundle
@@ -138,6 +138,7 @@
 	cost = 40
 	player_minimum = 40
 	starting_crate_value = 125
+	exclude_modes = list(/datum/game_mode/incursion) //You thought
 
 /datum/uplink_item/bundles_TC/surplus/purchase(mob/user, datum/component/uplink/U)
 	var/list/uplink_items = get_uplink_items(SSticker && SSticker.mode? SSticker.mode : null, FALSE)
@@ -205,6 +206,67 @@
 		var/datum/uplink_item/I = pick(possible_items)
 		SSblackbox.record_feedback("tally", "traitor_random_uplink_items_gotten", 1, initial(I.name))
 		U.MakePurchase(user, I)
+
+/datum/uplink_item/bundles_TC/crate
+	name = "Bulk Hardsuit Bundle"
+	desc = "A crate containing 4 valueable syndicate hardsuits."
+	cost = 18
+	include_modes = list(/datum/game_mode/incursion)
+	item = /obj/effect/gibspawner/generic
+	var/list/contents = list(
+		/obj/item/clothing/suit/space/hardsuit/syndi = 4,
+		/obj/item/clothing/mask/gas/syndicate = 4,
+		/obj/item/tank/internals/oxygen = 4
+	)
+
+/datum/uplink_item/bundles_TC/crate/purchase(mob/user, datum/component/uplink/U)
+	var/obj/structure/closet/crate/C = spawn_item(/obj/structure/closet/crate, user, U)
+	if(U.purchase_log)
+		U.purchase_log.LogPurchase(C, src, cost)
+	for(var/I in contents)
+		var/count = contents[I]
+		for(var/index in 1 to count)
+			new I(C)
+	return C
+
+/datum/uplink_item/bundles_TC/crate/medical
+	name = "Syndicate Medical Bundle"
+	desc = "Contains an assortment of syndicate medical equipment for you and your team. \
+			Comes with a variety of first-aid kits, pill bottles, a compact defibrillator and 4 stimpacks."
+	cost = 12
+	contents = list(
+		/obj/item/storage/firstaid/tactical = 2,	//8 TC
+		/obj/item/storage/firstaid/brute = 2,
+		/obj/item/storage/firstaid/fire = 2,
+		/obj/item/storage/firstaid/toxin = 1,
+		/obj/item/storage/firstaid/o2 = 1,
+		/obj/item/storage/pill_bottle/mutadone = 1,
+		/obj/item/storage/pill_bottle/neurine = 1,
+		/obj/item/reagent_containers/hypospray/medipen/stimpack/traitor = 4
+	)
+
+/datum/uplink_item/bundles_TC/crate/shuttle
+	name = "Stolen Shuttle Creation Kit"
+	desc = "Every syndicate team needs their own shuttle. It's a shame you weren't supplied with one, but thats not a problem \
+			if you can spare some TC! The all new shuttle creation kit (produced by the syndicate) contains everything you need \
+			to get flying! All syndicate agents are advised to ignore the Nanotrasen labels on products. Space proof suits not included."
+	cost = 15	//There are multiple uses for the RCD and plasma canister, but both are easilly accessible for items that cost less than all of their TC.
+	contents = list(
+		/obj/machinery/portable_atmospherics/canister/toxins = 1,
+		/obj/item/construction/rcd/combat = 1,
+		/obj/item/rcd_ammo/large = 2,
+		/obj/item/shuttle_creator = 1,
+		/obj/item/pipe_dispenser = 2,
+		/obj/item/storage/toolbox/syndicate = 2,
+		/obj/item/storage/toolbox/electrical = 1,
+		/obj/item/circuitboard/computer/shuttle/docker = 1,
+		/obj/item/circuitboard/computer/shuttle/flight_control = 1,
+		/obj/item/circuitboard/machine/shuttle/engine/plasma = 2,
+		/obj/item/circuitboard/machine/shuttle/heater = 2,
+		/obj/item/storage/part_replacer/cargo = 1,
+		/obj/item/electronics/apc = 1,
+		/obj/item/wallframe/apc = 1
+	)
 
 /datum/uplink_item/bundles_TC/telecrystal
 	name = "1 Raw Telecrystal"

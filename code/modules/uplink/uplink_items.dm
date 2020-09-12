@@ -168,6 +168,10 @@
 	category = "(Pointless) Badassery"
 	surplus = 0
 
+/datum/uplink_item/services
+	category = "Services"
+	surplus = 0
+
 //Discounts (dynamically filled above)
 /datum/uplink_item/discounts
 	category = "Discounted Gear"
