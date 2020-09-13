@@ -68,6 +68,24 @@
 	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
 	color_src = MATRIXED
 
+/datum/sprite_accessory/ears/human/short_pronghorn
+	name = "Short Pronghorn"
+	icon_state = "short_pronghorn"
+	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
+	color_src = MATRIXED
+
+/datum/sprite_accessory/ears/human/pronghorn
+	name = "Pronghorn"
+	icon_state = "pronghorn"
+	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
+	color_src = MATRIXED
+
+/datum/sprite_accessory/ears/human/fronthorn
+	name = "Fronthorn"
+	icon_state = "fronthorn"
+	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
+	color_src = MATRIXED
+
 /******************************************
 *************** Furry Ears ****************
 *******************************************/

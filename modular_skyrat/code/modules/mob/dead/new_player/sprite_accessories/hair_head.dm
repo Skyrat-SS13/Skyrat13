@@ -26,3 +26,23 @@
 	name = "Simple Ponytail"
 	icon = 'modular_skyrat/icons/mob/human_face.dmi'
 	icon_state = "hair_simple_ponytail"
+
+/datum/sprite_accessory/hair/loose_slicked
+	name = "Loose Slicked"
+	icon = 'modular_skyrat/icons/mob/human_face.dmi'
+	icon_state = "hair_loose_slicked"
+
+/datum/sprite_accessory/hair/diagonal_bangs
+	name = "Diagonal Bangs"
+	icon = 'modular_skyrat/icons/mob/human_face.dmi'
+	icon_state = "hair_diagonal_bangs"
+
+/datum/sprite_accessory/hair/gloomy_medium
+	name = "Medium Gloomy Bangs"
+	icon = 'modular_skyrat/icons/mob/human_face.dmi'
+	icon_state = "hair_gloomy_medium"
+
+/datum/sprite_accessory/hair/gloomy_long
+	name = "Long Gloomy Bangs"
+	icon = 'modular_skyrat/icons/mob/human_face.dmi'
+	icon_state = "hair_gloomy_long"
