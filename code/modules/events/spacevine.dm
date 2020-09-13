@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/spacevine
 	weight = 15
 	max_occurrences = 3
-	min_players = 10
+	min_players = 20
 
 /datum/round_event/spacevine
 	fakeable = FALSE
@@ -414,7 +414,13 @@
 	var/list/vine_mutations_list
 	var/mutativeness = 1
 
+#define MINIMUM_SPACEVINES_EFFECTIVENESS 0.4 //Minimum multiplier that the effectivess of vines can reach
+#define MAXIMUM_SPACEVINES_EFFECTIVENESS 1.3 //Maximum multiplier
+#define SPACEVINES_PLAYER_BALANCED_NUMBER 70 //The multiplier is balanced around this, and will be 1 if amount of players is equal to this
+
 /datum/spacevine_controller/New(turf/location, list/muts, potency, production, datum/round_event/event = null)
+	spread_multiplier /= clamp((length(GLOB.joined_player_list) / SPACEVINES_PLAYER_BALANCED_NUMBER), MINIMUM_SPACEVINES_EFFECTIVENESS, MAXIMUM_SPACEVINES_EFFECTIVENESS)
+	spread_cap *= clamp((length(GLOB.joined_player_list) / SPACEVINES_PLAYER_BALANCED_NUMBER), MINIMUM_SPACEVINES_EFFECTIVENESS, MAXIMUM_SPACEVINES_EFFECTIVENESS)
 	vines = list()
 	growth_queue = list()
 	var/obj/structure/spacevine/SV = spawn_spacevine_piece(location, null, muts)
@@ -428,6 +434,10 @@
 	if(production != null)
 		spread_cap *= production / 5
 		spread_multiplier /= production / 5
+
+#undef MINIMUM_SPACEVINES_EFFECTIVENESS
+#undef MAXIMUM_SPACEVINES_EFFECTIVENESS
+#undef SPACEVINES_PLAYER_BALANCED_NUMBER
 
 /datum/spacevine_controller/vv_get_dropdown()
 	. = ..()
@@ -502,7 +512,7 @@
 			SM.process_mutation(SV)
 		if(SV.energy < 2) //If tile isn't fully grown
 			//if(prob(20)) // SKYRAT EDIT - VINES (ORIGINAL)
-			if(prob(50)) // SKYRAT EDIT - VINES
+			if(prob(35)) // SKYRAT EDIT - VINES
 				SV.grow()
 		else //If tile is fully grown
 			SV.entangle_mob()
@@ -545,26 +555,13 @@
 /obj/structure/spacevine/proc/spread()
 	var/direction = pick(GLOB.cardinals)
 	var/turf/stepturf = get_step(src,direction)
-	//SKYRAT EDIT START - VINES
-	var/area/steparea = get_area(stepturf)
-	for(var/obj/machinery/door/D in stepturf.contents)
-		if(prob(50))
-			D.open()
-	//if (!isspaceturf(stepturf) && stepturf.Enter(src)) // SKYRAT EDIT - VINES (ORIGINAL)
-	if (stepturf.Enter(src)) //SKYRAT EDIT - VINES
-		if(istype(steparea, /area/space/station_ruins))
-			return
-	//SKYRAT EDIT END - VINES
+	if (!isspaceturf(stepturf) && stepturf.Enter(src))
 		for(var/datum/spacevine_mutation/SM in mutations)
 			SM.on_spread(src, stepturf)
 			stepturf = get_step(src,direction) //in case turf changes, to make sure no runtimes happen
 		if(!locate(/obj/structure/spacevine, stepturf))
 			if(master)
 				master.spawn_spacevine_piece(stepturf, src)
-				//SKYRAT EDIT START - VINES
-				if(istype(stepturf, /turf/open/space))
-					stepturf.ChangeTurf(/turf/open/floor/plating/airless/kudzu)
-				//SKYRAT EDIT END - VINES
 
 /obj/structure/spacevine/ex_act(severity, target)
 	if(istype(target, type)) //if its agressive spread vine dont do anything
@@ -595,14 +592,3 @@
 		if(istype(M, /mob/living/simple_animal/hostile/venus_human_trap))
 			return TRUE
 	return FALSE
-
-/turf/open/floor/plating/airless/kudzu
-	name = "kudzu flooring"
-	icon = 'modular_skyrat/icons/turf/smooth/_smooth.dmi'
-	icon_state = "grass"
-
-/turf/open/floor/plating/airless/kudzu/attackby(obj/item/C, mob/user, params)
-	if(istype(C, /obj/item/wirecutters))
-		ChangeTurf(/turf/open/space)
-	else
-		return ..()

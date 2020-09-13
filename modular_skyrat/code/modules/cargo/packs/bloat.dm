@@ -21,6 +21,22 @@
 					/obj/item/gun/energy/e_gun/stun)
 	crate_name = "swat taser crate"
 
+/datum/supply_pack/security/armory/swat_tactical
+	name = "SWAT Tactical Operations crate"
+	desc = "Contains two sets of lightweight equipment for tactical operations. Each set contains a vest, night vision helmet, mask, combat belt, and combat gloves. Requires Armory access to open."
+	cost = 6000
+	contains = list(/obj/item/clothing/head/helmet/advanced,
+					/obj/item/clothing/head/helmet/advanced,
+					/obj/item/clothing/suit/armor/vest/advanced,
+					/obj/item/clothing/suit/armor/vest/advanced,
+					/obj/item/clothing/mask/gas/sechailer/swat,
+					/obj/item/clothing/mask/gas/sechailer/swat,
+					/obj/item/storage/belt/military/assault,
+					/obj/item/storage/belt/military/assault,
+					/obj/item/clothing/gloves/tackler/combat/insulated,
+					/obj/item/clothing/gloves/tackler/combat/insulated)
+	crate_name = "swat crate"
+
 /datum/supply_pack/security/armory/woodstock
 	name = "WoodStock Classic Shotguns Crate"
 	desc = "Contains three rustic, pump action shotguns. Requires Armory access to open."
