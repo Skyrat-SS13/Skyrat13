@@ -1,0 +1,4 @@
+author: "dankmemerino147"
+delete-after: True
+changes: 
+  - balance: "Rewind camera can now be reused, on a 2 minute cooldown to which the Photographer trait applies; film cartridge reload required, and second rewind per use is removed. (NO TYPE OF CAMERA CAN BE RELOADED UNTIL PHOTOGRAPHY IS RE-ENABLED, making this an effective nerf until then)"
