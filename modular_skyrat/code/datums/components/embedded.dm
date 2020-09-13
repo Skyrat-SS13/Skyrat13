@@ -223,15 +223,15 @@
 	safeRemove()
 
 /// Called when a carbon with an object embedded/stuck to them inspects themselves and clicks the appropriate link to begin ripping the item out. This handles the ripping attempt, descriptors, and dealing damage, then calls safe_remove()
-/datum/component/embedded/proc/ripOut(datum/source, obj/item/I, obj/item/bodypart/limb)
-	if(I != weapon || src.limb != limb)
+/datum/component/embedded/proc/ripOut(datum/source, obj/item/I, obj/item/bodypart/limb, mob/living/user)
+	if(I != weapon || src.limb != limb || !istype(user))
 		return
 
 	var/mob/living/carbon/victim = parent
 	var/time_taken = rip_time * weapon.w_class
-	victim.visible_message("<span class='warning'>[victim] attempts to remove [weapon] from [victim.p_their()] [limb.name].</span>","<span class='notice'>You attempt to remove [weapon] from your [limb.name]... (It will take [DisplayTimeText(time_taken)].)</span>")
+	victim.visible_message("<span class='warning'>[user] attempts to remove [weapon] from [user == victim ? victim.p_their() : "[victim]'s"] [limb.name].</span>","<span class='notice'>You attempt to remove [weapon] from [user == victim ? "your" : "[victim]'s"] [limb.name]... (It will take [DisplayTimeText(time_taken)].)</span>")
 
-	if(!do_after(victim, time_taken, target = victim))
+	if(!do_after(user, time_taken, target = victim))
 		return
 	if(!weapon || !limb || weapon.loc != victim || !(weapon in limb.embedded_objects))
 		qdel(src)
@@ -242,7 +242,7 @@
 		limb.receive_damage(brute=(1-pain_stam_pct) * damage, stamina=pain_stam_pct * damage, sharpness=SHARP_EDGED) //It hurts to rip it out, get surgery you dingus.
 		victim.emote("scream")
 
-	victim.visible_message("<span class='notice'>[victim] successfully rips [weapon] [harmful ? "out" : "off"] of [victim.p_their()] [limb.name]!</span>", "<span class='notice'>You successfully remove [weapon] from your [limb.name].</span>")
+	victim.visible_message("<span class='notice'>[user] successfully rips [weapon] [harmful ? "out" : "off"] of [user == victim ? victim.p_their() : "[victim]'s"] [limb.name]!</span>", "<span class='notice'>You successfully remove [weapon] from [user == victim ? "your" : "[victim]'s"] [limb.name].</span>")
 	safeRemove(TRUE)
 
 /// This proc handles the final step and actual removal of an embedded/stuck item from a carbon, whether or not it was actually removed safely.

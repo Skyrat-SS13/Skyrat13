@@ -222,6 +222,24 @@
 		dat += "<tr><td><B>Handcuffed:</B> <A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Remove</A></td></tr>"
 	if(legcuffed)
 		dat += "<tr><td><A href='?src=[REF(src)];item=[SLOT_LEGCUFFED]'>Legcuffed</A></td></tr>"
+	
+	dat += "\n"
+
+	//Embedded objects
+	dat += "<tr><td><B>Embedded objects: </B></tr></td>"
+	var/list/embeddies = list()
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		if(length(BP.embedded_objects))
+			embeddies[BP] = BP.embedded_objects.Copy()
+	for(var/i in embeddies)
+		var/obj/item/ineedthename = i
+		dat += "<tr><td><font color=grey>[capitalize(ineedthename.name)]:</font></td>"
+		for(var/y in embeddies[i])
+			dat += "<td><A href='?src=[REF(src)];embedded_object=[REF(y)];embedded_limb=[REF(i)]'>[y]</a></td>"
+		dat += "</tr>"
+	if(!length(embeddies))
+		dat += "<tr><td><font color=grey>None</font></tr></td>"
 
 	dat += {"</table>
 	<A href='?src=[REF(user)];mach_close=mob[REF(src)]'>Close</A>
@@ -249,7 +267,7 @@
 			var/obj/item/I = locate(href_list["embedded_object"]) in L.embedded_objects
 			if(!I || I.loc != src) //no item, no limb, or item is not in limb or in the person anymore
 				return
-			SEND_SIGNAL(src, COMSIG_CARBON_EMBED_RIP, I, L)
+			SEND_SIGNAL(src, COMSIG_CARBON_EMBED_RIP, I, L, usr)
 			return
 		if(href_list["toggle_helmet"])
 			if(!istype(head, /obj/item/clothing/head/helmet/space/hardsuit))
