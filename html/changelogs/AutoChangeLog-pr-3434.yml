@@ -1,5 +1,0 @@
-author: "Floof Ball#0798 Kathrin Morrison"
-delete-after: True
-changes: 
-  - balance: "Blobs are now weaker, with 1.5x resource generation, blob spores are stronger, resource nodes are cheaper and the health of blobs has been lowered across the board to make them less frustrating to fight."
-  - bugfix: "Blob tooltips were displaying incorrect prices for blob tiles and missing some critical information."
