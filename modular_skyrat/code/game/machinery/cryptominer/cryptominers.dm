@@ -4,17 +4,21 @@
 	icon = 'modular_skyrat/code/game/machinery/cryptominer/cargo.dmi'
 	icon_state = "off"
 	density = TRUE
-	use_power = IDLE_POWER_USE
+
+	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 20
-	active_power_usage = 200
+	active_power_usage = 2000
+
 	circuit = /obj/item/circuitboard/machine/cryptominer
+
 	var/mining = FALSE
-	var/miningtime = 3000
-	var/miningpoints = 50
-	var/mintemp = TCRYO // 225K equals approximately -55F or -48C
+	var/miningtime = 1 MINUTES
+
+	var/mintemp = TCMB // 2.7K equals -454.81F or -270.3C
 	var/midtemp = T0C // 273K equals 32F or 0C
 	var/maxtemp = 500 // 500K equals approximately 440F or 226C
-	var/heatingPower = 40000
+
+	var/efficiency
 
 /obj/machinery/cryptominer/update_icon()
 	. = ..()
@@ -24,6 +28,22 @@
 		icon_state = "loop"
 	else
 		icon_state = "on"
+
+//okay, "detailed" understanding of this.
+//cryptominers have 2 of each of these items: scanning, manipul, laser, and bin
+//so in total, 8 objects. easy math
+//then, each part has 4 tiers, which means multiples of 8. (8, 16, 24, 32)
+//we will use this as the means for creating credits... EASY
+/obj/machinery/cryptominer/RefreshParts()
+	efficiency = 0
+	for(var/obj/item/stock_parts/scanning_module/S in component_parts)
+		efficiency += S.rating
+	for(var/obj/item/stock_parts/manipulator/P in component_parts)
+		efficiency += P.rating
+	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
+		efficiency += L.rating
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
+		efficiency += M.rating
 
 /obj/machinery/cryptominer/Destroy()
 	STOP_PROCESSING(SSmachines,src)
@@ -75,10 +95,11 @@
 	playsound(loc, 'sound/machines/ping.ogg', 50, TRUE, -1)
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
-		D.adjust_money(FLOOR(miningpoints * number,1))
+		var/printedmoney = round(efficiency * number)
+		D.adjust_money(printedmoney)
 
 /obj/machinery/cryptominer/proc/produce_heat()
-	atmos_spawn_air("co2=10;TEMP=2000")
+	atmos_spawn_air("co2=100;TEMP=2000")
 
 /obj/machinery/cryptominer/attack_hand(mob/living/user)
 	. = ..()
@@ -103,7 +124,7 @@
 		STOP_PROCESSING(SSmachines, src)
 	update_icon()
 
-
+/*
 /obj/machinery/cryptominer/syndie
 	name = "syndicate cryptocurrency miner"
 	desc = "This handy-dandy machine will produce credits for your enjoyment. It lasts a little longer."
@@ -116,15 +137,15 @@
 	circuit = /obj/item/circuitboard/machine/cryptominer/syndie
 	miningtime = 6000
 	miningpoints = 100
-
+*/
 /obj/machinery/cryptominer/nanotrasen
 	name = "nanotrasen cryptocurrency miner"
 	desc = "This handy-dandy machine will produce credits for your enjoyment. This doesn't turn off easily."
 	icon = 'modular_skyrat/code/game/machinery/cryptominer/nanotrasen.dmi'
-	icon_state = "off"
-	density = TRUE
+
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 1
 	active_power_usage = 1
-	miningtime = 600000
-	miningpoints = 1000
+
+	miningtime = 3 HOURS
+

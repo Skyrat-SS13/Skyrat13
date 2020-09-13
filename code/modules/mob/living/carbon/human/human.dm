@@ -145,12 +145,17 @@
 		dat += "<tr><td><font color=grey><B>Eyes:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
 		dat += "<tr><td><B>Eyes:</B></td><td><A href='?src=[REF(src)];item=[SLOT_GLASSES]'>[(glasses && !(glasses.item_flags & ABSTRACT))	? glasses : "<font color=grey>Empty</font>"]</A></td></tr>"
-
-	if(SLOT_EARS in obscured)
-		dat += "<tr><td><font color=grey><B>Ears:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+	//skyrat edit
+	if(SLOT_EARS_LEFT in obscured)
+		dat += "<tr><td><font color=grey><B>Left ear:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
-		dat += "<tr><td><B>Ears:</B></td><td><A href='?src=[REF(src)];item=[SLOT_EARS]'>[(ears && !(ears.item_flags & ABSTRACT))		? ears		: "<font color=grey>Empty</font>"]</A></td></tr>"
-
+		dat += "<tr><td><B>Left ear:</B></td><td><A href='?src=[REF(src)];item=[SLOT_EARS_LEFT]'>[(ears && !(ears.item_flags & ABSTRACT))		? ears		: "<font color=grey>Empty</font>"]</A></td></tr>"
+	
+	if(SLOT_EARS_RIGHT in obscured)
+		dat += "<tr><td><font color=grey><B>Right ear:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+	else
+		dat += "<tr><td><B>Right ear:</B></td><td><A href='?src=[REF(src)];item=[SLOT_EARS_RIGHT]'>[(ears_extra && !(ears_extra.item_flags & ABSTRACT))		? ears_extra		: "<font color=grey>Empty</font>"]</A></td></tr>"
+	//
 	dat += "<tr><td>&nbsp;</td></tr>"
 
 	dat += "<tr><td><B>Exosuit:</B></td><td><A href='?src=[REF(src)];item=[SLOT_WEAR_SUIT]'>[(wear_suit && !(wear_suit.item_flags & ABSTRACT)) ? wear_suit : "<font color=grey>Empty</font>"]</A>"
@@ -175,12 +180,31 @@
 		dat += "<tr><td><font color=grey><B>Gloves:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
 		dat += "<tr><td><B>Gloves:</B></td><td><A href='?src=[REF(src)];item=[SLOT_GLOVES]'>[(gloves && !(gloves.item_flags & ABSTRACT))		? gloves	: "<font color=grey>Empty</font>"]</A></td></tr>"
-
+	//skyrat edit
+	if(SLOT_WRISTS in obscured)
+		dat += "<tr><td><font color=grey><B>Wrists:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+	else
+		dat += "<tr><td><B>Wrists:</B></td><td><A href='?src=[REF(src)];item=[SLOT_WRISTS]'>[(wrists && !(wrists.item_flags & ABSTRACT)) ? wrists : "<font color=grey>Empty</font>"]</A></td></tr>"
+	//
 	if(SLOT_W_UNIFORM in obscured)
 		dat += "<tr><td><font color=grey><B>Uniform:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
 		dat += "<tr><td><B>Uniform:</B></td><td><A href='?src=[REF(src)];item=[SLOT_W_UNIFORM]'>[(w_uniform && !(w_uniform.item_flags & ABSTRACT)) ? w_uniform : "<font color=grey>Empty</font>"]</A></td></tr>"
-
+	//skyrat edit
+	var/undies_hidden = underwear_hidden()
+	if((SLOT_W_UNDERWEAR in obscured) || undies_hidden)
+		dat += "<tr><td><font color=grey><B>Underwear:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+	else
+		dat += "<tr><td><B>Underwear:</B></td><td><A href='?src=[REF(src)];item=[SLOT_W_UNDERWEAR]'>[(w_underwear && !(w_underwear.item_flags & ABSTRACT)) ? w_underwear : "<font color=grey>Empty</font>"]</A></td></tr>"
+	if((SLOT_W_SOCKS in obscured) || undies_hidden)
+		dat += "<tr><td><font color=grey><B>Socks:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+	else
+		dat += "<tr><td><B>Socks:</B></td><td><A href='?src=[REF(src)];item=[SLOT_W_SOCKS]'>[(w_socks && !(w_socks.item_flags & ABSTRACT)) ? w_socks : "<font color=grey>Empty</font>"]</A></td></tr>"
+	if((SLOT_W_SHIRT in obscured) || undies_hidden)
+		dat += "<tr><td><font color=grey><B>Shirt:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+	else
+		dat += "<tr><td><B>Shirt:</B></td><td><A href='?src=[REF(src)];item=[SLOT_W_SHIRT]'>[(w_shirt && !(w_shirt.item_flags & ABSTRACT)) ? w_shirt : "<font color=grey>Empty</font>"]</A></td></tr>"
+	//
 	if((w_uniform == null && !(dna && dna.species.nojumpsuit)) || (SLOT_W_UNIFORM in obscured))
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Pockets:</B></font></td></tr>"
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>ID:</B></font></td></tr>"
@@ -228,25 +252,27 @@
 			SEND_SIGNAL(src, COMSIG_CARBON_EMBED_RIP, I, L)
 			return
 		if(href_list["toggle_helmet"])
-			var/hardsuit_head = head && istype(head, /obj/item/clothing/head/helmet/space/hardsuit)
+			if(!istype(head, /obj/item/clothing/head/helmet/space/hardsuit))
+				return
+			var/obj/item/clothing/head/helmet/space/hardsuit/hardsuit_head = head
 			visible_message("<span class='danger'>[usr] tries to [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>", \
 								"<span class='userdanger'>[usr] tries to [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>", \
 								target = usr, target_message = "<span class='danger'>You try to [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>")
-			if(!do_mob(usr, src, POCKET_STRIP_DELAY))
+			if(!do_mob(usr, src, hardsuit_head ? head.strip_delay : POCKET_STRIP_DELAY))
 				return
-			visible_message("<span class='danger'>[usr] [hardsuit_head ? "retract" : "extend"] [src]'s helmet</span>", \
-									"<span class='userdanger'>[usr] [hardsuit_head ? "retract" : "extend"] [src]'s helmet</span>", \
-									target = usr, target_message = "<span class='danger'>You [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>")
-			if(!istype(wear_suit, /obj/item/clothing/suit/space/hardsuit))
+			if(!istype(wear_suit, /obj/item/clothing/suit/space/hardsuit) || (hardsuit_head ? (!head || head != hardsuit_head) : head))
 				return
 			var/obj/item/clothing/suit/space/hardsuit/hardsuit = wear_suit //This should be an hardsuit given all our checks
-			hardsuit.ToggleHelmet()
+			if(hardsuit.ToggleHelmet(FALSE))
+				visible_message("<span class='danger'>[usr] [hardsuit_head ? "retract" : "extend"] [src]'s helmet</span>", \
+										"<span class='userdanger'>[usr] [hardsuit_head ? "retract" : "extend"] [src]'s helmet</span>", \
+										target = usr, target_message = "<span class='danger'>You [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>")
 			return
 		if(href_list["item"])
 			var/slot = text2num(href_list["item"])
 			if(slot in check_obscured_slots())
 				to_chat(usr, "<span class='warning'>You can't reach that! Something is covering it.</span>")
-				return							
+				return
 		if(href_list["pockets"])
 			var/strip_mod = 1
 			var/strip_silence = FALSE
@@ -535,10 +561,30 @@
 	if(wear_suit)
 		if(wear_suit.flags_inv & HIDEGLOVES)
 			obscured |= SLOT_GLOVES
+		//skyrat edit
+		if(wear_suit.flags_inv & HIDEWRISTS)
+			obscured |= SLOT_WRISTS
+		if(wear_suit.flags_inv & HIDEUNDERWEAR)
+			obscured |= SLOT_W_UNDERWEAR
+			obscured |= SLOT_W_SHIRT
+			obscured |= SLOT_W_SOCKS
+		//
 		if(wear_suit.flags_inv & HIDEJUMPSUIT)
 			obscured |= SLOT_W_UNIFORM
 		if(wear_suit.flags_inv & HIDESHOES)
 			obscured |= SLOT_SHOES
+	
+	//skyrat edit
+	if(w_uniform)
+		if(w_uniform.flags_inv & HIDEGLOVES)
+			obscured |= SLOT_GLOVES
+		if(w_uniform.flags_inv & HIDEWRISTS)
+			obscured |= SLOT_WRISTS
+		if(w_uniform.flags_inv & HIDEUNDERWEAR)
+			obscured |= SLOT_W_UNDERWEAR
+			obscured |= SLOT_W_SHIRT
+			obscured |= SLOT_W_SOCKS
+	//
 
 	if(head)
 		if(head.flags_inv & HIDEMASK)
@@ -546,7 +592,10 @@
 		if(head.flags_inv & HIDEEYES)
 			obscured |= SLOT_GLASSES
 		if(head.flags_inv & HIDEEARS)
-			obscured |= SLOT_EARS
+			//skyrat edit
+			obscured |= SLOT_EARS_LEFT
+			obscured |= SLOT_EARS_RIGHT
+			//
 
 	if(wear_mask)
 		if(wear_mask.flags_inv & HIDEEYES)
@@ -783,35 +832,40 @@
 						hud_used.healths.icon_state = "health7"
 					if(SCREWYHUD_HEALTHY)
 						hud_used.healths.icon_state = "health0"
+			if(HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
+				hud_used.healths.icon_state = "health0"
 		if(hud_used.healthdoll)
 			hud_used.healthdoll.cut_overlays()
 			if(stat != DEAD)
 				hud_used.healthdoll.icon_state = "healthdoll_OVERLAY"
-				for(var/X in bodyparts)
-					var/obj/item/bodypart/BP = X
-					var/damage = BP.burn_dam + BP.brute_dam
-					var/comparison = (BP.max_damage/5)
-					var/icon_num = 0
-					if(damage)
-						icon_num = 1
-					if(damage > (comparison))
-						icon_num = 2
-					if(damage > (comparison*2))
-						icon_num = 3
-					if(damage > (comparison*3))
-						icon_num = 4
-					if(damage > (comparison*4))
-						icon_num = 5
-					if(hal_screwyhud == SCREWYHUD_HEALTHY)
-						icon_num = 0
-					if(icon_num)
-						hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[BP.body_zone][icon_num]"))
-				for(var/t in get_missing_limbs()) //Missing limbs
-					hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[t]6"))
-				for(var/t in get_disabled_limbs()) //Disabled limbs
-					hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[t]7"))
+				if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
+					for(var/X in bodyparts)
+						var/obj/item/bodypart/BP = X
+						var/damage = BP.burn_dam + BP.brute_dam
+						var/comparison = (BP.max_damage/5)
+						var/icon_num = 0
+						if(damage)
+							icon_num = 1
+						if(damage > (comparison))
+							icon_num = 2
+						if(damage > (comparison*2))
+							icon_num = 3
+						if(damage > (comparison*3))
+							icon_num = 4
+						if(damage > (comparison*4))
+							icon_num = 5
+						if(hal_screwyhud == SCREWYHUD_HEALTHY)
+							icon_num = 0
+						if(icon_num)
+			//skyrat edit - modular health doll
+							hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[BP.body_zone][icon_num]"))
+					for(var/t in get_missing_limbs()) //Missing limbs
+						hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[t]6"))
+					for(var/t in get_disabled_limbs()) //Disabled limbs
+						hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[t]7"))
 			else
 				hud_used.healthdoll.icon_state = "healthdoll_DEAD"
+			//
 
 		hud_used.staminas?.update_icon_state()
 		hud_used.staminabuffer?.update_icon_state()
@@ -1265,3 +1319,37 @@
 
 /mob/living/carbon/human/species/roundstartslime
 	race = /datum/species/jelly/roundstartslime
+
+//skyrat edit
+/mob/living/carbon/human/is_bleeding()
+	if(NOBLOOD in dna.species.species_traits)
+		return FALSE
+	return ..()
+
+/mob/living/carbon/human/has_gauze()
+	if(NOBLOOD in dna.species.species_traits)
+		return FALSE
+	return ..()
+
+/mob/living/carbon/human/get_total_bleed_rate()
+	if(NOBLOOD in dna.species.species_traits)
+		return FALSE
+	return ..()
+
+/mob/living/carbon/human/get_biological_state()
+	if(!length(dna?.species?.species_traits))
+		return BIO_INORGANIC
+	return dna.species.get_biological_state()
+
+//skyrat species
+/mob/living/carbon/human/species/humanoid
+	race = /datum/species/human/humanoid
+
+/mob/living/carbon/human/species/dunmer
+	race = /datum/species/human/humanoid/dunmer
+
+/mob/living/carbon/human/species/vox
+	race = /datum/species/vox
+
+/mob/living/carbon/human/species/mothperson
+	race = /datum/species/insect/moth

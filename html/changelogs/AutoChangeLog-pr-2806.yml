@@ -1,5 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "Moths no longer get species squashed into insects"
-  - imageadd: "Moth sprites are now greyscale"

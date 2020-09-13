@@ -15,6 +15,7 @@
 	movement_type = FLYING | UNSTOPPABLE
 	var/datum/beam/arm
 	var/handedness = 0
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/curse_hand/Initialize(mapload)
 	. = ..()

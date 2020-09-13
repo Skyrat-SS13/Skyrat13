@@ -1,9 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Synths now unassume disguise on death, and stay that way until revived"
-  - bugfix: "Synths now have the same damage mods as IPCs"
-  - bugfix: "Synths can now be revived by healing and generally act just like IPCs (for real)"
-  - bugfix: "Synths are now unable to process organic reagents... as it always should have been."
-  - bugfix: "Diseases will now check for mob biotype properly"
-  - bugfix: "Synthetics are now able to have nanites (some of them)"

@@ -134,6 +134,7 @@
 	desc = "A patch of overgrown grass."
 	icon = 'icons/obj/flora/snowflora.dmi'
 	gender = PLURAL	//"this is grass" not "this is a grass"
+	max_integrity = 20	// Skyrat Edit - This should be easy to remove in-game.
 
 /obj/structure/flora/grass/brown
 	icon_state = "snowgrass1bb"
@@ -177,6 +178,7 @@
 	desc = "Some kind of plant."
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
+	max_integrity = 20		//Skyrat Edit - Flowers and bushes should not have 150 health.
 
 /obj/structure/flora/ausbushes/Initialize()
 	if(icon_state == "firstbush_1")
@@ -415,6 +417,7 @@
 	desc = "A wild plant that is found in jungles."
 	icon = 'icons/obj/flora/jungleflora.dmi'
 	icon_state = "busha"
+	max_integrity = 20	// Skyrat Edit
 
 /obj/structure/flora/junglebush/Initialize()
 	icon_state = "[icon_state][rand(1, 3)]"

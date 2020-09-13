@@ -72,17 +72,30 @@
 		if(MODE_HEADSET)
 			if (ears)
 				ears.talk_into(src, message, , spans, language)
+			//skyrat edit
+			else if (ears_extra)
+				ears_extra.talk_into(src, message, , spans, language)
+			//
 			return ITALICS | REDUCE_RANGE
 
 		if(MODE_DEPARTMENT)
 			if (ears)
 				ears.talk_into(src, message, message_mode, spans, language)
+			//skyrat edit
+			else if (ears_extra)
+				ears_extra.talk_into(src, message, message_mode, spans, language)
+			//
 			return ITALICS | REDUCE_RANGE
 
 	if(message_mode in GLOB.radiochannels)
 		if(ears)
 			ears.talk_into(src, message, message_mode, spans, language)
 			return ITALICS | REDUCE_RANGE
+		//skyrat edit
+		else if (ears_extra)
+			ears_extra.talk_into(src, message, , spans, language)
+			return ITALICS | REDUCE_RANGE
+		//
 
 	return 0
 
@@ -91,6 +104,7 @@
 		return " (as [get_id_name("Unknown")])"
 
 /mob/living/carbon/human/proc/forcesay(list/append) //this proc is at the bottom of the file because quote fuckery makes notepad++ cri
+	set waitfor = FALSE		// WINGET IS A SLEEP. DO. NOT. SLEEP.
 	if(stat == CONSCIOUS)
 		if(client)
 			var/temp = winget(client, "input", "text")

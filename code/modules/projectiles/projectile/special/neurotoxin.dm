@@ -4,6 +4,8 @@
 	damage = 15
 	damage_type = TOX
 	var/stagger_duration = 8 SECONDS
+	wound_bonus = CANT_WOUND
+	embedding = EMBED_NONE
 
 /obj/item/projectile/bullet/neurotoxin/on_hit(atom/target, blocked = FALSE)
 	if(isalien(target))

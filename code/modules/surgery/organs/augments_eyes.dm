@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 /obj/item/organ/cyberimp/eyes/hud
 	name = "cybernetic hud"
 	desc = "artificial photoreceptors with specialized functionality"
@@ -40,3 +41,4 @@
 	name = "Contraband Security HUD Implant"
 	desc = "A Cybersun Industries brand Security HUD Implant. These illicit cybernetic eye implants will display a security HUD over everything you see."
 	syndicate_implant = TRUE
+*/

@@ -1,6 +1,0 @@
-author: "Trigg"
-delete-after: True
-changes: 
-  - rscadd: "Nanite Signaler program"
-  - rscadd: "Stamina Damage is now an option to be detected by the damage sensor program"
-  - bugfix: "On the nanite programmer, you can now use 0 as a number without making the field reset to its default."

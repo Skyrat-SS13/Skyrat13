@@ -8,6 +8,7 @@
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	lefthand_file = 'modular_citadel/icons/mob/citadel/guns_lefthand.dmi'
 	righthand_file = 'modular_citadel/icons/mob/citadel/guns_righthand.dmi'
+	wound_bonus = 20
 
 /obj/item/projectile/energy/megabuster
 	name = "buster pellet"
@@ -15,3 +16,4 @@
 	nodamage = 1
 	lefthand_file = 'modular_citadel/icons/mob/citadel/guns_lefthand.dmi'
 	righthand_file = 'modular_citadel/icons/mob/citadel/guns_righthand.dmi'
+	wound_bonus = 10

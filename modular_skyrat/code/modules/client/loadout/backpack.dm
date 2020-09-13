@@ -8,3 +8,4 @@
 	category = SLOT_IN_BACKPACK
 	path = /obj/item/ttsdevice
 	cost = 7
+

@@ -131,3 +131,23 @@
 	desc = "An adorable stuffed toy resembling some sort of crew member."
 	icon_state = "dubious"
 	item_state = "dubious"
+
+/obj/item/toy/plush/borgplush/doctordrake
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
+	name = "Drake Plushie"
+	desc = "An adorable stuffed toy of a robot dragon."
+	icon_state = "doctordrake"
+	item_state = "doctordrake"
+
+/obj/item/toy/plush/borgplush/securitydrake
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
+	name = "Drake Plushie"
+	desc = "An adorable stuffed toy of a robot dragon."
+	icon_state = "securitydrake"
+	item_state = "securitydrake"
+
+/obj/item/toy/plush/mammal/sarmie
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	desc = "A stuffed toy who look like a cosplayer, <b>He looks sad.</b>"
+	icon_state = "sarmie"
+	item_state = "sarmie"

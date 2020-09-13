@@ -1,5 +1,0 @@
-author: "Bob Joga, Baystation12, MistakeNot4892"
-delete-after: True
-changes: 
-  - rscadd: "Ported descriptors from Baystation, and added options for them in the setup."
-  - rscdel: "Species are no longer squashed. Go hogwild."

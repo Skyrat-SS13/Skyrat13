@@ -1,6 +1,7 @@
 /mob/living/carbon/BiologicalLife(seconds, times_fired)
 	//Reagent processing needs to come before breathing, to prevent edge cases.
 	handle_organs()
+	handle_changeling()
 	. = ..()		// if . is false, we are dead.
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
@@ -26,7 +27,6 @@
 		handle_liver()
 
 	//Updates the number of stored chemicals for powers
-	handle_changeling()
 
 /mob/living/carbon/PhysicalLife(seconds, times_fired)
 	if(!(. = ..()))
@@ -396,7 +396,7 @@
 			if(O)
 				O.on_life()
 	else
-		if(reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/preservahyde, 1)) // No organ decay if the body contains formaldehyde. Or preservahyde.
+		if(reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/medicine/preservahyde, 1)) // No  organ decay if the body contains formaldehyde. Orpreservahyde. Skyrat Edit - repaths perservahyde
 			return
 		for(var/V in internal_organs)
 			var/obj/item/organ/O = V
@@ -606,10 +606,14 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	if(drunkenness)
 		drunkenness = max(drunkenness - (drunkenness * 0.01), 0) //skyrat-edit
 		//skyrat edit
-		if(drunkenness <= 121)
+		if(drunkenness <= 121 && drunkenness >= 30)
 			throw_alert("drunk", /obj/screen/alert/drunk)
-		else
+		else if(drunkenness > 121)
 			throw_alert("drunk", /obj/screen/alert/drunk/drunker)
+			ADD_TRAIT(src, TRAIT_PAINKILLER, "drunk")
+		else if(drunkenness <= 20) //drunk goes away very slowly so we need to be nice here to the players and NOT pollute their screen
+			clear_alert("drunk")
+			REMOVE_TRAIT(src, TRAIT_PAINKILLER, "drunk")
 		//
 		if(drunkenness >= 40) //skyrat-edit
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "drunk", /datum/mood_event/drunk)
@@ -761,3 +765,10 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		return
 
 	heart.beating = !status
+
+//skyrat edit
+/mob/living/carbon/handle_wounds()
+	for(var/thing in all_wounds)
+		var/datum/wound/W = thing
+		if(istype(W) && W.processes) // meh
+			W.handle_process()

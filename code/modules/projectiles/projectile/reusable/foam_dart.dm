@@ -10,6 +10,7 @@
 	range = 10
 	var/modified = FALSE
 	var/obj/item/pen/pen = null
+	embedding = list(embed_chance=0, fall_chance=2, jostle_chance=0, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.5, pain_mult=3, rip_time=10)
 
 /obj/item/projectile/bullet/reusable/foam_dart/handle_drop()
 	if(dropped)
@@ -28,7 +29,6 @@
 		pen.forceMove(newdart)
 		pen = null
 	newdart.update_icon()
-
 
 /obj/item/projectile/bullet/reusable/foam_dart/Destroy()
 	pen = null

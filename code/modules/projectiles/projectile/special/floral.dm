@@ -5,6 +5,7 @@
 	damage_type = TOX
 	nodamage = 1
 	flag = "energy"
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/energy/floramut/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -23,3 +24,4 @@
 	damage_type = TOX
 	nodamage = 1
 	flag = "energy"
+	wound_bonus = CANT_WOUND

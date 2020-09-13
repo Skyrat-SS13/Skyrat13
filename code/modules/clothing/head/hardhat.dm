@@ -8,17 +8,19 @@
 	var/power_on = 0.8
 	var/on = FALSE
 	var/hat_type = "yellow" //Determines used sprites: hardhat[on]_[hat_type] and hardhat[on]_[hat_type]2 (lying down sprite)
-	armor = list("melee" = 15, "bullet" = 5, "laser" = 20,"energy" = 10, "bomb" = 20, "bio" = 10, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 15, "bullet" = 5, "laser" = 20,"energy" = 10, "bomb" = 20, "bio" = 10, "rad" = 20, "fire" = 100, "acid" = 50, "wound" = 7.5)
 	flags_inv = 0
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	resistance_flags = FIRE_PROOF
 	dynamic_hair_suffix = "+generic"
 
 	dog_fashion = /datum/dog_fashion/head
+	beepsky_fashion = /datum/beepsky_fashion/engineer
 
 
 /obj/item/clothing/head/hardhat/ComponentInitialize()
 	. = ..()
+	AddComponent(/datum/component/overlay_lighting, light_color, brightness_on, power_on, FALSE) //Skyrat change
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/clothing/head/hardhat/attack_self(mob/living/user)
@@ -37,10 +39,12 @@
 	item_state = "hardhat[on]_[hat_type]"
 
 /obj/item/clothing/head/hardhat/proc/turn_on(mob/user)
-	set_light(brightness_on, power_on)
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+	OL.turn_on()
 
 /obj/item/clothing/head/hardhat/proc/turn_off(mob/user)
-	set_light(0)
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+	OL.turn_off()
 
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"

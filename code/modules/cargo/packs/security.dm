@@ -31,12 +31,21 @@
 
 /datum/supply_pack/security/armor
 	name = "Armor Crate"
-	desc = "Three vests of well-rounded, decently-protective armor. Requires Security access to open."
+	desc = "Three vests of decently-protective (if outdated) armor. Requires Security access to open."
 	cost = 1200
 	contains = list(/obj/item/clothing/suit/armor/vest,
 					/obj/item/clothing/suit/armor/vest,
 					/obj/item/clothing/suit/armor/vest)
 	crate_name = "armor crate"
+
+/datum/supply_pack/security/armor
+	name = "Techarmor Crate"
+	desc = "Three vests of advanced, well-rounded type I techarmor. Requires Security access to open."
+	cost = 2200
+	contains = list(/obj/item/clothing/suit/space/hardsuit/security_armor,
+					/obj/item/clothing/suit/space/hardsuit/security_armor,
+					/obj/item/clothing/suit/space/hardsuit/security_armor)
+	crate_name = "exoskeleton armor crate"
 
 /datum/supply_pack/security/disabler
 	name = "Disabler Crate"

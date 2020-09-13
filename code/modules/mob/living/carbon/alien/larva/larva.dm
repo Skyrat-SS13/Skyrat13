@@ -16,7 +16,7 @@
 	var/time_of_birth
 
 	rotate_on_lying = FALSE
-	bodyparts = list(/obj/item/bodypart/chest/larva, /obj/item/bodypart/head/larva)
+	bodyparts = LARVA_BODYPARTS_PATH
 
 //This is fine right now, if we're adding organ specific damage this needs to be updated
 /mob/living/carbon/alien/larva/Initialize()

@@ -157,12 +157,12 @@
 
 /datum/plant_gene/reagent/polypyr
 	name = "Polypyrylium Oligomers"
-	reagent_id = "polypyr"
+	reagent_id = /datum/reagent/medicine/polypyr
 	rate = 0.15
 
 /datum/plant_gene/reagent/liquidelectricity
 	name = "Liquid Electricity"
-	reagent_id = "liquidelectricity"
+	reagent_id = /datum/reagent/consumable/liquidelectricity
 	rate = 0.1
 
 // Various traits affecting the product. Each must be somehow useful.
@@ -295,7 +295,7 @@
 
 /datum/plant_gene/trait/glow/on_new(obj/item/reagent_containers/food/snacks/grown/G, newloc)
 	..()
-	G.set_light(glow_range(G.seed), glow_power(G.seed), glow_color)
+	G.AddComponent(/datum/component/overlay_lighting, glow_color, glow_range(G.seed), glow_power(G.seed))
 
 /datum/plant_gene/trait/glow/shadow
 	//makes plant emit slightly purple shadows

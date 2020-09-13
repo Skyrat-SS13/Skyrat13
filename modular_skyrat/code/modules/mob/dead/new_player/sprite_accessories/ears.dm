@@ -62,6 +62,12 @@
 	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
 	color_src = MATRIXED
 
+/datum/sprite_accessory/ears/human/miqote
+	name = "Miqo'te"
+	icon_state = "miqote"
+	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
+	color_src = MATRIXED
+
 /******************************************
 *************** Furry Ears ****************
 *******************************************/

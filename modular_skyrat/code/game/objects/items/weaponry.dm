@@ -83,7 +83,7 @@
 		icon_state = extended_icon_state
 		attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		hitsound = 'sound/weapons/bladeslice.ogg'
-		sharpness = IS_SHARP
+		sharpness = SHARP_EDGED
 		light_color = "#cc00ff"
 		light_range = 1
 		light_power = 1
@@ -95,7 +95,7 @@
 		icon_state = retracted_icon_state
 		attack_verb = list("stubbed", "poked")
 		hitsound = 'sound/weapons/genhit.ogg'
-		sharpness = IS_BLUNT
+		sharpness = SHARP_NONE
 		light_color = null
 		light_range = 0
 		light_power = 0
@@ -112,7 +112,7 @@
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("oofed")
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	var/cooldown = 10
 	var/cooldowntime = 0
@@ -168,7 +168,7 @@
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	item_state = "ebonyblade"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "destroyed", "ripped", "devastated", "shredded")
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 	block_chance = 0
 	var/block_chance_wielded = 20
 	var/current_lifesteal = 0
@@ -265,7 +265,7 @@
 	icon_state = "shank"
 	force = 5 // Bad force, but it stabs twice as fast
 	throwforce = 10
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_TINY
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "shanked", "sliced", "cut")
@@ -549,7 +549,10 @@
 			LM.apply_damage(25, BRUTE, BODY_ZONE_HEAD, 0, TRUE)
 			if(ishuman(LM))
 				var/mob/living/carbon/human/H = LM
-				H.bleed_rate += 30
+				for(var/x in H.bodyparts)
+					var/obj/item/bodypart/BP = x
+					if(istype(BP))
+						BP.generic_bleedstacks += 5
 				if(NOBLOOD in H.dna.species.species_traits)
 					H.apply_damage(125, BRUTE, user.zone_selected, 0, TRUE)
 			if(!LM.has_status_effect(/datum/status_effect/neck_slice))
@@ -599,7 +602,10 @@
 		if(istype(S, /datum/species/pod) || istype(S, /datum/species/mush))
 			ooser.visible_message("<span class='userdanger'>[user] slits [H]'s throat with [src]!</span>", \
 					"<span class='userdanger'>You slit [H]'s throat!</span>")
-			H.bleed_rate = 30
+			for(var/x in H.bodyparts)
+				var/obj/item/bodypart/BP = x
+				if(istype(BP))
+					BP.generic_bleedstacks += 5
 			if(NOBLOOD in H.dna.species.species_traits)
 				H.apply_damage(100, BRUTE, user.zone_selected, 0, TRUE)
 			if(!H.has_status_effect(/datum/status_effect/neck_slice))
@@ -628,12 +634,12 @@
 	attack_verb_on = list("poked", "slashed", "stabbed", "sliced", "torn", "pierced", "diced", "cut")
 	attack_verb_off = list("tapped", "prodded")
 	w_class = WEIGHT_CLASS_SMALL
-	sharpness = IS_BLUNT
-	var/sharpness_on = IS_SHARP_ACCURATE
+	sharpness = SHARP_NONE
+	var/sharpness_on = SHARP_EDGED
 	w_class_on = WEIGHT_CLASS_NORMAL
 	custom_materials = list(MAT_METAL=12000)
-	var/onsound
-	var/offsound
+	var/onsound = 'sound/weapons/batonextend.ogg'
+	var/offsound = 'sound/weapons/batonextend.ogg'
 
 /obj/item/melee/transforming/butterfly/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
@@ -647,7 +653,7 @@
 
 
 /obj/item/melee/transforming/butterfly/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(check_target_facings(user, M) == FACING_SAME_DIR && active && user.a_intent != INTENT_HELP && ishuman(M))
+	if(check_target_facings(user, M) == FACING_SAME_DIR && active && user.a_intent != INTENT_HELP)
 		var/mob/living/carbon/human/U = M
 		return backstab(U,user,backstabforce)
 
@@ -664,7 +670,7 @@
 		to_chat(user, "<span class='notice'>[src] [active ? "is now active":"can now be concealed"].</span>")
 
 
-/obj/item/melee/transforming/butterfly/proc/backstab(mob/living/carbon/human/U, mob/living/carbon/user, damage)
+/obj/item/melee/transforming/butterfly/proc/backstab(mob/living/U, mob/living/carbon/user, damage)
 	var/obj/item/bodypart/affecting = U.get_bodypart("chest")
 
 	if(!affecting || U == user || U.stat == DEAD) //no chest???!!!!
@@ -693,3 +699,13 @@
 	icon_state_on = "butterflyknifeenergy1"
 	onsound = 'modular_skyrat/sound/weapons/knifeopen.ogg'
 	offsound = 'modular_skyrat/sound/weapons/knifeclose.ogg'
+
+//black police baton
+/obj/item/melee/classic_baton/black
+	name = "Black Police Baton"
+	desc = "The safeword is police brutality."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "blackbaton"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_righthand.dmi'
+	item_state = "blackbaton"

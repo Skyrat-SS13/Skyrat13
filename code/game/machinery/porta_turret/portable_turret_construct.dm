@@ -79,6 +79,9 @@
 		if(PTURRET_INTERNAL_ARMOUR_ON)
 			if(istype(I, /obj/item/gun/energy)) //the gun installation part
 				var/obj/item/gun/energy/E = I
+				if(!E.can_turret)
+					to_chat(user, "<span class='warning'>[src] can't be fit into turrets.</span>")
+					return
 				if(!user.transferItemToLoc(E, src))
 					return
 				installed_gun = E
@@ -147,6 +150,8 @@
 					turret.name = finish_name
 					turret.installation = installed_gun.type
 					turret.setup(installed_gun)
+					turret.faction = list("silicon","turret") //SKYRAT EDIT: Constructed turrets no longer shoot silicons or bots.
+					turret.on = FALSE//SKYRAT EDIT: constructed turrets start OFF and must be turned on.
 					qdel(src)
 
 			else if(istype(I, /obj/item/crowbar))

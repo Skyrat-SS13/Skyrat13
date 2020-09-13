@@ -20,6 +20,8 @@
 	var/datum/changelingprofile/first_prof = null
 	var/dna_max = 6 //How many extra DNA strands the changeling can store for transformation.
 	var/absorbedcount = 0
+	/// did we get succed by another changeling
+	var/hostile_absorbed = FALSE
 	var/trueabsorbs = 0//dna gained using absorb, not dna sting
 	var/chem_charges = 20
 	var/chem_storage = 75
@@ -270,6 +272,11 @@
 	if(!target.has_dna())
 		if(verbose)
 			to_chat(user, "<span class='warning'>[target] is not compatible with our biology.</span>")
+		return
+	var/datum/dna/deeanda = target.dna
+	if(deeanda?.monkey_aspect)
+		if(verbose)
+			to_chat(user, "<span class='warning'>We gain no benefit from absorbing the simple minded.</span>")
 		return
 	return 1
 

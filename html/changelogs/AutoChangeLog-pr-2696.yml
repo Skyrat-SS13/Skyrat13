@@ -1,6 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Being drunk now throws screen alerts."
-  - balance: "Alcohol related quirks are now a bit more severe - alcohol healing heals based on how shitfaced you are, alcohol tolerance makes you take less ill effects from being shitfaced, and alcoholic lightweight makes you less suffer more from the effects of being drunk."
-  - tweak: "Being drunk no longer makes you burp."

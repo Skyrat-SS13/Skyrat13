@@ -14,6 +14,9 @@
 /datum/antagonist/slaughter/greet()
 	. = ..()
 	owner.announce_objectives()
+	//skyrat edit
+	to_chat(owner, "<span class='warning'>You have a powerful alt-attack that slams people backwards that you can activate by shift+ctrl+clicking your target!</span>")
+	//
 
 /datum/antagonist/slaughter/proc/forge_objectives()
 	if(summoner)

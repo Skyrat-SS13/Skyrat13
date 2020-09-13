@@ -284,16 +284,23 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 	var/slot_priority = W.slot_equipment_priority
 
 	if(!slot_priority)
+		//skyrat edit
 		slot_priority = list( \
 			SLOT_BACK, SLOT_WEAR_ID,\
-			SLOT_W_UNIFORM, SLOT_WEAR_SUIT,\
+			SLOT_W_UNDERWEAR,\
+			SLOT_W_SOCKS,\
+			SLOT_W_SHIRT,\
+			SLOT_W_UNIFORM,\
+			SLOT_WEAR_SUIT,\
 			SLOT_WEAR_MASK, SLOT_HEAD, SLOT_NECK,\
-			SLOT_SHOES, SLOT_GLOVES,\
-			SLOT_EARS, SLOT_GLASSES,\
+			SLOT_SHOES, SLOT_WRISTS, SLOT_GLOVES,\
+			SLOT_EARS_LEFT, SLOT_EARS_RIGHT,\
+			SLOT_GLASSES,\
 			SLOT_BELT, SLOT_S_STORE,\
 			SLOT_L_STORE, SLOT_R_STORE,\
 			SLOT_GENERC_DEXTROUS_STORAGE\
 		)
+		//
 
 	for(var/slot in slot_priority)
 		if(equip_to_slot_if_possible(W, slot, 0, 1, 1)) //qdel_on_fail = 0; disable_warning = 1; redraw_mob = 1
@@ -364,12 +371,18 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 		return
 
 	face_atom(A)
+	var/flags = SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
+	if(flags & COMPONENT_DENY_EXAMINATE)
+		if(flags & COMPONENT_EXAMINATE_BLIND)
+			to_chat(src, "<span class='warning'>Something is there but you can't see it!</span>")
+		return
+	//skyrat edit
 	var/list/result
 	if(client)
 		LAZYINITLIST(client.recent_examines)
-		if(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time)
+		if(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time) // originally this wasn't an assoc list, but sometimes the timer failed and atoms stayed in a client's recent_examines, so we check here manually
 			result = A.examine(src)
-			client.recent_examines[A] = world.time + EXAMINE_MORE_TIME // set the value to when the examine cooldown ends
+			client.recent_examines[A] = world.time + EXAMINE_MORE_TIME
 			RegisterSignal(A, COMSIG_PARENT_QDELETING, .proc/clear_from_recent_examines, override=TRUE) // to flush the value if deleted early
 			addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)
 			handle_eye_contact(A)
@@ -377,7 +390,7 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 			result = A.examine_more(src)
 	else
 		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
-
+	//
 	to_chat(src, result.Join("\n"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
 
@@ -386,36 +399,6 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 		return
 	UnregisterSignal(A, COMSIG_PARENT_QDELETING)
 	LAZYREMOVE(client.recent_examines, A)
-
-/**
-  * handle_eye_contact() is called when we examine() something. If we examine an alive mob with a mind who has examined us in the last second within 5 tiles, we make eye contact!
-  *
-  * Note that if either party has their face obscured, the other won't get the notice about the eye contact
-  * Also note that examine_more() doesn't proc this or extend the timer, just because it's simpler this way and doesn't lose much.
-  *	The nice part about relying on examining is that we don't bother checking visibility, because we already know they were both visible to each other within the last second, and the one who triggers it is currently seeing them
-  */
-/mob/proc/handle_eye_contact(mob/living/examined_mob)
-	return
-
-/mob/living/handle_eye_contact(mob/living/examined_mob)
-	if(!istype(examined_mob) || src == examined_mob || examined_mob.stat >= UNCONSCIOUS || !client || !examined_mob.client?.recent_examines || !(src in examined_mob.client.recent_examines))
-		return
-
-	if(get_dist(src, examined_mob) > EYE_CONTACT_RANGE)
-		return
-
-	var/mob/living/carbon/examined_carbon = examined_mob
-	// check to see if their face is blocked (or if they're not a carbon, in which case they can't block their face anyway)
-	if(!istype(examined_carbon) || (!(examined_carbon.wear_mask && examined_carbon.wear_mask.flags_inv & HIDEFACE) && !(examined_carbon.head && examined_carbon.head.flags_inv & HIDEFACE)))
-		if(SEND_SIGNAL(src, COMSIG_MOB_EYECONTACT, examined_mob, TRUE) != COMSIG_BLOCK_EYECONTACT)
-			var/msg = "<span class='smallnotice'>You make eye contact with [examined_mob].</span>"
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, src, msg), 3) // so the examine signal has time to fire and this will print after
-
-	var/mob/living/carbon/us_as_carbon = src // i know >casting as subtype, but this isn't really an inheritable check
-	if(!istype(us_as_carbon) || (!(us_as_carbon.wear_mask && us_as_carbon.wear_mask.flags_inv & HIDEFACE) && !(us_as_carbon.head && us_as_carbon.head.flags_inv & HIDEFACE)))
-		if(SEND_SIGNAL(examined_mob, COMSIG_MOB_EYECONTACT, src, FALSE) != COMSIG_BLOCK_EYECONTACT)
-			var/msg = "<span class='smallnotice'>[src] makes eye contact with you.</span>"
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, examined_mob, msg), 3)
 
 //same as above
 //note: ghosts can point, this is intended
@@ -649,6 +632,8 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 
 /mob/Stat()
 	..()
+
+	SSvote?.render_statpanel(src)
 
 	//This is only called from client/Stat(), let's assume client exists.
 
@@ -1164,3 +1149,29 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
   */
 /mob/proc/on_item_dropped(obj/item/I)
 	return
+
+/**
+  * handle_eye_contact() is called when we examine() something. If we examine an alive mob with a mind who has examined us in the last second within 5 tiles, we make eye contact!
+  *
+  * Note that if either party has their face obscured, the other won't get the notice about the eye contact
+  * Also note that examine_more() doesn't proc this or extend the timer, just because it's simpler this way and doesn't lose much.
+  *	The nice part about relying on examining is that we don't bother checking visibility, because we already know they were both visible to each other within the last second, and the one who triggers it is currently seeing them
+  */
+/mob/proc/handle_eye_contact(mob/living/examined_mob, forced = FALSE)
+	return
+
+/mob/living/handle_eye_contact(mob/living/examined_mob, forced = FALSE)
+	if(!istype(examined_mob) || src == examined_mob || examined_mob.stat >= UNCONSCIOUS || !client || (!examined_mob.client?.recent_examines && !forced) || (!(src in examined_mob.client.recent_examines) && !forced))
+		return
+
+	if(get_dist(src, examined_mob) > EYE_CONTACT_RANGE)
+		return
+
+	// check to see if their face is blocked or, if not, a signal blocks it
+	if(examined_mob.is_face_visible() && SEND_SIGNAL(src, COMSIG_MOB_EYECONTACT, examined_mob, TRUE) != COMSIG_BLOCK_EYECONTACT)
+		var/msg = "<span class='smallnotice'>You make eye contact with [examined_mob].</span>"
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, src, msg), 3) // so the examine signal has time to fire and this will print after
+
+	if(is_face_visible() && SEND_SIGNAL(examined_mob, COMSIG_MOB_EYECONTACT, src, FALSE) != COMSIG_BLOCK_EYECONTACT)
+		var/msg = "<span class='smallnotice'>[src] makes eye contact with you.</span>"
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, examined_mob, msg), 3)

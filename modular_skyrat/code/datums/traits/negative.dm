@@ -11,9 +11,9 @@
 		if("Botanist")
 			heirloom_type = pick(/obj/item/cultivator, /obj/item/reagent_containers/glass/bucket, /obj/item/storage/bag/plants, /obj/item/toy/plush/beeplushie)
 		if("Medical Doctor")
-			heirloom_type = /obj/item/healthanalyzer/advanced
+			heirloom_type = /obj/item/healthanalyzer
 		if("Paramedic")
-			heirloom_type = pick(/obj/item/clothing/neck/stethoscope, /obj/item/bodybag)
+			heirloom_type = /obj/item/healthanalyzer
 		if("Station Engineer")
 			heirloom_type = /obj/item/wirecutters/brass
 		if("Atmospheric Technician")
@@ -58,7 +58,6 @@
 	UnregisterSignal(heirloom, COMSIG_PARENT_QDELETING)
 	heirloom = null
 
-//airhead
 /datum/quirk/airhead
 	name = "Airhead"
 	desc = "You are exceptionally airheaded... but who cares?"
@@ -66,7 +65,6 @@
 	mob_trait = TRAIT_DUMB
 	medical_record_text = "Patient exhibits rather low mental capabilities."
 
-//clumsyness
 /datum/quirk/disaster_artist
 	name = "Disaster Artist"
 	desc = "You always manage to wreak havoc on everything you touch."
@@ -74,7 +72,6 @@
 	mob_trait = TRAIT_CLUMSY
 	medical_record_text = "Patient lacks proper spatial awareness."
 
-//aaa i dont know my mood aaa
 /datum/quirk/screwy_mood
 	name = "Alexithymia"
 	desc = "You cannot accurately assess your feelings."
@@ -82,15 +79,13 @@
 	mob_trait = TRAIT_SCREWY_MOOD
 	medical_record_text = "Patient is incapable of communicating their emotions."
 
-//aaaaaa im bleeding aaaaaaaaa
 /datum/quirk/hemophiliac
 	name = "Hemophiliac"
 	desc = "Your body is bad at coagulating blood. Bleeding will always be two times worse when compared to the average person."
-	value = -2
+	value = -3
 	mob_trait = TRAIT_HEMOPHILIA
 	medical_record_text = "Patient exhibits abnormal blood coagulation behavior."
 
-//i cant run help
 /datum/quirk/asthmatic
 	name = "Asthmatic"
 	desc = "You have been diagnosed with asthma. You can only run half of what a healthy person can, and running may cause oxygen damage."
@@ -98,21 +93,6 @@
 	mob_trait = TRAIT_ASTHMATIC
 	medical_record_text = "Patient exhibits asthmatic symptoms."
 
-//owie everythign hurt
-/datum/quirk/paper_skin
-	name = "Paper skin"
-	desc = "Your skin and body are fragile. Damage from most sources is increased by 10%."
-	value = -3
-	medical_record_text = "Patient is frail and  tends to be damaged quite easily."
-
-/datum/quirk/paper_skin/add()
-	. = ..()
-	if(.)
-		var/mob/living/carbon/human/H = quirk_holder
-		if(H && istype(H))
-			H.physiology.armor -= 10
-
-//mom grab the epipen
 /datum/quirk/allergic
 	name = "Allergic"
 	desc = "You have had terrible allergies for as long as you can remember. Some foods will become toxic to your palate and cause unforeseen consequences."
@@ -120,19 +100,72 @@
 	medical_record_text = "Patient is allergic to a certain type of food."
 
 /datum/quirk/allergic/add()
-	. = ..()
-	if(.)
-		var/mob/living/carbon/human/H = quirk_holder
-		if(H && istype(H))
-			var/foodie = pick(GLOB.food)
-			var/randumb = GLOB.food[foodie]
-			while((H.dna.species.toxic_food | randumb) == H.dna.species.toxic_food)
-				foodie = pick(GLOB.food)
-				randumb = GLOB.food[foodie]
-			H.dna.species.toxic_food |= randumb
-			H.dna.species.liked_food -= randumb
-			H.physiology.allergies |= randumb
-			addtimer(CALLBACK(src, .proc/inform, foodie), 5 SECONDS)
+	var/mob/living/carbon/human/H = quirk_holder
+	if(istype(H))
+		var/foodie = pick(GLOB.food)
+		var/randumb = GLOB.food[foodie]
+		while((H.dna.species.toxic_food | randumb) == initial(H.dna.species.toxic_food))
+			foodie = pick(GLOB.food)
+			randumb = GLOB.food[foodie]
+		H.dna.species.toxic_food |= randumb
+		H.dna.species.liked_food -= randumb
+		H.physiology.allergies |= randumb
+		addtimer(CALLBACK(src, .proc/inform, foodie), 5 SECONDS)
 
-/datum/quirk/allergic/proc/inform(var/allergy = "bad coders")
-	to_chat(quirk_holder, "<span class='danger'><b><i>You are allergic to [lowertext(allergy)].</i></b></span>")
+/datum/quirk/allergic/proc/inform(allergy = "bad coders")
+	to_chat(quirk_holder, "<span class='boldwarning'>You are allergic to [lowertext(allergy)].</span>")
+	quirk_holder.add_memory("You are allergic to [lowertext(allergy)].")
+
+//bobmed quirks
+
+//frail
+/datum/quirk/frail
+	name = "Frail"
+	desc = "Your whole body is quite weak! You suffer wounds much more easily than most."
+	value = -3
+	mob_trait = TRAIT_EASYLIMBDISABLE
+	gain_text = "<span class='danger'>You feel frail.</span>"
+	lose_text = "<span class='notice'>You feel sturdy again.</span>"
+	medical_record_text = "Patient's body is fragile, and tends to suffer more damage from all sources."
+
+//paper skin
+/datum/quirk/paper_skin
+	name = "Paper skin"
+	desc = "Your skin is fragile, and breaks apart easily. You are twice as susceptible to slash and puncture wounds."
+	value = -2
+	mob_trait = TRAIT_EASYCUT
+	medical_record_text = "Patient's skin is frail, and  tends to be cut and punctured quite easily."
+
+//hollow bones
+/datum/quirk/hollow_bones
+	name = "Hollow bones"
+	desc = "Your bones are fragile, and break easily. You are twice as susceptible to blunt wounds."
+	value = -2
+	mob_trait = TRAIT_EASYBLUNT
+	medical_record_text = "Patient's bones are fragile, and tend to be easily fractured."
+
+//flammable skin
+/datum/quirk/flammable_skin
+	name = "Flammable skin"
+	desc = "Your skin is quite easy to set on fire. You are twice as susceptible to burn wounds."
+	value = -2
+	mob_trait = TRAIT_EASYBURN
+	medical_record_text = "Patient's skin is unnaturally flammable, and tends to be easily burnt."
+
+//glass jaw
+/datum/quirk/glass_jaw
+	name = "Glass jaw"
+	desc = "Your jaw is weak and susceptible to damage. You are twice as susceptible to wounds on your head."
+	value = -2
+	mob_trait = TRAIT_GLASSJAW
+	medical_record_text = "Patient has an unnaturally weak skull."
+
+//betz
+/datum/quirk/betz
+	name = "Betz Disorder"
+	desc = "You cannot feel pain very well! You cannot assess any wounds without the assistance of a health analyzer."
+	value = -1
+	mob_trait = TRAIT_SCREWY_CHECKSELF
+	gain_text = "<span class='danger'>You don't feel much of anything.</span>"
+	lose_text = "<span class='notice'>You can feel your skin tingling again.</span>"
+	medical_record_text = "Patient has little self-awareness, and cannot properly assess their health."

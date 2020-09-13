@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 #define INFINITE -1
 
 /obj/item/autosurgeon
@@ -147,3 +148,4 @@
 	desc = "A single use autosurgeon that contains a womb. A screwdriver can be used to remove it, but implants can't be placed back in."
 	uses = 1
 	starting_organ = /obj/item/organ/genital/womb
+*/

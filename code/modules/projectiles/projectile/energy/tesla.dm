@@ -6,6 +6,7 @@
 	var/zap_flags = ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE
 	var/zap_range = 3
 	var/power = 10000
+	wound_bonus = 20
 
 /obj/item/projectile/energy/tesla/fire(setAngle, atom/direct_target)
 	var/atom/source = fired_from || firer

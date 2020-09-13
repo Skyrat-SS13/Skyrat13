@@ -61,7 +61,7 @@
 	throw_speed = 4
 	throw_range = 6
 	embedding = list("pain_mult" = 2, "embed_chance" = 100, "fall_chance" = 0, "embed_chance_turf_mod" = 15)
-	sharpness = IS_SHARP
+	sharpness = SHARP_POINTY
 
 /obj/item/kitchen/knife
 	name = "kitchen knife"
@@ -76,10 +76,14 @@
 	throw_range = 6
 	custom_materials = list(/datum/material/iron=12000)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	var/bayonet = FALSE	//Can this be attached to a gun?
 	custom_price = PRICE_NORMAL
+	//skyrat edit
+	wound_bonus = -5
+	bare_wound_bonus = 10
+	//
 
 /obj/item/kitchen/knife/Initialize()
 	. = ..()
@@ -151,6 +155,9 @@
 	throwforce = 20
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "cut")
 	bayonet = TRUE
+	//skyrat edit
+	embedding = list("pain_mult" = 4, "embed_chance" = 65, "fall_chance" = 10, "ignore_throwspeed_threshold" = TRUE)
+	//
 
 /obj/item/kitchen/knife/combat/survival
 	name = "survival knife"
@@ -161,6 +168,9 @@
 	force = 15
 	throwforce = 15
 	bayonet = TRUE
+	//skyrat edit
+	embedding = list("pain_mult" = 4, "embed_chance" = 35, "fall_chance" = 10)
+	//
 
 /obj/item/kitchen/knife/combat/bone
 	name = "bone dagger"
@@ -173,6 +183,9 @@
 	force = 15
 	throwforce = 15
 	custom_materials = null
+	//skyrat edit
+	embedding = list("pain_mult" = 4, "embed_chance" = 35, "fall_chance" = 10)
+	//
 
 /obj/item/kitchen/knife/combat/bone/plastic
 	name = "plastic knife"
@@ -180,6 +193,9 @@
 	force = 1
 	throwforce = 1
 	bayonet = FALSE
+	//skyrat edit
+	embedding = NONE
+	//
 
 /obj/item/kitchen/knife/combat/cyborg
 	name = "cyborg knife"
@@ -223,6 +239,6 @@
 	desc = "A knife used to cleanly butcher. Its razor-sharp edge has been honed for butchering, but has been poorly maintained over the years."
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/kitchen/knife/scimiar/Initialize()
+/obj/item/kitchen/knife/scimitar/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 90 - force, 100, force - 60) //bonus chance increases depending on force

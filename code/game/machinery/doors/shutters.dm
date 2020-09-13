@@ -8,6 +8,8 @@
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 75, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
 	damage_deflection = 20
 	max_integrity = 100
+	opensound = 'modular_skyrat/sound/machinery/shutters_open.ogg' //SKYRAT CHANGE - Various poddoor sounds
+	closesound = 'modular_skyrat/sound/machinery/shutters_close.ogg' //SKYRAT CHANGE - Various poddoor sounds
 
 /obj/machinery/door/poddoor/shutters/preopen
 	icon_state = "open"
@@ -26,6 +28,8 @@
 	icon_state = "closed"
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 75, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
 	max_integrity = 300
+	opensound = 'sound/machines/blastdoor.ogg' //SKYRAT CHANGE - Various poddoor sounds
+	closesound = 'sound/machines/blastdoor.ogg' //SKYRAT CHANGE - Various poddoor sounds
 
 /obj/machinery/door/poddoor/shutters/old/preopen
 	icon_state = "open"

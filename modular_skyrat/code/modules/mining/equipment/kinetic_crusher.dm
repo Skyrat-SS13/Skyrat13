@@ -18,12 +18,12 @@
 	icon_state = "goldenskull"
 	denied_type = /obj/item/crusher_trophy/golden_skull
 
-/obj/item/crusher_trophy/legion_shard/effect_desc()
-	return "a kinetic crusher to make dead animals into friendly fauna, as well as turning corpses into legions"
+/obj/item/crusher_trophy/golden_skull/effect_desc()
+	return "a kinetic crusher to make dead animals into friendly fauna, as well as turning corpses into legions, if the user is on grab intent"
 
-/obj/item/crusher_trophy/legion_shard/on_mark_detonation(mob/living/target, mob/living/user)
+/obj/item/crusher_trophy/golden_skull/on_mark_detonation(mob/living/target, mob/living/user)
 	if(target.stat == DEAD)
-		if(istype(target, /mob/living/simple_animal/hostile/asteroid))
+		if(istype(target, /mob/living/simple_animal/hostile/asteroid) && user.a_intent == INTENT_GRAB)
 			var/mob/living/simple_animal/hostile/asteroid/L = target
 			L.revive(full_heal = 1, admin_revive = 1)
 			L.attack_same = 0
@@ -33,7 +33,7 @@
 			user.visible_message("<span class='notice'>[user] revives [target] with [src], as a friendly fauna</span>")
 			playsound(src,'sound/effects/supermatter.ogg',50,1)
 
-/obj/item/crusher_trophy/legion_shard/on_melee_hit(mob/living/target, mob/living/user)
+/obj/item/crusher_trophy/golden_skull/on_melee_hit(mob/living/target, mob/living/user)
 	var/obj/item/kinetic_crusher/K = loc
 	var/is_wielded = TRUE
 	if(istype(loc))
@@ -317,7 +317,7 @@
 	custom_materials = list(/datum/material/titanium=3150, /datum/material/glass=2075, /datum/material/gold=3000, /datum/material/diamond=5000)
 	hitsound = 'modular_skyrat/sound/weapons/zweihanderslice.ogg'
 	attack_verb = list("smashed", "crushed", "cleaved", "chopped", "pulped")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	var/list/trophies = list()
 	var/charged = TRUE
 	var/charge_time = 12

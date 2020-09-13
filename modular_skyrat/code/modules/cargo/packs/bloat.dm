@@ -1,5 +1,7 @@
-//fuck you citadel maintainers for removing all this cool shit _|_ (this is still a middle finger)
-//yeah f you citadel!
+//Reminders-
+// If you add something to this list, please group it by type and sort it alphabetically instead of just jamming it in like an animal
+// cost = 700- Minimum cost, or infinite points are possible.
+
 /datum/supply_pack/security/armory/riotshotguns
 	name = "Riot Shotgun Crate"
 	desc = "For when the greytide gets really uppity. Contains three riot shotguns, seven rubber shot and beanbag shells. Requires Armory access to open."
@@ -18,6 +20,22 @@
 	contains = list(/obj/item/gun/energy/e_gun/stun,
 					/obj/item/gun/energy/e_gun/stun)
 	crate_name = "swat taser crate"
+
+/datum/supply_pack/security/armory/swat_tactical
+	name = "SWAT Tactical Operations crate"
+	desc = "Contains two sets of lightweight equipment for tactical operations. Each set contains a vest, night vision helmet, mask, combat belt, and combat gloves. Requires Armory access to open."
+	cost = 6000
+	contains = list(/obj/item/clothing/head/helmet/advanced,
+					/obj/item/clothing/head/helmet/advanced,
+					/obj/item/clothing/suit/armor/vest/advanced,
+					/obj/item/clothing/suit/armor/vest/advanced,
+					/obj/item/clothing/mask/gas/sechailer/swat,
+					/obj/item/clothing/mask/gas/sechailer/swat,
+					/obj/item/storage/belt/military/assault,
+					/obj/item/storage/belt/military/assault,
+					/obj/item/clothing/gloves/tackler/combat/insulated,
+					/obj/item/clothing/gloves/tackler/combat/insulated)
+	crate_name = "swat crate"
 
 /datum/supply_pack/security/armory/woodstock
 	name = "WoodStock Classic Shotguns Crate"

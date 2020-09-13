@@ -1,4 +1,21 @@
-//joker bundle, also i'm gonna do all items here because i'm lazy
+//armstrong CBT
+/datum/uplink_item/dangerous/armstrong
+	name = "Armstrong Style Kit"
+	desc = "A kit with the necessary equipment to become an excellent martial artist, and terrible parent!"
+	item = /obj/item/storage/box/syndie_kit/armstrong
+	cost = 20 //bumped up from 14 because by god this has murderbone potential.
+	surplus = 20 // someone who respects the eldritch god Nar-Sie a little (((too much))) complained
+
+/obj/item/storage/box/syndie_kit/armstrong
+	name = "\improper Brad Armstrong Family Style Karate Kit"
+	desc = "A kit with the necessary tools to become the best karate master on the planet!\
+	Contains a paper letting you know how to fight. \
+	The only cost is your right to not suck at parenting."
+
+/obj/item/storage/box/syndie_kit/armstrong/PopulateContents()
+	new /obj/item/armstrong_scroll(src)
+//joker kit
+
 /datum/uplink_item/bundles_TC/joker
 	name = "Society Box"
 	desc = "A crate with a .38 revolver with ammo, special knife and special clothing to enact revenge on society as a whole."
@@ -78,61 +95,23 @@
 	new /obj/item/encryptionkey/syndicate(src)
 	new /obj/item/kitchen/knife/combat/survival(src)
 
-/obj/item/limbsurgeon //autosurgeon is shit and does not support limbs, i had to do it to 'em
-	name = "limb autosurgeon"
-	desc = "A device that automatically removes an old limb and inserts a new one into the user without the hassle of extensive surgery. It has a slot to insert limbs and a screwdriver slot for removing accidentally added items."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "autoimplanter"
-	item_state = "nothing"
-	w_class = WEIGHT_CLASS_SMALL
-	var/obj/item/bodypart/storedbodypart
-	var/bodypart_type = /obj/item/bodypart
-	var/uses = INFINITE
-	var/starting_bodypart
-
-/obj/item/limbsurgeon/Initialize(mapload)
-	. = ..()
-	if(starting_bodypart)
-		insert_bodypart(new starting_bodypart(src))
-
-/obj/item/limbsurgeon/proc/insert_bodypart(var/obj/item/bodypart/I)
-	storedbodypart = I
-	I.forceMove(src)
-	name = "[initial(name)] ([storedbodypart.name])"
-
-/obj/item/limbsurgeon/attack_self(mob/user)//when the object it used...
-	if(!uses)
-		to_chat(user, "<span class='warning'>[src] has already been used. The tools are dull and won't reactivate.</span>")
-		return
-	else if(!storedbodypart)
-		to_chat(user, "<span class='notice'>[src] currently has no bodypart stored.</span>")
-		return
-	var/mob/living/carbon/C = user
-	if(C)
-		storedbodypart.replace_limb(C)
-		user.visible_message("<span class='notice'>[user] presses a button on [src], and you hear a short mechanical noise.</span>", "<span class='notice'>You feel a sharp sting as [src] plunges into your body.</span>")
-		playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, 1)
-		storedbodypart = null
-		name = initial(name)
-		if(uses != INFINITE)
-			uses--
-		if(!uses)
-			desc = "[initial(desc)] Looks like it's been used up."
-	else
-		user.visible_message("<span class='notice'>[user] presses a button on [src], and nothing happens.</span>") //bro you're not carbon how tf you gonna replace that limb bro
-
 /obj/item/limbsurgeon/martialarm
 	uses = 1
 	starting_bodypart = /obj/item/bodypart/l_arm/robot/martial
 
 /obj/item/bodypart/l_arm/robot/martial
+	name = "punished left arm"
+	desc = "Has no markings of any kind, because that would offer no tactical advantages. But it's distinctly a syndicate item, somehow."
 	var/datum/martial_art/ourmartial = /datum/martial_art/cqc
 	var/martialid = "bigboss"
 	icon = 'modular_skyrat/icons/mob/venom_parts.dmi'
 	icon_state = "l_arm"
-	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
-	name = "punished left arm"
+	starting_children = list(/obj/item/bodypart/l_hand/robot/martial)
+
+/obj/item/bodypart/l_hand/robot/martial
+	name = "punished left hand"
 	desc = "Has no markings of any kind, because that would offer no tactical advantages. But it's distinctly a syndicate item, somehow."
+	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
 
 /* Though i wanted it to be "only works as long as the arm works", byond hates me and this proc failed me. Instead i'll have to do another approach.
 /obj/item/bodypart/l_arm/robot/martial/update_limb(dropping_limb, mob/living/carbon/source) //this is probably not the best way to do it, but i want to make sure that it always checks if the limb is viable. if not viable, owner loses the martial art.
@@ -157,7 +136,7 @@
 	MA.id = martialid //give it an id to keep track of it
 	MA.teach(owner)
 
-/obj/item/bodypart/l_arm/robot/martial/drop_limb(special)
+/obj/item/bodypart/l_arm/robot/martial/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE)
 	. = ..()
 	if(owner.mind.martial_art.id == martialid)
 		var/datum/martial_art/lose = owner.mind.martial_art

@@ -4,7 +4,9 @@
 	icon_state = "blob_shield"
 	desc = "A solid wall of slightly twitching tendrils."
 	var/damaged_desc = "A wall of twitching tendrils."
-	max_integrity = 150
+	//skyrat changes
+	max_integrity = 300
+	//
 	brute_resist = 0.25
 	explosion_block = 3
 	point_return = 4
@@ -45,10 +47,17 @@
 	desc = "A solid wall of slightly twitching tendrils with a reflective glow."
 	damaged_desc = "A wall of twitching tendrils with a reflective glow."
 	icon_state = "blob_glow"
+	//skyrat edit
+	flags_ricochet = RICOCHET_SHINY
+	//
 	point_return = 8
 	max_integrity = 100
 	brute_resist = 1
 	explosion_block = 2
+	//SKYRAT EDIT START - BLOB
+	ricochet_chance_mod = 2
+	ricochet_damage_mod = 0.2
+	//SKYRAT EDIT END - BLOB
 
 /obj/structure/blob/shield/reflective/check_projectile_ricochet(obj/item/projectile/P)
 	return PROJECTILE_RICOCHET_FORCE

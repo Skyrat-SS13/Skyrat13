@@ -238,10 +238,13 @@
 	force_wielded = 24
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	max_integrity = 200
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
 	resistance_flags = FIRE_PROOF
+	//skyrat edit
+	wound_bonus = -20
+	//
 
 /obj/item/twohanded/fireaxe/Initialize()
 	. = ..()
@@ -307,6 +310,10 @@
 	var/spinnable = TRUE
 	total_mass = 0.4 //Survival flashlights typically weigh around 5 ounces.
 	var/total_mass_on = 3.4
+	//skyrat edit
+	wound_bonus = -110
+	bare_wound_bonus = 20
+	//
 
 /datum/block_parry_data/dual_esword
 	block_damage_absorption = 2
@@ -441,7 +448,7 @@
 			return
 	..()
 	if(wielded)
-		sharpness = IS_SHARP
+		sharpness = SHARP_EDGED
 		w_class = w_class_on
 		total_mass = total_mass_on
 		hitsound = 'sound/weapons/blade1.ogg'
@@ -633,12 +640,16 @@
 	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	max_integrity = 200
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
 	var/obj/item/grenade/explosive = null
 	var/war_cry = "AAAAARGH!!!"
 	var/icon_prefix = "spearglass"
+	//skyrat edit
+	wound_bonus = -25
+	bare_wound_bonus = 15
+	//
 
 /obj/item/twohanded/spear/Initialize()
 	. = ..()
@@ -665,7 +676,7 @@
 	user.visible_message("<span class='suicide'>[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	if(explosive) //Citadel Edit removes qdel and explosive.forcemove(AM)
 		user.say("[war_cry]", forced="spear warcry")
-		explosive.prime()
+		explosive.prime(user)
 		user.gib()
 		return BRUTELOSS
 	return BRUTELOSS
@@ -753,7 +764,7 @@
 	custom_materials = list(/datum/material/iron=13000)
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = "swing_hit"
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	actions_types = list(/datum/action/item_action/startchainsaw)
 	var/on = FALSE
 	tool_behaviour = TOOL_SAW
@@ -792,11 +803,11 @@
 
 /obj/item/twohanded/required/chainsaw/update_icon_state()
 	icon_state = "chainsaw_[on ? "on" : "off"]"
-
+/*
 /obj/item/twohanded/required/chainsaw/get_dismemberment_chance()
 	if(wielded)
 		. = ..()
-
+*/
 /obj/item/twohanded/required/chainsaw/doomslayer
 	name = "THE GREAT COMMUNICATOR"
 	desc = "<span class='warning'>VRRRRRRR!!!</span>"
@@ -859,7 +870,7 @@
 	force_wielded = 15
 	attack_verb = list("attacked", "impaled", "pierced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	max_integrity = 200
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
 	resistance_flags = FIRE_PROOF
@@ -942,7 +953,7 @@
 	block_chance = 40
 	throwforce = 20
 	throw_speed = 4
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	attack_verb = list("cut", "sliced", "diced")
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
@@ -1004,7 +1015,7 @@
 	armour_penetration = 15				//Enhanced armor piercing
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 
 /obj/item/twohanded/bonespear/update_icon_state()
 	icon_state = "bone_spear[wielded]"

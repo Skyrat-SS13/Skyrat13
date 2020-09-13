@@ -18,8 +18,8 @@
 /obj/structure/dresser/deconstruct(disassembled = TRUE)
 	new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
 	qdel(src)
-
-/obj/structure/dresser/attack_hand(mob/user)
+/* skyrat edit - the dresser is useless with our inventory system
+/obj/structure/dresser/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
 	. = ..()
 	if(. || !ishuman(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
@@ -46,7 +46,7 @@
 	switch(choice)
 		if("Underwear")
 			var/new_undies = input(H, "Select your underwear", "Changing") as null|anything in GLOB.underwear_list
-			if(H.underwear)
+			if(new_undies)
 				H.underwear = new_undies
 				H.saved_underwear = new_undies
 				var/datum/sprite_accessory/underwear/bottom/B = GLOB.underwear_list[new_undies]
@@ -80,3 +80,4 @@
 	if(!n_color || !H.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return default_color
 	return sanitize_hexcolor(n_color, 3, FALSE, default_color)
+*/

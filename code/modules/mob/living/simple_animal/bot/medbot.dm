@@ -391,6 +391,7 @@
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 50)
 	user.visible_message("<span class='danger'>[user] tips over [src]!</span>", "<span class='danger'>You tip [src] over!</span>")
 	mode = BOT_TIPPED
+	tipper_name = user.name // Skyrat fix
 	var/matrix/mat = transform
 	transform = mat.Turn(180)
 
@@ -662,7 +663,7 @@
 	var/reagent_id = null
 
 	if(emagged == 2) //Emagged! Time to poison everybody.
-		reagent_id = HAS_TRAIT(C, TRAIT_TOXINLOVER)? "charcoal" : "toxin"
+		reagent_id = HAS_TRAIT(C, TRAIT_TOXINLOVER)? /datum/reagent/medicine/charcoal : /datum/reagent/toxin
 
 	else
 		if(treat_virus)

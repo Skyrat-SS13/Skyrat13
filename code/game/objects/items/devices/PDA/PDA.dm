@@ -117,8 +117,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 /obj/item/pda/Initialize()
 	. = ..()
+	AddComponent(/datum/component/overlay_lighting, f_col, f_lum, f_pow, FALSE) //Skyrat change
 	if(fon)
-		set_light(f_lum, f_pow, f_col)
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.turn_on()
 
 	GLOB.PDAs += src
 	if(default_cartridge)
@@ -930,12 +932,13 @@ GLOBAL_LIST_EMPTY(PDAs)
 /obj/item/pda/proc/toggle_light()
 	if(hasSiliconAccessInArea(usr) || !usr.canUseTopic(src, BE_CLOSE))
 		return
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 	if(fon)
 		fon = FALSE
-		set_light(0)
+		OL.turn_off()
 	else if(f_lum)
 		fon = TRUE
-		set_light(f_lum, f_pow, f_col)
+		OL.turn_on()
 	update_icon()
 
 /obj/item/pda/proc/remove_pen()

@@ -27,7 +27,7 @@
 		if(WIRE_INTERFACE)
 			C.interface_control = !C.interface_control
 		if(WIRE_LIMIT)
-			C.visible_message("[icon2html(C, viewers(holder))]<b>[C]</b> makes a large whirring noise.")
+			C.visible_message("[icon2html(C, viewers(holder))]<b>[C]</b> makes a loud whirring noise.")
 
 /datum/wires/particle_accelerator/control_box/on_cut(wire, mend)
 	var/obj/machinery/particle_accelerator/control_box/C = holder
@@ -42,6 +42,8 @@
 			if(!mend)
 				C.interface_control = FALSE
 		if(WIRE_LIMIT)
+			if(C.strength_upper_limit != 3)
+				message_admins("The PA Control Computer was hacked!")
 			C.strength_upper_limit = (mend ? 2 : 3)
 			if(C.strength_upper_limit < C.strength)
 				C.remove_strength()

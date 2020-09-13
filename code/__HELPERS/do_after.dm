@@ -154,7 +154,6 @@
 
 #undef INVOKE_CALLBACK
 #undef CHECK_FLAG_FAILURE
-
 /proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null, ignorehelditem = FALSE, resume_time = 0 SECONDS)
 	if(!user || !target)
 		return 0
@@ -165,6 +164,9 @@
 		drifting = 1
 
 	var/target_loc = target.loc
+
+	LAZYADD(user.do_afters, target)
+	LAZYADD(target.targeted_by, user)
 
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/progbar
@@ -183,6 +185,10 @@
 			break
 		if(uninterruptible)
 			continue
+		
+		if(!(target in user.do_afters))
+			. = FALSE
+			break
 
 		if(drifting && !user.inertia_dir)
 			drifting = 0
@@ -192,6 +198,9 @@
 			. = 0
 			break
 	if (progress)
+		if(!QDELETED(target))
+			LAZYREMOVE(user.do_afters, target)
+			LAZYREMOVE(target.targeted_by, user)
 		qdel(progbar)
 
 
@@ -215,6 +224,10 @@
 	var/atom/Tloc = null
 	if(target && !isturf(target))
 		Tloc = target.loc
+	
+	if(target)
+		LAZYADD(user.do_afters, target)
+		LAZYADD(target.targeted_by, user)
 
 	var/atom/Uloc = user.loc
 
@@ -259,6 +272,10 @@
 			if((Uloc != Tloc || Tloc != user) && !drifting)
 				. = 0
 				break
+		
+		if(target && !(target in user.do_afters))
+			. = 0
+			break
 
 		if(needhand)
 			//This might seem like an odd check, but you can still need a hand even when it's empty
@@ -271,6 +288,9 @@
 				. = 0
 				break
 	if (progress)
+		if(!QDELETED(target))
+			LAZYREMOVE(user.do_afters, target)
+			LAZYREMOVE(target.targeted_by, user)
 		qdel(progbar)
 
 /mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
@@ -287,10 +307,12 @@
 	var/drifting = 0
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
 		drifting = 1
-
+	
 	var/list/originalloc = list()
 	for(var/atom/target in targets)
 		originalloc[target] = target.loc
+		LAZYADD(user.do_afters, target)
+		LAZYADD(target.targeted_by, user)
 
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/progbar
@@ -320,4 +342,9 @@
 					. = 0
 					break mainloop
 	if(progbar)
+		for(var/thing in targets)
+			var/atom/target = thing
+			if(!QDELETED(target))
+				LAZYREMOVE(user.do_afters, target)
+				LAZYREMOVE(target.targeted_by, user)
 		qdel(progbar)

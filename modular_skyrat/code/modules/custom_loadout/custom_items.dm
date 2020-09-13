@@ -49,3 +49,32 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 	fitted = FEMALE_UNIFORM_TOP
+
+//Donation reward for NetraKyram
+/obj/item/clothing/under/custom/kilano
+	name = "black and gold dress uniform"
+	desc = "A light black and gold dress made out some sort of silky material."
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
+	icon_state = "kilanosuit"
+	item_state = "kilanosuit"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
+	fitted = FEMALE_UNIFORM_TOP
+
+//Donation reward for NetraKyram
+/obj/item/clothing/gloves/kilano
+	name = "black and gold gloves"
+	desc = "Some black and gold gloves, It seems like they're made to match something."
+	icon = 'modular_skyrat/icons/obj/clothing/gloves.dmi'
+	icon_state = "kilanogloves"
+	item_state = "kilanogloves"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/hands.dmi'
+
+//Donation reward for NetraKyram
+/obj/item/clothing/shoes/winterboots/kilano
+	name = "black and gold boots"
+	desc = "Some heavy furred boots, why would you need fur on a space station? Seems redundant."
+	icon = 'modular_skyrat/icons/obj/clothing/shoes.dmi'
+	icon_state = "kilanoboots"
+	item_state = "kilanoboots"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/feet.dmi'

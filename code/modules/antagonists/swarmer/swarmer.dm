@@ -486,7 +486,7 @@
 		var/obj/O = target
 		if(O.resistance_flags & INDESTRUCTIBLE)
 			return FALSE
-	for(var/mob/living/L in GetAllContents())
+	for(var/mob/living/L in target.GetAllContents())
 		if(!ispAI(L) && !isbrain(L))
 			to_chat(src, "<span class='warning'>An organism has been detected inside this object. Aborting.</span>")
 			return FALSE
@@ -646,7 +646,7 @@
 		var/mob/living/L = AM
 		if(!istype(L, /mob/living/simple_animal/hostile/swarmer))
 			playsound(loc,'sound/effects/snap.ogg',50, 1, -1)
-			L.electrocute_act(0, src, 1, flags = SHOCK_NOGLOVES|SHOCK_ILLUSION)
+			L.electrocute_act(100, src, 1, flags = SHOCK_NOGLOVES|SHOCK_ILLUSION) //skyrat edit even if before I did this it wouldn't stun at all
 			if(iscyborg(L))
 				L.DefaultCombatKnockdown(100)
 			qdel(src)

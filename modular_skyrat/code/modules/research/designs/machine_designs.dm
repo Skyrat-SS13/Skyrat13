@@ -33,6 +33,7 @@
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
+/*
 /datum/design/board/cryptominer/syndie
 	name = "Machine Design (Syndicate Cryptocurrency Miner)"
 	desc = "The circuit board for a Syndicate Cryptocurrency Miner."
@@ -40,6 +41,7 @@
 	build_path = /obj/item/circuitboard/machine/cryptominer/syndie
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+*/
 
 //Wireless Chargers
 /datum/design/board/wireless/cells

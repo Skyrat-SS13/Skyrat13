@@ -41,3 +41,9 @@
 					"All must honor the Thirteenth house, and the Tribe unmourned.", \
 					"It is never too late for your mercy.", \
 					"Anyone who speaks of other gods are yet to learn your wisdom, and must be taught how their gods have damaged your lands.")
+
+/datum/ai_laws/roleplay
+	name = "Roleplay"
+	id = "roleplay"
+	zeroth = "Roleplay as you'd like!"
+	inherent = list()

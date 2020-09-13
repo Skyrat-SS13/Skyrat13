@@ -1,8 +1,3 @@
-/datum/gear/polychromiccloak
-	name = "Polychromic Cloak"
-	category = SLOT_NECK
-	path = /obj/item/clothing/neck/cloak/polychromic
-
 /datum/gear/polychromiccloak_alt
 	name = "Polychromic Cloak (alt)"
 	category = SLOT_NECK

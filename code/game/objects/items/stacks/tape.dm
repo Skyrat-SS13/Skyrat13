@@ -1,16 +1,17 @@
 
-
+/* commented out in favor of our own
 /obj/item/stack/sticky_tape
 	name = "sticky tape"
 	singular_name = "sticky tape"
 	desc = "Used for sticking to things for sticking said things to people."
 	icon = 'icons/obj/tapes.dmi'
 	icon_state = "tape_w"
-	var/prefix = "sticky"
+	prefix = "sticky"
 	item_flags = NOBLUDGEON
 	amount = 5
 	max_amount = 5
 	resistance_flags = FLAMMABLE
+	grind_results = list(/datum/reagent/cellulose = 5)
 
 	var/list/conferred_embed = EMBED_HARMLESS
 	var/overwrite_existing = FALSE
@@ -68,3 +69,4 @@
 	icon_state = "tape_spikes"
 	prefix = "super pointy"
 	conferred_embed = EMBED_POINTY_SUPERIOR
+*/

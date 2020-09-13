@@ -21,7 +21,7 @@
 	idiot.real_name = "Screamer"
 	idiot.dna.real_name = "Screamer"
 	disguise = copify_dna(idiot.dna)
-	disguise_features = copify_features(idiot, TRUE, TRUE)
+	disguise_features = copify_features(idiot, TRUE, FALSE)
 	qdel(idiot)
 
 /obj/item/clothing/mask/infiltrator/ghostface/equipped(mob/M, slot)
@@ -32,7 +32,7 @@
 			stored = copify_dna(user.dna)
 			stored_features = copify_features(user, TRUE, TRUE)
 			user.dna = copify_dna(disguise)
-			featurize_human(user, disguise_features, TRUE, TRUE)
+			featurize_human(user, disguise_features, TRUE, FALSE)
 			user.regenerate_icons()
 
 /obj/item/clothing/mask/infiltrator/ghostface/dropped(mob/M)
@@ -54,7 +54,7 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/traitorclothes.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/traitorclothes_anthro.dmi'
 	icon_state = "ghosthood"
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 20, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 25, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 20, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 25, "acid" = 100, "wound" = 25)
 
 /obj/item/clothing/suit/hooded/cultrobes/ghostface
 	name = "black robes"
@@ -64,4 +64,4 @@
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/traitorclothes_anthro.dmi'
 	icon_state = "ghostrobes"
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/ghostface
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 20, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 25, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 20, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 25, "acid" = 100, "wound" = 25)

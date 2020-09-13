@@ -1,6 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "Blood no longer runtimes"
-  - code_imp: "Blood now smooth code"
-  - rscadd: "Blood color and reagent options in the character setup"

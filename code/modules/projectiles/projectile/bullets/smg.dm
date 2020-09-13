@@ -3,10 +3,13 @@
 /obj/item/projectile/bullet/c45
 	name = ".45 bullet"
 	damage = 30
+	wound_bonus = 25
+	stamina = 8 //Skyrat edit: Stopping power.
 
 /obj/item/projectile/bullet/c45_cleaning
 	name = ".45 bullet"
 	damage = 40 //BANG BANG BANG
+	wound_bonus = 30
 
 /obj/item/projectile/bullet/c45_cleaning/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -37,6 +40,24 @@
 					SEND_SIGNAL(cleaned_human.w_uniform, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
 					cleaned_human.w_uniform.clean_blood()
 					cleaned_human.update_inv_w_uniform()
+				//skyrat edit
+				else if(cleaned_human.w_underwear)
+					SEND_SIGNAL(cleaned_human.w_underwear, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
+					cleaned_human.w_underwear.clean_blood()
+					cleaned_human.update_inv_w_underwear()
+				else if(cleaned_human.w_socks)
+					SEND_SIGNAL(cleaned_human.w_socks, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
+					cleaned_human.w_socks.clean_blood()
+					cleaned_human.update_inv_w_socks()
+				else if(cleaned_human.w_shirt)
+					SEND_SIGNAL(cleaned_human.w_shirt, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
+					cleaned_human.w_shirt.clean_blood()
+					cleaned_human.update_inv_w_shirt()
+				else if(cleaned_human.wrists)
+					SEND_SIGNAL(cleaned_human.wrists, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
+					cleaned_human.wrists.clean_blood()
+					cleaned_human.update_inv_wrists()
+				//
 				if(cleaned_human.shoes)
 					SEND_SIGNAL(cleaned_human.shoes, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
 					cleaned_human.shoes.clean_blood()
@@ -50,14 +71,21 @@
 
 /obj/item/projectile/bullet/c46x30mm
 	name = "4.6x30mm bullet"
-	damage = 15
+	damage = 20     //Skyrat edit: Why the fuck did this deal less damage than .38 lethals before?
+	wound_bonus = -5
+	bare_wound_bonus = 5
+	embed_falloff_tile = -4
+	wound_bonus = -20
 
 /obj/item/projectile/bullet/c46x30mm_ap
-	name = "4.6x30mm armor-piercing bullet"
-	damage = 12.5
+	name = "4.6x30mm SS192 bullet"
+	damage = 14.5   //Skyrat edit
 	armour_penetration = 40
+	embedding = null
+	wound_bonus = 10
 
 /obj/item/projectile/bullet/incendiary/c46x30mm
 	name = "4.6x30mm incendiary bullet"
 	damage = 7.5
 	fire_stacks = 1
+	wound_bonus = -80

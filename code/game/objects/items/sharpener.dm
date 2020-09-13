@@ -5,11 +5,10 @@
 	desc = "A block that makes things sharp."
 	force = 5
 	var/used = 0
-	var/increment = 4
+	var/increment = 5
 	var/max = 30
 	var/prefix = "sharpened"
 	var/requires_sharpness = 1
-
 
 /obj/item/sharpener/attackby(obj/item/I, mob/user, params)
 	if(used)
@@ -39,7 +38,8 @@
 		I.force = clamp(I.force + increment, 0, max)
 
 	user.visible_message("<span class='notice'>[user] sharpens [I] with [src]!</span>", "<span class='notice'>You sharpen [I], making it much more deadly than before.</span>")
-	I.sharpness = IS_SHARP_ACCURATE
+	I.sharpness = SHARP_POINTY
+	I.force = clamp(I.force + increment, 0, max)
 	I.throwforce = clamp(I.throwforce + increment, 0, max)
 	I.name = "[prefix] [I.name]"
 	name = "worn out [name]"

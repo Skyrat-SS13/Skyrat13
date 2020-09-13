@@ -1,3 +1,4 @@
+/* commented out in favor of our own
 /*
 	The presence of this element allows an item (or a projectile carrying an item) to embed itself in a human or turf when it is thrown into a target (whether by hand, gun, or explosive wave) with either
 	at least 4 throwspeed (EMBED_THROWSPEED_THRESHOLD) or ignore_throwspeed_threshold set to TRUE. Items meant to be used as shrapnel for projectiles should have ignore_throwspeed_threshold set to true.
@@ -225,3 +226,4 @@
 		return checkEmbedMob(I, C, hit_zone, forced=TRUE)
 	else if(T)
 		return checkEmbedOther(I, T, forced=TRUE)
+*/

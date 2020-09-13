@@ -10,6 +10,7 @@
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "banana"
 	range = 200
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/bullet/honker/Initialize()
 	. = ..()
