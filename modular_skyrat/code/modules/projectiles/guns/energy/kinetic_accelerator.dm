@@ -260,31 +260,6 @@
 	log_override = TRUE
 
 //Megafauna & other unique modkits
-
-//bubblegum
-/obj/item/borg/upgrade/modkit/shotgun
-	name = "shotgun blast modification kit"
-	desc = "Makes you fire 3 kinetic shots instead of one."
-	denied_type = /obj/item/borg/upgrade/modkit/shotgun
-	cost = 40
-	modifier = 2
-
-/obj/item/borg/upgrade/modkit/shotgun/modify_projectile(obj/item/projectile/kinetic/K)
-	..()
-	if(K.kinetic_gun)
-		var/obj/item/gun/energy/kinetic_accelerator/KA = K.kinetic_gun
-		var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1] 
-		C.pellets += modifier
-		C.variance = (C.pellets * 15) + initial(C.variance)
-		KA.chambered = C
-
-/obj/item/borg/upgrade/modkit/shotgun/uninstall(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
-	..()
-	var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1]
-	C.pellets -= modifier
-	C.variance = ((C.pellets - 1) * 15) + initial(C.variance)
-	KA.chambered = C
-
 //drake
 /obj/item/borg/upgrade/modkit/knockback
 	name = "knockback modification kit"
