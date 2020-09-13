@@ -197,7 +197,7 @@
 	to_chat(target, "<B><font size=2 color=red>You have been declared an ex-communicate of the syndicate and are being hunted down.</font></B>")
 	to_chat(target, "<span class='warning'>You have stolen syndicate objective documents, complete the objectives to throw off the syndicate and sabotage their efforts.</span>")
 	//Create objective
-	var/datum/objective/assassinate/incursion/killchosen = new
+	var/datum/objective/assassinate/once/incursion/killchosen = new
 	killchosen.target = target
 	add_objective(killchosen, FALSE)
 

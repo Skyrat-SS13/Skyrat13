@@ -216,10 +216,10 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(target && !target.current)
 		explanation_text = "Assassinate [target.name], who was obliterated"
 
-/datum/objective/assassinate/incursion
+/datum/objective/assassinate/once/incursion
 	name = "eliminate"
 
-/datum/objective/assassinate/incursion/update_explanation_text()
+/datum/objective/assassinate/once/incursion/update_explanation_text()
 	..()
 	if(target && target.current)
 		explanation_text = "[target.name], the [!target_role_type ? target.assigned_role : target.special_role] has been declared an ex-communicate of the syndicate. Eliminate them once to teach them a lesson."
