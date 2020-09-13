@@ -2,7 +2,7 @@
 	name = "Blob"
 	typepath = /datum/round_event/ghost_role/blob
 	weight = 10
-	max_occurrences = 1
+	max_occurrences = 0 //temp skyrat chaange
 
 	earliest_start = 40 MINUTES
 	min_players = 35
