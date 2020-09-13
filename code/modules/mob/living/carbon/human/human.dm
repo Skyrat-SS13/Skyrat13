@@ -234,12 +234,12 @@
 			embeddies[BP] = BP.embedded_objects.Copy()
 	for(var/i in embeddies)
 		var/obj/item/ineedthename = i
-		dat += "<tr><td><font color=grey>[capitalize(ineedthename.name)]:</font></td>"
+		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>[capitalize(ineedthename.name)]:</B> </font></td>"
 		for(var/y in embeddies[i])
 			dat += "<td><A href='?src=[REF(src)];embedded_object=[REF(y)];embedded_limb=[REF(i)]'>[y]</a></td>"
 		dat += "</tr>"
 	if(!length(embeddies))
-		dat += "<tr><td><font color=grey>None</font></tr></td>"
+		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>None</B></font></tr></td>"
 
 	dat += {"</table>
 	<A href='?src=[REF(user)];mach_close=mob[REF(src)]'>Close</A>
