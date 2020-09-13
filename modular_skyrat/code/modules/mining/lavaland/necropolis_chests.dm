@@ -68,7 +68,6 @@
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
-	new /obj/item/borg/upgrade/modkit/shotgun(src)
 	new /obj/item/gun/magic/staff/spellblade(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
@@ -84,7 +83,6 @@
 	new /obj/item/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
 	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
-	new /obj/item/borg/upgrade/modkit/shotgun(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher
 	name = "enraged bloody bubblegum chest"
