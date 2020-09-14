@@ -62,6 +62,6 @@
 			force_emote = "groan"
 		if(force_emote && prob(power))
 			emote(force_emote)
-	next_pain_message_time = world.time + (rand(300, 450) - power)
+	next_pain_message_time = world.time + (rand(150, 250) - power)
 	next_pain_time = world.time + (rand(100, 200) - power)
 	return TRUE
