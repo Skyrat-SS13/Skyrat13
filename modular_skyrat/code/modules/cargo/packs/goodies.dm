@@ -39,3 +39,17 @@
 	desc = "Contains one handheld mirror, for style changes on the go!"
 	cost = 40
 	contains = list(/obj/item/hhmirror)
+
+/datum/supply_pack/goody/paperbin
+	name = "Paper Pack"
+	desc = "A bin of paper, and a pen, for all your paperwork needs."
+	cost = 50
+	contains = list(/obj/item/paper_bin
+					/obj/item/pen)
+
+/datum/supply_pack/goody/paintcan
+	name = "Any Color Paintcan"
+	desc = "When you said you'd paint the town red, you -meant- it. When you're feeling blue, you tell the -world- about it. Sellers note: We are not responsible for lynchings carried out by angry janitors, security officers, or any other crewmembers as a result of you using this."
+	contraband = TRUE
+	cost = 3000
+	contains = list(/obj/item/paint/anycolor)
