@@ -7,9 +7,13 @@
 
 /turf/open/floor/plating/Initialize()
 	..()
-	if (burnt_states == list("panelscorched"))
+	if(burnt_states == list("panelscorched"))
 		burnt_states = list("platingscorched1", "platingscorched2", "platingscorched3")
 	platingid = rand(minid, maxid)
 	icon_plating = "[icon_plating][platingid]"
 	icon_state = icon_plating
 	update_icon()
+
+/turf/open/floor/plating/asteroid
+	minid = 0
+	maxid = 12
