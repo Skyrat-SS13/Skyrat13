@@ -2290,7 +2290,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					jumpsuit_style = pick(GLOB.jumpsuitlist)
 				if("all")
 					random_character()
-
+					scars_list = ASSOCIATED_SCARS
 		if("input")
 
 			if(href_list["preference"] in GLOB.preferences_custom_names)
