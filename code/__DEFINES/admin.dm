@@ -97,7 +97,6 @@
 #define ADMIN_PUNISHMENT_BLEED ":B:loodless"
 #define ADMIN_PUNISHMENT_PERFORATE ":B:erforate"
 #define ADMIN_PUNISHMENT_BURN ":B:urn"
-#define ADMIN_PUNISHMENT_INTERNALBLEED ":B:leed Internally"
 #define ADMIN_PUNISHMENT_WARCRIME "War Crime"
 #define ADMIN_PUNISHMENT_INCISIONIFY "Incisionify"
 #define ADMIN_PUNISHMENT_SCARIFY "Scarify"

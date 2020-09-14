@@ -736,8 +736,6 @@
 				wounding_dmg *= 2
 			if(WOUND_PIERCE)
 				wounding_dmg *= 1.5
-			if(WOUND_INTERNALBLEED)
-				wounding_dmg *= 2 //well you're just fucked
 	
 	//We check all wound-related traits to multiply damage adequately.
 	if(body_zone == BODY_ZONE_HEAD && HAS_TRAIT(owner, TRAIT_GLASSJAW))
@@ -747,8 +745,6 @@
 	if(wounding_type == WOUND_BLUNT && HAS_TRAIT(owner, TRAIT_EASYBLUNT))
 		wounding_dmg *= 2
 	if(wounding_type == WOUND_BURN && HAS_TRAIT(owner, TRAIT_EASYBURN))
-		wounding_dmg *= 2
-	if(wounding_type == WOUND_INTERNALBLEED && HAS_TRAIT(owner, TRAIT_EASYINTERNALBLEED))
 		wounding_dmg *= 2
 	
 	//Handling for bone only/flesh only/skin only/all of them targets
@@ -762,10 +758,6 @@
 			wounding_type = WOUND_BLUNT
 			if(!easy_dismember)
 				wounding_dmg *= 0.75
-		else if(wounding_type == WOUND_INTERNALBLEED)
-			wounding_type = WOUND_BLUNT
-			if(!easy_dismember)
-				wounding_dmg *= 0.65
 		
 		if((mangled_state & BODYPART_MANGLED_BONE) && (try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
@@ -778,8 +770,6 @@
 				wounding_dmg *= 0.5
 		else if(wounding_type == WOUND_PIERCE)
 			wounding_dmg *= 1.5 // it's easy to puncture into plain flesh
-		else if(wounding_type == WOUND_INTERNALBLEED)
-			wounding_dmg *= 1.25 // No bones encasing the organs and blood vessels
 		
 		if((mangled_state & BODYPART_MANGLED_MUSCLE) && (try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus) || try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)))
 			return
@@ -960,8 +950,6 @@
 				phantom_wounding_dmg *= 2
 			if(WOUND_PIERCE)
 				phantom_wounding_dmg *= 1.5
-			if(WOUND_INTERNALBLEED)
-				phantom_wounding_dmg *= 2 //well you're just fucked
 
 	//We check all wound-related traits to multiply damage adequately.
 	if(body_zone == BODY_ZONE_HEAD && HAS_TRAIT(owner, TRAIT_GLASSJAW))
@@ -971,8 +959,6 @@
 	if(wounding_type == WOUND_BLUNT && HAS_TRAIT(owner, TRAIT_EASYBLUNT))
 		phantom_wounding_dmg *= 2
 	if(wounding_type == WOUND_BURN && HAS_TRAIT(owner, TRAIT_EASYBURN))
-		phantom_wounding_dmg *= 2
-	if(wounding_type == WOUND_INTERNALBLEED && HAS_TRAIT(owner, TRAIT_EASYINTERNALBLEED))
 		phantom_wounding_dmg *= 2
 	
 	//Handling for bone only/flesh only/skin only/all of them targets
@@ -1460,11 +1446,6 @@
 			if(!organic)
 				wounds_checking = WOUND_LIST_BURN_MECHANICAL
 			check_gauze = TRUE
-		if(WOUND_INTERNALBLEED)
-			wounds_checking = WOUND_LIST_INTERNAL_BLEEDING
-			if(!organic)
-				return
-			check_gauze = FALSE
 	
 	if(!length(wounds_checking))
 		return

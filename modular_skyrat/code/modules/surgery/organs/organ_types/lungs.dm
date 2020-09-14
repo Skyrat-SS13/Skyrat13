@@ -81,7 +81,7 @@
 	var/oxygen_deprivation = 0
 	var/last_int_pressure = 0
 	var/last_ext_pressure = 0
-	var/max_pressure_diff = 60
+	var/max_pressure_diff = 50
 	relative_size = 30 //Chest has many organs, we need to cut some chances off to round up to 100
 
 /obj/item/organ/lungs/proc/remove_oxygen_deprivation(amount)
@@ -139,7 +139,7 @@
 	var/obj/item/bodypart/parent = owner.get_bodypart(zone)
 	if(istype(parent))
 		owner.custom_pain("You feel a stabbing pain in your [parent.name]!", 50, affecting = parent)
-	bruise_organ()
+	break_organ()
 
 //exposure to extreme pressures can rupture lungs
 /obj/item/organ/lungs/proc/check_rupturing(breath_pressure, datum/gas_mixture/breath)
@@ -153,7 +153,7 @@
 	var/ext_pressure_diff = abs(last_ext_pressure - ext_pressure)
 	if(int_pressure_diff > max_pressure_diff && ext_pressure_diff > max_pressure_diff)
 		var/lung_rupture_prob = (status & ORGAN_ROBOTIC) ? prob(30) : prob(60) //Robotic lungs are less likely to rupture.
-		if(!is_bruised() && lung_rupture_prob) //only rupture if NOT already ruptured
+		if(!is_broken() && lung_rupture_prob) //only rupture if NOT already ruptured
 			rupture()
 
 //TODO: lung health affects lung function
@@ -208,13 +208,15 @@
 		breath_pressure = breath.return_pressure()
 
 	var/datum/gas_mixture/environment = owner.loc.return_air()
+
+	//Check for rupture before we update the last_int_pressure and last_ext_pressure variables
+	check_rupturing(breath_pressure, environment)
+
 	last_ext_pressure = 0
 	if(environment)
 		last_ext_pressure = environment.return_pressure()
 	
 	last_int_pressure = breath_pressure
-	
-	check_rupturing(breath_pressure, environment)
 
 	if((!breath || (breath?.total_moles() == 0)) && (safe_co2_min || safe_nitro_min || safe_oxygen_min || safe_toxins_min))
 		if(H.reagents.has_reagent(crit_stabilizing_reagent))

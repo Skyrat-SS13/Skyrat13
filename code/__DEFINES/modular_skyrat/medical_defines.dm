@@ -23,7 +23,6 @@
 #define WOUND_SLASH 2 // any brute weapon/attack with sharpness = SHARP_EDGED. rolls for slash wounds
 #define WOUND_PIERCE 3 // any brute weapon/attack with sharpness = SHARP_POINTY. rolls for piercing wounds
 #define WOUND_BURN	4 // any concentrated burn attack (lasers really). rolls for burning wounds
-#define WOUND_INTERNALBLEED 5 // may be used in the future
 
 // How much determination reagent to add each time someone gains a new wound in [/datum/wound/proc/second_wind()]
 #define WOUND_DETERMINATION_MODERATE	2
@@ -38,7 +37,6 @@
 #define CANT_WOUND -100
 
 // List in order of highest severity to lowest (if the wound is rolled for normally - there are edge cases like incisions)
-#define WOUND_LIST_INTERNAL_BLEEDING list(/datum/wound/internalbleed/critical, /datum/wound/internalbleed/severe, /datum/wound/internalbleed/moderate)
 #define WOUND_LIST_INCISION	list(/datum/wound/slash/critical/incision)
 #define WOUND_LIST_INCISION_MECHANICAL	list(/datum/wound/mechanical/slash/critical/incision)
 #define WOUND_LIST_BLUNT		list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate/jaw, /datum/wound/blunt/moderate/ribcage, /datum/wound/blunt/moderate/hips, /datum/wound/blunt/moderate)
@@ -61,7 +59,6 @@
 
 #define WOUND_SLASH_MAX_BLOODFLOW		8 // how much blood you can lose per tick per slash max. 8 is a LOT of blood for one cut so don't worry about hitting it easily
 #define WOUND_PIERCE_MAX_BLOODFLOW		8 // same as above, but for piercing wounds
-#define WOUND_INTERNAL_MAX_BLOODFLOW	10 // same as above, but for internal bleeding
 #define WOUND_SLASH_DEAD_CLOT_MIN		0.05 // dead people don't bleed, but they can clot! this is the minimum amount of clotting per tick on dead people, so even critical cuts will slowly clot in dead people
 #define WOUND_PIERCE_DEAD_CLOT_MIN		0.05 // same as above but for piercing wounds
 #define WOUND_BONE_HEAD_TIME_VARIANCE 	20 // if we suffer a bone wound to the head that creates brain traumas, the timer for the trauma cycle is +/- by this percent (0-100)
