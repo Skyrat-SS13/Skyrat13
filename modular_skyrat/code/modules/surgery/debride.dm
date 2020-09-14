@@ -32,8 +32,8 @@
 	repeatable = TRUE
 
 /datum/surgery_step/debride/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(surgery.operated_wound)
-		var/obj/item/bodypart/targeted_bodypart = target.get_bodypart(user.zone_selected)
+	var/obj/item/bodypart/targeted_bodypart = target.get_bodypart(user.zone_selected)
+	if(targeted_bodypart)
 		if(targeted_bodypart.germ_level <= 0)
 			to_chat(user, "<span class='notice'>[target]'s [parse_zone(user.zone_selected)] has no infected flesh to remove!</span>")
 			surgery.status++
