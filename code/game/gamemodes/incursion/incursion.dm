@@ -39,6 +39,7 @@
 	var/team_size = (2 * pop) / ((2 * cost_base) + ((pop - 1) * cost_increment))
 	log_game("Spawning [team_size] incursionists.")
 	team_size = clamp(team_size, CONFIG_GET(number/incursion_count_min), CONFIG_GET(number/incursion_count_max))
+	team.update_name()
 
 	for(var/k = 1 to team_size)
 		var/datum/mind/incursion = antag_pick(possible_traitors, ROLE_INCURSION)
