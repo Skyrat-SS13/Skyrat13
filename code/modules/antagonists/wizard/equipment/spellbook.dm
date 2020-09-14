@@ -124,9 +124,11 @@
 	spell_type = /obj/effect/proc_holder/spell/targeted/projectile/magic_missile
 	category = "Defensive"
 
+/*
 /datum/spellbook_entry/disintegrate
 	name = "Disintegrate"
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/disintegrate
+*/ //One shot. Skyrats edit.
 
 /datum/spellbook_entry/nuclearfist
 	name = "Nuclear Fist"
@@ -164,10 +166,12 @@
 	spell_type = /obj/effect/proc_holder/spell/targeted/trigger/blind
 	cost = 1
 
+/*
 /datum/spellbook_entry/mindswap
 	name = "Mindswap"
 	spell_type = /obj/effect/proc_holder/spell/targeted/mind_transfer
 	category = "Mobility"
+*/ //Skyrats edit, One major reason why people dont want to RP with wizards. Also virtually infinite health.
 
 /datum/spellbook_entry/forcewall
 	name = "Force Wall"
@@ -244,9 +248,11 @@
 	cost = 3
 	no_coexistance_typecache = /obj/effect/proc_holder/spell/targeted/infinite_guns/gun
 
+/*
 /datum/spellbook_entry/barnyard
 	name = "Barnyard Curse"
 	spell_type = /obj/effect/proc_holder/spell/targeted/barnyardcurse
+*/ //Skyrats Edit: LRP bumfuckery
 
 /datum/spellbook_entry/charge
 	name = "Charge"
@@ -294,11 +300,13 @@
 		dat += "[surplus] left.<br>"
 	return dat
 
+/*
 /datum/spellbook_entry/item/staffchange
 	name = "Staff of Change"
 	desc = "An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself."
 	item_path = /obj/item/gun/magic/staff/change
 	dynamic_requirement = 200
+*/ //Skyrats edit. One shot, permanent, wizard rounds dont end on wizard kill, rounds last longer than 30 minutes. Overall bad item.
 
 /datum/spellbook_entry/item/staffanimation
 	name = "Staff of Animation"
@@ -306,10 +314,12 @@
 	item_path = /obj/item/gun/magic/staff/animate
 	category = "Assistance"
 
+/*
 /datum/spellbook_entry/item/staffchaos
 	name = "Staff of Chaos"
 	desc = "A caprious tool that can fire all sorts of magic without any rhyme or reason. Using it on people you care about is not recommended."
 	item_path = /obj/item/gun/magic/staff/chaos
+*/ //Skyrats edit. See staff of change.
 
 /datum/spellbook_entry/item/spellblade
 	name = "Spellblade"
@@ -365,7 +375,7 @@
 	desc = "A collection of wands that allow for a wide variety of utility. Wands have a limited number of charges, so be conservative in use. Comes in a handy belt."
 	item_path = /obj/item/storage/belt/wands/full
 	category = "Defensive"
-	dynamic_requirement = 200
+	dynamic_requirement = 200 //Left in for now, if wand of change gets abused it gets removed from the belt.
 
 /datum/spellbook_entry/item/armor
 	name = "Mastercrafted Armor Set"
@@ -537,6 +547,7 @@
 	to_chat(user, "<span class='notice'>You have cast summon magic!</span>")
 	return 1
 
+/*
 /datum/spellbook_entry/summon/events
 	name = "Summon Events"
 	desc = "Give Murphy's law a little push and replace all events with special wizard ones that will confound and confuse everyone. Multiple castings increase the rate of these events."
@@ -561,7 +572,9 @@
 	if(times>0)
 		. += "You cast it [times] times.<br>"
 	return .
+*/ //Skyrats edit: Contains: Catgirlification, Mindswap. 
 
+/*
 /datum/spellbook_entry/summon/curse_of_madness
 	name = "Curse of Madness"
 	desc = "Curses the station, warping the minds of everyone inside, causing lasting traumas. Warning: this spell can affect you if not cast from a safe distance."
@@ -582,6 +595,7 @@
 	if(!SSticker.mode) // In case spellbook is placed on map
 		return FALSE
 	return (!CONFIG_GET(flag/no_summon_traumas) && ..())
+*/ //Needs a rework, not in the scope of this PR. 
 
 /obj/item/spellbook
 	name = "spell book"
