@@ -140,7 +140,8 @@
 	)
 
 /obj/structure/window/plastitanium
-	icon = 'modular_skyrat/icons/eris/obj/structures/windows.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/plastitanium_window.dmi'
+	icon_state = "plastitanium_window"
 
 /obj/structure/window/plastitanium/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/plastitanium_window.dmi'

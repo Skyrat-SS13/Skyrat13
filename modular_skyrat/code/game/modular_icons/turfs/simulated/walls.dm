@@ -21,6 +21,7 @@
 	/obj/structure/window/plasma/reinforced/fulltile,
 	/obj/structure/window/shuttle,
 	/obj/structure/window/plastitanium/fulltile,
+	/obj/structure/window/plastitanium,
 	)
 
 /turf/closed/wall/Initialize(mapload)

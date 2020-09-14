@@ -21,3 +21,6 @@
 
 /obj/effect/spawner/structure/window/plasma
 	spawn_list = list(/obj/structure/table/low_wall/metal, /obj/structure/window/plasma/fulltile)
+
+/obj/effect/spawner/structure/window/plasma/reinforced
+	spawn_list = list(/obj/structure/table/low_wall/metal/reinforced,/obj/structure/grille,/obj/structure/window/plasma/reinforced/fulltile)
