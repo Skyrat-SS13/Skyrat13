@@ -61151,6 +61151,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall,
 /area/security/main)
+"oWN" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "oZc" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -90953,7 +90962,7 @@ adG
 adG
 adG
 agj
-vyc
+oWN
 ajX
 afM
 agj
