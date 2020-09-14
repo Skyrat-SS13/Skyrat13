@@ -13,7 +13,7 @@
 	if(..())
 		var/obj/item/bodypart/targeted_bodypart = target.get_bodypart(user.zone_selected)
 		if(targeted_bodypart)
-			if(targeted_bodypart.germ_level >= INFECTION_LEVEL_ONE)
+			if(targeted_bodypart.germ_level || targeted_bodypart.is_dead())
 				return TRUE
 			else
 				for(var/i in targeted_bodypart.wounds)
@@ -34,7 +34,7 @@
 /datum/surgery_step/debride/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(surgery.operated_wound)
 		var/obj/item/bodypart/targeted_bodypart = target.get_bodypart(user.zone_selected)
-		if(targeted_bodypart.germ_level <= WOUND_INFECTION_SANITIZATION_RATE)
+		if(targeted_bodypart.germ_level <= 0)
 			to_chat(user, "<span class='notice'>[target]'s [parse_zone(user.zone_selected)] has no infected flesh to remove!</span>")
 			surgery.status++
 			repeatable = FALSE
@@ -74,7 +74,7 @@
 	if(!..())
 		return
 	var/obj/item/bodypart/targeted_bodypart = target.get_bodypart(user.zone_selected)
-	while(targeted_bodypart && targeted_bodypart.germ_level > 1)
+	while(targeted_bodypart && (targeted_bodypart.germ_level || targeted_bodypart.is_dead()))
 		if(!..())
 			break
 
@@ -102,6 +102,8 @@
 		log_combat(user, target, "dressed infection in", addition="INTENT: [uppertext(user.a_intent)]")
 		targeted_bodypart.apply_gauze(tool)
 		targeted_bodypart.germ_level -= WOUND_SANITIZATION_STERILIZER
+		if(targeted_bodypart.germ_level < INFECTION_LEVEL_TWO)
+			targeted_bodypart.revive_limb()
 		for(var/datum/wound/infected_wound in targeted_bodypart.wounds)
 			infected_wound.sanitization += 3
 			if(istype(infected_wound, /datum/wound/burn))
