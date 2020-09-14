@@ -1,6 +1,0 @@
-author: "NotRanged"
-delete-after: True
-changes: 
-  - tweak: "All station goals are now always available. All three of them."
-  - bugfix: "Poly now doesn't get stuck in a bugged state upon unbuckling, and listens to commands better."
-  - bugfix: "Tesla zaps now ignore keycard auth machines and buttons. They're indestructible and would just infinitely explode."
