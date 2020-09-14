@@ -831,3 +831,51 @@
 		if(mode.make_bloodsucker(M))
 			mode.bloodsuckers += M
 	return TRUE
+
+//////////////////////////////////////////////
+//                                          //
+//               INCURSION                  //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/incursion
+    name = "Syndicate Incursion"
+    config_tag = "incursion"
+    antag_flag = ROLE_INCURSION
+    antag_datum = /datum/antagonist/incursion
+    restricted_roles = list("AI", "Cyborg")
+    protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster", "Blueshield", "Brig Physician")
+    required_candidates = 2
+    weight = 4
+    cost = 10
+    requirements = list(70,65,60,55,50,45,40,35,30,30)
+    high_population_requirement = 30
+    antag_cap = list(2,2,2,3,3,3,3,3,3,4)
+    property_weights = list("story_potential" = 1, "trust" = -1, "extended" = 1)
+    var/list/datum/team/incursion/pre_incursion_teams = list()
+    var/const/min_team_size = 2
+
+/datum/dynamic_ruleset/roundstart/incursion/pre_execute()
+    var/num_teams = (antag_cap[indice_pop]/min_team_size) * (scaled_times + 1) // 1 team per scaling
+    for(var/j = 1 to num_teams)
+        if(candidates.len < min_team_size || candidates.len < required_candidates)
+            break
+        var/datum/team/incursion/team = new
+        var/team_size = prob(10) ? min(3, candidates.len) : 2
+        for(var/k = 1 to team_size)
+            var/mob/incurbro = pick_n_take(candidates)
+            assigned += incurbro.mind
+            team.add_member(incurbro.mind)
+            incurbro.mind.special_role = ROLE_INCURSION
+            incurbro.mind.restricted_roles = restricted_roles
+        pre_incursion_teams += team
+    return TRUE
+
+/datum/dynamic_ruleset/roundstart/incursion/execute()
+    for(var/datum/team/incursion/team in pre_incursion_teams)
+        team.forge_team_objectives()
+        for(var/datum/mind/M in team.members)
+            M.add_antag_datum(/datum/antagonist/incursion, team)
+        team.update_name()
+    mode.incursion_teams = pre_incursion_teams
+    return TRUE

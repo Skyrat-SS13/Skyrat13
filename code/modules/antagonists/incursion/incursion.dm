@@ -75,13 +75,13 @@
 			continue
 		candidates[L.mind.name] = L.mind
 
-	if(SSticker.mode.incursion_team)
-		new_owner.add_antag_datum(/datum/antagonist/incursion, SSticker.mode.incursion_team)
+	if(SSticker.mode.incursion_teams)
+		new_owner.add_antag_datum(/datum/antagonist/incursion, SSticker.mode.incursion_teams)
 	else
-		SSticker.mode.incursion_team = new
-		SSticker.mode.incursion_team.add_member(new_owner)
-		SSticker.mode.incursion_team.forge_team_objectives()
-		new_owner.add_antag_datum(/datum/antagonist/incursion, SSticker.mode.incursion_team)
+		SSticker.mode.incursion_teams = new
+		SSticker.mode.incursion_teams.add_member(new_owner)
+		SSticker.mode.incursion_teams.forge_team_objectives()
+		new_owner.add_antag_datum(/datum/antagonist/incursion, SSticker.mode.incursion_teams)
 		message_admins("New incursion team created by [key_name_admin(admin)]")
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] and [key_name_admin(new_owner.current)] into incursion traitor team")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] and [key_name(new_owner.current)] into incursion traitor team.")
@@ -99,6 +99,9 @@
 
 /datum/team/incursion/is_solo()
 	return FALSE
+
+/datum/team/incursion/proc/update_name()
+	name = syndicate_name()
 
 /datum/team/incursion/roundend_report()
 	var/list/parts = list()

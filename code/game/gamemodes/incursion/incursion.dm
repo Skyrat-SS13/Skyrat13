@@ -1,6 +1,6 @@
 /datum/game_mode
 	var/list/datum/mind/incursionists = list()
-	var/datum/team/incursion/incursion_team
+	var/datum/team/incursion/incursion_teams
 
 /datum/game_mode/incursion
 	name = "incursion"
@@ -48,7 +48,7 @@
 		possible_traitors -= incursion
 		antag_candidates -= incursion
 		team.add_member(incursion)
-		incursion.special_role = "incursionist"
+		incursion.special_role = ROLE_INCURSION
 		incursion.restricted_roles = restricted_jobs
 		log_game("[key_name(incursion)] has been selected as a member of the incursion")
 	pre_incursionist_team = team
@@ -60,7 +60,7 @@
 	team.forge_team_objectives()
 	for(var/datum/mind/M in team.members)
 		M.add_antag_datum(/datum/antagonist/incursion, team)
-	incursion_team = pre_incursionist_team
+	incursion_teams = pre_incursionist_team
 	return ..()
 
 /datum/game_mode/incursion/generate_report()
