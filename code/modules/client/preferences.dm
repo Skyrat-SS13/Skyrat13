@@ -26,7 +26,6 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 		"Hot Plates" = 'modular_skyrat/sound/music/hot_plates.ogg',
 		"Thunderdome" = 'modular_skyrat/sound/music/thunderdome.ogg',
 		"Death Squad" ='modular_skyrat/sound/music/deathsquads.ogg',
-		"Custom" = "Custom",
 	))
 
 /datum/preferences
@@ -149,7 +148,6 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 	var/list/alt_titles_preferences = list()
 
 	var/combat_music = "None"
-	var/sound/custom_combat_music
 	
 	var/accept_ERG = FALSE
 
@@ -3368,14 +3366,8 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 					combat_music = input(user, "What song do you want to use as combat music?", "Combat music") as null|anything in (GLOB.combat_music_options + "None")
 					if(!combat_music || (combat_music == "None"))
 						combat_music = null
-						custom_combat_music = null
 					else
 						combat_music = sanitize_inlist(combat_music, GLOB.combat_music_options)
-						custom_combat_music = null
-						if(combat_music == "Custom")
-							var/custom_music = input(user, "What sound file do you want to use as your custom combat mode music?", "Combat music", null) as sound
-							if(custom_music)
-								custom_combat_music = custom_music
 				if("persistent_scars")
 					persistent_scars = !persistent_scars
 				if("clear_scars")

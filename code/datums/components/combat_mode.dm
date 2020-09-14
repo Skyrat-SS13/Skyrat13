@@ -90,11 +90,8 @@
 		if(playsound)
 			source.playsound_local(source, 'sound/misc/ui_toggle.ogg', 50, FALSE, pressure_affected = FALSE) //Sound from interbay!
 		source.stop_sound_channel(CHANNEL_COMBAT)
-		if(source.client?.prefs?.combat_music && (source.client.prefs.combat_music != "Custom") && GLOB.combat_music_options[source.client.prefs.combat_music])
+		if(source.client?.prefs?.combat_music && GLOB.combat_music_options[source.client.prefs.combat_music])
 			var/sound/music = sound(get_sfx(GLOB.combat_music_options[source.client.prefs.combat_music]), TRUE)
-			source.playsound_local(turf_source = source, S = music, vol = 75, vary = 0, channel = CHANNEL_COMBAT, pressure_affected = FALSE)
-		else if(source.client?.prefs?.combat_music && source.client.prefs.custom_combat_music)
-			var/sound/music = sound(get_sfx(source.client.prefs.custom_combat_music), TRUE)
 			source.playsound_local(turf_source = source, S = music, vol = 75, vary = 0, channel = CHANNEL_COMBAT, pressure_affected = FALSE)
 	//RegisterSignal(source, COMSIG_MOB_CLIENT_MOUSEMOVE, .proc/onMouseMove) //Skyrat change
 	RegisterSignal(source, COMSIG_MOVABLE_MOVED, .proc/on_move)

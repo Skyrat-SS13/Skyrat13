@@ -256,7 +256,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["event_prefs"] >> event_prefs
 	S["appear_in_round_end_report"]	>> appear_in_round_end_report
 	S["combat_music"]	>> combat_music
-	S["custom_combat_music"]	>> custom_combat_music
 	S["pain_style"] >> pain_style
 	//SKYRAT CHANGES END
 
@@ -461,7 +460,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["scars_list"], scars_list)
 	WRITE_FILE(S["eorg_teleport"], eorg_teleport)
 	WRITE_FILE(S["combat_music"], combat_music)
-	WRITE_FILE(S["custom_combat_music"], custom_combat_music)
 	WRITE_FILE(S["pain_style"], pain_style)
 	//SKYRAT CHANGES END
 
