@@ -186,6 +186,10 @@
 /obj/item/gun/ballistic/automatic/wt550/disable_burst()
 	. = ..()
 	spread = 0
+	
+/obj/item/gun/ballistic/automatic/wt550/nopin //Skyrat change
+	pin = null
+
 /* moved to modular_skyrat
 /obj/item/gun/ballistic/automatic/wt550/update_icon()
 	..()

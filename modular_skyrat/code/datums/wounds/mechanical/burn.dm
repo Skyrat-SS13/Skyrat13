@@ -294,7 +294,7 @@
 /// if someone is using cable on the wound
 /datum/wound/mechanical/burn/proc/cable(obj/item/stack/cable_coil/I, mob/user)
 	victim.visible_message("<span class='notice'>[user] begins repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>", "<span class='notice'>You begin begin repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>")
-	if(!do_after(victim, (victim == victim ? 6 SECONDS : 3 SECONDS), extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(victim, (victim == victim ? 6 SECONDS : 3 SECONDS), target = victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 	if(!I.use(5))
 		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")

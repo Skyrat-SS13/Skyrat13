@@ -117,12 +117,15 @@
 		if(!affecting.brute_dam)
 			to_chat(user, "<span class='notice'>\The [affecting] is already fully repaired!</span>")
 			return
-		if(src.use_tool(H, user, 0, volume=50, amount=1))
-			user.visible_message("<span class='notice'>[user] starts to fix some of the dents on [H]'s [affecting.name].</span>",
-				"<span class='notice'>You start fixing some of the dents on [H]'s [affecting.name].</span>")
-			if(!do_mob(user, H, 30))
-				return
-			item_heal_robotic(H, user, 15, 0)
+		if(!use_tool(H, user, 0, volume=50, amount=1))
+			to_chat(user, "<span class='warning'>There isn't enough fuel in \the [src] to heal \the [affecting.name]!</span>")
+			return
+		user.visible_message("<span class='notice'>[user] starts to fix some of the dents on [H]'s [affecting.name].</span>",
+			"<span class='notice'>You start fixing some of the dents on [H]'s [affecting.name].</span>")
+		if(!do_mob(user, H, 30))
+			return
+		item_heal_robotic(H, user, 15, 0)
+		if(affecting.brute_dam)
 			attack(H, user)
 	else
 		return ..()

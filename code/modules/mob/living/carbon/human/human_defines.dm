@@ -46,6 +46,14 @@
 	var/obj/item/r_store = null
 	var/obj/item/l_store = null
 	var/obj/item/s_store = null
+	
+	//skyrat slots
+	var/obj/item/w_underwear = null
+	var/obj/item/w_socks = null
+	var/obj/item/w_shirt = null
+	var/obj/item/ears_extra = null
+	var/obj/item/wrists = null
+	//
 
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 

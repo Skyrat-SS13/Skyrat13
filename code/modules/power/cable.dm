@@ -555,12 +555,15 @@ By design, d1 is the smallest direction and d2 is the highest
 		if(!affecting.burn_dam)
 			to_chat(user, "<span class='notice'>\The [affecting] is already fully repaired!</span>")
 			return
+		if(!use(1))
+			to_chat(user, "<span class='warning'>There aren't enough stacks in \the [src] to heal \the [affecting.name]!</span>")
+			return
 		user.visible_message("<span class='notice'>[user] starts to fix some of the wires in [H]'s [affecting.name].</span>", "<span class='notice'>You start fixing some of the wires in [H]'s [affecting.name].</span>")
 		if(!do_mob(user, H, 40))
 			return
-		if(item_heal_robotic(H, user, 0, 15))
-			use(1)
-		attack(H, user)
+		item_heal_robotic(H, user, 0, 15)
+		if(affecting.burn_dam)
+			attack(H, user)
 	else
 		return ..()
 
