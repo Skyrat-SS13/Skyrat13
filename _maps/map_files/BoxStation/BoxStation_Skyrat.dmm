@@ -2287,9 +2287,22 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "afZ" = (
-/obj/machinery/holopad,
-/turf/open/floor/plasteel,
-/area/security/main)
+/obj/effect/turf_decal/tile/purple{
+	alpha = 255;
+	dir = 1;
+	name = "strong purple corner"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Prison -  Purple Wing";
+	dir = 10;
+	network = list("ss13","prison");
+	start_active = 1
+	},
+/turf/open/floor/plasteel/dark/side,
+/area/security/prison)
 "aga" = (
 /obj/structure/sign/warning/pods{
 	pixel_x = 32
@@ -2513,10 +2526,7 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "agE" = (
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
-/obj/effect/landmark/start/security_officer,
+/obj/structure/table/wood,
 /turf/open/floor/plasteel,
 /area/security/main)
 "agF" = (
@@ -2819,16 +2829,17 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/obj/effect/landmark/start/security_officer,
 /turf/open/floor/plasteel,
 /area/security/main)
 "ahh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
-/obj/effect/landmark/start/security_officer,
+/obj/structure/table/wood,
 /turf/open/floor/plasteel,
 /area/security/main)
 "ahi" = (
@@ -3203,6 +3214,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/obj/effect/landmark/start/security_officer,
 /turf/open/floor/plasteel,
 /area/security/main)
 "ahN" = (
@@ -3670,7 +3685,6 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/effect/landmark/start/security_officer,
 /turf/open/floor/plasteel,
 /area/security/main)
 "aiD" = (
@@ -3801,6 +3815,9 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/freezer/blood,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "aiP" = (
@@ -4541,10 +4558,6 @@
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Brig West";
-	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -5644,6 +5657,10 @@
 /obj/machinery/airalarm{
 	dir = 1;
 	pixel_y = -22
+	},
+/obj/machinery/camera{
+	c_tag = "Brig West";
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -52094,19 +52111,11 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopod)
 "dvA" = (
-/obj/effect/turf_decal/tile/purple{
-	alpha = 255;
-	dir = 1;
-	name = "strong purple corner"
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
-/obj/machinery/camera{
-	c_tag = "Prison -  Purple Wing";
-	dir = 10;
-	network = list("ss13","prison");
-	start_active = 1
-	},
-/turf/open/floor/plasteel/dark/side,
 /area/security/prison)
 "dwZ" = (
 /obj/effect/turf_decal/tile/purple{
@@ -53235,6 +53244,20 @@
 	dir = 8
 	},
 /area/security/prison)
+"eYN" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/turf/open/floor/plasteel,
+/area/security/main)
 "eYT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -56293,6 +56316,7 @@
 /area/security/prison)
 "iID" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel/dark/side{
 	dir = 10
 	},
@@ -57081,6 +57105,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"jHD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "jHF" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance";
@@ -58436,6 +58469,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
@@ -58608,6 +58642,7 @@
 	network = list("ss13","prison");
 	start_active = 1
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
@@ -59124,6 +59159,16 @@
 /obj/item/target,
 /turf/open/floor/plating,
 /area/security/range)
+"mrv" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/security/prison)
 "mrI" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -59849,11 +59894,13 @@
 /turf/closed/wall,
 /area/crew_quarters/abandoned_gambling_den)
 "nsR" = (
-/obj/structure/chair/sofa/corp/left{
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
 /obj/effect/landmark/start/prisoner,
-/turf/open/floor/plasteel/checker,
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
 /area/security/prison)
 "ntc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -59861,6 +59908,10 @@
 	},
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Prison Entrance";
+	dir = 6
 	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 1
@@ -61151,15 +61202,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall,
 /area/security/main)
-"oWN" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "oZc" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -61188,6 +61230,13 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"pbx" = (
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/obj/effect/landmark/start/security_officer,
+/turf/open/floor/plasteel,
+/area/security/main)
 "pek" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -62435,6 +62484,12 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"rpK" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/main)
 "rqf" = (
 /obj/machinery/light{
 	dir = 1
@@ -65892,6 +65947,19 @@
 	},
 /turf/open/pool,
 /area/crew_quarters/fitness/pool)
+"wSg" = (
+/obj/effect/turf_decal/box,
+/obj/structure/closet/secure_closet/genpop,
+/obj/item/radio/headset{
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys. It looks like it has been modified to not broadcast.";
+	name = "prisoner headset";
+	prison_radio = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/range)
 "wSs" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -66528,7 +66596,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
 "xVi" = (
-/obj/machinery/camera,
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
@@ -90444,7 +90511,7 @@ kdS
 ryK
 adG
 aiE
-aiE
+wSg
 oAf
 aiE
 aih
@@ -90962,7 +91029,7 @@ adG
 adG
 adG
 agj
-oWN
+jHD
 ajX
 afM
 agj
@@ -91703,7 +91770,7 @@ eCO
 fbx
 abu
 fho
-nsR
+yaU
 geS
 gLZ
 yaU
@@ -93002,9 +93069,9 @@ xjL
 aaR
 vFf
 vFf
+dvA
 vFf
-vFf
-fJC
+nsR
 vFf
 iID
 biZ
@@ -93496,7 +93563,7 @@ aft
 ano
 asS
 bpD
-dvA
+dwZ
 abu
 epL
 fkW
@@ -93519,7 +93586,7 @@ lul
 edO
 lLD
 sSF
-edO
+mrv
 wul
 bjD
 eOg
@@ -94267,7 +94334,7 @@ agJ
 anp
 asQ
 bzr
-dkx
+afZ
 abu
 abu
 abu
@@ -98925,7 +98992,7 @@ afh
 agZ
 ahd
 ahd
-ahI
+eYN
 akO
 abp
 ajj
@@ -99950,7 +100017,7 @@ afs
 acL
 acS
 afk
-afZ
+agQ
 agE
 ahh
 ahM
@@ -100208,7 +100275,7 @@ abq
 abq
 agl
 afU
-afU
+pbx
 ahg
 ahL
 aiu
@@ -100717,7 +100784,7 @@ aag
 aaf
 aaf
 adk
-abm
+rpK
 adR
 aeA
 afl
