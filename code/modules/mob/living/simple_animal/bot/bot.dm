@@ -4,8 +4,8 @@
 	layer = MOB_LAYER
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
-	light_range = 3
-	light_power = 0.9
+	//light_range = 3 //Skyrat change
+	//light_power = 0.9 //Skyrat change
 	light_color = "#CDDDFF"
 	stop_automated_movement = 1
 	wander = 0
@@ -102,6 +102,10 @@
 	var/can_salute = TRUE
 	var/salute_delay = 60 SECONDS
 
+	//emotes/speech stuff
+	var/patrol_emote = "Engaging patrol mode."
+	var/patrol_fail_emote = "Unable to start patrol."
+
 /mob/living/simple_animal/bot/proc/get_mode()
 	if(client) //Player bots do not have modes, thus the override. Also an easy way for PDA users/AI to know when a bot is a player.
 		if(paicard)
@@ -120,7 +124,8 @@
 		return FALSE
 	on = TRUE
 	update_mobility()
-	set_light(initial(light_range))
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+	OL.turn_on()
 	update_icon()
 	diag_hud_set_botstat()
 	return TRUE
@@ -128,12 +133,14 @@
 /mob/living/simple_animal/bot/proc/turn_off()
 	on = FALSE
 	update_mobility()
-	set_light(0)
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+	OL.turn_off()
 	bot_reset() //Resets an AI's call, should it exist.
 	update_icon()
 
 /mob/living/simple_animal/bot/Initialize()
 	. = ..()
+	AddComponent(/datum/component/overlay_lighting, light_color, 3, 0.9)
 	GLOB.bots_list += src
 	access_card = new /obj/item/card/id(src)
 //This access is so bots can be immediately set to patrol and leave Robotics, instead of having to be let out first.
@@ -599,7 +606,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	if(tries >= BOT_STEP_MAX_RETRIES) //Bot is trapped, so stop trying to patrol.
 		auto_patrol = 0
 		tries = 0
-		speak("Unable to start patrol.")
+		speak(patrol_fail_emote)
 
 		return
 
@@ -615,7 +622,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 				return
 			mode = BOT_PATROL
 	else					// no patrol target, so need a new one
-		speak("Engaging patrol mode.")
+		speak(patrol_emote)
 		find_patrol_target()
 		tries++
 	return

@@ -20,6 +20,7 @@
 	var/hal_impact_effect_wall
 	var/hit_duration
 	var/hit_duration_wall
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/hallucination/fire()
 	..()

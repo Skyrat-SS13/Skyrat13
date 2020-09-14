@@ -2,6 +2,14 @@
 
 GLOBAL_LIST_EMPTY(roundstart_races)
 GLOBAL_LIST_EMPTY(roundstart_race_names)
+//skyrat edit
+GLOBAL_LIST_EMPTY(roundstart_race_datums)
+//
+
+#define INTERNAL_WOUND_ROLL_MULT 3
+#define BURN_WOUND_ROLL_MULT 3.6
+#define SPECIFY_BODYPART_BURN_PROB 40
+#define SPECIFY_BODYPART_INTERNAL_PROB 40
 
 /datum/species
 	var/id	// if the game needs to manually check your race to do something not included in a proc here, it will use this
@@ -13,10 +21,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/has_field_of_vision = TRUE
 
 	//Species Icon Drawing Offsets - Pixel X, Pixel Y, Aka X = Horizontal and Y = Vertical, from bottom left corner
-	var/list/offset_features = list(
+	var/list/offset_features = list( //skyrat edit
 		OFFSET_UNIFORM = list(0,0),
+		OFFSET_UNDERWEAR = list(0,0),
+		OFFSET_SOCKS = list(0,0),
+		OFFSET_SHIRT = list(0,0),
 		OFFSET_ID = list(0,0),
 		OFFSET_GLOVES = list(0,0),
+		OFFSET_WRISTS = list(0,0),
 		OFFSET_GLASSES = list(0,0),
 		OFFSET_EARS = list(0,0),
 		OFFSET_SHOES = list(0,0),
@@ -112,12 +124,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 // PROCS //
 ///////////
 
-
 /datum/species/New()
 	//if we havent set a limbs id to use, just use our own id
 	if(!limbs_id)
 		limbs_id = id
-	
+
 	//skyrat change
 	//Set our descriptors proper
 	if(LAZYLEN(descriptors))
@@ -130,7 +141,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			descriptor_datums[descriptor.name] = descriptor
 		descriptors = descriptor_datums
 	//
-	
+
 	..()
 
 
@@ -143,7 +154,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(S.check_roundstart_eligible())
 			GLOB.roundstart_races |= S.id
 			GLOB.roundstart_race_names["[S.name]"] = S.id
-			qdel(S)
+			//skyrat edit
+			GLOB.roundstart_race_datums["[S.id]"] = S
+			//
 	if(!GLOB.roundstart_races.len)
 		GLOB.roundstart_races += "human"
 
@@ -316,7 +329,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 	if(exotic_bloodtype && C.dna.blood_type != exotic_bloodtype)
 		C.dna.blood_type = exotic_bloodtype
-	
+
 	//skyrat edti
 	if(C.client)
 		var/client/cli = C.client
@@ -367,7 +380,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 						H.physiology.footstep_type = null
 			else
 				H.physiology.footstep_type = null
-				
+
 	/* SKYRAT EDIT - START, COMMENTED OUT
 		if(H.client && has_field_of_vision && CONFIG_GET(flag/use_field_of_vision))
 			H.LoadComponent(/datum/component/field_of_vision, H.field_of_vision_type)
@@ -592,7 +605,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				eye_overlay.pixel_y += H.dna.species.offset_features[OFFSET_EYES][2]
 
 			standing += eye_overlay
-
+	/* skyrat edit
 	//Underwear, Undershirts & Socks
 	if(!(NO_UNDERWEAR in species_traits))
 		var/datum/sprite_accessory/taur/TA
@@ -637,7 +650,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				if(T.has_color)
 					MA.color = "#[H.shirt_color]"
 				standing += MA
-
+	*/
 	if(standing.len)
 		H.overlays_standing[BODY_LAYER] = standing
 
@@ -774,6 +787,17 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(H.w_uniform && !H.wear_suit)
 			if(!(H.w_uniform.mutantrace_variation & STYLE_DIGITIGRADE))
 				should_be_squished = TRUE
+		//skyrat edit
+		if(H.w_underwear && !H.wear_suit && !H.w_uniform)
+			if(!(H.w_underwear.mutantrace_variation & STYLE_DIGITIGRADE))
+				should_be_squished = TRUE
+		if(H.w_socks && !H.wear_suit && !H.w_uniform)
+			if(!(H.w_socks.mutantrace_variation & STYLE_DIGITIGRADE))
+				should_be_squished = TRUE
+		if(H.w_shirt && !H.wear_suit && !H.w_uniform)
+			if(!(H.w_shirt.mutantrace_variation & STYLE_DIGITIGRADE))
+				should_be_squished = TRUE
+		//
 		if(O.use_digitigrade == FULL_DIGITIGRADE && should_be_squished)
 			O.use_digitigrade = SQUISHED_DIGITIGRADE
 			update_needed = TRUE
@@ -1092,9 +1116,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	if(slot in no_equip)
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
 			return FALSE
-
+	/* skyrat edit
 	var/num_arms = H.get_num_arms(FALSE)
 	var/num_legs = H.get_num_legs(FALSE)
+	*/
+	//skyrat edit
+	var/num_hands = H.get_num_hands(FALSE)
+	var/num_feet = H.get_num_feet(FALSE)
+	//
 
 	switch(slot)
 		if(SLOT_HANDS)
@@ -1132,15 +1161,25 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_GLOVES) )
 				return FALSE
-			if(num_arms < 2)
+			if(num_hands < 2) //skyrat edit
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		//skyrat edit
+		if(SLOT_WRISTS)
+			if(H.wrists)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_WRISTS) )
+				return FALSE
+			if(num_hands < 2)
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		//
 		if(SLOT_SHOES)
 			if(H.shoes)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_FEET) )
 				return FALSE
-			if(num_legs < 2)
+			if(num_feet < 2) //skyrat edit
 				return FALSE
 			if(DIGITIGRADE in species_traits)
 				if(!is_species(H, /datum/species/lizard/ashwalker))
@@ -1176,7 +1215,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
-		if(SLOT_EARS)
+		if(SLOT_EARS_LEFT) //skyrat edit
 			if(H.ears)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_EARS))
@@ -1184,6 +1223,34 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		//skyrat edit
+		if(SLOT_EARS_RIGHT)
+			if(H.ears_extra)
+				return FALSE
+			if(!(I.slot_flags & ITEM_SLOT_EARS))
+				return FALSE
+			if(!H.get_bodypart(BODY_ZONE_HEAD))
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_W_UNDERWEAR)
+			if(H.w_underwear)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_UNDERWEAR) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_W_SOCKS)
+			if(H.w_socks)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_SOCKS) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_W_SHIRT)
+			if(H.w_shirt)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_SHIRT) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		//
 		if(SLOT_W_UNIFORM)
 			if(H.w_uniform)
 				return FALSE
@@ -1260,7 +1327,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				return FALSE
 			if(!istype(I, /obj/item/restraints/handcuffs))
 				return FALSE
-			if(num_arms < 2)
+			if(num_hands < 2) //skyrat edit
 				return FALSE
 			return TRUE
 		if(SLOT_LEGCUFFED)
@@ -1268,7 +1335,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				return FALSE
 			if(!istype(I, /obj/item/restraints/legcuffs))
 				return FALSE
-			if(num_legs < 2)
+			if(num_feet < 2) //skyrat edit
 				return FALSE
 			return TRUE
 		if(SLOT_IN_BACKPACK)
@@ -1294,6 +1361,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	if(chem.type == exotic_blood && !istype(exotic_blood, /datum/reagent/blood))
 		H.blood_volume = min(H.blood_volume + round(chem.volume, 0.1), BLOOD_VOLUME_MAXIMUM)
 		H.reagents.del_reagent(chem.type)
+		//skyrat edit - we try to revive the carbon mob if it happens to be a synthetic
+		if(length(species_traits) && (ROBOTIC_LIMBS in species_traits) && length(H.bodyparts))
+			var/obj/item/bodypart/affecting = H.bodyparts[1]
+			if(istype(affecting))
+				affecting.heal_damage(0, 0, 0, TRUE, FALSE, FALSE)
+		//skyrat edit end
 		return TRUE
 	return FALSE
 
@@ -1315,6 +1388,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			REMOVE_TRAIT(H, TRAIT_FAT, OBESITY)
 			H.remove_movespeed_modifier(/datum/movespeed_modifier/obesity)
 			H.update_inv_w_uniform()
+			//skyrat edit
+			H.update_inv_w_underwear()
+			H.update_inv_w_socks()
+			H.update_inv_w_shirt()
+			//
 			H.update_inv_wear_suit()
 	else
 		if(H.overeatduration >= 100)
@@ -1322,6 +1400,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			ADD_TRAIT(H, TRAIT_FAT, OBESITY)
 			H.add_movespeed_modifier(/datum/movespeed_modifier/obesity)
 			H.update_inv_w_uniform()
+			//skyrat edit
+			H.update_inv_w_underwear()
+			H.update_inv_w_socks()
+			H.update_inv_w_shirt()
+			//
 			H.update_inv_wear_suit()
 
 	// nutrition decrease and satiety
@@ -1379,16 +1462,28 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				H.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/hunger, multiplicative_slowdown = (hungry / 50))
 			else
 				H.remove_movespeed_modifier(/datum/movespeed_modifier/hunger)
-
-	switch(H.nutrition)
-		if(NUTRITION_LEVEL_FULL to INFINITY)
-			H.throw_alert("nutrition", /obj/screen/alert/fat)
-		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FULL)
-			H.clear_alert("nutrition")
-		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-			H.throw_alert("nutrition", /obj/screen/alert/hungry)
-		if(0 to NUTRITION_LEVEL_STARVING)
-			H.throw_alert("nutrition", /obj/screen/alert/starving)
+	
+	var/obj/item/organ/O = H.getorganslot(ORGAN_SLOT_STOMACH)
+	if(O.organ_flags & ORGAN_ROBOTIC)
+		switch(H.nutrition)
+			if(NUTRITION_LEVEL_FULL to INFINITY)
+				H.throw_alert("nutrition", /obj/screen/alert/fat/synth)
+			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FULL)
+				H.clear_alert("nutrition")
+			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+				H.throw_alert("nutrition", /obj/screen/alert/hungry/synth)
+			if(0 to NUTRITION_LEVEL_STARVING)
+				H.throw_alert("nutrition", /obj/screen/alert/starving/synth)
+	else
+		switch(H.nutrition)
+			if(NUTRITION_LEVEL_FULL to INFINITY)
+				H.throw_alert("nutrition", /obj/screen/alert/fat)
+			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FULL)
+				H.clear_alert("nutrition")
+			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+				H.throw_alert("nutrition", /obj/screen/alert/hungry)
+			if(0 to NUTRITION_LEVEL_STARVING)
+				H.throw_alert("nutrition", /obj/screen/alert/starving)
 
 /datum/species/proc/update_health_hud(mob/living/carbon/human/H)
 	return 0
@@ -1434,6 +1529,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 //////////////////
 
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
+	if(attacker_style && attacker_style.help_act(user,target)) // SKYRAT EDIT
+		return 1
+
 	if(target.health >= 0 && !HAS_TRAIT(target, TRAIT_FAKEDEATH))
 		target.help_shake_act(user)
 		if(target != user)
@@ -1504,11 +1602,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 		//CITADEL CHANGES - makes resting and disabled combat mode reduce punch damage, makes being out of combat mode result in you taking more damage
 		if(!SEND_SIGNAL(target, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
-			damage *= 1.5
+			damage *= 1.2
 		if(!CHECK_MOBILITY(user, MOBILITY_STAND))
-			damage *= 0.5
+			damage *= 0.8
 		if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
-			damage *= 0.25
+			damage *= 0.8
 		//END OF CITADEL CHANGES
 
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
@@ -1525,7 +1623,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 			playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)
 			target.visible_message("<span class='danger'>[user]'s [atk_verb] misses [target]!</span>", \
-							"<span class='danger'>You avoid [user]'s [atk_verb]!</span>", "<span class='hear'>You hear a swoosh!</span>", null, COMBAT_MESSAGE_RANGE, null, \
+							"<span class='danger'>You avoid [user]'s [atk_verb]!</span>", "<span class='hear'>You hear a swoosh!</span>", COMBAT_MESSAGE_RANGE, null, \
 							user, "<span class='warning'>Your [atk_verb] misses [target]!</span>")
 			log_combat(user, target, "attempted to punch")
 			return FALSE
@@ -1644,6 +1742,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 		if(target.w_uniform)
 			target.w_uniform.add_fingerprint(user)
+		//skyrat edit
+		else if(target.w_underwear)
+			target.w_underwear.add_fingerprint(user)
+		else if(target.w_socks)
+			target.w_socks.add_fingerprint(user)
+		else if(target.w_shirt)
+			target.w_shirt.add_fingerprint(user)
+		//
 		//var/randomized_zone = ran_zone(user.zone_selected) CIT CHANGE - comments out to prevent compiling errors
 		SEND_SIGNAL(target, COMSIG_HUMAN_DISARM_HIT, user, user.zone_selected)
 		if(target.pulling == user)
@@ -1739,41 +1845,45 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	if(!affecting) //Something went wrong. Maybe the limb is missing?
 		affecting = H.bodyparts[1]
 
-	hit_area = affecting.name
-	var/def_zone = affecting.body_zone
-
-	var/armor_block = H.run_armor_check(affecting, "melee", "<span class='notice'>Your armor has protected your [hit_area].</span>", "<span class='notice'>Your armor has softened a hit to your [hit_area].</span>",I.armour_penetration)
-	armor_block = min(90,armor_block) //cap damage reduction at 90%
+	hit_area = affecting.body_zone
+	var/armor_block = H.run_armor_check(affecting, "melee", "<span class='notice'>Your armor has protected your [parse_zone(hit_area)].</span>", "<span class='notice'>Your armor has softened a hit to your [parse_zone(hit_area)].</span>",I.armour_penetration)
 	var/Iforce = I.force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
+	//skyrat edit
+	armor_block = min(95,armor_block) //cap damage reduction at 95%
+	var/Iwound_bonus = I.wound_bonus
 
+	// this way, you can't wound with a surgical tool on help intent if they have a surgery active, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
+	if((I.item_flags & SURGICAL_TOOL) && (user.a_intent == INTENT_HELP) && (LAZYLEN(H.surgeries) > 0))
+		Iwound_bonus = CANT_WOUND
+	//
 	var/weakness = H.check_weakness(I, user)
-	apply_damage(totitemdamage * weakness, I.damtype, def_zone, armor_block, H) //CIT CHANGE - replaces I.force with totitemdamage
 
-	H.send_item_attack_message(I, user, hit_area, totitemdamage)
+	H.send_item_attack_message(I, user, hit_area, totitemdamage, affecting)
+	
+	apply_damage(totitemdamage * weakness, I.damtype, hit_area, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
 
 	I.do_stagger_action(H, user, totitemdamage)
 
 	if(!totitemdamage)
 		return 0 //item force is zero
-
-	//dismemberment
-	var/probability = I.get_dismemberment_chance(affecting)
-	if(prob(probability) || (HAS_TRAIT(H, TRAIT_EASYDISMEMBER) && prob(probability))) //try twice
-		if(affecting.dismember(I.damtype))
-			I.add_mob_blood(H)
-			playsound(get_turf(H), I.get_dismember_sound(), 80, 1)
-
+	
 	var/bloody = 0
 	if(((I.damtype == BRUTE) && I.force && prob(25 + (I.force * 2))))
 		if(affecting.status == BODYPART_ORGANIC)
 			I.add_mob_blood(H)	//Make the weapon bloody, not the person.
 			if(prob(I.force * 2))	//blood spatter!
 				bloody = 1
-				var/turf/location = H.loc
-				if(istype(location))
-					H.add_splatter_floor(location)
 				if(get_dist(user, H) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(H)
+				var/dist = rand(0,max(min(round(totitemdamage/5, 1),3), 1))
+				var/turf/location = get_turf(H)
+				if(istype(location))
+					H.add_splatter_floor(location)
+				var/turf/targ = get_ranged_target_turf(user, get_dir(user, H), dist)
+				if(istype(targ) && dist > 0 && ((inherent_biotypes & MOB_ORGANIC) || (inherent_biotypes & MOB_HUMANOID)))
+					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(H.loc, H.get_blood_dna_list())
+					B.add_blood_DNA(H.get_blood_dna_list())
+					B.GoTo(targ, dist)
 
 		switch(hit_area)
 			if(BODY_ZONE_HEAD)
@@ -1785,14 +1895,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 											"<span class='userdanger'>You have been knocked senseless!</span>")
 							H.confused = max(H.confused, 20)
 							H.adjust_blurriness(10)
-						if(prob(10))
+						if(prob(5))
 							H.gain_trauma(/datum/brain_trauma/mild/concussion)
 					else
 						H.adjustOrganLoss(ORGAN_SLOT_BRAIN, I.force * 0.2)
 
 					if(H.stat == CONSCIOUS && H != user && prob(I.force + ((100 - H.health) * 0.5))) // rev deconversion through blunt trauma.
-						var/datum/antagonist/rev/rev = H.mind.has_antag_datum(/datum/antagonist/rev)
-						var/datum/antagonist/gang/gang = H.mind.has_antag_datum(/datum/antagonist/gang && !/datum/antagonist/gang/boss)
+						var/datum/antagonist/rev/rev = H.mind?.has_antag_datum(/datum/antagonist/rev)
+						var/datum/antagonist/gang/gang = H.mind?.has_antag_datum(/datum/antagonist/gang && !/datum/antagonist/gang/boss)
 						if(rev)
 							rev.remove_revolutionary(FALSE, user)
 						if(gang)
@@ -1815,6 +1925,31 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 						H.visible_message("<span class='danger'>[H] has been knocked down!</span>", \
 									"<span class='userdanger'>[H] has been knocked down!</span>")
 						H.apply_effect(60, EFFECT_KNOCKDOWN, armor_block)
+
+				if(bloody)
+					if(H.wear_suit)
+						H.wear_suit.add_mob_blood(H)
+						H.update_inv_wear_suit()
+					if(H.w_uniform)
+						H.w_uniform.add_mob_blood(H)
+						H.update_inv_w_uniform()
+			if(BODY_ZONE_PRECISE_GROIN)
+				if(H.stat == CONSCIOUS && !I.get_sharpness() && armor_block < 50)
+					if(prob(I.force))
+						H.visible_message("<span class='danger'>[H] has been knocked down!</span>", \
+									"<span class='userdanger'>[H] has been knocked down!</span>")
+						H.apply_effect(60, EFFECT_KNOCKDOWN, armor_block)
+					//skyrat edit
+					if(H.w_underwear)
+						H.w_underwear.add_mob_blood(H)
+						H.update_inv_w_underwear()
+					if(H.w_socks)
+						H.w_socks.add_mob_blood(H)
+						H.update_inv_w_socks()
+					if(H.w_shirt)
+						H.w_underwear.add_mob_blood(H)
+						H.update_inv_w_shirt()
+					//
 
 				if(bloody)
 					if(H.wear_suit)
@@ -1896,6 +2031,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 		if(target.w_uniform)
 			target.w_uniform.add_fingerprint(user)
+		//skyrat edit
+		else if(target.w_shirt)
+			target.w_shirt.add_fingerprint(user)
+		else if(target.w_socks)
+			target.w_socks.add_fingerprint(user)
+		else if(target.w_underwear)
+			target.w_underwear.add_fingerprint(user)
+		//
 		SEND_SIGNAL(target, COMSIG_HUMAN_DISARM_HIT, user, user.zone_selected)
 
 		if(CHECK_MOBILITY(target, MOBILITY_STAND))
@@ -2109,23 +2252,36 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			firemodifier = min(firemodifier, 0)
 			burn_damage = max(log(2-firemodifier,(H.bodytemperature-BODYTEMP_NORMAL))-5,0) // this can go below 5 at log 2.5
 		burn_damage = burn_damage * heatmod * H.physiology.heat_mod
-		if (H.stat < UNCONSCIOUS && (prob(burn_damage) * 10) / 4) //40% for level 3 damage on humans
+		if (H.stat < UNCONSCIOUS && (prob(burn_damage) * 5) / 4) //40% for level 3 damage on humans
 			H.emote("scream")
-		H.apply_damage(burn_damage, BURN)
+		var/obj/item/bodypart/BP
+		if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BURN_PROB))
+			BP = pick(H.bodyparts)
+		H.apply_damage(damage = burn_damage, damagetype = BURN, def_zone = BP, wound_bonus = CANT_WOUND)
+		if(BP)
+			BP.painless_wound_roll(WOUND_BURN, burn_damage * BURN_WOUND_ROLL_MULT)
 
 	else if(H.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(H, TRAIT_RESISTCOLD))
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "cold", /datum/mood_event/cold)
 		//Apply cold slowdown
 		H.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/cold, multiplicative_slowdown = ((BODYTEMP_COLD_DAMAGE_LIMIT - H.bodytemperature) / COLD_SLOWDOWN_FACTOR))
+		var/obj/item/bodypart/BP
+		if(length(H.bodyparts) && prob(SPECIFY_BODYPART_BURN_PROB))
+			BP = pick(H.bodyparts) 
 		switch(H.bodytemperature)
 			if(200 to BODYTEMP_COLD_DAMAGE_LIMIT)
-				H.apply_damage(COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, BURN)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = CANT_WOUND)
+				if(BP)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 			if(120 to 200)
-				H.apply_damage(COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, BURN)
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = CANT_WOUND)
+				if(BP)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 			else
-				H.apply_damage(COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, BURN)
-
+				H.apply_damage(damage = COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, damagetype = BURN, def_zone = BP, wound_bonus = CANT_WOUND)
+				if(BP)
+					BP.painless_wound_roll(WOUND_BURN, COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod*BURN_WOUND_ROLL_MULT)
 	else
 		H.remove_movespeed_modifier(/datum/movespeed_modifier/cold)
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "cold")
@@ -2136,8 +2292,19 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	switch(adjusted_pressure)
 		if(HAZARD_HIGH_PRESSURE to INFINITY)
 			if(!HAS_TRAIT(H, TRAIT_RESISTHIGHPRESSURE))
-				H.adjustBruteLoss(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
 				H.throw_alert("pressure", /obj/screen/alert/highpressure, 2)
+				var/obj/item/bodypart/BP
+				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_INTERNAL_PROB))
+					BP = pick(H.bodyparts)
+				var/applydam = (min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
+				/* Commented out for the moment
+				if(BP && (BP.brute_dam >= (LOW_PRESSURE_DAMAGE * 0.75)))
+					BP.painless_wound_roll(WOUND_INTERNALBLEED, applydam * INTERNAL_WOUND_ROLL_MULT)
+				if(H.InCritical())
+					for(var/obj/item/organ/O in H.internal_organs)
+						H.adjustOrganLoss(O.slot, O.maxHealth/50)
+				*/
+				H.apply_damage(damage = applydam, damagetype = BRUTE, def_zone = BP, wound_bonus = CANT_WOUND)
 			else
 				H.clear_alert("pressure")
 		if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
@@ -2150,8 +2317,19 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			if(HAS_TRAIT(H, TRAIT_RESISTLOWPRESSURE))
 				H.clear_alert("pressure")
 			else
-				H.adjustBruteLoss(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod)
 				H.throw_alert("pressure", /obj/screen/alert/lowpressure, 2)
+				var/applydam = LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod
+				var/obj/item/bodypart/BP
+				if(length(H.bodyparts) && prob(SPECIFY_BODYPART_INTERNAL_PROB))
+					BP = pick(H.bodyparts)
+				/* Commented out for the moment
+				if(BP && (BP.brute_dam >= (LOW_PRESSURE_DAMAGE * 0.75)))
+					BP.painless_wound_roll(WOUND_INTERNALBLEED, applydam * INTERNAL_WOUND_ROLL_MULT)
+				if(H.InCritical())
+					for(var/obj/item/organ/O in H.internal_organs)
+						H.adjustOrganLoss(O.slot, O.maxHealth/50)
+				*/
+				H.apply_damage(damage = applydam, damagetype = BRUTE, def_zone = BP, wound_bonus = CANT_WOUND)
 
 //////////
 // FIRE //
@@ -2180,6 +2358,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 		//CHEST//
 		var/obj/item/clothing/chest_clothes = null
+		//skyrat edit
+		if(H.w_underwear && (H.w_underwear.body_parts_covered & CHEST))
+			chest_clothes = H.w_underwear
+		if(H.w_socks && (H.w_socks.body_parts_covered & CHEST))
+			chest_clothes = H.w_socks
+		if(H.w_shirt && (H.w_shirt.body_parts_covered & CHEST))
+			chest_clothes = H.w_shirt
+		//
 		if(H.w_uniform)
 			chest_clothes = H.w_uniform
 		if(H.wear_suit)
@@ -2190,6 +2376,16 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 		//ARMS & HANDS//
 		var/obj/item/clothing/arm_clothes = null
+		//skyrat edit
+		if(H.wrists)
+			arm_clothes = H.wrists
+		if(H.w_underwear && (H.w_underwear.body_parts_covered & ARMS))
+			arm_clothes = H.w_underwear
+		if(H.w_socks && (H.w_socks.body_parts_covered & ARMS))
+			arm_clothes = H.w_socks
+		if(H.w_shirt && (H.w_shirt.body_parts_covered & ARMS))
+			arm_clothes = H.w_shirt
+		//
 		if(H.gloves)
 			arm_clothes = H.gloves
 		if(H.w_uniform && ((H.w_uniform.body_parts_covered & HANDS) || (H.w_uniform.body_parts_covered & ARMS)))
@@ -2201,6 +2397,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 		//LEGS & FEET//
 		var/obj/item/clothing/leg_clothes = null
+		//skyrat edit
+		if(H.w_underwear && (H.w_underwear.body_parts_covered & LEGS))
+			leg_clothes = H.w_underwear
+		if(H.w_socks && (H.w_socks.body_parts_covered & LEGS))
+			leg_clothes = H.w_socks
+		if(H.w_shirt && (H.w_shirt.body_parts_covered & LEGS))
+			leg_clothes = H.w_shirt
+		//
 		if(H.shoes)
 			leg_clothes = H.shoes
 		if(H.w_uniform && ((H.w_uniform.body_parts_covered & FEET) || (H.w_uniform.body_parts_covered & LEGS)))
@@ -2264,3 +2468,22 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 /datum/species/proc/start_wagging_tail(mob/living/carbon/human/H)
 
 /datum/species/proc/stop_wagging_tail(mob/living/carbon/human/H)
+
+//skyrat edit
+
+/**
+  * The human species version of [/mob/living/carbon/proc/get_biological_state]. Depends on the HAS_SKIN, HAS_FLESH and HAS_BONE species traits, having bones lets you have bone wounds, having flesh lets you have burn, slash, and piercing wounds, skin is currently unused
+  */
+/datum/species/proc/get_biological_state()
+	. = BIO_INORGANIC
+	if(HAS_SKIN in species_traits)
+		. |= BIO_SKIN
+	if(HAS_FLESH in species_traits)
+		. |= BIO_FLESH
+	if(HAS_BONE in species_traits)
+		. |= BIO_BONE
+
+#undef BURN_WOUND_ROLL_MULT
+#undef INTERNAL_WOUND_ROLL_MULT
+#undef SPECIFY_BODYPART_INTERNAL_PROB
+#undef SPECIFY_BODYPART_BURN_PROB

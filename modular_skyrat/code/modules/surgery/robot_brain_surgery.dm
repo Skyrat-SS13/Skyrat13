@@ -3,25 +3,27 @@
 	steps = list(
 	/datum/surgery_step/mechanic_open,
 	/datum/surgery_step/mechanic_unwrench,
+	/datum/surgery_step/open_hatch,
 	/datum/surgery_step/pry_off_plating,
 	/datum/surgery_step/prepare_electronics,
 	/datum/surgery_step/fix_robot_brain,
 	/datum/surgery_step/mechanic_close)
-
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = list(BODY_ZONE_HEAD)
+	possible_locs = list(BODY_ZONE_CHEST)
 	requires_bodypart_type = BODYPART_ROBOTIC
 	desc = "A surgical procedure that restores the default behavior logic and personality matrix of an IPC posibrain."
 
 /datum/surgery_step/fix_robot_brain
-	name = "fix posibrain (multitool)"
+	name = "Fix posibrain (multitool)"
 	implements = list(TOOL_MULTITOOL = 100, TOOL_HEMOSTAT = 35, TOOL_SCREWDRIVER = 15)
 	time = 120 //long and complicated
+
 /datum/surgery/robot_brain_surgery/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
+	. = ..()
 	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
 	if(!B)
 		return FALSE
-	return TRUE
+	possible_locs = list(B.zone)
 
 /datum/surgery_step/fix_robot_brain/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, "<span class='notice'>You begin to fix [target]'s posibrain...</span>",

@@ -3,9 +3,10 @@
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/reshape_face, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_HEAD)
 	requires_bodypart_type = BODYPART_ORGANIC //Skyrat change
+
 //reshape_face
 /datum/surgery_step/reshape_face
-	name = "reshape face"
+	name = "Reshape face"
 	implements = list(TOOL_SCALPEL = 100, /obj/item/kitchen/knife = 50, TOOL_WIRECUTTER = 35)
 	time = 64
 

@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 //Cloning revival method.
 //The pod handles the actual cloning while the computer manages the clone profiles
 
@@ -584,3 +585,4 @@
 #undef CLONE_INITIAL_DAMAGE
 #undef SPEAK
 #undef MINIMUM_HEAL_LEVEL
+*/

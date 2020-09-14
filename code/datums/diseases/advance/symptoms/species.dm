@@ -28,7 +28,14 @@
 
 /datum/symptom/inorganic_adaptation/OnAdd(datum/disease/advance/A)
 	A.infectable_biotypes |= MOB_MINERAL //Mineral covers plasmamen and golems.
+	//Skyrat edit - Infect any humanoid
+	A.infectable_biotypes |= MOB_ROBOTIC
+	A.infectable_biotypes |= MOB_HUMANOID
+	//
 
 /datum/symptom/inorganic_adaptation/OnRemove(datum/disease/advance/A)
 	A.infectable_biotypes &= ~MOB_MINERAL
-
+	//Skyrat edit - Disinfect any humanoid
+	A.infectable_biotypes &= ~MOB_ROBOTIC
+	A.infectable_biotypes &= ~MOB_HUMANOID
+	//

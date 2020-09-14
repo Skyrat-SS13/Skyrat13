@@ -6,15 +6,16 @@
 */
 /datum/mob_descriptor
 	var/name                                       // String ident.
+	var/replace_are                                // String we use instead of are for the message.
 	var/chargen_label                              // String ident for chargen.
 	var/default_value                              // Initial value for this descriptor.
-	var/current_value = 0                      // Used for examining similar properties between different species.
+	var/current_value = 0                          // Used for examining similar properties between different species.
 	var/comparative_value_descriptor_equivalent    // String for looking at someone with roughly the same property.
 	var/list/standalone_value_descriptors          // String set for initial descriptor text.
 	var/list/comparative_value_descriptors_smaller // String set for looking at someone smaller than you.
 	var/list/comparative_value_descriptors_larger  // String set for looking at someone larger than you.
 	var/list/chargen_value_descriptors             // Used for chargen selection of values in cases where there is a hidden meaning.
-	var/skip_species_mention
+	var/skip_species_mention = TRUE 			   // We skip mentioning the species by default.
 
 /datum/mob_descriptor/New()
 	if(!chargen_label)
@@ -27,10 +28,20 @@
 	..()
 
 /datum/mob_descriptor/proc/get_third_person_message_start(mob/target)
-	return "[target.p_they(TRUE)] [target.p_are()]"
+	return "[target.p_they(TRUE)] [replace_are ? replace_are(replace_are, target) : target.p_are()]"
 
 /datum/mob_descriptor/proc/get_first_person_message_start()
-	return "You are"
+	return "You [replace_are ? replace_are(replace_are) : "are"]"
+
+/datum/mob_descriptor/proc/replace_are(text, mob/target)
+	switch(text)
+		if("seem to be")
+			if(!target || target.gender != PLURAL)
+				text = "seems to be"
+		if("appear to be")
+			if(!target || target.gender != PLURAL)
+				text = "appears to be"
+	return text
 
 /datum/mob_descriptor/proc/get_standalone_value_descriptor(check_value)
 	if(isnull(check_value) || istext(check_value))
@@ -43,12 +54,23 @@
 	var/species_text
 	if(ishuman(me) && !skip_species_mention)
 		var/mob/living/carbon/human/H = me
-		var/use_name = "\improper [H.dna.species.name]"
-		species_text = " for \a [use_name]"
+		
+		var/use_name = (H.dna.custom_species ? "\improper [H.dna.custom_species]" : "\improper [H.dna.species.name]")
+		var/species_visible = TRUE
+		var/skipface = (H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE))
+
+		if(skipface || H.get_visible_name() == "Unknown")
+			species_visible = FALSE
+
+		if(!species_visible)
+			species_text = ""
+		else
+			species_text = " for \a [use_name]"
+
 	. = "[get_third_person_message_start(me)] [get_standalone_value_descriptor(my_value)][species_text]"
 
 /datum/mob_descriptor/proc/get_secondary_comparison_component(mob/me, mob/other_mob, my_value, comparing_value)
-	var/variance = abs((my_value)-comparing_value)
+	var/variance = abs(my_value - comparing_value)
 	if(variance == 0)
 		. = "[.], [get_comparative_value_string_equivalent(me, other_mob, my_value)]"
 	else

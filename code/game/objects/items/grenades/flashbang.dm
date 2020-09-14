@@ -16,6 +16,9 @@
 	playsound(flashbang_turf, 'sound/weapons/flashbang.ogg', 100, TRUE, 8, 0.9)
 	new /obj/effect/dummy/lighting_obj (flashbang_turf, LIGHT_COLOR_WHITE, (flashbang_range + 2), 4, 2)
 	flashbang_mobs(flashbang_turf, flashbang_range)
+	/* skyrat edit
+	qdel(src)
+	*/
 	qdel(src)
 
 /obj/item/grenade/flashbang/proc/flashbang_mobs(turf/source, range)
@@ -85,13 +88,12 @@
 		return
 	M.show_message("<span class='warning'>POP</span>", MSG_AUDIBLE)
 	var/distance = max(0,get_dist(get_turf(src),T))
-
-//Flash
+	//Flash
 	if(M.flash_act(affect_silicon = 1))
 		M.Paralyze(max(10/max(1,distance), 5))
 		M.Knockdown(max(100/max(1,distance), 60))
 
-//Bang
+	//Bang
 	if(!distance || loc == M || loc == M.loc)
 		M.Paralyze(20)
 		M.Knockdown(200)

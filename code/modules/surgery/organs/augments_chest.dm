@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 /obj/item/organ/cyberimp/chest
 	name = "cybernetic torso implant"
 	desc = "Implants for the organs in your torso."
@@ -221,3 +222,4 @@
 
 	toggle(silent = TRUE)
 	return 0
+*/

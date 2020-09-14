@@ -65,6 +65,13 @@
 		if(display_error)
 			to_chat(owner, "<span class='warning'>Your victim has no blood to take.</span>")
 		return FALSE
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		var/datum/dna/deeanda = C.dna
+		if(deeanda?.monkey_aspect)
+			if(display_error)
+				to_chat(owner, "<span class='warning'>You cannot feed on the simple-minded.</span>")
+			return FALSE
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(!H.can_inject(owner, TRUE, BODY_ZONE_HEAD) && target == owner.pulling && owner.grab_state < GRAB_AGGRESSIVE)
@@ -226,7 +233,12 @@
 				playsound(get_turf(target), 'sound/effects/splat.ogg', 40, 1)
 				if(ishuman(target))
 					var/mob/living/carbon/human/H = target
-					H.bleed_rate += 5
+					//skyrat edit
+					for(var/x in H.bodyparts)
+						var/obj/item/bodypart/BP = x
+						if(istype(BP))
+							BP.generic_bleedstacks += 2
+					//
 				target.add_splatter_floor(get_turf(target))
 				user.add_mob_blood(target) // Put target's blood on us. The donor goes in the ( )
 				target.add_mob_blood(target)

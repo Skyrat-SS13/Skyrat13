@@ -227,7 +227,7 @@
 	required_reagents = list(/datum/reagent/medicine/mannitol = 1, /datum/reagent/acetone = 1, /datum/reagent/oxygen = 1)
 
 /datum/chemical_reaction/antihol
-	name = "antihol"
+	name = "Antihol"
 	id = /datum/reagent/medicine/antihol
 	results = list(/datum/reagent/medicine/antihol = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/medicine/charcoal = 1, /datum/reagent/copper = 1)

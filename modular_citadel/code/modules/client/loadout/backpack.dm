@@ -3,6 +3,16 @@
 	category = SLOT_IN_BACKPACK
 	path = /obj/item/choice_beacon/box/plushie
 
+/datum/gear/toy/plush/borgplushie/secdrake
+	name = "SecDrake Plushie"
+	category = SLOT_IN_BACKPACK
+	path = /obj/item/toy/plush/borgplushie/secdrake
+
+/datum/gear/toy/plush/borgplushie/meddrake
+	name = "MediDrake Plushie"
+	category = SLOT_IN_BACKPACK
+	path = /obj/item/toy/plush/borgplushie/meddrake
+
 /datum/gear/tennis
 	name = "Classic Tennis Ball"
 	category = SLOT_IN_BACKPACK

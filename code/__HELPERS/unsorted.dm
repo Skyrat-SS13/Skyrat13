@@ -591,14 +591,14 @@ Turf and target are separate in case you want to teleport some distance from a t
 	return
 
 /proc/parse_zone(zone)
-	if(zone == BODY_ZONE_PRECISE_R_HAND)
-		return "right hand"
-	else if (zone == BODY_ZONE_PRECISE_L_HAND)
-		return "left hand"
-	else if (zone == BODY_ZONE_L_ARM)
+	if (zone == BODY_ZONE_L_ARM)
 		return "left arm"
 	else if (zone == BODY_ZONE_R_ARM)
 		return "right arm"
+	else if (zone == BODY_ZONE_PRECISE_L_HAND)
+		return "left hand"
+	else if(zone == BODY_ZONE_PRECISE_R_HAND)
+		return "right hand"
 	else if (zone == BODY_ZONE_L_LEG)
 		return "left leg"
 	else if (zone == BODY_ZONE_R_LEG)
@@ -1253,6 +1253,10 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		if(istype(O, /obj/structure/window))
 			var/obj/structure/window/W = O
 			if(W.ini_dir == dir_to_check || W.ini_dir == FULLTILE_WINDOW_DIR || dir_to_check == FULLTILE_WINDOW_DIR)
+				return FALSE
+		if(istype(O, /obj/structure/railing))
+			var/obj/structure/railing/rail = O
+			if(rail.ini_dir == dir_to_check || rail.ini_dir == FULLTILE_WINDOW_DIR || dir_to_check == FULLTILE_WINDOW_DIR)
 				return FALSE
 	return TRUE
 

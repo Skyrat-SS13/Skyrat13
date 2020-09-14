@@ -3,6 +3,9 @@
 		return
 	//Handle items on mob
 
+	//Save the monkey aspect part of the DNA, which we will copy onto the monkey
+	var/monkey_aspect = dna?.monkey_aspect
+
 	//first implants & organs
 	var/list/stored_implants = list()
 	var/list/int_organs = list()
@@ -47,6 +50,9 @@
 	//handle DNA and other attributes
 	dna.transfer_identity(O)
 	O.updateappearance(icon_update=0)
+
+	//Copy over the monkey aspect
+	O.dna?.monkey_aspect = monkey_aspect
 
 	if(tr_flags & TR_KEEPSE)
 		O.dna.mutation_index = dna.mutation_index
@@ -154,6 +160,9 @@
 		return
 	//Handle items on mob
 
+	//Save the monkey aspect part of the DNA, which we will copy onto the human
+	var/monkey_aspect = dna?.monkey_aspect
+
 	//first implants & organs
 	var/list/stored_implants = list()
 	var/list/int_organs = list()
@@ -198,6 +207,9 @@
 
 	dna.transfer_identity(O)
 	O.updateappearance(mutcolor_update=1)
+
+	//Copy over the monkey aspect
+	O.dna?.monkey_aspect = monkey_aspect
 
 	if(findtext(O.dna.real_name, "monkey", 1, 7)) //7 == length("monkey") + 1
 		O.real_name = random_unique_name(O.gender)

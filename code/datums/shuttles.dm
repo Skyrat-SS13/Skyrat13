@@ -633,3 +633,10 @@
 /datum/map_template/shuttle/hunter/bounty
 	suffix = "bounty"
 	name = "Bounty Hunter Ship"
+
+/datum/map_template/shuttle/emergency/turtle
+	suffix = "turtle"
+	name = "CentCom 'Turtle' Assault Transport"
+	description = "The CentCom 'Turtle' Asset protection transport is currently docked at the CentCom ship bay awaiting a mission, Desined for taking high ranking members to and from dangerous enviroments. The CentCom Turtle will Thoroughly secure a medium to large crew size crew with its Oversized Ship-Wide Shield Generator and ensure the healthcare of its passengers with a High-Grade Medical Bay and Exterior Turrets."
+	admin_notes = "Comes with turrets that will target any simplemob and antibreach shield generators."
+	credit_cost = 25000

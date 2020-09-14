@@ -50,7 +50,7 @@
 	projectile_type = /obj/item/projectile/beam/pulse
 	e_cost = 200
 	select_name = "DESTROY"
-	fire_sound = 'sound/weapons/pulse.ogg'
+	fire_sound = 'modular_skyrat/sound/weapons/pulse.ogg'
 
 /obj/item/ammo_casing/energy/laser/bluetag
 	projectile_type = /obj/item/projectile/beam/lasertag/bluetag
@@ -88,3 +88,9 @@
 	projectile_type = /obj/item/projectile/beam/mindflayer
 	select_name = "MINDFUCK"
 	fire_sound = 'sound/weapons/laser.ogg'
+
+//skyrat edit
+/obj/item/ammo_casing/energy/laser/hellfire
+	projectile_type = /obj/item/projectile/beam/laser/hellfire
+	e_cost = 130
+	select_name = "maim"

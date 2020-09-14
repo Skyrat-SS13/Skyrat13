@@ -1,3 +1,4 @@
+/* commented out in favor of our own
 /*
 	This component is responsible for handling individual instances of embedded objects. The embeddable element is what allows an item to be embeddable and stores its embedding stats,
 	and when it impacts and meets the requirements to stick into something, it instantiates an embedded component. Once the item falls out, the component is destroyed, while the
@@ -361,3 +362,4 @@
 	weapon.visible_message("<span class='notice'>[weapon] falls loose from [parent].</span>")
 	weapon.unembedded()
 	qdel(src)
+*/

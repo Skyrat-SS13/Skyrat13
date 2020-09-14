@@ -1,6 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "Adds aloe, a new growable plant"
-  - rscadd: "Adds medicated sutures and advanced regenerative meshes"
-  - bugfix: "Polypyrylium oligomers and liquid electricity now correctly populate"

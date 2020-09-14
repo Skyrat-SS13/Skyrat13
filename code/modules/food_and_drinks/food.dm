@@ -50,7 +50,7 @@
 			if((foodtype & BREAKFAST) && world.time - SSticker.round_start_time < STOP_SERVING_BREAKFAST)
 				SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "breakfast", /datum/mood_event/breakfast)
 			//skyrat edit - allergies
-			if(H.physiology.allergies & foodtype)
+			if(H.physiology?.allergies & foodtype)
 				H.ForceContractDisease(new /datum/disease/anaphylactic_shock())
 				to_chat(H, "<span class='danger'><b>As you feel your muscles inflaming, you realize how much you fucked up.</b></span>")
 			//

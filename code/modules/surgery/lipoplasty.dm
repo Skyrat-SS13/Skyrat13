@@ -1,7 +1,7 @@
 /datum/surgery/lipoplasty
 	name = "Lipoplasty"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/cut_fat, /datum/surgery_step/remove_fat, /datum/surgery_step/close)
-	possible_locs = list(BODY_ZONE_CHEST)
+	possible_locs = TORSO_BODYPARTS //skyrat change
 	requires_bodypart_type = BODYPART_ORGANIC //Skyrat change
 /datum/surgery/lipoplasty/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
 	if(HAS_TRAIT(target, TRAIT_FAT))
@@ -9,7 +9,7 @@
 	return 0
 //cut fat
 /datum/surgery_step/cut_fat
-	name = "cut excess fat"
+	name = "Cut excess fat"
 	implements = list(TOOL_SAW = 100, /obj/item/hatchet = 35, /obj/item/kitchen/knife/butcher = 25) //why we need a saw to cut adipose tissue is beyond me, shit's soft as fuck
 	time = 64
 
@@ -26,7 +26,7 @@
 
 //remove fat
 /datum/surgery_step/remove_fat
-	name = "remove loose fat"
+	name = "Remove loose fat"
 	implements = list(TOOL_RETRACTOR = 100, TOOL_SCREWDRIVER = 45, TOOL_WIRECUTTER = 35)
 	time = 32
 

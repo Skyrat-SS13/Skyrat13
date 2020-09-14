@@ -132,3 +132,18 @@
 	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	icon_state = "royalguardgoat"
 	throwforce = 7
+	
+// Dergborg plushies brought to you by Navier#1236 | Commissioned Artist: deviantart.com/mizartz
+/obj/item/toy/plush/borgplushie/doctordrake
+	name = "doctor drake plushie"
+	desc = "An adorable stuffed toy of a robot dragon."
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
+	icon_state = "doctordrake"
+	item_state = "doctordrake"
+
+/obj/item/toy/plush/borgplushie/securitydrake 
+	name = "security drake plushie"
+	desc = "An adorable stuffed toy of a robot dragon."
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
+	icon_state = "securitydrake"
+	item_state = "securitydrake"

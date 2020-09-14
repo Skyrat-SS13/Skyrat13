@@ -40,6 +40,7 @@
 	smooth_icon = 'modular_skyrat/icons/turf/smooth/grass.dmi'
 	smoothing_groups = list(/turf/open/floor/plating/smooth/grass, /turf/closed/indestructible)
 	smooth_offset = 8
+	baseturfs = /turf/open/floor/plating/smooth/dirt
 
 /turf/open/floor/plating/smooth/dirt
 	name = "dirt"
@@ -53,6 +54,7 @@
 	smooth_icon = 'modular_skyrat/icons/turf/smooth/dirt.dmi'
 	smoothing_groups = list(/turf/open/floor/plating/smooth/dirt, /turf/closed/indestructible)
 	smooth_offset = 6
+	baseturfs = /turf/open/floor/plating/smooth/dirt
 
 /turf/open/floor/plating/smooth/grass/lavaland_jungle
 	baseturfs = /turf/open/lava/smooth/lava_land_surface

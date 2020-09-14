@@ -534,7 +534,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 							qdel(O)
 							new /obj/effect/gibspawner/human/bodypartless(get_turf(C))
 
-				C.apply_damage(max(0, squish_damage - crit_rebate), forced=TRUE, spread_damage=TRUE)
+				C.apply_damage(max(0, squish_damage - crit_rebate), forced=TRUE) //skyrat edit
 				C.AddElement(/datum/element/squish, 18 SECONDS)
 			else
 				L.visible_message("<span class='danger'>[L] is crushed by [src]!</span>", \

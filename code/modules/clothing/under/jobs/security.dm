@@ -13,13 +13,16 @@
 	alt_covers_chest = TRUE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
+	//skyrat edit
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30, "wound" = 10)
+	//
 
 /obj/item/clothing/under/rank/security/officer
 	name = "security jumpsuit"
 	desc = "A tactical security jumpsuit for officers complete with Nanotrasen belt buckle."
 	icon_state = "rsecurity"
 	item_state = "r_suit"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
+	//armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
 
 /obj/item/clothing/under/rank/security/officer/grey
 	name = "grey security jumpsuit"
@@ -138,7 +141,7 @@
 	desc = "A security jumpsuit decorated for those few with the dedication to achieve the position of Head of Security."
 	icon_state = "rhos"
 	item_state = "r_suit"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 15) //skyrat edit
 	strip_delay = 60
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt

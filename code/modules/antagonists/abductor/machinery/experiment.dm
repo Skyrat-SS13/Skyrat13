@@ -89,7 +89,7 @@
 	if(eyes)
 		photo.Blend(eyes, ICON_OVERLAY)
 
-	var/icon/splat = icon("icon" = 'icons/mob/dam_mob.dmi',"icon_state" = "chest30")
+	var/icon/splat = icon("icon" = 'modular_skyrat/icons/mob/dam_mob.dmi',"icon_state" = "chest30")
 	photo.Blend(splat,ICON_OVERLAY)
 
 	return photo

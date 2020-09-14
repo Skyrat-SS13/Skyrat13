@@ -43,3 +43,15 @@
 	results = list(/datum/reagent/ash = 1)
 	required_reagents = list(/datum/reagent/cellulose = 1)
 	required_temp = 512
+
+//funny doggium
+/datum/chemical_reaction/cheem_reaction
+	results = list(/datum/reagent/ash = 1)
+	required_reagents = list(/datum/reagent/medicine/fibrin = 25, /datum/reagent/medicine/corticosteroids = 25, /datum/reagent/blood = 25, /datum/reagent/medicine/synthflesh = 25, /datum/reagent/colorful_reagent/crayonpowder/yellow = 20)
+	required_temp = 420
+
+/datum/chemical_reaction/cheem_reaction/on_reaction(datum/reagents/holder, multiplier, specialreact)
+	. = ..()
+	var/turf/location = get_turf(holder)
+	new /mob/living/simple_animal/pet/dog/cheems(location)
+	playsound(location, 'modular_skyrat/sound/effects/dorime.ogg', 100, 0, 7)

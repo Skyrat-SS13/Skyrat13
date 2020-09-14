@@ -6,6 +6,7 @@
 	nodamage = FALSE
 	flag = "energy"
 	var/temperature = 100
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/temp/on_hit(atom/target, blocked = 0)
 	. = ..()

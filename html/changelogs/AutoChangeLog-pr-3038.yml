@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Swarmers can once again eat items as long as there's nothing living in them."

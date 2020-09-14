@@ -1,7 +1,7 @@
 /obj/item/clothing/shoes/heels
 	name = "high heels"
 	desc = "A fancy pair of high heels. Won't compensate for your below average height that much."
-	mutantrace_variation = STYLE_NO_ANTHRO_ICON | STYLE_DIGITIGRADE
+	mutantrace_variation = STYLE_DIGITIGRADE
 	icon = 'modular_skyrat/icons/obj/clothing/shoes.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/feet.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/feet_digi.dmi'

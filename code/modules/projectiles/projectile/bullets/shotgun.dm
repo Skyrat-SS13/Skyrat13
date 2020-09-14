@@ -1,11 +1,17 @@
 /obj/item/projectile/bullet/shotgun_slug
 	name = "12g shotgun slug"
 	damage = 60
+	sharpness = SHARP_POINTY
+	bare_wound_bonus = 10
 
 /obj/item/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
-	damage = 5
 	stamina = 70
+	//skyrat edit
+	damage = 10
+	bare_wound_bonus = 10
+	sharpness = SHARP_NONE
+	//
 
 /obj/item/projectile/bullet/incendiary/shotgun
 	name = "incendiary slug"
@@ -48,6 +54,7 @@
 	damage = 20
 	knockdown = 80
 	hitsound = 'sound/effects/meteorimpact.ogg'
+	embedding = EMBED_NONE
 
 /obj/item/projectile/bullet/shotgun_meteorslug/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -76,10 +83,17 @@
 
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
-	damage = 12.5
+	//skyrat edit
+	damage = 7.5
+	bare_wound_bonus = 10
+	wound_falloff_tile = -2.5 // TG does this; it makes sense to do.
+	//
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
+	sharpness = SHARP_NONE
+	embedding = null
+	bare_wound_bonus = 10
 	damage = 2
 	stamina = 15
 
@@ -113,7 +127,19 @@
 	damage = 4
 	stamina = 1
 
+//skyrat fucking edit
+/obj/item/projectile/bullet/shotgun_slug/executioner
+	name = "executioner slug" // admin only, can dismember limbs
+	sharpness = SHARP_EDGED
+	wound_bonus = 80
+
+/obj/item/projectile/bullet/shotgun_slug/pulverizer
+	name = "pulverizer slug" // admin only, can crush bones
+	sharpness = SHARP_NONE
+	wound_bonus = 80
+
 /obj/item/projectile/bullet/pellet/shotgun_incapacitate
 	name = "incapacitating pellet"
 	damage = 1
 	stamina = 6
+	embedding = null

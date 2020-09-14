@@ -1,5 +1,6 @@
 /obj/item/projectile/beam/mindflayer
 	name = "flayer ray"
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/beam/mindflayer/on_hit(atom/target, blocked = FALSE)
 	. = ..()

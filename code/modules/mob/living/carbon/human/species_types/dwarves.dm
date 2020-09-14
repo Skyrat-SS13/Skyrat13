@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 	name = "Dwarf"
 	id = "dwarf" //Also called Homo sapiens pumilionis
 	default_color = "FFFFFF"
-	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
+	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,CAN_SCAR,HAS_SKIN,HAS_FLESH,HAS_BONE)
 	inherent_traits = list(TRAIT_DWARF,TRAIT_SNOB)
 	limbs_id = "human"
 	use_skintones = USE_SKINTONES_GRAYSCALE_CUSTOM
@@ -87,6 +87,8 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 //alcohol gland
 /obj/item/organ/dwarfgland
 	name = "dwarf alcohol gland"
+	slot = ORGAN_SLOT_ALCOHOL_GLAND
+	zone = BODY_ZONE_CHEST
 	icon_state = "plasma" //Yes this is a actual icon in icons/obj/surgery.dmi
 	desc = "A genetically engineered gland which is hopefully a step forward for humanity."
 	w_class = WEIGHT_CLASS_NORMAL

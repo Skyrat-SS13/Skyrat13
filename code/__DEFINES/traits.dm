@@ -204,13 +204,31 @@
 #define TRAIT_NO_ALCOHOL		"alcohol_intolerance"
 #define TRAIT_MUTATION_STASIS			"mutation_stasis" //Prevents processed genetics mutations from processing.
 #define TRAIT_FAST_PUMP				"fast_pump"
-//SKYRAT traits
-#define TRAIT_HARD_SOLES		"hard_soles"
-#define TRAIT_SCREWY_MOOD		"screwy_mood"
-#define TRAIT_HEMOPHILIA		"hemophilia"
-#define TRAIT_ASTHMATIC			"asthmatic"
-//
 #define TRAIT_NICE_SHOT			"nice_shot" //hnnnnnnnggggg..... you're pretty good....
+//SKYRAT traits
+#define TRAIT_SCREWY_MOOD		"screwy_mood"
+#define TRAIT_SCREWY_CHECKSELF	"screwy_checkself"
+#define TRAIT_HARD_SOLES		"hard_soles"
+#define TRAIT_HEMOPHILIA		"hemophilia"
+#define TRAIT_EASYINTERNALBLEED "easy_internalbleed"
+#define TRAIT_EASYCUT			"easy_cut"
+#define TRAIT_EASYBURN			"easy_burn"
+#define TRAIT_EASYBLUNT			"easy_blunt"
+#define TRAIT_GLASSJAW			"glass_jaw"
+#define TRAIT_ASTHMATIC			"asthmatic"
+#define TRAIT_SYNTH				"synthetic"	//robotic boy
+#define TRAIT_TOXIMMUNE			"toxin_immune"
+#define TRAIT_CLONEIMMUNE		"clone_immune" //This is for clone damage
+#define TRAIT_DNC		"cant_clone"
+#define TRAIT_DNR		"cant_revive" //You just can't be revived without supernatural means
+#define TRAIT_NODETERMINATION	"no_determination" //tfw no undertales
+#define TRAIT_NODEFIB			"no_defib" //Can't use a defib to revive
+#define TRAIT_LOOKSCONSCIOUS	"looks_conscious" //fake conscious
+#define TRAIT_LOOKSSLEEPY		"looks_sleepy" //fake sleep
+#define TRAIT_LOOKSUNCONSCIOUS	"looks_unconscious" //fake fainting
+#define TRAIT_LOOKSVERYUNCONSCIOUS	"looks_very_unconscious" //fake shock
+#define TRAIT_LOOKSDEAD			"looks_dead" //fake death
+//
 
 // mobility flag traits
 // IN THE FUTURE, IT WOULD BE NICE TO DO SOMETHING SIMILAR TO https://github.com/tgstation/tgstation/pull/48923/files (ofcourse not nearly the same because I have my.. thoughts on it)
@@ -314,6 +332,7 @@
 #define CLOWNOP_TRAIT "clown-op"
 #define MEGAFAUNA_TRAIT "megafauna"
 #define DEATHSQUAD_TRAIT "deathsquad"
+
 /// This trait is added by the active directional block system.
 #define ACTIVE_BLOCK_TRAIT				"active_block"
 /// This trait is added by the parry system.

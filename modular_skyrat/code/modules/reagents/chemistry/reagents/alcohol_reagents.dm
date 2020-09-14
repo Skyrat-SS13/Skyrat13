@@ -92,3 +92,49 @@
 	glass_name = "Glass of Synthignon"
 	glass_desc = "Someone mixed good wine and robot booze. Romantic, but atrocious."
 	taste_description = "fancy motor oil"
+
+/datum/reagent/consumable/ethanol/balikitwine
+	name = "Balikit Wine"
+	description = "If you ever wanted to know what being bitten was like..."
+	color = "#664300" // rgb: 102, 67, 0
+	nutriment_factor = 0
+	boozepwr = 60 
+	quality = DRINK_FANTASTIC // 4 out of 6
+	metabolization_rate = REAGENTS_METABOLISM 
+	taste_description = "the need to go to medical"
+	glass_icon = 'modular_skyrat/icons/obj/drinks.dmi'
+	glass_icon_state = "bagatjiwineglass"
+	glass_name = "Balikit Wine"
+	glass_desc = "They put it in a decanter."
+	value = REAGENT_VALUE_RARE
+
+/datum/reagent/consumable/ethanol/balikitwine/on_mob_life(mob/living/carbon/C)
+	var/mob/living/carbon/human/H = C
+	if(istype(H) && H.physiology.footstep_type != FOOTSTEP_MOB_CRAWL) // Bit of a hacky way to check if the consumer is a snake taur. Only snektaurs have this though.
+		H.adjustToxLoss(2.5*REM) // Bagatji (and all snake taurs) take no ill effects.
+		H.adjustStaminaLoss(8*REM)
+		H.hallucination += 10
+		H.set_drugginess(30)
+	return ..()
+
+/datum/reagent/consumable/ethanol/balikitwine/on_mob_metabolize(mob/living/carbon/C) // Custom hallucination weights for this drink
+	if(istype(C))
+		C.custom_hallucinations = list(/datum/hallucination/chat = 100,
+										/datum/hallucination/sounds = 50,
+										/datum/hallucination/dangerflash = 15,
+										/datum/hallucination/weird_sounds = 15,
+										/datum/hallucination/fake_flood = 15,
+										/datum/hallucination/husks = 15,
+										/datum/hallucination/items = 10,
+										/datum/hallucination/fire = 10,
+										/datum/hallucination/self_delusion = 5,
+										/datum/hallucination/delusion = 5,
+										/datum/hallucination/shock = 4,
+										/datum/hallucination/death = 4
+										)
+	return
+
+/datum/reagent/consumable/ethanol/balikitwine/on_mob_end_metabolize(mob/living/carbon/C)
+	if(istype(C))
+		C.custom_hallucinations = list()
+	return

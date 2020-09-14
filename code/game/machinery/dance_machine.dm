@@ -142,58 +142,50 @@
 	FOR_DVIEW(var/turf/t, 3, get_turf(src),INVISIBILITY_LIGHTING)
 		if(t.x == cen.x && t.y > cen.y)
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_RED
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
+			OL.set_color_range_power(LIGHT_COLOR_RED, 1+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if(t.x == cen.x && t.y < cen.y)
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_PURPLE
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
+			OL.set_color_range_power(LIGHT_COLOR_PURPLE, 1+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if(t.x > cen.x && t.y == cen.y)
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_YELLOW
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
+			OL.set_color_range_power(LIGHT_COLOR_YELLOW, 1+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if(t.x < cen.x && t.y == cen.y)
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_GREEN
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
+			OL.set_color_range_power(LIGHT_COLOR_GREEN, 1+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if((t.x+1 == cen.x && t.y+1 == cen.y) || (t.x+2==cen.x && t.y+2 == cen.y))
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_ORANGE
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
+			OL.set_color_range_power(LIGHT_COLOR_ORANGE, 1.4+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if((t.x-1 == cen.x && t.y-1 == cen.y) || (t.x-2==cen.x && t.y-2 == cen.y))
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_CYAN
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
+			OL.set_color_range_power(LIGHT_COLOR_CYAN, 1.4+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if((t.x-1 == cen.x && t.y+1 == cen.y) || (t.x-2==cen.x && t.y+2 == cen.y))
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_BLUEGREEN
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
+			OL.set_color_range_power(LIGHT_COLOR_BLUEGREEN, 1.4+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if((t.x+1 == cen.x && t.y-1 == cen.y) || (t.x+2==cen.x && t.y-2 == cen.y))
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_BLUE
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
+			OL.set_color_range_power(LIGHT_COLOR_BLUE, 1.4+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		continue
@@ -235,50 +227,38 @@
 			if(QDELETED(src) || !active || QDELETED(glow))
 				return
 			if(glow.light_color == LIGHT_COLOR_RED)
-				glow.light_color = LIGHT_COLOR_BLUE
-				glow.light_power = glow.light_power * 1.48
-				glow.light_range = 0
-				glow.update_light()
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
+				OL.set_color_range_power(LIGHT_COLOR_BLUE, 0, glow.light_power * 1.48)
 				continue
 			if(glow.light_color == LIGHT_COLOR_BLUE)
-				glow.light_color = LIGHT_COLOR_GREEN
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
-				glow.light_power = glow.light_power * 2 // Any changes to power must come in pairs to neutralize it for other colors
-				glow.update_light()
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
+				OL.set_color_range_power(LIGHT_COLOR_GREEN, glow.range * DISCO_INFENO_RANGE, glow.light_power * 2)
 				continue
 			if(glow.light_color == LIGHT_COLOR_GREEN)
-				glow.light_color = LIGHT_COLOR_ORANGE
-				glow.light_power = glow.light_power * 0.5
-				glow.light_range = 0
-				glow.update_light()
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
+				OL.set_color_range_power(LIGHT_COLOR_ORANGE, 0, glow.light_power * 0.5)
 				continue
 			if(glow.light_color == LIGHT_COLOR_ORANGE)
-				glow.light_color = LIGHT_COLOR_PURPLE
-				glow.light_power = glow.light_power * 2.27
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
-				glow.update_light()
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
+				OL.set_color_range_power(LIGHT_COLOR_PURPLE, glow.range * DISCO_INFENO_RANGE, glow.light_power * 2.27)
 				continue
 			if(glow.light_color == LIGHT_COLOR_PURPLE)
-				glow.light_color = LIGHT_COLOR_BLUEGREEN
-				glow.light_power = glow.light_power * 0.44
-				glow.light_range = 0
-				glow.update_light()
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
+				OL.set_color_range_power(LIGHT_COLOR_BLUEGREEN, 0, glow.light_power * 0.44)
 				continue
 			if(glow.light_color == LIGHT_COLOR_BLUEGREEN)
-				glow.light_color = LIGHT_COLOR_YELLOW
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
-				glow.update_light()
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
+				OL.set_color(LIGHT_COLOR_YELLOW)
+				OL.set_range(glow.range * DISCO_INFENO_RANGE)
 				continue
 			if(glow.light_color == LIGHT_COLOR_YELLOW)
-				glow.light_color = LIGHT_COLOR_CYAN
-				glow.light_range = 0
-				glow.update_light()
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
+				OL.set_color(LIGHT_COLOR_CYAN)
+				OL.set_range(0)
 				continue
 			if(glow.light_color == LIGHT_COLOR_CYAN)
-				glow.light_color = LIGHT_COLOR_RED
-				glow.light_power = glow.light_power * 0.68
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
-				glow.update_light()
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
+				OL.set_color_range_power(LIGHT_COLOR_RED, glow.range * DISCO_INFENO_RANGE, glow.light_power * 0.68)
 				continue
 		if(prob(2))  // Unique effects for the dance floor that show up randomly to mix things up
 			INVOKE_ASYNC(src, .proc/hierofunk)

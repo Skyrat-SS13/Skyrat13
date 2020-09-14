@@ -14,6 +14,8 @@
 	var/obj/item/restraints/handcuffed //Whether or not the mob is handcuffed
 	var/obj/item/restraints/legcuffed //Same as handcuffs but for legs. Bear traps use this.
 
+	var/list/custom_hallucinations = list() // Skyrat edit
+
 	var/disgust = 0
 
 //inventory slots
@@ -43,13 +45,11 @@
 	rotate_on_lying = TRUE
 
 	var/tinttotal = 0	// Total level of visualy impairing items
-
-	var/list/bodyparts = list(/obj/item/bodypart/chest, /obj/item/bodypart/head, /obj/item/bodypart/l_arm,
-					 /obj/item/bodypart/r_arm, /obj/item/bodypart/r_leg, /obj/item/bodypart/l_leg)
+	//skyrat edit
+	var/list/bodyparts = BODYPARTS_PATH
+	//
 	//Gets filled up in create_bodyparts()
-
 	var/list/hand_bodyparts = list() //a collection of arms (or actually whatever the fug /bodyparts you monsters use to wreck my systems)
-
 	var/icon_render_key = ""
 	var/static/list/limb_icon_cache = list()
 
@@ -64,3 +64,8 @@
 
 	var/drunkenness = 0 //Overall drunkenness - check handle_alcohol() in life.dm for effects
 	var/tackling = FALSE //Whether or not we are tackling, this will prevent the knock into effects for carbons
+	
+	/// All of the wounds a carbon has afflicted throughout their limbs
+	var/list/all_wounds = list()
+	/// All of the scars a carbon has afflicted throughout their limbs
+	var/list/all_scars = list()

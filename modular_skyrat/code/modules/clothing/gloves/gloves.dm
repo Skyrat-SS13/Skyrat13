@@ -12,7 +12,7 @@
     heat_protection = HANDS
     max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
     resistance_flags = FIRE_PROOF |  ACID_PROOF
-    armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+    armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100, "wound" = 15)
     strip_mod = 1.5
 
 //Power gloves (TM)

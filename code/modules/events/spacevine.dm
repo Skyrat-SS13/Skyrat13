@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/spacevine
 	weight = 15
 	max_occurrences = 3
-	min_players = 10
+	min_players = 20
 
 /datum/round_event/spacevine
 	fakeable = FALSE
@@ -23,6 +23,10 @@
 	if(turfs.len) //Pick a turf to spawn at if we can
 		var/turf/T = pick(turfs)
 		new /datum/spacevine_controller(T, list(pick(subtypesof(/datum/spacevine_mutation))), rand(30,100), rand(5,10), src) //spawn a controller at turf with randomized stats and a single random mutation
+		// SKYRAT EDIT - VINES - START
+		for(var/i in 1 to 2)
+			new /mob/living/simple_animal/hostile/venus_human_trap/ghost_playable(T)
+		// SKYRAT EDIT - VINES - END
 
 
 
@@ -268,10 +272,31 @@
 		new/obj/structure/alien/resin/flower_bud_enemy(get_turf(holder))
 
 /datum/spacevine_mutation/flowering/on_cross(obj/structure/spacevine/holder, mob/living/crosser)
+	/* SKYRAT EDIT - VINES
+	if(istype(crosser, /mob/living/simple_animal/hostile/venus_human_trap)) //skyrat change: flowering vines heal flytraps 10% on cross
+		if(crosser.health == crosser.maxHealth)
+			return
+		crosser.health = clamp((crosser.health + crosser.maxHealth * 0.1), crosser.health, crosser.maxHealth)
+		to_chat(crosser, "<span class='notice'>The flowering vines attempt to regenerate some of your wounds!</span>")
+		return
+	SKYRAT EDIT - VINES */
 	if(prob(25))
 		holder.entangle(crosser)
+//SKYRAT EDIT - VINES - START
+/datum/spacevine_mutation/slipping
+	name = "slipping"
+	hue = "#97eaff"
+	severity = 1
+	quality = NEGATIVE
 
-
+/datum/spacevine_mutation/slipping/on_cross(obj/structure/spacevine/holder, mob/living/crosser)
+	if(issilicon(crosser))
+		return
+	if(ishuman(crosser))
+		var/mob/living/carbon/human/H = crosser
+		H.slip(10)
+		to_chat(H, "<span class='alert'>The vines slip you!</span>")
+//SKYRAT EDIT - VINES - END
 // SPACE VINES (Note that this code is very similar to Biomass code)
 /obj/structure/spacevine
 	name = "space vines"
@@ -356,6 +381,15 @@
 		return
 	for(var/datum/spacevine_mutation/SM in mutations)
 		SM.on_cross(src, AM)
+	//SKYRAT EDIT START - VINES
+	if(istype(AM, /mob/living/simple_animal/hostile/venus_human_trap)) //skyrat change: vines heal flytraps 10% on cross
+		var/mob/living/simple_animal/hostile/venus_human_trap/VS = AM
+		if(VS.health == VS.maxHealth)
+			return
+		VS.health = clamp((VS.health + VS.maxHealth * 0.1), VS.health, VS.maxHealth)
+		to_chat(VS, "<span class='notice'>The vines attempt to regenerate some of your wounds!</span>")
+		return
+	//SKYRAT EDIT END - VINES
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/spacevine/attack_hand(mob/user)
@@ -380,7 +414,13 @@
 	var/list/vine_mutations_list
 	var/mutativeness = 1
 
+#define MINIMUM_SPACEVINES_EFFECTIVENESS 0.4 //Minimum multiplier that the effectivess of vines can reach
+#define MAXIMUM_SPACEVINES_EFFECTIVENESS 1.3 //Maximum multiplier
+#define SPACEVINES_PLAYER_BALANCED_NUMBER 70 //The multiplier is balanced around this, and will be 1 if amount of players is equal to this
+
 /datum/spacevine_controller/New(turf/location, list/muts, potency, production, datum/round_event/event = null)
+	spread_multiplier /= clamp((length(GLOB.joined_player_list) / SPACEVINES_PLAYER_BALANCED_NUMBER), MINIMUM_SPACEVINES_EFFECTIVENESS, MAXIMUM_SPACEVINES_EFFECTIVENESS)
+	spread_cap *= clamp((length(GLOB.joined_player_list) / SPACEVINES_PLAYER_BALANCED_NUMBER), MINIMUM_SPACEVINES_EFFECTIVENESS, MAXIMUM_SPACEVINES_EFFECTIVENESS)
 	vines = list()
 	growth_queue = list()
 	var/obj/structure/spacevine/SV = spawn_spacevine_piece(location, null, muts)
@@ -394,6 +434,10 @@
 	if(production != null)
 		spread_cap *= production / 5
 		spread_multiplier /= production / 5
+
+#undef MINIMUM_SPACEVINES_EFFECTIVENESS
+#undef MAXIMUM_SPACEVINES_EFFECTIVENESS
+#undef SPACEVINES_PLAYER_BALANCED_NUMBER
 
 /datum/spacevine_controller/vv_get_dropdown()
 	. = ..()
@@ -467,7 +511,8 @@
 		for(var/datum/spacevine_mutation/SM in SV.mutations)
 			SM.process_mutation(SV)
 		if(SV.energy < 2) //If tile isn't fully grown
-			if(prob(20))
+			//if(prob(20)) // SKYRAT EDIT - VINES (ORIGINAL)
+			if(prob(35)) // SKYRAT EDIT - VINES
 				SV.grow()
 		else //If tile is fully grown
 			SV.entangle_mob()
@@ -543,5 +588,7 @@
 	if(isliving(A))
 		var/mob/living/M = A
 		if(("vines" in M.faction) || ("plants" in M.faction))
+			return TRUE
+		if(istype(M, /mob/living/simple_animal/hostile/venus_human_trap))
 			return TRUE
 	return FALSE

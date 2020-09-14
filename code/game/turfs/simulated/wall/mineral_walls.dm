@@ -32,6 +32,10 @@
 	sheet_type = /obj/item/stack/sheet/mineral/diamond
 	slicing_duration = 200   //diamond wall takes twice as much time to slice
 	explosion_block = 3
+	//skyrat edit
+	flags_1 = CAN_BE_DIRTY_1
+	flags_ricochet = RICOCHET_SHINY | RICOCHET_HARD
+	//
 	canSmoothWith = list(/turf/closed/wall/mineral/diamond, /obj/structure/falsewall/diamond)
 
 /turf/closed/wall/mineral/bananium

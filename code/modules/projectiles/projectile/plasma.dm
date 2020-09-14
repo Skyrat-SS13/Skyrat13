@@ -7,6 +7,7 @@ obj/item/projectile/energy/plasmabolt
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	light_range = 3
 	light_color = LIGHT_COLOR_GREEN
+	wound_bonus = 25
 
 /obj/item/projectile/energy/plasmabolt/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -19,12 +20,14 @@ obj/item/projectile/energy/plasmabolt
 	icon_state = "plasma2"
 	irradiate = 10
 	stamina = 20
+	wound_bonus = 25
 
 /obj/item/projectile/energy/plasmabolt/rifle
 	damage = 50
 	icon_state = "plasma3"
 	irradiate = 35
 	stamina = 120
+	wound_bonus = 45
 
 /obj/item/projectile/energy/plasmabolt/MP40k
 	damage = 35
@@ -32,3 +35,4 @@ obj/item/projectile/energy/plasmabolt
 	irradiate = 25
 	stamina = 100
 	icon_state = "plasma3"
+	wound_bonus = 35

@@ -198,13 +198,13 @@
 			R.SetLockdown(0)
 		R.anchored = FALSE
 		R.mob_transforming = FALSE
-		R.transform = R.transform.Scale(0.8, 0.8)
+		R.transform = R.transform.Scale(0.75, 0.75)
 		R.hasShrunk = TRUE
 
 /obj/item/borg/upgrade/shrink/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		R.transform = R.transform.Scale(1.25, 1.25)
+		R.transform = R.transform.Scale((4/3), (4/3))
 		R.hasShrunk = FALSE
 
 /obj/item/borg/upgrade/transform/syndicatejack

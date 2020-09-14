@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 #define LIMBGROWER_MAIN_MENU       1
 #define LIMBGROWER_CATEGORY_MENU   2
 #define LIMBGROWER_CHEMICAL_MENU   3
@@ -233,3 +234,4 @@
 	to_chat(user, "<span class='warning'>A warning flashes onto the screen, stating that safety overrides have been deactivated!</span>")
 	obj_flags |= EMAGGED
 	return TRUE
+*/

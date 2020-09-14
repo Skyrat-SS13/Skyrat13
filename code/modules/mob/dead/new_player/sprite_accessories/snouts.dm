@@ -153,7 +153,7 @@
 /datum/sprite_accessory/mam_snouts
 	color_src = MATRIXED
 	icon = 'modular_citadel/icons/mob/mam_snouts.dmi'
-	recommended_species = list("mammal", "slimeperson", "insect", "podweak")
+	recommended_species = list("anthro", "mammal", "aquatic", "avian", "slimeperson", "insect", "podweak") //Skyrat edit - more species separation
 	mutant_part_string = "snout"
 	relevant_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
 
@@ -183,6 +183,12 @@
 	icon_state = "elephant"
 	extra = TRUE
 	extra_color_src = MUTCOLORS3
+
+/datum/sprite_accessory/mam_snouts/skulldog
+	name = "Skulldog"
+	icon_state = "skulldog"
+	extra = TRUE
+	extra_color_src = MATRIXED
 
 /datum/sprite_accessory/mam_snouts/lcanid
 	name = "Mammal, Long"

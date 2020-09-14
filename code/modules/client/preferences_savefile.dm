@@ -234,6 +234,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(needs_update == -2)		//fatal, can't load any data
 		return 0
 
+	. = TRUE
+
 	//general preferences
 	S["ooccolor"]			>> ooccolor
 	S["lastchangelog"]		>> lastchangelog
@@ -280,8 +282,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["pda_style"]			>> pda_style
 	S["pda_color"]			>> pda_color
 	S["pda_skin"]			>> pda_skin
-	// SKYRAT EDIT: Credits
+	// SKYRAT EDIT START
 	S["show_credits"] 		>> show_credits
+	S["eorg_teleport"]		>> eorg_teleport
+	// SKYRAT EDIT END
 
 	// Custom hotkeys
 	S["key_bindings"]		>> key_bindings
@@ -349,6 +353,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	event_participation = sanitize_integer(event_participation, 0, 1, initial(event_participation))
 	event_prefs = sanitize_text(event_prefs)
 	appear_in_round_end_report	= sanitize_integer(appear_in_round_end_report, 0, 1, initial(appear_in_round_end_report))
+	scars_list = SANITIZE_LIST(scars_list)
+	cosmetic_scars = SANITIZE_LIST(cosmetic_scars)
+	eorg_teleport			= sanitize_integer(eorg_teleport, 0, 1, initial(eorg_teleport))
 	//SKYRAT CHANGES END
 
 	verify_keybindings_valid()		// one of these days this will runtime and you'll be glad that i put it in a different proc so no one gets their saves wiped
@@ -445,6 +452,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["event_participation"], event_participation)
 	WRITE_FILE(S["event_prefs"], event_prefs)
 	WRITE_FILE(S["appear_in_round_end_report"], appear_in_round_end_report)
+	WRITE_FILE(S["scars_list"], scars_list)
+	WRITE_FILE(S["eorg_teleport"], eorg_teleport)
 	//SKYRAT CHANGES END
 
 	return 1
@@ -475,6 +484,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(needs_update == -2)		//fatal, can't load any data
 		return 0
 
+	. = TRUE
+
 	//Species
 	var/species_id
 	S["species"]			>> species_id
@@ -482,6 +493,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		var/newtype = GLOB.species_list[species_id]
 		if(newtype)
 			pref_species = new newtype
+	//skyrat edit
+	scars_index = rand(1,5)
+	//
 
 	//Character
 	S["real_name"]				>> real_name
@@ -529,8 +543,19 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["feature_horns_color"]			>> features["horns_color"]
 	S["feature_wings_color"]			>> features["wings_color"]
 	//SKYRAT CHANGES
-	S["bloodtype"]			>> bloodtype
+	S["bloodtype"]						>> bloodtype
+	S["bloodreagent"]					>> bloodreagent
+	S["bloodcolor"]						>> bloodcolor
+	S["persistent_scars"] 				>> persistent_scars
+	S["scars1"]							>> scars_list["1"]
+	S["scars2"]							>> scars_list["2"]
+	S["scars3"]							>> scars_list["3"]
+	S["scars4"]							>> scars_list["4"]
+	S["scars5"]							>> scars_list["5"]
+	S["cosmetic_scars"]					>> cosmetic_scars		
+	S["color_gear"]			>> color_gear
 	S["bloodreagent"]		>> bloodreagent
+	S["bloodtype"]			>> bloodtype
 	S["bloodcolor"]			>> bloodcolor
 	//
 
@@ -554,7 +579,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["language"]			>> language
 	S["body_descriptors"]	>> body_descriptors
 	body_descriptors = SANITIZE_LIST(body_descriptors)
-	if(!length(body_descriptors)) //if we have a null descriptor list, we just force load it from the species
+	if(length(body_descriptors) < length(initial(pref_species.descriptors))) //if we have a null descriptor list, we just force load it from the species
 		for(var/i in pref_species.descriptors) //of course some species might not have descriptors and this is uneccessary for them but
 			var/datum/mob_descriptor/md = pref_species.descriptors[i] //the hardest coding requires the strongest wills
 			body_descriptors[i] = md.current_value
@@ -704,6 +729,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["insect_fluff"]		= sanitize_inlist(features["insect_fluff"], GLOB.insect_fluffs_list)
 	features["insect_markings"] 	= sanitize_inlist(features["insect_markings"], GLOB.insect_markings_list, "None")
 	features["insect_wings"] 		= sanitize_inlist(features["insect_wings"], GLOB.insect_wings_list)
+	//skyrat edit
+	persistent_scars = sanitize_integer(persistent_scars)
+	scars_list["1"] = sanitize_text(scars_list["1"])
+	scars_list["2"] = sanitize_text(scars_list["2"])
+	scars_list["3"] = sanitize_text(scars_list["3"])
+	scars_list["4"] = sanitize_text(scars_list["4"])
+	scars_list["5"] = sanitize_text(scars_list["5"])
+	cosmetic_scars = SANITIZE_LIST(cosmetic_scars)
+	//
 
 	var/static/size_min
 	if(!size_min)
@@ -826,7 +860,19 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_insect_fluff"]			, features["insect_fluff"])
 	WRITE_FILE(S["feature_insect_markings"]			, features["insect_markings"])
 	WRITE_FILE(S["feature_meat"]					, features["meat_type"])
-	//SKYRAT CHANGE - Blood
+	//SKYRAT CHANGE
+	WRITE_FILE(S["bloodtype"]					, bloodtype)
+	WRITE_FILE(S["bloodcolor"]					, bloodcolor)
+	WRITE_FILE(S["bloodreagent"]				, bloodreagent)
+	WRITE_FILE(S["persistent_scars"]			, persistent_scars)
+	WRITE_FILE(S["scars1"]						, scars_list["1"])
+	WRITE_FILE(S["scars2"]						, scars_list["2"])
+	WRITE_FILE(S["scars3"]						, scars_list["3"])
+	WRITE_FILE(S["scars4"]						, scars_list["4"])
+	WRITE_FILE(S["scars5"]						, scars_list["5"])
+	WRITE_FILE(S["cosmetic_scars"]				, cosmetic_scars)
+	WRITE_FILE(S["color_gear"]						, color_gear)
+	WRITE_FILE(S["bloodtype"]						, bloodtype)
 	WRITE_FILE(S["bloodcolor"]						, bloodcolor)
 	WRITE_FILE(S["bloodtype"]						, bloodtype)
 	WRITE_FILE(S["bloodreagent"]					, bloodreagent)

@@ -84,7 +84,7 @@
 	throw_speed = 4
 	colour = "crimson"
 	custom_materials = list(/datum/material/gold = 750)
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	resistance_flags = FIRE_PROOF
 	unique_reskin = list("Oak" = "pen-fountain-o",
 						"Gold" = "pen-fountain-g",
@@ -92,6 +92,9 @@
 						"Black and Silver" = "pen-fountain-b",
 						"Command Blue" = "pen-fountain-cb"
 						)
+	//skyrat edit
+	embedding = list("embed_chance" = 75)
+	//
 
 /obj/item/pen/fountain/captain/Initialize()
 	. = ..()
@@ -178,7 +181,7 @@
  */
 /obj/item/pen/edagger
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") //these wont show up if the pen is off
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	var/on = FALSE
 	embedding = list(embed_chance = EMBED_CHANCE)
 
@@ -197,11 +200,12 @@
 		w_class = initial(w_class)
 		name = initial(name)
 		hitsound = initial(hitsound)
-		embedding = null
+		//skyrat edit
+		embedding = list(embed_chance = EMBED_CHANCE)
+		//
 		throwforce = initial(throwforce)
 		playsound(user, 'sound/weapons/saberoff.ogg', 5, 1)
 		to_chat(user, "<span class='warning'>[src] can now be concealed.</span>")
-		updateEmbedding()
 	else
 		on = TRUE
 		force = 18
@@ -212,7 +216,7 @@
 		throwforce = 35
 		playsound(user, 'sound/weapons/saberon.ogg', 5, 1)
 		to_chat(user, "<span class='warning'>[src] is now active.</span>")
-		updateEmbedding()
+	updateEmbedding()
 	update_icon()
 
 /obj/item/pen/edagger/update_icon_state()

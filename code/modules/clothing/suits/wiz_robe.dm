@@ -4,11 +4,12 @@
 	icon_state = "wizard"
 	gas_transfer_coefficient = 0.01 // IT'S MAGICAL OKAY JEEZ +1 TO NOT DIE
 	permeability_coefficient = 0.01
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100, "wound" = 10)
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	dog_fashion = /datum/dog_fashion/head/blue_wizard
+	beepsky_fashion = /datum/beepsky_fashion/wizard
 	var/magic_flags = SPELL_WIZARD_HAT
 
 /obj/item/clothing/head/wizard/ComponentInitialize()
@@ -40,7 +41,7 @@
 	icon_state = "wizard-fake"
 	gas_transfer_coefficient = 1
 	permeability_coefficient = 1
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 0)
 	resistance_flags = FLAMMABLE
 	magic_flags = NONE
 
@@ -73,7 +74,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100, "wound" = 10)
 	allowed = list(/obj/item/teleportation_scroll)
 	flags_inv = HIDEJUMPSUIT
 	strip_delay = 50
@@ -139,21 +140,21 @@
 	icon_state = "wizard-fake"
 	gas_transfer_coefficient = 1
 	permeability_coefficient = 1
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 0)
 	resistance_flags = FLAMMABLE
 	magic_flags = NONE
 
 /obj/item/clothing/head/wizard/marisa/fake
 	gas_transfer_coefficient = 1
 	permeability_coefficient = 1
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 0)
 	resistance_flags = FLAMMABLE
 	magic_flags = NONE
 
 /obj/item/clothing/suit/wizrobe/marisa/fake
 	gas_transfer_coefficient = 1
 	permeability_coefficient = 1
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 0)
 	resistance_flags = FLAMMABLE
 	magic_flags = NONE
 
@@ -308,7 +309,7 @@
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100, "wound" = 10)
 	slowdown = 0
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
@@ -323,7 +324,7 @@
 	item_state = "battlemage"
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100, "wound" = 10)
 	actions_types = null //No inbuilt light
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 

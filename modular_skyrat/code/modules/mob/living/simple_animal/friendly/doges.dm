@@ -4,12 +4,14 @@
 //note 3: ignore note 2 the sprite is actually good now
 /mob/living/simple_animal/pet/dog/cheems
 	name = "\proper Cheems"
-	desc = "Cargo's overfed and slightly greasy disposal bin."
+	real_name = "Cheems"
+	gender = MALE
+	desc = "It's the Cargo's overfed, yet still beloved dog."
 	icon = 'modular_skyrat/icons/mob/doges.dmi'
 	icon_state = "cheems"
 	icon_dead = "cheems_dead"
 	icon_living = "cheems"
-	speak = list("Borf!", "Boof!", "Bork!")
+	speak = list("Borf!", "Boof!", "Bork!", "Bowwow!")
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/burger/cheese = 1, /obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/trash/syndi_cakes = 1)
 	faction = list("dog", "doge")
 	animal_species = /mob/living/simple_animal/pet/dog

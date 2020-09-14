@@ -3,7 +3,7 @@
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_factory"
 	desc = "A thick spire of tendrils."
-	max_integrity = 400 //Skyrat change.
+	max_integrity = 300	// Skyrat Edit: 200 to 300.
 	health_regen = 1
 	point_return = 25
 	armor = list("melee" = 10, "bullet" = 20, "laser" = 15, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90)
