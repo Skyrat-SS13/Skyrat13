@@ -652,6 +652,7 @@
 	internal_bleeding_chance = 40
 	pain_amount = 7
 	flat_damage_roll_increase = 10
+	infection_chance = 7 //Very low, but possible
 
 /datum/wound/blunt/critical
 	name = "Compound Fracture"
@@ -676,7 +677,7 @@
 	internal_bleeding_chance = 60
 	pain_amount = 12
 	flat_damage_roll_increase = 15
-	infection_chance = 20
+	infection_chance = 30 //Compound fractures always have some exposed flesh
 
 // doesn't make much sense for "a" bone to stick out of your head
 /datum/wound/blunt/critical/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)

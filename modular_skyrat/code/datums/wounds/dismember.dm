@@ -103,8 +103,6 @@
 	severity = WOUND_SEVERITY_LOSS
 	wound_type = WOUND_LIST_LOSS
 	ignore_preexisting = TRUE
-	initial_flow = 2
-	minimum_flow = 0.5
 	clot_rate = 0
 	max_per_type = 4
 	threshold_penalty = 80
@@ -127,38 +125,38 @@
 	. = ..()
 	switch(L.body_zone)
 		if(BODY_ZONE_HEAD)
-			initial_flow = 3
-			minimum_flow = 0
+			initial_flow *= 1
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_CHEST)
-			initial_flow = 4
-			minimum_flow = 0
+			initial_flow *= (5/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_PRECISE_GROIN)
-			initial_flow = 4
-			minimum_flow = 0.2
+			initial_flow *= (5/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_L_ARM)
-			initial_flow = 2.5
-			minimum_flow = 0.5
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_R_ARM)
-			initial_flow = 2.5
-			minimum_flow = 0.5
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_PRECISE_L_HAND)
-			initial_flow = 1.5
-			minimum_flow = 0.75
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 		if(BODY_ZONE_PRECISE_R_HAND)
-			initial_flow = 1.5
-			minimum_flow = 0.75
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 		if(BODY_ZONE_L_LEG)
-			initial_flow = 3
-			minimum_flow = 0.3
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_R_LEG)
-			initial_flow = 3
-			minimum_flow = 0.3
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_PRECISE_L_FOOT)
-			initial_flow = 2
-			minimum_flow = 0.5
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 		if(BODY_ZONE_PRECISE_R_FOOT)
-			initial_flow = 2
-			minimum_flow = 0.5
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 
 /datum/wound/mechanical/slash/loss
 	name = "Dismembered stump"
@@ -170,8 +168,6 @@
 	severity = WOUND_SEVERITY_LOSS
 	wound_type = WOUND_LIST_LOSS
 	ignore_preexisting = TRUE
-	initial_flow = 2
-	minimum_flow = 0.5
 	clot_rate = 0
 	max_per_type = 4
 	threshold_penalty = 80
@@ -193,35 +189,35 @@
 	. = ..()
 	switch(L.body_zone)
 		if(BODY_ZONE_HEAD)
-			initial_flow = 3
-			minimum_flow = 0
+			initial_flow *= 1
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_CHEST)
-			initial_flow = 4
-			minimum_flow = 0
+			initial_flow *= (5/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_PRECISE_GROIN)
-			initial_flow = 4
-			minimum_flow = 0.2
+			initial_flow *= (5/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_L_ARM)
-			initial_flow = 2.5
-			minimum_flow = 0.5
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_R_ARM)
-			initial_flow = 2.5
-			minimum_flow = 0.5
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_PRECISE_L_HAND)
-			initial_flow = 1.5
-			minimum_flow = 0.75
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 		if(BODY_ZONE_PRECISE_R_HAND)
-			initial_flow = 1.5
-			minimum_flow = 0.75
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 		if(BODY_ZONE_L_LEG)
-			initial_flow = 3
-			minimum_flow = 0.3
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_R_LEG)
-			initial_flow = 3
-			minimum_flow = 0.3
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_PRECISE_L_FOOT)
-			initial_flow = 2
-			minimum_flow = 0.5
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 		if(BODY_ZONE_PRECISE_R_FOOT)
-			initial_flow = 2
-			minimum_flow = 0.5
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)

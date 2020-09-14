@@ -173,39 +173,7 @@
 		tool_cauterize(I, user)
 	else if(istype(I, /obj/item/stack/medical/suture))
 		suture(I, user)
-/*
-/datum/wound/slash/try_handling(mob/living/carbon/human/user)
-	if(user.pulling != victim || user.zone_selected != limb.body_zone || user.a_intent == INTENT_GRAB)
-		return FALSE
-	
-	if(!iscatperson(user))
-		return FALSE
 
-	lick_wounds(user)
-	
-	return TRUE
-
-/// if a felinid is licking this cut to reduce bleeding
-/datum/wound/slash/proc/lick_wounds(mob/living/carbon/human/user)
-	/*
-	if(INTERACTING_WITH(user, victim))
-		to_chat(user, "<span class='warning'>You're already interacting with [victim]!</span>")
-		return
-	*/
-	user.visible_message("<span class='notice'>[user] begins licking the wounds on [victim]'s [limb.name].</span>", "<span class='notice'>You begin licking the wounds on [victim]'s [limb.name]...</span>", ignored_mobs=victim)
-	to_chat(victim, "<span class='notice'>[user] begins to lick the wounds on your [limb.name].</span")
-	if(!do_after(user, base_treat_time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
-		return
-
-	user.visible_message("<span class='notice'>[user] licks the wounds on [victim]'s [limb.name].</span>", "<span class='notice'>You lick some of the wounds on [victim]'s [limb.name]</span>", ignored_mobs=victim)
-	to_chat(victim, "<span class='green'>[user] licks the wounds on your [limb.name]!</span")
-	blood_flow -= 0.5
-
-	if(blood_flow > minimum_flow)
-		try_handling(user)
-	else if(demotes_to)
-		to_chat(user, "<span class='green'>You successfully lower the severity of [victim]'s cuts.</span>")
-*/
 /datum/wound/slash/on_xadone(power)
 	. = ..()
 	blood_flow -= 0.03 * power // i think it's like a minimum of 3 power, so .09 blood_flow reduction per tick is pretty good for 0 effort
@@ -287,7 +255,7 @@
 	status_effect_type = /datum/status_effect/wound/slash/moderate
 	scarring_descriptions = list("light, faded lines", "minor cut marks", "a small faded slit", "a series of small scars")
 	pain_amount = 4
-	infection_chance = 12
+	infection_chance = 15
 
 /datum/wound/slash/severe
 	name = "Open Laceration"
@@ -308,7 +276,7 @@
 	status_effect_type = /datum/status_effect/wound/slash/severe
 	scarring_descriptions = list("a twisted line of faded gashes", "a gnarled sickle-shaped slice scar", "a long-faded puncture wound")
 	pain_amount = 8
-	infection_chance = 25
+	infection_chance = 30
 
 /datum/wound/slash/critical
 	name = "Weeping Avulsion"
@@ -329,7 +297,7 @@
 	status_effect_type = /datum/status_effect/wound/slash/critical
 	scarring_descriptions = list("a winding path of very badly healed scar tissue", "a series of peaks and valleys along a gruesome line of cut scar tissue", "a grotesque snake of indentations and stitching scars")
 	pain_amount = 15
-	infection_chance = 50
+	infection_chance = 60
 
 /datum/wound/slash/critical/incision
 	name = "Incision"
@@ -341,11 +309,11 @@
 	severity = WOUND_SEVERITY_CRITICAL
 	viable_zones = ALL_BODYPARTS
 	wound_type = WOUND_LIST_INCISION
-	initial_flow = 1.5
+	initial_flow = 1
 	minimum_flow = 0
-	clot_rate = 0.025
+	clot_rate = 0
 	max_per_type = 5
 	demotes_to = null
 	scarring_descriptions = list("a precise line of scarred tissue", "a long line of slightly darker tissue")
 	pain_amount = 12
-	infection_chance = 85
+	infection_chance = 80
