@@ -207,6 +207,7 @@
 #define TRAIT_NICE_SHOT			"nice_shot" //hnnnnnnnggggg..... you're pretty good....
 //SKYRAT traits
 #define TRAIT_NOPAIN			"no_pain"
+#define TRAIT_PAINGOOD			"pain_good"
 #define TRAIT_SCREWY_MOOD		"screwy_mood"
 #define TRAIT_SCREWY_CHECKSELF	"screwy_checkself"
 #define TRAIT_HARD_SOLES		"hard_soles"

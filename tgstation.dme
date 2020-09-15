@@ -3587,6 +3587,7 @@
 #include "modular_skyrat\code\datums\interactions\lewd\objects.dm"
 #include "modular_skyrat\code\datums\martial\armstrong.dm"
 #include "modular_skyrat\code\datums\mood_events\generic_negative_events.dm"
+#include "modular_skyrat\code\datums\mood_events\generic_positive_events.dm"
 #include "modular_skyrat\code\datums\ruins\lavaland.dm"
 #include "modular_skyrat\code\datums\ruins\space.dm"
 #include "modular_skyrat\code\datums\speech_mod\_speech_mod.dm"
