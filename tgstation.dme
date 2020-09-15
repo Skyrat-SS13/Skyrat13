@@ -3898,6 +3898,7 @@
 #include "modular_skyrat\code\modules\keybindings\bindings_mob.dm"
 #include "modular_skyrat\code\modules\keybindings\keybind\carbon.dm"
 #include "modular_skyrat\code\modules\keybindings\keybind\living.dm"
+#include "modular_skyrat\code\modules\keybindings\keybind\targeting.dm"
 #include "modular_skyrat\code\modules\language\buggy.dm"
 #include "modular_skyrat\code\modules\language\calcic.dm"
 #include "modular_skyrat\code\modules\language\dragon.dm"

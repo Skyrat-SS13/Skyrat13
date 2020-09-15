@@ -2,7 +2,7 @@
 	hotkey_keys = list("CtrlX")
 	name = "wield_act"
 	full_name = "Wield active item"
-	description = ""
+	description = "Wield the item in your active hand."
 	category = CATEGORY_CARBON
 
 /datum/keybinding/carbon/wield_act/down(client/user)
