@@ -94,8 +94,8 @@
 	syndio.implant(owner.current)
 
 /datum/team/incursion
-	name = "syndicate incursion force"
-	member_name = "incursion member"
+	name = "Syndicate Incursion Force" //The default name of a team
+	member_name = "Incursion Member"
 
 /datum/team/incursion/is_solo()
 	return FALSE
