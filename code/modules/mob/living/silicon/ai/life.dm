@@ -13,8 +13,6 @@
 
 	handle_status_effects()
 
-	hippie_processHijack() // new era -- infiltrator hijack
-	
 	if(malfhack && malfhack.aidisabled)
 		deltimer(malfhacking)
 		// This proc handles cleanup of screen notifications and

@@ -1,5 +1,3 @@
-GLOBAL_LIST_EMPTY(antagonist_teams)//new era - TGUI team panel
-
 //A barebones antagonist team.
 /datum/team
 	var/list/datum/mind/members = list()
@@ -10,18 +8,12 @@ GLOBAL_LIST_EMPTY(antagonist_teams)//new era - TGUI team panel
 
 /datum/team/New(starting_members)
 	. = ..()
-	GLOB.antagonist_teams += src //new era - TGUI team panel
 	if(starting_members)
 		if(islist(starting_members))
 			for(var/datum/mind/M in starting_members)
 				add_member(M)
 		else
 			add_member(starting_members)
-
-//new era - TGUI team panel
-/datum/team/Destroy(force, ...)
-	GLOB.antagonist_teams -= src
-	. = ..()
 
 /datum/team/proc/is_solo()
 	return members.len == 1

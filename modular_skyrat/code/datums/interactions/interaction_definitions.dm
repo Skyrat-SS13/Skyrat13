@@ -65,7 +65,7 @@
 	command = "holdhand"
 	description = "Hold their hand."
 	require_user_hands = 1
-	simple_message = "USER holds TARGET's hand." //new era mod, who wrote that is now considered monkey
+	simple_message = "USER holds TARGET's hand. Degenerate."
 	max_distance = 25
 	needs_physical_contact = 1
 	max_distance = 25

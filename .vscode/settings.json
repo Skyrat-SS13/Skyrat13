@@ -1,6 +1,6 @@
 {
 	"eslint.workingDirectories": [
-		"./tgui-next"
+		"./tgui"
 	],
 
 	"workbench.editorAssociations": [

@@ -1,7 +1,7 @@
 /obj/item/projectile/bullet/reusable/arrow
 	name = "wooden arrow"
 	desc = "Woosh!"
-	damage = 35
+	damage = 15
 	icon_state = "arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/wood
 	wound_bonus = 15
@@ -9,15 +9,15 @@
 /obj/item/projectile/bullet/reusable/arrow/ash
 	name = "ashen arrow"
 	desc = "Fire harderned arrow."
-	damage = 45
+	damage = 25
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/ash
 	wound_bonus = 30
 
 /obj/item/projectile/bullet/reusable/arrow/bone //AP for ashwalkers
 	name = "bone arrow"
 	desc = "Arrow made of bone and sinew."
-	damage = 30
-	armour_penetration = 30
+	damage = 35
+	armour_penetration = 40
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone
 	wound_bonus = 40
 
