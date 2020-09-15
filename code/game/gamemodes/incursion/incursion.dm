@@ -33,12 +33,12 @@
 	var/list/datum/mind/possible_traitors = get_players_for_role(ROLE_INCURSION)
 
 	var/datum/team/incursion/team = new
-	var/cost_base = CONFIG_GET(number/incursion_cost_base)
-	var/cost_increment = CONFIG_GET(number/incursion_cost_increment)
+	var/cost_base = 6
+	var/cost_increment = 0.25
 	var/pop = GLOB.player_details.len
 	var/team_size = (2 * pop) / ((2 * cost_base) + ((pop - 1) * cost_increment))
 	log_game("Spawning [team_size] incursionists.")
-	team_size = clamp(team_size, CONFIG_GET(number/incursion_count_min), CONFIG_GET(number/incursion_count_max))
+	team_size = clamp(team_size, 2, 6)
 	team.update_name()
 
 	for(var/k = 1 to team_size)
