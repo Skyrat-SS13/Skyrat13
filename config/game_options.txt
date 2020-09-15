@@ -89,6 +89,7 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 PROBABILITY TRAITOR 5
 PROBABILITY TRAITORBRO 2
 PROBABILITY TRAITORCHAN 4
+PROBABILITY INFILTRATION 3
 PROBABILITY INTERNAL_AFFAIRS 3
 PROBABILITY NUCLEAR 2
 PROBABILITY REVOLUTION 2
@@ -668,8 +669,9 @@ BREASTS_CUPS_PREFS i
 BREASTS_CUPS_PREFS j
 
 ## Minimum and maximum limits for penis length from the character creation menu.
+## new era -- this is actually in centimeters because FUCK THE IMPERIAL SYSTEM
 PENIS_MIN_INCHES_PREFS 1
-PENIS_MAX_INCHES_PREFS 20
+PENIS_MAX_INCHES_PREFS 50
 
 ## Body size configs, the feature will be disabled if both min and max have the same value.
 BODY_SIZE_MIN 1

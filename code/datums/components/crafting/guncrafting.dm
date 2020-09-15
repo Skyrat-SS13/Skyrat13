@@ -1,4 +1,4 @@
-k// PARTS //
+// PARTS //
 /obj/item/weaponcrafting
 	icon = 'icons/obj/improvised.dmi'
 

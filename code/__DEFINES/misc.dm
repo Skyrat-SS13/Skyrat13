@@ -380,6 +380,12 @@ GLOBAL_LIST_INIT(pda_reskins, list(PDA_SKIN_CLASSIC = 'icons/obj/pda.dmi', PDA_S
 #define CLOCK_PROSELYTIZATION 23
 #define SHUTTLE_HIJACK 24
 #define GANG_VICTORY 25
+// new era -- infiltrators:
+#define INFILTRATION_ALLCOMPLETE  26
+#define INFILTRATION_MOSTCOMPLETE 27
+#define INFILTRATION_SOMECOMPLETE 28
+#define INFILTRATION_NONECOMPLETE 29
+// new era end
 
 #define FIELD_TURF 1
 #define FIELD_EDGE 2

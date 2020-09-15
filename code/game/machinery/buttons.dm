@@ -3,7 +3,8 @@
 	desc = "A remote control switch."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl"
-	plane = ABOVE_WALL_PLANE
+	//new era -- buttons render above tables now (commented this line out)
+	//plane = ABOVE_WALL_PLANE
 	var/skin = "doorctrl"
 	power_channel = ENVIRON
 	var/obj/item/assembly/device

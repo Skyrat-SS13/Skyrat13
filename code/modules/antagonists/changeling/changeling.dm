@@ -608,5 +608,13 @@
 /datum/antagonist/changeling/antag_listing_name()
 	return ..() + "([changelingID])"
 
+//new era - TGUI team panel
+/datum/antagonist/changeling/team_panel_name()
+	return ..() + TGUI_ANTAGLISTING_TEXT("([changelingID])")
+
 /datum/antagonist/changeling/xenobio/antag_listing_name()
 	return ..() + "(Xenobio)"
+
+//new era - TGUI team panel
+/datum/antagonist/changeling/xenobio/team_panel_name()
+	return ..() + TGUI_ANTAGLISTING_TEXT("(Xenobio)")

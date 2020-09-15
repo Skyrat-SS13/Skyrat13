@@ -1197,6 +1197,11 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		return
 	busy_toggling_fov = TRUE
 
+	var/confirm = alert(src, "Please make sure you want to [on_off ? "enable" : "disable"] fov?", "Confirm fov toggle", "Yes", "No")
+	if(confirm != "Yes")
+		return
+
+	message_admins("[key_name(usr)] has [on_off ? "disabled" : "enabled"] the Field of Vision configuration.")
 	log_admin("[key_name(usr)] has [on_off ? "disabled" : "enabled"] the Field of Vision configuration.")
 	CONFIG_SET(flag/use_field_of_vision, !on_off)
 
