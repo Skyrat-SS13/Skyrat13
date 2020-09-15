@@ -339,8 +339,7 @@
 	time = 5
 	always_availible = FALSE
 	reqs = list(/obj/item/stack/sheet/bone = 1,
-				 /obj/item/stack/sheet/sinew = 1,
-				 /obj/item/ammo_casing/caseless/arrow/ash = 1)
+				 /obj/item/stack/sheet/sinew = 2)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 

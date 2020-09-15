@@ -1,4 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Escape Pod Airlock"
+	},
+/obj/docking_port/mobile/pod{
+	port_direction = 2;
+	dwidth = 1;
+	width = 3;
+	height = 4
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/pod_1)
 "B" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/pod_1)
@@ -11,18 +24,6 @@
 	},
 /obj/machinery/computer/shuttle/pod{
 	pixel_x = -32
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/pod_1)
-"N" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Escape Pod Airlock"
-	},
-/obj/docking_port/mobile/pod{
-	port_direction = 2;
-	dwidth = 1;
-	width = 3;
-	height = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/pod_1)
@@ -60,7 +61,7 @@ Z
 Q
 G
 U
-N
+a
 "}
 (3,1,1) = {"
 B

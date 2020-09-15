@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/obj/effect/spawner/template/infiltrator,
+/turf/open/space/basic,
+/area/space)
 "aau" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -48546,7 +48550,7 @@ mlv
 mlv
 mlv
 mlv
-mlv
+aaa
 mlv
 mlv
 mlv

@@ -424,9 +424,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 	//SKYRAT CHANGE - account age lock, don't confuse with player age, admins and bunker passthrough allowed
 	if(!connecting_admin && CONFIG_GET(flag/age_lock) && account_age >= 0 && account_age < CONFIG_GET(number/age_lock_days) && !(ckey in GLOB.bunker_passthrough))
-		to_chat(src, "<span class='userdanger'>Hey! We have currently enabled safety measures and your connection has been dropped due to your accoutn being [account_age]'s days old.</span>")
+		to_chat(src, "<span class='userdanger'>Hey! We have currently enabled safety measures and your connection has been dropped due to your account being [account_age] days old.</span>")
 		to_chat(src, "<span class='userdanger'>Contact staff on our discord server if you wish to play.</span>")
-		message_admins("<span class='adminnotice'>[key_name(src)] logged in with their account being [account_age]'s days old. Connection rejected.</span>")
+		message_admins("<span class='adminnotice'>[key_name(src)] logged in with their account being [account_age] days old. Connection rejected.</span>")
 		qdel(src)
 		return
 	//END OF SKYRAT CHANGE
@@ -577,7 +577,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey] && !(ckey in GLOB.bunker_passthrough))
 			log_access("Failed Login: [key] - [address] - New account attempting to connect during panic bunker") //skyrat-edit
 			message_admins("<span class='adminnotice'>Failed Login: [key] - [address] - New account attempting to connect during panic bunker</span>") //skyrat-edit
-			to_chat(src, {"<span class='notice'>Hi! We have temporarily enabled safety measures that prevents new players from joining currently.<br>Please try again later, or contact a staff on Discord if you have any questions. <br> <br> To join our community, check out our Discord! To gain full access to our Discord, read the rules and post a request in the #access-requests channel under the \"Landing Zone\" category in the Discord server linked here: <a href='https://discord.gg/6RpdCgR'>https://discord.gg/6RpdCgR</a></span>"}) //skyrat-edit
+			to_chat(src, {"<span class='notice'>Hi! We have temporarily enabled safety measures that prevents new players from joining currently.<br>Please try again later, or contact a staff on Discord if you have any questions. <br> <br> To join our community, check out our Discord: <a href='https://discord.gg/VXXE6Qm'>https://discord.gg/VXXE6Qm</a></span>"}) //new era edit
 			var/list/connectiontopic_a = params2list(connectiontopic)
 			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
 			if(panic_addr && !connectiontopic_a["redirect"])

@@ -64,3 +64,11 @@
 		var/mob/camera/blob/B = owner.current
 		if(istype(B))
 			. += "(Progress: [B.blobs_legit.len]/[B.blobwincount])"
+
+//new era - TGUI team panel
+/datum/antagonist/blob/team_panel_status()
+	. = ..()
+	if(owner && owner.current)
+		var/mob/camera/blob/B = owner.current
+		if(istype(B))
+			. += TGUI_ANTAGLISTING_TEXT("(Progress: [B.blobs_legit.len]/[B.blobwincount])")

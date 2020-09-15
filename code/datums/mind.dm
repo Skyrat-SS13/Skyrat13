@@ -582,7 +582,11 @@ GLOBAL_LIST(objective_choices)
 		/datum/objective/download,
 		/datum/objective/nuclear,
 		/datum/objective/absorb,
-		/datum/objective/blackmail_implant //SKYRAT ADDITION
+		/datum/objective/blackmail_implant, //SKYRAT ADDITION
+		/datum/objective/infiltrator/power, // new era -- infiltrators
+		/datum/objective/infiltrator/exploit,
+		/datum/objective/infiltrator/kidnap,
+		/datum/objective/infiltrator/miner, // new era end
 		)
 
 	for(var/t in allowed_types)

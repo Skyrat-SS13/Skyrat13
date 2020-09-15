@@ -449,8 +449,12 @@
 	total_mass_on = TOTAL_MASS_TOY_SWORD
 	sharpness = SHARP_NONE
 
+//new era -- fixed toy swords actually dealing 34 damage because of shittily initialized components
 /obj/item/dualsaber/toy/ComponentInitialize()
-	AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=0, wieldsound='sound/weapons/saberon.ogg', unwieldsound='sound/weapons/saberoff.ogg')
+	. = ..()
+	var/datum/component/two_handed/C = GetComponent(/datum/component/two_handed)
+	C.force_wielded=0
+	C.force_unwielded=0
 
 /obj/item/dualsaber/toy/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 
@@ -470,7 +474,11 @@
 	sharpness = SHARP_NONE
 
 /obj/item/dualsaber/hypereutactic/toy/ComponentInitialize()
-	AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=0, wieldsound='sound/weapons/saberon.ogg', unwieldsound='sound/weapons/saberoff.ogg')
+	. = ..()
+	var/datum/component/two_handed/C = GetComponent(/datum/component/two_handed)
+	C.force_wielded=0
+	C.force_unwielded=0
+//new era end
 
 /obj/item/dualsaber/hypereutactic/toy/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 

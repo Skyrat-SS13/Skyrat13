@@ -157,6 +157,10 @@
 /datum/antagonist/rev/head/antag_listing_name()
 	return ..() + "(Leader)"
 
+//new era - TGUI team panel
+/datum/antagonist/rev/head/team_panel_name()
+	return ..() + TGUI_ANTAGLISTING_TEXT("(Leader)")
+
 /datum/antagonist/rev/proc/update_rev_icons_added(mob/living/M)
 	var/datum/atom_hud/antag/revhud = GLOB.huds[ANTAG_HUD_REV]
 	revhud.join_hud(M)
@@ -406,5 +410,49 @@
 	heads_report += "</table>"
 	return common_part + heads_report
 
+/datum/team/revolution/tgui_team_panel_extra_info()
+	. = list()
+
+	. += TGUI_ANTAGLISTING_TEXT("Heads of Staff", list(bold=TRUE))
+	. += TGUI_ANTAGLISTING_BR
+	for(var/datum/mind/N in SSjob.get_living_heads())
+		var/mob/M = N.current
+		if(M)
+			. += TGUI_ANTAGLISTING_BUTTON(\
+				content=M.real_name,\
+				color="transparent",\
+				action="admin_topic",\
+				params=TGUI_ANTAGLISTING_HREF_LIST("adminplayeropts"=REF(M)),\
+			)
+			if(!M.client)
+				. += TGUI_ANTAGLISTING_TEXT(" (No Client)", list(italic=TRUE))
+			if(M.stat == DEAD)
+				. += TGUI_ANTAGLISTING_TEXT(" (DEAD)", list(bold=TRUE, color="red"))
+			. += TGUI_ANTAGLISTING_BUTTON(\
+					content="PM",\
+					ml=1,\
+					action="admin_topic",\
+					params=TGUI_ANTAGLISTING_HREF_LIST("priv_msg"=M.ckey),\
+			)
+			. += TGUI_ANTAGLISTING_BUTTON(\
+					content="FLW",\
+					action="admin_topic",\
+					params=TGUI_ANTAGLISTING_HREF_LIST("adminplayerobservefollow"=M.ckey),\
+			)
+			var/turf/mob_loc = get_turf(M)
+			. += TGUI_ANTAGLISTING_TEXT(mob_loc.loc)
+		else
+			. += TGUI_ANTAGLISTING_BUTTON(\
+				content="[N.name]([N.key])",\
+				action="admin_topic",\
+				params=TGUI_ANTAGLISTING_HREF_LIST("Vars"=REF(N)),\
+			)
+			. += TGUI_ANTAGLISTING_TEXT("Head body destroyed!", list(italic=TRUE))
+			. += TGUI_ANTAGLISTING_BUTTON(\
+				content="PM",\
+				action="admin_topic",\
+				params=TGUI_ANTAGLISTING_HREF_LIST("priv_msg"=N.key),\
+			)
+		. += TGUI_ANTAGLISTING_BR
 /datum/team/revolution/is_gamemode_hero()
 	return SSticker.mode.name == "revolution"

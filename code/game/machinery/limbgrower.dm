@@ -87,7 +87,7 @@
 			screen = text2num(href_list["menu"])
 
 		if(href_list["category"])
-			selected_category = href_list["category"]
+			selected_category = html_encode(href_list["category"]) //new era -- non-ideal fix for href exploit (ideal would be to check if a valid category, but 'categories' is an assoc list and yada yada lag etc)
 
 		if(href_list["disposeI"])  //Get rid of a reagent incase you add the wrong one by mistake
 			reagents.del_reagent(text2path(href_list["disposeI"]))
