@@ -49,7 +49,8 @@
 /datum/antagonist/incursion/greet()
 	to_chat(owner.current, "<B><font size=3 color=red>You are the member of a Syndicate incursion team!</font></B>")
 	to_chat(owner.current, "You have formed a team of Syndicate members with a similar mindset and must infiltrate the ranks of the station!")
-	to_chat(owner.current, "You have been implanted with a syndicate headset for communication with your team. This headset can only be heard by you directly and if those pigs at Nanotrasen try to steal it they will violently explode!")
+	to_chat(owner.current, "You have been implanted with a syndicate headset for communication with your team. To use it, Talk with :t,  This headset can also only be heard by you directly and if those pigs at Nanotrasen try to steal it, they will violently explode!")
+	to_chat(owner.current, "To check who are the other members of your team, check your notes!")
 	owner.announce_objectives()
 
 /datum/antagonist/incursion/apply_innate_effects(mob/living/mob_override)
