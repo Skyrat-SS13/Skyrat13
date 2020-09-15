@@ -44,7 +44,7 @@
 	name = "Paper Pack"
 	desc = "A bin of paper, and a pen, for all your paperwork needs."
 	cost = 50
-	contains = list(/obj/item/paper_bin
+	contains = list(/obj/item/paper_bin,
 					/obj/item/pen)
 
 /datum/supply_pack/goody/paintcan
