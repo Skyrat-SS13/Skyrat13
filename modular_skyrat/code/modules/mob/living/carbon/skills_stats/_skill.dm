@@ -13,9 +13,9 @@
 /datum/skills/proc/get_generic_modifier(default = 1, diminutive = TRUE)
 	var/modifier = default
 	if(diminutive)
-		modifier = max(0.1, round(modifier - level/MAX_STAT))
+		modifier = max(0.1, round(modifier - level/MAX_SKILL))
 	else
-		modifier = min(2, modifier + (modifier * round(modifier - level/MAX_STAT)))
+		modifier = min(2, modifier + (modifier * round(modifier - level/MAX_SKILL)))
 	return modifier
 
 //Return a string related to our competence in the given skill
