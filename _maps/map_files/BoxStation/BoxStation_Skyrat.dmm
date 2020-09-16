@@ -369,7 +369,9 @@
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "abI" = (
-/obj/effect/turf_decal/loading_area,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "abJ" = (
@@ -567,20 +569,23 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "acm" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/security{
-	name = "Armory Storage";
-	req_access_txt = "63"
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/shieldwallgen{
+	name = "Shield Generator";
+	req_access = null
+	},
+/obj/machinery/door/window/eastright{
+	name = "Storage"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -762,7 +767,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
 "acM" = (
-/obj/effect/turf_decal/tile/red{
+/obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -1219,11 +1224,38 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
 "adP" = (
+/obj/structure/table/reinforced,
+/obj/item/grenade/flashbang{
+	pixel_x = -8;
+	pixel_y = 10
+	},
+/obj/item/grenade/flashbang{
+	pixel_x = -4;
+	pixel_y = 10
+	},
+/obj/item/grenade/flashbang{
+	pixel_y = 10
+	},
+/obj/item/grenade/flashbang{
+	pixel_x = 4;
+	pixel_y = 10
+	},
+/obj/item/grenade/flashbang{
+	pixel_x = 8;
+	pixel_y = 10
+	},
+/obj/item/storage/box/handcuffs{
+	pixel_x = -5;
+	pixel_y = 1
+	},
+/obj/item/storage/box/medipens{
+	pixel_x = 5;
+	pixel_y = 1
+	},
+/obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/red,
-/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "adQ" = (
@@ -1576,13 +1608,20 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aeF" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot,
 /obj/machinery/shieldwallgen{
 	name = "Shield Generator";
 	req_access = null
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -1722,13 +1761,20 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "aeW" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot,
 /obj/machinery/shieldwallgen{
 	name = "Shield Generator";
 	req_access = null
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -1759,11 +1805,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet{
-	name = "contraband locker";
-	req_access_txt = "3"
+/obj/effect/turf_decal/loading_area{
+	dir = 4
 	},
-/obj/effect/spawner/lootdrop/armory_contraband,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aeZ" = (
@@ -2698,7 +2742,18 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "agS" = (
-/obj/effect/turf_decal/tile/red,
+/obj/machinery/flasher/portable,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "agT" = (
@@ -2717,10 +2772,8 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "agU" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
+/obj/effect/turf_decal/stripes/full,
+/obj/machinery/rnd/production/techfab/department/security,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "agV" = (
@@ -2924,26 +2977,12 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "ahp" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/bot,
-/obj/structure/rack,
-/obj/item/gun/energy/e_gun{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/gun/energy/e_gun,
-/obj/item/gun/energy/e_gun{
-	pixel_x = 3;
-	pixel_y = -3
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -3131,11 +3170,9 @@
 /area/security/main)
 "ahG" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/window/westright{
-	name = "Brig Operations";
-	req_one_access_txt = "4; 1"
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
 /area/security/brig)
 "ahH" = (
 /obj/structure/disposalpipe/junction/yjunction{
@@ -3420,9 +3457,8 @@
 	dir = 8;
 	light_color = "#e8eaff"
 	},
-/turf/open/floor/plasteel/dark/side{
-	dir = 8
-	},
+/obj/structure/table,
+/turf/open/floor/plasteel/dark,
 /area/security/brig)
 "aih" = (
 /turf/closed/wall,
@@ -4142,9 +4178,10 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ajD" = (
-/turf/open/floor/plasteel/dark/side{
-	dir = 9
-	},
+/obj/structure/table,
+/obj/item/stack/sheet/cardboard/fifty,
+/obj/item/storage/box,
+/turf/open/floor/plasteel/dark,
 /area/security/brig)
 "ajE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -4172,7 +4209,7 @@
 /area/security/brig)
 "ajG" = (
 /turf/open/floor/plasteel/dark/side{
-	dir = 1
+	dir = 9
 	},
 /area/security/brig)
 "ajH" = (
@@ -4241,6 +4278,17 @@
 /area/security/brig)
 "ajL" = (
 /obj/structure/table,
+/obj/item/storage/box/handcuffs{
+	pixel_x = 5;
+	pixel_y = 10
+	},
+/obj/item/storage/box/zipties{
+	pixel_x = -10;
+	pixel_y = 10
+	},
+/obj/item/storage/box/flashbangs{
+	pixel_y = 2
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "ajM" = (
@@ -4382,11 +4430,9 @@
 /area/security/brig)
 "ajY" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/window/westleft{
-	name = "Brig Operations";
-	req_one_access_txt = "4; 1"
+/turf/open/floor/plasteel/dark/side{
+	dir = 6
 	},
-/turf/open/floor/plasteel/dark,
 /area/security/brig)
 "ajZ" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -4802,9 +4848,9 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "akP" = (
-/turf/open/floor/plasteel/dark/side{
-	dir = 4
-	},
+/obj/effect/turf_decal/stripes/full,
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel,
 /area/security/brig)
 "akQ" = (
 /obj/structure/cable{
@@ -4849,9 +4895,9 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "akU" = (
-/obj/effect/turf_decal/stripes/full,
-/obj/machinery/rnd/production/techfab/department/security,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
 /area/security/brig)
 "akV" = (
 /obj/effect/turf_decal/stripes/line{
@@ -5135,10 +5181,26 @@
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "alx" = (
-/turf/open/floor/plasteel/dark/side{
-	dir = 6
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
 	},
-/area/security/brig)
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/shieldwallgen{
+	name = "Shield Generator";
+	req_access = null
+	},
+/obj/machinery/door/window/eastleft{
+	name = "Storage"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "aly" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -7428,6 +7490,7 @@
 	pixel_y = 20
 	},
 /obj/structure/disposalpipe/segment,
+/obj/item/sensor_device,
 /turf/open/floor/wood,
 /area/security/warden)
 "aqO" = (
@@ -9190,6 +9253,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"avx" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "avy" = (
 /obj/machinery/door/airlock{
 	id_tag = "Room One";
@@ -47761,19 +47833,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
-"csK" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/door/window/northright{
-	name = "Brig Operations";
-	req_one_access_txt = "4; 1"
-	},
-/turf/open/floor/plasteel/dark/side{
-	dir = 1
-	},
-/area/security/brig)
 "csM" = (
 /obj/structure/lattice,
 /obj/structure/transit_tube/crossing/horizontal,
@@ -52969,6 +53028,10 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"eyX" = (
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "ezG" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -54009,6 +54072,13 @@
 /obj/item/bedsheet/rd/royal_cape,
 /turf/open/floor/plasteel/vaporwave,
 /area/security/prison)
+"fIa" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "fIs" = (
 /obj/structure/grille,
 /obj/structure/lattice,
@@ -54714,15 +54784,10 @@
 /turf/open/floor/plasteel,
 /area/science/circuit)
 "gCm" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk,
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/dark/side{
+	dir = 5
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/security/brig)
 "gCC" = (
 /obj/structure/sign/poster/contraband/tools,
@@ -58024,10 +58089,6 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/machinery/door/window/northleft{
-	name = "Brig Operations";
-	req_one_access_txt = "4; 1"
-	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 1
 	},
@@ -58662,7 +58723,13 @@
 /area/maintenance/disposal/incinerator)
 "lKL" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/wall,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
 /area/security/brig)
 "lLt" = (
 /obj/machinery/door/window/brigdoor/security/cell/westleft{
@@ -58730,6 +58797,12 @@
 	pixel_x = 6;
 	pixel_y = 3
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "lOi" = (
@@ -58768,12 +58841,6 @@
 /area/hallway/primary/port)
 "lPy" = (
 /obj/structure/closet/secure_closet/lethalshots,
-/obj/item/ammo_box/c10mm,
-/obj/item/ammo_box/c10mm,
-/obj/item/ammo_box/c10mm,
-/obj/item/ammo_box/c10mm,
-/obj/item/ammo_box/c10mm,
-/obj/item/ammo_box/c10mm,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -58784,6 +58851,12 @@
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_y = 32
 	},
+/obj/item/ammo_box/shotgun/loaded,
+/obj/item/ammo_box/shotgun/loaded,
+/obj/item/ammo_box/shotgun/loaded,
+/obj/item/ammo_box/shotgun/loaded/buckshot,
+/obj/item/ammo_box/shotgun/loaded/buckshot,
+/obj/item/ammo_box/shotgun/loaded/buckshot,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "lQc" = (
@@ -58972,6 +59045,12 @@
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -24
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -59326,34 +59405,17 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "mBc" = (
-/obj/structure/table/reinforced,
-/obj/item/grenade/flashbang{
-	pixel_x = -8;
-	pixel_y = 10
+/obj/effect/turf_decal/tile/red{
+	dir = 8
 	},
-/obj/item/grenade/flashbang{
-	pixel_x = -4;
-	pixel_y = 10
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
-/obj/item/grenade/flashbang{
-	pixel_y = 10
+/obj/structure/closet/secure_closet{
+	name = "contraband locker";
+	req_access_txt = "3"
 	},
-/obj/item/grenade/flashbang{
-	pixel_x = 4;
-	pixel_y = 10
-	},
-/obj/item/grenade/flashbang{
-	pixel_x = 8;
-	pixel_y = 10
-	},
-/obj/item/storage/box/handcuffs{
-	pixel_x = -5;
-	pixel_y = 1
-	},
-/obj/item/storage/box/medipens{
-	pixel_x = 5;
-	pixel_y = 1
-	},
+/obj/effect/spawner/lootdrop/armory_contraband,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "mBH" = (
@@ -59571,23 +59633,12 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "mPO" = (
-/obj/machinery/flasher/portable,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/delivery,
 /obj/machinery/camera{
 	c_tag = "Security - Armoury";
 	dir = 9;
 	network = list("ss13","prison")
 	},
+/obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "mQI" = (
@@ -59686,10 +59737,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "mZM" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/machinery/holopad,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "nac" = (
@@ -60812,19 +60860,19 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/structure/table/reinforced,
-/obj/item/stack/sheet/cardboard/fifty,
+/obj/machinery/recharger{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/machinery/recharger{
+	pixel_x = 6;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "ovZ" = (
-/obj/structure/table,
-/obj/item/storage/box/handcuffs{
-	pixel_x = 5;
-	pixel_y = 10
-	},
-/obj/item/storage/box/zipties{
-	pixel_x = -10;
-	pixel_y = 10
-	},
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "oxm" = (
@@ -63680,6 +63728,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"tkm" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/security/brig)
 "tkq" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -64544,6 +64597,13 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/pool)
+"uEM" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/holopad,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "uFp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -65222,6 +65282,30 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/science/circuit)
+"vEG" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/bot,
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/gun/energy/e_gun,
+/obj/item/gun/energy/e_gun{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "vEM" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -66437,6 +66521,10 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plasteel,
+/area/security/brig)
+"xDB" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/dark,
 /area/security/brig)
 "xDM" = (
 /obj/machinery/camera{
@@ -93375,7 +93463,7 @@ agj
 aii
 ajD
 aig
-agp
+xDB
 agj
 hkH
 akl
@@ -93632,7 +93720,7 @@ agj
 ajL
 ajG
 akU
-ryK
+agp
 kGl
 alA
 hxc
@@ -93887,10 +93975,10 @@ aeT
 ryK
 agj
 ovZ
-iwi
+tkm
 akP
-alx
-csK
+ryK
+kGl
 kPY
 alB
 akT
@@ -95679,7 +95767,7 @@ aaZ
 aaZ
 aaZ
 aaZ
-aaZ
+alx
 acm
 aaZ
 aaZ
@@ -95937,7 +96025,7 @@ lNH
 mee
 mBc
 aeY
-adM
+aeY
 agR
 ahm
 ahA
@@ -96194,9 +96282,9 @@ lPa
 aeZ
 aeZ
 aeZ
-aeZ
-agS
-ahX
+eyX
+bdM
+fIa
 ahX
 afb
 agH
@@ -96450,11 +96538,11 @@ aaZ
 lPy
 bdM
 mDZ
-bdM
+uEM
 mZM
 agU
 ahp
-afd
+vEG
 ovC
 afd
 ahB
@@ -96706,11 +96794,11 @@ gXs
 aaZ
 lQZ
 lQZ
-lQZ
+agS
 mPO
 abI
 acM
-adM
+avx
 adM
 afe
 agI
