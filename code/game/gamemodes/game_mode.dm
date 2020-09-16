@@ -610,12 +610,15 @@
 		if(config_tag in initial(G.gamemode_blacklist))
 			continue
 		possible += T
-	var/goal_weights = 0
+	
+	// Skyrat change: All station goals, all the time.
+
+	station_goals = possible
+	/*var/goal_weights = 0
 	while(possible.len && goal_weights < STATION_GOAL_BUDGET)
 		var/datum/station_goal/picked = pick_n_take(possible)
 		goal_weights += initial(picked.weight)
-		station_goals += new picked
-
+		station_goals += new picked*/
 
 /datum/game_mode/proc/generate_report() //Generates a small text blurb for the gamemode in centcom report
 	return "Gamemode report for [name] not set.  Contact a coder."
