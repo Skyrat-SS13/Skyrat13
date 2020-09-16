@@ -2654,7 +2654,7 @@
 /turf/open/floor/plasteel/dark,
 /area/security/armory)
 "ail" = (
-/obj/vehicle/ridden/secway,
+/obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/dark,
 /area/security/armory)
 "aim" = (
@@ -3889,11 +3889,18 @@
 /turf/open/floor/plasteel/dark,
 /area/security/armory)
 "akN" = (
-/obj/effect/landmark/event_spawn,
 /obj/structure/rack,
-/obj/item/key/security,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
+	},
+/obj/item/gun/energy/e_gun/large{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/gun/energy/e_gun/large,
+/obj/item/gun/energy/e_gun/large{
+	pixel_x = 3;
+	pixel_y = -3
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/armory)
@@ -4549,6 +4556,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/rnd/production/techfab/department/security,
+/obj/effect/turf_decal/stripes/box,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "amm" = (
@@ -52466,7 +52475,9 @@
 /turf/open/floor/plating/airless,
 /area/maintenance/department/chapel/monastery)
 "cCS" = (
-/obj/machinery/rnd/production/techfab/department/security,
+/obj/item/kirbyplants{
+	icon_state = "plant-22"
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "cCT" = (
@@ -88314,7 +88325,7 @@ xwo
 xwo
 ahL
 aik
-aiM
+ail
 ajh
 ajR
 akN
@@ -88570,7 +88581,7 @@ aby
 abI
 abI
 ahL
-ail
+aiM
 aiN
 aji
 ajS

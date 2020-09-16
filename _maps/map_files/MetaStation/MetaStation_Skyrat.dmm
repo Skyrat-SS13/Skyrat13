@@ -8790,7 +8790,7 @@
 /area/security/main)
 "aso" = (
 /obj/machinery/light,
-/obj/machinery/rnd/production/protolathe/department/security,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "asp" = (
@@ -10717,6 +10717,15 @@
 /obj/item/melee/baton/loaded{
 	pixel_y = 3
 	},
+/obj/item/gun/energy/e_gun/large{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/gun/energy/e_gun/large,
+/obj/item/gun/energy/e_gun/large{
+	pixel_x = 3;
+	pixel_y = -3
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "awc" = (
@@ -11281,8 +11290,8 @@
 /obj/structure/sign/poster/official/nt_storm_officer{
 	pixel_x = -32
 	},
-/obj/vehicle/ridden/secway,
-/obj/item/key/security,
+/obj/machinery/rnd/production/protolathe/department/security,
+/obj/effect/turf_decal/stripes/box,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "axg" = (
