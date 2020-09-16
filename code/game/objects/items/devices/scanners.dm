@@ -585,7 +585,7 @@ GENETICS SCANNER
 		msg += "<span class='info'>N/A</span>\n"
 	else
 		msg += organ_info.Join("")
-	msg += "<span class='info'><B>Total Pain:</B> [C.getPainLoss()]</span>"
+	msg += "<span class='info'><B>Total Pain:</B> [C.getPainLoss()]</span>\n"
 	msg += "*---------*</span>"
 	to_chat(user, msg)
 
