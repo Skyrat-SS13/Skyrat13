@@ -2,9 +2,21 @@
 //Every carbon mob by default starts with average skills at everything
 /datum/skills
 	var/name = "Generic skill" // Name of the skill
+	var/desc = "Makes you better at doing non-vague things." //Description of the skill
 	var/level = START_SKILL // What the value is, used in skill checks
 	var/xp = 0 // Current xp amount, once we reach level_up_req we level up and reset to 0
 	var/level_up_req = SKILL_LVL_REQUIREMENT // How much xp we need before levelling up
+
+//An all purpose proc for getting a multiplicative modifier
+//Create new specific subtype procs for more careful handling, this is for simple dumb tasks
+//Should use the carbon mob diceroll or get_skill_mod procs if you need to take mood and stamina into account
+/datum/skills/proc/get_generic_modifier(default = 1, diminutive = TRUE)
+	var/modifier = default
+	if(diminutive)
+		modifier = max(0.1, round(modifier - level/MAX_STAT))
+	else
+		modifier = min(2, modifier + (modifier * round(modifier - level/MAX_STAT)))
+	return modifier
 
 //Return a string related to our competence in the given skill
 /datum/skills/proc/skillnumtodesc(skill)

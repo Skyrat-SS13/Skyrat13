@@ -2,9 +2,21 @@
 //Every carbon mob by default starts with average stats at everything
 //No XP system because stats are something you're pretty much stuck with
 /datum/stats
-	var/name = "Generic stat"
+	var/name = "Generic stat" //Name of the stat
+	var/desc = "Makes you better at doing things vague things." //Description of the stat
 	var/level = START_STAT //Level, used in stat calculations.
 	var/shorthand = "SH" //Shorthand
+
+//An all purpose proc for getting a multiplicative modifier
+//Create new specific subtype procs for more careful handling, this is for simple dumb tasks
+//Should use the carbon mob diceroll or get_skill_mod procs if you need to take mood and stamina into account
+/datum/stats/proc/get_generic_modifier(default = 1, diminutive = TRUE)
+	var/modifier = default
+	if(diminutive)
+		modifier = max(0.1, round(modifier - level/MAX_STAT))
+	else
+		modifier = min(2, modifier + (modifier * round(modifier - level/MAX_STAT)))
+	return modifier
 
 /datum/stats/proc/statnumtodesc(stat)
 	switch(stat)
