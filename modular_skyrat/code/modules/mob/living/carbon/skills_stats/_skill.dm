@@ -1,4 +1,5 @@
 //Skills
+//Code shamelessly stolen from IS12 warfare, thanks based Mattroks
 //Every carbon mob by default starts with average skills at everything
 /datum/skills
 	var/name = "Generic skill" // Name of the skill

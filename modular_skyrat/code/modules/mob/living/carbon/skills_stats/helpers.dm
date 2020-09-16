@@ -1,5 +1,5 @@
-//skill and stat helpers
-//code taken from IS12 warfare
+//Skill and stat helpers
+//Code shamelessly stolen from IS12 warfare, thanks based Mattroks
 
 //DICE ROLL
 //Add this to the action and specify what will happen in each outcome.

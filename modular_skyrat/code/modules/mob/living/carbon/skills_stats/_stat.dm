@@ -1,4 +1,5 @@
 //Stats
+//Code shamelessly stolen from IS12 warfare, thanks based Mattroks
 //Every carbon mob by default starts with average stats at everything
 //No XP system because stats are something you're pretty much stuck with
 /datum/stats
