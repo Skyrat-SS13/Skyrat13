@@ -1,9 +1,13 @@
 /obj/structure/window
 	icon = 'modular_skyrat/icons/eris/obj/structures/windows.dmi'
+	//change the shit below appropriately please
+	var/wall_icon = 'modular_skyrat/icons/eris/obj/structures/windows.dmi'
+	var/nowall_icon = 'modular_skyrat/icons/eris/obj/structures/windows.dmi'
 	var/mutable_appearance/mutable_overlay
 
 /obj/structure/window/setAnchored(anchorvalue)
 	..()
+	update_icon()
 	update_overlays()
 
 /obj/structure/window/Initialize(mapload, direct)
@@ -14,6 +18,22 @@
 		canSmoothWith |= typesof(/obj/structure/falsewall)
 		canSmoothWith |= typesof(/turf/closed/indestructible/riveted)
 		canSmoothWith |= typesof(/obj/structure/table/low_wall)
+
+/obj/structure/window/Bumped(atom/movable/AM)
+	. = ..()
+	if(!anchored)
+		update_icon()
+
+/obj/structure/window/update_icon()
+	..()
+	//this is fucking stupid but if we're not fulltile, we always use the no brim icon
+	if(fulltile)
+		if(locate(/obj/structure/table/low_wall) in get_turf(src))
+			icon = wall_icon
+		else
+			icon = nowall_icon
+	else
+		icon = nowall_icon
 
 /obj/structure/window/update_overlays()
 	. = ..()
@@ -29,6 +49,8 @@
 
 /obj/structure/window/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/window.dmi'
+	wall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/window.dmi'
+	nowall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nowall/window_nowall.dmi'
 	canSmoothWith = list(
 	/obj/structure/window/fulltile,
 	/obj/structure/window/reinforced/fulltile,
@@ -52,6 +74,8 @@
 
 /obj/structure/window/reinforced/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/reinforced_window.dmi'
+	wall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/reinforced_window.dmi'
+	nowall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nowall/reinforced_window_nowall.dmi'
 	canSmoothWith = list(
 	/obj/structure/window/fulltile,
 	/obj/structure/window/reinforced/fulltile,
@@ -75,6 +99,8 @@
 
 /obj/structure/window/plasma/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/plasma_window.dmi'
+	wall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/plasma_window.dmi'
+	nowall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nowall/plasma_window_nowall.dmi'
 	canSmoothWith = list(
 	/obj/structure/window/fulltile,
 	/obj/structure/window/reinforced/fulltile,
@@ -98,6 +124,8 @@
 
 /obj/structure/window/plasma/reinforced/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/rplasma_window.dmi'
+	wall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/rplasma_window.dmi'
+	nowall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nowall/reinforced_plasma_window_nowall.dmi'
 	canSmoothWith = list(
 	/obj/structure/window/fulltile,
 	/obj/structure/window/reinforced/fulltile,
@@ -121,6 +149,8 @@
 
 /obj/structure/window/reinforced/tinted/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/tinted_window.dmi'
+	wall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/tinted_window.dmi'
+	nowall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nowall/tinted_window_nowall.dmi'
 	canSmoothWith = list(
 	/obj/structure/window/fulltile,
 	/obj/structure/window/reinforced/fulltile,
@@ -140,11 +170,12 @@
 	)
 
 /obj/structure/window/plastitanium
-	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/plastitanium_window.dmi'
-	icon_state = "plastitanium_window"
+	icon = 'modular_skyrat/icons/eris/obj/structures/windows.dmi'
 
 /obj/structure/window/plastitanium/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/plastitanium_window.dmi'
+	wall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/plastitanium_window.dmi'
+	nowall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nowall/plastitanium_window_nowall.dmi'
 	canSmoothWith = list(
 	/obj/structure/window/fulltile,
 	/obj/structure/window/reinforced/fulltile,
@@ -166,6 +197,8 @@
 //shuttle windows are retarded
 /obj/structure/window/shuttle
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/plastitanium_window.dmi'
+	wall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/plastitanium_window.dmi'
+	nowall_icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nowall/plastitanium_window_nowall.dmi'
 	canSmoothWith = list(
 	/obj/structure/window/fulltile,
 	/obj/structure/window/reinforced/fulltile,
