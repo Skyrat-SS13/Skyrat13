@@ -4,7 +4,7 @@
 	var/list/mob_stats = list()
 	var/list/mob_skills = list()
 
-/mob/living/carbon/Stat(Name, Value)
+/mob/living/carbon/human/Stat(Name, Value)
 	. = ..()
 	if(statpanel("Status"))
 		var/list/stats = list()
