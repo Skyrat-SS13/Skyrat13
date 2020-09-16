@@ -1,0 +1,4 @@
+author: "SarmentiCampbell"
+delete-after: True
+changes: 
+  - bugfix: "Changed terror spider's hivemind talk to :w for woo instead of :t"
