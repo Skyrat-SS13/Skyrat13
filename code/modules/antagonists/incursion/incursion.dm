@@ -162,10 +162,10 @@
 		if(3)
 			if(LAZYLEN(active_ais()) && prob(25))	//25 %
 				//Kill AI
-				add_objective(new/datum/objective/destroy, TRUE)
+				add_objective(new/datum/objective/destroy/once, TRUE)
 			else if(prob(32))						//~26%
 				//Kill head
-				var/datum/objective/assassinate/killchosen = new
+				var/datum/objective/assassinate/once/killchosen = new
 				var/current_heads = SSjob.get_all_heads()
 				var/datum/mind/selected = pick(current_heads)
 				if(selected.special_role)

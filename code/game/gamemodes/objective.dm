@@ -888,6 +888,29 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/destroy/internal
 	var/stolen = FALSE 		//Have we already eliminated this target?
 
+/datum/objective/destroy/once
+	name = "destroy AI once"
+	var/won = FALSE
+
+/datum/objective/destroy/once/update_explanation_text()
+	..()
+	if(target && target.current)
+		explanation_text = "Destroy [target.name], the experimental AI. You only need to destroy them once; if they somehow get back online, you've still succeeded."
+		START_PROCESSING(SSprocessing,src)
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/destroy/once/check_completion()
+	return won || ..()
+
+/datum/objective/destroy/once/process()
+	won = check_midround_completion()
+	if(won)
+		STOP_PROCESSING(SSprocessing,src)
+
+/datum/objective/destroy/once/proc/check_midround_completion()
+	return won || !considered_alive(target) //The target afking / logging off for a bit during the round doesn't complete it, but them being afk at roundend does.
+
 /datum/objective/steal_five_of_type
 	name = "steal five of"
 	explanation_text = "Steal at least five items!"
