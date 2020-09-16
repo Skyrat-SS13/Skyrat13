@@ -17,12 +17,6 @@
 		var/bprv = handle_bodyparts()
 		if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
 			updatehealth()
-	else
-		//Rot the bodyparts if we are dead
-		for(var/bopa in bodyparts)
-			var/obj/item/bodypart/BP = bopa
-			BP.on_death()
-			BP.update_germs()
 	update_stamina()
 	doSprintBufferRegen()
 
@@ -426,6 +420,13 @@
 			var/obj/item/organ/O = V
 			if(O)
 				O.on_death() //Needed so organs decay while inside the body.
+		
+		//Rot the bodyparts too if we are dead
+		//This is stupid but makes my life easier
+		for(var/bopa in bodyparts)
+			var/obj/item/bodypart/BP = bopa
+			BP.on_death()
+			BP.update_germs()
 
 /mob/living/carbon/handle_diseases()
 	for(var/thing in diseases)
