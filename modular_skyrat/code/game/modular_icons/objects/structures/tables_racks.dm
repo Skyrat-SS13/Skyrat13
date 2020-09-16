@@ -53,6 +53,7 @@
 
 /obj/structure/table/low_wall/titanium
 	name = "titanium low wall"
+	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/low_wall_shuttle.dmi'
 	buildstackamount = 4
 	max_integrity = 100
 	color = "#c7c7c7"

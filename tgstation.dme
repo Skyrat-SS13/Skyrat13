@@ -3654,7 +3654,6 @@
 #include "modular_skyrat\code\game\modular_icons\objects\structures\girders.dm"
 #include "modular_skyrat\code\game\modular_icons\objects\structures\grille.dm"
 #include "modular_skyrat\code\game\modular_icons\objects\structures\lattice.dm"
-#include "modular_skyrat\code\game\modular_icons\objects\structures\locker.dm"
 #include "modular_skyrat\code\game\modular_icons\objects\structures\tables_racks.dm"
 #include "modular_skyrat\code\game\modular_icons\objects\structures\window.dm"
 #include "modular_skyrat\code\game\modular_icons\objects\structures\door_assembly\_door_assembly.dm"
