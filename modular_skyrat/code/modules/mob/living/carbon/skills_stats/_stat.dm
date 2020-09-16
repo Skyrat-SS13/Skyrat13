@@ -8,25 +8,25 @@
 
 /datum/stats/proc/statnumtodesc(stat)
 	switch(stat)
-		if(1)
+		if(1,2)
 			return "completely worthless"
-		if(2)
+		if(3,4)
 			return "incompetent"
-		if(3)
+		if(5,6)
 			return "a novice"
-		if(4)
+		if(7,8)
 			return "unskilled"
-		if(5)
+		if(9,10)
 			return "good enough"
-		if(6)
+		if(11,12)
 			return "adept"
-		if(7)
+		if(13,14)
 			return "versed"
-		if(8)
+		if(15,16)
 			return "an expert"
-		if(9)
+		if(17,18)
 			return "a master"
-		if(10)
+		if(19,20)
 			return "legendary"
 		else
 			return "inhuman"
