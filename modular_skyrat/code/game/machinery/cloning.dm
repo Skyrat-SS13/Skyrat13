@@ -285,9 +285,9 @@
 					BP.attach_limb(mob_occupant)
 
 			//Premature clones may have brain damage.
-			//Cap the brain damage at 45% (90 on a standard brain) or the clone will go into nervous system failure
+			//Cap the brain damage at 40% (80 on a standard brain) or the clone will go into nervous system failure and fucking die
 			var/obj/item/organ/brain/brain = mob_occupant.getorganslot(ORGAN_SLOT_BRAIN)
-			mob_occupant.adjustOrganLoss(ORGAN_SLOT_BRAIN, -((speed_coeff / 2) * dmg_mult), (brain ? brain.maxHealth * 0.45 : 90))
+			mob_occupant.adjustOrganLoss(ORGAN_SLOT_BRAIN, -((speed_coeff / 2) * dmg_mult), (brain ? brain.maxHealth * 0.40 : 90))
 
 			use_power(7500) //This might need tweaking.
 
