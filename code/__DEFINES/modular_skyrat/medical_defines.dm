@@ -59,8 +59,8 @@
 
 #define WOUND_SLASH_MAX_BLOODFLOW		8 // how much blood you can lose per tick per slash max. 8 is a LOT of blood for one cut so don't worry about hitting it easily
 #define WOUND_PIERCE_MAX_BLOODFLOW		8 // same as above, but for piercing wounds
-#define WOUND_SLASH_DEAD_CLOT_MIN		0.02 // dead people don't bleed, but they can clot! this is the minimum amount of clotting per tick on dead people, so even critical cuts will slowly clot in dead people
-#define WOUND_PIERCE_DEAD_CLOT_MIN		0.02 // same as above but for piercing wounds
+#define WOUND_SLASH_DEAD_CLOT_MIN		0.05 // dead people don't bleed, but they can clot! this is the minimum amount of clotting per tick on dead people, so even critical cuts will slowly clot in dead people
+#define WOUND_PIERCE_DEAD_CLOT_MIN		0.05 // same as above but for piercing wounds
 #define WOUND_BONE_HEAD_TIME_VARIANCE 	20 // if we suffer a bone wound to the head that creates brain traumas, the timer for the trauma cycle is +/- by this percent (0-100)
 
 // The following are for persistent scar save formats

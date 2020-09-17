@@ -113,7 +113,7 @@
 		user.visible_message("<span class='green'>[user] welds \the [patch] on [victim]'s [limb.name] with [I].</span>", "<span class='green'>You weld \the patch on [user == victim ? "your" : "[victim]'s"] [limb.name] with [I].</span>")
 	else
 		user.visible_message("<span class='green'>[user] welds \the [lowertext(name)] [victim]'s [limb.name] with [I].</span>", "<span class='green'>You weld \the [lowertext(name)] on [user == victim ? "your" : "[victim]'s"] [limb.name] with [I].</span>")
-	var/blood_cauterized = (1 / self_penalty_mult) * max(0.5, patched/4) //patched
+	var/blood_cauterized = (1 / self_penalty_mult) * max(0.5, patched)
 	blood_flow -= blood_cauterized
 
 	if(repeat_patch)
@@ -170,10 +170,10 @@
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_MODERATE
 	viable_zones = ALL_BODYPARTS
-	initial_flow = 0.375 //1.5
-	gauzed_clot_rate = 0.2 //0.8
+	initial_flow = 1.5
+	gauzed_clot_rate = 0.8
 	internal_bleeding_chance = 30
-	internal_bleeding_coefficient = 0.32 //1.25
+	internal_bleeding_coefficient = 1.25
 	threshold_minimum = 30
 	threshold_penalty = 20
 	status_effect_type = /datum/status_effect/wound/pierce/moderate
@@ -190,10 +190,10 @@
 	severity = WOUND_SEVERITY_SEVERE
 	viable_zones = ALL_BODYPARTS
 	treatable_by = list(/obj/item/stack/sheet)
-	initial_flow = 0.6 //2.25
-	gauzed_clot_rate = 0.15 //0.6
+	initial_flow = 2.25
+	gauzed_clot_rate = 0.6
 	internal_bleeding_chance = 60
-	internal_bleeding_coefficient = 0.375 //1.5
+	internal_bleeding_coefficient = 1.5
 	threshold_minimum = 50
 	threshold_penalty = 35
 	status_effect_type = /datum/status_effect/wound/pierce/severe
@@ -210,10 +210,10 @@
 	severity = WOUND_SEVERITY_CRITICAL
 	viable_zones = ALL_BODYPARTS
 	treatable_by = list(/obj/item/stack/sheet)
-	initial_flow = 0.75 //3
-	gauzed_clot_rate = 0.1 //0.4
+	initial_flow = 3
+	gauzed_clot_rate = 0.4
 	internal_bleeding_chance = 80
-	internal_bleeding_coefficient = 0.45 //1.75
+	internal_bleeding_coefficient = 1.75
 	threshold_minimum = 100
 	threshold_penalty = 50
 	status_effect_type = /datum/status_effect/wound/pierce/critical
