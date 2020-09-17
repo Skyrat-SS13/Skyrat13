@@ -116,8 +116,8 @@
 		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A // Skyrat edit
 		if(airlock)
 			airlock.BorgShiftClick(src)
-		A.BorgShiftClick(src)
-	A.BorgShiftClick(src) // End of skyrat edit
+	else
+		A.BorgShiftClick(src) // End of skyrat edit
 	
 /mob/living/silicon/robot/CtrlClickOn(atom/A)
 	if(isturf(A)) // Skyrat edit
