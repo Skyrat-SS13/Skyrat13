@@ -40,6 +40,7 @@
 	data["integrity"] = obj_integrity
 	data["max_integrity"] = max_integrity
 	data["force"] = force
+	data["force_unwielded"] = 0
 	data["force_wielded"] = 0
 	var/datum/component/two_handed/two_handed = GetComponent(/datum/component/two_handed)
 	if(two_handed)
@@ -47,6 +48,7 @@
 			data["force_wielded"] = (force * two_handed.force_multiplier)
 		else
 			data["force_wielded"] = two_handed.force_wielded
+		data["force_unwielded"] = two_handed.force_unwielded
 	data["sharpness"] = "Blunt"
 	switch(sharpness)
 		if(1)

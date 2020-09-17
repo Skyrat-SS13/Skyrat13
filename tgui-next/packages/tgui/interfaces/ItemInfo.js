@@ -10,6 +10,7 @@ export const ItemInfo = props => {
     integrity,
     max_integrity,
     force,
+    force_unwielded,
     force_wielded,
     sharpness,
     armor_penetration,
@@ -87,6 +88,15 @@ export const ItemInfo = props => {
               {force}
             </ProgressBar>
           </LabeledList.Item>
+          <LabeledList.Item
+          label="Unwielded Force">
+          <ProgressBar
+            value={force_unwielded}
+            minValue={0}
+            maxValue={100}
+            color="good">
+            {force_unwielded}
+          </ProgressBar>
           <LabeledList.Item
             label="Wielded Force">
             <ProgressBar
