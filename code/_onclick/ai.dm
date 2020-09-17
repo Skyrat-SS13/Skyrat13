@@ -121,8 +121,8 @@
 		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in A 
 		if(airlock)
 			airlock.AIShiftClick(src)
-		A.AIShiftClick(src)
-	A.AIShiftClick(src) // End of skyrat edit
+	else
+		A.AIShiftClick(src) // End of skyrat edit
 
 /mob/living/silicon/ai/CtrlClickOn(var/atom/A)
 	if(isturf(A)) // Skyrat edit
