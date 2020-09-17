@@ -216,7 +216,7 @@
 	export_types = list(/obj/structure/statue/gold/hop)
 
 /datum/export/large/cmostatue
-	cost = 8'0 //Skyrat edit
+	cost = 800 //Skyrat edit
 	unit_name = "CMO statue"
 	export_types = list(/obj/structure/statue/gold/cmo)
 
