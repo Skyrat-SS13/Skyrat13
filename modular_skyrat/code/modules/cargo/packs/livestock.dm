@@ -1,6 +1,6 @@
 /datum/supply_pack/critter/triplecrab
 	name = "Crab Crate"
-	desc = "Clickety Clack goes the Claws. Contains three crabs."
+	desc = "Clickety clack goes the claws. Contains three crabs."
 	cost = 1250
 	contains = list(/mob/living/simple_animal/crab,
                     /mob/living/simple_animal/crab,
