@@ -1,0 +1,5 @@
+author: "KathrinBailey"
+delete-after: True
+changes: 
+  - bugfix: "Cobblestone and smooth grass (Azarak's grass on Lavaland) no longer create lattices upon exploding."
+  - bugfix: "Cobblestone doesn't turn pitch black upon exploding."
