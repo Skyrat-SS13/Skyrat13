@@ -74,9 +74,7 @@ export const ItemInfo = props => {
               value={integrity}
               minValue={0}
               maxValue={max_integrity}
-              color={integrity >= max_integrity/2 ? 'good' : 'bad'}>
-              {integrity}
-            </ProgressBar>
+              color={integrity >= max_integrity/2 ? 'good' : 'bad'} />
           </LabeledList.Item>
           <LabeledList.Item
             label="Force">
