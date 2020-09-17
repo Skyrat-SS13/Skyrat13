@@ -635,7 +635,7 @@
 		total_clone += (BP.clone_dam * BP.body_damage_coeff)
 		total_pain += (BP.tox_dam * BP.body_damage_coeff)
 	health = round(maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute, DAMAGE_PRECISION)
-	if(ishuman(src) || ismonkey(src)) //Kind of terrible.
+	if(ishuman(src)) //Kind of terrible.
 		health = round(maxHealth - getOrganLoss(ORGAN_SLOT_BRAIN))
 	staminaloss = round(total_stamina, DAMAGE_PRECISION)
 	painloss = round(total_pain, DAMAGE_PRECISION)
