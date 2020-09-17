@@ -11,51 +11,51 @@
 // Hides
 
 /datum/export/stack/leather
-	cost = 30
+	cost = 60
 	unit_name = "leather"
 	export_types = list(/obj/item/stack/sheet/leather)
 
 /datum/export/stack/skin/monkey
-	cost = 30
+	cost = 60
 	unit_name = "monkey hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/monkey)
 
 /datum/export/stack/skin/human
-	cost = 70
+	cost = 150
 	export_category = EXPORT_CONTRABAND
 	unit_name = "piece"
 	message = "of human skin"
 	export_types = list(/obj/item/stack/sheet/animalhide/human)
 
 /datum/export/stack/skin/goliath_hide
-	cost = 160
+	cost = 200
 	unit_name = "goliath hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/goliath_hide)
 
 /datum/export/stack/skin/cat
-	cost = 120
+	cost = 150
 	export_category = EXPORT_CONTRABAND
 	unit_name = "cat hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/cat)
 
 /datum/export/stack/skin/corgi
-	cost = 140
+	cost = 180
 	export_category = EXPORT_CONTRABAND
 	unit_name = "corgi hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/corgi)
 
 /datum/export/stack/skin/lizard
-	cost = 50
+	cost = 150
 	unit_name = "lizard hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/lizard)
 
 /datum/export/stack/skin/gondola
-	cost = 1000
+	cost = 2500 //Like tiger skin in the 19th century
 	unit_name = "gondola hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/gondola)
 
 /datum/export/stack/skin/xeno
-	cost = 300
+	cost = 400
 	unit_name = "alien hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/xeno)
 
@@ -63,17 +63,17 @@
 // For base materials, see materials.dm
 
 /datum/export/stack/plasteel
-	cost = 105 // 2000u of plasma + 2000u of metal.
+	cost = 350
 	message = "of plasteel"
 	export_types = list(/obj/item/stack/sheet/plasteel)
 
 /datum/export/material/plastitanium
-	cost = 165 // plasma + titanium costs
+	cost = 400
 	export_types = list(/obj/item/stack/sheet/mineral/plastitanium)
 	message = "of plastitanium"
 
 /datum/export/material/plastitanium_glass
-	cost = 168 // plasma + titanium + glass costs
+	cost = 260
 	export_types = list(/obj/item/stack/sheet/plastitaniumglass)
 	message = "of plastitanium glass"
 
@@ -84,44 +84,44 @@
 	export_types = list(/obj/item/stack/sheet/rglass)
 
 /datum/export/stack/plastitanium
-	cost = 165 // plasma + titanium costs
+	cost = 500 // plasma + titanium costs
 	message = "of plastitanium"
 	export_types = list(/obj/item/stack/sheet/mineral/plastitanium)
 
 /datum/export/stack/wood
-	cost = 15
+	cost = 50
 	unit_name = "wood plank"
 	export_types = list(/obj/item/stack/sheet/mineral/wood)
 
 /datum/export/stack/log
-	cost = 10
+	cost = 40
 	unit_name = "raw wood"
 	export_types = list(/obj/item/grown/log)
 
 /datum/export/stack/cardboard
-	cost = 2
+	cost = 10
 	message = "of cardboard"
 	export_types = list(/obj/item/stack/sheet/cardboard)
 
 /datum/export/stack/sandstone
-	cost = 1
+	cost = 5
 	unit_name = "block"
 	message = "of sandstone"
 	export_types = list(/obj/item/stack/sheet/mineral/sandstone)
 
 /datum/export/stack/cable
-	cost = 0.2
+	cost = 3
 	unit_name = "cable piece"
 	export_types = list(/obj/item/stack/cable_coil)
 
 /datum/export/stack/cloth
-	cost = 20
+	cost = 40
 	unit_name = "sheets"
 	message = "of cloth"
 	export_types = list(/obj/item/stack/sheet/cloth)
 
 /datum/export/stack/duracloth
-	cost = 40
+	cost = 150
 	unit_name = "sheets"
 	message = "of duracloth"
 	export_types = list(/obj/item/stack/sheet/durathread)
@@ -129,7 +129,7 @@
 // Weird Stuff
 
 /datum/export/stack/abductor
-	cost = 400
+	cost = 700
 	message = "of alien alloy"
 	export_types = list(/obj/item/stack/sheet/mineral/abductor)
 
@@ -140,13 +140,13 @@
 
 /datum/export/stack/bronze
 	unit_name = "tiles"
-	cost = 5
+	cost = 50
 	message = "of brozne"
 	export_types = list(/obj/item/stack/tile/bronze)
 
 /datum/export/stack/brass
 	unit_name = "tiles"
-	cost = 50
+	cost = 150
 	message = "of brass"
 	export_types = list(/obj/item/stack/tile/brass)
 
@@ -158,7 +158,7 @@
 
 /datum/export/stack/telecrystal
 	unit_name = "raw"
-	cost = 1000
+	cost = 5000 //1TC = 5000 credits
 	message = "telecrystals"
 	export_types = list(/obj/item/stack/telecrystal)
 
