@@ -89,14 +89,15 @@ export const ItemInfo = props => {
             </ProgressBar>
           </LabeledList.Item>
           <LabeledList.Item
-          label="Unwielded Force">
-          <ProgressBar
-            value={force_unwielded}
-            minValue={0}
-            maxValue={100}
-            color="good">
-            {force_unwielded}
-          </ProgressBar>
+            label="Unwielded Force">
+            <ProgressBar
+              value={force_unwielded}
+              minValue={0}
+              maxValue={100}
+              color="good">
+              {force_unwielded}
+            </ProgressBar>
+          </LabeledList.Item>
           <LabeledList.Item
             label="Wielded Force">
             <ProgressBar
