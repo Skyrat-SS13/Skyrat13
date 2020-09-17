@@ -102,10 +102,10 @@
 		return "<B>The stump on [victim.p_their()] [limb.name] is wrapped with [bandage_condition] [limb.current_gauze.name]!</B>"
 
 /datum/wound/slash/receive_damage(wounding_type, wounding_dmg, wound_bonus)
-	if(!victim || victim.stat == DEAD || wounding_dmg < WOUND_MINIMUM_DAMAGE)
+	if(!victim || victim.stat == DEAD || wounding_dmg < WOUND_MINIMUM_DAMAGE) // can't stab dead bodies to make them bleed faster
 		return
-	if(wounding_type in list(WOUND_SLASH, WOUND_PIERCE)) // can't stab dead bodies to make them bleed faster
-		blood_flow += 0.05 * wounding_dmg
+	if(wounding_type in list(WOUND_SLASH, WOUND_PIERCE))
+		blood_flow += 0.0125 * wounding_dmg //0.5 * wounding_dmg
 
 /datum/wound/slash/drag_bleed_amt()
 	// compare with being at 100 brute damage before, where you bled (brute/100 * 2), = 2 blood per tile
@@ -130,9 +130,9 @@
 	blood_flow = min(blood_flow, WOUND_SLASH_MAX_BLOODFLOW)
 
 	if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/toxin/heparin))
-		blood_flow += 0.5 // old herapin used to just add +2 bleed stacks per tick, this adds 0.5 bleed flow to all open cuts which is probably even stronger as long as you can cut them first
+		blood_flow += 0.125 //0.5 // old herapin used to just add +2 bleed stacks per tick, this adds 0.5 bleed flow to all open cuts which is probably even stronger as long as you can cut them first
 	else if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/medicine/coagulant))
-		blood_flow -= 0.25
+		blood_flow -= 0.07 //0.25
 
 	if(limb.current_gauze)
 		if(clot_rate > 0)
@@ -190,8 +190,8 @@
 	if(!lasgun.process_fire(victim, victim, TRUE, null, limb.body_zone))
 		return
 	victim.emote("scream")
-	blood_flow -= damage / (5 * self_penalty_mult) // 20 / 5 = 4 bloodflow removed, p good
-	cauterized += damage / (5 * self_penalty_mult)
+	blood_flow -= damage / (1.25 * self_penalty_mult) //(5 * self_penalty_mult) // 20 / 5 = 4 bloodflow removed, p good
+	cauterized += damage / (1.25 * self_penalty_mult)
 	victim.visible_message("<span class='warning'>The cuts on [victim]'s [fake_limb ? "[fake_limb] stump" : limb.name] scar over!</span>")
 
 /// If someone is using either a cautery tool or something with heat to cauterize this cut
@@ -206,7 +206,7 @@
 	limb.receive_damage(burn = 2 + severity, wound_bonus = CANT_WOUND)
 	if(prob(30))
 		victim.emote("scream")
-	var/blood_cauterized = (0.6 / max(1, self_penalty_mult))
+	var/blood_cauterized = (0.15 / max(1, self_penalty_mult)) //0.6 / max(1, self_penalty_mult)
 	blood_flow -= blood_cauterized
 	cauterized += blood_cauterized
 
@@ -246,10 +246,10 @@
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_MODERATE
 	viable_zones = ALL_BODYPARTS
-	initial_flow = 2
-	minimum_flow = 0.5
+	initial_flow = 0.5 //2
+	minimum_flow = 0.125 //0.5
+	clot_rate = 0.03 //0.10
 	max_per_type = 3
-	clot_rate = 0.10
 	threshold_minimum = 20
 	threshold_penalty = 10
 	status_effect_type = /datum/status_effect/wound/slash/moderate
@@ -266,9 +266,9 @@
 	sound_effect = 'modular_skyrat/sound/effects/blood2.ogg'
 	severity = WOUND_SEVERITY_SEVERE
 	viable_zones = ALL_BODYPARTS
-	initial_flow = 3.25
-	minimum_flow = 2.75
-	clot_rate = 0.05
+	initial_flow = 0.825 //3.25
+	minimum_flow = 0.675 //2.75
+	clot_rate = 0.02 //0.05
 	max_per_type = 4
 	threshold_minimum = 50
 	threshold_penalty = 25
@@ -287,9 +287,9 @@
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
 	viable_zones = ALL_BODYPARTS
-	initial_flow = 4.25
-	minimum_flow = 4
-	clot_rate = -0.05 // critical cuts actively get worse instead of better
+	initial_flow = 1.2 //4.25
+	minimum_flow = 0.85 //4
+	clot_rate = -0.01 //-0.05 //critical cuts actively get worse instead of better
 	max_per_type = 5
 	threshold_minimum = 80
 	threshold_penalty = 40
@@ -309,9 +309,9 @@
 	severity = WOUND_SEVERITY_CRITICAL
 	viable_zones = ALL_BODYPARTS
 	wound_type = WOUND_LIST_INCISION
-	initial_flow = 1
-	minimum_flow = 0
-	clot_rate = 0
+	initial_flow = 0.65 //1
+	minimum_flow = 0 //incisions just go away
+	clot_rate = 0 //incisions don't get better over time
 	max_per_type = 5
 	demotes_to = null
 	scarring_descriptions = list("a precise line of scarred tissue", "a long line of slightly darker tissue")

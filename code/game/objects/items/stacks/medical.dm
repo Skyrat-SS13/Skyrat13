@@ -297,7 +297,7 @@
 	max_amount = 15
 	repeating = TRUE
 	heal_brute = 10
-	stop_bleeding = 0.6
+	stop_bleeding = 0.15 //0.6
 	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
 
 /obj/item/stack/medical/suture/one
@@ -318,7 +318,7 @@
 	icon_state = "suture_purp"
 	desc = "A suture infused with drugs that speed up wound healing of the treated laceration."
 	heal_brute = 15
-	stop_bleeding = 0.75
+	stop_bleeding = 0.2 //0.75
 	grind_results = list(/datum/reagent/medicine/polypyr = 2)
 
 /obj/item/stack/medical/suture/one

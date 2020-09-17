@@ -70,7 +70,7 @@
 	if(!victim || victim.stat == DEAD || wounding_dmg < WOUND_MINIMUM_DAMAGE)
 		return
 	if(wounding_type in list(WOUND_SLASH, WOUND_PIERCE)) // can't stab dead bodies to make them leak faster
-		blood_flow += 0.05 * wounding_dmg
+		blood_flow += 0.0125 * wounding_dmg //0.05 * wounding_dmg
 
 /datum/wound/mechanical/slash/drag_bleed_amt()
 	// compare with being at 100 brute damage before, where you bled (brute/100 * 2), = 2 blood per tile
@@ -148,7 +148,7 @@
 		user.visible_message("<span class='green'>[user] welds \the [patch] on [victim]'s [limb.name] with [I].</span>", "<span class='green'>You weld \the patch on [user == victim ? "your" : "[victim]'s"] [limb.name] with [I].</span>")
 	else
 		user.visible_message("<span class='green'>[user] welds \the [lowertext(name)] [victim]'s [limb.name] with [I].</span>", "<span class='green'>You weld \the [lowertext(name)] on [user == victim ? "your" : "[victim]'s"] [limb.name] with [I].</span>")
-	var/blood_cauterized = (1 / self_penalty_mult) * max(0.5, patched)
+	var/blood_cauterized = (1 / self_penalty_mult) * max(0.5, patched/4) //patched
 	blood_flow -= blood_cauterized
 
 	if(repeat_patch)
@@ -194,10 +194,10 @@
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_MODERATE
 	viable_zones = ALL_BODYPARTS
-	initial_flow = 2
-	minimum_flow = 0.5
+	initial_flow = 0.5 //2
+	minimum_flow = 0.125 //0.5
+	clot_rate = 0.03 //0.10
 	max_per_type = 3
-	clot_rate = 0.15
 	threshold_minimum = 20
 	threshold_penalty = 10
 	status_effect_type = /datum/status_effect/wound/slash/moderate
@@ -212,9 +212,9 @@
 	sound_effect = 'modular_skyrat/sound/effects/blood2.ogg'
 	severity = WOUND_SEVERITY_SEVERE
 	viable_zones = ALL_BODYPARTS
-	initial_flow = 3.25
-	minimum_flow = 2.75
-	clot_rate = 0.07
+	initial_flow = 0.825 //3.25
+	minimum_flow = 0.675 //2.75
+	clot_rate = 0.02 //0.05
 	max_per_type = 4
 	threshold_minimum = 50
 	threshold_penalty = 25
@@ -232,9 +232,9 @@
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
 	viable_zones = ALL_BODYPARTS
-	initial_flow = 4.25
-	minimum_flow = 4
-	clot_rate = -0.05 // critical cuts actively get worse instead of better
+	initial_flow = 1.2 //4.25
+	minimum_flow = 0.85 //4
+	clot_rate = -0.01 //-0.05 //critical cuts actively get worse instead of better
 	max_per_type = 5
 	threshold_minimum = 80
 	threshold_penalty = 40
@@ -253,9 +253,9 @@
 	severity = WOUND_SEVERITY_CRITICAL
 	viable_zones = ALL_BODYPARTS
 	wound_type = WOUND_LIST_INCISION_MECHANICAL
-	initial_flow = 1.5
-	minimum_flow = 0.1
-	clot_rate = 0.02
+	initial_flow = 0.65 //1
+	minimum_flow = 0 //incisions just go away
+	clot_rate = 0 //incisions don't get better over time
 	max_per_type = 5
 	demotes_to = null
 	scarring_descriptions = list("a precise line of scarred tissue", "a long line of slightly darker tissue")

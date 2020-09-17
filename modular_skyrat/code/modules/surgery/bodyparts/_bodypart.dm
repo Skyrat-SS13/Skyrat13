@@ -1625,7 +1625,7 @@
 	listclearnulls(embedded_objects)
 	for(var/obj/item/embeddies in embedded_objects)
 		if(!embeddies.isEmbedHarmless())
-			bleed_rate += 0.5
+			bleed_rate += 0.15 //0.5
 
 	for(var/thing in wounds)
 		var/datum/wound/W = thing
