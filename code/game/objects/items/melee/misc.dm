@@ -324,7 +324,9 @@
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='danger'>You club yourself over the head.</span>")
-		user.DefaultCombatKnockdown(60 * force)
+		if(carbonmob.chem_effects[CE_PAINKILLER] < 35)
+			var/apply_knock = 60 * force * max(0.1, 1 - (carbonmob.chem_effects[CE_PAINKILLER]/100))
+			user.DefaultCombatKnockdown(apply_knock)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.apply_damage(2*force, BRUTE, BODY_ZONE_HEAD)
@@ -365,12 +367,15 @@
 			if(stun_animation)
 				user.do_attack_animation(target)
 			playsound(get_turf(src), on_stun_sound, 75, 1, -1)
-			target.DefaultCombatKnockdown(softstun_ds, TRUE, FALSE, hardstun_ds, stam_dmg)
+			if(carbonmob.chem_effects[CE_PAINKILLER] < 35)
+				var/apply_knock = max(0.1, 1 - (carbonmob.chem_effects[CE_PAINKILLER]/100)) * softstun_ds
+				target.DefaultCombatKnockdown(softstun_ds, TRUE, FALSE, hardstun_ds, stam_dmg)
 			if(iscarbon(target))
 				var/mob/living/carbon/C = target
 				var/obj/item/bodypart/bodypart = C.get_bodypart(user.zone_selected)
+				var/apply_pain = pain * max(0.1, 1 - (carbonmob.chem_effects[CE_PAINKILLER]/100))
 				if(bodypart)
-					bodypart.receive_damage(pain = src.pain)
+					bodypart.receive_damage(pain = apply_pain)
 			additional_effects_carbon(target, user)
 			log_combat(user, target, "stunned", src)
 			add_fingerprint(user)
