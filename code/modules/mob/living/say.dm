@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/datum/saymode/saymode = SSradio.saymodes[talk_key]
 	var/message_mode = get_message_mode(message)
 	var/original_message = message
-	var/in_critical = InCritical()
+	var/in_critical = InFullCritical()
 
 	if(one_character_prefix[message_mode])
 		message = copytext_char(message, 2)
@@ -162,8 +162,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		message_range = 1
 		message_mode = MODE_WHISPER
 		src.log_talk(message, LOG_WHISPER)
-		if(InCritical())
-			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + (maxHealth - health))
+		if(InFullCritical())
+			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + (get_physical_damage() - health))
 			// If we cut our message short, abruptly end it with a-..
 			var/message_len = length_char(message)
 			message = copytext_char(message, 1, health_diff) + "[message_len > health_diff ? "-.." : "..."]"
