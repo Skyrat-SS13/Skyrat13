@@ -1,0 +1,5 @@
+author: "NotRanged"
+delete-after: True
+changes: 
+  - rscadd: "Adds *golfclap emote"
+  - tweak: "Splits up *clap into *clap and *slowclap"
