@@ -54,7 +54,7 @@
 		if(1)
 			data["sharpness"] = "Slashing"
 		if(2)
-			data["sharpness"] = "Penetrating"
+			data["sharpness"] = "Piercing"
 	data["armor_penetration"] = armour_penetration
 	data["armor"] = armor.getList()
 
