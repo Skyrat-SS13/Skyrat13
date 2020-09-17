@@ -23,6 +23,8 @@
 	restraint_check = TRUE
 	emote_type = EMOTE_AUDIBLE
 	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
+	var/list/clap = list('sound/misc/clap2.ogg', 'sound/misc/clap3.ogg')
+
 
 /datum/emote/living/carbon/clap/run_emote(mob/living/user, params)
 	. = ..()
@@ -31,11 +33,19 @@
 			// Need hands to clap
 			if (!user.get_bodypart(BODY_ZONE_L_ARM) || !user.get_bodypart(BODY_ZONE_R_ARM))
 				return
-			var/clap = pick('sound/misc/clap1.ogg',
-							'sound/misc/clap2.ogg',
-							'sound/misc/clap3.ogg',
-							'sound/misc/clap4.ogg')
-			playsound(user, clap, 50, 1, -1)
+			playsound(user, pick(clap), 50, 1, -1)
+
+/datum/emote/living/carbon/clap/slow
+	key = "slowclap"
+	key_third_person = "slowclaps"
+	message = "slowly claps."
+	clap = list('sound/misc/clap1.ogg', 'sound/misc/clap4.ogg')
+
+/datum/emote/living/carbon/clap/golf
+	key = "golfclap"
+	key_third_person = "golfclaps"
+	message = "slowly claps, clearly unimpressed."
+	clap = list('sound/misc/golfclap.ogg')
 
 /datum/emote/living/carbon/gnarl
 	key = "gnarl"
