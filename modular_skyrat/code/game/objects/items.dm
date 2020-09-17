@@ -18,15 +18,6 @@
 		playsound(src,grabsound,50,1)
 
 //TGUI item info menu
-/obj/item/verb/info()
-	set name = "Item Information"
-	set category ="Object"
-	set desc = "Get an overview of an item's information."
-
-	var/mob/user = usr
-	if(istype(user))
-		ui_interact(user)
-
 /obj/item/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 					datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
