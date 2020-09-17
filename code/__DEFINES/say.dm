@@ -40,7 +40,7 @@
 
 //skyrat change start
 #define MODE_TERROR_SPIDER "terrortalk"
-#define MODE_KEY_TERROR_SPIDER "t"
+#define MODE_KEY_TERROR_SPIDER "w"
 //skyrat change stop
 
 #define MODE_CHANGELING "changeling"

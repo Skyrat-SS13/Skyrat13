@@ -23,6 +23,7 @@
 	design_ids = list("sticky_tape")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
 	hidden = FALSE
+	experimental = FALSE
 
 // Can be researched after getting the basic sticky technology
 /datum/techweb_node/sticky_advanced
@@ -33,6 +34,7 @@
 	design_ids = list("super_sticky_tape", "pointy_tape", "surgical_sticky_tape")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	hidden = FALSE
+	experimental = FALSE
 
 // Nyanites
 /datum/techweb_node/nanite_smart
