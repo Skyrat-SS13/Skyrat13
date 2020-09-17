@@ -13,9 +13,9 @@ k// PARTS //
 	desc = "A long piece of thread with some resemblance to cable coil."
 	icon_state = "durastring"
 
-////////////////////////////////
-// KAT IMPROVISED WEAPON PARTS//
-////////////////////////////////
+////////////////////////////
+// IMPROVISED WEAPON PARTS//
+////////////////////////////
 
 /obj/item/weaponcrafting/improvised_parts
 	name = "Eerie bunch of coloured dots."
