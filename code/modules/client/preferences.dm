@@ -2214,7 +2214,7 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 					var/new_scar = href_list["new_scar"]
 					var/choice = "None"
 					if(new_scar == "remove")
-						cosmetic_scars[body_zone][specific_location] = strip_html_simple(choice, 256)
+						cosmetic_scars[body_zone][specific_location] = null
 					else if(new_scar == "custom")
 						choice = input(user, "Type in the description of your scar. Leave blank or cancel to not change anything.", "Custom Scar", "None") as null|text
 					else if(new_scar in list("moderate", "severe", "critical"))
@@ -2300,7 +2300,7 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 					jumpsuit_style = pick(GLOB.jumpsuitlist)
 				if("all")
 					random_character()
-
+					scars_list = ASSOCIATED_SCARS
 		if("input")
 
 			if(href_list["preference"] in GLOB.preferences_custom_names)
