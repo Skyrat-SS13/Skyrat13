@@ -31,6 +31,6 @@
 /mob/living/carbon/proc/item_info()
 	var/obj/item/holding = get_active_held_item()
 	if(istype(holding))
-		holding.ui_interact(src)
+		holding.ui_interact(src, "info")
 	else
 		to_chat(src, "<span class='warning'>You need to hold an item in your active hand to open it's information menu!</span>")
