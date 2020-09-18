@@ -79,9 +79,10 @@
 	var/breath_fail_ratio = 0 // How badly they failed a breath. Higher is worse.
 	var/last_successful_breath
 	var/oxygen_deprivation = 0
-	var/last_int_pressure = 0
-	var/last_ext_pressure = 0
-	var/max_pressure_diff = 50
+	var/last_int_pressure = ONE_ATMOSPHERE / (CELL_VOLUME/BREATH_VOLUME)
+	var/last_ext_pressure = ONE_ATMOSPHERE
+	var/max_ext_pressure_diff = (ONE_ATMOSPHERE/2)
+	var/max_int_pressure_diff = (ONE_ATMOSPHERE/2) / (CELL_VOLUME/BREATH_VOLUME)
 	relative_size = 30 //Chest has many organs, we need to cut some chances off to round up to 100
 
 /obj/item/organ/lungs/proc/remove_oxygen_deprivation(amount)
@@ -138,22 +139,17 @@
 	
 	var/obj/item/bodypart/parent = owner.get_bodypart(zone)
 	if(istype(parent))
-		owner.custom_pain("You feel a stabbing pain in your [parent.name]!", 50, affecting = parent)
+		owner.custom_pain("You feel a stabbing pain in your [parent.name]!", 50, TRUE, affecting = parent)
 	break_organ()
 
-//exposure to extreme pressures can rupture lungs
-/obj/item/organ/lungs/proc/check_rupturing(breath_pressure, datum/gas_mixture/breath)
-	if(isnull(last_int_pressure))
-		last_int_pressure = breath_pressure
-		return
-	
-	var/datum/gas_mixture/environment = breath
-	var/ext_pressure = (environment ? environment.return_pressure() : 0)// May be null if, say, our owner is in nullspace
+//Exposure to extreme pressures can rupture lungs
+/obj/item/organ/lungs/proc/check_rupturing(breath_pressure, datum/gas_mixture/enviro)
+	var/ext_pressure = enviro?.return_pressure()
 	var/int_pressure_diff = abs(last_int_pressure - breath_pressure)
 	var/ext_pressure_diff = abs(last_ext_pressure - ext_pressure)
-	if(int_pressure_diff > max_pressure_diff && ext_pressure_diff > max_pressure_diff)
-		var/lung_rupture_prob = (status & ORGAN_ROBOTIC) ? prob(30) : prob(60) //Robotic lungs are less likely to rupture.
-		if(!is_broken() && lung_rupture_prob) //only rupture if NOT already ruptured
+	if(int_pressure_diff > max_int_pressure_diff && ext_pressure_diff > max_ext_pressure_diff)
+		var/lung_rupture_prob = (status & ORGAN_ROBOTIC ? 30 : 60) //Robotic lungs are less likely to rupture.
+		if(!is_broken() && prob(lung_rupture_prob)) //Only rupture if NOT already ruptured
 			rupture()
 
 //TODO: lung health affects lung function
@@ -203,19 +199,13 @@
 		H.clear_alert("not_enough_oxy")
 		return TRUE
 	
-	var/breath_pressure = 0
-	if(breath)
-		breath_pressure = breath.return_pressure()
-
-	var/datum/gas_mixture/environment = owner.loc.return_air()
+	var/breath_pressure = breath?.return_pressure()
 
 	//Check for rupture before we update the last_int_pressure and last_ext_pressure variables
+	var/datum/gas_mixture/environment = owner.loc.return_air()
 	check_rupturing(breath_pressure, environment)
 
-	last_ext_pressure = 0
-	if(environment)
-		last_ext_pressure = environment.return_pressure()
-	
+	last_ext_pressure = environment?.return_pressure()
 	last_int_pressure = breath_pressure
 
 	if((!breath || (breath?.total_moles() == 0)) && (safe_co2_min || safe_nitro_min || safe_oxygen_min || safe_toxins_min))
