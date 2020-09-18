@@ -9,7 +9,7 @@
 				/obj/item/shard = 1)
 	time = 30
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_MELEE
 
 /datum/crafting_recipe/halberd
 	name = "Makeshift halberd"
@@ -21,8 +21,9 @@
 				/obj/item/hatchet = 1)
 	time = 60
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_MELEE
 
+/*Should the parts requirement on the transforming weapons be switched from the rifle stock to the pistol grip, or would that make it too cheap to craft?
 /datum/crafting_recipe/switchblade_ms
 	name = "Switchblade"
 	result = /obj/item/switchblade/crafted
@@ -33,7 +34,7 @@
 	tools = list(TOOL_WELDER)
 	time = 45
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_MELEE
 
 /datum/crafting_recipe/balisong
 	name = "Butterfly Knife"
@@ -45,7 +46,7 @@
 	tools = list(TOOL_WELDER)
 	time = 60
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_MELEE
 
 /datum/crafting_recipe/switchblade_deluxe
 	name = "Deluxe Switchblade"
@@ -62,7 +63,7 @@
 	time = 250
 	tools = list(TOOL_WELDER)
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_MELEE
 
 /datum/crafting_recipe/trayshield
 	name = "Tray shield"
@@ -72,7 +73,7 @@
 				/obj/item/stack/cable_coil = 5)
 	time = 60
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_MELEE
 
 /datum/crafting_recipe/shank
 	name = "Shank"
@@ -82,7 +83,7 @@
 				/obj/item/shard = 1)
 	time = 20
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_MELEE
 
 //////////////////
 ///GUNS CRAFTING//
@@ -217,7 +218,7 @@
 	tools = list(TOOL_WELDER)
 	time = 75
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_MELEE
 
 /datum/crafting_recipe/lockermechdrill
 	name = "Makeshift exosuit drill"
@@ -277,7 +278,7 @@
 	reqs = list(/obj/item/rack_parts = 1)
 	time = 35
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
 
 /datum/crafting_recipe/cylinder
 	name = "Aluminum cylinder"
@@ -286,7 +287,7 @@
 	tools = list(TOOL_WIRECUTTER)
 	time = 35
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
 
 /datum/crafting_recipe/cylinderassembly
 	name = "Cylinder assembly"
@@ -294,7 +295,7 @@
 	reqs = list(/obj/item/aluminum_cylinder = 2)
 	time = 40
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
 
 /datum/crafting_recipe/barrel
 	name = "Makeshift gun barrel"
@@ -303,7 +304,7 @@
 	tools = list(TOOL_WELDER)
 	time = 40
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
 
 /datum/crafting_recipe/reservoir
 	name = "Fuel reservoir"
@@ -312,7 +313,7 @@
 	tools = list(TOOL_SCREWDRIVER)
 	time = 20
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
 
 /datum/crafting_recipe/blade
 	name = "Metal blade"
@@ -321,7 +322,7 @@
 	tools = list(TOOL_SCREWDRIVER)
 	time = 20
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
 
 /datum/crafting_recipe/largeblade
 	name = "Large metal blade"
@@ -330,7 +331,7 @@
 	tools = list(TOOL_SCREWDRIVER)
 	time = 20
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
 
 /datum/crafting_recipe/sword
 	name = "Makeshift sword"
@@ -341,7 +342,7 @@
 	tools = list(TOOL_WELDER)
 	time = 20
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_MELEE
 
 /datum/crafting_recipe/rails
 	name = "Metal rails"
@@ -351,7 +352,7 @@
 	tools = list(TOOL_WELDER)
 	time = 50
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
 /* I don't think porting the revialver is worth it
 /datum/crafting_recipe/beakercylinder
 	name = "Beaker cylinder"
@@ -360,7 +361,7 @@
 	tools = list(TOOL_SCREWDRIVER)
 	time = 20
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
 */
 /datum/crafting_recipe/assemblygeneral
 	name = "General gun assembly"
@@ -370,7 +371,7 @@
 	tools = list(TOOL_WRENCH, TOOL_WELDER)
 	time = 150
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
 
 /datum/crafting_recipe/assemblygeneralbarreled
 	name = "General barreled gun assembly"
@@ -380,7 +381,7 @@
 	tools = list(TOOL_WRENCH)
 	time = 100
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
 
 /datum/crafting_recipe/railgun_assembly
 	name = "Rail gun assembly"
@@ -394,7 +395,7 @@
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
 	time = 200
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
 
 /datum/crafting_recipe/railgun
 	name = "Rail gun"
@@ -423,4 +424,4 @@
 				/obj/item/wrench = 1)
 	time = 30
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_PARTS
