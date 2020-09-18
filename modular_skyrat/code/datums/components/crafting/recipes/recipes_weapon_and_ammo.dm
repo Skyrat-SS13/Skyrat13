@@ -24,6 +24,7 @@
 	subcategory = CAT_MELEE
 
 /*Should the parts requirement on the transforming weapons be switched from the rifle stock to the pistol grip, or would that make it too cheap to craft?
+*/
 /datum/crafting_recipe/switchblade_ms
 	name = "Switchblade"
 	result = /obj/item/switchblade/crafted
