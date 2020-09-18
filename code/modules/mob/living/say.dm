@@ -158,11 +158,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	var/succumbed = FALSE
 
-	if(message_mode == MODE_WHISPER)
+	if(in_critical || message_mode == MODE_WHISPER)
 		message_range = 1
 		message_mode = MODE_WHISPER
 		src.log_talk(message, LOG_WHISPER)
-		if(InFullCritical())
+		if(in_critical)
 			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + (get_physical_damage() - health))
 			// If we cut our message short, abruptly end it with a-..
 			var/message_len = length_char(message)

@@ -60,7 +60,7 @@
 				owner.eye_blurry = max(owner.eye_blurry,6)
 				damprob = owner.chem_effects[CE_STABLE] ? 15 : 100
 				if(!past_damage_threshold(6) && prob(damprob))
-					applyOrganDamage(DAMAGE_LOW_OXYGENATION)
+					applyOrganDamage(DAMAGE_LOWER_OXYGENATION)
 				if(!owner.IsParalyzed() && prob(15))
 					owner.Paralyze(800)
 					to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")

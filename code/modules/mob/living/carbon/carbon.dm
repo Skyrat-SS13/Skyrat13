@@ -1429,11 +1429,11 @@
 
 //Replaces crit with shock
 /mob/living/carbon/InCritical()
-	if(isalien(src)) //Horrible.
+	if(!ishuman(src)) //Horrible.
 		return ..()
 	return InShock()
 
 /mob/living/carbon/InFullCritical()
-	if(isalien(src)) //Horrible.
+	if(!ishuman(src)) //Horrible.
 		return ..()
 	return InFullShock()

@@ -227,10 +227,10 @@
 	return max(0,traumatic_shock)
 
 /mob/living/carbon/proc/InShock()
-	return (get_shock() >= SHOCK_STAGE_3)
+	return (shock_stage >= SHOCK_STAGE_4)
 
 /mob/living/carbon/proc/InFullShock()
-	return (get_shock() >= SHOCK_STAGE_6)
+	return (shock_stage >= SHOCK_STAGE_6)
 
 /mob/living/carbon/proc/handle_shock()
 	if(!can_feel_pain())
