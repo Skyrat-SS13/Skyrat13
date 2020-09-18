@@ -94,7 +94,11 @@
 			for(var/datum/surgery/S in surgeries)
 				if(!S.lying_required || (S.lying_required && lying))
 					if(S.next_step(user,user.a_intent))
-						return 1
+						return TRUE
+			//if it's a tool and it's on help intent, just always avoid attacking
+			if((user.a_intent == INTENT_HELP) && I.tool_behaviour)
+				return TRUE
+			
 	//skyrat edit
 	if(!all_wounds || !all_wounds.len || !(user.a_intent == INTENT_HELP || user == src))
 		return ..()
