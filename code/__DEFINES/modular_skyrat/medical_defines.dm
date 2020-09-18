@@ -215,6 +215,6 @@
 #define REJECTION_LEVEL_4 500
 
 //Brain damage related defines
-#define MINIMUM_DAMAGE_TRAUMA_ROLL 3 //We need to take at least this much brainloss gained at once to roll for traumas, any less it won't roll
+#define MINIMUM_DAMAGE_TRAUMA_ROLL 4 //We need to take at least this much brainloss gained at once to roll for traumas, any less it won't roll
 #define DAMAGE_LOW_OXYGENATION 1 //Brainloss caused by low blood oxygenation
-#define DAMAGE_VERY_LOW_OXYGENATION 2 //The above but low
+#define DAMAGE_VERY_LOW_OXYGENATION 3 //The above but even worse

@@ -36,7 +36,7 @@
 		else
 			oxygen_reserve = min(initial(oxygen_reserve), oxygen_reserve+1)
 		if(!oxygen_reserve) //(hardcrit)
-			owner.Paralyze(300)
+			owner.Stun(500)
 		var/can_heal = damage && brain_can_heal && (damage < maxHealth) && (damage % damage_threshold_value || owner.chem_effects[CE_BRAIN_REGEN] || (!past_damage_threshold(3) && owner.chem_effects[CE_STABLE]))
 		var/damprob = 0
 		//Effects of bloodloss
@@ -45,16 +45,16 @@
 				if(can_heal)
 					damage = max(damage-1, 0)
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
-				damprob = owner.chem_effects[CE_STABLE] ? 5 : 60
+				damprob = owner.chem_effects[CE_STABLE] ? 5 : 50
 				if(!past_damage_threshold(2) && prob(damprob))
 					applyOrganDamage(DAMAGE_LOW_OXYGENATION)
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
 				owner.eye_blurry = max(owner.eye_blurry,6)
-				damprob = owner.chem_effects[CE_STABLE] ? 10 : 80
+				damprob = owner.chem_effects[CE_STABLE] ? 10 : 75
 				if(!past_damage_threshold(4) && prob(damprob))
 					applyOrganDamage(DAMAGE_LOW_OXYGENATION)
 				if(!owner.IsParalyzed() && prob(10))
-					owner.Paralyze(rand(1,3))
+					owner.Paralyze(rand(400,800))
 					to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				owner.eye_blurry = max(owner.eye_blurry,6)
@@ -62,9 +62,9 @@
 				if(!past_damage_threshold(6) && prob(damprob))
 					applyOrganDamage(DAMAGE_LOW_OXYGENATION)
 				if(!owner.IsParalyzed() && prob(15))
-					owner.Paralyze(500)
+					owner.Paralyze(800)
 					to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")
-			// Also see heart.dm, being below this point puts you into cardiac arrest.
+			// Also see heart.dm, being below this point puts you into cardiac arrest no matter what
 			if(-(INFINITY) to BLOOD_VOLUME_SURVIVE)
 				owner.eye_blurry = max(owner.eye_blurry,6)
 				damprob = owner.chem_effects[CE_STABLE] ? 20 : 100
