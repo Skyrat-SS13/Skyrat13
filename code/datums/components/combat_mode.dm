@@ -89,6 +89,10 @@
 			to_chat(source, self_message)
 		if(playsound)
 			source.playsound_local(source, 'sound/misc/ui_toggle.ogg', 50, FALSE, pressure_affected = FALSE) //Sound from interbay!
+		source.stop_sound_channel(CHANNEL_COMBAT)
+		if(source.client?.prefs?.combat_music && GLOB.combat_music_options[source.client.prefs.combat_music])
+			var/sound/music = sound(get_sfx(GLOB.combat_music_options[source.client.prefs.combat_music]), TRUE)
+			source.playsound_local(turf_source = source, S = music, vol = 75, vary = 0, channel = CHANNEL_COMBAT, pressure_affected = FALSE)
 	//RegisterSignal(source, COMSIG_MOB_CLIENT_MOUSEMOVE, .proc/onMouseMove) //Skyrat change
 	RegisterSignal(source, COMSIG_MOVABLE_MOVED, .proc/on_move)
 	RegisterSignal(source, COMSIG_MOVABLE_BUMP, .proc/on_bump) //Skyrat change
@@ -119,6 +123,7 @@
 			to_chat(source, self_message)
 		if(playsound)
 			source.playsound_local(source, 'sound/misc/ui_toggleoff.ogg', 50, FALSE, pressure_affected = FALSE) //Slightly modified version of the toggleon sound!
+		source.stop_sound_channel(CHANNEL_COMBAT)
 	UnregisterSignal(source, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_CLIENT_MOUSEDOWN, COMSIG_MOB_CLIENT_MOUSEUP, COMSIG_MOVABLE_BUMP)) //Skyrat change
 	if(hud_icon)
 		hud_icon.combat_on = FALSE
