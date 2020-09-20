@@ -30,14 +30,14 @@
 /// Standard reagents value defines.
 /// Take a grain of salt, only "rare" reagents should have a decent value here, for balance reasons.
 /// TL;DR Think of it also like general market request price more than rarity.
-#define REAGENT_VALUE_NONE			1	//all the stuff pretty much available in potentially unlimited quantities.
-#define REAGENT_VALUE_VERY_COMMON	3 //same as above, just not so unlimited.
-#define REAGENT_VALUE_COMMON		5
+#define REAGENT_VALUE_NONE			0.2	//all the stuff pretty much available in potentially unlimited quantities.
+#define REAGENT_VALUE_VERY_COMMON	1 //same as above, just not so unlimited.
+#define REAGENT_VALUE_COMMON		3
 #define REAGENT_VALUE_UNCOMMON		15
 #define REAGENT_VALUE_RARE			25
 #define REAGENT_VALUE_VERY_RARE		50
-#define REAGENT_VALUE_EXCEPTIONAL	100	//extremely rare or tedious to craft, possibly unsynthetizable, reagents.
-#define REAGENT_VALUE_AMAZING		80	//reserved ONLY for non-mass produceable, unsynthetizable reagents.
+#define REAGENT_VALUE_EXCEPTIONAL	75	//extremely rare or tedious to craft, possibly unsynthetizable, reagents.
+#define REAGENT_VALUE_AMAZING		100	//reserved ONLY for non-mass produceable, unsynthetizable reagents.
 #define REAGENT_VALUE_GLORIOUS		500	//reagents that shouldn't be possible to get or farm under normal conditions. e.g. Romerol, fungal TB, adminordrazine...
 
 #define TOUCH			1	// splashing
