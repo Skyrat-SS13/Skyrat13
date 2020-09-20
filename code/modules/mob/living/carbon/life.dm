@@ -398,7 +398,7 @@
 				//Moving around with broken bones won't do you any good
 				if(!stat && BP.is_broken() && BP.get_organs() && prob(10) && !stat && can_feel_pain() && chem_effects[CE_PAINKILLER] < 50)
 					custom_pain("Pain jolts through your broken [BP.encased ? BP.encased : BP.name], staggering you!", 50, affecting = BP)
-					Stun(20)
+					Stun(200)
 				//Moving makes open wounds get infected much faster
 				for(var/datum/wound/W in BP.wounds)
 					if(W.infection_check())
@@ -425,8 +425,9 @@
 		//This is stupid but makes my life easier
 		for(var/bopa in bodyparts)
 			var/obj/item/bodypart/BP = bopa
-			BP.on_death()
-			BP.update_germs()
+			if(BP)
+				BP.on_death()
+				BP.update_germs()
 
 /mob/living/carbon/handle_diseases()
 	for(var/thing in diseases)

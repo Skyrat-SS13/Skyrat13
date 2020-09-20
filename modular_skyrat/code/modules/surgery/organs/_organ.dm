@@ -280,7 +280,7 @@
 		germ_level--
 	
 	if(germ_level >= INFECTION_LEVEL_ONE/2)
-		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes, when immunity is full.
+		//Aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes, when immunity is full.
 		if(antibiotics < 5 && prob(round(germ_level/6 * owner.immunity_weakness() * 0.01)))
 			if(virus_immunity > 0)
 				germ_level += clamp(round(1/virus_immunity), 1, 10) // Immunity starts at 100. This doubles infection rate at 50% immunity. Rounded to nearest whole.
@@ -294,11 +294,24 @@
 	if(germ_level >= INFECTION_LEVEL_TWO)
 		var/obj/item/bodypart/bodypart = owner.get_bodypart(zone)
 		if(bodypart)
-			//spread germs
+			//Spread germs
 			if(antibiotics < 5 && bodypart.germ_level < germ_level && (bodypart.germ_level < INFECTION_LEVEL_ONE*2 || prob(owner.immunity_weakness() * 0.3)))
 				bodypart.germ_level++
-			if(prob(3))	//about once every 30 seconds
-				applyOrganDamage(1)
+			//Cause organ damage about once every ~30 seconds
+			//The bodypart deals with dealing raw toxin damage, let's not stack onto the problem now
+			if(prob(3))
+				applyOrganDamage(2)
+	
+	//Organ is just completely dead by this point
+	if(germ_level >= INFECTION_LEVEL_THREE)
+		kill_organ()
+		var/obj/item/bodypart/bodypart = owner.get_bodypart(zone)
+		if(bodypart)
+			//Spread germs
+			if(antibiotics < 10 && bodypart.germ_level < germ_level && (bodypart.germ_level < INFECTION_LEVEL_THREE))
+				bodypart.germ_level++
+			//Cause toxin damage
+			bodypart.receive_damage(toxin = rand(1,2))
 
 //Rejection
 /obj/item/organ/proc/handle_rejection()

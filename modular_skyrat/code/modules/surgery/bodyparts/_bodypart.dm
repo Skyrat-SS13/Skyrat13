@@ -299,31 +299,37 @@
 		//Warn the user that they're a bit fucked
 		if(prob(4) && germ_level < INFECTION_LEVEL_ONE)
 			if(owner.stat != DEAD)
-				owner.custom_pain("<span class='warning'>Your [src.name] feels a bit warm and swollen...</span>", 5, FALSE, src)
-		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes, when immunity is full.
+				owner.custom_pain("<span class='warning'>Your [src.name] feels a bit warm and swollen...</span>", 8, FALSE, src)
+		//Aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes, when immunity is full.
 		if(antibiotics < 5 && prob(round(germ_level/6 * owner.immunity_weakness() * 0.01)))
 			if(virus_immunity > 0)
-				germ_level += clamp(round(1/virus_immunity), 1, 10) // Immunity starts at 100. This doubles infection rate at 50% immunity. Rounded to nearest whole.
-			else // Will only trigger if immunity has hit zero. Once it does, 10x infection rate.
+				germ_level += clamp(round(1/virus_immunity), 1, 10) //Immunity starts at 100. This doubles infection rate at 50% immunity. Rounded to nearest whole.
+			else //Will only trigger if immunity has hit zero. Once it does, 10x infection rate.
 				germ_level += 10
 	
 	if(germ_level >= INFECTION_LEVEL_ONE)
 		if(prob(6) && germ_level < INFECTION_LEVEL_TWO)
 			if(owner.stat != DEAD)
-				owner.custom_pain("<span class='warning'>Your [src.name] feels hotter than normal...</span>", 7, FALSE, src)
+				owner.custom_pain("<span class='warning'>Your [src.name] feels hotter than normal...</span>", 12, FALSE, src)
 		var/fever_temperature = (BODYTEMP_HEAT_DAMAGE_LIMIT - BODYTEMP_NORMAL - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + BODYTEMP_NORMAL
 		owner.bodytemperature += clamp((fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, 0, fever_temperature - owner.bodytemperature)
 	
 	//Spread the infection to internal organs, child and parent bodyparts
 	if(germ_level >= INFECTION_LEVEL_TWO)
+		//Chance to cause minor toxin damage once every ~30 seconds
+		if(prob(3))
+			receive_damage(toxin = 1)
+		//Chance to cause pain, while also informign the owner
 		if(prob(8))
 			if(owner.stat != DEAD)
-				owner.custom_pain("<span class='danger'>Your [src.name] starts leaking some pus...</span>", 12, FALSE, src)
-		var/obj/item/organ/target_organ //make internal organs become infected one at a time instead of all at once
+				owner.custom_pain("<span class='danger'>Your [src.name] starts leaking some pus...</span>", 18, FALSE, src)
+		
+		//Make internal organs become infected one at a time instead of all at once
+		var/obj/item/organ/target_organ
 		for(var/obj/item/organ/O in get_organs())
-			//once the organ reaches whatever we can give it, or level two, switch to a different one
+			//Once the organ reaches whatever we can give it, or level two, switch to a different one
 			if(O.germ_level > 0 && O.germ_level < min(germ_level, INFECTION_LEVEL_TWO))
-				//choose the organ with the highest germ_level
+				//Choose the organ with the highest germ_level
 				if(!target_organ || (O.germ_level > target_organ.germ_level))
 					target_organ = O
 
@@ -344,14 +350,14 @@
 
 	//Overdosing is necessary to stop severe infections
 	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 45)
-		if(!(status & BODYPART_DEAD))
+		if(!is_dead())
 			status |= BODYPART_DEAD
 			if(owner.stat != DEAD)
-				to_chat(owner, "<span class='danger'>You can't feel your [name] anymore...</span>")
+				owner.custom_pain("<span class='danger'>You can't feel your [name] anymore...</span>", 21,  TRUE, src, FALSE)
 			update_disabled()
 		
 		germ_level++
-		receive_damage(toxin = (rand(1, 2) * 0.5))
+		receive_damage(toxin = 1)
 
 //Rejection
 /obj/item/bodypart/proc/handle_rejection()
