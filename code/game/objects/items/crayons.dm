@@ -586,7 +586,7 @@
 /obj/item/storage/crayons/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 7
+	STR.max_items = 8
 	STR.can_hold = typecacheof(list(/obj/item/toy/crayon))
 
 /obj/item/storage/crayons/PopulateContents()
@@ -597,6 +597,7 @@
 	new /obj/item/toy/crayon/blue(src)
 	new /obj/item/toy/crayon/purple(src)
 	new /obj/item/toy/crayon/black(src)
+	new /obj/item/toy/crayon/white(src)
 	update_icon()
 
 /obj/item/storage/crayons/update_overlays()
