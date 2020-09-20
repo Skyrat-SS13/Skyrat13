@@ -17622,13 +17622,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aMw" = (
-/obj/machinery/vending/dinnerware{
-	contraband = list(/obj/item/reagent_containers/food/condiment/flour = 4);
-	desc = "This vendor is full of condiments to put on food.";
-	name = "\improper Condiments Vendor";
-	product_ads = "Get your sauces here!;No slave labour was used to make these products!;Nanotrasen Approved?!";
-	products = list(/obj/item/storage/bag/tray = 8, /obj/item/reagent_containers/food/drinks/drinkingglass = 10, /obj/item/storage/box/cups = 5, /obj/item/reagent_containers/food/condiment/pack/ketchup = 20, /obj/item/reagent_containers/food/condiment/pack/mustard = 20, /obj/item/reagent_containers/food/condiment/pack/hotsauce = 20, /obj/item/reagent_containers/food/condiment/pack/astrotame = 20, /obj/item/reagent_containers/food/condiment/saltshaker = 20, /obj/item/reagent_containers/food/condiment/peppermill = 20)
-	},
+/obj/machinery/vending/dinnerware, //Skyrat change
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aMx" = (
@@ -19506,9 +19500,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "aRA" = (
-/obj/machinery/vending/dinnerware{
-	contraband = list(/obj/item/kitchen/rollingpin = 2, /obj/item/kitchen/knife/butcher = 2, /obj/item/reagent_containers/food/condiment/flour = 4)
-	},
+/obj/machinery/vending/dinnerware, //Skyrat Change
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aRB" = (
@@ -20422,6 +20414,10 @@
 "aTN" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour, //Skyrat Change Start
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/food/condiment/rice, //Skyrat Change Stop
 /obj/item/kitchen/rollingpin,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
