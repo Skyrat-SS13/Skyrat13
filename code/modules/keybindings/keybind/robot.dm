@@ -59,3 +59,12 @@
 	var/mob/living/silicon/robot/R = user.mob
 	R.uneq_active()
 	return TRUE
+
+/datum/keybinding/robot/drone/can_use(client/user)
+	return isdrone(user.mob)
+
+/datum/keybinding/robot/drone/quick_equip // QOL: Drone quickequip
+	hotkey_keys = list("E")
+	name = "quick_equip"
+	full_name = "Quick Equip"
+	description = "Quickly puts an item in the best slot available"
