@@ -82,7 +82,7 @@
 	include_subtypes = TRUE
 
 /datum/export/weapon/handcuffs
-	cost = 30 //Skyrat edit
+	cost = 12 //Skyrat edit
 	unit_name = "pair"
 	message = "of handcuffs"
 	export_types = list(/obj/item/restraints/handcuffs)
