@@ -24,8 +24,13 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	))
 GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 		"Hot Plates" = 'modular_skyrat/sound/music/hot_plates.ogg',
+		"Angelus" = 'modular_skyrat/sound/music/angelus.ogg',
+		"Death Squad" = 'modular_skyrat/sound/music/deathsquads.ogg',
 		"Thunderdome" = 'modular_skyrat/sound/music/thunderdome.ogg',
-		"Death Squad" ='modular_skyrat/sound/music/deathsquads.ogg',
+		"Air Raid" = 'modular_skyrat/sound/music/airraid.ogg',
+		"Departure To Destruction" = 'modular_skyrat/sound/music/departure.ogg',
+		"Hydrogen" = 'modular_skyrat/sound/music/hydrogen.ogg',
+		"Burning Coals" = 'modular_skyrat/sound/music/burningcoals.ogg',
 	))
 
 /datum/preferences
