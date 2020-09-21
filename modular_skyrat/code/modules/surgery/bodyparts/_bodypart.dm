@@ -281,7 +281,7 @@
 
 	if(germ_level < INFECTION_LEVEL_ONE)
 		germ_level = 0	//cure instantly
-	else if(germ_level < INFECTION_LEVEL_TWO)
+	else
 		germ_level -= antibiotics * SANITIZATION_ANTIBIOTIC	//at germ_level == 500 and 50 antibiotic, this should cure the infection in 5 minutes
 	if(owner && owner.lying)
 		germ_level -= SANITIZATION_LYING
