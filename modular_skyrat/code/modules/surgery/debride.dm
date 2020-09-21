@@ -9,19 +9,6 @@
 	possible_locs = ALL_BODYPARTS
 	requires_real_bodypart = TRUE
 
-/datum/surgery/debride/can_start(mob/living/user, mob/living/carbon/target)
-	if(..())
-		var/obj/item/bodypart/targeted_bodypart = target.get_bodypart(user.zone_selected)
-		if(targeted_bodypart)
-			if(targeted_bodypart.germ_level || targeted_bodypart.is_dead())
-				return TRUE
-			else
-				for(var/i in targeted_bodypart.wounds)
-					var/datum/wound/wound = i
-					if(wound.germ_level)
-						return TRUE
-		return FALSE
-
 //SURGERY STEPS
 
 ///// Debride
