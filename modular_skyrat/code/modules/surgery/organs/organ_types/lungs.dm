@@ -147,8 +147,10 @@
 	var/ext_pressure = enviro?.return_pressure()
 	var/int_pressure_diff = abs(last_int_pressure - breath_pressure)
 	var/ext_pressure_diff = abs(last_ext_pressure - ext_pressure)
+
 	//Don't explode the lungs if we are in a space suit
-	var/ext_pressure = owner.calculate_affecting_pressure(ext_pressure)
+	ext_pressure = owner.calculate_affecting_pressure(ext_pressure)
+
 	if(int_pressure_diff > max_int_pressure_diff && ext_pressure_diff > max_ext_pressure_diff)
 		var/lung_rupture_prob = (status & ORGAN_ROBOTIC ? 30 : 60) //Robotic lungs are less likely to rupture.
 		if(!is_broken() && prob(lung_rupture_prob)) //Only rupture if NOT already ruptured
