@@ -24,7 +24,7 @@
 	// "must be in ears to hear" restriction.
 	radio.name = "internal radio"
 	radio.subspace_transmission = subspace_transmission
-	radio.canhear_range = -1
+	radio.canhear_range = 0
 	if(radio_key)
 		radio.keyslot = new radio_key
 	radio.recalculateChannels()

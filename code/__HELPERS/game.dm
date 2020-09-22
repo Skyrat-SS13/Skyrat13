@@ -284,15 +284,7 @@
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	for(var/obj/item/radio/R in radios)
 		if(R)
-			if(R.canhear_range != -1)
-				. |= get_hearers_in_view(R.canhear_range, R)
-			else
-				if(istype(R.loc, /obj/item/implant))
-					var/obj/item/implant/I = R.loc
-					if(I.imp_in)
-						. |= I.imp_in
-
-
+			. |= get_hearers_in_view(R.canhear_range, R)
 
 
 #define SIGNV(X) ((X<0)?-1:1)
