@@ -2,12 +2,13 @@
 #define MINESWEEPER_GAME_PLAYING	1
 #define MINESWEEPER_GAME_LOST		2
 #define MINESWEEPER_GAME_WON		3
-#define MINESWEEPERIMG(what) {"<img style='border:0' <span class="minesweeper16x16 [#what]"></span>"} //Basically bypassing asset.icon_tag()
+//#define MINESWEEPERIMG(what) {"<img style='border:0' <span class="minesweeper16x16 [#what]"></span>"} //Basically bypassing asset.icon_tag()
 
 /obj/machinery/computer/arcade/minesweeper
 	name = "Minesweeper"
-	desc = "An arcade machine that generates grids. It seems that the machine sparks and screeches when a grid is generated, as if it cannot cope with the intensity of generating the grid."
+	desc = "An arcade machine that generates grids. It seems useless and broken."
 	icon_state = "arcade"
+	icon_screen = "arcade_broken"
 	circuit = /obj/item/circuitboard/computer/arcade/minesweeper
 	var/area
 	var/difficulty = ""	//To show what difficulty you are playing
@@ -27,6 +28,7 @@
 	var/table[31][51]	//Make the board boys, 30x50 board
 	var/spark_spam = FALSE
 
+/*
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user)
 	var/emagged = CHECK_BITFIELD(obj_flags, EMAGGED)
 	var/dat
@@ -411,7 +413,7 @@
 		addtimer(CALLBACK(GLOBAL_PROC, /proc/explosion, T, 0, rand(1,2),rand(1,5),rand(3,10), FALSE), 15 * ++num_explosions)
 		if(num_explosions == mine_limit_v2)
 			return
-
+*/
 #undef MINESWEEPERIMG
 #undef MINESWEEPER_GAME_MAIN_MENU
 #undef MINESWEEPER_GAME_PLAYING
