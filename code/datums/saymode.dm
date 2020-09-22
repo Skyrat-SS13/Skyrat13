@@ -104,11 +104,11 @@
 		return FALSE
 	return FALSE
 
-/datum/saymode/binary // Drones can use :b for binary, they now fall under binarycheck()
+/datum/saymode/drone // Drones can use :b for binary, they now fall under binarycheck()
 	key = MODE_KEY_DRONE
 	mode = MODE_DRONE
 
-/datum/saymode/binary/handle_message(mob/living/user, message, datum/language/language)
+/datum/saymode/drone/handle_message(mob/living/user, message, datum/language/language)
 	if(isdrone(user))
 		var/mob/living/simple_animal/drone/D = user
 		D.drone_chat(message)
