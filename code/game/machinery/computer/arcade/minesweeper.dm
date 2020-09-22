@@ -30,7 +30,9 @@
 
 
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user)
-	user << "She's dead, Jim."
+	. = ..()
+	to_chat(user,"<span class='warning'>She's dead, Jim.</span>")
+	
 /*
 	var/emagged = CHECK_BITFIELD(obj_flags, EMAGGED)
 	var/dat
@@ -51,6 +53,7 @@
 
 /obj/machinery/computer/arcade/minesweeper/proc/reset_spark_spam()
 	spark_spam = FALSE
+
 /obj/machinery/computer/arcade/minesweeper/Topic(href, href_list)
 	. = ..()
 	if(.)
