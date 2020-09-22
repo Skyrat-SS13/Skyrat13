@@ -71,8 +71,8 @@
 		if(O.germ_level)
 			our_germ_level += O.germ_level
 	
-	//Divide it by 6 to be reasonable
-	our_germ_level = CEILING(our_germ_level/6, 1)
+	//Divide it by 10 to be reasonable
+	our_germ_level = CEILING(our_germ_level/10, 1)
 
 	//Infect the wounds on the bodypart
 	for(var/datum/wound/W in BP.wounds)
