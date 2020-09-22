@@ -9,8 +9,20 @@
 	possible_locs = ALL_BODYPARTS
 	requires_real_bodypart = TRUE
 
-//SURGERY STEPS
+/datum/surgery/debride/can_start(mob/living/user, mob/living/carbon/target)
+	. = ..()
+	if(.)
+		var/obj/item/bodypart/BP = target.get_bodypart(user.zone_selected)
+		if(BP)
+			for(var/datum/wound/W in BP.wounds)
+				if(W.germ_level)
+					return TRUE
+			if(BP.germ_level)
+				return TRUE
+		else
+			return FALSE
 
+//SURGERY STEPS
 ///// Debride
 /datum/surgery_step/debride
 	name = "Excise infection"
