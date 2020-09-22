@@ -30,7 +30,7 @@
 
 
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user)
-	to_chat(user, "She's dead, Jim.")
+	user << "She's dead, Jim."
 /*
 	var/emagged = CHECK_BITFIELD(obj_flags, EMAGGED)
 	var/dat
@@ -415,7 +415,7 @@
 		if(num_explosions == mine_limit_v2)
 			return
 */
-#undef MINESWEEPERIMG
+//#undef MINESWEEPERIMG
 #undef MINESWEEPER_GAME_MAIN_MENU
 #undef MINESWEEPER_GAME_PLAYING
 #undef MINESWEEPER_GAME_LOST
