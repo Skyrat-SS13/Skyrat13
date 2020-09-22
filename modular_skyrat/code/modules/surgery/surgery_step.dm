@@ -74,7 +74,13 @@
 	//Divide it by 10 to be reasonable
 	our_germ_level = CEILING(our_germ_level/10, 1)
 
-	//Infect the wounds on the bodypart
+	//If the patient has antibiotics, kill germs by an amount equal to 10x the antibiotic force
+	//e.g. nalixidic acid has 35 force, thus would decrease germs here by 350
+	var/antibiotics = BP.owner.get_antibiotics()
+	our_germ_level = max(0, our_germ_level - antibiotics)
+
+	//If we still have germs, let's get that W
+	//First, nfect the wounds on the bodypart
 	for(var/datum/wound/W in BP.wounds)
 		if(W.germ_level < INFECTION_LEVEL_TWO)
 			W.germ_level += our_germ_level
