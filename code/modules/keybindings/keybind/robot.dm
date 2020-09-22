@@ -63,8 +63,13 @@
 /datum/keybinding/robot/drone/can_use(client/user)
 	return isdrone(user.mob)
 
-/datum/keybinding/robot/drone/quick_equip // QOL: Drone quickequip
+/datum/keybinding/robot/drone/quick_equip_drone // QOL: Drone quickequip
 	hotkey_keys = list("E")
-	name = "quick_equip"
-	full_name = "Quick Equip"
+	name = "quick_equip_drone"
+	full_name = "Quick Equip (Drone)"
 	description = "Quickly puts an item in the best slot available"
+
+/datum/keybinding/robot/drone/quick_equip_drone/down(client/user)
+	var/mob/living/simple_animal/drone/D = user.mob
+	D.quick_equip()
+	return TRUE

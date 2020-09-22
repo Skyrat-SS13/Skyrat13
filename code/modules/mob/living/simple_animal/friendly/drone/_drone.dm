@@ -81,7 +81,7 @@
 	"<span class='notify'>You can use :d to speak in a special drone-only channel, and :b to speak in the common sillicon channel.</span>\n"+\
 	"<span class='warning'>These rules are at admin discretion and will be heavily enforced.</span>\n"+\
 	"<span class='warning'><u>If you do not have the regular drone laws, follow your laws to the best of your ability.</u></span>\n"+\
-	"<span class='notify'>You can use :d to speak in a special drone-only channel, and :b to speak in the common sillicon channel.</span>"
+	"<span class='notify'>You can use :r to speak in a special drone-only channel, and :b to speak in the common sillicon channel.</span>"
 
 /mob/living/simple_animal/drone/Initialize()
 	. = ..()
@@ -105,7 +105,10 @@
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
 		diag_hud.add_to_hud(src)
 	
-	droneradio = new /obj/item/radio/headset/headset_eng(src) // Gives drones common and engineering channel
+	droneradio = new /obj/item/radio(src) // Gives drones common and engineering channel
+	droneradio.keyslot = new /obj/item/encryptionkey/headset_eng(src)
+	droneradio.canhear_range = 1
+	droneradio.recalculateChannels()
 
 /mob/living/simple_animal/drone/ComponentInitialize()
 	. = ..()
