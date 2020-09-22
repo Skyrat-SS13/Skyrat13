@@ -28,8 +28,10 @@
 	var/table[31][51]	//Make the board boys, 30x50 board
 	var/spark_spam = FALSE
 
-/*
+
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user)
+	to_chat(user, "She's dead, Jim.")
+/*
 	var/emagged = CHECK_BITFIELD(obj_flags, EMAGGED)
 	var/dat
 	if(game_status == MINESWEEPER_GAME_MAIN_MENU)
@@ -49,7 +51,6 @@
 
 /obj/machinery/computer/arcade/minesweeper/proc/reset_spark_spam()
 	spark_spam = FALSE
-
 /obj/machinery/computer/arcade/minesweeper/Topic(href, href_list)
 	. = ..()
 	if(.)
