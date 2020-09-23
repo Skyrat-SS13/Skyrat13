@@ -64,6 +64,7 @@ SUBSYSTEM_DEF(jukeboxes)
 	return FALSE
 
 /datum/controller/subsystem/jukeboxes/Initialize()
+	/*
 	var/list/tracks = flist("config/jukebox_music/sounds/")
 	for(var/S in tracks)
 		var/datum/track/T = new()
@@ -76,6 +77,7 @@ SUBSYSTEM_DEF(jukeboxes)
 		songs |= T
 	for(var/i in CHANNEL_JUKEBOX_START to CHANNEL_JUKEBOX)
 		freejukeboxchannels |= i
+	*/
 	return ..()
 
 /datum/controller/subsystem/jukeboxes/fire()
