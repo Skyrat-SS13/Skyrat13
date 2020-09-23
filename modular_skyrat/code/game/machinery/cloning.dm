@@ -505,7 +505,6 @@
 			qdel(fl)
 		unattached_flesh.Cut()
 
-	H.setCloneLoss(CLONE_INITIAL_DAMAGE)     //Yeah, clones start with very low health, not with random, because why would they start with random health
 	//H.setOrganLoss(ORGAN_SLOT_BRAIN, CLONE_INITIAL_DAMAGE)
 	// In addition to being cellularly damaged and having barely any
 
@@ -531,6 +530,9 @@
 		unattached_flesh += organ
 
 	flesh_number = unattached_flesh.len
+	
+	//Yeah, clones start with very low health, not with random, because why would they start with random health
+	H.setCloneLoss(CLONE_INITIAL_DAMAGE)
 
 /obj/machinery/clonepod/update_icon_state()
 	if(mess)
