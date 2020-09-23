@@ -103,7 +103,6 @@
 	severity = WOUND_SEVERITY_LOSS
 	wound_type = WOUND_LIST_LOSS
 	ignore_preexisting = TRUE
-	clot_rate = 0
 	max_per_type = 4
 	threshold_penalty = 80
 	demotes_to = null
@@ -115,6 +114,9 @@
 	pain_amount = 24 //Horrible, but could be worse.
 	infection_chance = 90
 	occur_text = null
+	initial_flow = 4.25
+	minimum_flow = 4
+	clot_rate = 0
 
 /datum/wound/slash/loss/get_examine_description(mob/user)
 	. = ..()

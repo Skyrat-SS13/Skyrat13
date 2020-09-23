@@ -96,9 +96,6 @@
 	severity = WOUND_SEVERITY_CRITICAL
 	wound_type = WOUND_LIST_DISEMBOWEL
 	ignore_preexisting = TRUE
-	initial_flow = 2
-	minimum_flow = 0
-	clot_rate = 0
 	max_per_type = 4
 	threshold_penalty = 80
 	demotes_to = null
@@ -111,6 +108,9 @@
 	pain_amount = 30 //Just absolutely unbearable. Will send you into shock most of the time.
 	infection_chance = 90
 	occur_text = null
+	initial_flow = 4.25
+	minimum_flow = 4
+	clot_rate = 0
 
 /datum/wound/slash/critical/incision/disembowel/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)
 	. = ..()
