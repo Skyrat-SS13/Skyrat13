@@ -2,7 +2,7 @@
 	hotkey_keys = list("CtrlF")
 	name = "toggle_zone_select"
 	full_name = "Toggle zone select"
-	description = "change your zone selection to the next one."
+	description = "Change your zone selection to the next one."
 	category = CATEGORY_TARGETING
 
 /datum/keybinding/mob/toggle_zone/down(client/user)
