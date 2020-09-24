@@ -1,0 +1,4 @@
+author: "KathrinBailey"
+delete-after: True
+changes: 
+  - bugfix: "Bioluminescent plants are no longer super bright and super short range, now they cast a dim light over a long distance."
