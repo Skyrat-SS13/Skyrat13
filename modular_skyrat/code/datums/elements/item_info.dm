@@ -11,15 +11,15 @@
 	. = ..()
 	UnregisterSignal(source, COMSIG_ITEM_ITEMINFO)
 
-/datum/element/item_info/proc/item_ui_interact(mob/user, obj/item/item, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+/datum/element/item_info/proc/item_ui_interact(obj/item/item, mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 					datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "iteminfo", capitalize(item.name), 300, 500, master_ui, state)
-		ui.initial_data = item_ui_data(user, item) //Wonky, but we use this to be able to pass the item as an argument
+		ui.reinitialize(data = item_ui_data(item, user))
 		ui.open()
 
-/datum/element/item_info/proc/item_ui_data(mob/user, obj/item/item)
+/datum/element/item_info/proc/item_ui_data(obj/item/item, mob/user)
 	var/list/data = list()
 	data["name"] = capitalize(item.name)
 	data["integrity"] = item.obj_integrity
