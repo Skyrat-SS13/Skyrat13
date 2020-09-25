@@ -17622,7 +17622,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aMw" = (
-/obj/machinery/vending/dinnerware, //Skyrat change
+/obj/machinery/vending/dinnerware,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aMx" = (
@@ -19500,7 +19500,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "aRA" = (
-/obj/machinery/vending/dinnerware, //Skyrat Change
+/obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aRB" = (
@@ -20414,10 +20414,10 @@
 "aTN" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour, //Skyrat Change Start
+/obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice, //Skyrat Change Stop
+/obj/item/reagent_containers/food/condiment/rice,
 /obj/item/kitchen/rollingpin,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
