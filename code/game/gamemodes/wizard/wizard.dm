@@ -42,7 +42,7 @@
 /datum/game_mode/wizard/generate_report()
 	return "Bluespace fluctuations are becoming more commonplace in your sector, alongside strange readings on scanners coinciding with strangely dressed individuals reportedly 'casting spells'. \
 	While this seems like hysteria from frontier colonists, be on the lookout for strange men or women boarding your station and exhbiting strange abilities. There are stranger things than magic \
-	in the vast reaches of space, after all..."
+	in the vast reaches of space, after all."
 
 
 /datum/game_mode/wizard/are_special_antags_dead()
