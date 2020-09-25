@@ -40,7 +40,7 @@
 	<span class='notice'>Crew</span>: Put an end to the undead infestation before the station is overcome!"
 
 /datum/game_mode/bloodsucker/generate_report()
-	return "Reports indicate that some of your crew may have toppled statues in the past week, angering the gods and becoming cursed with undeath and a desire for blood. Watch out for crewmembers that seem to shun the light or are found pale and delirious."
+	return "Reports from other sectors indicate strange occurences in isolated colonies and stations. Crew members are reporting staggering bloodloss without injury, and suspicious figures stalking through the darkness. While these might bear resemblance to old Earth folklore, we do not want to jump to any hasty conclusions, especially given the fringe religious elements that can be found on the frontier."
 
 // Seems to be run by game ONCE, and finds all potential players to be antag.
 /datum/game_mode/bloodsucker/pre_setup()

@@ -251,12 +251,9 @@ Credit where due:
 		SSticker.mode_result = "loss - servants failed their objective (summon ratvar)"
 
 /datum/game_mode/clockwork_cult/generate_report()
-	return "Bluespace monitors near your sector have detected a continuous stream of patterned fluctuations since the station was completed. It is most probable that a powerful entity \
-	from a very far distance away is using to the station as a vector to cross that distance through bluespace. The theoretical power required for this would be monumental, and if \
-	the entity is hostile, it would need to rely on a single central power source - disrupting or destroying that power source would be the best way to prevent said entity from causing \
-	harm to company personnel or property.<br><br>Keep a sharp on any crew that appear to be oddly-dressed or using what appear to be magical powers, as these crew may be defectors \
-	working for this entity and utilizing highly-advanced technology to cross the great distance at will. If they should turn out to be a credible threat, the task falls on you and \
-	your crew to dispatch it in a timely manner."
+	return "A fringe extremist group displaying brass icons has been reported within your region. These individuals are reports as wielding powerful, taser-like weapons, as well as seemingly \
+	abducting people to unknown places. These individuals will likely attempt infiltration of isolated communities and stations within the sector, so be on the lookout for suspicious behavior and \
+	unfamiliar faces among your crew."
 
 /datum/game_mode/proc/update_servant_icons_added(datum/mind/M)
 	var/datum/atom_hud/antag/A = GLOB.huds[ANTAG_HUD_CLOCKWORK]
