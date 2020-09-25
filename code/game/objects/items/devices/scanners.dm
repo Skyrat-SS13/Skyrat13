@@ -577,6 +577,11 @@ GENETICS SCANNER
 	for(var/obj/item/organ/O in C.internal_organs)
 		var/result = "<span class='info'>[capitalize(O.name)]: "
 		var/list/results = O.get_scan_results(TRUE)
+		var/pain = O.get_pain()
+		if(!advanced)
+			pain = (round(pain/10, 1) * 10)
+		if(pain)
+			results += "[pain] pain"
 		if(length(results))
 			result += results.Join(", ")
 			result += "</span>\n"
@@ -585,7 +590,7 @@ GENETICS SCANNER
 		msg += "<span class='info'>N/A</span>\n"
 	else
 		msg += organ_info.Join("")
-	msg += "<span class='info'><B>Total Pain:</B> [C.getPainLoss()]</span>"
+	msg += "<span class='info'><B>Total Pain:</B> [advanced ? C.getPainLoss() : round(C.getPainLoss(), 10)]</span>"
 	msg += "\n"
 	msg += "*---------*</span>"
 	to_chat(user, msg)

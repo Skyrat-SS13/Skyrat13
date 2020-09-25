@@ -4,14 +4,14 @@
 ///// Debride infected flesh
 /datum/surgery/debride
 	name = "Debride infected flesh"
-	steps = list(/datum/surgery_step/debride, /datum/surgery_step/dress)
+	steps = list(/datum/surgery_step/debride,
+				/datum/surgery_step/dress)
 	target_mobtypes = list(/mob/living/carbon)
 	possible_locs = ALL_BODYPARTS
-	requires_real_bodypart = TRUE
+	requires_bodypart_type = BODYPART_ORGANIC
 
 /datum/surgery/debride/can_start(mob/living/user, mob/living/carbon/target)
-	. = ..()
-	if(.)
+	if(..())
 		var/obj/item/bodypart/BP = target.get_bodypart(user.zone_selected)
 		if(BP)
 			for(var/datum/wound/W in BP.wounds)
