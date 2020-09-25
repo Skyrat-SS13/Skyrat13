@@ -163,13 +163,13 @@
 	return
 
 /obj/item/organ/process()	//runs decay when outside of a person AND ONLY WHEN OUTSIDE (i.e. long obj).
+	if(owner)
+		STOP_PROCESSING(SSobj, src)
+		return
 	on_death() //Kinda hate doing it like this, but I really don't want to call process directly.
 
 //Sources; life.dm process_organs
 /obj/item/organ/proc/on_death() //Runs when outside AND inside.
-	if(owner)
-		STOP_PROCESSING(SSobj, src)
-		return
 	decay()
 
 //Applys the slow damage over time decay
