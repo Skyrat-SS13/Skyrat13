@@ -170,6 +170,8 @@
 	return 1
 
 /datum/admins/proc/DB_ban_unban(ckey, bantype, job = "")
+	if(IsAdminAdvancedProcCall())
+		return
 
 	if(!check_rights(R_BAN))
 		return
@@ -321,7 +323,8 @@
 			return
 
 /datum/admins/proc/DB_ban_unban_by_id(id)
-
+	if(IsAdminAdvancedProcCall())
+		return
 	if(!check_rights(R_BAN))
 		return
 

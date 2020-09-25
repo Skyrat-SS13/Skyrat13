@@ -7,6 +7,8 @@
 	usr.client.holder.edit_admin_permissions()
 
 /datum/admins/proc/edit_admin_permissions(action, target, operation, page)
+	if(IsAdminAdvancedProcCall())
+		return
 	if(!check_rights(R_PERMISSIONS))
 		return
 	var/list/output = list("<link rel='stylesheet' type='text/css' href='panels.css'><a href='?_src_=holder;[HrefToken()];editrightsbrowser=1'>\[Permissions\]</a>")
@@ -125,6 +127,8 @@
 	usr << browse("<!DOCTYPE html><html>[jointext(output, "")]</html>","window=editrights;size=1000x650")
 
 /datum/admins/proc/edit_rights_topic(list/href_list)
+	if(IsAdminAdvancedProcCall())
+		return
 	if(!check_rights(R_PERMISSIONS))
 		message_admins("[key_name_admin(usr)] attempted to edit admin permissions without sufficient rights.")
 		log_admin("[key_name(usr)] attempted to edit admin permissions without sufficient rights.")
@@ -201,6 +205,8 @@
 	edit_admin_permissions()
 
 /datum/admins/proc/add_admin(admin_ckey, admin_key, use_db)
+	if(IsAdminAdvancedProcCall())
+		return
 	if(admin_ckey)
 		. = admin_ckey
 	else
@@ -235,6 +241,8 @@
 		qdel(query_add_admin_log)
 
 /datum/admins/proc/remove_admin(admin_ckey, admin_key, use_db, datum/admins/D)
+	if(IsAdminAdvancedProcCall())
+		return
 	if(alert("Are you sure you want to remove [admin_ckey]?","Confirm Removal","Do it","Cancel") == "Do it")
 		GLOB.admin_datums -= admin_ckey
 		GLOB.deadmins -= admin_ckey
@@ -258,6 +266,8 @@
 		log_admin(m2)
 
 /datum/admins/proc/force_readmin(admin_key, datum/admins/D)
+	if(IsAdminAdvancedProcCall())
+		return
 	if(!D || !D.deadmined)
 		return
 	D.activate()
@@ -265,6 +275,8 @@
 	log_admin("[key_name(usr)] forcefully readmined [admin_key]")
 
 /datum/admins/proc/force_deadmin(admin_key, datum/admins/D)
+	if(IsAdminAdvancedProcCall())
+		return
 	if(!D || D.deadmined)
 		return
 	message_admins("[key_name_admin(usr)] forcefully deadmined [admin_key]")
@@ -272,6 +284,8 @@
 	D.deactivate() //after logs so the deadmined admin can see the message.
 
 /datum/admins/proc/change_admin_rank(admin_ckey, admin_key, use_db, datum/admins/D, legacy_only)
+	if(IsAdminAdvancedProcCall())
+		return
 	var/datum/admin_rank/R
 	var/list/rank_names = list()
 	if(!use_db || (use_db && !legacy_only))
@@ -346,6 +360,8 @@
 	log_admin(m2)
 
 /datum/admins/proc/change_admin_flags(admin_ckey, admin_key, use_db, datum/admins/D, legacy_only)
+	if(IsAdminAdvancedProcCall())
+		return
 	var/new_flags = input_bitfield(usr, "Include permission flags<br>[use_db ? "This will affect ALL admins with this rank." : "This will affect only the current admin [admin_key]"]", "admin_flags", D.rank.include_rights, 350, 590, allowed_edit_list = usr.client.holder.rank.can_edit_rights)
 	if(isnull(new_flags))
 		return
@@ -414,6 +430,8 @@
 	log_admin(m2)
 
 /datum/admins/proc/remove_rank(admin_rank)
+	if(IsAdminAdvancedProcCall())
+		return
 	if(!admin_rank)
 		return
 	for(var/datum/admin_rank/R in GLOB.admin_ranks)
