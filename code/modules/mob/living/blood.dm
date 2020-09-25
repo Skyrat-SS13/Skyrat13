@@ -42,7 +42,23 @@
 
 	//Blood regeneration if there is some space
 	if(blood_volume < BLOOD_VOLUME_NORMAL)
-		blood_volume += 0.1 // regenerate blood VERY slowly
+		//Need a spleen to regenerate blood
+		var/obj/item/organ/spleen/spleen = getorganslot(ORGAN_SLOT_SPLEEN)
+		if(spleen)
+			var/nutrition_ratio = 0
+			switch(nutrition)
+				if(0 to NUTRITION_LEVEL_STARVING)
+					nutrition_ratio = 0.2
+				if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+					nutrition_ratio = 0.4
+				if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
+					nutrition_ratio = 0.6
+				if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
+					nutrition_ratio = 0.8
+				else
+					nutrition_ratio = 1
+			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR)
+			blood_volume += (spleen.get_blood() * nutrition_ratio)
 		if(blood_volume < BLOOD_VOLUME_OKAY)
 			adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.02, 1))
 //
@@ -61,8 +77,9 @@
 
 	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_NOCLONE))) //cryosleep or husked people do not pump the blood.
 
-		//Blood regeneration if there is some space
-		if(blood_volume < (BLOOD_VOLUME_NORMAL * blood_ratio) && !HAS_TRAIT(src, TRAIT_NOHUNGER))
+		//Blood regeneration if there is some space, and a spleen
+		var/obj/item/organ/spleen/spleen = getorganslot(ORGAN_SLOT_SPLEEN)
+		if(spleen && blood_volume < (BLOOD_VOLUME_NORMAL * blood_ratio) && !HAS_TRAIT(src, TRAIT_NOHUNGER))
 			var/nutrition_ratio = 0
 			switch(nutrition)
 				if(0 to NUTRITION_LEVEL_STARVING)
@@ -80,7 +97,7 @@
 			if(satiety > 80)
 				nutrition_ratio *= 1.25
 			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR)
-			blood_volume = min((BLOOD_VOLUME_NORMAL * blood_ratio), blood_volume + 0.5 * nutrition_ratio)
+			blood_volume = min((BLOOD_VOLUME_NORMAL * blood_ratio), blood_volume + spleen.get_blood() * nutrition_ratio)
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")
@@ -112,8 +129,8 @@
 					Unconscious(rand(20,60))
 					to_chat(src, "<span class='warning'>You feel extremely [word].</span>")
 			if(-INFINITY to BLOOD_VOLUME_SURVIVE)
-				if(!HAS_TRAIT(src, TRAIT_NODEATH))
-					death()
+				adjustOxyLoss(10)
+				adjustOrganLoss(ORGAN_SLOT_HEART, 5)
 
 		var/temp_bleed = 0
 		//Bleeding out
@@ -123,7 +140,7 @@
 			temp_bleed += BP.get_bleed_rate()
 			BP.generic_bleedstacks = max(0, BP.generic_bleedstacks - 1)
 		if(temp_bleed)
-			if(temp_bleed >= (WOUND_SLASH_MAX_BLOODFLOW/4))
+			if(temp_bleed >= (WOUND_SLASH_MAX_BLOODFLOW/2))
 				throw_alert("bleeding", /obj/screen/alert/status_effect/wound/bleed)
 			bleed(temp_bleed)
 		else
@@ -206,6 +223,7 @@
 			return TRUE
 
 	AM.reagents.add_reagent(blood_id, amount, blood_data, bodytemperature)
+	AM.janitize(WOUND_SANITIZATION_STERILIZER * 2)
 	return TRUE
 
 

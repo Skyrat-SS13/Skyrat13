@@ -112,3 +112,9 @@
 	prereq_ids = list("adv_power", "adv_engi")
 	design_ids = list("wireless_guns", "wireless_cells")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/cyber_organs/New()
+	design_ids += "cybernetic_kidneys"
+	design_ids += "cybernetic_intestines"
+	design_ids += "cybernetic_pancreas"
+	. = ..()	

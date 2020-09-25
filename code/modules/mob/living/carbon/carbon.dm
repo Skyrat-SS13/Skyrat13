@@ -8,6 +8,7 @@
 	GLOB.carbon_list += src
 	blood_volume = (BLOOD_VOLUME_NORMAL * blood_ratio)
 	add_movespeed_modifier(/datum/movespeed_modifier/carbon_crawling)
+	update_pain()
 
 /mob/living/carbon/Destroy()
 	//This must be done first, so the mob ghosts correctly before DNA etc is nulled
@@ -622,15 +623,26 @@
 	var/total_burn	= 0
 	var/total_brute	= 0
 	var/total_stamina = 0
+	var/total_pain = 0
+	var/total_clone = 0
+	var/total_toxin = 0
 	for(var/X in bodyparts)	//hardcoded to streamline things a bit
 		var/obj/item/bodypart/BP = X
 		total_brute	+= (BP.brute_dam * BP.body_damage_coeff)
 		total_burn	+= (BP.burn_dam * BP.body_damage_coeff)
 		total_stamina += (BP.stamina_dam * BP.stam_damage_coeff)
+		total_pain += (BP.get_pain() * BP.pain_damage_coeff)
+		total_clone += (BP.clone_dam * BP.body_damage_coeff)
+		total_pain += (BP.tox_dam * BP.body_damage_coeff)
 	health = round(maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute, DAMAGE_PRECISION)
+	if(ishuman(src)) //Kind of terrible.
+		health = round(maxHealth - getOrganLoss(ORGAN_SLOT_BRAIN))
 	staminaloss = round(total_stamina, DAMAGE_PRECISION)
+	painloss = round(total_pain, DAMAGE_PRECISION)
+	cloneloss = round(total_clone, DAMAGE_PRECISION)
+	toxloss = round(total_toxin, DAMAGE_PRECISION)
 	update_stat()
-	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD*2) && stat == DEAD )
+	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD*2) && stat == DEAD)
 		become_husk("burn")
 	med_hud_set_health()
 	if(stat == SOFT_CRIT)
@@ -749,13 +761,12 @@
 
 //this handles hud updates
 /mob/living/carbon/update_damage_hud()
-
 	if(!client)
 		return
 
-	if(health <= crit_threshold)
+	if(get_physical_damage() <= crit_threshold)
 		var/severity = 0
-		switch(health)
+		switch(get_physical_damage())
 			if(-20 to -10)
 				severity = 1
 			if(-30 to -20)
@@ -776,7 +787,7 @@
 				severity = 9
 			if(-INFINITY to -95)
 				severity = 10
-		if(!InFullCritical())
+		if(!InFullShock())
 			var/visionseverity = 4
 			switch(health)
 				if(-8 to -4)
@@ -848,23 +859,26 @@
 		return
 	if(hud_used.healths)
 		if(stat != DEAD)
-			. = 1
-			if(!shown_health_amount)
-				shown_health_amount = health
-			if(shown_health_amount >= maxHealth)
-				hud_used.healths.icon_state = "health0"
-			else if(shown_health_amount > maxHealth*0.8)
-				hud_used.healths.icon_state = "health1"
-			else if(shown_health_amount > maxHealth*0.6)
-				hud_used.healths.icon_state = "health2"
-			else if(shown_health_amount > maxHealth*0.4)
-				hud_used.healths.icon_state = "health3"
-			else if(shown_health_amount > maxHealth*0.2)
-				hud_used.healths.icon_state = "health4"
-			else if(shown_health_amount > 0)
-				hud_used.healths.icon_state = "health5"
+			if(chem_effects[CE_PAINKILLER] < 100)
+				. = 1
+				if(!shown_health_amount)
+					shown_health_amount = get_physical_damage()
+				if(shown_health_amount >= maxHealth)
+					hud_used.healths.icon_state = "health0"
+				else if(shown_health_amount > maxHealth*0.8)
+					hud_used.healths.icon_state = "health1"
+				else if(shown_health_amount > maxHealth*0.6)
+					hud_used.healths.icon_state = "health2"
+				else if(shown_health_amount > maxHealth*0.4)
+					hud_used.healths.icon_state = "health3"
+				else if(shown_health_amount > maxHealth*0.2)
+					hud_used.healths.icon_state = "health4"
+				else if(shown_health_amount > 0)
+					hud_used.healths.icon_state = "health5"
+				else
+					hud_used.healths.icon_state = "health6"
 			else
-				hud_used.healths.icon_state = "health6"
+				hud_used.healths.icon_state = "health0"
 		else
 			hud_used.healths.icon_state = "health7"
 
@@ -879,13 +893,13 @@
 		if(health <= HEALTH_THRESHOLD_DEAD && !HAS_TRAIT(src, TRAIT_NODEATH))
 			death()
 			return
-		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (HAS_TRAIT(src, TRAIT_DEATHCOMA)) || (health <= HEALTH_THRESHOLD_FULLCRIT && !HAS_TRAIT(src, TRAIT_NOHARDCRIT)))
+		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (HAS_TRAIT(src, TRAIT_DEATHCOMA)))
 			stat = UNCONSCIOUS
 			SEND_SIGNAL(src, COMSIG_DISABLE_COMBAT_MODE)
 			if(!eye_blind)
 				blind_eyes(1)
 		else
-			if(health <= crit_threshold && !HAS_TRAIT(src, TRAIT_NOSOFTCRIT))
+			if(InFullShock() && !HAS_TRAIT(src, TRAIT_NOSOFTCRIT))
 				stat = SOFT_CRIT
 				SEND_SIGNAL(src, COMSIG_DISABLE_COMBAT_MODE)
 			else
@@ -936,7 +950,13 @@
 		B.brain_death = FALSE
 	for(var/O in internal_organs)
 		var/obj/item/organ/organ = O
+		organ.rejecting = FALSE
 		organ.setOrganDamage(0)
+		organ.janitize(0, 0, 0)
+	for(var/BP in bodyparts)
+		var/obj/item/bodypart/bodypart = BP
+		bodypart.rejecting = FALSE
+		bodypart.janitize(0, 0, 0)
 	for(var/thing in diseases)
 		var/datum/disease/D = thing
 		if(D.severity != DISEASE_SEVERITY_POSITIVE)
@@ -1002,7 +1022,6 @@
 
 /mob/living/carbon/fakefireextinguish()
 	remove_overlay(FIRE_LAYER)
-
 
 /mob/living/carbon/proc/devour_mob(mob/living/carbon/C, devour_time = 130)
 	C.visible_message("<span class='danger'>[src] is attempting to devour [C]!</span>", \
@@ -1281,3 +1300,140 @@
 //skyrat funny
 /mob/living/carbon/proc/get_biological_state()
 	. = BIO_INORGANIC
+
+/mob/living/carbon/is_asystole()
+	if(!needs_heart() || HAS_TRAIT(src, TRAIT_STABLEHEART))
+		return FALSE
+	
+	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
+	if(!istype(heart) || !heart.is_working())
+		return TRUE
+	return FALSE
+
+//Blood volume, affected by the heart
+/mob/living/carbon/proc/get_blood_circulation()
+	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
+	var/apparent_blood_volume = blood_volume
+	if(HAS_TRAIT(src, TRAIT_STABLEHEART))
+		return blood_volume
+	if(!heart && needs_heart())
+		return 0.1 * apparent_blood_volume
+
+	var/pulse_mod = 1
+	if(HAS_TRAIT(src, TRAIT_FAKEDEATH))
+		pulse_mod = 1
+	else
+		switch(heart.pulse)
+			if(-INFINITY to PULSE_NONE)
+				pulse_mod *= 0.1 //Fuck.
+			if(PULSE_SLOW)
+				pulse_mod *= 0.9
+			if(PULSE_FAST)
+				pulse_mod *= 1.1
+			if(PULSE_2FAST, PULSE_THREADY)
+				pulse_mod *= 1.25
+	
+	apparent_blood_volume *= pulse_mod
+	apparent_blood_volume *= max(0.3, (1-(heart.damage / heart.maxHealth)))
+
+	if(!heart.open && chem_effects[CE_BLOCKAGE])
+		apparent_blood_volume *= max(0, 1 - (chem_effects[CE_BLOCKAGE])/100)
+
+	return min(apparent_blood_volume, BLOOD_VOLUME_NORMAL)
+
+//Do we need blood to sustain the brain?
+/mob/living/carbon/proc/blood_carries_oxygen()
+	return TRUE
+
+//Do we need lungs?
+/mob/living/carbon/proc/needs_lungs()
+	return TRUE
+
+//Blood volume, affected by the condition of circulation organs, affected by the oxygen loss. What ultimately matters for brain.
+/mob/living/carbon/proc/get_blood_oxygenation()
+	var/apparent_blood_volume = get_blood_circulation()
+	if(blood_carries_oxygen())
+		if(is_asystole()) // Heart is missing or isn't beating and we're not breathing (hardcrit)
+			return min(apparent_blood_volume, BLOOD_VOLUME_SURVIVE)
+		if(!needs_lungs())
+			return apparent_blood_volume
+	else
+		apparent_blood_volume = BLOOD_VOLUME_NORMAL
+
+	var/apparent_blood_volume_mod = max(0, 1 - getOxyLoss()/(maxHealth/2))
+	var/oxygenated_mult = 0
+	if(chem_effects[CE_OXYGENATED] == 1) // Dexalin.
+		oxygenated_mult = 0.5
+	else if(chem_effects[CE_OXYGENATED] >= 2) // Dexplus.
+		oxygenated_mult = 0.8
+	apparent_blood_volume_mod = apparent_blood_volume_mod + oxygenated_mult - (apparent_blood_volume_mod * oxygenated_mult)
+	apparent_blood_volume = apparent_blood_volume * apparent_blood_volume_mod
+	return min(apparent_blood_volume, BLOOD_VOLUME_NORMAL)
+
+//Get the pulse integer
+/mob/living/carbon/proc/pulse()
+	var/obj/item/organ/heart/H = getorganslot(ORGAN_SLOT_HEART)
+	return ((stat != DEAD) && H) ? H.pulse : PULSE_NONE
+
+//A pulse to be read by players
+/mob/living/carbon/proc/get_pulse_as_number()
+	var/obj/item/organ/heart/heart_organ = getorganslot(ORGAN_SLOT_HEART)
+	if(!heart_organ)
+		return 0
+
+	switch(pulse())
+		if(PULSE_NONE)
+			return 0
+		if(PULSE_SLOW)
+			return rand(40, 60)
+		if(PULSE_NORM)
+			return rand(60, 90)
+		if(PULSE_FAST)
+			return rand(90, 120)
+		if(PULSE_2FAST)
+			return rand(120, 160)
+		if(PULSE_THREADY)
+			return PULSE_MAX_BPM
+	
+	return 0
+
+//Generates realistic-ish pulse output based on preset levels as text
+/mob/living/carbon/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
+	var/obj/item/organ/heart/heart_organ = getorganslot(ORGAN_SLOT_HEART)
+	if(!heart_organ)
+		// No heart, no pulse
+		return "0"
+	if(heart_organ.open && !method)
+		// Heart is a open type (?) and cannot be checked unless it's a machine
+		return "muddled and unclear; you can't seem to find a vein"
+
+	var/bpm = get_pulse_as_number()
+	if(bpm >= PULSE_MAX_BPM)
+		if(method == GETPULSE_ADVANCED)
+			return ">[PULSE_MAX_BPM]"
+		else
+			return "extremely weak and fast, patient's artery feels like a thread"
+
+	if(method == GETPULSE_ADVANCED)
+		return "[bpm]"
+	else
+		return "[bpm > 0 ? max(0, bpm + rand(-10, 10)) : 0]"
+
+//Get how damaged the mob is, regardless of how fucked the brain is.
+/mob/living/carbon/get_physical_damage()
+	return round(maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - getBruteLoss() - getFireLoss(), DAMAGE_PRECISION)
+
+//Brain is fried.
+/mob/living/carbon/nervous_system_failure()
+	return (getOrganLoss(ORGAN_SLOT_BRAIN) >= maxHealth * 0.75)
+
+//Replaces crit with shock
+/mob/living/carbon/InCritical()
+	if(!ishuman(src)) //Horrible.
+		return ..()
+	return InShock()
+
+/mob/living/carbon/InFullCritical()
+	if(!ishuman(src)) //Horrible.
+		return ..()
+	return InFullShock()

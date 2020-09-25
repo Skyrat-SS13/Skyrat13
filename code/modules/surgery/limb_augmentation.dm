@@ -18,7 +18,7 @@
 	if(aug.body_zone != target_zone)
 		to_chat(user, "<span class='warning'>[tool] isn't the right type for [parse_zone(target_zone)].</span>")
 		return -1
-	L = surgery.operated_bodypart
+	var/obj/item/bodypart/L = surgery.operated_bodypart
 	if(L)
 		display_results(user, target, "<span class ='notice'>You begin to augment [target]'s [parse_zone(user.zone_selected)]...</span>",
 			"[user] begins to augment [target]'s [parse_zone(user.zone_selected)] with [aug].",
@@ -40,6 +40,7 @@
 
 //SURGERY STEP SUCCESSES
 /datum/surgery_step/replace_limb/success(mob/user, mob/living/carbon/target, target_zone, obj/item/bodypart/tool, datum/surgery/surgery)
+	var/obj/item/bodypart/L = surgery.operated_bodypart
 	if(L)
 		if(istype(tool, /obj/item/organ_storage))
 			tool.icon_state = initial(tool.icon_state)

@@ -6,6 +6,11 @@
 	slot = ORGAN_SLOT_EARS
 	gender = PLURAL
 
+	maxHealth = 0.45 * STANDARD_ORGAN_THRESHOLD		//half the normal health max since we go blind at 30, a permanent blindness at 50 therefore makes sense unless medicine is administered
+	high_threshold = 0.3 * STANDARD_ORGAN_THRESHOLD	//threshold at 30
+	low_threshold = 0.2 * STANDARD_ORGAN_THRESHOLD	//threshold at 15
+	relative_size = 5
+	
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
 
@@ -27,6 +32,7 @@
 	var/bang_protect = 0
 	// Multiplier for both long term and short term ear damage
 	var/damage_multiplier = 1
+	relative_size = 10
 
 /obj/item/organ/ears/on_life()
 	. = ..()
@@ -46,6 +52,7 @@
 	deaf = 0
 	ear_damage = 0
 	organ_flags &= ~ORGAN_FAILING
+	organ_flags &= ~ORGAN_DEAD
 
 	var/mob/living/carbon/C = owner
 

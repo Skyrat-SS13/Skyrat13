@@ -140,6 +140,38 @@
 	build_path = /obj/item/organ/stomach
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
+/datum/design/kidneys
+	name = "Kidneys"
+	id = "kidneys"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
+	build_path = /obj/item/organ/kidneys
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
+
+/datum/design/intestines
+	name = "Intestines"
+	id = "intestines"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
+	build_path = /obj/item/organ/intestines
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
+
+/datum/design/spleen
+	name = "Spleen"
+	id = "spleen"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
+	build_path = /obj/item/organ/spleen
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
+
+/datum/design/innards
+	name = "Innards"
+	id = "innards"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 10)
+	build_path = /obj/item/organ/innards
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
+
 /datum/design/appendix
 	name = "Appendix"
 	id = "appendix"

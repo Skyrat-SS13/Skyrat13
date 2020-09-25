@@ -614,6 +614,9 @@
 	// Skyrat change: All station goals, all the time.
 
 	station_goals = possible
+	for(var/I in station_goals)
+		station_goals -= I
+		station_goals += new I()
 	/*var/goal_weights = 0
 	while(possible.len && goal_weights < STATION_GOAL_BUDGET)
 		var/datum/station_goal/picked = pick_n_take(possible)

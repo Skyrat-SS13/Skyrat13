@@ -4,6 +4,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "shards"
 	beauty = -50
+	dirtiness = 20
 
 /obj/effect/decal/cleanable/ash
 	name = "ashes"
@@ -12,6 +13,7 @@
 	icon_state = "ash"
 	mergeable_decal = FALSE
 	beauty = -50
+	dirtiness = 25
 
 /obj/effect/decal/cleanable/ash/Initialize()
 	. = ..()
@@ -27,6 +29,7 @@
 	name = "large pile of ashes"
 	icon_state = "big_ash"
 	beauty = -100
+	dirtiness = 75
 
 /obj/effect/decal/cleanable/ash/large/Initialize()
 	. = ..()
@@ -38,6 +41,7 @@
 	icon = 'icons/obj/shards.dmi'
 	icon_state = "tiny"
 	beauty = -100
+	dirtiness = 35
 
 /obj/effect/decal/cleanable/glass/Initialize()
 	. = ..()
@@ -57,6 +61,7 @@
 	smooth = SMOOTH_FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	beauty = -75
+	dirtiness = 30
 
 /obj/effect/decal/cleanable/dirt/Initialize()
 	. = ..()
@@ -94,6 +99,7 @@
 	light_color = LIGHT_COLOR_GREEN
 	icon_state = "greenglow"
 	beauty = -300
+	dirtiness = 100
 
 /obj/effect/decal/cleanable/greenglow/Initialize(mapload)
 	. = ..()
@@ -110,6 +116,7 @@
 	icon_state = "cobweb1"
 	resistance_flags = FLAMMABLE
 	beauty = -100
+	dirtiness = 10
 
 /obj/effect/decal/cleanable/cobweb/cobweb2
 	icon_state = "cobweb2"
@@ -122,11 +129,13 @@
 	icon_state = "molten"
 	mergeable_decal = FALSE
 	beauty = -150
+	dirtiness = 30
 
 /obj/effect/decal/cleanable/molten_object/large
 	name = "big gooey grey mass"
 	icon_state = "big_molten"
 	beauty = -300
+	dirtiness = 60
 
 //Vomit (sorry)
 /obj/effect/decal/cleanable/vomit
@@ -136,6 +145,7 @@
 	icon_state = "vomit_1"
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
 	beauty = -150
+	dirtiness = 50
 
 /obj/effect/decal/cleanable/vomit/attack_hand(mob/user)
 	. = ..()
@@ -169,12 +179,14 @@
 	icon = 'icons/effects/tomatodecal.dmi'
 	random_icon_states = list("tomato_floor1", "tomato_floor2", "tomato_floor3")
 	beauty = -100
+	dirtiness = 20
 
 /obj/effect/decal/cleanable/plant_smudge
 	name = "plant smudge"
 	gender = NEUTER
 	icon = 'icons/effects/tomatodecal.dmi'
 	random_icon_states = list("smashed_plant")
+	dirtiness = 20
 
 /obj/effect/decal/cleanable/egg_smudge
 	name = "smashed egg"
@@ -182,6 +194,7 @@
 	gender = NEUTER
 	icon = 'icons/effects/tomatodecal.dmi'
 	random_icon_states = list("smashed_egg1", "smashed_egg2", "smashed_egg3")
+	dirtiness = 25 //salmonella
 
 /obj/effect/decal/cleanable/pie_smudge //honk
 	name = "smashed pie"
@@ -189,6 +202,7 @@
 	gender = NEUTER
 	icon = 'icons/effects/tomatodecal.dmi'
 	random_icon_states = list("smashed_pie")
+	dirtiness = 15
 
 /obj/effect/decal/cleanable/chem_pile
 	name = "chemical pile"
@@ -196,6 +210,7 @@
 	gender = NEUTER
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "ash"
+	dirtiness = 10
 
 /obj/effect/decal/cleanable/shreds
 	name = "shreds"
@@ -203,6 +218,7 @@
 	icon_state = "shreds"
 	gender = PLURAL
 	mergeable_decal = FALSE
+	dirtiness = 10
 
 /obj/effect/decal/cleanable/shreds/ex_act(severity, target)
 	if(severity == 1) //so shreds created during an explosion aren't deleted by the explosion.
@@ -219,12 +235,14 @@
 	icon = 'icons/effects/tomatodecal.dmi'
 	icon_state = "salt_pile"
 	gender = NEUTER
+	dirtiness = -15 //Kills bacteria lol
 
 /obj/effect/decal/cleanable/glitter
 	name = "generic glitter pile"
 	desc = "The herpes of arts and crafts."
 	icon = 'icons/effects/atmospherics.dmi'
 	gender = NEUTER
+	dirtiness = 5
 
 /obj/effect/decal/cleanable/glitter/pink
 	name = "pink glitter"
@@ -250,3 +268,4 @@
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "xfloor1"
 	random_icon_states = list("xfloor1", "xfloor2", "xfloor3", "xfloor4", "xfloor5", "xfloor6", "xfloor7")
+	dirtiness = 10

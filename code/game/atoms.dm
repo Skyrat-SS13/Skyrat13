@@ -492,6 +492,9 @@
 	if(!new_blood_dna)
 		return FALSE
 	LAZYINITLIST(blood_DNA)	//if our list of DNA doesn't exist yet, initialise it.
+
+	janitize(WOUND_SANITIZATION_STERILIZER * 2)
+
 	var/old_length = blood_DNA.len
 	blood_DNA |= new_blood_dna
 	var/changed = FALSE
@@ -505,6 +508,8 @@
 //to add blood dna info to the object's blood_DNA list
 /atom/proc/transfer_blood_dna(list/blood_dna, list/datum/disease/diseases)
 	LAZYINITLIST(blood_DNA)
+
+	janitize(WOUND_SANITIZATION_STERILIZER * 2)
 
 	var/old_length = blood_DNA.len
 	blood_DNA |= blood_dna
@@ -522,6 +527,7 @@
 
 //to add blood onto something, with blood dna info to include.
 /atom/proc/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
+	janitize(WOUND_SANITIZATION_STERILIZER * 2)
 	return FALSE
 
 /obj/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
@@ -552,6 +558,8 @@
 	if(!B)
 		B = new /obj/effect/decal/cleanable/blood/splatter(src, diseases)
 	B.transfer_blood_dna(blood_dna, diseases) //give blood info to the blood decal.
+	B.janitize(WOUND_SANITIZATION_STERILIZER * 2)
+	janitize(WOUND_SANITIZATION_STERILIZER * 2)
 	return TRUE //we bloodied the floor
 
 /mob/living/carbon/human/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
@@ -591,10 +599,12 @@
 		transfer_blood_dna(blood_dna, diseases)
 		bloody_hands = rand(2, 4)
 	update_inv_gloves()	//handles bloody hands overlays and updating
+	janitize(WOUND_SANITIZATION_STERILIZER * 2)
 	return TRUE
 //Skyrat changes - snowflake blood color
 /atom/proc/blood_DNA_to_color()
-	blood_DNA |= list("color" = BLOOD_COLOR_HUMAN)
+	if(!blood_DNA)
+		blood_DNA = list("color" = BLOOD_COLOR_HUMAN, "ANIMAL DNA" = "Y-")
 	return blood_DNA["color"]
 
 /proc/blood_DNA_list_to_color(list/dna)
@@ -991,7 +1001,7 @@ Proc for attack log creation, because really why not
 	var/starget = key_name(target)
 
 	var/mob/living/living_target = target
-	var/hp = istype(living_target) ? " (NEWHP: [living_target.health]) " : ""
+	var/hp = istype(living_target) ? " (NEWHP: [living_target.get_physical_damage()]) " : ""
 
 	var/sobject = ""
 	if(object)

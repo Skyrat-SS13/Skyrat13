@@ -30,7 +30,8 @@
 
 	if(override)
 		return
-
+	if(SEND_SIGNAL(src, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, A))
+		return
 	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A)
 	A.attack_hand(src)
 

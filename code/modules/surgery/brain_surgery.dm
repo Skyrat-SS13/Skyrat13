@@ -11,6 +11,7 @@
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_HEAD)
 	requires_bodypart_type = BODYPART_ORGANIC //Skyrat change
+	var/antispam = FALSE
 
 /datum/surgery_step/fix_brain
 	name = "Fix brain"
@@ -24,18 +25,29 @@
 	return TRUE
 
 /datum/surgery_step/fix_brain/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='notice'>You begin to fix [target]'s brain...</span>",
-		"[user] begins to fix [target]'s brain.",
-		"[user] begins to perform surgery on [target]'s brain.")
+	var/datum/surgery/healing/the_surgery = surgery
+	if(!the_surgery.antispam)
+		display_results(user, target, "<span class='notice'>You begin to fix [target]'s brain...</span>",
+			"[user] begins to fix [target]'s brain.",
+			"[user] begins to perform surgery on [target]'s brain.")
+
+/datum/surgery_step/fix_brain/initiate(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail)
+	if(..() && iscarbon(target))
+		var/mob/living/carbon/C = target
+		while((C.getOrganLoss(ORGAN_SLOT_BRAIN)) || C.get_traumas())
+			if(!..())
+				break
 
 /datum/surgery_step/fix_brain/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='notice'>You succeed in fixing [target]'s brain.</span>",
-		"[user] successfully fixes [target]'s brain!",
-		"[user] completes the surgery on [target]'s brain.")
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
 	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.getOrganLoss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
+	display_results(user, target, "<span class='notice'>You succeed in fixing [target]'s brain.</span>",
+		"[user] successfully fixes [target]'s brain!",
+		"[user] completes the surgery step on [target]'s brain.")
+	var/datum/surgery/healing/the_surgery = surgery
+	the_surgery.antispam = TRUE
 	return TRUE
 
 /datum/surgery_step/fix_brain/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

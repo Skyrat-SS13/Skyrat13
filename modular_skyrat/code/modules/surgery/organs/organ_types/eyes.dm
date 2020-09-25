@@ -12,7 +12,7 @@
 
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
-	maxHealth = 0.5 * STANDARD_ORGAN_THRESHOLD		//half the normal health max since we go blind at 30, a permanent blindness at 50 therefore makes sense unless medicine is administered
+	maxHealth = 0.45 * STANDARD_ORGAN_THRESHOLD		//half the normal health max since we go blind at 30, a permanent blindness at 50 therefore makes sense unless medicine is administered
 	high_threshold = 0.3 * STANDARD_ORGAN_THRESHOLD	//threshold at 30
 	low_threshold = 0.2 * STANDARD_ORGAN_THRESHOLD	//threshold at 15
 
@@ -23,6 +23,8 @@
 	high_threshold_cleared = "<span class='info'>Your vision functions passably once more.</span>"
 	low_threshold_cleared = "<span class='info'>Your vision is cleared of any ailment.</span>"
 
+	relative_size = 5
+
 	var/sight_flags = 0
 	var/see_in_dark = 2
 	var/tint = 0
@@ -32,6 +34,7 @@
 	var/see_invisible = SEE_INVISIBLE_LIVING
 	var/lighting_alpha
 	var/eye_damaged	= FALSE	//indicates that our eyes are undergoing some level of negative effect
+	relative_size = 15
 
 /obj/item/organ/eyes/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
 	. = ..()

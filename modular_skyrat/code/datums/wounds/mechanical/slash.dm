@@ -34,6 +34,7 @@
 	biology_required = list(HAS_FLESH)
 	required_status = BODYPART_ROBOTIC
 	can_self_treat = TRUE
+	wound_flags = (MANGLES_SKIN | MANGLES_MUSCLE)
 
 /datum/wound/mechanical/slash/self_treat(mob/living/carbon/user, first_time = FALSE)
 	. = ..()
@@ -220,6 +221,7 @@
 	demotes_to = /datum/wound/mechanical/slash/moderate
 	status_effect_type = /datum/status_effect/wound/slash/severe
 	scarring_descriptions = list("a twisted line of faded gashes", "a gnarled sickle-shaped slice scar", "a long-faded puncture wound")
+	pain_amount = 4
 
 /datum/wound/mechanical/slash/critical
 	name = "Torn Cabling"
@@ -239,6 +241,7 @@
 	demotes_to = /datum/wound/mechanical/slash/severe
 	status_effect_type = /datum/status_effect/wound/slash/critical
 	scarring_descriptions = list("a winding path of very badly healed scar tissue", "a series of peaks and valleys along a gruesome line of cut scar tissue", "a grotesque snake of indentations and stitching scars")
+	pain_amount = 8
 
 /datum/wound/mechanical/slash/critical/incision
 	name = "Open Hatch"
@@ -256,3 +259,4 @@
 	max_per_type = 5
 	demotes_to = null
 	scarring_descriptions = list("a precise line of scarred tissue", "a long line of slightly darker tissue")
+	pain_amount = 15

@@ -109,7 +109,7 @@
 	if(istype(O, /obj/item/organ_storage)) //BUG_PROBABLE_CAUSE
 		return //Borg organ bags shouldn't be killing brains
 
-	if((organ_flags & ORGAN_FAILING) && O.is_drainable() && O.reagents.has_reagent(/datum/reagent/medicine/neurine)) //Neurine fixes dead brains
+	if((organ_flags & ORGAN_FAILING) && (O.is_drainable() || istype(O, /obj/item/reagent_containers)) && O.reagents.has_reagent(/datum/reagent/medicine/neurine)) //Neurine fixes dead brains
 		. = TRUE //don't do attack animation.
 		var/cached_Bdamage = brainmob?.health
 		var/datum/reagent/medicine/neurine/N = reagents.has_reagent(/datum/reagent/medicine/neurine)
@@ -141,7 +141,7 @@
 					gain_trauma_type(BRAIN_TRAUMA_SPECIAL, natural_gain = TRUE)
 		return
 
-	if((organ_flags & ORGAN_FAILING) && O.is_drainable() && O.reagents.has_reagent(/datum/reagent/medicine/mannitol)) //attempt to heal the brain
+	if((organ_flags & ORGAN_FAILING) && (O.is_drainable() || istype(O, /obj/item/reagent_containers)) && O.reagents.has_reagent(/datum/reagent/medicine/mannitol)) //attempt to heal the brain
 		. = TRUE //don't do attack animation.
 		var/datum/reagent/medicine/mannitol/M = reagents.has_reagent(/datum/reagent/medicine/mannitol)
 		if(brain_death || brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
@@ -161,8 +161,6 @@
 		setOrganDamage((damage - (0.05 * maxHealth)*(M.volume/10)))	//heals a small amount, and by using "setorgandamage", we clear the failing variable if that was up
 		O.reagents.clear_reagents()
 		return
-
-
 
 /obj/item/organ/brain/surgical_examine(mob/user)
 	. = ..()
@@ -249,13 +247,13 @@
 				REMOVE_SKILL_MODIFIER_BODY(/datum/skill_modifier/heavy_brain_damage, null, owner)
 		return
 	damage_delta = damage - prev_damage
-	if(damage > BRAIN_DAMAGE_MILD)
+	if((damage > BRAIN_DAMAGE_MILD) && (damage_delta > MINIMUM_DAMAGE_TRAUMA_ROLL))
 		if(prob(damage_delta * (1 + max(0, (damage - BRAIN_DAMAGE_MILD)/100)))) //Base chance is the hit damage; for every point of damage past the threshold the chance is increased by 1% //learn how to do your bloody math properly goddamnit
 			gain_trauma_type(BRAIN_TRAUMA_MILD, natural_gain = TRUE)
 			if(prev_damage <= BRAIN_DAMAGE_MILD && owner)
 				var/datum/skill_modifier/S
 				ADD_SKILL_MODIFIER_BODY(/datum/skill_modifier/brain_damage, null, owner, S)
-	if(damage > BRAIN_DAMAGE_SEVERE)
+	if((damage > BRAIN_DAMAGE_SEVERE) && (damage_delta > MINIMUM_DAMAGE_TRAUMA_ROLL))
 		if(prob(damage_delta * (1 + max(0, (damage - BRAIN_DAMAGE_SEVERE)/100)))) //Base chance is the hit damage; for every point of damage past the threshold the chance is increased by 1%
 			if(prob(20))
 				gain_trauma_type(BRAIN_TRAUMA_SPECIAL, natural_gain = TRUE)
@@ -264,7 +262,7 @@
 			if(prev_damage <= BRAIN_DAMAGE_SEVERE && owner)
 				var/datum/skill_modifier/S
 				ADD_SKILL_MODIFIER_BODY(/datum/skill_modifier/heavy_brain_damage, null, owner, S)
-	if (owner)
+	if(owner && (damage_delta > MINIMUM_DAMAGE_TRAUMA_ROLL)) //Don't spam the owner if we didn't roll for traumas
 		if(owner.stat < UNCONSCIOUS) //conscious or soft-crit
 			var/brain_message
 			if(prev_damage < BRAIN_DAMAGE_MILD && damage >= BRAIN_DAMAGE_MILD)
@@ -289,7 +287,6 @@
 	name = "alien brain"
 	desc = "We barely understand the brains of terrestial animals. Who knows what we may find in the brain of such an advanced species?"
 	icon_state = "brain-x"
-
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////
 

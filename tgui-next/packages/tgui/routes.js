@@ -50,6 +50,7 @@ import { Holodeck } from './interfaces/Holodeck';
 import { HypnoChair } from './interfaces/HypnoChair';
 import { ImplantChair } from './interfaces/ImplantChair';
 import { Intellicard } from './interfaces/Intellicard';
+import { ItemInfo } from './interfaces/ItemInfo';
 import { KeycardAuth } from './interfaces/KeycardAuth';
 import { LaborClaimConsole } from './interfaces/LaborClaimConsole';
 import { LanguageMenu } from './interfaces/LanguageMenu';
@@ -320,6 +321,10 @@ const ROUTES = {
   implantchair: {
     component: () => ImplantChair,
     scrollable: false,
+  },
+  iteminfo: {
+    component: () => ItemInfo,
+    scrollable: true,
   },
   intellicard: {
     component: () => Intellicard,

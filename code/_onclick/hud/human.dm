@@ -168,6 +168,15 @@
 	static_inventory += using
 	//END OF CITADEL CHANGES
 
+	//SKYRAT CHANGES - Wield button
+	wielded = new /obj/screen/wield
+	wielded.icon = ui_style_modular(ui_style)
+	wielded.icon_state = "act_wield"
+	wielded.screen_loc = ui_wield
+	wielded.hud = src
+	static_inventory += wielded
+	//END OF SKYRAT CHANGES
+
 	//same as above but buffer.
 	sprint_buffer = new /obj/screen/sprint_buffer
 	sprint_buffer.screen_loc = ui_sprintbufferloc
@@ -212,6 +221,16 @@
 	using.screen_loc = ui_swaphand_position(owner,2)
 	using.hud = src
 	static_inventory += using
+
+	//Skyrat edit
+	using = new /obj/screen/info()
+	using.icon = 'modular_skyrat/icons/mob/screen_gen.dmi'
+	using.icon_state = "info"
+	using.screen_loc = ui_swaphand_position(owner,2)
+	using.hud = src
+	using.layer += 0.1 //this is stupid
+	static_inventory += using
+	//
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "id"
@@ -419,8 +438,14 @@
 	healthdoll.hud = src
 	infodisplay += healthdoll
 
+	pains = new /obj/screen/human/pain()
+	pains.icon = 'modular_skyrat/icons/mob/screen_pain.dmi'
+	pains.screen_loc = ui_pain
+	pains.hud = src
+	infodisplay += pains
+	
 	pull_icon = new /obj/screen/pull()
-	pull_icon.icon = ui_style
+	pull_icon.icon = ui_style_modular(ui_style) //SKYRAT EDIT
 	pull_icon.hud = src
 	pull_icon.update_icon()
 	pull_icon.screen_loc = ui_pull_resist

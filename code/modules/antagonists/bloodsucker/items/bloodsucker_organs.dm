@@ -28,11 +28,14 @@
 // 		HEART: OVERWRITE	//
 // 		HEART 		//
 /obj/item/organ/heart/vampheart
-	beating = 0
+	pulse = 0
 	var/fakingit = 0
 
+/obj/item/organ/heart/vampheart/can_stop() //We don't stop beating in normal circumstances
+	return FALSE
+
 /obj/item/organ/heart/vampheart/Restart()
-	beating = 0	// DONT run ..(). We don't want to start beating again.
+	pulse = 0	// DONT run ..(). We don't want to start beating again.
 	return 0
 
 /obj/item/organ/heart/vampheart/Stop()

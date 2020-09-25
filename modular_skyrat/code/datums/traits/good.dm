@@ -24,3 +24,10 @@
 			H.dna.species.punchdamagelow += 5
 			H.dna.species.punchstunthreshold += 5
 
+//pain man good
+//(turns masochist into a proper non-meme quirk)
+/datum/quirk/maso
+	name = "Masochism"
+	desc = "You are wired differently. While pain still has negative impacts on you, it also greatly improves your mood."
+	mob_trait = TRAIT_PAINGOOD
+	value = 1

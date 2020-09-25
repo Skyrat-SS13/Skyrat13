@@ -4,8 +4,8 @@
 	icon = 'modular_skyrat/icons/obj/flora/jungleflora.dmi'
 	icon_state = "stick"
 	gender = PLURAL
-	light_range = 0.5
-	light_power = 10
+	light_range = 15
+	light_power = 0.5
 	max_integrity = 50
 	var/variants = 9
 	var/chosen_light
@@ -50,10 +50,10 @@
 	random_light = list("#6AFF00","#00FFEE", "#D9FF00", "#FFC800")
 
 /obj/structure/flora/biolumi/mine/weaklight
-	light_range = 0.2
+	light_power = 0.3
 
 /obj/structure/flora/biolumi/flower/weaklight
-	light_range = 0.2
+	light_power = 0.3
 
 /obj/structure/flora/biolumi/lamp/weaklight
-	light_range = 0.2
+	light_power = 0.3

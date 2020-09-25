@@ -62,6 +62,12 @@
 	internal_organs += new /obj/item/organ/ears
 	internal_organs += new /obj/item/organ/liver
 	internal_organs += new /obj/item/organ/stomach
+	internal_organs += new /obj/item/organ/intestines
+	internal_organs += new /obj/item/organ/kidneys
+	internal_organs += new /obj/item/organ/spleen
+	//Monkeys have an incredibly high chance of spawning with a mystery organ
+	if(prob(36))
+		internal_organs += new /obj/item/organ/innards
 	..()
 
 /mob/living/carbon/monkey/on_reagent_change()

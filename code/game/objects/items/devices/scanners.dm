@@ -14,6 +14,7 @@ GENETICS SCANNER
 #define SCANMODE_HEALTH 0
 #define SCANMODE_CHEMICAL 1
 #define SCANMODE_WOUND 2
+#define SCANMODE_PAIN 3
 #define SCANNER_CONDENSED 0
 #define SCANNER_VERBOSE 1
 //
@@ -95,9 +96,11 @@ GENETICS SCANNER
 	user.visible_message("<span class='suicide'>[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!</span>")
 	return BRUTELOSS
 
-//i had to edit this shit as a whole because this is piss
+//I had to edit this shit as a whole because this is piss
 /obj/item/healthanalyzer/attack_self(mob/user)
-	scanmode = (scanmode + 1) % 3
+	var/list/scam_list = list("Physical health" = SCANMODE_HEALTH, "Chemicals" = SCANMODE_CHEMICAL, "Wounds" = SCANMODE_WOUND, "Wellbeing" = SCANMODE_PAIN)
+	var/scam = input(user, "What health analyzer mode do you wish to use?", "[capitalize(src.name)]") as anything in scam_list
+	scanmode = scam_list[scam]
 	switch(scanmode)
 		if(SCANMODE_HEALTH)
 			to_chat(user, "<span class='notice'>You switch the health analyzer to check physical health.</span>")
@@ -105,7 +108,8 @@ GENETICS SCANNER
 			to_chat(user, "<span class='notice'>You switch the health analyzer to scan chemical contents.</span>")
 		if(SCANMODE_WOUND)
 			to_chat(user, "<span class='notice'>You switch the health analyzer to report extra info on wounds.</span>")
-//
+		if(SCANMODE_PAIN)
+			to_chat(user, "<span class='notice'>You switch the health analyzer to report extra info on patient wellbeing.</span>")
 
 /obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
 
@@ -127,8 +131,10 @@ GENETICS SCANNER
 		healthscan(user, M, mode, advanced)
 	else if(scanmode == SCANMODE_CHEMICAL)
 		chemscan(user, M)
-	else
+	else if(scanmode == SCANMODE_WOUND)
 		woundscan(user, M, src)
+	else if(scanmode == SCANMODE_PAIN)
+		painscan(user, M, advanced)
 	//
 
 	add_fingerprint(user)
@@ -143,7 +149,7 @@ GENETICS SCANNER
 	var/tox_loss = M.getToxLoss()
 	var/fire_loss = M.getFireLoss()
 	var/brute_loss = M.getBruteLoss()
-	var/mob_status = (M.stat == DEAD ? "<span class='alert'><b>Deceased</b></span>" : "<b>[round(M.health/M.maxHealth,0.01)*100] % healthy</b>")
+	var/mob_status = (M.stat == DEAD ? "<span class='alert'><b>Deceased</b></span>" : "<b>[round(M.get_physical_damage()/M.maxHealth,0.01)*100] % healthy</b>")
 
 	if(HAS_TRAIT(M, TRAIT_FAKEDEATH) && !advanced)
 		mob_status = "<span class='alert'><b>Deceased</b></span>"
@@ -353,8 +359,11 @@ GENETICS SCANNER
 				breathes = FALSE
 			if(NOBLOOD in C.dna.species.species_traits)
 				blooded = FALSE
+		var/has_intestines = C.dna && !(NOSTOMACH in C.dna.species.species_traits)
 		var/has_liver = C.dna && !(NOLIVER in C.dna.species.species_traits)
 		var/has_stomach = C.dna && !(NOSTOMACH in C.dna.species.species_traits)
+		var/has_spleen = C.dna && !(NOSPLEEN in C.dna.species.species_traits)
+		var/has_kidneys = C.dna && !(NOKIDNEYS in C.dna.species.species_traits)
 		if(!M.getorganslot(ORGAN_SLOT_EYES))
 			msg += "<span class='alert'><b>Subject does not have eyes.</b></span>\n"
 		if(!M.getorganslot(ORGAN_SLOT_EARS))
@@ -369,13 +378,16 @@ GENETICS SCANNER
 			msg += "<span class='alert'><b>Subject's lungs are missing!</b></span>\n"
 		if(has_stomach && !M.getorganslot(ORGAN_SLOT_STOMACH))
 			msg += "<span class='alert'><b>Subject's stomach is missing!</span>\n"
-
+		if(has_spleen && !M.getorganslot(ORGAN_SLOT_SPLEEN))
+			msg += "<span class='alert'><b>Subject's spleen is missing!</span>\n"
+		if(has_intestines && !M.getorganslot(ORGAN_SLOT_INTESTINES))
+			msg += "<span class='alert'><b>Subject's intestines are missing!</span>\n"
+		if(has_kidneys && !M.getorganslot(ORGAN_SLOT_KIDNEYS))
+			msg += "<span class='alert'><b>Subject's kidneys are missing!</span>\n"
 
 		if(M.radiation)
 			msg += "<span class='alert'>Subject is irradiated.</span>\n"
 			msg += "<span class='info'>Radiation Level: [M.radiation] rad</span>\n"
-
-
 
 	// Species and body temperature
 	var/mob/living/carbon/human/H = M //Start to use human only stuff here
@@ -439,7 +451,17 @@ GENETICS SCANNER
 			for(var/k in wounded_part.wounds)
 				var/datum/wound/W = k
 				msg += "\n"
-				msg += "<div class='ml-2'>Type: [W.name]\nSeverity: [W.severity_text()]\nRecommended Treatment: [W.treat_text]</div>" // less lines than in woundscan() so we don't overload people trying to get basic med info
+				var/infection_level = "None"
+				switch(W.germ_level)
+					if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
+						infection_level = "Moderate"
+					if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
+						infection_level = "Severe"
+					if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
+						infection_level = "<span class='deadsay'>CRITICAL</span>"
+					if(WOUND_INFECTION_SEPTIC to INFINITY)
+						infection_level = "<span class='deadsay'>LOSS IMMINENT</span>"
+				msg += "<div class='ml-2'>Type: [W.name]\nSeverity: [W.severity_text()]\nRecommended Treatment: [W.treat_text]\nInfection Level: [infection_level]\n</div>" // less lines than in woundscan() so we don't overload people trying to get basic med info
 			msg += "</span>"
 			msg += "\n"
 	//
@@ -459,17 +481,18 @@ GENETICS SCANNER
 					msg += "<span class='danger'>Subject is bleeding!</span>\n"
 			var/blood_percent =  round((C.scan_blood_volume() / (BLOOD_VOLUME_NORMAL * C.blood_ratio))*100)
 			var/blood_type = C.dna.blood_type
+			var/blood_oxy_percent = round(C.get_blood_oxygenation() / (BLOOD_VOLUME_NORMAL * C.blood_ratio) * 100)
 			if(!(blood_typepath in GLOB.blood_reagent_types))
 				var/datum/reagent/R = GLOB.chemical_reagents_list[blood_typepath]
 				if(R)
 					blood_type = R.name
 			if(C.scan_blood_volume() <= (BLOOD_VOLUME_SAFE*C.blood_ratio) && C.scan_blood_volume() > (BLOOD_VOLUME_OKAY*C.blood_ratio))
-				msg += "<span class='danger'>LOW blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type]</span>\n"
+				msg += "<span class='danger'>LOW blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type], blood oxygenation [blood_oxy_percent] %</span>\n"
 			else if(C.scan_blood_volume() <= (BLOOD_VOLUME_OKAY*C.blood_ratio))
-				msg += "<span class='danger'>CRITICAL blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type]</span>\n"
+				msg += "<span class='danger'>CRITICAL blood level [blood_percent] %, [C.scan_blood_volume()] cl,</span> <span class='info'>type: [blood_type], blood oxygenation [blood_oxy_percent] %</span>\n"
 			else
-				msg += "<span class='info'>Blood level [blood_percent] %, [C.scan_blood_volume()] cl, type: [blood_type]</span>\n"
-
+				msg += "<span class='info'>Blood level [blood_percent] %, [C.scan_blood_volume()] cl, type: [blood_type], blood oxygenation [blood_oxy_percent] %</span>\n"
+			msg += "<span class='[C.get_pulse_as_number() ? "info" : "danger"]'>Pulse: [capitalize(C.get_pulse(advanced ? GETPULSE_BASIC : GETPULSE_ADVANCED))]</span>\n"
 		var/cyberimp_detect
 		for(var/obj/item/organ/cyberimp/CI in C.internal_organs)
 			if(CI.status == ORGAN_ROBOTIC && !CI.syndicate_implant)
@@ -524,6 +547,53 @@ GENETICS SCANNER
 
 			msg += "*---------*</span>"
 			to_chat(user, msg)
+
+/proc/painscan(mob/user, mob/living/M, advanced = FALSE)
+	var/mob/living/carbon/C = M
+	if(!iscarbon(M))
+		to_chat(user, "<span class='warning'>ERROR: Wellbeing scan can only be used on complex lifeforms.</span>")
+		return
+	var/msg = "<span class='info'>*---------*\n"
+	msg += "<span class='info'><b>Bodypart info:</b></span>\n"
+	var/list/bodypart_info = list()
+	for(var/obj/item/bodypart/BP in C.bodyparts)
+		var/result = "<span class='info'>[capitalize(BP.name)]: "
+		var/list/results = BP.get_scan_results(TRUE)
+		var/pain = BP.get_pain()
+		if(!advanced)
+			pain = (round(pain/10, 1) * 10)
+		if(pain)
+			results += "[pain] pain"
+		if(length(results))
+			result += results.Join(", ")
+			result += "</span>\n"
+			bodypart_info += result
+	if(!length(bodypart_info))
+		msg += "<span class='info'>N/A</span>\n"
+	else
+		msg += bodypart_info.Join("")
+	msg += "<span class='info'><b>Organ info:</b></span>\n"
+	var/list/organ_info = list()
+	for(var/obj/item/organ/O in C.internal_organs)
+		var/result = "<span class='info'>[capitalize(O.name)]: "
+		var/list/results = O.get_scan_results(TRUE)
+		var/pain = O.get_pain()
+		if(!advanced)
+			pain = (round(pain/10, 1) * 10)
+		if(pain)
+			results += "[pain] pain"
+		if(length(results))
+			result += results.Join(", ")
+			result += "</span>\n"
+			organ_info += result
+	if(!length(organ_info))
+		msg += "<span class='info'>N/A</span>\n"
+	else
+		msg += organ_info.Join("")
+	msg += "<span class='info'><B>Total Pain:</B> [advanced ? C.getPainLoss() : round(C.getPainLoss(), 10)]</span>"
+	msg += "\n"
+	msg += "*---------*</span>"
+	to_chat(user, msg)
 
 /obj/item/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"
@@ -1011,5 +1081,6 @@ GENETICS SCANNER
 #undef SCANMODE_HEALTH
 #undef SCANMODE_CHEMICAL
 #undef SCANMODE_WOUND
+#undef SCANMODE_PAIN
 #undef SCANNER_CONDENSED
 #undef SCANNER_VERBOSE
