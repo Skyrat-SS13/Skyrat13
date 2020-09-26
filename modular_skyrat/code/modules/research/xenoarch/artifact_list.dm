@@ -66,7 +66,6 @@ GLOBAL_LIST_INIT(ult_artifact,list(	/obj/item/nuke_core/supermatter_sliver=1,
 									/obj/item/surgicaldrill/alien=1,
 									/obj/item/cautery/alien=1,
 									/obj/item/compressionkit=1,
-									/obj/item/circuitboard/machine/plantgenes/vault=1,
 									/obj/item/disk/design_disk/golem_shell=1,
 									/obj/item/disk/tech_disk/illegal=1
 									))

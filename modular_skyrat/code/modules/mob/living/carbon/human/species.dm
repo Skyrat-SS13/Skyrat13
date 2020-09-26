@@ -6,7 +6,7 @@
 	var/toxmod = 1
 	var/revivesbyhealreq = 0 //They need to pass that health number to revive if they possess the REVIVESBYHEALING trait
 	var/reagent_flags = PROCESS_ORGANIC //Used for metabolizing reagents. We're going to assume you're a meatbag unless you say otherwise.
-	var/icon_eyes = 'icons/mob/human_face.dmi'//Skyrat change
+	var/icon_eyes = 'icons/mob/human_face.dmi'
 	var/list/languagewhitelist = list()
 	var/list/descriptors = list(
 		/datum/mob_descriptor/height = "default",

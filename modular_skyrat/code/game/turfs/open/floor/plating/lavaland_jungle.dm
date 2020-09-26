@@ -74,3 +74,6 @@
 	icon_state = "shallow"
 	color = "#648363"
 	slowdown = 3
+
+/turf/open/floor/plating/smooth/ReplaceWithLattice()
+	return

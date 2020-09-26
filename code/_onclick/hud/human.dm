@@ -222,6 +222,16 @@
 	using.hud = src
 	static_inventory += using
 
+	//Skyrat edit
+	using = new /obj/screen/info()
+	using.icon = 'modular_skyrat/icons/mob/screen_gen.dmi'
+	using.icon_state = "info"
+	using.screen_loc = ui_swaphand_position(owner,2)
+	using.hud = src
+	using.layer += 0.1 //this is stupid
+	static_inventory += using
+	//
+
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "id"
 	inv_box.icon = ui_style

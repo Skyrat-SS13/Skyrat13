@@ -48,7 +48,10 @@
 		to_chat(user, "<span class='notice'>You finish wrapping [I] with [src].</span>")
 		if(!endless)
 			use(1)
-		I.name = "[prefix] [I.name]"
+		
+		//Apply the prefix only if it isn't already applied
+		if(!findtext(I.name, prefix))
+			I.name = "[prefix] [I.name]"
 
 		if(istype(I, /obj/item/grenade))
 			var/obj/item/grenade/sticky_bomb = I

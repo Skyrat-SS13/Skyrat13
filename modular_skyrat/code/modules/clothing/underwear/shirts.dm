@@ -51,7 +51,7 @@
 
 /obj/item/clothing/underwear/shirt/bra/swimming/alt
 	name = "swimming bra (alt)"
-	icon_state = "bra_swimming_alt "
+	icon_state = "bra_swimming_alt" 
 
 /obj/item/clothing/underwear/shirt/bra/tubetop
 	name = "tubetop bra"

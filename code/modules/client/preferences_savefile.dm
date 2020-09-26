@@ -255,6 +255,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["event_participation"] >> event_participation
 	S["event_prefs"] >> event_prefs
 	S["appear_in_round_end_report"]	>> appear_in_round_end_report
+	S["combat_music"]	>> combat_music
 	//SKYRAT CHANGES END
 
 
@@ -356,6 +357,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	scars_list = SANITIZE_LIST(scars_list)
 	cosmetic_scars = SANITIZE_LIST(cosmetic_scars)
 	eorg_teleport			= sanitize_integer(eorg_teleport, 0, 1, initial(eorg_teleport))
+	if(combat_music)
+		combat_music = sanitize_inlist(combat_music, GLOB.combat_music_options)
 	//SKYRAT CHANGES END
 
 	verify_keybindings_valid()		// one of these days this will runtime and you'll be glad that i put it in a different proc so no one gets their saves wiped
@@ -454,6 +457,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["appear_in_round_end_report"], appear_in_round_end_report)
 	WRITE_FILE(S["scars_list"], scars_list)
 	WRITE_FILE(S["eorg_teleport"], eorg_teleport)
+	WRITE_FILE(S["combat_music"], combat_music)
 	//SKYRAT CHANGES END
 
 	return 1
@@ -579,7 +583,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["language"]			>> language
 	S["body_descriptors"]	>> body_descriptors
 	body_descriptors = SANITIZE_LIST(body_descriptors)
-	if(!length(body_descriptors)) //if we have a null descriptor list, we just force load it from the species
+	if(length(body_descriptors) < length(initial(pref_species.descriptors))) //if we have a null descriptor list, we just force load it from the species
 		for(var/i in pref_species.descriptors) //of course some species might not have descriptors and this is uneccessary for them but
 			var/datum/mob_descriptor/md = pref_species.descriptors[i] //the hardest coding requires the strongest wills
 			body_descriptors[i] = md.current_value
