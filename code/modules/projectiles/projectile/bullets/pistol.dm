@@ -1,5 +1,4 @@
 // 9mm (Stechkin APS)
-
 /obj/item/projectile/bullet/c9mm
 	name = "9mm bullet"
 	damage = 25  //Skyrat edit: Same damage as .38, they're literally the same round with a different load.
@@ -58,20 +57,19 @@
 		if(L.getStaminaLoss() >= 60)
 			L.Sleeping(300)
 		else
-			L.adjustStaminaLoss(25) 
+			L.adjustStaminaLoss(25)
 
 // .32 ACP (Improvised Pistol)
 
 /obj/item/projectile/bullet/c32acp
 	name = ".32 bullet"
-	damage = 13
-	wound_bonus = 5
+	damage = 15
+	wound_bonus = -25
 
 /obj/item/projectile/bullet/r32acp
 	name = ".32 rubber bullet"
 	damage = 3
 	eyeblur = 1
-	stamina = 20
-	wound_bonus = 5
+	stamina = 24
+	wound_bonus = -25
 	embedding = EMBED_NONE
-

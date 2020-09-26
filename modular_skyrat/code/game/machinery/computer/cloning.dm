@@ -463,7 +463,6 @@
 				if(active_record == C)
 					active_record = null
 				menu = 1
-				SEND_SIGNAL(usr, COMSIG_ADD_MOOD_EVENT, "clooner", /datum/mood_event/clooner)
 			else
 				temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
