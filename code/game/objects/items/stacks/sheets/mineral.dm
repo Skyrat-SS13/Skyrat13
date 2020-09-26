@@ -306,6 +306,9 @@ GLOBAL_LIST_INIT(bananium_recipes, list ( \
 
 GLOBAL_LIST_INIT(titanium_recipes, list ( \
 	new/datum/stack_recipe("titanium tile", /obj/item/stack/tile/mineral/titanium, 1, 4, 20), \
+	//SKYRAT CHANGE - adds low walls
+	new /datum/stack_recipe("titanium low wall", /obj/structure/table/low_wall/titanium, 4, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
+	//SKYRAT CHANGE END
 	))
 
 /obj/item/stack/sheet/mineral/titanium/get_main_recipes()
@@ -340,6 +343,9 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
 
 GLOBAL_LIST_INIT(plastitanium_recipes, list ( \
 	new/datum/stack_recipe("plastitanium tile", /obj/item/stack/tile/mineral/plastitanium, 1, 4, 20), \
+	//SKYRAT CHANGE - adds low walls
+	new /datum/stack_recipe("titanium low wall", /obj/structure/table/low_wall/plastitanium, 4, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
+	//SKYRAT CHANGE END
 	))
 
 /obj/item/stack/sheet/mineral/plastitanium/get_main_recipes()

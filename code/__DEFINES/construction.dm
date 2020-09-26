@@ -104,6 +104,9 @@
 #define RCD_WINDOWGRILLE 4
 #define RCD_MACHINE 8
 #define RCD_COMPUTER 16
+//skyrat edit
+#define RCD_LOWWALL 32
+//
 
 #define RCD_UPGRADE_FRAMES 1
 #define RCD_UPGRADE_SIMPLE_CIRCUITS 2

@@ -286,6 +286,9 @@
 	if(R.window_checks && !valid_window_location(T, initial(D.dir) == FULLTILE_WINDOW_DIR ? FULLTILE_WINDOW_DIR : usr.dir))
 		to_chat(usr, "<span class='warning'>The [R.title] won't fit here!</span>")
 		return FALSE
+	if(R.low_wall_check && !(locate(/obj/structure/table/low_wall) in T))
+		to_chat(usr, "<span class='warning'>The [R.title] needs a low wall!</span>")
+		return FALSE
 	if(R.one_per_turf && (locate(R.result_type) in T))
 		to_chat(usr, "<span class='warning'>There is another [R.title] here!</span>")
 		return FALSE
@@ -478,11 +481,12 @@
 	var/on_floor = FALSE
 	var/window_checks = FALSE
 	var/placement_checks = FALSE
+	var/low_wall_check = FALSE
 	var/applies_mats = FALSE
 	var/trait_booster = null
 	var/trait_modifier = 1
 
-/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1,time = 0, one_per_turf = FALSE, on_floor = FALSE, window_checks = FALSE, placement_checks = FALSE, applies_mats = FALSE, trait_booster = null, trait_modifier = 1)
+/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1,time = 0, one_per_turf = FALSE, on_floor = FALSE, window_checks = FALSE, placement_checks = FALSE, applies_mats = FALSE, trait_booster = null, trait_modifier = 1, low_wall_check = FALSE)
 
 
 	src.title = title
@@ -498,6 +502,7 @@
 	src.applies_mats = applies_mats
 	src.trait_booster = trait_booster
 	src.trait_modifier = trait_modifier
+	src.low_wall_check = low_wall_check
 /*
  * Recipe list datum
  */

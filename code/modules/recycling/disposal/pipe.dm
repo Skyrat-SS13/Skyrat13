@@ -13,8 +13,14 @@
 	dir = NONE			// dir will contain dominant direction for junction pipes
 	max_integrity = 200
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
+	/* skyrat edit
 	layer = DISPOSAL_PIPE_LAYER			// slightly lower than wires and other pipes
 	plane = ABOVE_WALL_PLANE
+	*/
+	//Skyrat edit - modular wasn't playing nice, i had to put my foot down
+	plane = ABOVE_FLOOR_PLANE
+	layer = DISPOSAL_PIPE_LAYER
+	//
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	var/dpdir = NONE					// bitmask of pipe directions
 	var/initialize_dirs = NONE			// bitflags of pipe directions added on init, see \code\_DEFINES\pipe_construction.dm

@@ -262,7 +262,7 @@
 	if(New)
 		A.add_overlay(New)
 
-/proc/find_type_in_direction(atom/source, direction)
+/proc/find_type_in_direction(atom/source, direction, override_canSmoothWith)
 	var/turf/target_turf = get_step(source, direction)
 	if(!target_turf)
 		return NULLTURF_BORDER
@@ -274,7 +274,7 @@
 	if(target_area.canSmoothWithAreas && !is_type_in_typecache(source_area, target_area.canSmoothWithAreas))
 		return null
 
-	if(source.canSmoothWith)
+	if(source.canSmoothWith && !override_canSmoothWith)
 		var/atom/A
 		if(source.smooth & SMOOTH_MORE)
 			for(var/a_type in source.canSmoothWith)
@@ -291,6 +291,17 @@
 			A = locate(a_type) in target_turf
 			if(A && A.type == a_type)
 				return A
+		return null
+	else if(override_canSmoothWith)
+		var/atom/A
+		for(var/atom/B in target_turf)
+			if(istype(B, override_canSmoothWith))
+				A = B
+				break
+		if(istype(target_turf, override_canSmoothWith))
+			A = target_turf
+		if(A)
+			return A
 		return null
 	else
 		if(isturf(source))

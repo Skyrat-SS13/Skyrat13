@@ -14,7 +14,8 @@
 #define OPENSPACE_PLANE -2 //Openspace plane below all turfs // Skyrat change -- 512 compatibility -- changed to 0 from -10
 #define OPENSPACE_BACKDROP_PLANE -2 //Black square just over openspace plane to guaranteed cover all in openspace turf // Skyrat change -- 512 compatibility -- changed to 0 from -9
 
-#define FLOOR_PLANE -9 // Skyrat change -- reduced by 1 to make space for another plane
+#define FLOOR_PLANE -10 // Skyrat change -- reduced by 2 to make space for two more planes
+#define ABOVE_FLOOR_PLANE -9 //Skyrat change - Used by grilles and stuff idk man my IQ is low
 #define FLOOR_PLANE_RENDER_TARGET "FLOOR_PLANE"
 
 #define WALL_PLANE -8 // Skyrat change -- reduced by 1 to make space for another plane
@@ -53,15 +54,19 @@
 #define CLOSED_TURF_LAYER 2.05
 #define BULLET_HOLE_LAYER 2.06
 #define ABOVE_NORMAL_TURF_LAYER 2.08
-#define LATTICE_LAYER 2.2
-#define DISPOSAL_PIPE_LAYER 2.3
 #define GAS_PIPE_HIDDEN_LAYER 2.35
 #define WIRE_LAYER 2.4
-#define WIRE_TERMINAL_LAYER 2.45
-#define GAS_SCRUBBER_LAYER 2.46
-#define GAS_PIPE_VISIBLE_LAYER 2.47
-#define GAS_FILTER_LAYER 2.48
-#define GAS_PUMP_LAYER 2.49
+//skyrat edit
+#define WIRE_TERMINAL_LAYER 2.42
+#define GAS_SCRUBBER_LAYER 2.43
+#define GAS_PIPE_VISIBLE_LAYER 2.4
+#define GAS_FILTER_LAYER 2.45
+#define GAS_PUMP_LAYER 2.46
+#define DISPOSAL_PIPE_LAYER 2.47
+#define POD_DOOR_LAYER 2.48
+#define LATTICE_LAYER 2.5
+#define WINDOW_LAYER 2.6
+//
 
 #define LOW_OBJ_LAYER 2.5
 #define LOW_SIGIL_LAYER 2.52
@@ -94,7 +99,12 @@
 //#define MOB_LAYER 4 //For easy recordkeeping; this is a byond define
 #define MOB_UPPER_LAYER 4.05
 #define ABOVE_MOB_LAYER 4.1
+//skyrat edit
+#define LOW_WALL_LAYER 4.2
 #define WALL_OBJ_LAYER 4.25
+#define WALL_WINDOW_LAYER 4.27
+#define ABOVE_WALL_WINDOW_LAYER 4.28
+//
 #define EDGED_TURF_LAYER 4.3
 #define ON_EDGED_TURF_LAYER 4.35
 #define LARGE_MOB_LAYER 4.4
