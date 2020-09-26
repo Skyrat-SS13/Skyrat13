@@ -62,7 +62,6 @@
 			G.anchored = TRUE
 			return TRUE
 		if(RCD_LOWWALL)
-			if(RCD_LOWWALL)
 			if(locate(/obj/structure/table/low_wall) in src)
 				return FALSE
 			var/obj/structure/table/low_wall/metal/L = new the_rcd.lowwalltype(src)
