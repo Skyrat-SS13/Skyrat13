@@ -142,6 +142,11 @@
 /obj/structure/window/plastitanium
 	icon = 'modular_skyrat/icons/eris/obj/structures/windows.dmi'
 
+/obj/structure/window/plastitanium/Initialize()
+	//this is stupid but oh well
+	if(fulltile)
+		icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/plastitanium_window.dmi'
+
 /obj/structure/window/plastitanium/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/plastitanium_window.dmi'
 	canSmoothWith = list(
