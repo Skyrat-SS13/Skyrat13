@@ -1,5 +1,4 @@
-<!-- Most valid html will work in here, excluding images. -->
+<h1>Bem vindo ao Bob Station!</h1>
 
-<h1>Welcome to Space Station 13!</h1>
-
-<i>This server is running a /tg/station 13 Git build.</i>
+<i>Esse server é uma downstream do skyrat: https://github.com/Skyrat-SS13/Skyrat13</i><br>
+<i>Entre no discord para ver as regras! <a href='discord.gg/gdHmnrP'><b>Discord</b></a></i>
