@@ -18,18 +18,11 @@
 #define WOUND_SEVERITY_LOSS		5 // theoretical total limb loss, like dismemberment for cuts
 #define WOUND_SEVERITY_PERMANENT 6 // for wounds, severe or not, that cannot be removed via normal means (e.g just amputate the limb affected)
 
-#define WOUND_BLUNT 0 // any brute weapon/attack that doesn't have sharpness. rolls for blunt bone wounds
-#define WOUND_SLASH 1 // any brute weapon/attack with sharpness = SHARP_EDGED. rolls for slash wounds
-#define WOUND_PIERCE 2 // any brute weapon/attack with sharpness = SHARP_POINTY. rolls for piercing wounds
-#define WOUND_BURN	3 // any concentrated burn attack (lasers really). rolls for burning wounds
-#define WOUND_INTERNALBLEED 4 // currently only caused by exposure to space
-
-// The ones below will be implemented in the future, but dont exist atm
-#define WOUND_TOXIN 4
-#define WOUND_RADIATION 5 //arguably could just use the cellular wound thing, but i'm an asshole and want cancer/tumors to be a separate thing
-#define WOUND_CELLULAR 6
-#define WOUND_STAMINA 7
-#define WOUND_ORGAN 8
+#define WOUND_NONE 0 // doesn't actually wound
+#define WOUND_BLUNT 1 // any brute weapon/attack that doesn't have sharpness. rolls for blunt bone wounds
+#define WOUND_SLASH 2 // any brute weapon/attack with sharpness = SHARP_EDGED. rolls for slash wounds
+#define WOUND_PIERCE 3 // any brute weapon/attack with sharpness = SHARP_POINTY. rolls for piercing wounds
+#define WOUND_BURN	4 // any concentrated burn attack (lasers really). rolls for burning wounds
 
 // How much determination reagent to add each time someone gains a new wound in [/datum/wound/proc/second_wind()]
 #define WOUND_DETERMINATION_MODERATE	2
@@ -44,7 +37,6 @@
 #define CANT_WOUND -100
 
 // List in order of highest severity to lowest (if the wound is rolled for normally - there are edge cases like incisions)
-#define WOUND_LIST_INTERNAL_BLEEDING list(/datum/wound/internalbleed/critical, /datum/wound/internalbleed/severe, /datum/wound/internalbleed/moderate)
 #define WOUND_LIST_INCISION	list(/datum/wound/slash/critical/incision)
 #define WOUND_LIST_INCISION_MECHANICAL	list(/datum/wound/mechanical/slash/critical/incision)
 #define WOUND_LIST_BLUNT		list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate/jaw, /datum/wound/blunt/moderate/ribcage, /datum/wound/blunt/moderate/hips, /datum/wound/blunt/moderate)
@@ -58,17 +50,15 @@
 #define WOUND_LIST_BURN		list(/datum/wound/burn/critical, /datum/wound/burn/severe, /datum/wound/burn/moderate)
 #define WOUND_LIST_BURN_MECHANICAL		list(/datum/wound/mechanical/burn/critical, /datum/wound/mechanical/burn/severe, /datum/wound/mechanical/burn/moderate)
 
-// Thresholds for infection for burn wounds, once infestation hits each threshold, things get steadily worse
-#define WOUND_INFECTION_MODERATE	4 // below this has no ill effects from infection
-#define WOUND_INFECTION_SEVERE		8 // then below here, you ooze some pus and suffer minor tox damage, but nothing serious
-#define WOUND_INFECTION_CRITICAL	12 // then below here, your limb occasionally locks up from damage and infection and briefly becomes disabled. Things are getting really bad
-#define WOUND_INFECTION_SEPTIC		20 // below here, your skin is almost entirely falling off and your limb locks up more frequently. You are within a stone's throw of septic paralysis and losing the limb
+// Thresholds for infection for wounds, once infestation hits each threshold, things get steadily worse
+#define WOUND_INFECTION_MODERATE	250 // below this has no ill effects from germs
+#define WOUND_INFECTION_SEVERE		330 // then below here, you ooze some pus and suffer minor tox damage, but nothing serious
+#define WOUND_INFECTION_CRITICAL	600 // then below here, your limb occasionally locks up from damage and infection and briefly becomes disabled. Things are getting really bad
+#define WOUND_INFECTION_SEPTIC		1000 // below here, your skin is almost entirely falling off and your limb locks up more frequently. You are within a stone's throw of septic paralysis and losing the limb
 // Above WOUND_INFECTION_SEPTIC, your limb is completely putrid and you start rolling to lose the entire limb by way of paralyzation. After 3 failed rolls (~4-5% each probably), the limb is paralyzed
 
-#define WOUND_BURN_SANITIZATION_RATE 0.15 // how quickly sanitization removes infestation and decays per tick
 #define WOUND_SLASH_MAX_BLOODFLOW		8 // how much blood you can lose per tick per slash max. 8 is a LOT of blood for one cut so don't worry about hitting it easily
 #define WOUND_PIERCE_MAX_BLOODFLOW		8 // same as above, but for piercing wounds
-#define WOUND_INTERNAL_MAX_BLOODFLOW	10 // same as above, but for internal bleeding
 #define WOUND_SLASH_DEAD_CLOT_MIN		0.05 // dead people don't bleed, but they can clot! this is the minimum amount of clotting per tick on dead people, so even critical cuts will slowly clot in dead people
 #define WOUND_PIERCE_DEAD_CLOT_MIN		0.05 // same as above but for piercing wounds
 #define WOUND_BONE_HEAD_TIME_VARIANCE 	20 // if we suffer a bone wound to the head that creates brain traumas, the timer for the trauma cycle is +/- by this percent (0-100)
@@ -103,6 +93,11 @@
 #define BIO_SKIN	(1<<2) // literally nothing right now
 #define BIO_FULL	(BIO_BONE | BIO_FLESH | BIO_SKIN) // standard humanoids, can suffer all wounds, needs mangled bone and flesh to dismember
 
+// Wound flags
+#define MANGLES_SKIN (1<<0)
+#define MANGLES_MUSCLE (1<<1)
+#define MANGLES_BONE (1<<2)
+
 //Organ status flags
 #define ORGAN_ORGANIC   (1<<0)
 #define ORGAN_ROBOTIC   (1<<1)
@@ -111,15 +106,19 @@
 //Bodypart status flags
 #define BODYPART_ORGANIC	(1<<0)
 #define BODYPART_ROBOTIC	(1<<1)
-#define BODYPART_NOBLEED	(1<<2)
-#define BODYPART_NOEMBED	(1<<3)
-#define BODYPART_HARDDISMEMBER	(1<<4)
+#define BODYPART_DEAD		(1<<2) //Completely septic and unusable limb
+#define BODYPART_SYNTHETIC	(1<<3) //Synthetic bodypart, can't get infected
+#define BODYPART_FROZEN		(1<<3) //Cold, doesn't rot
+#define BODYPART_NOBLEED	(1<<4)
+#define BODYPART_NOEMBED	(1<<5)
+#define BODYPART_NOPAIN 	(1<<6)
 
 //Bodypart disabling defines
 #define BODYPART_NOT_DISABLED 0
 #define BODYPART_DISABLED_DAMAGE 1
 #define BODYPART_DISABLED_WOUND 2
-#define BODYPART_DISABLED_PARALYSIS 3
+#define BODYPART_DISABLED_PAIN 3
+#define BODYPART_DISABLED_PARALYSIS 4
 
 //Maximum number of brain traumas wounds to the head can cause
 #define TRAUMA_LIMIT_WOUND 2
@@ -147,3 +146,76 @@
 #define LOOKS_UNCONSCIOUS 2
 #define LOOKS_VERYUNCONSCIOUS 3
 #define LOOKS_DEAD		4
+
+//Pain-related defines
+#define PAIN_EMOTE_MINIMUM 10
+#define PAIN_LEVEL_1 0
+#define PAIN_LEVEL_2 10
+#define PAIN_LEVEL_3 40
+#define PAIN_LEVEL_4 70
+
+//Flags for the organ_flags var on /obj/item/organ
+#define ORGAN_SYNTHETIC			(1<<0)	//Synthetic organs, or cybernetic organs. Reacts to EMPs and don't deteriorate or heal
+#define ORGAN_FROZEN			(1<<1)	//Frozen organs, don't deteriorate
+#define ORGAN_FAILING			(1<<2)	//Failing organs perform damaging effects until replaced or fixed
+#define ORGAN_DEAD				(1<<3)  //Not only is the organ failing, it is completely septic and spreading it around
+#define ORGAN_EXTERNAL			(1<<4)	//Was this organ implanted/inserted/etc, if true will not be removed during species change.
+#define ORGAN_VITAL				(1<<5)	//Currently only the brain
+#define ORGAN_NO_SPOIL			(1<<6)	//Do not spoil under any circumstances
+#define ORGAN_NO_DISMEMBERMENT	(1<<7)	//Immune to disembowelment.
+#define ORGAN_EDIBLE			(1<<8)	//is a snack? :D
+
+// Pulse levels, very simplified.
+#define PULSE_NONE    0   // So !M.pulse checks would be possible.
+#define PULSE_SLOW    1   // <60     bpm
+#define PULSE_NORM    2   //  60-90  bpm
+#define PULSE_FAST    3   //  90-120 bpm
+#define PULSE_2FAST   4   // >120    bpm
+#define PULSE_THREADY 5   // Occurs during hypovolemic shock
+#define PULSE_MAX_BPM 250 // Highest, readable BPM by machines and humans.
+#define GETPULSE_BASIC 0   // Less accurate. (hand, health analyzer, etc.)
+#define GETPULSE_ADVANCED 1   // More accurate. (med scanner, sleeper, etc.)
+
+// Shock defines
+#define SHOCK_STAGE_1 10
+#define SHOCK_STAGE_2 30
+#define SHOCK_STAGE_3 40
+#define SHOCK_STAGE_4 60
+#define SHOCK_STAGE_5 80
+#define SHOCK_STAGE_6 120
+#define SHOCK_STAGE_7 150
+#define SHOCK_STAGE_8 200
+
+//Infection defines
+#define GERM_LEVEL_AMBIENT  275 // Maximum germ level you can reach by standing still.
+#define GERM_LEVEL_MOVE_CAP 300 // Maximum germ level you can reach by running around.
+
+//Sanitization
+#define MAXIMUM_GERM_LEVEL	1000
+#define SANITIZATION_SPACE_CLEANER 100
+#define SANITIZATION_ANTIBIOTIC 0.1 // CE_ANTIBIOTIC sanitization
+#define SANITIZATION_LYING 2
+
+#define INFECTION_LEVEL_ONE   250
+#define INFECTION_LEVEL_TWO   500  // infections grow from ambient to two in ~5 minutes
+#define INFECTION_LEVEL_THREE 1000 // infections grow from two to three in ~10 minutes
+
+#define WOUND_INFECTION_SANITIZATION_RATE	10 // how quickly sanitization removes infestation and decays per tick
+#define WOUND_SANITIZATION_PER_ANTIBIOTIC 1 // Sanitization for each point in the antibiotic chem effect
+#define WOUND_SANITIZATION_STERILIZER	100 // How much sterilizer sanitizes a wound
+#define WOUND_INFECTION_SEEP_RATE		0.15 // How much we seep gauze per life tick
+
+//How much time it takes for a dead organ to recover
+#define ORGAN_RECOVERY_THRESHOLD (5 MINUTES)
+
+//Rejection levels
+#define REJECTION_LEVEL_1 1
+#define REJECTION_LEVEL_2 50
+#define REJECTION_LEVEL_3 200
+#define REJECTION_LEVEL_4 500
+
+//Brain damage related defines
+#define MINIMUM_DAMAGE_TRAUMA_ROLL 4 //We need to take at least this much brainloss gained at once to roll for traumas, any less it won't roll
+#define DAMAGE_LOW_OXYGENATION 1 //Brainloss caused by low blood oxygenation
+#define DAMAGE_LOWER_OXYGENATION 2 //Brainloss caused by lower than low blood oxygenation
+#define DAMAGE_VERY_LOW_OXYGENATION 3 //The above but even worse

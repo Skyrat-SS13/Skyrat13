@@ -4,6 +4,7 @@
 	var/obj/effect/overlay/gunpoint_effect/gp_effect
 	var/list/recent_embeds = list()
 	var/embed_timer
+	var/list/chem_effects = list()
 
 /mob/living/proc/wield_active_hand()
 	return

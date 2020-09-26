@@ -1,8 +1,3 @@
-/datum/reagent/medicine/mine_salve/on_mob_metabolize(mob/living/M) //modularisation for miners salve painkiller.
-	..()
-	if(iscarbon(M))
-		ADD_TRAIT(M, TRAIT_PAINKILLER, PAINKILLER_MINERSSALVE)
-
 /datum/reagent/medicine/strange_reagent
 	description = "A miracle drug that can bring people back from the dead based on the dosage. For every 20 units of brute or burn damage, 1u of this reagent is required. Deals a small amount of damage on metabolism."
 
@@ -260,3 +255,364 @@
 						reac_volume = max(0, reac_volume - 10)
 	else
 		M.adjustToxLoss(reac_volume * 0.8)
+
+//Painkiller medicine
+/datum/reagent/medicine/paracetamol
+	name = "Paracetamol"
+	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller."
+	taste_description = "sickness"
+	reagent_state = LIQUID
+	color = "#c8a5dc"
+	overdose_threshold = 30
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+
+/datum/reagent/medicine/paracetamol/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 40) //Very effective painkiller
+
+/datum/reagent/medicine/paracetamol/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 40)
+
+/datum/reagent/medicine/paracetamol/overdose_process(mob/living/M)
+	. = ..()
+	if(iscarbon(M) && prob(15))
+		var/mob/living/carbon/C = M
+		C.custom_pain("<span class='danger'>Your head feels like it's going to explode!</span>", 20, FALSE, C.get_bodypart(BODY_ZONE_HEAD))
+
+/datum/reagent/medicine/tramadol
+	name = "Tramadol"
+	description = "A simple, yet effective painkiller. Don't mix with alcohol."
+	taste_description = "sourness"
+	reagent_state = LIQUID
+	color = "#c86dfd"
+	var/initial_volume = 0 //Hacky way to make tramadol heal pain about equal to the quantity consumed
+
+/datum/reagent/medicine/tramadol/reaction_mob(mob/living/M, method, reac_volume, show_message, touch_protection)
+	. = ..()
+	initial_volume = reac_volume
+
+/datum/reagent/medicine/tramadol/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, min(initial_volume, 20))
+
+/datum/reagent/medicine/tramadol/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, min(initial_volume, 20))
+
+/datum/reagent/medicine/tramadol/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(M.drunkenness)
+		M.adjustOrganLoss(ORGAN_SLOT_LIVER, initial_volume/30) // More tramadol = More liver destruction
+
+/datum/reagent/medicine/bicaridine/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 10)
+
+/datum/reagent/medicine/bicaridine/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 10)
+
+/datum/reagent/medicine/kelotane/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 10)
+
+/datum/reagent/medicine/kelotane/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 10)
+
+/datum/reagent/medicine/tricordrazine/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 15)
+
+/datum/reagent/medicine/tricordrazine/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 15)
+
+/datum/reagent/medicine/modafinil/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 45)
+
+/datum/reagent/medicine/modafinil/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 45)
+
+/datum/reagent/medicine/lavaland_extract/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 30)
+
+/datum/reagent/medicine/lavaland_extract/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 30)
+
+/datum/reagent/medicine/antitoxin/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	for(var/obj/item/organ/O in M.internal_organs)
+		if(prob(20) && !(O.slot == ORGAN_SLOT_BRAIN))
+			O.applyOrganDamage(-5 * REM)
+
+/datum/reagent/medicine/antitoxin/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_ANTITOX)
+
+/datum/reagent/medicine/antitoxin/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_ANTITOX)
+
+/datum/reagent/medicine/charcoal/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	for(var/obj/item/organ/O in M.internal_organs)
+		if(prob(20) && !(O.slot == ORGAN_SLOT_BRAIN))
+			O.applyOrganDamage(-5 * REM)
+
+/datum/reagent/medicine/charcoal/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_ANTITOX)
+
+/datum/reagent/medicine/charcoal/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_ANTITOX)
+
+/datum/reagent/medicine/cryoxadone/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(L.bodytemperature < T0C)
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			C.add_chem_effect(CE_PAINKILLER, 100)
+
+/datum/reagent/medicine/cryoxadone/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 100)
+
+/datum/reagent/medicine/pyroxadone/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(C.bodytemperature >= BODYTEMP_HEAT_DAMAGE_LIMIT)
+			C.add_chem_effect(CE_PAINKILLER, 100)
+
+/datum/reagent/medicine/pyroxadone/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 100)
+
+//Sterilizine actually does double the cleaning since it calls the parent
+/datum/reagent/space_cleaner/sterilizine/reaction_obj(obj/O, reac_volume)
+	. = ..()
+	if(O.germ_level)
+		O.janitize(-(reac_volume * 100))
+
+/datum/reagent/space_cleaner/sterilizine/reaction_turf(turf/T, reac_volume)
+	. = ..()
+	if(T.germ_level)
+		T.janitize(-(reac_volume * 100))
+
+/datum/reagent/space_cleaner/sterilizine/reaction_mob(mob/living/M, method, reac_volume)
+	. = ..()
+	if(M.germ_level < INFECTION_LEVEL_TWO)
+		M.janitize(-(reac_volume * 20))
+
+//Antibiotics
+/datum/reagent/space_cleaner/sterilizine/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_ANTIBIOTIC, 35)
+
+/datum/reagent/space_cleaner/sterilizine/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_ANTIBIOTIC, 35)
+
+/datum/reagent/medicine/spaceacillin/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_ANTIBIOTIC, 75)
+
+/datum/reagent/medicine/spaceacillin/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_ANTIBIOTIC, 75)
+
+/datum/reagent/medicine/nalidixic_acid
+	name = "Nalidixic Acid"
+	description = "A weak, but synthetizable, antibiotic."
+	color = "#fc7a7a"
+	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	pH = 8.1
+
+/datum/reagent/medicine/nalidixic_acid/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_ANTIBIOTIC, 50)
+
+/datum/reagent/medicine/nalidixic_acid/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_ANTIBIOTIC, 50)
+
+//Stabilizing medicine
+/datum/reagent/medicine/inaprovaline/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_STABLE)
+		C.add_chem_effect(CE_PAINKILLER, 10)
+
+/datum/reagent/medicine/inaprovaline/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_STABLE)
+		C.remove_chem_effect(CE_PAINKILLER, 10)
+
+/datum/reagent/medicine/epinephrine/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_STABLE)
+		C.add_chem_effect(CE_PAINKILLER, 15)
+
+/datum/reagent/medicine/epinephrine/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_STABLE)
+		C.remove_chem_effect(CE_PAINKILLER, 15)
+
+/datum/reagent/medicine/atropine/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_STABLE)
+		C.add_chem_effect(CE_PAINKILLER, 15)
+
+/datum/reagent/medicine/atropine/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_STABLE)
+		C.remove_chem_effect(CE_PAINKILLER, 25)
+
+/datum/reagent/medicine/earthsblood/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_STABLE)
+		C.add_chem_effect(CE_PAINKILLER, 20)
+
+/datum/reagent/medicine/earthsblood/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_STABLE)
+		C.remove_chem_effect(CE_PAINKILLER, 20)
+
+/datum/reagent/medicine/adminordrazine/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_STABLE)
+		C.add_chem_effect(CE_PAINKILLER, 200)
+		C.add_chem_effect(CE_OXYGENATED, 2)
+
+/datum/reagent/medicine/adminordrazine/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_STABLE)
+		C.remove_chem_effect(CE_PAINKILLER, 200)
+		C.remove_chem_effect(CE_OXYGENATED, 2)
+
+//Oxygenation medicine
+/datum/reagent/medicine/omnizine/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_OXYGENATED)
+
+/datum/reagent/medicine/omnizine/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_OXYGENATED)
+
+/datum/reagent/medicine/salbutamol/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_OXYGENATED)
+
+/datum/reagent/medicine/salbutamol/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_OXYGENATED)
+
+/datum/reagent/medicine/perfluorodecalin/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_OXYGENATED, 2)
+
+/datum/reagent/medicine/perfluorodecalin/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_OXYGENATED, 2)
+
+/datum/reagent/medicine/dexalin/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_OXYGENATED, 2)
+
+/datum/reagent/medicine/dexalin/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_OXYGENATED, 2)

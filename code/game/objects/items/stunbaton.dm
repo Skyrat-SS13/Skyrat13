@@ -16,6 +16,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
 
 	var/stamforce = 35
+	var/painforce = 15 //Stunbatons hurt a lot
 	var/turned_on = FALSE
 	var/knockdown = TRUE
 	var/obj/item/stock_parts/cell/cell
@@ -176,6 +177,13 @@
 		return FALSE
 	var/stunpwr = stamforce
 	stunpwr = block_calculate_resultant_damage(stunpwr, return_list)
+	var/painpwr = painforce
+	painpwr = block_calculate_resultant_damage(painforce, return_list)
+	//Painkillers yeet stuns right out of an airlock
+	if(iscarbon(L))
+		var/mob/living/carbon/carbonmob = L
+		painpwr *= max(0.1, 1 - (carbonmob.chem_effects[CE_PAINKILLER]/100))
+		stunpwr *= max(0.1, 1 - (carbonmob.chem_effects[CE_PAINKILLER]/100))
 	var/obj/item/stock_parts/cell/our_cell = get_cell()
 	if(!our_cell)
 		switch_status(FALSE)
@@ -192,11 +200,28 @@
 		stunpwr *= round(stuncharge/hitcost, 0.1)
 
 	if(!disarming)
-		if(knockdown)
-			L.DefaultCombatKnockdown(50, override_stamdmg = 0)		//knockdown
+		//Batons only knockdown if they landed at least 35% of the stamina damage
+		if(knockdown && (stunpwr >= (stamforce/100 * 35)))
+			if(iscarbon(L))
+				//Also, painkillers affect how much the carbon mob gets knocked down regardless of the stamina damage landed
+				var/mob/living/carbon/carbonmob = L
+				carbonmob.DefaultCombatKnockdown(50 * max(0.35, 1 - (carbonmob.chem_effects[CE_PAINKILLER]/100)), override_stamdmg = 0)
+			else
+				L.DefaultCombatKnockdown(50, override_stamdmg = 0)
 		L.adjustStaminaLoss(stunpwr)
 	else
 		L.drop_all_held_items()					//no knockdown/stamina damage, instead disarm.
+
+	//Always apply the pain damage however
+	var/obj/item/bodypart/painpart
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		painpart = C.get_bodypart(user.zone_selected)
+	
+	if(painpart)
+		painpart.receive_damage(pain = painpwr)
+	else
+		L.adjustPainLoss(painpwr)
 
 	L.apply_effect(EFFECT_STUTTER, stamforce)
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)

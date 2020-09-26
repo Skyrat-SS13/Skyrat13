@@ -113,7 +113,7 @@
 		var/mob/living/carbon/C = host_mob
 		var/obj/item/organ/heart/heart = C.getorganslot(ORGAN_SLOT_HEART)
 		if(heart)
-			if(heart.beating)
+			if(heart.pulse)
 				heart.Stop()
 			else
 				heart.Restart()

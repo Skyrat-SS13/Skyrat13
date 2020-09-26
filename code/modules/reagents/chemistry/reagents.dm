@@ -52,6 +52,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/metabolizing = FALSE
 	var/chemical_flags // See fermi/readme.dm REAGENT_DEAD_PROCESS, REAGENT_DONOTSPLIT, REAGENT_ONLYINVERSE, REAGENT_ONMOBMERGE, REAGENT_INVISIBLE, REAGENT_FORCEONNEW, REAGENT_SNEAKYNAME
 	var/value = REAGENT_VALUE_NONE //How much does it sell for in cargo?
+	var/consumption_method = INJECT //How this reagent was injected. Used by sleepers to perform dialysis. We assume injection by default.
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
@@ -66,6 +67,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 			var/amount = round(reac_volume*modifier, 0.1)
 			if(amount >= 0.5)
 				M.reagents.add_reagent(type, amount)
+	consumption_method = method
 	return 1
 
 /datum/reagent/proc/reaction_obj(obj/O, volume)

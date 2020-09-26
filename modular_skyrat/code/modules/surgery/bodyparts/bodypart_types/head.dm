@@ -4,13 +4,13 @@
 	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
 	icon = 'modular_skyrat/icons/mob/human_parts.dmi'
 	icon_state = "default_human_head"
-	max_damage = 100
+	max_damage = 75
+	max_stamina_damage = 75
 	body_zone = BODY_ZONE_HEAD
 	body_part = HEAD
 	w_class = WEIGHT_CLASS_BULKY
 	stam_heal_tick = 2
 	stam_damage_coeff = 1
-	max_stamina_damage = 100
 	throw_range = 5
 	px_x = 0
 	px_y = -8
@@ -42,6 +42,7 @@
 	var/obj/item/stack/sticky_tape/tapered = null
 	dismember_mod = 0.7
 	disembowel_mod = 0.7
+	encased = "skull"
 
 /obj/item/bodypart/head/update_limb(dropping_limb, mob/living/carbon/source)
 	var/mob/living/carbon/C

@@ -62,3 +62,18 @@
 		TW.unwield(user, TRUE)
 	else
 		TW.wield(user)
+
+//Show item infection level
+/obj/item/examine_more(mob/user)
+	. = ..()
+	if(. == DEFAULT_EXAMINE_MORE)
+		. = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
+	switch(germ_level)
+		if(-INFINITY to 0)
+			. += "<span class='info'>\The [src] is sterile.</span>"
+		if(0 to GERM_LEVEL_AMBIENT)
+			. += "<span class='info'>\The [src] is mildly unsanitized.</span>"
+		if(GERM_LEVEL_AMBIENT to WOUND_INFECTION_CRITICAL)
+			. += "<span class='info'>\The [src] is unclean.</span>"
+		if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
+			. += "<span class='info'>\The [src] is terribly dirty.</span>"

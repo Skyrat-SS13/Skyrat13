@@ -36,7 +36,7 @@
 	*/
 	var/list/msg = list()
 
-	var/list/missing = ALL_BODYPARTS
+	var/list/missing = get_missing_limbs()
 	var/list/disabled = list()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X

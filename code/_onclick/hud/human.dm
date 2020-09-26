@@ -438,6 +438,12 @@
 	healthdoll.hud = src
 	infodisplay += healthdoll
 
+	pains = new /obj/screen/human/pain()
+	pains.icon = 'modular_skyrat/icons/mob/screen_pain.dmi'
+	pains.screen_loc = ui_pain
+	pains.hud = src
+	infodisplay += pains
+	
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = ui_style_modular(ui_style) //SKYRAT EDIT
 	pull_icon.hud = src

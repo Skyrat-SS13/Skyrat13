@@ -498,6 +498,15 @@
 	construction_time = 100
 	category = list("IPC")
 
+/datum/design/ipc_kidneys
+	name = "IPC adrenaline module kidneys"
+	id = "ipc_kidneys"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/kidneys/robot_ipc
+	materials = list(/datum/material/titanium = 1000, /datum/material/uranium = 2500)
+	construction_time = 100
+	category = list("IPC")
+
 /datum/design/ipc_eyes
 	name = "IPC eyes"
 	id = "ipc_eyes"

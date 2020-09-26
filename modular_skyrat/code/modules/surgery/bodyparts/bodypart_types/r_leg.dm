@@ -6,12 +6,12 @@
 	icon_state = "default_human_r_leg"
 	attack_verb = list("kicked", "stomped")
 	max_damage = 50
+	max_stamina_damage = 50
 	body_zone = BODY_ZONE_R_LEG
 	body_part = LEG_RIGHT
 	body_damage_coeff = 0.75
 	px_x = 2
 	px_y = 12
-	max_stamina_damage = 50
 	stam_heal_tick = 4
 	amputation_point = "groin"
 	dismember_bodyzone = BODY_ZONE_PRECISE_GROIN

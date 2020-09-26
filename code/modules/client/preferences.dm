@@ -150,7 +150,8 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 	var/combat_music = "None"
 	
 	var/accept_ERG = FALSE
-	
+
+	var/pain_style = "Pain Guy"
 	/// If we have persistent scars enabled
 	var/persistent_scars = TRUE
 	/// We have 5 slots for persistent scars, if enabled we pick a random one to load (empty by default) and scars at the end of the shift if we survived as our original person
@@ -1185,6 +1186,7 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 			dat += "<b>Preferred Chaos Amount:</b> <a href='?_src_=prefs;preference=preferred_chaos;task=input'>[p_chaos]</a><br>"
 //SKYRAT CHANGES
 			dat += "<h2>Skyrat Preferences</h2>"
+			dat += "<b>Pain HUD style:</b> <a href='?_src_=prefs;preference=pain_style'>[pain_style]</a><br>"
 			dat += "<b>Combat mode music:</b> <a href='?_src_=prefs;preference=combat_music'>[combat_music ? combat_music : "None"]</a><br>"
 			dat += "<b>Show name at round-end report:</b> <a href='?_src_=prefs;preference=appear_in_round_end_report'>[appear_in_round_end_report ? "Yes" : "No"]</a><br>"
 			dat += "<b>Measurements:</b> <a href='?_src_=prefs;preference=metric_or_bust'>[toggles & METRIC_OR_BUST ? "Metric" : "Imperial"]</a><br>"
@@ -1221,9 +1223,9 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 
 			dat += "<b>Income Updates:</b> <a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Allowed" : "Muted"]</a><br>"
 			
-			dat += "<b>Combat Wound Messages (Other):</b> <a href='?_src_=prefs;preference=wounds_other'>[(chat_toggles & CHAT_WOUNDS_OTHER) ? "Allowed" : "Muted"]</a><br>"
+			dat += "<b>Combat Wound Messages (Other):</b> <a href='?_src_=prefs;preference=wounds_other'>[(chat_toggles & CHAT_WOUNDS_OTHER) ? "Muted" : "Allowed"]</a><br>"
 
-			dat += "<b>Combat Wound Messages (Self):</b> <a href='?_src_=prefs;preference=wounds_self'>[(chat_toggles & CHAT_WOUNDS_SELF) ? "Allowed" : "Muted"]</a><br>"
+			dat += "<b>Combat Wound Messages (Self):</b> <a href='?_src_=prefs;preference=wounds_self'>[(chat_toggles & CHAT_WOUNDS_SELF) ? "Muted" : "Allowed"]</a><br>"
 			
 			dat += "<br>"
 
@@ -3350,6 +3352,16 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 				if("appear_in_round_end_report")
 					appear_in_round_end_report = !appear_in_round_end_report
 					user.mind?.appear_in_round_end_report = appear_in_round_end_report
+				if("pain_style")
+					switch(pain_style)
+						if("Pain Guy")
+							pain_style = "Marine Guy"
+						if("Marine Guy")
+							pain_style = "Clown Guy"
+						if("Clown Guy")
+							pain_style = "Mood Guy"
+						if("Mood Guy")
+							pain_style = "Pain Guy"
 				if("combat_music")
 					combat_music = input(user, "What song do you want to use as combat music?", "Combat music") as null|anything in (GLOB.combat_music_options + "None")
 					if(!combat_music || (combat_music == "None"))

@@ -84,7 +84,7 @@
 	if(carbon_owner && !carbon_owner.dreaming && prob(2))
 		carbon_owner.dream()
 	// 2% per second, tick interval is in deciseconds
-	if(prob((tick_interval+1) * 0.2) && owner.health > owner.crit_threshold)
+	if(prob((tick_interval+1) * 0.2) && (!owner.is_asystole() && !owner.nervous_system_failure()))
 		owner.emote("snore")
 
 /datum/status_effect/staggered

@@ -97,7 +97,6 @@
 #define ADMIN_PUNISHMENT_BLEED ":B:loodless"
 #define ADMIN_PUNISHMENT_PERFORATE ":B:erforate"
 #define ADMIN_PUNISHMENT_BURN ":B:urn"
-#define ADMIN_PUNISHMENT_INTERNALBLEED ":B:leed Internally"
 #define ADMIN_PUNISHMENT_WARCRIME "War Crime"
 #define ADMIN_PUNISHMENT_INCISIONIFY "Incisionify"
 #define ADMIN_PUNISHMENT_SCARIFY "Scarify"
@@ -112,3 +111,4 @@
 #define ADMIN_PUNISHMENT_MEDIC "Meet the medic"
 #define ADMIN_PUNISHMENT_PAPAJOHNS "Papa Johns"
 #define ADMIN_PUNISHMENT_PHANTOM_PAIN "Phantom Pain"
+#define ADMIN_PUNISHMENT_SHARETHEPAIN "Share the pain"

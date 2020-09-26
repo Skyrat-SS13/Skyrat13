@@ -222,6 +222,24 @@
 		dat += "<tr><td><B>Handcuffed:</B> <A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Remove</A></td></tr>"
 	if(legcuffed)
 		dat += "<tr><td><A href='?src=[REF(src)];item=[SLOT_LEGCUFFED]'>Legcuffed</A></td></tr>"
+	
+	dat += "\n"
+
+	//Embedded objects
+	dat += "<tr><td><B>Embedded objects: </B></tr></td>"
+	var/list/embeddies = list()
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		if(length(BP.embedded_objects))
+			embeddies[BP] = BP.embedded_objects.Copy()
+	for(var/i in embeddies)
+		var/obj/item/ineedthename = i
+		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>[capitalize(ineedthename.name)]:</B> </font></td>"
+		for(var/y in embeddies[i])
+			dat += "<td><A href='?src=[REF(src)];embedded_object=[REF(y)];embedded_limb=[REF(i)]'>[y]</a></td>"
+		dat += "</tr>"
+	if(!length(embeddies))
+		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>None</B></font></tr></td>"
 
 	dat += {"</table>
 	<A href='?src=[REF(user)];mach_close=mob[REF(src)]'>Close</A>
@@ -249,7 +267,7 @@
 			var/obj/item/I = locate(href_list["embedded_object"]) in L.embedded_objects
 			if(!I || I.loc != src) //no item, no limb, or item is not in limb or in the person anymore
 				return
-			SEND_SIGNAL(src, COMSIG_CARBON_EMBED_RIP, I, L)
+			SEND_SIGNAL(src, COMSIG_CARBON_EMBED_RIP, I, L, usr)
 			return
 		if(href_list["toggle_helmet"])
 			if(!istype(head, /obj/item/clothing/head/helmet/space/hardsuit))
@@ -721,7 +739,7 @@
 		var/they_breathe = !HAS_TRAIT(C, TRAIT_NOBREATH)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
 
-		if(C.health > C.crit_threshold)
+		if(!C.InFullShock())
 			return
 
 		src.visible_message("[src] performs CPR on [C.name]!", "<span class='notice'>You perform CPR on [C.name].</span>")
@@ -823,7 +841,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = min(health, maxHealth - clamp(getStaminaLoss()-50, 0, 80))//CIT CHANGE - makes staminaloss have less of an impact on the health hud
+			var/health_amount = min(get_physical_damage(), maxHealth - clamp(getStaminaLoss()-50, 0, 80))//CIT CHANGE - makes staminaloss have less of an impact on the health hud
 			if(..(health_amount)) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
@@ -838,7 +856,7 @@
 			hud_used.healthdoll.cut_overlays()
 			if(stat != DEAD)
 				hud_used.healthdoll.icon_state = "healthdoll_OVERLAY"
-				if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
+				if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF) && (chem_effects[CE_PAINKILLER] < 100))
 					for(var/X in bodyparts)
 						var/obj/item/bodypart/BP = X
 						var/damage = BP.burn_dam + BP.brute_dam
@@ -1115,7 +1133,7 @@
 		return
 	var/stambufferinfluence = (bufferedstam*(100/stambuffer))*0.2 //CIT CHANGE - makes stamina buffer influence movedelay
 	if(!HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))	//if we want to ignore slowdown from damage, but not from equipment
-		var/health_deficiency = ((maxHealth + stambufferinfluence) - health + (getStaminaLoss()*0.75))//CIT CHANGE - reduces the impact of staminaloss and makes stamina buffer influence it
+		var/health_deficiency = ((maxHealth + stambufferinfluence) - (maxHealth - get_shock()) + (getStaminaLoss()*0.75))//CIT CHANGE - reduces the impact of staminaloss and makes stamina buffer influence it
 		if(health_deficiency >= 40)
 			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, (health_deficiency-39) / 75)
 			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, (health_deficiency-39) / 25)
@@ -1137,6 +1155,7 @@
 	. = ..()
 	set_species(race)
 
+//Species variation
 /mob/living/carbon/human/species/abductor
 	race = /datum/species/abductor
 
@@ -1337,9 +1356,10 @@
 	return ..()
 
 /mob/living/carbon/human/get_biological_state()
-	if(!length(dna?.species?.species_traits))
-		return BIO_INORGANIC
-	return dna.species.get_biological_state()
+	return dna?.species?.get_biological_state()
+
+/mob/living/carbon/human/needs_lungs()
+	return !(TRAIT_NOBREATH in dna?.species?.inherent_traits)
 
 //skyrat species
 /mob/living/carbon/human/species/humanoid
