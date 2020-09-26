@@ -97,6 +97,9 @@
 
 	var/automatic = 0 //can gun use it, 0 is no, anything above 0 is the delay between clicks in ds
 
+	/// It's less intensive to use a boolean rather than always getting the component when firing
+	var/is_wielded = FALSE
+
 /obj/item/gun/Initialize()
 	. = ..()
 	if(no_pin_required)
@@ -107,6 +110,14 @@
 		alight = new (src)
 	if(zoomable)
 		azoom = new (src)
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
+
+/obj/item/gun/proc/on_wield()
+	is_wielded = TRUE
+
+/obj/item/gun/proc/on_unwield()
+	is_wielded = FALSE
 
 /obj/item/gun/Destroy()
 	if(pin)
@@ -236,8 +247,8 @@
 				user.dropItemToGround(src, TRUE)
 				return
 
-	if(weapon_weight == WEAPON_HEAVY && user.get_inactive_held_item())
-		to_chat(user, "<span class='userdanger'>You need both hands free to fire \the [src]!</span>")
+	if((weapon_weight >= WEAPON_HEAVY) && !is_wielded)
+		to_chat(user, "<span class='userdanger'>You need to wield \the [src] to be able to fire it!</span>")
 		return
 
 	//DUAL (or more!) WIELDING
@@ -250,6 +261,11 @@
 	if(user)
 		bonus_spread += calculate_extra_inaccuracy(user, bonus_spread, stamloss)
 	//
+	
+	//Wielding always makes you aim better, no matter the weapon size
+	if(!is_wielded)
+		bonus_spread += (8.5 * weapon_weight)
+
 	if(ishuman(user) && user.a_intent == INTENT_HARM && weapon_weight <= WEAPON_LIGHT)
 		var/mob/living/carbon/human/H = user
 		for(var/obj/item/gun/G in H.held_items)

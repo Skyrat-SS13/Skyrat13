@@ -228,13 +228,13 @@
 	var/brightness_on = 6
 	total_mass = 1
 	var/total_mass_on = TOTAL_MASS_MEDIEVAL_WEAPON
-	var/wielded
+	var/wielded = FALSE
 	var/item_state_on = "crucible1"
 
 /obj/item/crucible/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/wield)
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/unwield)
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
 
 /obj/item/crucible/ComponentInitialize()
 	. = ..()
@@ -301,7 +301,7 @@
 		return BLOCK_NONE
 	return ..()
 
-/obj/item/crucible/proc/wield(mob/living/carbon/M)
+/obj/item/crucible/proc/on_wield(mob/living/carbon/M)
 	wielded = TRUE
 	sharpness = SHARP_EDGED
 	w_class = w_class_on
@@ -313,7 +313,7 @@
 	set_light(brightness_on)
 	AddElement(/datum/element/sword_point)
 
-/obj/item/crucible/proc/unwield()
+/obj/item/crucible/proc/on_unwield()
 	wielded = FALSE
 	sharpness = initial(sharpness)
 	w_class = initial(w_class)
