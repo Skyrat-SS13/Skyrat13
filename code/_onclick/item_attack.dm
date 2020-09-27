@@ -24,7 +24,7 @@
 	afterattack(target, user, TRUE, params, combat_intent)
 
 /// Like melee_attack_chain but for ranged.
-/obj/item/proc/ranged_attack_chain(mob/user, atom/target, params)
+/obj/item/proc/ranged_attack_chain(mob/user, atom/target, params, combat_intent = CI_DEFAULT)
 	if(isliving(user))
 		var/mob/living/L = user
 		if(!CHECK_MOBILITY(L, MOBILITY_USE))

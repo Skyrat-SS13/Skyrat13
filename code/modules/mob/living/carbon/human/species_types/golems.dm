@@ -427,7 +427,7 @@
 	if(world.time > last_teleport + teleport_cooldown && M != H &&  M.a_intent != INTENT_HELP)
 		reactive_teleport(H)
 
-/datum/species/golem/bluespace/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+/datum/species/golem/bluespace/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H, combat_intent = CI_DEFAULT)
 	..()
 	if(world.time > last_teleport + teleport_cooldown && user != H)
 		reactive_teleport(H)
@@ -525,7 +525,7 @@
 		new/obj/item/grown/bananapeel/specialpeel(get_turf(H))
 		last_banana = world.time
 
-/datum/species/golem/bananium/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+/datum/species/golem/bananium/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H, combat_intent = CI_DEFAULT)
 	..()
 	if(world.time > last_banana + banana_cooldown && user != H)
 		new/obj/item/grown/bananapeel/specialpeel(get_turf(H))
@@ -835,7 +835,7 @@
 	if(world.time > last_gong_time + gong_cooldown &&  M.a_intent != INTENT_HELP)
 		gong(H)
 
-/datum/species/golem/bronze/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+/datum/species/golem/bronze/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H, combat_intent = CI_DEFAULT)
 	..()
 	if(world.time > last_gong_time + gong_cooldown)
 		gong(H)
@@ -896,7 +896,7 @@
 	var/last_creation = 0
 	var/brother_creation_cooldown = 300
 
-/datum/species/golem/cardboard/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+/datum/species/golem/cardboard/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H, combat_intent = CI_DEFAULT)
 	. = ..()
 	if(user != H)
 		return FALSE //forced reproduction is rape.
