@@ -70,6 +70,7 @@
 	var/obj/item/default_hatmask //If this exists, it will spawn in the hat/mask slot if it can fit
 	var/visualAppearence = MAINTDRONE //What we appear as
 	var/hacked = FALSE //If we have laws to destroy the station
+	var/obj/item/radio/headset/droneradio = null
 	var/flavortext = \
 	"\n<big><span class='warning'>DO NOT INTERFERE WITH THE ROUND AS A DRONE OR YOU WILL BE DRONE BANNED</span></big>\n"+\
 	"<span class='notify'>Drones are a ghost role that are allowed to fix the station and build things. Interfering with the round as a drone is against the rules.</span>\n"+\
@@ -77,8 +78,10 @@
 	"<span class='notify'>     - Interacting with round critical objects (IDs, weapons, contraband, powersinks, bombs, etc.)</span>\n"+\
 	"<span class='notify'>     - Interacting with living beings (communication, attacking, healing, etc.)</span>\n"+\
 	"<span class='notify'>     - Interacting with non-living beings (dragging bodies, looting bodies, etc.)</span>\n"+\
+	"<span class='notify'>You can use :d to speak in a special drone-only channel, and :b to speak in the common sillicon channel.</span>\n"+\
 	"<span class='warning'>These rules are at admin discretion and will be heavily enforced.</span>\n"+\
-	"<span class='warning'><u>If you do not have the regular drone laws, follow your laws to the best of your ability.</u></span>"
+	"<span class='warning'><u>If you do not have the regular drone laws, follow your laws to the best of your ability.</u></span>\n"+\
+	"<span class='notify'>You can use :r to speak in a special drone-only channel, and :b to speak in the common sillicon channel.</span>"
 
 /mob/living/simple_animal/drone/Initialize()
 	. = ..()
@@ -86,6 +89,7 @@
 	access_card = new /obj/item/card/id(src)
 	var/datum/job/captain/C = new /datum/job/captain
 	access_card.access = C.get_access()
+	access_card.registered_account = SSeconomy.get_dep_account(ACCOUNT_ENG) // Make use of the engineering dept/budget, engi vend will be free etc
 
 	if(default_storage)
 		var/obj/item/I = new default_storage(src)
@@ -100,6 +104,11 @@
 
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
 		diag_hud.add_to_hud(src)
+	
+	droneradio = new /obj/item/radio(src) // Gives drones common and engineering channel
+	droneradio.keyslot = new /obj/item/encryptionkey/headset_eng(src)
+	droneradio.canhear_range = 1
+	droneradio.recalculateChannels()
 
 /mob/living/simple_animal/drone/ComponentInitialize()
 	. = ..()
@@ -288,3 +297,10 @@
 		var/obj/item/clothing/H = head
 		if(H.clothing_flags & SCAN_REAGENTS)
 			return TRUE
+
+/mob/living/simple_animal/drone/binarycheck() // grants binary comms
+	return TRUE
+
+/mob/living/simple_animal/drone/get_idcard(hand_first) // for stuff like engi-vends
+	if(access_card)
+		return access_card
