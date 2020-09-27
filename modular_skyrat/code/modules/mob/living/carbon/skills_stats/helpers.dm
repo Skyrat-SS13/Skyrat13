@@ -8,12 +8,12 @@
 	if(used_stat)
 		var/datum/stats/stat = mob_stats[used_stat]
 		if(stat)
-			modifier *= stat.get_generic_modifier(1, FALSE, -1)
+			modifier *= stat.get_generic_modifier(1, FALSE)
 	
 	if(used_skill)
 		var/datum/skills/skill = mob_skills[used_skill]
 		if(skill)
-			modifier *= skill.get_generic_modifier(1, FALSE, -1)
+			modifier *= skill.get_generic_modifier(1, FALSE)
 
 	return modifier
 

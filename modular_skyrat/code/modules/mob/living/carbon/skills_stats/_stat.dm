@@ -14,9 +14,9 @@
 /datum/stats/proc/get_generic_modifier(default = 1, diminutive = TRUE, sum = 0)
 	var/modifier = default
 	if(diminutive)
-		modifier = max(0.1, round(modifier * level/MAX_STAT))
+		modifier = max(default * 0.1, round(modifier * level/MAX_STAT))
 	else
-		modifier = min(2, modifier + (modifier * level/MAX_STAT))
+		modifier = min(default * 2, modifier + (modifier * level/MAX_STAT))
 	modifier += sum
 	return modifier
 

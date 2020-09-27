@@ -14,9 +14,9 @@
 /datum/skills/proc/get_generic_modifier(default = 1, diminutive = TRUE, sum = 0)
 	var/modifier = default
 	if(diminutive)
-		modifier = max(0.1, round(modifier * level/MAX_SKILL))
+		modifier = max(default * 0.1, round(modifier * level/MAX_SKILL))
 	else
-		modifier = min(2, modifier + (modifier * level/MAX_SKILL))
+		modifier = min(default * 2, modifier + (modifier * level/MAX_SKILL))
 	modifier += sum
 	return modifier
 
