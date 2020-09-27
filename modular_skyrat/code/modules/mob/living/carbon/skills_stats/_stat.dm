@@ -22,29 +22,25 @@
 //Return a string related to our competence in the given stat
 /datum/stats/proc/statnumtodesc(stat)
 	switch(stat)
-		if(-INFINITY to 0)
-			return "unsalvageable"
-		if(1,2)
-			return "completely worthless"
-		if(3,4)
-			return "incompetent"
-		if(5,6)
-			return "novice"
-		if(7,8)
-			return "untrained"
-		if(9,10)
-			return "good enough"
+		if(-INFINITY to 6)
+			return "crippling"
+		if(7)
+			return "poor"
+		if(8,9)
+			return "below average"
+		if(10)
+			return "average"
 		if(11,12)
-			return "decent"
+			return "above average"
 		if(13,14)
-			return "versed"
+			return "exceptional"
 		if(15,16)
-			return "expert"
+			return "amazing"
 		if(17,18)
-			return "masterful"
-		if(19,20)
 			return "legendary"
+		if(19,20)
+			return "mythic"
 		if(21 to INFINITY)
-			return "godlike"
+			return "superhuman"
 		else
 			return "inhuman"

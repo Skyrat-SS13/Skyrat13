@@ -32,8 +32,8 @@
 /datum/job/bartender
 	//Well trained
 	available_skill_points = JOB_SKILLPOINTS_TRAINED
-	//Novice stats
-	available_stat_points = JOB_STATPOINTS_NOVICE
+	//Average stats
+	available_stat_points = JOB_STATPOINTS_AVERAGE
 
 /datum/job/hydro
 	//Well trained
@@ -44,14 +44,14 @@
 /datum/job/captain
 	//Legendary training
 	available_skill_points = JOB_SKILLPOINTS_LEGENDARY
-	//Expert stats
-	available_stat_points = JOB_STATPOINTS_EXPERT
+	//Legendary stats
+	available_stat_points = JOB_STATPOINTS_LEGENDARY
 
 /datum/job/cargo_tech
 	//Well trained
 	available_skill_points = JOB_SKILLPOINTS_TRAINED
-	//Novice stats
-	available_stat_points = JOB_STATPOINTS_NOVICE
+	//Average stats
+	available_stat_points = JOB_STATPOINTS_AVERAGE
 
 /datum/job/chaplain
 	//Poorly trained
