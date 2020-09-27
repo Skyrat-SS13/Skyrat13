@@ -14,3 +14,7 @@
 /datum/stats/int
 	name = "Intelligence"
 	shorthand = "IT"
+
+/datum/stats/luck
+	name = "Luck"
+	shorthand = "LK"

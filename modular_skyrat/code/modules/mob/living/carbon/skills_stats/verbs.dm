@@ -50,7 +50,7 @@
 						var/datum/skills/skill = skills[option]
 						var/max_upgrade = MAX_SKILL - skill.level
 						max_upgrade = min(mind.available_skill_points, max_upgrade)
-						option = input(usr, "By how much? (Max: [max_upgrade]", "Reflection") as null|num
+						option = input(usr, "By how much? (Max: [max_upgrade])", "Reflection") as null|num
 						if(option)
 							option = min(max_upgrade, option)
 							mind.available_skill_points -= option
@@ -71,7 +71,7 @@
 						var/datum/stats/stat = stats[option]
 						var/max_upgrade = MAX_STAT - stat.level
 						max_upgrade = min(mind.available_stat_points, max_upgrade)
-						option = input(usr, "By how much? (Max: [max_upgrade]", "Reflection") as null|num
+						option = input(usr, "By how much? (Max: [max_upgrade])", "Reflection") as null|num
 						if(option)
 							option = min(max_upgrade, option)
 							mind.available_stat_points -= option
