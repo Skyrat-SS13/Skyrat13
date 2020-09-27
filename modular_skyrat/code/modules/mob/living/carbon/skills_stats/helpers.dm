@@ -6,15 +6,24 @@
 //Important! you should not use more than one stat in proc but if you really want to, you should multiply amount of dices and crit according to how much of them you added to the formula.
 //For example: two stats will need 6d6 dicetype and also 20 crit instead of 1.
 //REMEMBER THIS: when adding proc to action you BOUND to specify SUCCESS and CRIT_FAILURE in it! FAILURE may do nothing and CRIT_SUCCESS may be same as SUCCESS though.
-/mob/living/carbon/proc/diceroll(stats = 0, skills = 0, dicetype = "3d6", crit = 10, mod = 0)
+/datum/mind/proc/diceroll(stats = 0, skills = 0, dicetype = "3d6", crit = 10, mod = 0)
+	//Get the carbon mob, if the mind controls one
+	var/mob/living/carbon/carbonmob = current
+	if(!istype(carbonmob))
+		carbonmob = null
+	
 	//Do the dice roll
 	var/dice = roll(dicetype)
 
-	//Get the mood modifier
-	var/moodmod = mood_mod()
+	//Get the mood modifier if applicable
+	var/moodmod = 0
+	if(carbonmob)
+		moodmod = carbonmob.mood_mod()
 	
 	//Get the fatigue modifier
-	var/fatiguemod = fatigue_mod()
+	var/fatiguemod = 0
+	if(carbonmob)
+		fatiguemod = carbonmob.fatigue_mod()
 
 	//Sum up all the modifiers
 	var/modifier = mod + moodmod + fatiguemod
@@ -22,6 +31,7 @@
 	//Get the necessary number to pass the roll
 	var/sum = (stats + skills) * (2 + modifier)
 
+	//Finally, return whether it was a failure or a success
 	if(dice <= sum)
 		if(dice <= sum - crit || dice <= 4)
 			return DICE_CRIT_SUCCESS
@@ -33,8 +43,8 @@
 		else
 			return DICE_FAILURE
 
-///Dice roll modifiers
-//Converts mood level into a number for the modifier
+///Carbon dice roll modifiers
+//Converts mood level into a bonus or malus for a dice roll
 /mob/living/carbon/proc/mood_mod()
 	. = 0
 	var/datum/component/mood/mood = GetComponent(/datum/component/mood)
@@ -61,7 +71,7 @@
 			else
 				return 0
 
-//Converts stamina level into a number for the modifier
+//Converts stamina level into a bonus or malus for a dice roll
 /mob/living/carbon/proc/fatigue_mod()
 	. = 0
 	switch(getStaminaLoss())

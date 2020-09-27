@@ -22,43 +22,29 @@
 //Return a string related to our competence in the given skill
 /datum/skills/proc/skillnumtodesc(skill)
 	switch(skill)
-		if(1)
+		if(-INFINITY to 0)
+			return "unsalvageable"
+		if(1,2)
 			return "completely worthless"
-		if(2)
+		if(3,4)
 			return "incompetent"
-		if(3)
+		if(5,6)
 			return "a novice"
-		if(4)
+		if(7,8)
 			return "unskilled"
-		if(5)
+		if(9,10)
 			return "good enough"
-		if(6)
+		if(11,12)
 			return "adept"
-		if(7)
+		if(13,14)
 			return "versed"
-		if(8)
+		if(15,16)
 			return "an expert"
-		if(9)
+		if(17,18)
 			return "a master"
-		if(10)
+		if(19,20)
 			return "legendary"
+		if(21 to INFINITY)
+			return "godlike"
 		else
 			return "inhuman"
-
-/datum/skills/melee
-	name = "Melee"
-
-/datum/skills/ranged
-	name = "Ranged"
-
-/datum/skills/firstaid
-	name = "First aid"
-
-/datum/skills/surgery
-	name = "Surgery"
-
-/datum/skills/chemistry
-	name = "Chemistry"
-
-/datum/skills/engineering
-	name = "Engineering"

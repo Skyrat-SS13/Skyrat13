@@ -19,43 +19,32 @@
 		modifier = min(2, modifier + (modifier * round(modifier - level/MAX_STAT)))
 	return modifier
 
+//Return a string related to our competence in the given stat
 /datum/stats/proc/statnumtodesc(stat)
 	switch(stat)
+		if(-INFINITY to 0)
+			return "unsalvageable"
 		if(1,2)
 			return "completely worthless"
 		if(3,4)
 			return "incompetent"
 		if(5,6)
-			return "a novice"
+			return "novice"
 		if(7,8)
-			return "unskilled"
+			return "untrained"
 		if(9,10)
 			return "good enough"
 		if(11,12)
-			return "adept"
+			return "decent"
 		if(13,14)
 			return "versed"
 		if(15,16)
-			return "an expert"
+			return "expert"
 		if(17,18)
-			return "a master"
+			return "masterful"
 		if(19,20)
 			return "legendary"
+		if(21 to INFINITY)
+			return "godlike"
 		else
 			return "inhuman"
-
-/datum/stats/str
-	name = "Strength"
-	shorthand = "ST"
-	
-/datum/stats/end
-	name = "Endurance"
-	shorthand = "ED"
-
-/datum/stats/dex
-	name = "Dexterity"
-	shorthand = "DX"
-
-/datum/stats/int
-	name = "Intelligence"
-	shorthand = "IT"

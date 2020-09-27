@@ -177,6 +177,15 @@
 	static_inventory += wielded
 	//END OF SKYRAT CHANGES
 
+	//SKYRAT CHANGES - Combat intents
+	combat_intents = new /obj/screen/combat_intent
+	combat_intents.icon = 'modular_skyrat/icons/mob/combat_intents.dmi'
+	combat_intents.icon_state = CI_DEFAULT
+	combat_intents.screen_loc = ui_combatintent
+	combat_intents.hud = src
+	static_inventory += combat_intents
+	//END OF SKYRAT CHANGES
+
 	//same as above but buffer.
 	sprint_buffer = new /obj/screen/sprint_buffer
 	sprint_buffer.screen_loc = ui_sprintbufferloc
