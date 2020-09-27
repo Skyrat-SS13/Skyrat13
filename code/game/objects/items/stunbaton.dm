@@ -201,7 +201,7 @@
 
 	if(!disarming)
 		//Batons only knockdown if they landed at least 35% of the stamina damage
-		if(knockdown && (stunpwr >= (stamforce/100 * 35)))
+		if(knockdown && (stunpwr >= (stamforce * 0.35)))
 			if(iscarbon(L))
 				//Also, painkillers affect how much the carbon mob gets knocked down regardless of the stamina damage landed
 				var/mob/living/carbon/carbonmob = L
