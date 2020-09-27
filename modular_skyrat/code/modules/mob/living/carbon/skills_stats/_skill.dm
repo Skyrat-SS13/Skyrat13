@@ -11,12 +11,13 @@
 //An all purpose proc for getting a multiplicative modifier
 //Create new specific subtype procs for more careful handling, this is for simple dumb tasks
 //Should use the carbon mob diceroll or get_skill_mod procs if you need to take mood and stamina into account
-/datum/skills/proc/get_generic_modifier(default = 1, diminutive = TRUE)
+/datum/skills/proc/get_generic_modifier(default = 1, diminutive = TRUE, sum = 0)
 	var/modifier = default
 	if(diminutive)
-		modifier = max(0.1, round(modifier - level/MAX_SKILL))
+		modifier = max(0.1, round(modifier * level/MAX_SKILL))
 	else
-		modifier = min(2, modifier + (modifier * round(modifier - level/MAX_SKILL)))
+		modifier = min(2, modifier + (modifier * level/MAX_SKILL))
+	modifier += sum
 	return modifier
 
 //Return a string related to our competence in the given skill

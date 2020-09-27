@@ -1,6 +1,22 @@
 //Skill and stat helpers
 //Code shamelessly stolen from IS12 warfare, thanks based Mattroks
 
+//Mind helpers
+/datum/mind/proc/get_skillstat_damagemod(used_stat, used_skill)
+	var/modifier = 1
+
+	if(used_stat)
+		var/datum/stats/stat = mob_stats[used_stat]
+		if(stat)
+			modifier *= stat.get_generic_modifier(1, FALSE, -1)
+	
+	if(used_skill)
+		var/datum/skills/skill = mob_skills[used_skill]
+		if(skill)
+			modifier *= skill.get_generic_modifier(1, FALSE, -1)
+
+	return modifier
+
 //DICE ROLL
 //Add this to the action and specify what will happen in each outcome.
 //Important! you should not use more than one stat in proc but if you really want to, you should multiply amount of dices and crit according to how much of them you added to the formula.

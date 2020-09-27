@@ -65,7 +65,7 @@
 		throw_mode_off()
 		return TRUE
 
-/mob/living/carbon/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
+/mob/living/carbon/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1, combat_intent = CI_DEFAULT)
 	var/totitemdamage = pre_attacked_by(I, user) * damage_multiplier
 	var/impacting_zone = (user == src)? check_zone(user.zone_selected) : ran_zone(user.zone_selected)
 	var/list/block_return = list()
@@ -75,7 +75,7 @@
 	var/obj/item/bodypart/affecting = get_bodypart(impacting_zone)
 	if(!affecting) //missing limb? we select the first bodypart (you can never have zero, because of chest)
 		affecting = bodyparts[1]
-	send_item_attack_message(I, user, affecting.body_zone, totitemdamage, affecting)
+	send_item_attack_message(I, user, affecting.body_zone, totitemdamage, affecting, combat_intent = combat_intent)
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 	I.do_stagger_action(src, user, totitemdamage)
 	if(I.force)
@@ -111,7 +111,7 @@
 /mob/living/carbon/attack_drone(mob/living/simple_animal/drone/user)
 	return //so we don't call the carbon's attack_hand().
 
-/mob/living/carbon/send_item_attack_message(obj/item/I, mob/living/user, hit_area, current_force, obj/item/bodypart/hit_BP)
+/mob/living/carbon/send_item_attack_message(obj/item/I, mob/living/user, hit_area, current_force, obj/item/bodypart/hit_BP, combat_intent = CI_DEFAULT)
 	var/extra_wound_details = ""
 	if(I.damtype == BRUTE && hit_BP && hit_BP.can_dismember())
 		var/mangled_state = hit_BP.get_mangled_state()

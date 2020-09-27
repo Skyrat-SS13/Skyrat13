@@ -3984,6 +3984,7 @@
 #include "modular_skyrat\code\modules\mob\living\carbon\skills_stats\_stat.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\skills_stats\helpers.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\skills_stats\holder.dm"
+#include "modular_skyrat\code\modules\mob\living\carbon\skills_stats\items.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\skills_stats\jobs.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\skills_stats\skills.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\skills_stats\stats.dm"

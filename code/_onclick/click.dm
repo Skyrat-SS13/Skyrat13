@@ -153,16 +153,20 @@
 		return
 
 	//Standard reach turf to turf or reaching inside storage
+	var/c_intent = CI_DEFAULT
+	if(iscarbon(src))
+		var/mob/living/carbon/our_mob = src
+		c_intent = our_mob.combat_intent
 	if(CanReach(A,W))
 		if(W)
-			W.melee_attack_chain(src, A, params)
+			W.melee_attack_chain(src, A, params, combat_intent = c_intent)
 		else
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)
 			UnarmedAttack(A, 1)
 	else
 		if(W)
-			W.ranged_attack_chain(src, A, params)
+			W.ranged_attack_chain(src, A, params, combat_intent = c_intent)
 		else
 			RangedAttack(A,params)
 

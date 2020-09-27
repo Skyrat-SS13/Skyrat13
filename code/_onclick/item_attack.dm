@@ -7,7 +7,7 @@
   *and lastly
   *afterattack. The return value does not matter.
   */
-/obj/item/proc/melee_attack_chain(mob/user, atom/target, params, flags, damage_multiplier = 1)
+/obj/item/proc/melee_attack_chain(mob/user, atom/target, params, flags, damage_multiplier = 1, combat_intent = CI_DEFAULT)
 	if(isliving(user))
 		var/mob/living/L = user
 		if(!CHECK_MOBILITY(L, MOBILITY_USE) && !(flags & ATTACKCHAIN_PARRY_COUNTERATTACK))
@@ -15,13 +15,13 @@
 			return
 	if(tool_behaviour && target.tool_act(user, src, tool_behaviour))
 		return
-	if(pre_attack(target, user, params))
+	if(pre_attack(target, user, params, combat_intent))
 		return
-	if(target.attackby(src, user, params, flags, damage_multiplier))
+	if(target.attackby(src, user, params, flags, damage_multiplier, combat_intent))
 		return
 	if(QDELETED(src) || QDELETED(target))
 		return
-	afterattack(target, user, TRUE, params)
+	afterattack(target, user, TRUE, params, combat_intent)
 
 /// Like melee_attack_chain but for ranged.
 /obj/item/proc/ranged_attack_chain(mob/user, atom/target, params)
@@ -39,21 +39,21 @@
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK_SELF, src) //Skyrat change
 	interact(user)
 
-/obj/item/proc/pre_attack(atom/A, mob/living/user, params) //do stuff before attackby!
+/obj/item/proc/pre_attack(atom/A, mob/living/user, params, combat_intent = CI_DEFAULT) //do stuff before attackby!
 	if(SEND_SIGNAL(src, COMSIG_ITEM_PRE_ATTACK, A, user, params) & COMPONENT_NO_ATTACK)
 		return TRUE
 	return FALSE //return TRUE to avoid calling attackby after this proc does stuff
 
 // No comment
-/atom/proc/attackby(obj/item/W, mob/user, params)
+/atom/proc/attackby(obj/item/W, mob/user, params, combat_intent = CI_DEFAULT)
 	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, W, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
 
-/obj/attackby(obj/item/I, mob/living/user, params)
+/obj/attackby(obj/item/I, mob/living/user, params, combat_intent = CI_DEFAULT)
 	return ..() || ((obj_flags & CAN_BE_HIT) && I.attack_obj(src, user))
 
-/mob/living/attackby(obj/item/I, mob/living/user, params, attackchain_flags, damage_multiplier)
+/mob/living/attackby(obj/item/I, mob/living/user, params, attackchain_flags, damage_multiplier, combat_intent = CI_DEFAULT)
 	if(..())
 		return TRUE
 	I.attack_delay_done = FALSE //Should be set TRUE in pre_attacked_by()
@@ -72,7 +72,7 @@
   * * attackchain_Flags - see [code/__DEFINES/_flags/return_values.dm]
   * * damage_multiplier - what to multiply the damage by
   */
-/obj/item/proc/attack(mob/living/M, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
+/obj/item/proc/attack(mob/living/M, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1, combat_intent = CI_DEFAULT)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
 		return
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user)
@@ -101,7 +101,7 @@
 		user.adjustStaminaLossBuffered(weight)
 
 //the equivalent of the standard version of attack() but for object targets.
-/obj/item/proc/attack_obj(obj/O, mob/living/user)
+/obj/item/proc/attack_obj(obj/O, mob/living/user, combat_intent = CI_DEFAULT)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
 		return
 	if(item_flags & NOBLUDGEON)
@@ -116,7 +116,7 @@
 /atom/movable/proc/attacked_by()
 	return
 
-/obj/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
+/obj/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1, combat_intent = CI_DEFAULT)
 	var/totitemdamage = I.force * damage_multiplier
 	var/bad_trait
 
@@ -126,7 +126,15 @@
 		var/penalty = (stamloss - STAMINA_NEAR_SOFTCRIT)/(STAMINA_NEAR_CRIT - STAMINA_NEAR_SOFTCRIT)*STAM_CRIT_ITEM_ATTACK_PENALTY
 		totitemdamage *= 1 - penalty
 		next_move_mult += penalty*STAM_CRIT_ITEM_ATTACK_DELAY
-	user.changeNext_move(I.click_delay*next_move_mult)
+
+	//Dexterity alters how quickly we recover from an attack
+	var/click_stat_mod = 1
+	if(user.mind)
+		var/datum/stats/dex/dex = user.mind.mob_stats[/datum/stats/dex]
+		if(dex)
+			click_stat_mod *= dex.get_click_mod()
+	
+	user.changeNext_move(I.click_delay*next_move_mult*click_stat_mod)
 
 	if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
 		bad_trait = SKILL_COMBAT_MODE //blacklist combat skills.
@@ -138,6 +146,10 @@
 			if(!(I.used_skills[skill] & SKILL_TRAIN_ATTACK_OBJ))
 				continue
 			user.mind.auto_gain_experience(skill, I.skill_gain)
+	
+	//If the user has a mind and the item uses a stat, we always try to get a damage multiplier based on the stat
+	if(user.mind && I.used_melee_stat)
+		totitemdamage *= user.mind.get_skillstat_damagemod(I.used_melee_stat)
 
 	if(totitemdamage)
 		visible_message("<span class='danger'>[user] has hit [src] with [I]!</span>", null, null, COMBAT_MESSAGE_RANGE)
@@ -146,13 +158,13 @@
 	take_damage(totitemdamage, I.damtype, "melee", 1)
 	return TRUE
 
-/mob/living/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
+/mob/living/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1, combat_intent = CI_DEFAULT)
 	var/list/block_return = list()
 	var/totitemdamage = pre_attacked_by(I, user) * damage_multiplier
 	if((user != src) && mob_run_block(I, totitemdamage, "the [I.name]", ((attackchain_flags & ATTACKCHAIN_PARRY_COUNTERATTACK)? ATTACK_TYPE_PARRY_COUNTERATTACK : NONE) | ATTACK_TYPE_MELEE, I.armour_penetration, user, null, block_return) & BLOCK_SUCCESS)
 		return FALSE
 	totitemdamage = block_calculate_resultant_damage(totitemdamage, block_return)
-	send_item_attack_message(I, user, null, totitemdamage)
+	send_item_attack_message(I, user, null, totitemdamage, combat_intent = combat_intent)
 	I.do_stagger_action(src, user, totitemdamage)
 	if(I.force)
 		apply_damage(totitemdamage, I.damtype)
@@ -173,14 +185,14 @@
 
 		return TRUE //successful attack
 
-/mob/living/simple_animal/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
+/mob/living/simple_animal/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1, combat_intent = CI_DEFAULT)
 	if(I.force < force_threshold || I.damtype == STAMINA)
 		playsound(loc, 'sound/weapons/tap.ogg', I.get_clamped_volume(), 1, -1)
 		user.changeNext_move(I.click_delay) //pre_attacked_by not called
 	else
 		return ..()
 
-/mob/living/proc/pre_attacked_by(obj/item/I, mob/living/user)
+/mob/living/proc/pre_attacked_by(obj/item/I, mob/living/user, combat_intent = CI_DEFAULT)
 	. = I.force
 	if(!.)
 		return
@@ -195,7 +207,15 @@
 	if(stam_mobility_mult > LYING_DAMAGE_PENALTY && !CHECK_MOBILITY(user, MOBILITY_STAND)) //damage penalty for fighting prone, doesn't stack with the above.
 		stam_mobility_mult = LYING_DAMAGE_PENALTY
 	. *= stam_mobility_mult
-	user.changeNext_move(I.click_delay*next_move_mult)
+
+	//Dexterity alters how quickly we recover from an attack
+	var/click_stat_mod = 1
+	if(user.mind)
+		var/datum/stats/dex/dex = user.mind.mob_stats[/datum/stats/dex]
+		if(dex)
+			click_stat_mod *= dex.get_click_mod()
+	
+	user.changeNext_move(I.click_delay*next_move_mult*click_stat_mod)
 	I.attack_delay_done = TRUE
 
 	var/bad_trait
@@ -203,9 +223,13 @@
 		if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
 			bad_trait = SKILL_COMBAT_MODE //blacklist combat skills.
 			if(SEND_SIGNAL(src, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))
-				. *= 0.8
+				. *= 0.9
 		else if(SEND_SIGNAL(src, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
-			. *= 1.2
+			. *= 1.1
+
+	//If the user has a mind and the item uses a stat, we always try to get a damage multiplier based on the stat
+	if(user.mind && I.used_melee_stat)
+		. *= user.mind.get_skillstat_damagemod(I.used_melee_stat)
 
 	if(!user.mind || !I.used_skills)
 		return
@@ -230,7 +254,7 @@
   * * proximity_flag - are we in melee range/doing it in a melee attack
   * * click_parameters - mouse control parameters, check BYOND ref.
   */
-/obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters, combat_intent = CI_DEFAULT)
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
 
@@ -241,7 +265,7 @@
 		else
 			return clamp(w_class * 6, 10, 100) // Multiply the item's weight class by 6, then clamp the value between 10 and 100
 
-/mob/living/proc/send_item_attack_message(obj/item/I, mob/living/user, hit_area, current_force, obj/item/bodypart/hit_BP)
+/mob/living/proc/send_item_attack_message(obj/item/I, mob/living/user, hit_area, current_force, obj/item/bodypart/hit_BP, combat_intent = CI_DEFAULT)
 	var/message_verb = "attacked"
 	if(I.attack_verb && I.attack_verb.len)
 		message_verb = "[pick(I.attack_verb)]"
@@ -263,7 +287,7 @@
 	return 1
 
 /// How much stamina this takes to swing this is not for realism purposes hecc off.
-/obj/item/proc/getweight(mob/living/user, multiplier = 1, trait = SKILL_STAMINA_COST)
+/obj/item/proc/getweight(mob/living/user, multiplier = 1, trait = SKILL_STAMINA_COST, combat_intent = CI_DEFAULT)
 	. = (total_mass || w_class * STAM_COST_W_CLASS_MULT) * multiplier
 	if(!user)
 		return
@@ -277,13 +301,13 @@
 	. = clamp(., 0, STAMINA_NEAR_CRIT - total_health)
 
 /// How long this staggers for. 0 and negatives supported.
-/obj/item/proc/melee_stagger_duration(force_override)
+/obj/item/proc/melee_stagger_duration(force_override, combat_intent = CI_DEFAULT)
 	if(!isnull(stagger_force))
 		return stagger_force
 	/// totally not an untested, arbitrary equation.
 	return clamp((1.5 + (w_class/7.5)) * ((force_override || force) / 2), 0, 10 SECONDS)
 
-/obj/item/proc/do_stagger_action(mob/living/target, mob/living/user, force_override)
+/obj/item/proc/do_stagger_action(mob/living/target, mob/living/user, force_override, combat_intent = CI_DEFAULT)
 	if(!CHECK_BITFIELD(target.status_flags, CANSTAGGER))
 		return FALSE
 	if(target.combat_flags & COMBAT_FLAG_SPRINT_ACTIVE)
