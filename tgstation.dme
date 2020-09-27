@@ -3701,8 +3701,6 @@
 #include "modular_skyrat\code\game\modular_icons\turfs\simulated\walls.dm"
 #include "modular_skyrat\code\game\modular_icons\turfs\simulated\floor\fancy_floor.dm"
 #include "modular_skyrat\code\game\modular_icons\turfs\simulated\floor\mineral_floor.dm"
-#include "modular_skyrat\code\game\modular_icons\turfs\simulated\floor\plasteel_floor.dm"
-#include "modular_skyrat\code\game\modular_icons\turfs\simulated\floor\plating.dm"
 #include "modular_skyrat\code\game\modular_icons\turfs\simulated\wall\mineral_walls.dm"
 #include "modular_skyrat\code\game\modular_icons\turfs\simulated\wall\misc_walls.dm"
 #include "modular_skyrat\code\game\modular_icons\turfs\simulated\wall\reinf_walls.dm"
