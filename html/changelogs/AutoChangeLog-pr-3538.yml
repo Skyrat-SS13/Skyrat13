@@ -1,5 +1,0 @@
-author: "NotRanged"
-delete-after: True
-changes: 
-  - tweak: "Sonic jackhammer now takes 25 seconds to destroy a reinforced wall. Added a 5 second timer to destroying regular walls."
-  - rscadd: "Adminspawn supersonic jackhammer."

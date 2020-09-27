@@ -1,6 +1,0 @@
-author: "KathrinBailey"
-delete-after: True
-changes: 
-  - rscadd: "A completely new prison for Boxstation!"
-  - tweak: "Boxstation Security has received an aesthetic overhaul."
-  - bugfix: "Huge heaps of mapping errors in Boxstation Security have been fixed."
