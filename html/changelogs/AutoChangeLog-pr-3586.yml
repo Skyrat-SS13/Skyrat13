@@ -1,8 +1,0 @@
-author: "NotRanged"
-delete-after: True
-changes: 
-  - rscadd: "Drones can now speak in :b for binary channel. They can also receive (but not transmit) engineering and common channels."
-  - rscadd: "Added 'E' hotkey quick equip functionality to drones."
-  - rscadd: "Drones can now use vendors. Engi-vend etc are free, any item that does have a cost will subtract it from the engineering budget."
-  - tweak: "Drones can now understand common."
-  - tweak: "Dronechat channel moved to :r, for 'repair'."
