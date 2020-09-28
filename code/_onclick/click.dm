@@ -126,8 +126,14 @@
 		RestrainedClickOn(A)
 		return
 
+	//Get the combat intent for later use
+	var/c_intent = CI_DEFAULT
+	if(iscarbon(src))
+		var/mob/living/carbon/our_mob = src
+		c_intent = our_mob.combat_intent
+	
 	if(in_throw_mode)
-		throw_item(A)
+		throw_item(A, combat_intent = c_intent)
 		return
 
 	var/obj/item/W = get_active_held_item()
@@ -137,21 +143,15 @@
 		update_inv_hands()
 		return
 	
-	//Get the combat intent for later use
-	var/c_intent = CI_DEFAULT
-	if(iscarbon(src))
-		var/mob/living/carbon/our_mob = src
-		c_intent = our_mob.combat_intent
-	
 	//These are always reachable.
 	//User itself, current loc, and user inventory
 	if(A in DirectAccess())
 		if(W)
-			W.melee_attack_chain(src, A, params, combat_intent = combat_intent)
+			W.melee_attack_chain(src, A, params, combat_intent = c_intent)
 		else
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)
-			UnarmedAttack(A)
+			UnarmedAttack(A, combat_intent = c_intent)
 		return
 
 	//Can't reach anything else in lockers or other weirdness
@@ -165,12 +165,12 @@
 		else
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)
-			UnarmedAttack(A, 1)
+			UnarmedAttack(A, 1, combat_intent = c_intent)
 	else
 		if(W)
-			W.ranged_attack_chain(src, A, params, c_intent)
+			W.ranged_attack_chain(src, A, params, combat_intent = c_intent)
 		else
-			RangedAttack(A,params)
+			RangedAttack(A, params, combat_intent = c_intent)
 
 //Is the atom obscured by a PREVENT_CLICK_UNDER_1 object above it
 /atom/proc/IsObscured()
@@ -275,7 +275,7 @@
 	proximity_flag is not currently passed to attack_hand, and is instead used
 	in human click code to allow glove touches only at melee range.
 */
-/mob/proc/UnarmedAttack(atom/A, proximity_flag)
+/mob/proc/UnarmedAttack(atom/A, proximity_flag, combat_intent = CI_DEFAULT)
 	if(ismob(A))
 		changeNext_move(CLICK_CD_MELEE)
 	return
