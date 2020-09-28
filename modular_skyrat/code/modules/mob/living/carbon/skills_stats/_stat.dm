@@ -4,7 +4,7 @@
 //No XP system because stats are something you're pretty much stuck with
 /datum/stats
 	var/name = "Generic stat" //Name of the stat
-	var/desc = "Makes you better at doing things vague things." //Description of the stat
+	var/desc = "Makes you better at doing vague things." //Description of the stat
 	var/level = START_STAT //Level, used in stat calculations.
 	var/shorthand = "SH" //Shorthand
 

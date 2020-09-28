@@ -18,6 +18,15 @@
 /datum/stats/dex/proc/get_click_mod()
 	return round(1.25 - (0.5 * level/MAX_STAT), 0.1) //Varies from 1.25 to 0.75 depending on how good/bad we are
 
+/datum/stats/dex/proc/get_base_miss_chance()
+	return (20 - level)
+
+/datum/stats/dex/proc/get_miss_stamina_mult()
+	return round(1.5 - (level/MAX_STAT), 0.1)
+
+/datum/stats/dex/proc/get_disarm_mult()
+	return round(max(2 - (level/MAX_STAT * 2), 0.1))
+
 //Intelligence
 /datum/stats/int
 	name = "Intelligence"

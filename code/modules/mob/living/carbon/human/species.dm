@@ -1657,6 +1657,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
 
 		var/damage = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
+
+		//Raw damage is affected by the user's strength
+		var/str_mod = 1
+		if(user.mind)
+			str_mod = user.mind.get_skillstat_damagemod(/datum/stats/str)
+		damage *= str_mod
+
 		var/puncherstam = user.getStaminaLoss()
 		var/puncherbrute = user.getBruteLoss()
 		var/punchedstam = target.getStaminaLoss()
@@ -1680,7 +1687,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			else if(HAS_TRAIT(user, TRAIT_PUGILIST)) //pugilists have a flat 10% miss chance
 				miss_chance = 10
 			else
-				miss_chance = min(10 + max(puncherstam * 0.5, puncherbrute * 0.5), 100) //probability of miss has a base of 10, and modified based on half brute total. Capped at max 100 to prevent weirdness in prob()
+				//Dexterity impacts our chance to miss, maximum dexterity means we never miss
+				var/miss_base = 10
+				var/brutestam_mod = 1
+				if(user.mind)
+					var/datum/stats/dex/dex = user.mind.mob_stats[/datum/stats/dex]
+					miss_base = dex.get_base_miss_chance()
+					brutestam_mod = dex.get_miss_stamina_mult()
+				miss_chance = min(miss_base + (max(puncherstam * 0.5, puncherbrute * 0.5) * brutestam_mod), 100) //probability of miss has a base of 10, and modified based on half brute total. Capped at max 100 to prevent weirdness in prob()
 
 		if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 			playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)
@@ -1835,6 +1849,18 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			randn -= 25 //if you are a pugilist, you're slapping that item from them pretty reliably
 		if(HAS_TRAIT(target, TRAIT_PUGILIST))
 			randn += 25 //meanwhile, pugilists are less likely to get disarmed
+		
+		//High dexterity target means it's harder to disarm
+		if(target.mind)
+			var/datum/stats/dex/dex = target.mind.mob_stats[/datum/stats/dex]
+			if(dex)
+				randn *= dex.get_disarm_mult()
+		
+		//High dexterity attacker means it's easier to disarm
+		if(user.mind)
+			var/datum/stats/dex/dex = user.mind.mob_stats[/datum/stats/dex]
+			if(dex)
+				randn /= dex.get_disarm_mult()
 
 		if(randn <= 35)//CIT CHANGE - changes this back to a 35% chance to accomodate for the above being commented out in favor of right-click pushing
 			var/obj/item/I = null

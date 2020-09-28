@@ -2,6 +2,7 @@
 //Code shamelessly stolen from IS12 warfare, thanks based Mattroks
 
 //Mind helpers
+//Get a damage modifier based on a stat and/or skill
 /datum/mind/proc/get_skillstat_damagemod(used_stat, used_skill)
 	var/modifier = 1
 
