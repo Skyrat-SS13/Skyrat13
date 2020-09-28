@@ -49,7 +49,7 @@
 	user_shieldbash(user, A, user.a_intent == INTENT_HARM)
 	return TRUE
 
-/obj/item/shield/altafterattack(atom/target, mob/user, proximity_flag, click_parameters, combat_intent = CI_DEFAULT)
+/obj/item/shield/altafterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	user_shieldbash(user, target, user.a_intent == INTENT_HARM)
 	return TRUE
 

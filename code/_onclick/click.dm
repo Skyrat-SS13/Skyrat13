@@ -125,15 +125,9 @@
 		changeNext_move(CLICK_CD_HANDCUFFED)   //Doing shit in cuffs shall be vey slow
 		RestrainedClickOn(A)
 		return
-
-	//Get the combat intent for later use
-	var/c_intent = CI_DEFAULT
-	if(iscarbon(src))
-		var/mob/living/carbon/our_mob = src
-		c_intent = our_mob.combat_intent
 	
 	if(in_throw_mode)
-		throw_item(A, combat_intent = c_intent)
+		throw_item(A)
 		return
 
 	var/obj/item/W = get_active_held_item()
@@ -147,11 +141,11 @@
 	//User itself, current loc, and user inventory
 	if(A in DirectAccess())
 		if(W)
-			W.melee_attack_chain(src, A, params, combat_intent = c_intent)
+			W.melee_attack_chain(src, A, params)
 		else
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)
-			UnarmedAttack(A, combat_intent = c_intent)
+			UnarmedAttack(A)
 		return
 
 	//Can't reach anything else in lockers or other weirdness
@@ -161,16 +155,16 @@
 	//Standard reach turf to turf or reaching inside storage
 	if(CanReach(A,W))
 		if(W)
-			W.melee_attack_chain(src, A, params, combat_intent = c_intent)
+			W.melee_attack_chain(src, A, params)
 		else
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)
-			UnarmedAttack(A, 1, combat_intent = c_intent)
+			UnarmedAttack(A, 1)
 	else
 		if(W)
-			W.ranged_attack_chain(src, A, params, combat_intent = c_intent)
+			W.ranged_attack_chain(src, A, params)
 		else
-			RangedAttack(A, params, combat_intent = c_intent)
+			RangedAttack(A, params)
 
 //Is the atom obscured by a PREVENT_CLICK_UNDER_1 object above it
 /atom/proc/IsObscured()
@@ -275,7 +269,7 @@
 	proximity_flag is not currently passed to attack_hand, and is instead used
 	in human click code to allow glove touches only at melee range.
 */
-/mob/proc/UnarmedAttack(atom/A, proximity_flag, combat_intent = CI_DEFAULT)
+/mob/proc/UnarmedAttack(atom/A, proximity_flag)
 	if(ismob(A))
 		changeNext_move(CLICK_CD_MELEE)
 	return
@@ -288,7 +282,7 @@
 	for things like ranged glove touches, spitting alien acid/neurotoxin,
 	animals lunging, etc.
 */
-/mob/proc/RangedAttack(atom/A, params, combat_intent = CI_DEFAULT)
+/mob/proc/RangedAttack(atom/A, params)
 	SEND_SIGNAL(src, COMSIG_MOB_ATTACK_RANGED, A, params)
 /*
 	Restrained ClickOn

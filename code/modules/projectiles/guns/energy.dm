@@ -325,7 +325,7 @@
 			cell.use(E.e_cost)
 			. = "<span class='danger'>[user] casually lights their [A.name] with [src]. Damn.</span>"
 
-/obj/item/gun/energy/altafterattack(atom/target, mob/user, proximity_flags, params, combat_intent = CI_DEFAULT)
+/obj/item/gun/energy/altafterattack(atom/target, mob/user, proximity_flags, params)
 	if(!right_click_overridden)
 		select_fire(user)
 		return TRUE

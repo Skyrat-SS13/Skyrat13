@@ -1753,7 +1753,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		else if(!(target.mobility_flags & MOBILITY_STAND))
 			target.forcesay(GLOB.hit_appends)
 
-/datum/species/proc/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target, combat_intent = CI_DEFAULT)
+/datum/species/proc/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return
 
 /datum/species/proc/disarm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
@@ -1917,7 +1917,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		if("disarm")
 			disarm(M, H, attacker_style)
 
-/datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H, attackchain_flags = NONE, damage_multiplier = 1, combat_intent = CI_DEFAULT)
+/datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H, attackchain_flags = NONE, damage_multiplier = 1)
 	var/totitemdamage = H.pre_attacked_by(I, user) * damage_multiplier
 	// Allows you to put in item-specific reactions based on species
 	if(user != H)
@@ -1946,7 +1946,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	//
 	var/weakness = H.check_weakness(I, user)
 
-	H.send_item_attack_message(I, user, hit_area, totitemdamage, affecting, combat_intent = combat_intent)
+	H.send_item_attack_message(I, user, hit_area, totitemdamage, affecting)
 	
 	apply_damage(totitemdamage * weakness, I.damtype, hit_area, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
 

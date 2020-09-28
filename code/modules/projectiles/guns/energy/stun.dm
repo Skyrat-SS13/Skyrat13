@@ -26,7 +26,7 @@
 	var/last_altfire = 0
 	var/altfire_delay = 15
 
-/obj/item/gun/energy/e_gun/advtaser/altafterattack(atom/target, mob/user, proximity_flag, params, combat_intent = CI_DEFAULT)
+/obj/item/gun/energy/e_gun/advtaser/altafterattack(atom/target, mob/user, proximity_flag, params)
 	. = TRUE
 	if(last_altfire + altfire_delay > world.time)
 		return
