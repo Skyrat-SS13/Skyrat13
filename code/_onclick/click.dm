@@ -136,12 +136,18 @@
 		W.attack_self(src)
 		update_inv_hands()
 		return
-
+	
+	//Get the combat intent for later use
+	var/c_intent = CI_DEFAULT
+	if(iscarbon(src))
+		var/mob/living/carbon/our_mob = src
+		c_intent = our_mob.combat_intent
+	
 	//These are always reachable.
 	//User itself, current loc, and user inventory
 	if(A in DirectAccess())
 		if(W)
-			W.melee_attack_chain(src, A, params)
+			W.melee_attack_chain(src, A, params, combat_intent = combat_intent)
 		else
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)
@@ -153,10 +159,6 @@
 		return
 
 	//Standard reach turf to turf or reaching inside storage
-	var/c_intent = CI_DEFAULT
-	if(iscarbon(src))
-		var/mob/living/carbon/our_mob = src
-		c_intent = our_mob.combat_intent
 	if(CanReach(A,W))
 		if(W)
 			W.melee_attack_chain(src, A, params, combat_intent = c_intent)
@@ -166,7 +168,7 @@
 			UnarmedAttack(A, 1)
 	else
 		if(W)
-			W.ranged_attack_chain(src, A, params, combat_intent = c_intent)
+			W.ranged_attack_chain(src, A, params, c_intent)
 		else
 			RangedAttack(A,params)
 
@@ -286,7 +288,7 @@
 	for things like ranged glove touches, spitting alien acid/neurotoxin,
 	animals lunging, etc.
 */
-/mob/proc/RangedAttack(atom/A, params)
+/mob/proc/RangedAttack(atom/A, params, combat_intent = CI_DEFAULT)
 	SEND_SIGNAL(src, COMSIG_MOB_ATTACK_RANGED, A, params)
 /*
 	Restrained ClickOn
