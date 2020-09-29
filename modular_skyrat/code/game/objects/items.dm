@@ -1,7 +1,11 @@
+//Hiding underwear
+/obj/item
+	hide_underwear_examine = TRUE
+
+//Item pickup text
 /obj/item
 	var/grabtext
 	var/grabsound
-	shows_armor = ARMOR_SHOW_WEARABLE
 	hide_underwear_examine = TRUE
 
 /obj/item/pickup(mob/living/user)
@@ -12,3 +16,8 @@
 		user.visible_message("<span class='danger'>[t]</span>")
 	if(grabsound)
 		playsound(src,grabsound,50,1)
+
+//Item info element
+/obj/item/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/item_info)

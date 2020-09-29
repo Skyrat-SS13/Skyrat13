@@ -20,6 +20,10 @@
 #define MODE_KEY_BINARY "b"
 #define MODE_TOKEN_BINARY ":b"
 
+#define MODE_DRONE "drone"
+#define MODE_KEY_DRONE "r"
+#define MODE_TOKEN_DRONE ":r"
+
 #define MODE_WHISPER "whisper"
 #define MODE_WHISPER_CRIT "whispercrit"
 

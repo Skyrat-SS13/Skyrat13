@@ -188,7 +188,9 @@ datum/gang_item/clothing/shades //Addition: Why not have cool shades on a gang m
 	name = "Sawn-Off Improvised Shotgun"
 	id = "sawn"
 	cost = 5
-	item_path = /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn
+	item_path = /obj/item/gun/ballistic/shotgun/improvised/sawn
+//	item_path = /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn
+// Skyrat Edit - Improvised shotgun has been modularised to make it significantly less of a hacky attempt of a break-action shotgun.
 
 /datum/gang_item/weapon/ammo/improvised_ammo
 	name = "Box of Buckshot"
