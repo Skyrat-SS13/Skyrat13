@@ -84,7 +84,7 @@
 	if(!client || !hud_used)
 		return
 	var/shock_val = get_shock()
-	if(shock_val >= 30)
+	if(shock_val >= 30 && HAS_TRAIT(src, TRAIT_PAINGOOD))
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "paingood", /datum/mood_event/paingood)
 	if(hud_used.pains)
 		switch(client.prefs?.pain_style)
