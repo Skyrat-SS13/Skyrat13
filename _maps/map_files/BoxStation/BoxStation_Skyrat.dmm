@@ -29438,11 +29438,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bwh" = (
-/obj/structure/sign/warning/securearea{
-	layer = 3;
-	pixel_y = 32;
-	plane = -4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -52979,14 +52974,6 @@
 	dir = 1
 	},
 /area/security/prison)
-"esp" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/warning/vacuum/external{
-	layer = 3;
-	plane = -4
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "esZ" = (
 /obj/machinery/door/airlock{
 	desc = "Private study room where nerds are probably playing Dungeons and Dragons 13e, or a place for blood cult rituals.";
@@ -54972,14 +54959,6 @@
 	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
-"gOO" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/warning/vacuum/external{
-	layer = 3;
-	plane = -4
-	},
-/turf/open/floor/plating,
-/area/ai_monitored/turret_protected/aisat_interior)
 "gOZ" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -55302,6 +55281,14 @@
 	},
 /turf/closed/wall,
 /area/medical/sleeper)
+"hgB" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/vacuum/external{
+	layer = 3;
+	plane = -4
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/solars/port/aft)
 "hgO" = (
 /obj/structure/table,
 /obj/item/storage/pill_bottle/dice{
@@ -55998,6 +55985,14 @@
 /obj/item/toy/beach_ball/holoball,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"icw" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/vacuum/external{
+	layer = 3;
+	plane = -4
+	},
+/turf/open/floor/plating,
+/area/maintenance/solars/starboard/aft)
 "icy" = (
 /obj/structure/mirror{
 	pixel_y = 32
@@ -57806,14 +57801,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"kmO" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/warning/vacuum/external{
-	layer = 3;
-	plane = -4
-	},
-/turf/open/floor/plating/airless,
-/area/maintenance/solars/port/aft)
 "kmS" = (
 /obj/structure/dresser,
 /obj/item/flashlight/lamp/green{
@@ -58472,6 +58459,14 @@
 /obj/item/clothing/under/rank/civilian/lawyer/red,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"liD" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/vacuum/external{
+	layer = 3;
+	plane = -4
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "liW" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -63360,6 +63355,14 @@
 /obj/item/toy/poolnoodle/yellow,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/pool)
+"suS" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/vacuum/external{
+	layer = 3;
+	plane = -4
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/turret_protected/aisat_interior)
 "svE" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -65574,6 +65577,23 @@
 	},
 /turf/open/floor/engine,
 /area/science/mixing)
+"vPR" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge blast";
+	name = "bridge blast door"
+	},
+/obj/structure/sign/warning/securearea{
+	plane = -4
+	},
+/turf/open/floor/plating,
+/area/hallway/primary/central)
 "vQo" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -66422,14 +66442,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/service)
-"xix" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/warning/vacuum/external{
-	layer = 3;
-	plane = -4
-	},
-/turf/open/floor/plating,
-/area/maintenance/solars/starboard/aft)
 "xjL" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
 /turf/open/floor/plasteel/dark/corner{
@@ -76337,7 +76349,7 @@ apN
 apJ
 fpI
 ayk
-esp
+liD
 awW
 awW
 aaa
@@ -76349,7 +76361,7 @@ aaa
 aaa
 awW
 awW
-esp
+liD
 awV
 aRX
 arB
@@ -76361,7 +76373,7 @@ aaa
 awW
 awZ
 ayk
-esp
+liD
 awW
 awW
 aaa
@@ -78650,7 +78662,7 @@ auc
 avp
 axI
 ayp
-esp
+liD
 awW
 awW
 aaa
@@ -78662,7 +78674,7 @@ aaa
 aaa
 awW
 awW
-esp
+liD
 awV
 aRX
 arB
@@ -78674,7 +78686,7 @@ aaa
 arB
 awY
 ayk
-esp
+liD
 awW
 awW
 aaa
@@ -85915,7 +85927,7 @@ bCq
 bCq
 bCq
 cfx
-kmO
+hgB
 cyK
 cfx
 cfx
@@ -96420,7 +96432,7 @@ bsa
 eih
 pQN
 bsa
-nbT
+vPR
 bwb
 aJq
 bBr
@@ -104695,7 +104707,7 @@ aaa
 aaf
 aaa
 csn
-gOO
+suS
 ctb
 ctg
 cua
@@ -117275,7 +117287,7 @@ cjG
 cku
 clz
 cmx
-xix
+icw
 cnj
 cnj
 aaa
