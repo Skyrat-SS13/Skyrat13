@@ -6325,9 +6325,6 @@
 "aoi" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/gas,
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
-	},
 /obj/item/multitool,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
@@ -7685,12 +7682,14 @@
 	},
 /area/holodeck/rec_center)
 "arp" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
 	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
+/turf/open/floor/plasteel/dark/side{
+	dir = 5
+	},
+/area/security/prison)
 "arq" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/cobweb,
@@ -11214,12 +11213,15 @@
 /turf/closed/wall/r_wall,
 /area/hallway/secondary/entry)
 "aAD" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
 	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/security/prison)
 "aAE" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/stripes/line,
@@ -17015,7 +17017,10 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/status_display/evac,
+/obj/machinery/status_display/evac{
+	layer = 3.3;
+	plane = -4
+	},
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
@@ -17047,7 +17052,10 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/status_display/evac,
+/obj/machinery/status_display/evac{
+	layer = 3.3;
+	plane = -4
+	},
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
@@ -17329,14 +17337,16 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "aQG" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
 	},
-/obj/effect/turf_decal/stripes/line{
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel/dark/side{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
+/area/security/prison)
 "aQH" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -18006,11 +18016,13 @@
 	name = "Bridge Blast Door Control";
 	pixel_x = 28;
 	pixel_y = -2;
+	plane = -4;
 	req_access_txt = "19"
 	},
 /obj/machinery/keycard_auth{
 	pixel_x = 29;
-	pixel_y = 8
+	pixel_y = 8;
+	plane = -4
 	},
 /turf/open/floor/plasteel,
 /area/bridge)
@@ -26502,8 +26514,11 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "boI" = (
-/obj/structure/sign/warning/vacuum/external,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/vacuum/external{
+	layer = 3;
+	plane = -4
+	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "boJ" = (
@@ -29424,7 +29439,9 @@
 /area/hallway/primary/central)
 "bwh" = (
 /obj/structure/sign/warning/securearea{
-	pixel_y = 32
+	layer = 3;
+	pixel_y = 32;
+	plane = -4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -33961,6 +33978,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-8"
+	},
+/obj/machinery/airalarm{
+	pixel_y = 23
 	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 5
@@ -40429,6 +40449,9 @@
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "bXk" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 1
+	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=AIE";
 	location = "AftH"
@@ -40438,9 +40461,6 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
@@ -40477,13 +40497,13 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "bXo" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "bXp" = (
@@ -40901,6 +40921,9 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "bYr" = (
@@ -41049,9 +41072,6 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 5
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -44148,11 +44168,13 @@
 /turf/open/space,
 /area/solar/port/aft)
 "cgA" = (
+/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external{
-	pixel_x = -32
+	layer = 3;
+	plane = -4
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/port/aft)
+/area/maintenance/solars/starboard/fore)
 "cgB" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -46344,9 +46366,6 @@
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
 "cmx" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = -32
-	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
 "cmy" = (
@@ -47866,11 +47885,13 @@
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
 "csX" = (
+/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
+	layer = 3;
+	plane = -4
 	},
 /turf/open/floor/plating,
-/area/ai_monitored/turret_protected/aisat_interior)
+/area/maintenance/starboard/fore)
 "csZ" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -52958,6 +52979,14 @@
 	dir = 1
 	},
 /area/security/prison)
+"esp" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/vacuum/external{
+	layer = 3;
+	plane = -4
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "esZ" = (
 /obj/machinery/door/airlock{
 	desc = "Private study room where nerds are probably playing Dungeons and Dragons 13e, or a place for blood cult rituals.";
@@ -53456,7 +53485,6 @@
 /obj/structure/table/plasmaglass,
 /obj/machinery/chem_dispenser/drinks/beer,
 /obj/effect/decal/cleanable/cobweb,
-/obj/structure/spider/stickyweb/genetic,
 /turf/open/floor/plating,
 /area/maintenance/bar)
 "ffg" = (
@@ -54891,7 +54919,6 @@
 "gLt" = (
 /obj/structure/table/plasmaglass,
 /obj/machinery/chem_dispenser/drinks,
-/obj/structure/spider/stickyweb/genetic,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -54945,6 +54972,14 @@
 	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
+"gOO" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/vacuum/external{
+	layer = 3;
+	plane = -4
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/turret_protected/aisat_interior)
 "gOZ" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -56534,6 +56569,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -22
+	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 8
 	},
@@ -57124,6 +57163,9 @@
 	pixel_y = 5
 	},
 /obj/effect/spawner/lootdrop/seeds/durathread,
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "jEf" = (
@@ -57764,6 +57806,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"kmO" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/vacuum/external{
+	layer = 3;
+	plane = -4
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/solars/port/aft)
 "kmS" = (
 /obj/structure/dresser,
 /obj/item/flashlight/lamp/green{
@@ -60034,6 +60084,9 @@
 	c_tag = "Prison Entrance";
 	dir = 6
 	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 1
 	},
@@ -62219,7 +62272,10 @@
 /area/security/main)
 "qGR" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/warning/docking,
+/obj/structure/sign/warning/docking{
+	layer = 3;
+	plane = -4
+	},
 /turf/open/floor/plating,
 /area/security/checkpoint/auxiliary)
 "qIw" = (
@@ -62842,7 +62898,10 @@
 /area/crew_quarters/abandoned_gambling_den)
 "rIP" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/warning/docking,
+/obj/structure/sign/warning/docking{
+	layer = 3;
+	plane = -4
+	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
 "rJq" = (
@@ -66363,6 +66422,14 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/service)
+"xix" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/vacuum/external{
+	layer = 3;
+	plane = -4
+	},
+/turf/open/floor/plating,
+/area/maintenance/solars/starboard/aft)
 "xjL" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
 /turf/open/floor/plasteel/dark/corner{
@@ -76270,20 +76337,20 @@ apN
 apJ
 fpI
 ayk
-awW
-aAD
-awW
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+esp
 awW
 awW
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 awW
-aQG
+awW
+esp
+awV
 aRX
 arB
 aaa
@@ -76294,8 +76361,8 @@ aaa
 awW
 awZ
 ayk
+esp
 awW
-aAD
 awW
 aaa
 aaa
@@ -78583,20 +78650,20 @@ auc
 avp
 axI
 ayp
-awW
-aAD
-awW
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+esp
 awW
 awW
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 awW
-aQG
+awW
+esp
+awV
 aRX
 arB
 aaa
@@ -78607,8 +78674,8 @@ aaa
 arB
 awY
 ayk
+esp
 awW
-aAD
 awW
 aaa
 aaa
@@ -85848,7 +85915,7 @@ bCq
 bCq
 bCq
 cfx
-cfx
+kmO
 cyK
 cfx
 cfx
@@ -86105,7 +86172,7 @@ ccY
 cAD
 cAH
 cfw
-cgA
+ciS
 chP
 ciQ
 cfw
@@ -92145,11 +92212,11 @@ aaa
 vdU
 abG
 abu
-alr
+arp
 ars
 biC
 cJL
-bbr
+aAD
 bbr
 fet
 abu
@@ -92935,7 +93002,7 @@ abu
 ncR
 abu
 abu
-gsh
+aQG
 hhB
 lau
 lsv
@@ -104628,8 +104695,8 @@ aaa
 aaf
 aaa
 csn
-csD
-csX
+gOO
+ctb
 ctg
 cua
 cua
@@ -106844,8 +106911,8 @@ aaa
 aaa
 aaa
 aag
+csX
 alO
-arp
 alO
 anf
 anf
@@ -108382,7 +108449,7 @@ aaa
 aaa
 amw
 amw
-amw
+cgA
 aoi
 aoO
 apB
@@ -117208,7 +117275,7 @@ cjG
 cku
 clz
 cmx
-cnj
+xix
 cnj
 cnj
 aaa
