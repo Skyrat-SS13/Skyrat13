@@ -241,12 +241,14 @@
 
 /turf/closed/wall/proc/try_destroy(obj/item/I, mob/user, turf/T)
 	if(istype(I, /obj/item/pickaxe/drill/jackhammer))
-		if(!iswallturf(src))
-			return TRUE
-		if(user.loc == T)
+		var/obj/item/pickaxe/drill/jackhammer/J = I
+		to_chat(user, "<span class='notice'>You begin to smash though [src]...</span>")
+		if(do_after(user, J.wallsmash_time, target = src))
+			if(!istype(src, /turf/closed/wall/))
+				return TRUE
 			I.play_tool_sound(src)
-			dismantle_wall()
 			visible_message("<span class='warning'>[user] smashes through [src] with [I]!</span>", "<span class='italics'>You hear the grinding of metal.</span>")
+			dismantle_wall()
 			return TRUE
 	return FALSE
 

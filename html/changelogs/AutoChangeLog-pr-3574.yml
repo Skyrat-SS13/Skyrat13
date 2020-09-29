@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Added a TGUI item information menu verb for items. It an be acessed via a verb."

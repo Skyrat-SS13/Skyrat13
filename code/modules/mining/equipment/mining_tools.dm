@@ -124,6 +124,13 @@
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 	desc = "Cracks rocks with sonic blasts, and doubles as a demolition power tool for smashing walls."
 	digrange = 2
+	var/wallsmash_time = 50 // deciseconds, multiplied by 5 for r-walls
+
+/obj/item/pickaxe/drill/jackhammer/admin
+	name = "supersonic jackhammer"
+	desc = "Annihilates rocks and walls alike with supersonic blasts."
+	wallsmash_time = 5
+	toolspeed = 0.1
 
 /obj/item/shovel
 	name = "shovel"
