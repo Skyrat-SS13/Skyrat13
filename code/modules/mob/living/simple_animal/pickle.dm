@@ -13,7 +13,7 @@
 	del_on_death = TRUE
 	var/mob/living/original_body
 
-/mob/living/simple_animal/pickle/UnarmedAttack(atom/A)
+/mob/living/simple_animal/pickle/UnarmedAttack(atom/A, attackchain_flags)
 	..() //we want the tickle emote to go before the laugh
 	if(ismob(A))
 		var/mob/laugher = A

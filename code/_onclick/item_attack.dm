@@ -69,7 +69,7 @@
   * @params
   * * mob/living/M - target
   * * mob/living/user - attacker
-  * * attackchain_Flags - see [code/__DEFINES/_flags/return_values.dm]
+  * * attackchain_flags - see [code/__DEFINES/_flags/return_values.dm]
   * * damage_multiplier - what to multiply the damage by
   */
 /obj/item/proc/attack(mob/living/M, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
@@ -96,7 +96,7 @@
 	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	add_fingerprint(user)
 
-	var/weight = getweight(user, STAM_COST_ATTACK_MOB_MULT) //CIT CHANGE - makes attacking things cause stamina loss
+	var/weight = getweight(user, STAM_COST_ATTACK_MOB_MULT, attackchain_flags = attackchain_flags) //CIT CHANGE - makes attacking things cause stamina loss
 	if(weight)
 		user.adjustStaminaLossBuffered(weight)
 
@@ -134,6 +134,23 @@
 		if(dex)
 			click_stat_mod *= dex.get_click_mod()
 	
+	//Same applies for the combat intent
+	var/c_intent = CI_DEFAULT
+	if(iscarbon(user))
+		var/mob/living/carbon/carbon_mob = user
+		c_intent = carbon_mob.combat_intent
+	
+	switch(c_intent)
+		if(CI_FURIOUS)
+			if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
+				click_stat_mod *= 0.8 //Keep it simple, endurance already changes the stamina penalty, dexterity already buffed us before
+		if(CI_STRONG)
+			if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
+				click_stat_mod *= 1.5 //Keep it simple, strength already buffs damage a fuckton
+		if(CI_DEFEND)
+			damage_multiplier *= 0.5 //Straight up halve the damage - stats and skills will just dictate parrying and blocking
+		if(CI_GUARD)
+			damage_multiplier *= 0.75 //3/4ths of the damage - stats and skills will just dictate parrying and blocking
 	user.changeNext_move(I.click_delay*next_move_mult*click_stat_mod)
 
 	if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
@@ -160,7 +177,7 @@
 
 /mob/living/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
 	var/list/block_return = list()
-	var/totitemdamage = pre_attacked_by(I, user) * damage_multiplier
+	var/totitemdamage = pre_attacked_by(I, user, attackchain_flags = attackchain_flags) * damage_multiplier
 	if((user != src) && mob_run_block(I, totitemdamage, "the [I.name]", ((attackchain_flags & ATTACKCHAIN_PARRY_COUNTERATTACK)? ATTACK_TYPE_PARRY_COUNTERATTACK : NONE) | ATTACK_TYPE_MELEE, I.armour_penetration, user, null, block_return) & BLOCK_SUCCESS)
 		return FALSE
 	totitemdamage = block_calculate_resultant_damage(totitemdamage, block_return)
@@ -192,7 +209,7 @@
 	else
 		return ..()
 
-/mob/living/proc/pre_attacked_by(obj/item/I, mob/living/user)
+/mob/living/proc/pre_attacked_by(obj/item/I, mob/living/user, attackchain_flags)
 	. = I.force
 	if(!.)
 		return
@@ -215,6 +232,23 @@
 		if(dex)
 			click_stat_mod *= dex.get_click_mod()
 	
+	//Same applies for the combat intent
+	var/c_intent = CI_DEFAULT
+	if(iscarbon(user))
+		var/mob/living/carbon/carbon_mob = user
+		c_intent = carbon_mob.combat_intent
+	
+	switch(c_intent)
+		if(CI_FURIOUS)
+			if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
+				click_stat_mod *= 0.8 //Keep it simple, endurance already changes the stamina penalty, dexterity already buffed us before
+		if(CI_STRONG)
+			if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
+				click_stat_mod *= 1.5 //Keep it simple, strength already buffs damage a fuckton
+		if(CI_DEFEND)
+			. *= 0.5 //Straight up halve the damage - stats and skills will just dictate parrying and blocking
+		if(CI_GUARD)
+			. *= 0.75 //3/4ths of the damage - stats and skills will just dictate parrying and blocking
 	user.changeNext_move(I.click_delay*next_move_mult*click_stat_mod)
 	I.attack_delay_done = TRUE
 
@@ -287,7 +321,7 @@
 	return 1
 
 /// How much stamina this takes to swing this is not for realism purposes hecc off.
-/obj/item/proc/getweight(mob/living/user, multiplier = 1, trait = SKILL_STAMINA_COST)
+/obj/item/proc/getweight(mob/living/user, multiplier = 1, trait = SKILL_STAMINA_COST, attackchain_flags)
 	. = (total_mass || w_class * STAM_COST_W_CLASS_MULT) * multiplier
 	if(!user)
 		return
@@ -298,6 +332,30 @@
 	if(used_skills && user.mind)
 		. = user.mind.item_action_skills_mod(src, ., skill_difficulty, trait, bad_trait, FALSE)
 	var/total_health = user.getStaminaLoss()
+	var/c_intent = CI_DEFAULT
+	if(iscarbon(user))
+		var/mob/living/carbon/carbon_mob = user
+		c_intent = carbon_mob.combat_intent
+	
+	switch(c_intent)
+		if(CI_FURIOUS)
+			if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
+				//Endurance lowers the staminaloss penalty
+				var/multi = 2
+				if(user.mind)
+					var/datum/stats/end/end = user.mind.mob_stats[/datum/stats/end]
+					if(end)
+						multi = (2.5 - (end.level/MAX_STAT))
+				. *= multi
+		if(CI_STRONG)
+			if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
+				//Endurance lowers the staminaloss penalty
+				var/multi = 2.5
+				if(user.mind)
+					var/datum/stats/end = user.mind.mob_stats[/datum/stats/end]
+					if(end)
+						multi = (3 - (end.level/MAX_STAT))
+				. *= multi
 	. = clamp(., 0, STAMINA_NEAR_CRIT - total_health)
 
 /// How long this staggers for. 0 and negatives supported.

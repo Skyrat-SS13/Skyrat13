@@ -99,7 +99,22 @@
 	if(user == src)
 		affecting = get_bodypart(check_zone(user.zone_selected)) //stabbing yourself always hits the right target
 	else
-		affecting = get_bodypart(ran_zone(user.zone_selected))
+		var/ran_zone_prob = 75
+		//Hitting where the attacker aimed is dictated by a few things
+		var/c_intent = CI_DEFAULT
+		if(iscarbon(user))
+			var/mob/living/carbon/carbon_mob = user
+			c_intent = carbon_mob.combat_intent
+			if(carbon_mob.mind)
+				var/datum/stats/dex/dex = carbon_mob.mind.mob_stats[/datum/stats/dex]
+				if(dex)
+					ran_zone_prob = dex.get_ran_zone_prob()
+		switch(c_intent)
+			if(CI_AIMED)
+				if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
+					ran_zone_prob = 100
+		
+		affecting = get_bodypart(ran_zone(user.zone_selected, ran_zone_prob))
 	var/target_area = parse_zone(check_zone(user.zone_selected)) //our intended target
 
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)

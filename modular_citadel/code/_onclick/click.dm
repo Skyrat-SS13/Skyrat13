@@ -40,8 +40,21 @@
 		else
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)
-			if(!AltUnarmedAttack(A))
-				UnarmedAttack(A)
+			var/c_intent = CI_DEFAULT
+			if(iscarbon(src))
+				var/mob/living/carbon/carbon_mob = src
+				c_intent = carbon_mob.combat_intent
+			switch(c_intent)
+				if(CI_DUAL)
+					var/obj/item/wap = get_inactive_held_item()
+					visible_message("<span class='warning'><b>\The [src]</b> attacks with their offhand!</span>")
+					if(wap)
+						wap.melee_attack_chain(src, A, params, attackchain_flags = ATTACKCHAIN_RIGHTCLICK)
+					else
+						UnarmedAttack(A, TRUE, attackchain_flags = ATTACKCHAIN_RIGHTCLICK)
+					return
+			if(!AltUnarmedAttack(A, TRUE))
+				UnarmedAttack(A, TRUE, attackchain_flags = ATTACKCHAIN_RIGHTCLICK)
 		return
 
 	//Can't reach anything else in lockers or other weirdness
@@ -55,8 +68,21 @@
 		else
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)
-			if(!AltUnarmedAttack(A,1))
-				UnarmedAttack(A,1)
+			var/c_intent = CI_DEFAULT
+			if(iscarbon(src))
+				var/mob/living/carbon/carbon_mob = src
+				c_intent = carbon_mob.combat_intent
+			switch(c_intent)
+				if(CI_DUAL)
+					var/obj/item/wap = get_inactive_held_item()
+					visible_message("<span class='warning'><b>\The [src]</b> attacks with their offhand!</span>")
+					if(wap)
+						wap.melee_attack_chain(src, A, params, attackchain_flags = ATTACKCHAIN_RIGHTCLICK)
+					else
+						UnarmedAttack(A, TRUE, attackchain_flags = ATTACKCHAIN_RIGHTCLICK)
+					return
+			if(!AltUnarmedAttack(A, TRUE))
+				UnarmedAttack(A, TRUE, attackchain_flags = ATTACKCHAIN_RIGHTCLICK)
 	else
 		if(W)
 			if(!W.altafterattack(A, src, FALSE, params))

@@ -1664,6 +1664,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			str_mod = user.mind.get_skillstat_damagemod(/datum/stats/str)
 		damage *= str_mod
 
+		//Combat intents change how much your fisto deals
+		var/c_intent = user.combat_intent
+		switch(c_intent)
+			if(CI_WEAK)
+				damage *= 0.4
+
 		var/puncherstam = user.getStaminaLoss()
 		var/puncherbrute = user.getBruteLoss()
 		var/punchedstam = target.getStaminaLoss()
@@ -1678,7 +1684,24 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			damage *= 0.8
 		//END OF CITADEL CHANGES
 
-		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
+		//The probability of hitting the correct zone depends on dexterity
+		var/ran_zone_prob = 75
+		if(user.mind)
+			var/datum/stats/dex/dex = user.mind.mob_stats[/datum/stats/dex]
+			if(dex)
+				ran_zone_prob = dex.get_ran_zone_prob()
+
+		//Aimed combat intent means we almost never miss, at the cost of stamina
+		//we deduct stamina later down, based on endurance
+		switch(c_intent)
+			if(CI_AIMED)
+				ran_zone_prob = 100
+				if(user.mind)
+					var/datum/stats/dex/dex = user.mind.mob_stats[/datum/stats/dex]
+					if(dex)
+						ran_zone_prob = 80 + dex.level
+		
+		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected, ran_zone_prob))
 
 		var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases
 		if(user.dna.species.punchdamagelow)
@@ -1695,6 +1718,16 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 					miss_base = dex.get_base_miss_chance()
 					brutestam_mod = dex.get_miss_stamina_mult()
 				miss_chance = min(miss_base + (max(puncherstam * 0.5, puncherbrute * 0.5) * brutestam_mod), 100) //probability of miss has a base of 10, and modified based on half brute total. Capped at max 100 to prevent weirdness in prob()
+		
+		//Aimed combat intent means we never miss, at the cost of stamina
+		switch(c_intent)
+			if(CI_AIMED)
+				miss_chance = 0
+				var/endurance_mod = 1
+				if(user.mind)
+					var/datum/stats/end = user.mind.mob_stats[/datum/stats/end]
+					endurance_mod = round((MAX_STAT/2)/end.level, 0.1)
+				user.adjustStaminaLoss(5 * endurance_mod)
 
 		if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 			playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)

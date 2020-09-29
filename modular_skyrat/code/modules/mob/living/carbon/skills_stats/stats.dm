@@ -15,6 +15,9 @@
 	name = "Dexterity"
 	shorthand = "DX"
 
+/datum/stats/dex/proc/get_ran_zone_prob()
+	return 50 + (50 * level/MAX_STAT)
+
 /datum/stats/dex/proc/get_click_mod()
 	return round(1.25 - (0.5 * level/MAX_STAT), 0.1) //Varies from 1.25 to 0.75 depending on how good/bad we are
 

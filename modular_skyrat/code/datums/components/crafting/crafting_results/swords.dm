@@ -79,7 +79,7 @@
 	var/armorthreshold = 25
 	click_delay = CLICK_CD_MELEE * 2.5
 
-/obj/item/melee/sword/executioner/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/melee/sword/executioner/melee_attack_chain(mob/user, atom/target, params, flags, damage_multiplier = 1)
 	..()
 	var/def_zone = user.zone_selected
 	if(iscarbon(target))

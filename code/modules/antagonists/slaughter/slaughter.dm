@@ -231,7 +231,7 @@
 	slam_cooldown = world.time
 	log_combat(src, victim, "slaughter slammed")
 
-/mob/living/simple_animal/slaughter/UnarmedAttack(atom/A, proximity)
+/mob/living/simple_animal/slaughter/UnarmedAttack(atom/A, proximity, attackchain_flags)
 	if(iscarbon(A))
 		var/mob/living/carbon/target = A
 		if(target.stat != DEAD && target.mind && current_hitstreak < wound_bonus_hitstreak_max)
