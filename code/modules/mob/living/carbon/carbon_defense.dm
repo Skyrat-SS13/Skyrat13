@@ -359,6 +359,7 @@
 					for(var/T in many_tails)
 						if(S.mutant_bodyparts[T] && dna.features[T] != "None")
 							emote("wag")
+							break
 
 		else if(check_zone(M.zone_selected) == BODY_ZONE_R_ARM || check_zone(M.zone_selected) == BODY_ZONE_L_ARM)
 			M.visible_message( \
