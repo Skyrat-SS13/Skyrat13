@@ -49,7 +49,23 @@
 		to_chat(src, "<span class='warning'>You must be in combat mode to parry!</span>")
 		return FALSE
 	data = return_block_parry_datum(data)
-	var/full_parry_duration = data.parry_time_windup + data.parry_time_active + data.parry_time_spindown
+	var/parrydurationmod = 1
+	//Melee skill alters the active duration of a parry
+	if(mind)
+		var/datum/skills/melee/melee = mind.mob_skills[/datum/skills/melee]
+		if(melee)
+			parrydurationmod *= (MAX_SKILL/2)/melee.level
+	//Combat intent alters the active duration of a parry
+	var/c_intent = CI_DEFAULT
+	if(iscarbon(src))
+		var/mob/living/carbon/carbon_mob = src
+		c_intent = carbon_mob.combat_intent
+	switch(c_intent)
+		if(CI_DEFEND)
+			parrydurationmod *= 2
+		if(CI_GUARD)
+			parrydurationmod *= 1.25
+	var/full_parry_duration = data.parry_time_windup + (data.parry_time_active * parrydurationmod) + data.parry_time_spindown
 	// no system in place to "fallback" if out of the 3 the top priority one can't parry due to constraints but something else can.
 	// can always implement it later, whatever.
 	if((data.parry_respect_clickdelay && (next_move > world.time)) || ((parry_end_time_last + data.parry_cooldown) > world.time))
@@ -59,7 +75,15 @@
 	parrying = method
 	if(method == ITEM_PARRY)
 		active_parry_item = using_item
-	adjustStaminaLossBuffered(data.parry_stamina_cost)
+	var/staminalossmod = 2
+	if(mind)
+		var/datum/skills/melee/melee = mind.mob_skills[/datum/skills/melee]
+		if(melee)
+			staminalossmod *= (MAX_SKILL/2)/melee.level
+		var/datum/stats/end/end = mind.mob_stats[/datum/stats/end]
+		if(end)
+			staminalossmod *= (MAX_STAT/2)/end.level
+	adjustStaminaLossBuffered(data.parry_stamina_cost * staminalossmod)
 	parry_start_time = world.time
 	successful_parries = list()
 	addtimer(CALLBACK(src, .proc/end_parry_sequence), full_parry_duration)
@@ -114,7 +138,23 @@
   */
 /mob/living/proc/handle_parry_starting_effects(datum/block_parry_data/data)
 	playsound(src, data.parry_start_sound, 75, 1)
-	parry_visual_effect = new /obj/effect/abstract/parry/main(null, TRUE, src, data.parry_effect_icon_state, data.parry_time_windup_visual_override || data.parry_time_windup, data.parry_time_active_visual_override || data.parry_time_active, data.parry_time_spindown_visual_override || data.parry_time_spindown)
+	//Melee skill alters the active duration of a parry
+	var/parrydurationmod = 1
+	if(mind)
+		var/datum/skills/melee/melee = mind.mob_skills[/datum/skills/melee]
+		if(melee)
+			parrydurationmod *= (MAX_SKILL/2)/melee.level
+	//Combat intent alters the active duration of a parry
+	var/c_intent = CI_DEFAULT
+	if(iscarbon(src))
+		var/mob/living/carbon/carbon_mob = src
+		c_intent = carbon_mob.combat_intent
+	switch(c_intent)
+		if(CI_DEFEND)
+			parrydurationmod *= 2
+		if(CI_GUARD)
+			parrydurationmod *= 1.25
+	parry_visual_effect = new /obj/effect/abstract/parry/main(null, TRUE, src, data.parry_effect_icon_state, data.parry_time_windup_visual_override || data.parry_time_windup, data.parry_time_active_visual_override || (data.parry_time_active * parrydurationmod), data.parry_time_spindown_visual_override || data.parry_time_spindown)
 	switch(parrying)
 		if(ITEM_PARRY)
 			visible_message("<span class='warning'>[src] swings [active_parry_item]!</span>")
@@ -174,8 +214,24 @@
 	if(!parrying)
 		return NOT_PARRYING
 	var/datum/block_parry_data/data = get_parry_data()
+	//Melee skill alters the active duration of a parry
+	var/parrydurationmod = 1
+	if(mind)
+		var/datum/skills/melee/melee = mind.mob_skills[/datum/skills/melee]
+		if(melee)
+			parrydurationmod *= (MAX_SKILL/2)/melee.level
+	//Combat intent alters the active duration of a parry
+	var/c_intent = CI_DEFAULT
+	if(iscarbon(src))
+		var/mob/living/carbon/carbon_mob = src
+		c_intent = carbon_mob.combat_intent
+	switch(c_intent)
+		if(CI_DEFEND)
+			parrydurationmod *= 2
+		if(CI_GUARD)
+			parrydurationmod *= 1.25
 	var/windup_end = data.parry_time_windup
-	var/active_end = windup_end + data.parry_time_active
+	var/active_end = windup_end + (data.parry_time_active * parrydurationmod)
 	var/spindown_end = active_end + data.parry_time_spindown
 	var/current_time = get_parry_time()
 	// Not a switch statement because byond switch statements don't support floats at time of writing with "to" keyword.
@@ -224,7 +280,12 @@
 	if((return_list[BLOCK_RETURN_MITIGATION_PERCENT] >= 100) || (damage <= 0))
 		. |= BLOCK_SUCCESS
 	var/list/effect_text
-	if(efficiency >= data.parry_efficiency_to_counterattack)
+	//CI_GUARD means we automatically counterattack no matter what
+	var/c_intent = CI_DEFAULT
+	if(iscarbon(src))
+		var/mob/living/carbon/carbon_mob = src
+		c_intent = carbon_mob.combat_intent
+	if((efficiency >= data.parry_efficiency_to_counterattack) || (c_intent == CI_GUARD))
 		run_parry_countereffects(object, damage, attack_text, attack_type, armour_penetration, attacker, def_zone, return_list, efficiency)
 	if(data.parry_flags & PARRY_DEFAULT_HANDLE_FEEDBACK)
 		handle_parry_feedback(object, damage, attack_text, attack_type, armour_penetration, attacker, def_zone, return_list, efficiency, effect_text)
@@ -253,8 +314,13 @@
 			active_parry_reflex_counter(src, object, damage, attack_text, attack_type, armour_penetration, attacker, def_zone, return_list, parry_efficiency, effect_text)
 		if(MARTIAL_PARRY)
 			mind.martial_art.active_parry_reflex_counter(src, object, damage, attack_text, attack_type, armour_penetration, attacker, def_zone, return_list, parry_efficiency, effect_text)
+	//Guard intent means we counter attack, always
+	var/c_intent = CI_DEFAULT
+	if(iscarbon(src))
+		var/mob/living/carbon/carbon_mob = src
+		c_intent = carbon_mob.combat_intent
 	if(Adjacent(attacker) || data.parry_data[PARRY_COUNTERATTACK_IGNORE_ADJACENCY])
-		if(data.parry_data[PARRY_COUNTERATTACK_MELEE_ATTACK_CHAIN])
+		if(data.parry_data[PARRY_COUNTERATTACK_MELEE_ATTACK_CHAIN] || (c_intent == CI_GUARD))
 			switch(parrying)
 				if(ITEM_PARRY)
 					active_parry_item.melee_attack_chain(src, attacker, null, ATTACKCHAIN_PARRY_COUNTERATTACK, data.parry_data[PARRY_COUNTERATTACK_MELEE_ATTACK_CHAIN])

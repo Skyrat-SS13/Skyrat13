@@ -143,7 +143,7 @@
 	switch(c_intent)
 		if(CI_FURIOUS)
 			if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
-				click_stat_mod *= 0.8 //Keep it simple, endurance already changes the stamina penalty, dexterity already buffed us before
+				click_stat_mod *= 0.75 //Keep it simple, endurance already changes the stamina penalty, dexterity already buffed us before
 		if(CI_STRONG)
 			if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
 				click_stat_mod *= 1.5 //Keep it simple, strength already buffs damage a fuckton
@@ -199,6 +199,23 @@
 					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(loc, get_blood_dna_list())
 					B.add_blood_DNA(get_blood_dna_list())
 					B.GoTo(targ, dist)
+		
+		//Combat intent can cause some effects
+		var/c_intent = CI_DEFAULT
+		if(iscarbon(user))
+			var/mob/living/carbon/carbon_mob = user
+			c_intent = carbon_mob.combat_intent
+		
+		switch(c_intent)
+			if(CI_FEINT)
+				if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
+					//Successful feint attack - victim is unable to attack for a while
+					var/multi = 2
+					if(user.mind)
+						var/datum/skills/melee/melee = user.mind.mob_skills[/datum/skills/melee]
+						if(melee)
+							multi = melee.level/(MAX_SKILL/2)
+					changeNext_move(CLICK_CD_MELEE * multi)
 
 		return TRUE //successful attack
 
@@ -241,7 +258,7 @@
 	switch(c_intent)
 		if(CI_FURIOUS)
 			if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
-				click_stat_mod *= 0.8 //Keep it simple, endurance already changes the stamina penalty, dexterity already buffed us before
+				click_stat_mod *= 0.75 //Keep it simple, endurance already changes the stamina penalty, dexterity already buffed us before
 		if(CI_STRONG)
 			if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
 				click_stat_mod *= 1.5 //Keep it simple, strength already buffs damage a fuckton

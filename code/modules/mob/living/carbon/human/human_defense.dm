@@ -112,7 +112,17 @@
 		switch(c_intent)
 			if(CI_AIMED)
 				if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
+					//Aimed attack - the attacker will not miss
 					ran_zone_prob = 100
+			if(CI_FEINT)
+				if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
+					//Successful feint attack - victim is unable to attack for a while
+					var/multi = 2
+					if(user.mind)
+						var/datum/skills/melee/melee = user.mind.mob_skills[/datum/skills/melee]
+						if(melee)
+							multi = melee.level/(MAX_SKILL/2)
+					changeNext_move(CLICK_CD_MELEE * multi)
 		
 		affecting = get_bodypart(ran_zone(user.zone_selected, ran_zone_prob))
 	var/target_area = parse_zone(check_zone(user.zone_selected)) //our intended target

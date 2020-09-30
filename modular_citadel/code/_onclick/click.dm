@@ -49,7 +49,7 @@
 					var/obj/item/wap = get_inactive_held_item()
 					visible_message("<span class='warning'><b>\The [src]</b> attacks with their offhand!</span>")
 					if(wap)
-						wap.melee_attack_chain(src, A, params, attackchain_flags = ATTACKCHAIN_RIGHTCLICK)
+						wap.melee_attack_chain(src, A, params, flags = ATTACKCHAIN_RIGHTCLICK)
 					else
 						UnarmedAttack(A, TRUE, attackchain_flags = ATTACKCHAIN_RIGHTCLICK)
 					return
@@ -77,7 +77,7 @@
 					var/obj/item/wap = get_inactive_held_item()
 					visible_message("<span class='warning'><b>\The [src]</b> attacks with their offhand!</span>")
 					if(wap)
-						wap.melee_attack_chain(src, A, params, attackchain_flags = ATTACKCHAIN_RIGHTCLICK)
+						wap.melee_attack_chain(src, A, params, flags = ATTACKCHAIN_RIGHTCLICK)
 					else
 						UnarmedAttack(A, TRUE, attackchain_flags = ATTACKCHAIN_RIGHTCLICK)
 					return
