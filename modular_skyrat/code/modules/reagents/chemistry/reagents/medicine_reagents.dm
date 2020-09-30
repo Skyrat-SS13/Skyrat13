@@ -182,17 +182,12 @@
 	pH = 7.2
 	color = "#cccccc"
 	process_flags = REAGENT_SYNTHETIC
-	metabolization_rate = 1
+	metabolization_rate = INFINITY //just gets consumed instantly i dont fucking are anymore
 
 /datum/reagent/medicine/kerosene/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
-	if(method == TOUCH)
-		M.adjustOxyLoss(min(-10, -reac_volume))
-	..()
-
-/datum/reagent/medicine/kerosene/on_mob_life(mob/living/L)
-	L.adjustOxyLoss(-1 * REM)
-	..()
-	. = 1
+	. = ..()
+	//i dont fucking care anymore
+	M.setOxyLoss(0)
 
 //Repathed preservahyde
 /datum/reagent/medicine/preservahyde

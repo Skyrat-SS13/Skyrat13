@@ -44,6 +44,32 @@
 	//Power cord so they no die hungry
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 
+/datum/species/ipc/spec_revival(mob/living/carbon/human/H)
+	if(H.stat == DEAD) //by this point we should be alive
+		return
+	H.dna.features["ipc_screen"] = "BSOD"
+	H.update_body()
+	H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]...")
+	sleep(3 SECONDS)
+	H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]...")
+	sleep(3 SECONDS)
+	H.say("Finalizing setup...")
+	sleep(3 SECONDS)
+	H.say("Unit [H.real_name] is fully functional. Have a nice day.")
+	H.dna.features["ipc_screen"] = saved_screen
+	H.update_body()
+	return 
+
+/datum/species/synth/spec_life(mob/living/carbon/human/H)
+	. = ..()
+	//This is stupid, performance intensive, and i want to shoot myself but it will shut people up
+	//about this minor fucking bug fuck you
+	if(H.stat == DEAD)
+		if((H.health > revivesbyhealreq) && !H.hellbound)
+			if((NOBLOOD in species_traits) || (H.blood_volume >= BLOOD_VOLUME_OKAY))
+				owner.revive(0)
+				owner.cure_husk(0) // If it has REVIVESBYHEALING, it probably can't be cloned. No husk cure.
+
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))
 		name = S.name

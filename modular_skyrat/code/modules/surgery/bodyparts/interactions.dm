@@ -32,7 +32,7 @@
 		user.visible_message("<span class='danger'>[user] starts wrenching [victim]'s [name]!</span>", "<span class='danger'>You start wrenching [victim]'s [name]!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] starts wrenching your [name]!</span>")
 	
-	if(!do_after(user, time, target=victim))
+	if(!do_mob(user, victim, time))
 		return
 
 	if(prob(30 + prob_mod))

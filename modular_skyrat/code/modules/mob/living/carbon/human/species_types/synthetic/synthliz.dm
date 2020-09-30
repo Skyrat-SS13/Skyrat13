@@ -31,6 +31,16 @@
 	languagewhitelist = list("Encoded Audio Language")
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc/synthliz
 
+/datum/species/synthliz/spec_life(mob/living/carbon/human/H)
+	. = ..()
+	//This is stupid, performance intensive, and i want to shoot myself but it will shut people up
+	//about this minor fucking bug fuck you
+	if(H.stat == DEAD)
+		if((H.health > revivesbyhealreq) && !H.hellbound)
+			if((NOBLOOD in species_traits) || (H.blood_volume >= BLOOD_VOLUME_OKAY))
+				owner.revive(0)
+				owner.cure_husk(0) // If it has REVIVESBYHEALING, it probably can't be cloned. No husk cure.
+
 /datum/species/synthliz/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
 	. = ..()
 	//C.grant_language(/datum/language/machine)
@@ -45,6 +55,8 @@
 	//C.remove_language(/datum/language/machine)
 
 /datum/species/synthliz/spec_revival(mob/living/carbon/human/H)
+	if(H.stat == DEAD) //by this point we should be alive
+		return
 	H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]...")
 	sleep(3 SECONDS)
 	H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]...")

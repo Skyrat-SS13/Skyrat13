@@ -430,8 +430,16 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/target_real_name // Has to be stored because the target's real_name can change over the course of the round
 	var/target_missing_id
 
+/datum/objective/escape/escape_with_identity/proc/unsuitable_targets()
+	. = list()
+	for(var/datum/mind/mind in get_crewmember_minds())
+		if(mind.current && iscarbon(mind.current))
+			var/mob/living/carbon/carbon_mob = mind.current
+			if(ROBOTIC_LIMBS in carbon_mob.dna?.species?.species_traits)
+				. |= mind
+
 /datum/objective/escape/escape_with_identity/find_target()
-	target = ..()
+	target = ..(blacklist = unsuitable_targets())
 	update_explanation_text()
 
 /datum/objective/escape/escape_with_identity/update_explanation_text()

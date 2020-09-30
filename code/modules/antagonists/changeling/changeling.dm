@@ -74,6 +74,14 @@
 	emporium_action = new(cellular_emporium)
 
 /datum/antagonist/changeling/on_gain()
+	//the correct approach would be blacklisting synthetics from becoming changelings
+	//but i'm lazy and inefficient.
+	if(owner && iscarbon(owner))
+		var/mob/living/carbon/carbon_mob = owner
+		if(ROBOTIC_LIMBS in carbon_mob.dna?.species?.species_traits)
+			//just no
+			qdel(src)
+			return
 	generate_name()
 	create_actions()
 	reset_powers()
