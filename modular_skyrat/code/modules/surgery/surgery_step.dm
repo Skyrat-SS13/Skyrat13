@@ -8,21 +8,44 @@
 	if(preop(user, target, target_zone, tool, surgery) == -1)
 		surgery.step_in_progress = FALSE
 		return FALSE
+	
 	if(tool)
 		speed_mod = tool.toolspeed
+	
+	if(user.mind)
+		var/datum/skills/surgery/surgerye = user.mind.mob_skills[/datum/skills/surgery]
+		if(surgerye)
+			speed_mod *= surgerye.get_speed_mod()
 			
 	if(do_after(user, time * speed_mod, target = target))
 		var/prob_chance = 100
-		if(target == user) //self-surgery is hard
-			prob_chance *= 0.6
-		if(!target.lying) //doing surgery on someone who's not even lying down is VERY hard
-			prob_chance *= 0.5
 		if(implement_type)	//this means it isn't a require hand or any item step.
 			prob_chance = implements[implement_type]
+		if(target == user) //self-surgery is hard
+			if(user.mind)
+				var/datum/skills/surgery/surgerye = user.mind.mob_skills[/datum/skills/surgery]
+				if(surgerye && surgerye <= 10)
+					speed_mod *= 0.6
+			else
+				prob_chance *= 0.6
+		if(!target.lying) //doing surgery on someone who's not even lying down is VERY hard
+			if(user.mind)
+				var/datum/skills/surgery/surgerye = user.mind.mob_skills[/datum/skills/surgery]
+				if(surgerye && surgerye.level <= 10)
+					prob_chance *= 0.5
+			else
+				prob_chance *= 0.5
+		
 		prob_chance *= surgery.get_probability_multiplier()
 
 		if((ishuman(target) || ismonkey(target)) && affecting && affecting.is_organic_limb() && (target.stat == CONSCIOUS) && (target.mob_biotypes & MOB_ORGANIC) && !target.IsUnconscious() && !target.InCritical() && !HAS_TRAIT(target, TRAIT_PAINKILLER) && !(target.chem_effects[CE_PAINKILLER] >= 50))
-			prob_chance *= 0.4
+			if(user.mind)
+				var/datum/skills/surgery/surgerye = user.mind.mob_skills[/datum/skills/surgery]
+				if(surgerye && surgerye.level <= 10)
+					prob_chance *= surgerye.no_anesthesia_punishment()
+			else
+				prob_chance *= 0.4
+			
 			to_chat(user, "<span class='notice'>You feel like anesthetics could make this much easier.</span>")
 			target.visible_message("<span class='warning'>[target] [pick("writhes in pain", "squirms and kicks in agony", "cries in pain as [target.p_their()] body violently jerks")], impeding the surgery!</span>", \
 			"<span class='warning'>You[pick(" writhe as agonizing pain surges throught your entire body", " feel burning pain sending your body into a convulsion", "r body squirms as sickening pain fills every part of it")]!</span>")
@@ -78,6 +101,22 @@
 	//e.g. nalixidic acid has 35 force, thus would decrease germs here by 350
 	var/antibiotics = BP.owner.get_antibiotics()
 	our_germ_level = max(0, our_germ_level - antibiotics)
+
+	//Germ level is increased/decreased depending on a diceroll
+	if(user.mind)
+		var/diceroll = user.mind.diceroll(/datum/stats/int, /datum/skills/surgery, "1d20")
+		switch(diceroll)
+			if(DICE_CRIT_FAILURE)
+				our_germ_level *= 3
+			if(DICE_FAILURE)
+				our_germ_level *= 2
+			if(DICE_SUCCESS)
+				our_germ_level *= 1
+			if(DICE_CRIT_SUCCESS)
+				our_germ_level *= 0.25
+
+	if(our_germ_level <= (WOUND_SANITIZATION_STERILIZER/2))
+		return
 
 	//If we still have germs, let's get that W
 	//First, nfect the wounds on the bodypart

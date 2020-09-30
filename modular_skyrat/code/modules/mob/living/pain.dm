@@ -32,6 +32,12 @@
 
 	power -= chem_effects[CE_PAINKILLER]/2	//Take the edge off.
 
+	//Endurance takes the edge off a bit from the pain
+	if(mind)
+		var/datum/stats/end/end = mind.mob_stats[/datum/stats/end]
+		if(end?.level >= 10)
+			power -= (end.level * 0.75)
+
 	// Excessive pain is horrible, just give them enough to make it visible.
 	if(!nopainloss && power)
 		if(affecting)

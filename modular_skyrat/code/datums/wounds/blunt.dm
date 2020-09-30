@@ -262,7 +262,7 @@
 	
 	var/time = base_treat_time
 	var/time_mod = 2
-	var/prob_mod = -25
+	var/prob_mod = 12.5
 	var/custom_location
 
 	if(limb.body_zone == BODY_ZONE_CHEST)
@@ -272,13 +272,18 @@
 	
 	if(first_time)
 		user.visible_message("<span class='notice'>[user] starts to strain their [custom_location ? custom_location : limb.name] back in place...</span>", "<span class='notice'>You start straining your [custom_location ? custom_location : limb.name] back in place...</span>")
-	if(time_mod)
-		time *= time_mod
-
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	
+	//Medical skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+			prob_mod *= firstaid.get_medicalstack_mod()
+	
+	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(70 + prob_mod))
+	if(prob(50 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps their own [custom_location ? custom_location : limb.name] back in place!</span>", "<span class='danger'>You snap your [custom_location ? custom_location : limb.name] back into place!</span>")
 		victim.emote("scream")
 		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
@@ -310,14 +315,19 @@
 /datum/wound/blunt/moderate/proc/chiropractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
 	var/time_mod = 1
-	var/prob_mod = 20
-	if(time_mod)
-		time *= time_mod
+	var/prob_mod = 12.5
 
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	//Medical skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+			prob_mod *= firstaid.get_medicalstack_mod()
+	
+	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(40 + prob_mod))
+	if(prob(50 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] back into place!</span>", "<span class='notice'>You snap [victim]'s dislocated [limb.name] back into place!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] back into place!</span>")
 		victim.emote("scream")
@@ -332,14 +342,20 @@
 /// If someone is snapping our dislocated joint into a fracture by hand with an aggro grab and harm or disarm intent
 /datum/wound/blunt/moderate/proc/malpractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
+	var/prob_mod = 12.5
+
+	//Melee skill alters time and probability of success
 	var/time_mod = 1
-	var/prob_mod = 20
-	if(time_mod)
-		time *= time_mod
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(user.mind)
+		var/datum/skills/melee/melee = user.mind.mob_skills[/datum/skills/firstaid]
+		if(melee)
+			time_mod *= (MAX_SKILL/2)/melee.level
+			prob_mod *= (MAX_SKILL/2)/melee.level
+	
+	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(40 + prob_mod))
+	if(prob(50 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] with a sickening crack!</span>", "<span class='danger'>You snap [victim]'s dislocated [limb.name] with a sickening crack!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
 		victim.emote("scream")
@@ -357,7 +373,13 @@
 	else
 		user.visible_message("<span class='danger'>[user] begins resetting [victim]'s [limb.name] with [I].</span>", "<span class='notice'>You begin resetting [victim]'s [limb.name] with [I]...</span>")
 
-	if(!do_after(user, base_treat_time * (user == victim ? 2 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	var/time_mod = (user == victim ? 2 : 1)
+	//Medical skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+	if(!do_after(user, base_treat_time * time_mod, target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	if(victim == user)
@@ -418,14 +440,19 @@
 /datum/wound/blunt/moderate/ribcage/chiropractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
 	var/time_mod = 1
-	var/prob_mod = 20
-	if(time_mod)
-		time *= time_mod
+	var/prob_mod = 10
 
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	//Medical skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+			prob_mod *= firstaid.get_medicalstack_mod()
+		
+	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(40 + prob_mod))
+	if(prob(50 + prob_mod))
 		user.visible_message("<span class='notice'>[user] massages [victim]'s dislocated ribs back in place.</span>", "<span class='notice'>You massage [victim]'s dislocated ribs back into place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='notice'>[user] massages your dislocated ribs back into place.</span>")
 		victim.emote("scream")
@@ -442,8 +469,15 @@
 		victim.visible_message("<span class='danger'>[user] begins resetting [victim.p_their()] ribs with [I].</span>", "<span class='warning'>You begin resetting your ribs with [I]...</span>")
 	else
 		user.visible_message("<span class='danger'>[user] begins resetting [victim]'s ribs with [I].</span>", "<span class='notice'>You begin resetting [victim]'s ribs with [I]...</span>")
+	var/time_mod = (user == victim ? 2.5 : 1)
 
-	if(!do_after(user, base_treat_time * (user == victim ? 2.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	//Medical skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+	
+	if(!do_after(user, base_treat_time * time_mod, target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	if(victim == user)
@@ -502,14 +536,19 @@
 /datum/wound/blunt/moderate/hips/chiropractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
 	var/time_mod = 1
-	var/prob_mod = 20
-	if(time_mod)
-		time *= time_mod
+	var/prob_mod = 12.5
 
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	//Medical skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+			prob_mod *= firstaid.get_medicalstack_mod()
+	
+	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(40 + prob_mod))
+	if(prob(50 + prob_mod))
 		user.visible_message("<span class='danger'>[user] forces [victim]'s femoral bone back in place!</span>", "<span class='notice'>You force [victim]'s dislocated femoral bone back in place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] forces your femoral bone in place!</span>")
 		victim.emote("scream")
@@ -527,7 +566,14 @@
 	else
 		user.visible_message("<span class='danger'>[user] begins resetting [victim]'s femur with [I].</span>", "<span class='notice'>You begin resetting [victim]'s femur with [I]...</span>")
 
-	if(!do_after(user, base_treat_time * (user == victim ? 2.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	//Medical skill affects the speed of the do_mob
+	var/time_mod = (user == victim ? 2.5 : 1)
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+	
+	if(!do_after(user, base_treat_time * time_mod, target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	if(victim == user)
@@ -586,14 +632,19 @@
 /datum/wound/blunt/moderate/jaw/chiropractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
 	var/time_mod = 1
-	var/prob_mod = 20
-	if(time_mod)
-		time *= time_mod
+	var/prob_mod = 10
 
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	//Medical skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+			prob_mod *= firstaid.get_medicalstack_mod()
+	
+	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(40 + prob_mod))
+	if(prob(50 + prob_mod))
 		user.visible_message("<span class='notice'>[user] jams [victim]'s jaw back in place.</span>", "<span class='notice'>You jam [victim]'s dislocated jaaw back into place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='notice'>[user] jams your dislocated jaw back into place.</span>")
 		victim.emote("scream")
@@ -610,8 +661,15 @@
 		victim.visible_message("<span class='danger'>[user] begins resetting [victim.p_their()] jaw with [I].</span>", "<span class='warning'>You begin resetting your jaw with [I]...</span>")
 	else
 		user.visible_message("<span class='danger'>[user] begins resetting [victim]'s jaw with [I].</span>", "<span class='notice'>You begin resetting [victim]'s jaw with [I]...</span>")
-
-	if(!do_after(user, base_treat_time * (user == victim ? 2.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	
+	//Medical skill affects the speed of the do_mob
+	var/time_mod = (user == victim ? 2.5 : 1)
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+	
+	if(!do_after(user, base_treat_time * time_mod, target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	if(victim == user)
@@ -697,7 +755,14 @@
 
 	user.visible_message("<span class='danger'>[user] begins hastily applying [I] to [victim]'s' [limb.name]...</span>", "<span class='warning'>You begin hastily applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name], disregarding the warning label...</span>")
 
-	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 0.75), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	//Medical skill affects the speed of the do_mob
+	var/time_mod = (user == victim ? 2.5 : 1)
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+	
+	if(!do_after(user, base_treat_time * time_mod, target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	if(!I.use(1))
@@ -717,8 +782,16 @@
 				painkiller_bonus += 10
 			if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/determination))
 				painkiller_bonus += 5
+			
+			var/base_prob = 12.5
 
-			if(prob(25 + (20 * severity - 2) - painkiller_bonus)) // 25%/45% chance to fail self-applying with severe and critical wounds, modded by painkillers
+			//Medical skill affects the chance of fucking up
+			if(user.mind)
+				var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+				if(firstaid)
+					base_prob *= firstaid.get_medicalstack_mod()
+
+			if(prob(base_prob + (20 * severity - 2) - painkiller_bonus)) // 25%/45% chance to fail self-applying with severe and critical wounds, modded by painkillers
 				victim.visible_message("<span class='danger'>[victim] fails to finish applying [I] to [victim.p_their()] [limb.name], passing out from the pain!</span>", "<span class='notice'>You black out from the pain of applying [I] to your [limb.name] before you can finish!</span>")
 				victim.AdjustUnconscious(5 SECONDS)
 				return
@@ -739,7 +812,14 @@
 
 	user.visible_message("<span class='danger'>[user] begins applying [I] to [victim]'s' [limb.name]...</span>", "<span class='warning'>You begin applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name]...</span>")
 
-	if(!do_after(user, base_treat_time * (user == victim ? 2 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	//aaaaaaaaaaaaaaaaaaa
+	var/time_mod = (user == victim ? 2 : 1)
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+	
+	if(!do_after(user, base_treat_time * time_mod, target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 	if(!I.use(1))
 		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")

@@ -223,6 +223,10 @@
 		return 0
 
 	var/traumatic_shock = getPainLoss() //How much pain we are in
+	if(mind)
+		var/datum/stats/end/end = mind.mob_stats[/datum/stats/end]
+		if(end)
+			traumatic_shock *= end.get_shock_mult()
 	traumatic_shock -= chem_effects[CE_PAINKILLER]
 	return max(0,traumatic_shock)
 
@@ -246,10 +250,18 @@
 	else if(!is_asystole())
 		shock_stage = min(shock_stage, SHOCK_STAGE_7)
 		var/recovery = 1
-		if(traumatic_shock < 0.5 * shock_stage) //lower shock faster if pain is gone completely
+		//Lower shock faster if pain is gone completely
+		if(traumatic_shock < 0.5 * shock_stage)
 			recovery++
 		if(traumatic_shock < 0.25 * shock_stage)
 			recovery++
+		//High endurance means we recover even faster
+		if(mind)
+			var/datum/stats/end/end = mind.mob_stats[/datum/stats/end]
+			if(end.level >= 10)
+				recovery++
+			if(end.level >= 15)
+				recovery++
 		shock_stage = max(shock_stage - recovery, 0)
 		return
 

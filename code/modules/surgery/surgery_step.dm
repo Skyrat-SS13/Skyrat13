@@ -58,8 +58,7 @@
 		return FALSE
 	if(tool)
 		speed_mod = tool.toolspeed //faster tools mean faster surgeries, but also less experience.
-	if(user.mind)
-		speed_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, speed_mod, THRESHOLD_UNTRAINED, FALSE)
+	
 	var/delay = time * speed_mod
 	if(do_after(user, delay, target = target))
 		var/prob_chance = 100

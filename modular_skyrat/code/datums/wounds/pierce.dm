@@ -105,17 +105,24 @@
 
 /// If someone is using a suture to close this cut
 /datum/wound/pierce/proc/suture(obj/item/stack/medical/suture/I, mob/user)
-	var/self_penalty_mult = (user == victim ? 2 : 1)
 	user.visible_message("<span class='notice'>[user] begins stitching [victim]'s [limb.name] with [I]...</span>", "<span class='notice'>You begin stitching [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]...</span>")
-	var/time_mod = 1
-	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	var/time_mod = (user == victim ? 2 : 1)
+
+	//Medical skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+	
+	if(!do_after(user, base_treat_time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
+	
 	if(!I.use(1))
 		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
 		return
 	
 	user.visible_message("<span class='green'>[user] stitches up some of the bleeding on [victim].</span>", "<span class='green'>You stitch up some of the bleeding on [user == victim ? "yourself" : "[victim]"].</span>")
-	var/blood_sutured = I.stop_bleeding / self_penalty_mult * 0.5
+	var/blood_sutured = I.stop_bleeding / time_mod * 0.5
 	blood_flow -= blood_sutured
 	limb.heal_damage(I.heal_brute, I.heal_burn)
 
@@ -126,17 +133,23 @@
 
 /// If someone is using either a cautery tool or something with heat to cauterize this pierce
 /datum/wound/pierce/proc/tool_cauterize(obj/item/I, mob/user)
-	var/self_penalty_mult = (user == victim ? 2 : 1)
 	user.visible_message("<span class='danger'>[user] begins cauterizing [victim]'s [limb.name] with [I]...</span>", "<span class='danger'>You begin cauterizing [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]...</span>")
-	var/time_mod = 1
-	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	var/time_mod = (user == victim ? 2 : 1)
+
+	//Medical skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+	
+	if(!do_after(user, base_treat_time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
 	user.visible_message("<span class='green'>[user] cauterizes some of the bleeding on [victim].</span>", "<span class='green'>You cauterize some of the bleeding on [victim].</span>")
 	limb.receive_damage(burn = min(1 + severity, 3), wound_bonus = CANT_WOUND)
 	if(prob(30))
 		victim.emote("scream")
-	var/blood_cauterized = (0.6 / max(1, self_penalty_mult))
+	var/blood_cauterized = (0.6 / max(1, time_mod))
 	blood_flow -= blood_cauterized
 
 	if(blood_flow > 0)
@@ -144,17 +157,24 @@
 
 /// If someone's putting a laser gun up to our cut to cauterize it
 /datum/wound/pierce/proc/las_cauterize(obj/item/gun/energy/laser/lasgun, mob/user)
-	var/self_penalty_mult = (user == victim ? 2 : 1)
+	var/time_mod = (user == victim ? 2 : 1)
+
+	//Ranged skill affects the speed of the do_mob lol
+	if(user.mind)
+		var/datum/skills/ranged/ranged = user.mind.mob_skills[/datum/skills/ranged]
+		if(ranged)
+			time_mod *= ((MAX_SKILL/2)/ranged.level)
+	
 	user.visible_message("<span class='warning'>[user] begins aiming [lasgun] directly at [victim]'s [fake_limb ? "[fake_limb] stump" : limb.name]...</span>", "<span class='userdanger'>You begin aiming [lasgun] directly at [user == victim ? "your" : "[victim]'s"] [fake_limb ? "[fake_limb] stump" : limb.name]...</span>")
-	if(!do_after(user, base_treat_time  * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time  * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 	var/damage = lasgun.chambered.BB.damage
 	lasgun.chambered.BB.wound_bonus -= 30
-	lasgun.chambered.BB.damage *= self_penalty_mult
+	lasgun.chambered.BB.damage *= time_mod
 	if(!lasgun.process_fire(victim, victim, TRUE, null, limb.body_zone))
 		return
 	victim.emote("scream")
-	blood_flow -= damage / (5 * self_penalty_mult) // 20 / 5 = 4 bloodflow removed, p good
+	blood_flow -= damage / (5 * time_mod) // 20 / 5 = 4 bloodflow removed, p good
 	victim.visible_message("<span class='warning'>The punctures on [victim]'s [fake_limb ? "[fake_limb] stump" : limb.name] scar over!</span>")
 
 /datum/wound/pierce/moderate
