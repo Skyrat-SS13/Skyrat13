@@ -1667,6 +1667,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		//Combat intents change how much your fisto deals
 		var/c_intent = user.combat_intent
 		switch(c_intent)
+			if(CI_STRONG)
+				damage *= 2 //fuck it, it's a fist, doesnt do much damage so we use 2x instead of 1.5x
 			if(CI_WEAK)
 				damage *= 0.4
 

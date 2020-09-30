@@ -146,11 +146,11 @@
 				click_stat_mod *= 0.75 //Keep it simple, endurance already changes the stamina penalty, dexterity already buffed us before
 		if(CI_STRONG)
 			if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
-				click_stat_mod *= 1.5 //Keep it simple, strength already buffs damage a fuckton
+				click_stat_mod *= 2 //Keep it simple, strength already buffs damage a fuckton
 		if(CI_DEFEND)
 			damage_multiplier *= 0.5 //Straight up halve the damage - stats and skills will just dictate parrying and blocking
 		if(CI_GUARD)
-			damage_multiplier *= 0.75 //3/4ths of the damage - stats and skills will just dictate parrying and blocking
+			damage_multiplier *= 0.66 //2/3rds of the damage - stats and skills will just dictate parrying and blocking
 	user.changeNext_move(I.click_delay*next_move_mult*click_stat_mod)
 
 	if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
@@ -214,7 +214,7 @@
 					if(user.mind)
 						var/datum/skills/melee/melee = user.mind.mob_skills[/datum/skills/melee]
 						if(melee)
-							multi = melee.level/(MAX_SKILL/2)
+							multi = melee.level/(MAX_SKILL/4)
 					changeNext_move(CLICK_CD_MELEE * multi)
 
 		return TRUE //successful attack
@@ -261,11 +261,11 @@
 				click_stat_mod *= 0.75 //Keep it simple, endurance already changes the stamina penalty, dexterity already buffed us before
 		if(CI_STRONG)
 			if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
-				click_stat_mod *= 1.5 //Keep it simple, strength already buffs damage a fuckton
+				click_stat_mod *= 2 //Keep it simple, strength already buffs damage a fuckton
 		if(CI_DEFEND)
 			. *= 0.5 //Straight up halve the damage - stats and skills will just dictate parrying and blocking
 		if(CI_GUARD)
-			. *= 0.75 //3/4ths of the damage - stats and skills will just dictate parrying and blocking
+			. *= 0.66 //2/3rds of the damage - stats and skills will just dictate parrying and blocking
 	user.changeNext_move(I.click_delay*next_move_mult*click_stat_mod)
 	I.attack_delay_done = TRUE
 
@@ -371,7 +371,7 @@
 				if(user.mind)
 					var/datum/stats/end = user.mind.mob_stats[/datum/stats/end]
 					if(end)
-						multi = (3 - (end.level/MAX_STAT))
+						multi = (3 - ((end.level/MAX_STAT) * 1.5))
 				. *= multi
 	. = clamp(., 0, STAMINA_NEAR_CRIT - total_health)
 
