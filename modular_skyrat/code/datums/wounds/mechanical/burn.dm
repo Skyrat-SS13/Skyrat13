@@ -338,7 +338,7 @@
 /datum/wound/mechanical/burn/severe
 	name = "Burnt Transistors"
 	desc = "Patient's limb has suffered considerable damage to it's wiring and internals, causing frequent malfunctions and leaving the limb quite vulnerable to damage."
-	treat_text = "Recommended full internal repair, although cable coil may suffice."
+	treat_text = "Recommended full internal repair, although extensive cable repair can suffice."
 	examine_desc = "appears mildly warped, with partially charred internal components"
 	occur_text = "flares up with a small flame, noxious smoke coming out of it"
 	severity = WOUND_SEVERITY_SEVERE
@@ -360,7 +360,7 @@
 /datum/wound/mechanical/burn/critical
 	name = "Catastrophic Melting"
 	desc = "Patient's limb has been severely deformed by high heat, along with complete charring of many internal components, causing extreme malfunctioning and leaving the limb extremely frail."
-	treat_text = "Full reconstruction or replacement of the affected limb, although cable coil can prevent a worsening situation."
+	treat_text = "Recommended full internal repair, although extensive cable repair can suffice."
 	treatable_by = list()
 	examine_desc = "is completely deformed, constantly sparking and smoking from it's charred components"
 	occur_text = "melts and pools around itself"
