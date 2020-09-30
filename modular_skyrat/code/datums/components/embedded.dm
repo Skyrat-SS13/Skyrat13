@@ -243,7 +243,7 @@
 		victim.emote("scream")
 
 	victim.visible_message("<span class='notice'>[user] successfully rips [weapon] [harmful ? "out" : "off"] of [user == victim ? victim.p_their() : "[victim]'s"] [limb.name]!</span>", "<span class='notice'>You successfully remove [weapon] from [user == victim ? "your" : "[victim]'s"] [limb.name].</span>")
-	safeRemove(TRUE)
+	safeRemove(user == victim ? TRUE : FALSE)
 
 /// This proc handles the final step and actual removal of an embedded/stuck item from a carbon, whether or not it was actually removed safely.
 /// Pass TRUE for to_hands if we want it to go to the victim's hands when they pull it out
