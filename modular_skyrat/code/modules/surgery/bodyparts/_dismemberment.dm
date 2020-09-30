@@ -105,9 +105,14 @@
 	
 	return FALSE
 
-/obj/item/bodypart/head/dismember(dam_type = BRUTE, silent = FALSE)
+/obj/item/bodypart/head/can_dismember()
 	. = ..()
-	if(. && (HAS_TRAIT(owner, TRAIT_NODECAP) || HAS_TRAIT(owner, TRAIT_NODISMEMBER)))
+	if(. && (HAS_TRAIT(owner, TRAIT_NODECAP)))
+		return FALSE
+
+/obj/item/bodypart/head/can_disembowel()
+	. = ..()
+	if(. && (HAS_TRAIT(owner, TRAIT_NODECAP)))
 		return FALSE
 
 //Limb removal. The "special" argument is used for swapping a limb with a new one without the effects of losing a limb kicking in.
