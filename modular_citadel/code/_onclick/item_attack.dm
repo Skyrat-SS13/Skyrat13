@@ -17,7 +17,7 @@
 			melee_attack_chain(user, target, params, flags = ATTACKCHAIN_RIGHTCLICK, damage_multiplier = 0.25) //1/4th of the normal damage
 			return
 		if(CI_STRONG)
-			melee_attack_chain(user, target, params, flags = ATTACKCHAIN_RIGHTCLICK, damage_multiplier = 1.25) //1.25x melee damage
+			melee_attack_chain(user, target, params, flags = ATTACKCHAIN_RIGHTCLICK, damage_multiplier = 1.5) //1.5x melee damage
 			return
 
 	//Otherwise, try alt attacking
