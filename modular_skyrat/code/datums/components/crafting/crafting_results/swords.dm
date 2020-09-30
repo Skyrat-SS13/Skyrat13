@@ -77,8 +77,9 @@
 	sharpness = SHARP_EDGED
 	var/delimb_chance = 15
 	var/armorthreshold = 25
+	click_delay = CLICK_CD_MELEE * 2.5
 
-/obj/item/melee/sword/executioner/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/melee/sword/executioner/melee_attack_chain(mob/user, atom/target, params, flags, damage_multiplier = 1)
 	..()
 	var/def_zone = user.zone_selected
 	if(iscarbon(target))
@@ -91,7 +92,6 @@
 			return
 		if(prob(delimb_chance))
 			BP.dismember(BRUTE)
-	user.changeNext_move(CLICK_CD_MELEE * 2)
 
 /obj/item/melee/sword/shortsword
 	name = "shortsword"
@@ -101,7 +101,4 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = "sound/weapons/slash.ogg"
 	force = 12
-
-/obj/item/melee/sword/shortsword/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 0.65)
+	click_delay = CLICK_CD_MELEE * 0.65

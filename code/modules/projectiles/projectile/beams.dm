@@ -61,10 +61,12 @@
 
 /obj/item/projectile/beam/weak
 	damage = 15
-
-/obj/item/projectile/beam/weak/improvised
-	damage = 10
-
+//Skyrat Edit Start
+/obj/item/projectile/beam/weak/burst
+	name = "weak laser"
+	damage = 7
+	wound_bonus = -50
+//Skyrat Edit End
 /obj/item/projectile/beam/weak/penetrator
 	armour_penetration = 50
 

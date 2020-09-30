@@ -1,5 +1,4 @@
 //Hiding underwear
-//Item pickup memes
 /obj/item
 	hide_underwear_examine = TRUE
 

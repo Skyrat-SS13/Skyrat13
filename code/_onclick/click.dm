@@ -125,7 +125,7 @@
 		changeNext_move(CLICK_CD_HANDCUFFED)   //Doing shit in cuffs shall be vey slow
 		RestrainedClickOn(A)
 		return
-
+	
 	if(in_throw_mode)
 		throw_item(A)
 		return
@@ -136,7 +136,7 @@
 		W.attack_self(src)
 		update_inv_hands()
 		return
-
+	
 	//These are always reachable.
 	//User itself, current loc, and user inventory
 	if(A in DirectAccess())
@@ -164,7 +164,7 @@
 		if(W)
 			W.ranged_attack_chain(src, A, params)
 		else
-			RangedAttack(A,params)
+			RangedAttack(A, params)
 
 //Is the atom obscured by a PREVENT_CLICK_UNDER_1 object above it
 /atom/proc/IsObscured()
@@ -269,7 +269,7 @@
 	proximity_flag is not currently passed to attack_hand, and is instead used
 	in human click code to allow glove touches only at melee range.
 */
-/mob/proc/UnarmedAttack(atom/A, proximity_flag)
+/mob/proc/UnarmedAttack(atom/A, proximity_flag, attackchain_flags)
 	if(ismob(A))
 		changeNext_move(CLICK_CD_MELEE)
 	return

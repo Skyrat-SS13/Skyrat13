@@ -488,6 +488,8 @@ SUBSYSTEM_DEF(job)
 		if(display_rank != rank)
 			to_chat(M, "<span class='warning'>Remember that alternate titles are, for the most part, for flavor and roleplay. \
 					<b>Do not use your alt title as an excuse to forego your duties as a [rank].</b></span>")
+		to_chat(M, "<span class='info'>Being a [display_rank] has given you some life-changing insight. \
+					Use the select skills verb on the IC tab to spend points in your stats and skills.</span>")
 		//
 	if(ishuman(H))
 		var/mob/living/carbon/human/wageslave = H

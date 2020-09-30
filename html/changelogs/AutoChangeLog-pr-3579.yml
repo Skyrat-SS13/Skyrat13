@@ -1,0 +1,4 @@
+author: "NotRanged"
+delete-after: True
+changes: 
+  - balance: "Fusion max temperature clamped to 5e9 K."
