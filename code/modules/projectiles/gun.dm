@@ -207,6 +207,10 @@
 	var/stamloss = user.getStaminaLoss()
 	if(stamloss >= STAMINA_NEAR_SOFTCRIT) //The more tired you are, the less damage you do.
 		var/penalty = (stamloss - STAMINA_NEAR_SOFTCRIT)/(STAMINA_NEAR_CRIT - STAMINA_NEAR_SOFTCRIT)*STAM_CRIT_GUN_DELAY
+		//low dexterity = higher penalty
+		var/dexterity = GET_STAT_LEVEL(user, dex)
+		if(dexterity <= 10)
+			penalty += (11 - dexterity)
 		user.changeNext_move(CLICK_CD_RANGE+(CLICK_CD_RANGE*penalty))
 	if(flag) //It's adjacent, is the user, or is on the user's person
 		if(target in user.contents) //can't shoot stuff inside us.
@@ -263,8 +267,12 @@
 	//
 	
 	//Wielding always makes you aim better, no matter the weapon size
+	var/ranged = GET_SKILL_LEVEL(user, ranged)
 	if(!is_wielded)
-		bonus_spread += (8.5 * weapon_weight)
+		var/spread_penalty = 2.5
+		if(ranged)
+			spread_penalty = (50/ranged)
+		bonus_spread += (spread_penalty * weapon_weight)
 
 	if(ishuman(user) && user.a_intent == INTENT_HARM && weapon_weight <= WEAPON_LIGHT)
 		var/mob/living/carbon/human/H = user
@@ -272,7 +280,7 @@
 			if(G == src || G.weapon_weight >= WEAPON_MEDIUM)
 				continue
 			else if(G.can_trigger_gun(user))
-				bonus_spread += 24 * G.weapon_weight * G.dualwield_spread_mult
+				bonus_spread += (24 * G.weapon_weight * G.dualwield_spread_mult * (ranged ? (ranged/(MAX_SKILL/2) : 1)))
 				loop_counter++
 				var/stam_cost = G.getstamcost(user)
 				addtimer(CALLBACK(G, /obj/item/gun.proc/process_fire, target, user, TRUE, params, null, bonus_spread, stam_cost), loop_counter)
@@ -639,12 +647,18 @@
 	var/aiming_delay = 0 //Otherwise aiming would be meaningless for slower guns such as sniper rifles and launchers.
 	if(fire_delay)
 		var/penalty = (last_fire + GUN_AIMING_TIME + fire_delay) - world.time
-		if(penalty > 0) //Yet we only penalize users firing it multiple times in a haste. fire_delay isn't necessarily cumbersomeness.
-			aiming_delay = penalty
+		var/ranged = GET_SKILL_LEVEL(user, ranged)
+		//High ranged skill means we ignore accuracy penalties for burst firing
+		if(ranged <= 15)
+			if(penalty > 0) //Yet we only penalize users firing it multiple times in a haste. fire_delay isn't necessarily cumbersomeness.
+				aiming_delay = penalty
 	if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE)) //To be removed in favor of something less tactless later.
 		base_inaccuracy /= 1.5
 	if(stamloss > STAMINA_NEAR_SOFTCRIT) //This can null out the above bonus.
 		base_inaccuracy *= 1 + (stamloss - STAMINA_NEAR_SOFTCRIT)/(STAMINA_NEAR_CRIT - STAMINA_NEAR_SOFTCRIT)*0.5
+	var/ranged = GET_SKILL_LEVEL(user, ranged)
+	if(ranged)
+		base_inaccuracy *= (ranged/(MAX_SKILL/2))
 	var/mult = max((GUN_AIMING_TIME + aiming_delay + user.last_click_move - world.time)/GUN_AIMING_TIME, -0.5) //Yes, there is a bonus for taking time aiming.
 	if(mult < 0) //accurate weapons should provide a proper bonus with negative inaccuracy. the opposite is true too.
 		mult *= 1/inaccuracy_modifier
