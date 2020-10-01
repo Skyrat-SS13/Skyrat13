@@ -30,7 +30,7 @@
 		stats = stat.level
 	if(ispath(skills))
 		var/datum/skills/skill = mob_skills[skills]
-		skills = skill.level
+		skills = (skill.level)/2
 	//Get the carbon mob, if the mind controls one
 	var/mob/living/carbon/carbonmob = current
 	if(!istype(carbonmob))
