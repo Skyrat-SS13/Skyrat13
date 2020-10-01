@@ -275,7 +275,7 @@
 	
 	//Medical skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 			prob_mod *= firstaid.get_medicalstack_mod()
@@ -319,7 +319,7 @@
 
 	//Medical skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 			prob_mod *= firstaid.get_medicalstack_mod()
@@ -347,7 +347,7 @@
 	//Melee skill alters time and probability of success
 	var/time_mod = 1
 	if(user.mind)
-		var/datum/skills/melee/melee = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/melee/melee = GET_SKILL(user, melee)
 		if(melee)
 			time_mod *= (MAX_SKILL/2)/melee.level
 			prob_mod *= (MAX_SKILL/2)/melee.level
@@ -376,7 +376,7 @@
 	var/time_mod = (user == victim ? 2 : 1)
 	//Medical skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 	if(!do_after(user, base_treat_time * time_mod, target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
@@ -444,7 +444,7 @@
 
 	//Medical skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 			prob_mod *= firstaid.get_medicalstack_mod()
@@ -473,7 +473,7 @@
 
 	//Medical skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 	
@@ -540,7 +540,7 @@
 
 	//Medical skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 			prob_mod *= firstaid.get_medicalstack_mod()
@@ -569,7 +569,7 @@
 	//Medical skill affects the speed of the do_mob
 	var/time_mod = (user == victim ? 2.5 : 1)
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 	
@@ -636,7 +636,7 @@
 
 	//Medical skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 			prob_mod *= firstaid.get_medicalstack_mod()
@@ -665,7 +665,7 @@
 	//Medical skill affects the speed of the do_mob
 	var/time_mod = (user == victim ? 2.5 : 1)
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 	
@@ -758,7 +758,7 @@
 	//Medical skill affects the speed of the do_mob
 	var/time_mod = (user == victim ? 2.5 : 1)
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 	
@@ -787,7 +787,7 @@
 
 			//Medical skill affects the chance of fucking up
 			if(user.mind)
-				var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+				var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 				if(firstaid)
 					base_prob *= firstaid.get_medicalstack_mod()
 
@@ -815,7 +815,7 @@
 	//aaaaaaaaaaaaaaaaaaa
 	var/time_mod = (user == victim ? 2 : 1)
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 	

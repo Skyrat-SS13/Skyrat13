@@ -645,7 +645,7 @@
 	var/time_mod =  1
 	//Medical skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay) * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
@@ -669,7 +669,7 @@
 	var/time_mod = 1
 	//Medical skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay) * time_mod, extra_checks = CALLBACK(src, .proc/still_exists)))

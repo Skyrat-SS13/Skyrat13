@@ -184,7 +184,7 @@
 
 	//Ranged skill affects the speed of the do_mob lol
 	if(user.mind)
-		var/datum/skills/ranged/ranged = user.mind.mob_skills[/datum/skills/ranged]
+		var/datum/skills/ranged/ranged = GET_SKILL(user, ranged)
 		if(ranged)
 			time_mod *= ((MAX_SKILL/2)/ranged.level)
 		
@@ -209,7 +209,7 @@
 
 	//Medical skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, ranged)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 	
@@ -236,7 +236,7 @@
 
 	//Medical skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 	

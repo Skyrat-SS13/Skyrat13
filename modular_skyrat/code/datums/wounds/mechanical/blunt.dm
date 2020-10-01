@@ -236,7 +236,7 @@
 
 	//Electronics skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/electronics/electronics = user.mind.mob_skills[/datum/skills/electronics]
+		var/datum/skills/electronics/electronics = GET_SKILL(user, electronics)
 		if(electronics)
 			time_mod *= ((MAX_SKILL/2)/electronics.level)
 			prob_mod *= ((MAX_SKILL/2)/electronics.level)
@@ -285,7 +285,7 @@
 
 	//Electronics skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/electronics/electronics = user.mind.mob_skills[/datum/skills/electronics]
+		var/datum/skills/electronics/electronics = GET_SKILL(user, electronics)
 		if(electronics)
 			time_mod *= ((MAX_SKILL/2)/electronics.level)
 			prob_mod *= ((MAX_SKILL/2)/electronics.level)
@@ -313,7 +313,7 @@
 
 	//Electronics skill affects the speed of the do_mob
 	if(user.mind)
-		var/datum/skills/electronics/electronics = user.mind.mob_skills[/datum/skills/electronics]
+		var/datum/skills/electronics/electronics = GET_SKILL(user, electronics)
 		if(electronics)
 			time_mod *= ((MAX_SKILL/2)/electronics.level)
 			prob_mod *= ((MAX_SKILL/2)/electronics.level)

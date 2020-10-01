@@ -224,7 +224,7 @@
 
 	var/traumatic_shock = getPainLoss() //How much pain we are in
 	if(mind)
-		var/datum/stats/end/end = mind.mob_stats[/datum/stats/end]
+		var/datum/stats/end/end = GET_STAT(src, dex)
 		if(end)
 			traumatic_shock *= end.get_shock_mult()
 	traumatic_shock -= chem_effects[CE_PAINKILLER]
@@ -257,7 +257,7 @@
 			recovery++
 		//High endurance means we recover even faster
 		if(mind)
-			var/datum/stats/end/end = mind.mob_stats[/datum/stats/end]
+			var/datum/stats/end/end = GET_STAT(src, end)
 			if(end.level >= 10)
 				recovery++
 			if(end.level >= 15)

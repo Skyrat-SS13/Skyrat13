@@ -1661,7 +1661,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		//Raw damage is affected by the user's strength
 		var/str_mod = 1
 		if(user.mind)
-			str_mod = user.mind.get_skillstat_damagemod(/datum/stats/str)
+			str_mod = user.mind.get_skillstat_damagemod(STAT_DATUM(str))
 		damage *= str_mod
 
 		//Combat intents change how much your fisto deals
@@ -1689,7 +1689,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		//The probability of hitting the correct zone depends on dexterity
 		var/ran_zone_prob = 75
 		if(user.mind)
-			var/datum/stats/dex/dex = user.mind.mob_stats[/datum/stats/dex]
+			var/datum/stats/dex/dex = GET_STAT(user, dex)
 			if(dex)
 				ran_zone_prob = dex.get_ran_zone_prob()
 
@@ -1699,7 +1699,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			if(CI_AIMED)
 				ran_zone_prob = 100
 				if(user.mind)
-					var/datum/stats/dex/dex = user.mind.mob_stats[/datum/stats/dex]
+					var/datum/stats/dex/dex = GET_STAT(user, dex)
 					if(dex)
 						ran_zone_prob = 80 + dex.level
 		
@@ -1716,7 +1716,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				var/miss_base = 10
 				var/brutestam_mod = 1
 				if(user.mind)
-					var/datum/stats/dex/dex = user.mind.mob_stats[/datum/stats/dex]
+					var/datum/stats/dex/dex = GET_STAT(user, dex)
 					miss_base = dex.get_base_miss_chance()
 					brutestam_mod = dex.get_miss_stamina_mult()
 				miss_chance = min(miss_base + (max(puncherstam * 0.5, puncherbrute * 0.5) * brutestam_mod), 100) //probability of miss has a base of 10, and modified based on half brute total. Capped at max 100 to prevent weirdness in prob()
@@ -1727,7 +1727,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				miss_chance = 0
 				var/endurance_mod = 1
 				if(user.mind)
-					var/datum/stats/end = user.mind.mob_stats[/datum/stats/end]
+					var/datum/stats/end = GET_STAT(user, dex)
 					endurance_mod = round((MAX_STAT/2)/end.level, 0.1)
 				user.adjustStaminaLoss(5 * endurance_mod)
 
@@ -1887,13 +1887,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		
 		//High dexterity target means it's harder to disarm
 		if(target.mind)
-			var/datum/stats/dex/dex = target.mind.mob_stats[/datum/stats/dex]
+			var/datum/stats/dex/dex = GET_STAT(target, dex)
 			if(dex)
 				randn *= dex.get_disarm_mult()
 		
 		//High dexterity attacker means it's easier to disarm
 		if(user.mind)
-			var/datum/stats/dex/dex = user.mind.mob_stats[/datum/stats/dex]
+			var/datum/stats/dex/dex = GET_STAT(user, dex)
 			if(dex)
 				randn /= dex.get_disarm_mult()
 

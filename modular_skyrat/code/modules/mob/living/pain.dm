@@ -34,7 +34,7 @@
 
 	//Endurance takes the edge off a bit from the pain
 	if(mind)
-		var/datum/stats/end/end = mind.mob_stats[/datum/stats/end]
+		var/datum/stats/end/end = GET_STAT(src, end)
 		if(end?.level >= 10)
 			power -= (end.level * 0.75)
 

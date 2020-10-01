@@ -65,7 +65,7 @@
 	//Medical skill affects the speed of the do_mob
 	var/time_mod = 1
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 	
@@ -92,7 +92,7 @@
 	//Medical skill affects the speed of the do_mob
 	var/time_mod = 1
 	if(user.mind)
-		var/datum/skills/firstaid/firstaid = user.mind.mob_skills[/datum/skills/firstaid]
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
 	

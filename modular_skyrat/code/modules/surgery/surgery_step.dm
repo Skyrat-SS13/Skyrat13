@@ -13,7 +13,7 @@
 		speed_mod = tool.toolspeed
 	
 	if(user.mind)
-		var/datum/skills/surgery/surgerye = user.mind.mob_skills[/datum/skills/surgery]
+		var/datum/skills/surgery/surgerye = GET_SKILL(user, surgery)
 		if(surgerye)
 			speed_mod *= surgerye.get_speed_mod()
 			
@@ -23,14 +23,14 @@
 			prob_chance = implements[implement_type]
 		if(target == user) //self-surgery is hard
 			if(user.mind)
-				var/datum/skills/surgery/surgerye = user.mind.mob_skills[/datum/skills/surgery]
+				var/datum/skills/surgery/surgerye = GET_SKILL(user, surgery)
 				if(surgerye && surgerye <= 10)
 					speed_mod *= 0.6
 			else
 				prob_chance *= 0.6
 		if(!target.lying) //doing surgery on someone who's not even lying down is VERY hard
 			if(user.mind)
-				var/datum/skills/surgery/surgerye = user.mind.mob_skills[/datum/skills/surgery]
+				var/datum/skills/surgery/surgerye = GET_SKILL(user, surgery)
 				if(surgerye && surgerye.level <= 10)
 					prob_chance *= 0.5
 			else
@@ -40,7 +40,7 @@
 
 		if((ishuman(target) || ismonkey(target)) && affecting && affecting.is_organic_limb() && (target.stat == CONSCIOUS) && (target.mob_biotypes & MOB_ORGANIC) && !target.IsUnconscious() && !target.InCritical() && !HAS_TRAIT(target, TRAIT_PAINKILLER) && !(target.chem_effects[CE_PAINKILLER] >= 50))
 			if(user.mind)
-				var/datum/skills/surgery/surgerye = user.mind.mob_skills[/datum/skills/surgery]
+				var/datum/skills/surgery/surgerye = GET_SKILL(user, surgery)
 				if(surgerye && surgerye.level <= 10)
 					prob_chance *= surgerye.no_anesthesia_punishment()
 			else
@@ -104,7 +104,7 @@
 
 	//Germ level is increased/decreased depending on a diceroll
 	if(user.mind)
-		var/diceroll = user.mind.diceroll(/datum/stats/int, /datum/skills/surgery, "1d20")
+		var/diceroll = user.mind.diceroll(STAT_DATUM(int), SKILL_DATUM(surgery), "1d20")
 		switch(diceroll)
 			if(DICE_CRIT_FAILURE)
 				our_germ_level *= 3

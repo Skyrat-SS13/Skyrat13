@@ -35,11 +35,14 @@
 #define JOB_STATPOINTS_LEGENDARY 35
 
 //Helpers
-#define SKILL(x) /datum/skills/##x
-#define STAT(x) /datum/stats/##x
+#define SKILL_DATUM(x) /datum/skills/##x
+#define STAT_DATUM(x) /datum/stats/##x
 
-#define GET_STAT(x) mob_stats[STAT(x)]
-#define GET_SKILL(x) mob_skills[SKILL(x)]
+#define GET_STAT(mindmob, x) mindmob.mind?.mob_stats[STAT_DATUM(x)]
+#define GET_SKILL(mindmob, x) mindmob.mind?.mob_skills[SKILL_DATUM(x)]
 
-#define STAT_LEVEL(x) mob_stats[STAT(x)]?.level
-#define SKILL_LEVEL(x) mob_skills[SKILL(x)]?.level
+#define STAT_LEVEL(mindmob, x) mindmob.mind?.mob_stats[STAT_DATUM(x)]?.level
+#define SKILL_LEVEL(mindmob, x) mindmob.mind?.mob_skills[SKILL_DATUM(x)]?.level
+
+#define GET_STAT_LEVEL(mindmob, x) STAT_LEVEL(mob/living/mindmob, x)
+#define GET_SKILL_LEVEL(mindmob, x) SKILL_LEVEL(mob/living/mindmob, x)

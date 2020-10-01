@@ -52,7 +52,7 @@
 	var/parrydurationmod = 1
 	//Melee skill alters the active duration of a parry
 	if(mind)
-		var/datum/skills/melee/melee = mind.mob_skills[/datum/skills/melee]
+		var/datum/skills/melee/melee = GET_SKILL(src, melee)
 		if(melee)
 			parrydurationmod *= (MAX_SKILL/2)/melee.level
 	//Combat intent alters the active duration of a parry
@@ -77,10 +77,10 @@
 		active_parry_item = using_item
 	var/staminalossmod = 2
 	if(mind)
-		var/datum/skills/melee/melee = mind.mob_skills[/datum/skills/melee]
+		var/datum/skills/melee/melee = GET_SKILL(src, melee)
 		if(melee)
 			staminalossmod *= (MAX_SKILL/2)/melee.level
-		var/datum/stats/end/end = mind.mob_stats[/datum/stats/end]
+		var/datum/stats/end/end = GET_STAT(src, dex)
 		if(end)
 			staminalossmod *= (MAX_STAT/2)/end.level
 	adjustStaminaLossBuffered(data.parry_stamina_cost * staminalossmod)
@@ -141,7 +141,7 @@
 	//Melee skill alters the active duration of a parry
 	var/parrydurationmod = 1
 	if(mind)
-		var/datum/skills/melee/melee = mind.mob_skills[/datum/skills/melee]
+		var/datum/skills/melee/melee = GET_SKILL(src, melee)
 		if(melee)
 			parrydurationmod *= (MAX_SKILL/2)/melee.level
 	//Combat intent alters the active duration of a parry
@@ -217,7 +217,7 @@
 	//Melee skill alters the active duration of a parry
 	var/parrydurationmod = 1
 	if(mind)
-		var/datum/skills/melee/melee = mind.mob_skills[/datum/skills/melee]
+		var/datum/skills/melee/melee = GET_SKILL(src, melee)
 		if(melee)
 			parrydurationmod *= (MAX_SKILL/2)/melee.level
 	//Combat intent alters the active duration of a parry
