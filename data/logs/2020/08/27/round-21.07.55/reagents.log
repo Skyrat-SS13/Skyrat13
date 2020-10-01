@@ -1,0 +1,11 @@
+[2020-08-28 00:07:55.465] Starting up round ID .
+ - -------------------------
+[2020-08-28 00:19:35.107] Logs from logging subsystem:
+ - (2020-08-27 21:11:00) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Surgery (158, 107, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 21:11:12) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Surgery (158, 109, 2) - /datum/reagent/determination
+ - (2020-08-27 21:14:40) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Surgery (159, 107, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 21:14:43) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Surgery (160, 108, 2) - 6.4 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 21:15:27) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Surgery (160, 107, 2) - /datum/reagent/determination
+ - (2020-08-27 21:16:27) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Surgery (157, 108, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 21:16:28) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Central (153, 108, 2) - 7 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 21:17:15) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Cryogenics (152, 109, 2) - /datum/reagent/determination

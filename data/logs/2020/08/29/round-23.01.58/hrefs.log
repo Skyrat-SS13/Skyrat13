@@ -1,0 +1,30 @@
+[2020-08-30 02:01:58.902] Starting up round ID .
+ - -------------------------
+[2020-08-30 02:03:24.020] Logs from logging subsystem:
+ - (2020-08-29 23:02:17) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=doneLoading
+ - (2020-08-29 23:02:17) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-08-29 23:02:17) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-08-29 23:02:18) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=analyzeClientData&param[cookie]={"connData":[{"ckey":"bobjoga","ip":"127.0.0.1","compid":"3000796718"},{"ckey":"bobjoga","ip":"177.106.255.43","compid":"3000796718"},{"ckey":"bobjoga","ip":"179.126.113.169","compid":"3000796718"},{"ckey":"bobjoga","ip":null,"compid":"3000796718"},{"ckey":"bobjoga","ip":"177.191.16.185","compid":"3000796718"}]}
+ - (2020-08-29 23:03:08) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_27];ready=1
+[2020-08-30 02:13:25.431] Logs from logging subsystem:
+ - (2020-08-29 23:03:43) HREF: Bob Joga (usr:Cockmistress[(149,130,2)]) : _src_=prefs;preference=pain_style
+ - (2020-08-29 23:03:45) HREF: Bob Joga (usr:Cockmistress[(149,130,2)]) : _src_=prefs;preference=save
+ - (2020-08-29 23:03:52) HREF: Bob Joga (usr:Cockmistress[(149,130,2)]) : /datum/preferences close=1
+ - (2020-08-29 23:04:34) HREF: Bob Joga (usr:Cockmistress[(137,129,2)]) : _src_=prefs;preference=pain_style
+ - (2020-08-29 23:04:35) HREF: Bob Joga (usr:Cockmistress[(137,129,2)]) : _src_=prefs;preference=save
+ - (2020-08-29 23:04:36) HREF: Bob Joga (usr:Cockmistress[(137,129,2)]) : /datum/preferences close=1
+ - (2020-08-29 23:08:21) HREF: Bob Joga (usr:Cockmistress[(136,127,2)]) : _src_=vars;admin_token=15983008509367913030389620561211;Vars=[0x2016d15]
+ - (2020-08-29 23:08:24) HREF: Bob Joga (usr:Cockmistress[(136,127,2)]) : _src_=vars;admin_token=15983008509367913030389620561211;proc_call=TRUE;target=[0x2016d15]
+ - (2020-08-29 23:08:33) HREF: Bob Joga (usr:Cockmistress[(135,127,2)]) : _src_=vars;admin_token=15983008509367913030389620561211;datumedit=TRUE;target=[0x2016d15];targetvar=pain_dam
+ - (2020-08-29 23:09:22) HREF: Bob Joga (usr:Cockmistress[(132,123,2)]) : _src_=prefs;preference=pain_style
+ - (2020-08-29 23:09:23) HREF: Bob Joga (usr:Cockmistress[(132,123,2)]) : _src_=prefs;preference=save
+ - (2020-08-29 23:09:25) HREF: Bob Joga (usr:Cockmistress[(132,123,2)]) : _src_=prefs;preference=pain_style
+ - (2020-08-29 23:09:26) HREF: Bob Joga (usr:Cockmistress[(132,123,2)]) : _src_=prefs;preference=save
+ - (2020-08-29 23:09:29) HREF: Bob Joga (usr:Cockmistress[(132,123,2)]) : /datum/preferences close=1
+ - (2020-08-29 23:10:36) HREF: Bob Joga (usr:Cockmistress[(133,121,2)]) : _src_=vars;admin_token=15983008509367913030389620561211;Vars=[0x2016d15]
+ - (2020-08-29 23:11:53) HREF: Bob Joga (usr:Cockmistress[(133,121,2)]) : _src_=vars;admin_token=15983008509367913030389620561211;Vars=[0x2016d15]
+ - (2020-08-29 23:12:02) HREF: Bob Joga (usr:Cockmistress[(132,122,2)]) : _src_=holder;admin_token=15983008509367913030389620561211;revive=[mob_277]
+ - (2020-08-29 23:12:10) HREF: Bob Joga (usr:Cockmistress[(133,121,2)]) : _src_=vars;admin_token=15983008509367913030389620561211;Vars=[0x2016d15]
+ - (2020-08-29 23:12:13) HREF: Bob Joga (usr:Cockmistress[(133,121,2)]) : _src_=vars;admin_token=15983008509367913030389620561211;datumedit=TRUE;target=[0x2016d15];targetvar=pain_dam
+[2020-08-30 02:23:25.874] Logs from logging subsystem:
+ - (2020-08-29 23:15:38) HREF: Bob Joga (usr:Cockmistress[(133,122,2)]) : _src_=holder;admin_token=15983008509367913030389620561211;revive=[mob_277]

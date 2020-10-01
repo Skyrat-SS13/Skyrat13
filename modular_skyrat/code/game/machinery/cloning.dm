@@ -127,7 +127,7 @@
 	. = FALSE
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant)
-		. = (100 * ((mob_occupant.health + 100) / (heal_level + 100)))
+		. = min(100, 100 * ((mob_occupant.get_physical_damage() + 100) / (heal_level + 100)))
 
 /obj/machinery/clonepod/attack_ai(mob/user)
 	return examine(user)
@@ -201,6 +201,7 @@
 	ADD_TRAIT(H, TRAIT_MUTE, CLONING_POD_TRAIT)
 	ADD_TRAIT(H, TRAIT_NOBREATH, CLONING_POD_TRAIT)
 	ADD_TRAIT(H, TRAIT_NOCRITDAMAGE, CLONING_POD_TRAIT)
+	ADD_TRAIT(H, TRAIT_NOPAIN, CLONING_POD_TRAIT)
 	H.Unconscious(80)
 
 	clonemind.transfer_to(H)
@@ -261,10 +262,10 @@
 			go_out()
 			mob_occupant.copy_from_prefs_vr()
 
-		else if(mob_occupant.cloneloss > (100 - heal_level))
+		else if(mob_occupant.getCloneLoss() > (100 - heal_level))
 			mob_occupant.Unconscious(80)
 			var/dmg_mult = CONFIG_GET(number/damage_multiplier)
-			 //Slowly get that clone healed and finished.
+			//Slowly get that clone healed and finished.
 			mob_occupant.adjustCloneLoss(-((speed_coeff / 2) * dmg_mult))
 			var/progress = CLONE_INITIAL_DAMAGE - mob_occupant.getCloneLoss()
 			// To avoid the default cloner making incomplete clones
@@ -284,11 +285,13 @@
 					BP.attach_limb(mob_occupant)
 
 			//Premature clones may have brain damage.
-			mob_occupant.adjustOrganLoss(ORGAN_SLOT_BRAIN, -((speed_coeff / 2) * dmg_mult))
+			//Cap the brain damage at 40% (80 on a standard brain) or the clone will go into nervous system failure and fucking die
+			var/obj/item/organ/brain/brain = mob_occupant.getorganslot(ORGAN_SLOT_BRAIN)
+			mob_occupant.adjustOrganLoss(ORGAN_SLOT_BRAIN, -((speed_coeff / 2) * dmg_mult), (brain ? brain.maxHealth * 0.40 : 90))
 
 			use_power(7500) //This might need tweaking.
 
-		else if((mob_occupant.cloneloss <= (100 - heal_level)))
+		else if((mob_occupant.getCloneLoss() <= (100 - heal_level)))
 			connected_message("Cloning Process Complete.")
 			if(internal_radio)
 				SPEAK("The cloning cycle is complete.")
@@ -404,6 +407,7 @@
 	REMOVE_TRAIT(mob_occupant, TRAIT_EMOTEMUTE, CLONING_POD_TRAIT)
 	REMOVE_TRAIT(mob_occupant, TRAIT_MUTE, CLONING_POD_TRAIT)
 	REMOVE_TRAIT(mob_occupant, TRAIT_NOCRITDAMAGE, CLONING_POD_TRAIT)
+	REMOVE_TRAIT(mob_occupant, TRAIT_NOPAIN, CLONING_POD_TRAIT)
 	REMOVE_TRAIT(mob_occupant, TRAIT_NOBREATH, CLONING_POD_TRAIT)
 
 	if(grab_ghost_when == CLONER_MATURE_CLONE)
@@ -420,6 +424,14 @@
 			mob_occupant.apply_status_effect(/datum/status_effect/cloneill, cloneill_healthpenalty, cloneill_cloneloss, cloneill_hallucination)
 		SEND_SIGNAL(mob_occupant, COMSIG_ADD_MOOD_EVENT, "clooned", /datum/mood_event/clooned)
 
+	var/mob/living/carbon/C = mob_occupant
+	if(istype(C))
+		for(var/obj/item/organ/O in C.bodyparts)
+			O.setOrganDamage(0)
+			O.janitize(0, 0, 0)
+		for(var/obj/item/bodypart/BP in C.bodyparts)
+			BP.janitize(0, 0, 0)
+		C.setToxLoss(0, TRUE)
 	occupant.forceMove(T)
 	update_icon()
 	mob_occupant.domutcheck(1) //Waiting until they're out before possible monkeyizing. The 1 argument forces powers to manifest.
@@ -493,7 +505,6 @@
 			qdel(fl)
 		unattached_flesh.Cut()
 
-	H.setCloneLoss(CLONE_INITIAL_DAMAGE)     //Yeah, clones start with very low health, not with random, because why would they start with random health
 	//H.setOrganLoss(ORGAN_SLOT_BRAIN, CLONE_INITIAL_DAMAGE)
 	// In addition to being cellularly damaged and having barely any
 
@@ -506,6 +517,7 @@
 			if(BP)
 				BP.drop_limb()
 				BP.forceMove(src)
+				BP.status |= BODYPART_FROZEN
 				unattached_flesh += BP
 
 	for(var/o in H.internal_organs)
@@ -518,6 +530,9 @@
 		unattached_flesh += organ
 
 	flesh_number = unattached_flesh.len
+	
+	//Yeah, clones start with very low health, not with random, because why would they start with random health
+	H.setCloneLoss(CLONE_INITIAL_DAMAGE)
 
 /obj/machinery/clonepod/update_icon_state()
 	if(mess)

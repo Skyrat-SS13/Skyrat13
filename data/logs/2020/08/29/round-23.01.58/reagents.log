@@ -1,0 +1,34 @@
+[2020-08-30 02:01:58.905] Starting up round ID .
+ - -------------------------
+[2020-08-30 02:13:25.436] Logs from logging subsystem:
+ - (2020-08-29 23:04:23) REAGENT: MOB ADD: on_mob_add(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (193, 36, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:05:17) REAGENT: MOB ADD: on_mob_add(): *no key*/(Clownsky) at Unexplored Location (194, 38, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:05:27) REAGENT: MOB ADD: on_mob_add(): *no key*/(Setsu Kazlauskiene) at Space (44, 49, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:06:25) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (193, 36, 4) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:06:53) REAGENT: MOB ADD: on_mob_add(): *no key*/(Witty) at Unexplored Location (196, 35, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:06:53) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (193, 36, 4) - 9 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:07:11) REAGENT: MOB ADD: on_merge(): *no key*/(Clownsky) at Unexplored Location (194, 38, 4) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:07:33) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (193, 36, 4) - 14 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:08:31) REAGENT: MOB ADD: on_merge(): *no key*/(Witty) at Unexplored Location (196, 35, 4) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:08:33) REAGENT: MOB ADD: on_merge(): *no key*/(Clownsky) at Unexplored Location (194, 38, 4) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:09:25) REAGENT: MOB ADD: on_merge(): *no key*/(Witty) at Unexplored Location (196, 35, 4) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:09:35) REAGENT: MOB ADD: on_merge(): *no key*/(Clownsky) at Unexplored Location (194, 38, 4) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:09:55) REAGENT: MOB ADD: on_merge(): *no key*/(Clownsky) at Unexplored Location (194, 38, 4) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:10:11) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (193, 36, 4) - 14.937 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:10:38) REAGENT: MOB ADD: on_merge(): *no key*/(Witty) at Unexplored Location (196, 35, 4) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:10:40) REAGENT: MOB ADD: on_merge(): *no key*/(Witty) at Unexplored Location (196, 35, 4) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:10:54) REAGENT: MOB ADD: on_merge(): *no key*/(Witty) at Unexplored Location (196, 35, 4) - 18 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:11:46) REAGENT: MOB ADD: on_merge(): *no key*/(Clownsky) at Unexplored Location (194, 38, 4) - 18 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:12:06) REAGENT: MOB ADD: on_merge(): *no key*/(Clownsky) at Unexplored Location (194, 38, 4) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:13:14) REAGENT: MOB ADD: on_merge(): *no key*/(Setsu Kazlauskiene) at Space (44, 49, 8) - 4 of /datum/reagent/determination with 1 purity
+[2020-08-30 02:23:25.876] Logs from logging subsystem:
+ - (2020-08-29 23:13:40) REAGENT: MOB ADD: on_merge(): *no key*/(Clownsky) at Unexplored Location (194, 38, 4) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:15:52) REAGENT: MOB ADD: on_merge(): *no key*/(Setsu Kazlauskiene) at Space (44, 49, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:16:00) REAGENT: MOB ADD: on_merge(): *no key*/(Setsu Kazlauskiene) at Space (44, 49, 8) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:16:24) REAGENT: MOB ADD: on_merge(): *no key*/(Setsu Kazlauskiene) at Space (44, 49, 8) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:17:18) REAGENT: MOB ADD: on_merge(): *no key*/(Setsu Kazlauskiene) at Space (44, 49, 8) - 18 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:18:10) REAGENT: MOB ADD: on_merge(): *no key*/(Setsu Kazlauskiene) at Space (44, 49, 8) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:18:16) REAGENT: MOB ADD: on_merge(): *no key*/(Setsu Kazlauskiene) at Space (44, 49, 8) - 25 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:20:08) REAGENT: MOB ADD: on_merge(): *no key*/(Setsu Kazlauskiene) at Space (44, 49, 8) - 25.847 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:21:12) REAGENT: MOB ADD: on_merge(): *no key*/(Setsu Kazlauskiene) at Space (44, 49, 8) - 26.694 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 23:21:38) REAGENT: MOB ADD: on_merge(): *no key*/(Setsu Kazlauskiene) at Space (44, 49, 8) - 31.694 of /datum/reagent/determination with 1 purity

@@ -1,0 +1,18 @@
+[2020-09-25 02:18:41.119] Starting up round ID .
+ - -------------------------
+[2020-09-25 02:18:41.126] Running /tg/ revision: 2020-09-25
+ - origin/master: 01d95c3f2c066fb01c5de61cbc4cd8e71cb0e045
+ - HEAD: 511edbf9b3202b8e2d4c86f03d3440ed4fd472ca
+[2020-09-25 02:18:47.065] Loading Box Station...
+[2020-09-25 02:18:54.443] Loaded Station in 7.4s!
+[2020-09-25 02:18:57.226] Loaded Lavaland in 2.7s!
+[2020-09-25 02:18:59.026] Ruin loader finished with 0 left to spend.
+[2020-09-25 02:19:03.695] Ruin loader finished with 0 left to spend.
+[2020-09-25 02:19:03.879] Ruin loader finished with 0 left to spend.
+[2020-09-25 02:19:51.914] ## WARNING: HEY! LISTEN! 0.7 seconds were wasted processing 455 turf(s) (connected to 23783 other turfs) with atmos differences at round start.
+[2020-09-25 02:20:17.623] Initializations complete within 90.8 seconds!
+[2020-09-25 02:20:19.851] Game start took 0.5s
+[2020-09-25 02:20:40.451] ### VarEdit by Bob Joga/(Cock Advisor): /obj/item/bodypart/l_hand germ_level=0 => 500
+[2020-09-25 02:21:14.665] ## NOTICE: Bob Joga/(Cock Advisor) executed SDQL query(s): "select GLOB.surgeries_list".
+[2020-09-25 02:21:30.093] ## NOTICE: Bob Joga/(Cock Advisor) executed SDQL query(s): "select /datum/surgery in world".
+[2020-09-25 02:22:42.991] ### VarEdit by Bob Joga/(Cock Advisor): /obj/item/bodypart/chest germ_level=0 => 600

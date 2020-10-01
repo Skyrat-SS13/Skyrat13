@@ -1,0 +1,68 @@
+[2020-08-31 22:33:58.781] Starting up round ID .
+ - -------------------------
+[2020-08-31 22:33:58.787] Running /tg/ revision: 2020-08-31
+ - origin/master: 26cc6911880bf1b0b58bc2e3debdc9abab7c8af4
+ - HEAD: 7d9fcd11345aef9269db1ccbb48a044135003356
+[2020-08-31 22:34:00.039] Loading Box Station...
+[2020-08-31 22:34:06.557] Loaded Station in 6.5s!
+[2020-08-31 22:34:09.046] Loaded Lavaland in 2.4s!
+[2020-08-31 22:34:10.523] Ruin loader finished with 0 left to spend.
+[2020-08-31 22:34:13.954] Ruin loader finished with 0 left to spend.
+[2020-08-31 22:34:14.121] Ruin loader finished with 0 left to spend.
+[2020-08-31 22:34:52.176] ## WARNING: HEY! LISTEN! 0.4 seconds were wasted processing 467 turf(s) (connected to 18636 other turfs) with atmos differences at round start.
+[2020-08-31 22:35:14.100] Initializations complete within 74.4 seconds!
+[2020-08-31 22:35:35.694] Game start took 0.5s
+[2020-08-31 22:37:10.967] runtime error: Cannot read null.name
+ - proc name: handle pain (/mob/living/carbon/handle_pain)
+ -   source file: pain.dm,50
+ -   usr: null
+ -   src: the monkey (515) (/mob/living/carbon/monkey)
+ -   src.loc: the floor (153,113,2) (/turf/open/floor/plasteel/dark)
+ -   call stack:
+ - the monkey (515) (/mob/living/carbon/monkey): handle pain()
+ - the monkey (515) (/mob/living/carbon/monkey): BiologicalLife(2, 46)
+ - the monkey (515) (/mob/living/carbon/monkey): BiologicalLife(2, 46)
+ - the monkey (515) (/mob/living/carbon/monkey): BiologicalLife(2, 46)
+ - the monkey (515) (/mob/living/carbon/monkey): Life(2, 46)
+ - Mobs (/datum/controller/subsystem/mobs): fire(1)
+ - Mobs (/datum/controller/subsystem/mobs): ignite(1)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-31 22:37:18.949] runtime error: Cannot read null.name
+ - proc name: handle pain (/mob/living/carbon/handle_pain)
+ -   source file: pain.dm,50
+ -   usr: null
+ -   src: the monkey (80) (/mob/living/carbon/monkey)
+ -   src.loc: the floor (161,99,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - the monkey (80) (/mob/living/carbon/monkey): handle pain()
+ - the monkey (80) (/mob/living/carbon/monkey): BiologicalLife(2, 50)
+ - the monkey (80) (/mob/living/carbon/monkey): BiologicalLife(2, 50)
+ - the monkey (80) (/mob/living/carbon/monkey): BiologicalLife(2, 50)
+ - the monkey (80) (/mob/living/carbon/monkey): Life(2, 50)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Mobs (/datum/controller/subsystem/mobs): ignite(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-31 22:39:12.314] runtime error: Cannot read null.name
+ - proc name: handle pain (/mob/living/carbon/handle_pain)
+ -   source file: pain.dm,50
+ -   usr: null
+ -   src: the coder monkey (946) (/mob/living/carbon/monkey/coder)
+ -   src.loc: the floor (23,48,1) (/turf/open/indestructible/airblock)
+ -   call stack:
+ - the coder monkey (946) (/mob/living/carbon/monkey/coder): handle pain()
+ - the coder monkey (946) (/mob/living/carbon/monkey/coder): BiologicalLife(2, 106)
+ - the coder monkey (946) (/mob/living/carbon/monkey/coder): BiologicalLife(2, 106)
+ - the coder monkey (946) (/mob/living/carbon/monkey/coder): BiologicalLife(2, 106)
+ - the coder monkey (946) (/mob/living/carbon/monkey/coder): Life(2, 106)
+ - Mobs (/datum/controller/subsystem/mobs): fire(1)
+ - Mobs (/datum/controller/subsystem/mobs): ignite(1)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 

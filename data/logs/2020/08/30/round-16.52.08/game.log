@@ -1,0 +1,85 @@
+[2020-08-30 19:52:08.452] Starting up round ID .
+ - -------------------------
+[2020-08-30 19:52:08.503] ADMIN: Loading Banlist
+[2020-08-30 19:52:09.685] GAME: Saved mode is 'extended'
+[2020-08-30 19:52:14.209] ACCESS: Login: Bob Joga from 127.0.0.1-3000796718 || BYOND v513.1528
+[2020-08-30 19:52:14.209] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-08-30 19:52:18.840] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-08-30 19:52:24.787] GAME: Hierophant's Arena loaded at 152,39,6
+[2020-08-30 19:52:24.808] GAME: Blood-Drunk Miner (Guidance) loaded at 195,122,6
+[2020-08-30 19:52:24.824] GAME: Blood-Drunk Miner (Hunter) loaded at 215,100,6
+[2020-08-30 19:52:24.843] GAME: Blood-Drunk Miner loaded at 76,207,6
+[2020-08-30 19:52:24.867] GAME: King Goat Boss Ruin loaded at 212,22,6
+[2020-08-30 19:52:24.892] GAME: Rogue's Arena loaded at 157,171,6
+[2020-08-30 19:52:24.928] GAME: Sif's Sword loaded at 195,146,6
+[2020-08-30 19:52:24.937] GAME: Pulsating Tumor loaded at 225,200,6
+[2020-08-30 19:52:24.951] GAME: Crashed Shuttle loaded at 78,93,6
+[2020-08-30 19:52:24.973] GAME: UFO Crash loaded at 87,116,6
+[2020-08-30 19:52:25.001] GAME: Ruin of Greed loaded at 190,50,6
+[2020-08-30 19:52:25.008] GAME: Ancient Puzzle loaded at 170,101,6
+[2020-08-30 19:52:25.034] GAME: Dark Wizard Altar loaded at 210,76,6
+[2020-08-30 19:52:25.060] GAME: Ruin of Gluttony loaded at 153,113,6
+[2020-08-30 19:52:27.923] GAME: Abandoned Teleporter loaded at 60,74,3
+[2020-08-30 19:52:27.944] GAME: Whiteship Dock loaded at 30,96,8
+[2020-08-30 19:52:28.010] GAME: Biological Storage Facility loaded at 207,95,7
+[2020-08-30 19:52:28.101] GAME: Feline-Human Combination Den loaded at 136,36,8
+[2020-08-30 19:52:28.152] GAME: NT Medical Ship loaded at 137,84,8
+[2020-08-30 19:52:28.188] GAME: Salvation loaded at 100,79,8
+[2020-08-30 19:52:28.232] GAME: Derelict 3 loaded at 89,196,8
+[2020-08-30 19:52:28.266] GAME: CF Corsair loaded at 34,148,8
+[2020-08-30 19:52:28.266] GAME: Detached Teleporter loaded at 142,90,7
+[2020-08-30 19:52:28.735] GAME: Kosmicheskaya Stantsiya 13 loaded at 128,112,8
+[2020-08-30 19:52:28.927] GAME: Crashed Ship loaded at 73,25,4
+[2020-08-30 19:52:28.982] GAME: Derelict 6 loaded at 93,150,3
+[2020-08-30 19:52:29.025] GAME: Unnamed Turreted Outpost loaded at 69,86,3
+[2020-08-30 19:52:29.110] GAME: DK Excavator 453 loaded at 192,209,3
+[2020-08-30 19:52:29.164] GAME: Asteroid 5 loaded at 68,87,4
+[2020-08-30 19:52:29.220] GAME: Gondoland loaded at 145,125,3
+[2020-08-30 19:52:29.238] GAME: Maze Roid loaded at 61,215,2
+[2020-08-30 19:52:29.269] GAME: Mineable Asteroid 5 loaded at 45,26,2
+[2020-08-30 19:52:29.287] GAME: Dead wizard Roid loaded at 170,199,2
+[2020-08-30 19:52:29.320] GAME: Monitoring Roid loaded at 22,208,2
+[2020-08-30 19:52:29.336] GAME: Mineable Asteroid 4 loaded at 191,215,2
+[2020-08-30 19:52:29.355] GAME: Dorm Roid loaded at 203,26,2
+[2020-08-30 19:52:29.368] GAME: Crab Roid loaded at 152,214,2
+[2020-08-30 19:52:29.390] GAME: Mineable Asteroid 2 loaded at 23,64,2
+[2020-08-30 19:52:29.400] GAME: Mineable Asteroid 1 loaded at 42,202,2
+[2020-08-30 19:52:29.415] GAME: Mineable Asteroid 3 loaded at 212,185,2
+[2020-08-30 19:52:29.487] GAME: Box Singulo loaded at 96,49,2
+[2020-08-30 19:52:29.772] GAME: Public Mining Base loaded at 1,1,6
+[2020-08-30 19:52:35.573] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-08-30 19:52:35.576] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-08-30 19:52:35.579] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-08-30 19:52:35.580] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-08-30 19:52:35.582] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-08-30 19:52:35.589] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-08-30 19:52:35.601] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-08-30 19:52:35.604] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-08-30 19:52:41.763] ADMIN: Bob Joga has started the game.
+[2020-08-30 19:52:43.979] GAME: [�APLU "Ripley"] �APLU "Ripley" created. (Mech Transport (41, 157, 8))
+[2020-08-30 19:53:34.437] GAME: Backup Shuttle loaded at 143,212,1
+[2020-08-30 19:53:34.535] GAME: assault pod (Default) loaded at 144,213,1
+[2020-08-30 19:53:34.870] GAME: basic syndicate infiltrator loaded at 139,205,1
+[2020-08-30 19:53:35.148] GAME: fancy transport ferry loaded at 141,214,1
+[2020-08-30 19:53:35.309] GAME: Box Station Emergency Shuttle loaded at 142,205,1
+[2020-08-30 19:53:35.497] GAME: cargo ferry (Box) loaded at 144,210,1
+[2020-08-30 19:53:36.148] GAME: escape pod (Default) loaded at 146,214,1
+[2020-08-30 19:53:36.174] GAME: escape pod (Default) loaded at 146,214,1
+[2020-08-30 19:53:36.228] GAME: auxilliary base (Default) loaded at 143,212,1
+[2020-08-30 19:53:36.348] GAME: arrival shuttle (Box) loaded at 140,213,1
+[2020-08-30 19:53:36.458] GAME: mining shuttle (Box) loaded at 145,213,1
+[2020-08-30 19:53:36.516] GAME: labour shuttle (Box) loaded at 145,212,1
+[2020-08-30 19:53:36.565] GAME: escape pod (Default) loaded at 146,214,1
+[2020-08-30 19:53:36.593] GAME: escape pod (Default) loaded at 146,214,1
+[2020-08-30 19:53:36.620] GAME: lavaland Mining Elevator loaded at 145,214,1
+[2020-08-30 19:53:37.964] GAME: Hospital Ship loaded at 132,208,1
+[2020-08-30 19:53:38.396] VOTE: Roundtype vote started by server.
+[2020-08-30 19:53:39.904] VOTE: <b>Roundtype Vote</b><b>Vote Result: Inconclusive - No Votes!</b>
+[2020-08-30 19:53:40.451] GAME: *no key*/(Bob Joga) *no key*/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-08-30 19:53:40.451] ACCESS: Mob Login: Bob Joga/(Cockmistress) was assigned to a /mob/living/carbon/human
+[2020-08-30 19:53:40.505] GAME: Bob Joga/(Cockmistress) Client Bob Joga/(Cockmistress) has taken ownership of mob (/mob/living/carbon/human) (Surgery (160, 107, 2))
+[2020-08-30 19:55:43.194] ADMIN: Bob Joga/(Cockmistress) checked the individual player panel for Bob Joga/(Cockmistress) while in game.
+[2020-08-30 19:56:08.322] ADMIN: Bob Joga/(Cockmistress) dealt -1000 amount of brute damage to Bob Joga/(Cockmistress)
+[2020-08-30 19:56:50.339] ADMIN: Bob Joga/(Cockmistress) modified Cockmistress's blood_volume from 409.176 to 560
+[2020-08-30 19:58:40.089] ACCESS: Logout: Bob Joga/(Cockmistress)
+[2020-08-30 19:58:40.090] GAME: Bob Joga[DC]/(Cockmistress) Bob Joga[DC]/(Cockmistress) is no longer owning mob Cockmistress(/mob/living/carbon/human) (Medbay Treatment Center (143, 115, 2))

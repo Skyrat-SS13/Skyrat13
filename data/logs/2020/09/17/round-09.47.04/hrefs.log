@@ -1,0 +1,10 @@
+[2020-09-17 12:47:04.900] Starting up round ID .
+ - -------------------------
+[2020-09-17 12:48:44.746] Logs from logging subsystem:
+ - (2020-09-17 09:47:09) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=colorPresetPost&preset=normal
+ - (2020-09-17 09:47:09) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=doneLoading
+ - (2020-09-17 09:47:09) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-09-17 09:47:09) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-09-17 09:47:09) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=analyzeClientData&param[cookie]={"connData":[{"ckey":"bobjoga","ip":"201.5.120.41","compid":"3000796718"},{"ckey":"bobjoga","ip":"189.112.79.105","compid":"3000796718"},{"ckey":"bobjoga","ip":null,"compid":"3000796718"},{"ckey":"bobjoga","ip":"127.0.0.1","compid":"3000796718"},{"ckey":"guest3000796718","ip":null,"compid":"3000796718"}]}
+ - (2020-09-17 09:48:37) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Vote src=[0x2100004e];vote=close
+ - (2020-09-17 09:48:39) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_27];ready=1

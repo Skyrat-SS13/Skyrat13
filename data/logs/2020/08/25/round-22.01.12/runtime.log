@@ -1,0 +1,14 @@
+[2020-08-26 01:01:12.928] Starting up round ID .
+ - -------------------------
+[2020-08-26 01:01:12.935] Running /tg/ revision: 2020-08-26
+ - origin/master: c5b5b2736d804d43f723725711a5eaa89b973bcd
+ - HEAD: 8d39933b56f7cdf89f734105ad8ca2a2c8e31a47
+[2020-08-26 01:01:19.255] Loading Box Station...
+[2020-08-26 01:01:27.131] Loaded Station in 7.9s!
+[2020-08-26 01:01:29.876] Loaded Lavaland in 2.6s!
+[2020-08-26 01:01:32.397] Ruin loader finished with 0 left to spend.
+[2020-08-26 01:01:36.430] Ruin loader finished with 0 left to spend.
+[2020-08-26 01:01:36.578] Ruin loader finished with 0 left to spend.
+[2020-08-26 01:02:17.892] ## WARNING: HEY! LISTEN! 1 second were wasted processing 350 turf(s) (connected to 38407 other turfs) with atmos differences at round start.
+[2020-08-26 01:02:40.789] Initializations complete within 81.9 seconds!
+[2020-08-26 01:02:42.694] Game start took 0.2s

@@ -1,0 +1,18 @@
+[2020-09-03 18:24:52.093] Starting up round ID .
+ - -------------------------
+[2020-09-03 18:24:52.099] Running /tg/ revision: 2020-09-03
+ - origin/master: 1fa3efe4a2ec8c5b607932b39e3afe21262ca61d
+ - HEAD: 32c43ae97a68e1b93a66fc840e67fb877b584c43
+[2020-09-03 18:24:57.688] Loading Box Station...
+[2020-09-03 18:25:06.229] Loaded Station in 8.6s!
+[2020-09-03 18:25:09.007] Loaded Lavaland in 2.7s!
+[2020-09-03 18:25:10.424] Ruin loader finished with 0 left to spend.
+[2020-09-03 18:25:14.165] Ruin loader finished with 0 left to spend.
+[2020-09-03 18:25:14.334] Ruin loader finished with 0 left to spend.
+[2020-09-03 18:25:53.994] ## WARNING: HEY! LISTEN! 0.5 seconds were wasted processing 443 turf(s) (connected to 21225 other turfs) with atmos differences at round start.
+[2020-09-03 18:25:55.965] ## WARNING: design /datum/design/ipc_kidneys with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'kidneys-ipc'
+[2020-09-03 18:26:20.192] Initializations complete within 82.7 seconds!
+[2020-09-03 18:26:23.607] Game start took 1.6s
+[2020-09-03 18:29:12.965] ### VarEdit by Bob Joga/(Pedro Ilurdoz): /obj/item/bodypart/chest tox_dam=0 => 100
+[2020-09-03 18:29:34.716] ### VarEdit by Bob Joga/(Pedro Ilurdoz): /obj/item/bodypart/chest tox_dam=0 => 100
+[2020-09-03 18:30:36.418] ### VarEdit by Bob Joga/(Pedro Ilurdoz): /obj/item/bodypart/chest tox_dam=0 => 50

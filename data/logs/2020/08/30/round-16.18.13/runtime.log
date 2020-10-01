@@ -1,0 +1,69 @@
+[2020-08-30 19:18:13.112] Starting up round ID .
+ - -------------------------
+[2020-08-30 19:18:13.119] Running /tg/ revision: 2020-08-30
+ - origin/master: 56123bbd85c00c1e97f6e2e20d5728da94d6f2d1
+ - HEAD: 6a4464424a96280afe313d18153e38d8cf84d6dd
+[2020-08-30 19:18:14.413] Loading Box Station...
+[2020-08-30 19:18:22.877] Loaded Station in 8.4s!
+[2020-08-30 19:18:26.199] Loaded Lavaland in 3.1s!
+[2020-08-30 19:18:27.785] Ruin loader finished with 0 left to spend.
+[2020-08-30 19:18:32.096] Ruin loader finished with 0 left to spend.
+[2020-08-30 19:18:32.276] Ruin loader finished with 0 left to spend.
+[2020-08-30 19:19:11.078] ## WARNING: HEY! LISTEN! 1 second were wasted processing 477 turf(s) (connected to 38151 other turfs) with atmos differences at round start.
+[2020-08-30 19:19:12.791] ## WARNING: design /datum/design/pin_explorer with icon 'icons/obj/device.dmi' missing state 'firing_pin_explorer'
+[2020-08-30 19:19:33.741] Initializations complete within 79.7 seconds!
+[2020-08-30 19:19:37.666] Game start took 0.8s
+[2020-08-30 19:24:39.553] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: (src)
+ -   src: null
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.59a78307e68f6b4efabdc83f...", /icon (/icon))
+ - icon2html(Quiet\'s ID Card (Mime) (/obj/item/card/id), Quiet (/mob/living/carbon/human), "id", 2, 1, 0)
+ - /datum/bank_account (/datum/bank_account): bank card talk("Payday processed, account now ...", null)
+ - /datum/bank_account (/datum/bank_account): payday(1, 0)
+ - Economy (/datum/controller/subsystem/economy): fire(0)
+ - Economy (/datum/controller/subsystem/economy): ignite(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-30 19:29:39.559] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: (src)
+ -   src: null
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.59a78307e68f6b4efabdc83f...", /icon (/icon))
+ - icon2html(Quiet\'s ID Card (Mime) (/obj/item/card/id), Quiet (/mob/living/carbon/human), "id", 2, 1, 0)
+ - /datum/bank_account (/datum/bank_account): bank card talk("Payday processed, account now ...", null)
+ - /datum/bank_account (/datum/bank_account): payday(1, 0)
+ - Economy (/datum/controller/subsystem/economy): fire(0)
+ - Economy (/datum/controller/subsystem/economy): ignite(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-30 19:34:39.650] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: (src)
+ -   src: null
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.59a78307e68f6b4efabdc83f...", /icon (/icon))
+ - icon2html(Quiet\'s ID Card (Mime) (/obj/item/card/id), Quiet (/mob/living/carbon/human), "id", 2, 1, 0)
+ - /datum/bank_account (/datum/bank_account): bank card talk("Payday processed, account now ...", null)
+ - /datum/bank_account (/datum/bank_account): payday(1, 0)
+ - Economy (/datum/controller/subsystem/economy): fire(0)
+ - Economy (/datum/controller/subsystem/economy): ignite(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 

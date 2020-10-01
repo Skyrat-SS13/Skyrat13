@@ -1,0 +1,623 @@
+[2020-09-10 14:54:58.777] Starting up round ID .
+ - -------------------------
+[2020-09-10 14:54:58.787] Running /tg/ revision: 2020-09-10
+ - origin/master: 79974a492819da3a629b706ad438e16605ee1f20
+ - HEAD: d2f161a826465cf8de513fdc185d75bb6cb1022e
+[2020-09-10 14:55:00.047] Loading Box Station...
+[2020-09-10 14:55:06.856] Loaded Station in 6.8s!
+[2020-09-10 14:55:09.330] Loaded Lavaland in 2.4s!
+[2020-09-10 14:55:11.029] Ruin loader finished with 0 left to spend.
+[2020-09-10 14:55:15.080] Ruin loader finished with 0 left to spend.
+[2020-09-10 14:55:15.244] Ruin loader finished with 0 left to spend.
+[2020-09-10 14:55:55.263] ## WARNING: HEY! LISTEN! 0.4 seconds were wasted processing 408 turf(s) (connected to 20886 other turfs) with atmos differences at round start.
+[2020-09-10 14:55:57.333] ## WARNING: design /datum/design/ipc_stomach with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'microcell'
+[2020-09-10 14:55:57.336] ## WARNING: design /datum/design/ipc_kidneys with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'kidneys-ipc'
+[2020-09-10 14:56:16.634] Initializations complete within 76.9 seconds!
+[2020-09-10 15:00:10.682] Game start took 0s
+[2020-09-10 15:00:55.909] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: null
+ -   src: Felinid (/datum/species/human/felinid)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - ...
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): custom pain("Your right leg hurts badly!", 9.75, 0, the right leg (/obj/item/bodypart/r_leg), null)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-09-10 15:00:55.911] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:00:55.913] MC: SoftReset: Finished.
+[2020-09-10 15:00:56.184] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (49,137,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - ...
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): receive damage(15, 0, 0, 0, 1, null, -5, 10, 1, 1, 0, 0, 0)
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), the right arm (/obj/item/bodypart/r_arm), "help", Amelie Furr (/mob/living/carbon/human/species/felinid), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=19;icon-y=16;left=1;scr...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Amelie Furr (/mob/living/carbon/human/species/felinid), "icon-x=19;icon-y=16;left=1;scr...")
+ - Bob Joga (/client): Click(Amelie Furr (/mob/living/carbon/human/species/felinid), the floor (48,138,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=19;icon-y=16;left=1;scr...", 0)
+ - 
+[2020-09-10 15:00:56.909] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: null
+ -   src: Felinid (/datum/species/human/felinid)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - ...
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state(1)
+ - the right leg (/obj/item/bodypart/r_leg): get mangled state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): custom pain("Your right leg hurts badly!", 9.5, 0, the right leg (/obj/item/bodypart/r_leg), null)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-09-10 15:00:56.910] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:00:56.911] MC: SoftReset: Finished.
+[2020-09-10 15:00:57.856] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (49,137,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): receive damage(15, 0, 0, 0, 1, null, -5, 10, 1, 1, 0, 0, 0)
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), the chest (/obj/item/bodypart/chest), "help", Amelie Furr (/mob/living/carbon/human/species/felinid), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=19;icon-y=16;left=1;scr...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Amelie Furr (/mob/living/carbon/human/species/felinid), "icon-x=19;icon-y=16;left=1;scr...")
+ - Bob Joga (/client): Click(Amelie Furr (/mob/living/carbon/human/species/felinid), the floor (48,138,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=19;icon-y=16;left=1;scr...", 0)
+ - 
+[2020-09-10 15:00:57.913] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: null
+ -   src: Felinid (/datum/species/human/felinid)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): custom pain("Your chest hurts badly!", 9.75, 0, the chest (/obj/item/bodypart/chest), null)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-09-10 15:00:57.915] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:00:57.916] MC: SoftReset: Finished.
+[2020-09-10 15:00:58.821] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (49,137,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): receive damage(15, 0, 0, 0, 1, null, -5, 10, 1, 1, 0, 0, 0)
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), the chest (/obj/item/bodypart/chest), "help", Amelie Furr (/mob/living/carbon/human/species/felinid), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=19;icon-y=16;left=1;scr...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Amelie Furr (/mob/living/carbon/human/species/felinid), "icon-x=19;icon-y=16;left=1;scr...")
+ - Bob Joga (/client): Click(Amelie Furr (/mob/living/carbon/human/species/felinid), the floor (48,138,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=19;icon-y=16;left=1;scr...", 0)
+ - 
+[2020-09-10 15:00:58.927] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: null
+ -   src: Felinid (/datum/species/human/felinid)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): custom pain("Your chest hurts badly!", 9.5, 0, the chest (/obj/item/bodypart/chest), null)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-09-10 15:00:58.930] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:00:58.931] MC: SoftReset: Finished.
+[2020-09-10 15:00:59.767] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (49,137,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): receive damage(15, 0, 0, 0, 1, null, -5, 10, 1, 1, 0, 0, 0)
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), the chest (/obj/item/bodypart/chest), "help", Amelie Furr (/mob/living/carbon/human/species/felinid), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=19;icon-y=16;left=1;scr...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Amelie Furr (/mob/living/carbon/human/species/felinid), "icon-x=19;icon-y=16;left=1;scr...")
+ - Bob Joga (/client): Click(Amelie Furr (/mob/living/carbon/human/species/felinid), the floor (48,138,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=19;icon-y=16;left=1;scr...", 0)
+ - 
+[2020-09-10 15:00:59.945] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: null
+ -   src: Felinid (/datum/species/human/felinid)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): custom pain("Your chest hurts badly!", 9.25, 0, the chest (/obj/item/bodypart/chest), null)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-09-10 15:00:59.947] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:00:59.948] MC: SoftReset: Finished.
+[2020-09-10 15:01:00.781] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (49,137,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): receive damage(15, 0, 0, 0, 1, null, -5, 10, 1, 1, 0, 0, 0)
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), the chest (/obj/item/bodypart/chest), "help", Amelie Furr (/mob/living/carbon/human/species/felinid), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=19;icon-y=16;left=1;scr...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Amelie Furr (/mob/living/carbon/human/species/felinid), "icon-x=19;icon-y=16;left=1;scr...")
+ - Bob Joga (/client): Click(Amelie Furr (/mob/living/carbon/human/species/felinid), the floor (48,138,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=19;icon-y=16;left=1;scr...", 0)
+ - 
+[2020-09-10 15:01:00.940] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: null
+ -   src: Felinid (/datum/species/human/felinid)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): custom pain("Your chest hurts badly!", 9, 0, the chest (/obj/item/bodypart/chest), null)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-09-10 15:01:00.942] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:01:00.945] MC: SoftReset: Finished.
+[2020-09-10 15:01:01.649] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (49,137,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): receive damage(15, 0, 0, 0, 1, null, -5, 10, 1, 1, 0, 0, 0)
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), the chest (/obj/item/bodypart/chest), "help", Amelie Furr (/mob/living/carbon/human/species/felinid), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=19;icon-y=16;left=1;scr...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Amelie Furr (/mob/living/carbon/human/species/felinid), "icon-x=19;icon-y=16;left=1;scr...")
+ - Bob Joga (/client): Click(Amelie Furr (/mob/living/carbon/human/species/felinid), the floor (48,138,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=19;icon-y=16;left=1;scr...", 0)
+ - 
+[2020-09-10 15:01:01.912] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: null
+ -   src: Felinid (/datum/species/human/felinid)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): custom pain("Your chest hurts badly!", 8.75, 0, the chest (/obj/item/bodypart/chest), null)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-09-10 15:01:01.914] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:01:01.915] MC: SoftReset: Finished.
+[2020-09-10 15:01:02.512] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (49,137,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): receive damage(15, 0, 0, 0, 1, null, -5, 10, 1, 1, 0, 0, 0)
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), the chest (/obj/item/bodypart/chest), "help", Amelie Furr (/mob/living/carbon/human/species/felinid), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Amelie Furr (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=19;icon-y=16;left=1;scr...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Amelie Furr (/mob/living/carbon/human/species/felinid), "icon-x=19;icon-y=16;left=1;scr...")
+ - Bob Joga (/client): Click(Amelie Furr (/mob/living/carbon/human/species/felinid), the floor (48,138,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=19;icon-y=16;left=1;scr...", 0)
+ - 
+[2020-09-10 15:01:02.914] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: null
+ -   src: Felinid (/datum/species/human/felinid)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): custom pain("Your chest hurts badly!", 8.5, 0, the chest (/obj/item/bodypart/chest), null)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-09-10 15:01:02.916] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:01:02.917] MC: SoftReset: Finished.
+[2020-09-10 15:01:03.917] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: null
+ -   src: Felinid (/datum/species/human/felinid)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - ...
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): custom pain("Your left leg hurts badly!", 9.75, 0, the left leg (/obj/item/bodypart/l_leg), null)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-09-10 15:01:03.919] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:01:03.920] MC: SoftReset: Finished.
+[2020-09-10 15:01:04.917] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: null
+ -   src: Felinid (/datum/species/human/felinid)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): custom pain("Your chest hurts badly!", 8, 0, the chest (/obj/item/bodypart/chest), null)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-09-10 15:01:04.920] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:01:04.921] MC: SoftReset: Finished.
+[2020-09-10 15:01:05.925] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: null
+ -   src: Felinid (/datum/species/human/felinid)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - ...
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state(1)
+ - the chest (/obj/item/bodypart/chest): get mangled state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): custom pain("Your chest hurts badly!", 7.75, 0, the chest (/obj/item/bodypart/chest), null)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-09-10 15:01:05.927] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:01:05.928] MC: SoftReset: Finished.
+[2020-09-10 15:01:06.931] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ -   usr: null
+ -   src: Felinid (/datum/species/human/felinid)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): get biological state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): get biological state()
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - ...
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state(1)
+ - the left leg (/obj/item/bodypart/l_leg): get mangled state()
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): custom pain("Your left leg hurts badly!", 9, 0, the left leg (/obj/item/bodypart/l_leg), null)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Amelie Furr (/mob/living/carbon/human/species/felinid): BiologicalLife(2, 21)
+ - Mobs (/datum/controller/subsystem/mobs): fire(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-09-10 15:01:06.933] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:01:06.934] MC: SoftReset: Finished.
+[2020-09-10 15:01:07.952] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ - 
+[2020-09-10 15:01:07.955] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:01:07.958] MC: SoftReset: Finished.
+[2020-09-10 15:01:08.060] ## DEBUG: Thu Sep 10 12:01:08 2020 MC restarted. Reports:
+ - 	 datum_flags = 0
+ - 	 datum_components = 
+ - 	 comp_lookup = 
+ - 	 processing = 0
+ - 	 map_loading = 0
+ - 	 random_seed = 3.87968e+007
+ - 	 iteration = 2991
+ - 	 last_run = 1644.5
+ - 	 subsystems = /list
+ - 	 statworthy_subsystems = /list
+ - 	 init_timeofday = 539052
+ - 	 init_time = 146.5
+ - 	 tickdrift = 16.9943
+ - 	 sleep_delta = 1
+ - 	 skip_ticks = 0
+ - 	 make_runtime = 0
+ - 	 initializations_finished_with_no_players_logged_in = 1
+ - 	 last_type_processed = Mobs(/datum/controller/subsystem/mobs)
+ - 	 queue_head = 
+ - 	 queue_tail = 
+ - 	 queue_priority_count = 0
+ - 	 queue_priority_count_bg = 0
+ - 	 current_runlevel = 3
+ - 	 sleep_offline_after_initializations = 1
+ - 	 restart_clear = 1866.5
+ - 	 restart_timeout = 1816.5
+ - 	 restart_count = 1
+ - 	 misc_statclick = Debug(/obj/effect/statclick/misc_subsystems)
+ - 	 gc_destroyed = 
+ - 	 unique_datum_id = 
+ - 	 active_timers = 
+ - 	 status_traits = 
+ - 	 signal_procs = 
+ - 	 signal_enabled = 0
+ - 	 weak_reference = 
+ - 	 cooldowns = 
+ - 	 current_ticklimit = 97.528
+ - 
+[2020-09-10 15:01:09.076] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ - 
+[2020-09-10 15:01:09.079] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:01:09.081] MC: SoftReset: Finished.
+[2020-09-10 15:01:10.070] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ - 
+[2020-09-10 15:01:10.074] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:01:10.075] MC: SoftReset: Finished.
+[2020-09-10 15:01:11.071] runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+ - To avoid this safety check, set world.loop_checks=0.
+ - proc name: get biological state (/datum/species/proc/get_biological_state)
+ - 
+[2020-09-10 15:01:11.074] MC: SoftReset called, resetting MC queue state.
+[2020-09-10 15:01:11.077] MC: SoftReset: Finished.

@@ -1,0 +1,18 @@
+[2020-09-25 02:03:48.637] Starting up round ID .
+ - -------------------------
+[2020-09-25 02:03:48.645] Running /tg/ revision: 2020-09-25
+ - origin/master: 01d95c3f2c066fb01c5de61cbc4cd8e71cb0e045
+ - HEAD: 881dedbe5e5826b08577d53d9c7b77f3febf38d9
+[2020-09-25 02:03:56.359] Loading Box Station...
+[2020-09-25 02:04:05.187] Loaded Station in 8.8s!
+[2020-09-25 02:04:09.096] Loaded Lavaland in 3.8s!
+[2020-09-25 02:04:11.151] Ruin loader finished with 0 left to spend.
+[2020-09-25 02:04:15.795] Ruin loader finished with 0 left to spend.
+[2020-09-25 02:04:16.058] Ruin loader finished with 0 left to spend.
+[2020-09-25 02:05:06.385] ## WARNING: HEY! LISTEN! 1.2 seconds were wasted processing 449 turf(s) (connected to 35725 other turfs) with atmos differences at round start.
+[2020-09-25 02:05:36.324] Initializations complete within 100.3 seconds!
+[2020-09-25 02:05:38.513] Game start took 0.5s
+[2020-09-25 02:06:02.531] ### VarEdit by Bob Joga/(Cock Advisor): /obj/item/bodypart/chest germ_level=0 => 1000
+[2020-09-25 02:06:14.582] ### VarEdit by Bob Joga/(Cock Advisor): /obj/item/bodypart/chest germ_level=0 => 500
+[2020-09-25 02:06:28.143] ### VarEdit by Bob Joga/(Cock Advisor): /obj/item/bodypart/chest germ_level=0 => 200
+[2020-09-25 02:07:45.716] ### VarEdit by Bob Joga/(Cock Advisor): /obj/item/bodypart/l_arm germ_level=0 => 250

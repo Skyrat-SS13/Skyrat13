@@ -109,6 +109,9 @@
 				if("stamina")
 					L.adjustStaminaLoss(amount)
 					newamt = L.getStaminaLoss()
+				if("pain")
+					L.adjustPainLoss(amount)
+					newamt = L.getPainLoss()
 				else
 					to_chat(usr, "You caused an error. DEBUG: Text:[Text] Mob:[L]")
 					return

@@ -1,0 +1,57 @@
+[2020-09-28 05:08:46.651] Starting up round ID .
+ - -------------------------
+[2020-09-28 05:08:46.708] ADMIN: Loading Banlist
+[2020-09-28 05:08:46.753] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-28 05:08:46.756] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-28 05:08:49.485] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-28 05:08:52.884] GAME: Saved mode is 'extended'
+[2020-09-28 05:09:05.470] GAME: Hierophant's Arena loaded at 157,156,6
+[2020-09-28 05:09:05.488] GAME: Blood-Drunk Miner (Guidance) loaded at 63,114,6
+[2020-09-28 05:09:05.505] GAME: Blood-Drunk Miner (Hunter) loaded at 79,135,6
+[2020-09-28 05:09:05.522] GAME: Blood-Drunk Miner loaded at 178,191,6
+[2020-09-28 05:09:05.540] GAME: King Goat Boss Ruin loaded at 205,73,6
+[2020-09-28 05:09:05.563] GAME: Rogue's Arena loaded at 184,136,6
+[2020-09-28 05:09:05.601] GAME: Sif's Sword loaded at 54,63,6
+[2020-09-28 05:09:05.608] GAME: Pulsating Tumor loaded at 100,124,6
+[2020-09-28 05:09:05.620] GAME: Crashed Shuttle loaded at 150,118,6
+[2020-09-28 05:09:05.694] GAME: Alien Nest loaded at 32,167,6
+[2020-09-28 05:09:06.114] GAME: Syndicate Lava Base loaded at 139,31,6
+[2020-09-28 05:09:06.142] GAME: Dark Wizard Altar loaded at 64,155,6
+[2020-09-28 05:09:09.521] GAME: Abandoned Teleporter loaded at 206,81,8
+[2020-09-28 05:09:09.543] GAME: Whiteship Dock loaded at 181,165,7
+[2020-09-28 05:09:09.603] GAME: Asteroid 5 loaded at 73,182,8
+[2020-09-28 05:09:09.800] GAME: Crashed Ship loaded at 67,79,7
+[2020-09-28 05:09:09.832] GAME: Asteroid 2 loaded at 118,101,8
+[2020-09-28 05:09:09.855] GAME: Big Ape loaded at 139,212,3
+[2020-09-28 05:09:09.912] GAME: Biological Storage Facility loaded at 156,80,8
+[2020-09-28 05:09:09.958] GAME: Derelict 4 loaded at 124,67,3
+[2020-09-28 05:09:09.998] GAME: Abductor Replication Lab loaded at 141,46,8
+[2020-09-28 05:09:10.148] GAME: Derelict Tradepost loaded at 52,89,8
+[2020-09-28 05:09:10.193] GAME: Derelict 1 loaded at 199,195,8
+[2020-09-28 05:09:10.235] GAME: Derelict 3 loaded at 141,110,8
+[2020-09-28 05:09:10.274] GAME: Ancient Cloning Lab loaded at 154,210,4
+[2020-09-28 05:09:10.436] GAME: Syndicate Ambush loaded at 69,65,4
+[2020-09-28 05:09:10.439] GAME: Detached Teleporter loaded at 45,145,4
+[2020-09-28 05:09:10.498] GAME: Derelict 5 loaded at 131,169,8
+[2020-09-28 05:09:10.524] GAME: Dead wizard Roid loaded at 173,213,2
+[2020-09-28 05:09:10.539] GAME: Crab Roid loaded at 147,214,2
+[2020-09-28 05:09:10.556] GAME: Mineable Asteroid 4 loaded at 175,26,2
+[2020-09-28 05:09:10.578] GAME: Mineable Asteroid 3 loaded at 34,24,2
+[2020-09-28 05:09:10.599] GAME: Mineable Asteroid 2 loaded at 213,208,2
+[2020-09-28 05:09:10.606] GAME: Mineable Asteroid 1 loaded at 194,27,2
+[2020-09-28 05:09:10.634] GAME: Monitoring Roid loaded at 208,188,2
+[2020-09-28 05:09:10.666] GAME: Mineable Asteroid 5 loaded at 30,45,2
+[2020-09-28 05:09:10.684] GAME: Maze Roid loaded at 38,212,2
+[2020-09-28 05:09:10.709] GAME: Dorm Roid loaded at 48,28,2
+[2020-09-28 05:09:10.823] GAME: Box SM loaded at 96,49,2
+[2020-09-28 05:09:11.109] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-28 05:09:16.556] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-28 05:09:16.558] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-28 05:09:16.558] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-28 05:09:16.559] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-28 05:09:16.561] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-28 05:09:16.570] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-28 05:09:16.579] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-28 05:09:16.584] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-28 05:10:08.939] ACCESS: Logout: Bob Joga/(Bob Joga)
+[2020-09-28 05:10:08.942] GAME: Bob Joga[DC]/(Bob Joga) Bob Joga[DC]/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))

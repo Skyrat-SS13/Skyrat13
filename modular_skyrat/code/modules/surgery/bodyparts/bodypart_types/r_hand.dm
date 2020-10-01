@@ -4,8 +4,8 @@
 	icon_state = "default_human_r_hand"
 	aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER)
 	attack_verb = list("slapped", "punched")
-	max_damage = 50
-	max_stamina_damage = 50
+	max_damage = 30
+	max_stamina_damage = 30
 	body_zone = BODY_ZONE_PRECISE_R_HAND
 	body_part = HAND_RIGHT
 	held_index = 2
@@ -31,6 +31,8 @@
 		return
 	if(owner.stat < UNCONSCIOUS)
 		switch(disabled)
+			if(BODYPART_DISABLED_PAIN)
+				owner.custom_pain("The pain in your [name] is too agonizing!", pain_dam/3, TRUE, src)
 			if(BODYPART_DISABLED_DAMAGE)
 				owner.emote("scream")
 				to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")

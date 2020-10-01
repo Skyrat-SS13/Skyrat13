@@ -17,6 +17,7 @@
 	var/tase_duration = 50
 	var/strong_tase = TRUE
 	wound_bonus = CANT_WOUND
+	pain = 20 //WHAT DO YOU MEAN TASERS ACTUALLY HURT A LOT?
 
 /obj/item/projectile/energy/electrode/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -30,7 +31,9 @@
 		if(C.dna && C.dna.check_mutation(HULK))
 			C.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
 		else if(tase_duration && (C.status_flags & CANKNOCKDOWN) && !HAS_TRAIT(C, TRAIT_STUNIMMUNE) && !HAS_TRAIT(C, TRAIT_TASED_RESISTANCE))
-			C.apply_status_effect(strong_tase? STATUS_EFFECT_TASED : STATUS_EFFECT_TASED_WEAK, tase_duration)
+			//Painkillers affect the effectiveness of tasers
+			var/real_duration = (tase_duration * max(0.1, 1 - (C.chem_effects[CE_PAINKILLER]/100)))
+			C.apply_status_effect(strong_tase? STATUS_EFFECT_TASED : STATUS_EFFECT_TASED_WEAK, real_duration)
 			addtimer(CALLBACK(C, /mob/living/carbon.proc/do_jitter_animation, jitter), 5)
 
 /obj/item/projectile/energy/electrode/on_range() //to ensure the bolt sparks when it reaches the end of its range if it didn't hit a target yet

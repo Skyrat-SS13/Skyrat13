@@ -1,0 +1,53 @@
+[2020-09-16 13:37:20.789] Starting up round ID .
+ - -------------------------
+[2020-09-16 13:37:20.831] ADMIN: Loading Banlist
+[2020-09-16 13:37:20.864] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-16 13:37:20.864] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-16 13:37:24.455] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-16 13:37:26.570] GAME: Saved mode is 'extended'
+[2020-09-16 13:37:30.173] ADMIN: Bob Joga has started the game.
+[2020-09-16 13:37:38.568] GAME: Hierophant's Arena loaded at 42,188,6
+[2020-09-16 13:37:38.588] GAME: Blood-Drunk Miner (Guidance) loaded at 75,73,6
+[2020-09-16 13:37:38.606] GAME: Blood-Drunk Miner (Hunter) loaded at 144,148,6
+[2020-09-16 13:37:38.623] GAME: Blood-Drunk Miner loaded at 39,144,6
+[2020-09-16 13:37:38.642] GAME: King Goat Boss Ruin loaded at 69,139,6
+[2020-09-16 13:37:38.666] GAME: Rogue's Arena loaded at 90,149,6
+[2020-09-16 13:37:38.703] GAME: Sif's Sword loaded at 122,64,6
+[2020-09-16 13:37:38.711] GAME: Pulsating Tumor loaded at 175,205,6
+[2020-09-16 13:37:38.736] GAME: UFO Crash loaded at 90,126,6
+[2020-09-16 13:37:38.760] GAME: Ruin of Greed loaded at 178,178,6
+[2020-09-16 13:37:38.767] GAME: Ripley loaded at 210,194,6
+[2020-09-16 13:37:38.849] GAME: Alien Nest loaded at 162,35,6
+[2020-09-16 13:37:38.870] GAME: Ruin of Pride loaded at 133,100,6
+[2020-09-16 13:37:38.888] GAME: Survival Capsule Ruins loaded at 114,115,6
+[2020-09-16 13:37:38.911] GAME: Ruin of Sloth loaded at 50,212,6
+[2020-09-16 13:37:38.918] GAME: Pulsating Tumor loaded at 178,154,6
+[2020-09-16 13:37:38.925] GAME: Pulsating Tumor loaded at 145,181,6
+[2020-09-16 13:37:42.124] GAME: Abandoned Teleporter loaded at 202,70,8
+[2020-09-16 13:37:42.146] GAME: Whiteship Dock loaded at 160,142,4
+[2020-09-16 13:37:42.200] GAME: Hilbert Research Facility loaded at 191,168,3
+[2020-09-16 13:37:42.232] GAME: Dinner for Two loaded at 129,69,4
+[2020-09-16 13:37:42.269] GAME: Ancient Cloning Lab loaded at 32,36,3
+[2020-09-16 13:37:42.376] GAME: Abandoned Telecommunications Satellite loaded at 40,107,8
+[2020-09-16 13:37:42.415] GAME: Strange Ship loaded at 75,168,8
+[2020-09-16 13:37:42.439] GAME: Big Ape loaded at 67,27,3
+[2020-09-16 13:37:42.906] GAME: Kosmicheskaya Stantsiya 13 loaded at 109,73,8
+[2020-09-16 13:37:43.029] GAME: Space Hermit loaded at 62,103,4
+[2020-09-16 13:37:43.073] GAME: Space Arcade loaded at 114,205,8
+[2020-09-16 13:37:43.233] GAME: Derelict Tradepost loaded at 31,158,4
+[2020-09-16 13:37:43.399] GAME: Crashed Ship loaded at 83,182,3
+[2020-09-16 13:37:43.502] GAME: A Giant Ball of Paper in Space loaded at 121,82,7
+[2020-09-16 13:37:43.548] GAME: Derelict 1 loaded at 107,29,8
+[2020-09-16 13:37:43.588] GAME: Waylaid Buses loaded at 206,39,8
+[2020-09-16 13:37:43.605] GAME: Mineable Asteroid 3 loaded at 200,207,2
+[2020-09-16 13:37:43.635] GAME: Mineable Asteroid 5 loaded at 34,35,2
+[2020-09-16 13:37:43.650] GAME: Crab Roid loaded at 209,183,2
+[2020-09-16 13:37:43.668] GAME: Dead wizard Roid loaded at 168,201,2
+[2020-09-16 13:37:43.693] GAME: Monitoring Roid loaded at 147,212,2
+[2020-09-16 13:37:43.723] GAME: Dorm Roid loaded at 29,213,2
+[2020-09-16 13:37:43.733] GAME: Mineable Asteroid 1 loaded at 23,200,2
+[2020-09-16 13:37:43.755] GAME: Maze Roid loaded at 188,28,2
+[2020-09-16 13:37:43.772] GAME: Mineable Asteroid 4 loaded at 28,67,2
+[2020-09-16 13:37:43.793] GAME: Mineable Asteroid 2 loaded at 57,23,2
+[2020-09-16 13:37:43.902] GAME: Box SM loaded at 96,49,2
+[2020-09-16 13:37:44.174] GAME: Public Mining Base loaded at 1,1,6

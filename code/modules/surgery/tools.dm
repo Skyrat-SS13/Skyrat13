@@ -9,6 +9,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	tool_behaviour = TOOL_RETRACTOR
 	toolspeed = 1
+	germ_level = 0
 
 /obj/item/retractor/advanced
 	name = "mechanical pinches"
@@ -54,6 +55,7 @@
 	attack_verb = list("attacked", "pinched")
 	tool_behaviour = TOOL_HEMOSTAT
 	toolspeed = 1
+	germ_level = 0
 
 /obj/item/hemostat/augment
 	name = "hemostat"
@@ -78,6 +80,7 @@
 	attack_verb = list("burnt")
 	tool_behaviour = TOOL_CAUTERY
 	toolspeed = 1
+	germ_level = 0
 
 /obj/item/cautery/augment
 	name = "cautery"
@@ -106,6 +109,8 @@
 	attack_verb = list("drilled")
 	tool_behaviour = TOOL_DRILL
 	toolspeed = 1
+	sharpness = SHARP_POINTY
+	germ_level = 0
 
 /obj/item/surgicaldrill/advanced
 	name = "searing tool"
@@ -169,6 +174,7 @@
 	//skyrat edit
 	wound_bonus = 10
 	bare_wound_bonus = 10
+	germ_level = 0
 	//
 
 /obj/item/scalpel/Initialize()
@@ -254,6 +260,7 @@
 	//skyrat edit
 	wound_bonus = 10
 	bare_wound_bonus = 10
+	germ_level = 0
 	//
 
 /obj/item/circular_saw/Initialize()
@@ -285,6 +292,7 @@
 	icon_state = "surgical_drapes"
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("slapped")
+	germ_level = 0
 
 /obj/item/surgical_drapes/attack(mob/living/M, mob/user)
 	if(!attempt_initiate_surgery(src, M, user))
@@ -397,4 +405,5 @@
 	attack_verb = list("corrected", "properly set")
 	tool_behaviour = TOOL_BONESET
 	toolspeed = 1
+	germ_level = 0
 //

@@ -6,6 +6,10 @@
 	var/implant_color = "#FFFFFF"
 	var/implant_overlay
 	var/syndicate_implant = FALSE //Makes the implant invisible to health analyzers and medical HUDs.
+	maxHealth = 0.45 * STANDARD_ORGAN_THRESHOLD
+	high_threshold = 0.3 * STANDARD_ORGAN_THRESHOLD	//threshold at 30
+	low_threshold = 0.1 * STANDARD_ORGAN_THRESHOLD	//threshold at 10
+	relative_size = 15
 
 /obj/item/organ/cyberimp/New(var/mob/M = null)
 	if(iscarbon(M))

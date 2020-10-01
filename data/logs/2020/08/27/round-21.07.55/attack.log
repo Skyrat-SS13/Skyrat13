@@ -1,0 +1,16 @@
+[2020-08-28 00:07:55.460] Starting up round ID .
+ - -------------------------
+[2020-08-28 00:19:35.103] Logs from logging subsystem:
+ - (2020-08-27 21:11:00) ATTACK: Bob Joga/(Cockmistress) has suffered: Rough Abrasion to left hand | Damage: 15(rolled 16/44.3127) | WB: 10 | BWB: 10 (Surgery (158, 107, 2))
+ - (2020-08-27 21:11:00) ATTACK: Bob Joga/(Cockmistress) has attacked Bob Joga/(Cockmistress) with circular saw[DC] (INTENT: HELP) (DAMTYPE: BRUTE) (NEWHP: 100)  (Surgery (158, 107, 2))
+ - (2020-08-27 21:11:02) ATTACK: Bob Joga/(Cockmistress) has attacked Bob Joga/(Cockmistress) with circular saw[DC] (INTENT: HELP) (DAMTYPE: BRUTE) (NEWHP: 100)  (Surgery (158, 107, 2))
+ - (2020-08-27 21:11:20) ATTACK: Bob Joga/(Cockmistress) has attacked Bob Joga/(Cockmistress) with circular saw[DC] (INTENT: HELP) (DAMTYPE: BRUTE) (NEWHP: 100)  (Surgery (159, 107, 2))
+ - (2020-08-27 21:11:30) ATTACK: Bob Joga/(Cockmistress) has attacked Bob Joga/(Cockmistress) with circular saw[DC] (INTENT: HELP) (DAMTYPE: BRUTE) (NEWHP: 100)  (Surgery (158, 107, 2))
+ - (2020-08-27 21:14:40) ATTACK: Bob Joga/(Cockmistress) has suffered: Rough Abrasion to left hand | Damage: 15(rolled 3/44.3127) | WB: 10 | BWB: 10 (Surgery (159, 107, 2))
+ - (2020-08-27 21:14:40) ATTACK: Bob Joga/(Cockmistress) has attacked Bob Joga/(Cockmistress) with circular saw[DC] (INTENT: HELP) (DAMTYPE: BRUTE) (NEWHP: 100)  (Surgery (159, 107, 2))
+ - (2020-08-27 21:14:43) ATTACK: Bob Joga/(Cockmistress) has suffered: Open Laceration to left hand | Damage: 16.5(rolled 46/50.6381) | WB: 10 | BWB: 10 (Surgery (160, 108, 2))
+ - (2020-08-27 21:14:43) ATTACK: Bob Joga/(Cockmistress) has attacked Bob Joga/(Cockmistress) with circular saw[DC] (INTENT: HELP) (DAMTYPE: BRUTE) (NEWHP: 100)  (Surgery (160, 108, 2))
+ - (2020-08-27 21:16:27) ATTACK: Bob Joga/(Cockmistress) has suffered: Rough Abrasion to left hand | Damage: 15(rolled 9/44.3127) | WB: 10 | BWB: 10 (Surgery (157, 108, 2))
+ - (2020-08-27 21:16:27) ATTACK: Bob Joga/(Cockmistress) has attacked Bob Joga/(Cockmistress) with circular saw[DC] (INTENT: HELP) (DAMTYPE: BRUTE) (NEWHP: 100)  (Surgery (157, 108, 2))
+ - (2020-08-27 21:16:28) ATTACK: Bob Joga/(Cockmistress) has suffered: Open Laceration to left hand | Damage: 16.5(rolled 39/50.6381) | WB: 10 | BWB: 10 (Medbay Central (153, 108, 2))
+ - (2020-08-27 21:16:28) ATTACK: Bob Joga/(Cockmistress) has attacked Bob Joga/(Cockmistress) with circular saw[DC] (INTENT: HELP) (DAMTYPE: BRUTE) (NEWHP: 100)  (Medbay Central (153, 108, 2))

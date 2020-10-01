@@ -1,0 +1,9 @@
+[2020-09-08 19:46:29.758] Starting up round ID .
+ - -------------------------
+[2020-09-08 19:46:29.823] ADMIN: Loading Banlist
+[2020-09-08 19:46:29.881] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-08 19:46:29.882] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-08 19:46:33.171] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-08 19:46:37.574] GAME: Saved mode is 'extended'
+[2020-09-08 19:46:39.393] ACCESS: Logout: Bob Joga/(Bob Joga)
+[2020-09-08 19:46:39.395] GAME: Bob Joga[DC]/(Bob Joga) Bob Joga[DC]/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))

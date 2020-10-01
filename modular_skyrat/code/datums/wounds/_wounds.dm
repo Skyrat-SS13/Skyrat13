@@ -53,6 +53,8 @@
 	var/fake_limb = null
 	/// The body zone of the phantom limb
 	var/fake_body_zone = null
+	/// Wound flags, mostly used to handle mangling
+	var/wound_flags = 0
 
 	/// Specific items such as bandages or sutures that can try directly treating this wound
 	var/list/treatable_by
@@ -84,7 +86,8 @@
 	/// How much having this wound will add to all future check_wounding() rolls on this limb, to allow progression to worse injuries with repeated damage
 	var/threshold_penalty
 	/// If we need to process each life tick
-	var/processes = FALSE
+	/// By default, all wounds have to process infections
+	var/processes = TRUE
 
 	/// If TRUE and an item that can treat multiple different types of coexisting wounds (gauze can be used to splint broken bones, staunch bleeding, and cover burns), we get first dibs if we come up first for it, then become nonpriority.
 	/// Otherwise, if no untreated wound claims the item, we cycle through the non priority wounds and pick a random one who can use that item.
@@ -95,6 +98,17 @@
 
 	/// If having this wound makes currently makes the parent bodypart unusable
 	var/disabling
+
+	/// How much this wound reduces organ_damage_threshold in /obj/item/bodypart/damage_organs() (organ_threshold_reduction * organ_damage_hit_minimum)
+	var/organ_threshold_reduction = 0.1
+	/// How much this wound reduces organ_damage_required in /obj/item/bodypart/damage_organs() (organ_required_reduction* organ_damage_requirement)
+	var/organ_required_reduction = 0.1
+	/// How much pain this wound causes
+	var/pain_amount = 5
+	/// How much this wound increases the damage on organ damage rolls, multiplier
+	var/damage_roll_increase = 0.1
+	/// How much this wound increases the damage on organ damage rolls, flat
+	var/flat_damage_roll_increase = 2.5
 
 	/// What status effect we assign on application
 	var/status_effect_type
@@ -113,6 +127,17 @@
 	var/from_smite
 	/// Can we do a far cry and treat this wound just by clicking some text on the check self stuff?
 	var/can_self_treat = FALSE
+
+	/// Chance of this wound getting infected
+	var/infection_chance = 0
+	/// How many germs we add once we pass the infection check
+	var/infection_rate = 1
+	/// Germ level of the wound
+	var/germ_level = 0
+	/// Our current level of sanitization/anti-infection, from disinfectants/alcohol/UV lights. While positive, totally pauses and slowly reverses germ_level effects each tick
+	var/sanitization = 0
+	/// Once we reach germ_level beyond WOUND_germ_level_SEPSIS, we get this many warnings before the limb is completely paralyzed (you'd have to ignore a really bad burn for a really long time for this to happen)
+	var/strikes_to_lose_limb = 3
 
 /datum/wound/Topic(href, href_list)
 	if(!victim)
@@ -150,6 +175,7 @@
 		if(victim)
 			for(var/i in associated_alerts)
 				victim.clear_alert(i)
+
 /**
   * apply_wound() is used once a wound type is instantiated to assign it to a bodypart, and actually come into play.
   *
@@ -239,8 +265,9 @@
 	if(limb && !already_scarred && !replaced)
 		already_scarred = TRUE
 		if(limb.is_organic_limb())
-			var/datum/scar/new_scar = new
-			new_scar.generate(limb, src)
+			if(CAN_SCAR in victim.dna?.species?.species_traits)
+				var/datum/scar/new_scar = new
+				new_scar.generate(limb, src)
 	if(victim)
 		LAZYREMOVE(victim.all_wounds, src)
 		if(!victim.all_wounds)
@@ -258,12 +285,18 @@
   * Arguments:
   * * new_type- The TYPE PATH of the wound you want to replace this, like /datum/wound/slash/severe
   * * smited- If this is a smite, we don't care about this wound for stat tracking purposes (not yet implemented)
+  * * transfer_vars - Whether or not we should transfer our germ_level and sanitization
   */
-/datum/wound/proc/replace_wound(new_type, smited = FALSE)
+/datum/wound/proc/replace_wound(new_type, smited = FALSE, transfer_vars = FALSE)
 	var/datum/wound/new_wound = new new_type
 	already_scarred = TRUE
+	var/infected = germ_level
+	var/disinfected = sanitization
 	remove_wound(replaced=TRUE)
 	new_wound.apply_wound(limb, old_wound = src, smited = smited)
+	if(transfer_vars)
+		new_wound.germ_level = infected
+		new_wound.sanitization = disinfected
 	qdel(src)
 	return new_wound
 
@@ -277,17 +310,20 @@
 		return
 	if(HAS_TRAIT(victim, TRAIT_NODETERMINATION)) //toby is gone
 		return
-	switch(severity)	
-		if(WOUND_SEVERITY_MODERATE)
-			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_MODERATE)
-		if(WOUND_SEVERITY_SEVERE)
-			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_SEVERE)
-		if(WOUND_SEVERITY_CRITICAL)
-			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_CRITICAL)
-		if(WOUND_SEVERITY_LOSS)
-			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_LOSS)
-		if(WOUND_SEVERITY_PERMANENT)
-			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_PERMANENT)
+	//Kidneys regulate the production of adrenaline (determination)
+	var/obj/item/organ/kidneys/kidneys = victim.getorganslot(ORGAN_SLOT_KIDNEYS)
+	if(kidneys && kidneys.get_adrenaline_multiplier())
+		switch(severity)	
+			if(WOUND_SEVERITY_MODERATE)
+				victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_MODERATE * kidneys.get_adrenaline_multiplier())
+			if(WOUND_SEVERITY_SEVERE)
+				victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_SEVERE * kidneys.get_adrenaline_multiplier())
+			if(WOUND_SEVERITY_CRITICAL)
+				victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_CRITICAL * kidneys.get_adrenaline_multiplier())
+			if(WOUND_SEVERITY_LOSS)
+				victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_LOSS * kidneys.get_adrenaline_multiplier())
+			if(WOUND_SEVERITY_PERMANENT)
+				victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_PERMANENT * kidneys.get_adrenaline_multiplier())
 
 /**
   * try_treating() is an intercept run from [/mob/living/carbon/attackby()] right after surgeries but before anything else. Return TRUE here if the item is something that is relevant to treatment to take over the interaction.
@@ -334,6 +370,8 @@
 		return TRUE
 	
 	// lastly, treat them
+	if(treat_infection(I, user))
+		return
 	treat(I, user)
 	return TRUE
 
@@ -349,16 +387,100 @@
 /datum/wound/proc/treat(obj/item/I, mob/user)
 	return
 
+/// Someone is using something that might be used for treating the infection on this limb
+/datum/wound/proc/treat_infection(obj/item/I, mob/user)
+	if(germ_level < WOUND_INFECTION_SANITIZATION_RATE)
+		return FALSE
+	else if(istype(I, /obj/item/stack/medical/ointment))
+		ointment(I, user)
+		return TRUE
+	else if(istype(I, /obj/item/stack/medical/mesh))
+		mesh(I, user)
+		return TRUE
+	else if(istype(I, /obj/item/flashlight/pen/paramedic))
+		uv(I, user)
+		return TRUE
+
 /// If var/processing is TRUE, this is run on each life tick
 /datum/wound/proc/handle_process()
+	handle_germs()
 	return
+
+/// Handle the effects of infections
+/datum/wound/proc/handle_germs()
+	if(strikes_to_lose_limb <= 0)
+		limb.receive_damage(toxin = 1)
+		if(prob(1))
+			victim.visible_message("<span class='danger'>The infection on the remnants of [victim]'s [limb.name] shift and bubble nauseatingly!</span>", "<span class='warning'>You can feel the infection on the remnants of your [limb.name] coursing through your veins!</span>")
+		disabling = TRUE
+		return
+	
+	var/antibiotics = victim.get_antibiotics()
+	sanitization += (antibiotics * WOUND_SANITIZATION_PER_ANTIBIOTIC)
+
+	if(limb.current_gauze)
+		limb.seep_gauze(WOUND_INFECTION_SEEP_RATE)
+
+	// sanitization is checked after the clearing check but before the rest, because we freeze the effects of infection while we have sanitization
+	if(sanitization > 0)
+		var/bandage_factor = (limb.current_gauze ? limb.current_gauze.splint_factor : 1)
+		germ_level = max(0, germ_level - WOUND_INFECTION_SANITIZATION_RATE)
+		sanitization = max(0, sanitization - (WOUND_INFECTION_SANITIZATION_RATE * bandage_factor))
+		return
+
+	switch(germ_level)
+		if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
+			if(prob(30))
+				victim.adjustToxLoss(0.2)
+				if(prob(6))
+					to_chat(victim, "<span class='warning'>The [src.name] on your [limb.name] oozes a strange pus...</span>")
+		if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
+			if(!disabling && prob(2))
+				to_chat(victim, "<span class='warning'><b>Your [limb.name] completely locks up, as you struggle for control against the infection!</b></span>")
+				disabling = TRUE
+			else if(disabling && prob(8))
+				to_chat(victim, "<span class='notice'>You regain sensation in your [limb.name], but it's still in terrible shape!</span>")
+				disabling = FALSE
+			else if(prob(20))
+				victim.adjustToxLoss(0.5)
+		if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
+			if(!disabling && prob(3))
+				to_chat(victim, "<span class='warning'><b>You suddenly lose all sensation of the festering infection in your [limb.name]!</b></span>")
+				disabling = TRUE
+				pain_amount += 2
+			else if(disabling && prob(3))
+				to_chat(victim, "<span class='notice'>You can barely feel your [limb.name] again, and you have to strain to retain motor control!</span>")
+				disabling = FALSE
+				pain_amount += 2
+			else if(prob(1))
+				to_chat(victim, "<span class='warning'>You contemplate life without your [limb.name]...</span>")
+				victim.adjustToxLoss(0.75)
+				pain_amount += 2
+			else if(prob(4))
+				victim.adjustToxLoss(1)
+		if(WOUND_INFECTION_SEPTIC to INFINITY)
+			if(prob((germ_level)/(WOUND_INFECTION_MODERATE * 10)))
+				switch(strikes_to_lose_limb)
+					if(3 to INFINITY)
+						to_chat(victim, "<span class='deadsay'>The skin on your [limb.name] is literally dripping off, you feel awful!</span>")
+					if(2)
+						to_chat(victim, "<span class='deadsay'><b>The infection in your [limb.name] is literally dripping off, you feel horrible!</b></span>")
+					if(1)
+						to_chat(victim, "<span class='deadsay'><b>Infection has just about completely claimed your [limb.name]!</b></span>")
+					if(0)
+						to_chat(victim, "<span class='deadsay'><b>The last of the nerve endings in your [limb.name] wither away, as the infection completely paralyzes your joint connector.</b></span>")
+						threshold_penalty = 120 // piss easy to destroy
+						var/datum/brain_trauma/severe/paralysis/sepsis = new (limb.body_zone)
+						victim.gain_trauma(sepsis)
+				pain_amount += 4
+				strikes_to_lose_limb--
 
 /// For use in do_after callback checks
 /datum/wound/proc/still_exists()
 	return (!QDELETED(src) && limb)
 
 /// When our parent bodypart is hurt
-/datum/wound/proc/receive_damage(wounding_type, wounding_dmg, wound_bonus)
+/datum/wound/proc/receive_damage(wounding_type, wounding_dmg, wound_bonus, pain_dmg)
 	return
 
 /// Called from cryoxadone and pyroxadone when they're proc'ing. Wounds will slowly be fixed separately from other methods when these are in effect. crappy name but eh
@@ -393,6 +515,10 @@
 		blood_flow = max(round(blood_flow - (initial(blood_flow)/5), 0.1), 0)
 		if(victim)
 			victim.visible_message("<span class='notice'>The [lowertext(src.name)] on [victim]'s [limb.name] seems to be significantly eased.</span>")
+	if(quantity >= 10)
+		germ_level = max(round(germ_level - WOUND_INFECTION_MODERATE, 0.1), 0)
+		if(victim)
+			victim.visible_message("<span class='notice'>The [lowertext(src.name)] on [victim]'s [limb] seems significantly cleaner.</span>")
 
 /// Used when put on a stasis bed
 /datum/wound/proc/on_stasis()
@@ -417,17 +543,59 @@
   * Arguments:
   * * mob/user: The user examining the wound's owner, if that matters
   */
-/datum/wound/proc/get_examine_description(mob/user, check_victim = TRUE)
-	if(check_victim && victim)
-		. = "[victim.p_their(TRUE)] [fake_limb ? fake_limb : limb.name] [examine_desc]"
+/datum/wound/proc/get_examine_description(mob/user)
+	if(strikes_to_lose_limb <= 0)
+		return "<span class='deadsay'><B>[victim.p_their(TRUE)] [limb.name] is completely dead and unrecognizable as organic.</B></span>"
+
+	var/condition = ""
+	if(limb.current_gauze)
+		var/bandage_condition
+		switch(limb.current_gauze.absorption_capacity)
+			if(0 to 1.25)
+				bandage_condition = "nearly ruined "
+			if(1.25 to 2.75)
+				bandage_condition = "badly worn "
+			if(2.75 to 4)
+				bandage_condition = "slightly bloodied "
+			if(4 to INFINITY)
+				bandage_condition = "clean "
+
+		condition += " underneath a dressing of [bandage_condition] [limb.current_gauze.name]"
 	else
-		. = "[fake_limb ? fake_limb : limb.name] [examine_desc]"
-		if(severity == WOUND_SEVERITY_LOSS)
-			. = "It's [fake_limb ? fake_limb : limb.name] [examine_desc]"
-	. = (severity <= WOUND_SEVERITY_MODERATE) ? "[.]." : "<B>[.]!</B>"
+		switch(germ_level)
+			if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
+				condition += ", <span class='deadsay'>with small spots of discoloration along the nearby veins</span>"
+			if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
+				condition += ", <span class='deadsay'>with dark clouds spreading outwards under the skin</span>"
+			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
+				condition += ", <span class='deadsay'>with streaks of rotten infection pulsating outward</span>"
+			if(WOUND_INFECTION_SEPTIC to INFINITY)
+				return "<span class='deadsay'><B>[victim.p_their(TRUE)] [limb.name] is a mess of pus and rot, skin literally dripping off the bone with infection!</B></span>"
+
+	. = "[victim.p_their(TRUE)] [fake_limb ? fake_limb : limb.name] [examine_desc][condition]"
+	if(severity >= WOUND_SEVERITY_MODERATE)
+		. = "<B>[.]!</B>"
+	else
+		. = "[.]."
 
 /datum/wound/proc/get_scanner_description(mob/user)
-	return "Type: [name]\nSeverity: [severity_text()]\nDescription: [desc]\nRecommended Treatment: [treat_text]"
+	var/infection_level = "None"
+	switch(germ_level)
+		if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
+			infection_level = "Moderate"
+		if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
+			infection_level = "Severe"
+		if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
+			infection_level = "<span class='deadsay'>CRITICAL</span>"
+		if(WOUND_INFECTION_SEPTIC to INFINITY)
+			infection_level = "<span class='deadsay'>LOSS IMMINENT</span>"
+	if(strikes_to_lose_limb <= 0)
+		infection_level = "<span class='deadsay'>The infection is total. The bodypart is lost. Amputate or augment limb immediately.</span>"
+	. = "Type: [name]\nSeverity: [severity_text()]\nDescription: [desc]\nRecommended Treatment: [treat_text]\nInfection Level: [infection_level]\n"
+	if((germ_level >= WOUND_INFECTION_MODERATE) && (sanitization < germ_level))
+		. += "<div class='ml-3'>"
+		. += "\tSurgical debridement, antiobiotics/sterilizers, or regenerative mesh will rid infection. Paramedic UV penlights are also effective.\n"
+		. += "</div>"
 
 /datum/wound/proc/severity_text()
 	switch(severity)
@@ -443,3 +611,66 @@
 			return "Dismembered"
 		if(WOUND_SEVERITY_PERMANENT)
 			return "Permanent"
+
+//Infections
+/datum/wound/proc/infection_check()
+	if(is_treated())
+		return FALSE
+	if(is_disinfected())
+		return FALSE
+	return prob(infection_chance)
+
+/datum/wound/proc/is_treated()
+	return FALSE
+
+/datum/wound/proc/is_disinfected()
+	return (sanitization > germ_level)
+
+/// Paramedic UV penlight disinfection
+/datum/wound/proc/uv(obj/item/flashlight/pen/paramedic/I, mob/user)
+	if(I.uv_cooldown > world.time)
+		to_chat(user, "<span class='notice'>[I] is still recharging!</span>")
+		return
+	if(germ_level <= WOUND_INFECTION_SANITIZATION_RATE || germ_level < sanitization)
+		to_chat(user, "<span class='notice'>There's no infection to treat on [victim]'s [limb.name]!</span>")
+		return
+
+	user.visible_message("<span class='notice'>[user] flashes the infection on [victim]'s [limb] with [I].</span>", "<span class='notice'>You flash the infection on [user == victim ? "your" : "[victim]'s"] [limb.name] with [I].</span>", vision_distance=COMBAT_MESSAGE_RANGE)
+	sanitization += I.uv_power
+	I.uv_cooldown = world.time + I.uv_cooldown_length
+
+/// If someone is using mesh on our infection
+/datum/wound/proc/mesh(obj/item/stack/medical/mesh/I, mob/user)
+	user.visible_message("<span class='notice'>[user] begins wrapping [victim]'s [limb.name] with [I]...</span>", "<span class='notice'>You begin wrapping [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]...</span>")
+	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay), target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+		return
+	if(!I.use(1))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
+		return
+	
+	limb.heal_damage(I.heal_brute, I.heal_burn)
+	user.visible_message("<span class='green'>[user] applies [I] to [victim].</span>", "<span class='green'>You apply [I] to [user == victim ? "your" : "[victim]'s"] [limb.name].</span>")
+	sanitization += I.sanitization
+
+	if(sanitization >= germ_level)
+		to_chat(user, "<span class='notice'>You've done all you can with [I], now you must wait for the infection on [victim]'s [limb.name] to go away.</span>")
+	else
+		try_treating(I, user)
+
+/// If someone is using ointment on our infection
+/datum/wound/proc/ointment(obj/item/stack/medical/ointment/I, mob/user)
+	user.visible_message("<span class='notice'>[user] begins applying [I] to [victim]'s [limb.name]...</span>", "<span class='notice'>You begin applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name]...</span>")
+	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay), extra_checks = CALLBACK(src, .proc/still_exists)))
+		return
+	if(!I.use(1))
+		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
+		return
+	
+	limb.heal_damage(I.heal_brute, I.heal_burn)
+	user.visible_message("<span class='green'>[user] applies [I] to [victim].</span>", "<span class='green'>You apply [I] to [user == victim ? "your" : "[victim]'s"] [limb.name].</span>")
+	sanitization += I.sanitization
+
+	if((germ_level <= 0 || sanitization >= germ_level))
+		to_chat(user, "<span class='notice'>You've done all you can with [I], now you must wait for the infection on [victim]'s [limb.name] to go away.</span>")
+	else
+		try_treating(I, user)

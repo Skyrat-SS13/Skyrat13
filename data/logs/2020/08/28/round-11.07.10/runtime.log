@@ -1,0 +1,1053 @@
+[2020-08-28 14:07:10.592] Starting up round ID .
+ - -------------------------
+[2020-08-28 14:07:10.598] Running /tg/ revision: 2020-08-28
+ - origin/master: 4f79c5ce07936ff70e9f963d03feb62ddf5c0362
+ - HEAD: 2ec4e9e6f761491cef40a887f08b8add94ea3f78
+[2020-08-28 14:07:11.852] Loading Box Station...
+[2020-08-28 14:07:18.803] Loaded Station in 7s!
+[2020-08-28 14:07:21.378] Loaded Lavaland in 2.5s!
+[2020-08-28 14:07:22.659] Ruin loader finished with 0 left to spend.
+[2020-08-28 14:07:25.737] Ruin loader finished with 0 left to spend.
+[2020-08-28 14:07:25.897] Ruin loader finished with 0 left to spend.
+[2020-08-28 14:08:01.692] ## WARNING: HEY! LISTEN! 0.7 seconds were wasted processing 352 turf(s) (connected to 31064 other turfs) with atmos differences at round start.
+[2020-08-28 14:08:22.025] Initializations complete within 70.5 seconds!
+[2020-08-28 14:09:07.264] Game start took 0.7s
+[2020-08-28 14:11:03.473] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag), "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag), "head")
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): pixel move(7, 0, 0.5, 1, 1)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(0)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:11:04.875] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag), "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag), "head")
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): pixel move(7, 0, 0.5, 1, 1)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(0)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:11:06.223] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag), "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag), "head")
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): pixel move(7, 0, 0.5, 1, 1)
+ - the beanbag slug (/obj/item/projectile/bullet/shotgun_beanbag): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(0)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:11:25.589] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (119,74,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.47c6c49ec1fc9d077654cc93...", /icon (/icon))
+ - icon2html(the beanbag slug (/obj/item/shrapnel/bullet), Cockmistress (/mob/living/carbon/human), "s-casing", 2, 1, 0)
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Orxun Simbine (/mob/living/carbon/human/species/felinid), "icon-x=18;icon-y=22;vis-x=23;v...")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): Click(the floor (121,75,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=22;vis-x=23;v...", 0)
+ - Bob Joga (/client): Click(Orxun Simbine (/mob/living/carbon/human/species/felinid), the floor (121,75,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=22;vis-x=23;v...", 0)
+ - 
+[2020-08-28 14:11:28.435] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (117,77,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.47c6c49ec1fc9d077654cc93...", /icon (/icon))
+ - icon2html(the beanbag slug (/obj/item/shrapnel/bullet), Cockmistress (/mob/living/carbon/human), "s-casing", 2, 1, 0)
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Orxun Simbine (/mob/living/carbon/human/species/felinid), "icon-x=11;icon-y=19;vis-x=20;v...")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): Click(the floor (121,75,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=11;icon-y=19;vis-x=20;v...", 0)
+ - Bob Joga (/client): Click(Orxun Simbine (/mob/living/carbon/human/species/felinid), the floor (121,75,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=11;icon-y=19;vis-x=20;v...", 0)
+ - 
+[2020-08-28 14:11:46.812] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (119,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.47c6c49ec1fc9d077654cc93...", /icon (/icon))
+ - icon2html(the beanbag slug (/obj/item/shrapnel/bullet), Cockmistress (/mob/living/carbon/human), "s-casing", 2, 1, 0)
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Orxun Simbine (/mob/living/carbon/human/species/felinid), "icon-x=20;icon-y=11;vis-x=12;v...")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): Click(the floor (121,75,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=11;vis-x=12;v...", 0)
+ - Bob Joga (/client): Click(Orxun Simbine (/mob/living/carbon/human/species/felinid), the floor (121,75,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=11;vis-x=12;v...", 0)
+ - 
+[2020-08-28 14:14:53.724] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ -   usr: Cumguy (/mob/living/carbon/human)
+ -   src: the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super)
+ -   usr.loc: the floor (119,75,2) (/turf/open/floor/plasteel)
+ -   src.loc: Cumguy (/mob/living/carbon/human)
+ -   call stack:
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): build worn icon(3, 'modular_skyrat/icons/mob/inhan...', 1, 0, null, 0, 1, null)
+ - Cumguy (/mob/living/carbon/human): update inv hands()
+ - Cumguy (/mob/living/carbon/human): put in hand(the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super), 2, 0, 0)
+ - Cumguy (/mob/living/carbon/human): put in active hand(the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super), 0, 0)
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): attack hand(Cumguy (/mob/living/carbon/human))
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): attack hand(Cumguy (/mob/living/carbon/human))
+ - Cumguy (/mob/living/carbon/human): UnarmedAttack(the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super), 1)
+ - Cumguy (/mob/living/carbon/human): ClickOn(the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super), "icon-x=25;icon-y=13;left=1;scr...")
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): Click(the floor (119,74,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=25;icon-y=13;left=1;scr...", 0)
+ - Bob Joga (/client): Click(the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super), the floor (119,74,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=25;icon-y=13;left=1;scr...", 0)
+ - 
+[2020-08-28 14:15:12.788] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ -   usr: Cumguy (/mob/living/carbon/human)
+ -   src: the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super)
+ -   usr.loc: the floor (121,72,2) (/turf/open/floor/plasteel)
+ -   src.loc: Cumguy (/mob/living/carbon/human)
+ -   call stack:
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): build worn icon(3, 'modular_skyrat/icons/mob/inhan...', 1, 0, null, 0, 1, null)
+ - Cumguy (/mob/living/carbon/human): update inv hands()
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): process fire(the floor (121,76,2) (/turf/open/floor/plasteel), Cumguy (/mob/living/carbon/human), 1, "icon-x=15;icon-y=7;left=1;scre...", "", 0, 1)
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): process afterattack(the floor (121,76,2) (/turf/open/floor/plasteel), Cumguy (/mob/living/carbon/human), 0, "icon-x=15;icon-y=7;left=1;scre...")
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): afterattack(the floor (121,76,2) (/turf/open/floor/plasteel), Cumguy (/mob/living/carbon/human), 0, "icon-x=15;icon-y=7;left=1;scre...")
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): ranged attack chain(Cumguy (/mob/living/carbon/human), the floor (121,76,2) (/turf/open/floor/plasteel), "icon-x=15;icon-y=7;left=1;scre...")
+ - Cumguy (/mob/living/carbon/human): ClickOn(the floor (121,76,2) (/turf/open/floor/plasteel), "icon-x=15;icon-y=7;left=1;scre...")
+ - the floor (121,76,2) (/turf/open/floor/plasteel): Click(the floor (121,76,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=15;icon-y=7;left=1;scre...", 0)
+ - Bob Joga (/client): Click(the floor (121,76,2) (/turf/open/floor/plasteel), the floor (121,76,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=15;icon-y=7;left=1;scre...", 0)
+ - 
+[2020-08-28 14:15:12.916] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): pixel move(7, 0, 0.5, 1, 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(0)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:15:12.952] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): pixel move(7, 0, 0.5, 1, 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(1)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:15:12.987] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "l_arm")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "l_arm")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "l_arm")
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): pixel move(7, 0, 0.5, 1, 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(1)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:15:13.019] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): pixel move(7, 0, 0.5, 1, 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(1)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:15:13.052] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): pixel move(7, 0, 0.5, 1, 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(1)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:15:22.756] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ -   usr: Cumguy (/mob/living/carbon/human)
+ -   src: the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super)
+ -   usr.loc: the floor (121,73,2) (/turf/open/floor/plasteel)
+ -   src.loc: Cumguy (/mob/living/carbon/human)
+ -   call stack:
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): build worn icon(3, 'modular_skyrat/icons/mob/inhan...', 1, 0, null, 0, 1, null)
+ - Cumguy (/mob/living/carbon/human): update inv hands()
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): process fire(the floor (121,77,2) (/turf/open/floor/plasteel), Cumguy (/mob/living/carbon/human), 1, "icon-x=15;icon-y=7;left=1;scre...", "", 0, 1)
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): process afterattack(the floor (121,77,2) (/turf/open/floor/plasteel), Cumguy (/mob/living/carbon/human), 0, "icon-x=15;icon-y=7;left=1;scre...")
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): afterattack(the floor (121,77,2) (/turf/open/floor/plasteel), Cumguy (/mob/living/carbon/human), 0, "icon-x=15;icon-y=7;left=1;scre...")
+ - the super combat shotgun (/obj/item/gun/ballistic/revolver/doublebarrel/super): ranged attack chain(Cumguy (/mob/living/carbon/human), the floor (121,77,2) (/turf/open/floor/plasteel), "icon-x=15;icon-y=7;left=1;scre...")
+ - Cumguy (/mob/living/carbon/human): ClickOn(the floor (121,77,2) (/turf/open/floor/plasteel), "icon-x=15;icon-y=7;left=1;scre...")
+ - the floor (121,77,2) (/turf/open/floor/plasteel): Click(the floor (121,77,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=15;icon-y=7;left=1;scre...", 0)
+ - Bob Joga (/client): Click(the floor (121,77,2) (/turf/open/floor/plasteel), the floor (121,77,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=15;icon-y=7;left=1;scre...", 0)
+ - 
+[2020-08-28 14:15:22.853] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): pixel move(7, 0, 0.5, 1, 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(0)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:15:22.905] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): pixel move(7, 0, 0.5, 1, 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(1)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:15:22.941] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): pixel move(7, 0, 0.5, 1, 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(1)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:15:22.974] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "head")
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): pixel move(7, 0, 0.5, 1, 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(1)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:15:23.003] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ -   usr: 0
+ -   src: Orxun Simbine (/mob/living/carbon/human/species/felinid)
+ -   src.loc: the floor (121,75,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): blood DNA to color()
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): on hit(Orxun Simbine (/mob/living/carbon/human/species/felinid), 0, "l_leg")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "l_leg")
+ - Orxun Simbine (/mob/living/carbon/human/species/felinid): bullet act(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), "l_leg")
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, 0)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process hit(the floor (121,75,2) (/turf/open/floor/plasteel), Orxun Simbine (/mob/living/carbon/human/species/felinid), null, null)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Bump(Orxun Simbine (/mob/living/carbon/human/species/felinid))
+ - the floor (121,75,2) (/turf/open/floor/plasteel): Enter(the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot), the floor (121,74,2) (/turf/open/floor/plasteel))
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): Move(the floor (121,75,2) (/turf/open/floor/plasteel), 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): pixel move(7, 0, 0.5, 1, 1)
+ - the buckshot pellet (/obj/item/projectile/bullet/pellet/shotgun_buckshot): process(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): fire(1)
+ - Projectiles (/datum/controller/subsystem/processing/projectiles): ignite(1)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 
+[2020-08-28 14:15:23.014] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:15:24.810] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:15:24.815] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:15:24.820] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:15:28.357] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:15:44.021] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:16:10.691] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:16:10.772] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:16:10.776] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:16:10.780] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:16:10.785] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:16:10.790] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:16:10.802] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:16:11.686] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:16:38.042] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:16:39.223] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:17:02.472] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:17:02.479] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:17:02.485] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:17:02.490] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:17:02.496] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:17:09.851] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:17:26.902] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:17:26.927] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:17:26.931] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:17:26.935] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:17:26.941] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:17:26.944] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:17:26.955] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:17:28.093] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:17:28.100] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:17:28.107] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:17:29.038] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:17:29.080] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:17:29.084] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:17:29.087] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:17:29.093] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:17:29.098] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:17:29.105] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:17:31.573] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:17:31.603] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:18:13.079] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:18:15.510] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:18:20.036] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:18:20.139] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:20.144] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:20.149] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:20.154] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:20.161] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:21.542] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:18:21.690] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:21.695] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:21.699] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:21.703] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:21.707] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:24.484] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:18:24.490] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:18:24.495] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:18:27.006] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:18:27.577] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:18:29.167] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:18:30.118] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:18:30.245] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:30.249] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:30.254] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:30.258] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:30.264] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:30.300] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:31.120] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:18:31.246] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:31.251] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:31.256] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:31.259] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:31.263] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 14:18:34.649] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:18:34.656] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:18:34.667] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:18:34.674] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:18:34.680] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 14:18:37.808] runtime error: Cannot read null.pixel_x
+ - proc name: build worn icon (/obj/item/proc/build_worn_icon)
+ -   source file: update_icons.dm,644
+ - 
+[2020-08-28 14:18:40.779] runtime error: Cannot read null.pixel_x
+ - Warning: further proc crash messages are being suppressed to prevent overload...
+ - 
+[2020-08-28 14:18:54.180] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:18:54.344] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:18:54.348] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:18:54.351] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:18:54.356] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:18:55.247] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:18:56.867] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:18:57.605] runtime error: 
+ - 
+[2020-08-28 14:19:02.547] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:19:04.217] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:19:05.289] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:19:05.960] runtime error: Cannot read null.status_traits
+ - 
+[2020-08-28 14:19:07.390] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:19:15.310] runtime error: 
+ - 
+[2020-08-28 14:19:15.314] runtime error: 
+ - 
+[2020-08-28 14:19:21.800] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:19:23.737] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:19:24.453] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:19:26.680] runtime error: 
+ - 
+[2020-08-28 14:19:26.687] runtime error: 
+ - 
+[2020-08-28 14:19:26.692] runtime error: 
+ - 
+[2020-08-28 14:19:26.697] runtime error: 
+ - 
+[2020-08-28 14:19:27.859] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:26:58.805] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:27:02.324] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:27:04.957] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:27:07.054] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:27:09.263] runtime error: 
+ - 
+[2020-08-28 14:27:47.330] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:27:49.823] runtime error: 
+ - 
+[2020-08-28 14:27:56.078] runtime error: 
+ - 
+[2020-08-28 14:30:07.438] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:30:07.986] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:30:10.237] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:30:34.758] runtime error: 
+ - 
+[2020-08-28 14:30:42.492] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:30:42.546] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:30:42.551] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:30:42.557] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:30:42.563] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:30:42.566] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:30:42.598] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:30:43.668] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:30:43.745] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:30:43.749] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:30:43.752] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:30:43.755] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:30:43.759] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:30:43.763] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:30:49.772] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:31:46.959] runtime error: 
+ - 
+[2020-08-28 14:31:46.963] runtime error: 
+ - 
+[2020-08-28 14:31:46.970] runtime error: 
+ - 
+[2020-08-28 14:31:46.975] runtime error: 
+ - 
+[2020-08-28 14:31:46.979] runtime error: 
+ - 
+[2020-08-28 14:31:53.457] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:31:56.164] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:31:56.729] runtime error: 
+ - 
+[2020-08-28 14:32:11.120] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:32:11.183] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:32:11.186] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:32:11.189] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:32:11.191] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:32:11.196] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:32:11.202] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:32:13.252] runtime error: 
+ - 
+[2020-08-28 14:32:13.257] runtime error: 
+ - 
+[2020-08-28 14:32:15.544] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:32:15.635] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:32:15.637] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:32:15.645] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:32:15.648] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:32:15.652] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:32:15.660] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:32:19.159] runtime error: 
+ - 
+[2020-08-28 14:32:19.163] runtime error: 
+ - 
+[2020-08-28 14:32:19.167] runtime error: 
+ - 
+[2020-08-28 14:32:19.172] runtime error: 
+ - 
+[2020-08-28 14:32:23.583] runtime error: 
+ - 
+[2020-08-28 14:32:23.588] runtime error: 
+ - 
+[2020-08-28 14:32:23.593] runtime error: 
+ - 
+[2020-08-28 14:32:23.598] runtime error: 
+ - 
+[2020-08-28 14:32:41.736] runtime error: 
+ - 
+[2020-08-28 14:32:41.740] runtime error: 
+ - 
+[2020-08-28 14:32:41.744] runtime error: 
+ - 
+[2020-08-28 14:32:41.748] runtime error: 
+ - 
+[2020-08-28 14:32:51.396] runtime error: Cannot read null.pixel_x
+ - 
+[2020-08-28 14:33:07.654] runtime error: 
+ - 
+[2020-08-28 14:33:07.659] runtime error: 
+ - 
+[2020-08-28 14:33:07.663] runtime error: 
+ - 
+[2020-08-28 14:33:07.672] runtime error: 
+ - 
+[2020-08-28 14:34:00.645] runtime error: 
+ - 
+[2020-08-28 14:34:00.649] runtime error: 
+ - 
+[2020-08-28 14:34:00.653] runtime error: 
+ - 
+[2020-08-28 14:34:00.658] runtime error: 
+ - 
+[2020-08-28 14:34:37.309] runtime error: 
+ - 
+[2020-08-28 14:34:37.314] runtime error: 
+ - 
+[2020-08-28 14:34:37.317] runtime error: 
+ - 
+[2020-08-28 14:34:37.322] runtime error: 
+ - 
+[2020-08-28 14:34:48.435] runtime error: 
+ - 
+[2020-08-28 14:34:48.440] runtime error: 
+ - 
+[2020-08-28 14:34:48.444] runtime error: 
+ - 
+[2020-08-28 14:34:48.450] runtime error: 
+ - 
+[2020-08-28 14:35:08.493] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:35:10.598] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:35:14.848] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:35:17.649] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:35:18.803] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:35:19.748] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:35:20.896] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:42:42.177] runtime error: 
+ - 
+[2020-08-28 14:42:47.306] runtime error: 
+ - 
+[2020-08-28 14:42:47.310] runtime error: 
+ - 
+[2020-08-28 14:42:47.314] runtime error: 
+ - 
+[2020-08-28 14:42:47.319] runtime error: 
+ - 
+[2020-08-28 14:42:47.323] runtime error: 
+ - 
+[2020-08-28 14:42:56.381] runtime error: 
+ - 
+[2020-08-28 14:42:56.385] runtime error: 
+ - 
+[2020-08-28 14:42:56.389] runtime error: 
+ - 
+[2020-08-28 14:42:56.393] runtime error: 
+ - 
+[2020-08-28 14:42:56.400] runtime error: 
+ - 
+[2020-08-28 14:43:24.165] runtime error: 
+ - 
+[2020-08-28 14:44:43.063] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:44:45.211] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:44:46.265] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:44:46.962] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:44:48.716] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:44:49.119] runtime error: type mismatch: 0 |= /list (/list)
+ - 
+[2020-08-28 14:45:22.441] runtime error: Cannot read null.body_zone
+ - 
+[2020-08-28 14:45:56.739] runtime error: Cannot read null.player_details
+ - 
+[2020-08-28 14:45:56.742] runtime error: transfer_ckey() called on ckey-less mob with a player mob as target!
+ - 
+[2020-08-28 14:45:56.744] runtime error: Cannot read null.player_details
+ - 
+[2020-08-28 14:45:56.749] runtime error: Cannot read null.prefs
+ - 

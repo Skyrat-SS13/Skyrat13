@@ -282,6 +282,7 @@
 	var/tlimit = DEFIB_TIME_LIMIT * 10
 	var/disarm_shock_time = 10
 	var/wielded = FALSE // track wielded status on item
+	var/gaming_timer // Awfully hacky fix to prevent paddles from going autismo
 
 /obj/item/shockpaddles/Initialize()
 	. = ..()
@@ -294,6 +295,9 @@
 	defib = loc
 	busy = FALSE
 	update_icon()
+
+/obj/item/shockpaddles/proc/reset_gaming()
+	busy = FALSE
 
 /obj/item/shockpaddles/ComponentInitialize()
 	. = ..()
@@ -375,8 +379,8 @@
 	defib.update_power()
 
 /obj/item/shockpaddles/attack(mob/M, mob/user)
-
 	if(busy)
+		to_chat(user, "<span class='warning'>\The [src] is already treating someone!</span>")
 		return
 	if(req_defib && !defib.powered)
 		user.visible_message("<span class='notice'>[defib] beeps: Unit is unpowered.</span>")
@@ -444,7 +448,10 @@
 	M.visible_message("<span class='danger'>[user] hastily places [src] on [M]'s chest!</span>", \
 			"<span class='userdanger'>[user] hastily places [src] on [M]'s chest!</span>")
 	busy = TRUE
-	if(do_after(user, isnull(defib?.disarm_shock_time)? disarm_shock_time : defib.disarm_shock_time, target = M))
+	if(gaming_timer)
+		qdel(gaming_timer)
+	gaming_timer = addtimer(CALLBACK(src, .proc/reset_gaming), 20 SECONDS, TIMER_STOPPABLE) //If we go idiotic, fix in 20 seconds just to be sure
+	if(do_mob(user = user, target = M, time = (isnull(defib?.disarm_shock_time)? disarm_shock_time : defib.disarm_shock_time)))
 		M.visible_message("<span class='danger'>[user] zaps [M] with [src]!</span>", \
 				"<span class='userdanger'>[user] zaps [M] with [src]!</span>")
 		M.adjustStaminaLoss(50)
@@ -472,8 +479,11 @@
 	user.visible_message("<span class='warning'>[user] begins to place [src] on [H]'s chest.</span>",
 		"<span class='warning'>You overcharge the paddles and begin to place them onto [H]'s chest...</span>")
 	busy = TRUE
+	if(gaming_timer)
+		qdel(gaming_timer)
+	gaming_timer = addtimer(CALLBACK(src, .proc/reset_gaming), 20 SECONDS, TIMER_STOPPABLE) //If we go idiotic, fix in 20 seconds just to be sure
 	update_icon()
-	if(do_after(user, 30, target = H))
+	if(do_mob(user = user, target = H, time = 30))
 		user.visible_message("<span class='notice'>[user] places [src] on [H]'s chest.</span>",
 			"<span class='warning'>You place [src] on [H]'s chest and begin to charge them.</span>")
 		var/turf/T = get_turf(defib)
@@ -482,7 +492,7 @@
 			T.audible_message("<span class='warning'>\The [defib] lets out an urgent beep and lets out a steadily rising hum...</span>")
 		else
 			user.audible_message("<span class='warning'>[src] let out an urgent beep.</span>")
-		if(do_after(user, 30, target = H)) //Takes longer due to overcharging
+		if(do_mob(user = user, target = H, time = 30)) //Takes longer due to overcharging
 			if(!H)
 				busy = FALSE
 				update_icon()
@@ -522,6 +532,9 @@
 /obj/item/shockpaddles/proc/do_help(mob/living/carbon/H, mob/living/user)
 	user.visible_message("<span class='warning'>[user] begins to place [src] on [H]'s chest.</span>", "<span class='warning'>You begin to place [src] on [H]'s chest...</span>")
 	busy = TRUE
+	if(gaming_timer)
+		qdel(gaming_timer)
+	gaming_timer = addtimer(CALLBACK(src, .proc/reset_gaming), 20 SECONDS, TIMER_STOPPABLE) //If we go idiotic, fix in 20 seconds just to be sure
 	update_icon()
 
 	var/primetimer
@@ -536,7 +549,7 @@
 		primetimer2 = 20
 		deathtimer = DEFIB_TIME_LOSS * 10
 
-	if(do_after(user, primetimer, target = H)) //beginning to place the paddles on patient's chest to allow some time for people to move away to stop the process
+	if(do_mob(user = user, target = H, time = primetimer)) //beginning to place the paddles on patient's chest to allow some time for people to move away to stop the process
 		user.visible_message("<span class='notice'>[user] places [src] on [H]'s chest.</span>", "<span class='warning'>You place [src] on [H]'s chest.</span>")
 		playsound(src, 'sound/machines/defib_charge.ogg', 75, 0)
 		// patients rot when they are killed, and die when they are dead
@@ -545,7 +558,7 @@
 		var/total_burn	= 0
 		var/total_brute	= 0
 		var/obj/item/organ/heart = H.getorgan(/obj/item/organ/heart)
-		if(do_after(user, primetimer2, target = H)) //placed on chest and short delay to shock for dramatic effect, revive time is 5sec total
+		if(do_mob(user = user, target = H, time = primetimer2)) //placed on chest and short delay to shock for dramatic effect, revive time is 5sec total
 			for(var/obj/item/carried_item in H.contents)
 				if(istype(carried_item, /obj/item/clothing/suit/space))
 					if((!combat && !req_defib) || (req_defib && !defib.combat))

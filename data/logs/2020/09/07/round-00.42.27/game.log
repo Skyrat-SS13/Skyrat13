@@ -1,0 +1,344 @@
+[2020-09-07 03:42:27.962] Starting up round ID .
+ - -------------------------
+[2020-09-07 03:42:28.017] ADMIN: Loading Banlist
+[2020-09-07 03:42:28.055] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-07 03:42:28.056] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-07 03:42:31.269] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-07 03:42:35.123] GAME: Saved mode is 'extended'
+[2020-09-07 03:42:47.846] GAME: Hierophant's Arena loaded at 138,51,6
+[2020-09-07 03:42:47.864] GAME: Blood-Drunk Miner (Guidance) loaded at 119,105,6
+[2020-09-07 03:42:47.883] GAME: Blood-Drunk Miner (Hunter) loaded at 123,48,6
+[2020-09-07 03:42:47.902] GAME: Blood-Drunk Miner loaded at 209,102,6
+[2020-09-07 03:42:47.924] GAME: King Goat Boss Ruin loaded at 68,127,6
+[2020-09-07 03:42:47.957] GAME: Rogue's Arena loaded at 177,127,6
+[2020-09-07 03:42:47.995] GAME: Sif's Sword loaded at 37,163,6
+[2020-09-07 03:42:48.002] GAME: Pulsating Tumor loaded at 54,72,6
+[2020-09-07 03:42:48.036] GAME: Dead God loaded at 172,36,6
+[2020-09-07 03:42:48.055] GAME: Ruin of Envy loaded at 120,175,6
+[2020-09-07 03:42:48.061] GAME: Pulsating Tumor loaded at 206,25,6
+[2020-09-07 03:42:48.083] GAME: Makeshift Shelter loaded at 79,186,6
+[2020-09-07 03:42:48.109] GAME: Ruin of Gluttony loaded at 99,197,6
+[2020-09-07 03:42:48.110] GAME: Biodome Clown Planet loaded at 162,46,6
+[2020-09-07 03:42:48.116] GAME: Pulsating Tumor loaded at 72,146,6
+[2020-09-07 03:42:48.131] GAME: Summoning Ritual loaded at 163,73,6
+[2020-09-07 03:42:48.139] GAME: Ripley loaded at 52,195,6
+[2020-09-07 03:42:51.177] GAME: Abandoned Teleporter loaded at 42,49,3
+[2020-09-07 03:42:51.198] GAME: Whiteship Dock loaded at 81,162,8
+[2020-09-07 03:42:51.815] GAME: Ancient Space Station loaded at 126,76,3
+[2020-09-07 03:42:51.880] GAME: Biological Storage Facility loaded at 74,55,7
+[2020-09-07 03:42:51.948] GAME: Asteroid 5 loaded at 33,161,3
+[2020-09-07 03:42:51.994] GAME: Aesthetic Outpost loaded at 44,170,7
+[2020-09-07 03:42:52.020] GAME: Big Ape loaded at 146,178,7
+[2020-09-07 03:42:52.058] GAME: Salvation loaded at 97,159,3
+[2020-09-07 03:42:52.113] GAME: Derelict 6 loaded at 93,69,7
+[2020-09-07 03:42:52.117] GAME: Ordinary Space Tile loaded at 141,122,4
+[2020-09-07 03:42:52.146] GAME: Asteroid 1 loaded at 180,60,4
+[2020-09-07 03:42:52.175] GAME: Asteroid 3 loaded at 94,108,8
+[2020-09-07 03:42:52.216] GAME: Asteroid 4 loaded at 50,106,4
+[2020-09-07 03:42:52.431] GAME: Survivalist Bunker loaded at 27,94,3
+[2020-09-07 03:42:52.628] GAME: Crashed Ship loaded at 57,169,4
+[2020-09-07 03:42:53.021] GAME: The Twin-Nexus Hotel loaded at 127,34,7
+[2020-09-07 03:42:53.064] GAME: Monitoring Roid loaded at 36,199,2
+[2020-09-07 03:42:53.078] GAME: Crab Roid loaded at 211,23,2
+[2020-09-07 03:42:53.087] GAME: Mineable Asteroid 1 loaded at 22,35,2
+[2020-09-07 03:42:53.109] GAME: Mineable Asteroid 2 loaded at 200,199,2
+[2020-09-07 03:42:53.128] GAME: Dead wizard Roid loaded at 46,28,2
+[2020-09-07 03:42:53.145] GAME: Mineable Asteroid 3 loaded at 155,213,2
+[2020-09-07 03:42:53.192] GAME: Mineable Asteroid 5 loaded at 23,48,2
+[2020-09-07 03:42:53.213] GAME: Dorm Roid loaded at 180,211,2
+[2020-09-07 03:42:53.231] GAME: Mineable Asteroid 4 loaded at 59,209,2
+[2020-09-07 03:42:53.254] GAME: Maze Roid loaded at 187,26,2
+[2020-09-07 03:42:53.343] GAME: Box Tesla loaded at 96,49,2
+[2020-09-07 03:42:53.641] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-07 03:42:59.132] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-07 03:42:59.134] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-07 03:42:59.135] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-07 03:42:59.136] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-07 03:42:59.137] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-07 03:42:59.146] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-07 03:42:59.154] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-07 03:42:59.158] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-07 03:43:07.648] GAME: [�APLU "Miner"] �APLU "Miner" created. (Lavaland Wastes (54, 197, 6))
+[2020-09-07 03:43:07.648] GAME: [�APLU "Miner"] The exosuit drill initialized. (Lavaland Wastes (54, 197, 6))
+[2020-09-07 03:43:07.648] GAME: [�APLU "Miner"] The hydraulic clamp initialized. (Lavaland Wastes (54, 197, 6))
+[2020-09-07 03:43:07.649] GAME: [�APLU "Miner"] The exosuit mining scanner initialized. (Lavaland Wastes (54, 197, 6))
+[2020-09-07 03:43:09.256] GAME: *no key*/(Taha Patil) Taha Patil name changed from Taha Patil to Alfie (Unexplored Location (61, 109, 4))
+[2020-09-07 03:44:00.586] GAME: Backup Shuttle loaded at 143,212,1
+[2020-09-07 03:44:00.670] GAME: assault pod (Default) loaded at 144,213,1
+[2020-09-07 03:44:01.042] GAME: basic syndicate infiltrator loaded at 139,205,1
+[2020-09-07 03:44:01.322] GAME: fancy transport ferry loaded at 141,214,1
+[2020-09-07 03:44:01.522] GAME: Box Station Emergency Shuttle loaded at 142,205,1
+[2020-09-07 03:44:01.748] GAME: cargo ferry (Box) loaded at 144,210,1
+[2020-09-07 03:44:02.510] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-07 03:44:02.536] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-07 03:44:02.592] GAME: auxilliary base (Default) loaded at 143,212,1
+[2020-09-07 03:44:02.720] GAME: arrival shuttle (Box) loaded at 140,213,1
+[2020-09-07 03:44:02.829] GAME: mining shuttle (Box) loaded at 145,213,1
+[2020-09-07 03:44:02.889] GAME: labour shuttle (Box) loaded at 145,212,1
+[2020-09-07 03:44:02.939] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-07 03:44:02.972] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-07 03:44:03.006] GAME: lavaland Mining Elevator loaded at 145,214,1
+[2020-09-07 03:44:04.140] GAME: Hospital Ship loaded at 132,208,1
+[2020-09-07 03:44:04.570] VOTE: Roundtype vote started by server.
+[2020-09-07 03:45:05.641] VOTE: <b>Roundtype Vote</b><b>Vote Result: Inconclusive - No Votes!</b>
+[2020-09-07 03:54:43.705] GAME: Random Event triggering: Minor Space Dust (/datum/round_event/space_dust)
+[2020-09-07 03:55:18.760] Logs from logging subsystem:
+ - (2020-09-07 00:45:39) EMOTE: *no key*/(Ian) chases its tail! (Head of Personnel's Office (104, 119, 2))
+ - (2020-09-07 00:45:39) SAY: *no key*/(Prison Ofitser) "Engaging patrol mode." (Labor Camp Security (58, 42, 6))
+ - (2020-09-07 00:45:39) SAY: *no key*/(Prison Ofitser) "Disengaging patrol mode." (Labor Camp Security (58, 42, 6))
+ - (2020-09-07 00:45:39) SAY: *no key*/(Prison Ofitser) "Engaging patrol mode." (Labor Camp Security (23, 36, 6))
+ - (2020-09-07 00:45:39) SAY: *no key*/(Prison Ofitser) "Disengaging patrol mode." (Labor Camp Security (23, 36, 6))
+ - (2020-09-07 00:45:39) SAY: *no key*/(Officer Beepsky) "Engaging patrol mode." (Fore Maintenance (93, 159, 2))
+ - (2020-09-07 00:45:40) EMOTE: *no key*/(Paperwork) dozes off. (Cargo Office (86, 119, 2))
+ - (2020-09-07 00:45:40) EMOTE: *no key*/(crab) clicks. (Tear in the Fabric of Reality (63, 18, 1))
+ - (2020-09-07 00:45:42) EMOTE: *no key*/(�chicken) clucks. (Ghost Cafe Outdoors (55, 225, 1))
+ - (2020-09-07 00:45:43) EMOTE: *no key*/(monkey (221)) scratches. (Virology (154, 90, 2))
+ - (2020-09-07 00:45:43) EMOTE: *no key*/(monkey (334)) rolls. (Virology (152, 89, 2))
+ - (2020-09-07 00:45:50) SAY: *no key*/(Poly) "OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE" FORCED by poly (Chief Engineer's Office (116, 82, 2))
+ - (2020-09-07 00:45:52) SAY: *no key*/(mouse) "SQUEAK!" FORCED by poly (Starboard Bow Maintenance (165, 142, 2))
+ - (2020-09-07 00:45:52) SAY: *no key*/(Poly) "WHO TOOK THE DAMN HARDSUITS?" FORCED by poly (Chief Engineer's Office (116, 82, 2))
+ - (2020-09-07 00:45:56) SAY: *no key*/(Poly) "OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE" FORCED by poly (Chief Engineer's Office (117, 82, 2))
+ - (2020-09-07 00:45:57) EMOTE: *no key*/(monkey (175)) rolls. (Genetics Lab (161, 118, 2))
+ - (2020-09-07 00:46:01) EMOTE: *no key*/(Runtime) grooms its fur. (Chief Medical Officer's Office (160, 110, 2))
+ - (2020-09-07 00:46:04) EMOTE: *no key*/(Poly) turns and flies towards the folder. (Chief Engineer's Office (117, 81, 2))
+ - (2020-09-07 00:46:08) EMOTE: *no key*/(Poly) bawks! (Chief Engineer's Office (117, 81, 2))
+ - (2020-09-07 00:46:12) EMOTE: *no key*/(Poly) bawks! (Chief Engineer's Office (117, 81, 2))
+ - (2020-09-07 00:46:14) EMOTE: *no key*/(Poly) flutters its wings. (Chief Engineer's Office (117, 81, 2))
+ - (2020-09-07 00:46:15) EMOTE: *no key*/(monkey (221)) scratches. (Virology (152, 89, 2))
+ - (2020-09-07 00:46:16) EMOTE: *no key*/(raving crab) clacks. (Unexplored Location (218, 31, 2))
+ - (2020-09-07 00:46:21) EMOTE: *no key*/(coder monkey (900)) waves his tail. (Tear in the Fabric of Reality (25, 40, 1))
+ - (2020-09-07 00:46:22) EMOTE: *no key*/(crab) clacks. (Tear in the Fabric of Reality (61, 18, 1))
+ - (2020-09-07 00:46:24) SAY: *no key*/(Nobody's Perfect) "Delicious!" (Wizard's Den (24, 75, 1))
+ - (2020-09-07 00:46:28) EMOTE: *no key*/(crab) clacks. (Abandoned Zoo (76, 58, 7))
+ - (2020-09-07 00:46:29) EMOTE: *no key*/(Runtime) twitches its whiskers. (Chief Medical Officer's Office (160, 110, 2))
+ - (2020-09-07 00:46:34) SAY: *no key*/(�chick) "Cherp." FORCED by poly (Ghost Cafe Outdoors (55, 224, 1))
+ - (2020-09-07 00:46:40) SAY: *no key*/(mouse) "SQUEAK!" FORCED by poly (Fore Maintenance (136, 168, 2))
+ - (2020-09-07 00:46:40) SAY: *no key*/(Cheems) "Bork!" FORCED by poly (Cargo Bay (80, 123, 2))
+ - (2020-09-07 00:46:52) EMOTE: *no key*/(Poly) squawks. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:46:56) EMOTE: *no key*/(raving crab) clicks. (Unexplored Location (219, 31, 2))
+ - (2020-09-07 00:46:56) SAY: *no key*/(Poly) "Check the crystal, you chucklefucks!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:46:58) EMOTE: *no key*/(crab) clacks. (Tear in the Fabric of Reality (61, 18, 1))
+ - (2020-09-07 00:47:00) SAY: *no key*/(Syndicate Hospitality Drone) "I knew it, I should&#39;ve been a plastic surgeon." (Holding Facility (253, 127, 1))
+ - (2020-09-07 00:47:03) EMOTE: *no key*/(coder monkey (145)) waves her tail. (Tear in the Fabric of Reality (23, 43, 1))
+ - (2020-09-07 00:47:04) SAY: *no key*/(immortal chicken) "BWAAAAARK BWAK BWAK BWAK!" FORCED by poly (Charlie Station Hydroponics (162, 109, 3))
+ - (2020-09-07 00:47:08) EMOTE: *no key*/(Poly) looks in the �Power-ON cartridge's direction and takes flight. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:47:08) EMOTE: *no key*/(�chicken) clucks. (Ghost Cafe Outdoors (58, 227, 1))
+ - (2020-09-07 00:47:08) EMOTE: *no key*/(crab) clacks. (Tear in the Fabric of Reality (48, 12, 1))
+ - (2020-09-07 00:47:12) EMOTE: *no key*/(Poly) bawks! (Chief Engineer's Office (116, 79, 2))
+ - (2020-09-07 00:47:13) EMOTE: *no key*/(Scatter II) waves its tail. (Bar (143, 136, 2))
+ - (2020-09-07 00:47:14) EMOTE: *no key*/(raving crab) clacks. (Unexplored Location (218, 31, 2))
+ - (2020-09-07 00:47:20) SAY: *no key*/(mouse) "Squeak!" FORCED by poly (Starboard Bow Maintenance (165, 142, 2))
+ - (2020-09-07 00:47:20) EMOTE: *no key*/(opossum) runs in a circle. (Starboard Quarter Maintenance (192, 82, 2))
+ - (2020-09-07 00:47:24) SAY: *no key*/(mouse) "Squeak?" FORCED by poly (Fore Maintenance (135, 169, 2))
+ - (2020-09-07 00:47:26) SAY: *no key*/(Accidents Happen) "There&#39;s always a catch, and I&#39;m the best there is." (Hotel Staff Room (160, 65, 7))
+ - (2020-09-07 00:47:26) EMOTE: *no key*/(Poly) flutters its wings. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:47:28) SAY: *no key*/(Poly) "Poly wanna cracker!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:47:30) SAY: *no key*/(Poly) "Poly wanna cracker!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:47:31) EMOTE: *no key*/(monkey (659)) jumps! (Ghost Cafe Outdoors (32, 213, 1))
+ - (2020-09-07 00:47:32) EMOTE: *no key*/(raving crab) clacks. (Unexplored Location (216, 31, 2))
+ - (2020-09-07 00:47:36) SAY: *no key*/(mouse) "SQUEAK!" FORCED by poly (Fore Maintenance (106, 155, 2))
+ - (2020-09-07 00:47:36) SAY: *no key*/(Poly) "Wire the solars, you lazy bums!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:47:37) EMOTE: *no key*/(monkey (736)) waves his tail. (Virology (154, 90, 2))
+ - (2020-09-07 00:47:41) EMOTE: *no key*/(monkey (334)) rolls. (Virology (153, 90, 2))
+ - (2020-09-07 00:47:42) SAY: *no key*/(Poly) "What are you before me?" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:47:44) SAY: *no key*/(�chick) "Cheep!" FORCED by poly (Ghost Cafe Outdoors (52, 217, 1))
+ - (2020-09-07 00:47:44) EMOTE: *no key*/(crab) clacks. (Tear in the Fabric of Reality (47, 12, 1))
+ - (2020-09-07 00:47:48) EMOTE: *no key*/(Cheems) chases its tail. (Cargo Bay (78, 123, 2))
+ - (2020-09-07 00:47:54) SAY: *no key*/(Poly) "WHO TOOK THE DAMN HARDSUITS?" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:47:56) SAY: *no key*/(Poly) "Check the crystal, you chucklefucks!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:47:57) EMOTE: *no key*/(grey baby slime (815)) lights up for a bit, then stops. (Xenobiology Lab (177, 98, 2))
+ - (2020-09-07 00:48:01) EMOTE: *no key*/(grey baby slime (599)) lights up for a bit, then stops. (Xenobiology Lab (166, 95, 2))
+ - (2020-09-07 00:48:02) EMOTE: *no key*/(Poly) flutters its wings. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:48:05) EMOTE: *no key*/(monkey (175)) waves her tail. (Genetics Lab (160, 117, 2))
+ - (2020-09-07 00:48:08) EMOTE: *no key*/(mouse) runs in a circle. (Port Maintenance (63, 131, 2))
+ - (2020-09-07 00:48:12) EMOTE: *no key*/(Poly) looks in the �Power-ON cartridge's direction and takes flight. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:48:20) EMOTE: *no key*/(Poly) flutters its wings. (Chief Engineer's Office (116, 79, 2))
+ - (2020-09-07 00:48:25) EMOTE: *no key*/(monkey (378)) jumps! (Virology (154, 90, 2))
+ - (2020-09-07 00:48:30) EMOTE: *no key*/(raving crab) clacks. (Unexplored Location (218, 32, 2))
+ - (2020-09-07 00:48:32) SAY: *no key*/(mouse) "SQUEAK!" FORCED by poly (Port Maintenance (63, 131, 2))
+ - (2020-09-07 00:48:34) EMOTE: *no key*/(opossum) runs in a circle. (Port Maintenance (60, 127, 2))
+ - (2020-09-07 00:48:36) SAY: *no key*/(�chicken) "BWAAAAARK BWAK BWAK BWAK!" FORCED by poly (Ghost Cafe Outdoors (60, 228, 1))
+ - (2020-09-07 00:48:37) EMOTE: *no key*/(Scatter II) scratches. (Bar (145, 135, 2))
+ - (2020-09-07 00:48:38) SAY: *no key*/(Poppy the Safety Possum) "Hissss?" FORCED by poly (Aft Maintenance (150, 93, 2))
+ - (2020-09-07 00:48:44) SAY: *no key*/(�chicken) "BWAAAAARK BWAK BWAK BWAK!" FORCED by poly (Ghost Cafe Outdoors (54, 217, 1))
+ - (2020-09-07 00:48:46) EMOTE: *no key*/(raving crab) clicks. (Unexplored Location (220, 32, 2))
+ - (2020-09-07 00:48:49) EMOTE: *no key*/(Runtime) wags its tail. (Chief Medical Officer's Office (160, 108, 2))
+ - (2020-09-07 00:48:54) SAY: *no key*/(Poly) "Wire the solars, you lazy bums!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:48:54) SAY: *no key*/(�chicken) "Bwaak bwak." FORCED by poly (Ghost Cafe Outdoors (54, 224, 1))
+ - (2020-09-07 00:49:02) EMOTE: *no key*/(Poly) flutters its wings. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:49:04) EMOTE: *no key*/(crab) clacks. (Abandoned Zoo (77, 58, 7))
+ - (2020-09-07 00:49:04) EMOTE: *no key*/(Bumbles (14)) buzzes. (Hydroponics (162, 134, 2))
+ - (2020-09-07 00:49:04) EMOTE: *no key*/(�chicken) flaps its wings viciously. (Ghost Cafe Outdoors (54, 225, 1))
+ - (2020-09-07 00:49:06) EMOTE: *no key*/(Ian) dances around. (Head of Personnel's Office (105, 119, 2))
+ - (2020-09-07 00:49:06) SAY: *no key*/(Poly) "WHO TOOK THE DAMN HARDSUITS?" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:49:08) SAY: *no key*/(Poly) "Wire the solars, you lazy bums!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:49:10) EMOTE: *no key*/(coder monkey (474)) rolls. (Tear in the Fabric of Reality (22, 40, 1))
+ - (2020-09-07 00:49:16) EMOTE: *no key*/(Poly) bawks! (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:49:20) SAY: *no key*/(grey baby slime (815)) "Hungry..." (Xenobiology Lab (176, 97, 2))
+ - (2020-09-07 00:49:20) EMOTE: *no key*/(Runtime) shivers. (Chief Medical Officer's Office (160, 108, 2))
+ - (2020-09-07 00:49:22) EMOTE: *no key*/(coder monkey (883)) scratches. (Tear in the Fabric of Reality (22, 42, 1))
+ - (2020-09-07 00:49:22) EMOTE: *no key*/(immortal chicken) pecks at the ground. (Charlie Station Hydroponics (163, 109, 3))
+ - (2020-09-07 00:49:28) EMOTE: *no key*/(Poly) looks in the �Power-ON cartridge's direction and takes flight. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:49:32) EMOTE: *no key*/(mouse) shakes. (Starboard Bow Maintenance (165, 143, 2))
+ - (2020-09-07 00:49:34) EMOTE: *no key*/(coder monkey (832)) jumps! (Tear in the Fabric of Reality (24, 38, 1))
+ - (2020-09-07 00:49:34) SAY: *no key*/(Poly) "OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE" FORCED by poly (Chief Engineer's Office (116, 79, 2))
+ - (2020-09-07 00:49:36) EMOTE: *no key*/(coder monkey (474)) rolls. (Tear in the Fabric of Reality (22, 40, 1))
+ - (2020-09-07 00:49:36) SAY: *no key*/(Renault) "Geckers" FORCED by poly (Captain's Office (124, 124, 2))
+ - (2020-09-07 00:49:40) SAY: *no key*/(�Medibot) "Delicious!" (CentCom Transport Shuttle Dock (155, 73, 1))
+ - (2020-09-07 00:49:42) SAY: *no key*/(old medibot) "What kind of medbay is this? Everyone&#39;s dropping like flies." (Charlie Station Main Corridor (176, 96, 3))
+ - (2020-09-07 00:49:44) EMOTE: *no key*/(mouse) squeaks. (Port Maintenance (81, 134, 2))
+ - (2020-09-07 00:49:44) SAY: *no key*/(opossum) "Hissss?" FORCED by poly (Starboard Quarter Maintenance (191, 78, 2))
+ - (2020-09-07 00:49:46) SAY: *no key*/(�Medibot) "Radar, put a mask on!" (CentCom Transport Shuttle Dock (155, 73, 1))
+ - (2020-09-07 00:49:46) SAY: *no key*/(Accidents Happen) "I knew it, I should&#39;ve been a plastic surgeon." (Hotel Staff Room (160, 65, 7))
+ - (2020-09-07 00:49:48) SAY: *no key*/(�Medibot) "Radar, put a mask on!" (CentCom Transport Shuttle Dock (154, 73, 1))
+ - (2020-09-07 00:49:48) SAY: *no key*/(�chicken) "BWAAAAARK BWAK BWAK BWAK!" FORCED by poly (Ghost Cafe Outdoors (61, 225, 1))
+ - (2020-09-07 00:49:50) EMOTE: *no key*/(monkey (316)) scratches. (Genetics Lab (161, 120, 2))
+ - (2020-09-07 00:49:50) SAY: *no key*/(Poly) "OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE" FORCED by poly (Chief Engineer's Office (117, 80, 2))
+ - (2020-09-07 00:49:54) EMOTE: *no key*/(opossum) hisses. (Port Maintenance (58, 129, 2))
+ - (2020-09-07 00:50:00) EMOTE: *no key*/(coder monkey (883)) scratches. (Tear in the Fabric of Reality (21, 42, 1))
+ - (2020-09-07 00:50:00) EMOTE: *no key*/(�chicken) clucks. (Ghost Cafe Outdoors (58, 220, 1))
+ - (2020-09-07 00:50:02) SAY: *no key*/(grey baby slime (43)) "Rawr..." (Xenobiology Lab (175, 88, 2))
+ - (2020-09-07 00:50:10) SAY: *no key*/(Renault) "Ack-Ack" FORCED by poly (Captain's Office (123, 125, 2))
+ - (2020-09-07 00:50:10) EMOTE: *no key*/(Cheems) pants. (Cargo Bay (78, 123, 2))
+ - (2020-09-07 00:50:14) SAY: *no key*/(�chicken) "Cluck!" FORCED by poly (Ghost Cafe Outdoors (61, 225, 1))
+ - (2020-09-07 00:50:16) EMOTE: *no key*/(Scatter II) rolls. (Bar (145, 135, 2))
+ - (2020-09-07 00:50:16) SAY: *no key*/(mouse) "Squeak!" FORCED by poly (Starboard Bow Maintenance (165, 141, 2))
+ - (2020-09-07 00:50:20) SAY: *no key*/(immortal cow) "moo" FORCED by poly (Charlie Station Hydroponics (162, 108, 3))
+ - (2020-09-07 00:50:20) EMOTE: *no key*/(Poly) squawks. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:50:30) EMOTE: *no key*/(�chicken) pecks at the ground. (Ghost Cafe Outdoors (58, 221, 1))
+ - (2020-09-07 00:50:36) EMOTE: *no key*/(Ian) chases its tail. (Head of Personnel's Office (105, 120, 2))
+ - (2020-09-07 00:50:38) SAY: *no key*/(mouse) "Squeak!" FORCED by poly (Fore Maintenance (105, 154, 2))
+ - (2020-09-07 00:50:38) EMOTE: *no key*/(Poppy the Safety Possum) shakes. (Aft Maintenance (150, 91, 2))
+ - (2020-09-07 00:50:38) EMOTE: *no key*/(Poly) squawks. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:50:42) SAY: *no key*/(mouse) "SQUEAK!" FORCED by poly (Starboard Bow Maintenance (165, 142, 2))
+ - (2020-09-07 00:50:44) EMOTE: *no key*/(opossum) runs in a circle. (Port Quarter Maintenance (104, 95, 2))
+ - (2020-09-07 00:50:46) EMOTE: *no key*/(immortal chicken) clucks. (Charlie Station Hydroponics (163, 109, 3))
+ - (2020-09-07 00:50:46) SAY: *no key*/(Runtime) "Meow!" FORCED by poly (Chief Medical Officer's Office (160, 108, 2))
+ - (2020-09-07 00:50:46) EMOTE: *no key*/(Poly) squawks. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:50:48) EMOTE: *no key*/(opossum) shakes. (Starboard Quarter Maintenance (190, 80, 2))
+ - (2020-09-07 00:50:52) SAY: *no key*/(grey baby slime (43)) "Lonely..." (Xenobiology Lab (177, 89, 2))
+ - (2020-09-07 00:50:52) SAY: *no key*/(Poly) "Check the crystal, you chucklefucks!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:50:54) SAY: *no key*/(Poly) "Poly wanna cracker!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:50:58) EMOTE: *no key*/(monkey (175)) jumps! (Genetics Lab (160, 119, 2))
+ - (2020-09-07 00:50:58) EMOTE: *no key*/(Poly) looks in the �Power-ON cartridge's direction and takes flight. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:51:00) SAY: *no key*/(opossum) "Hissss?" FORCED by poly (Starboard Bow Maintenance (165, 146, 2))
+ - (2020-09-07 00:51:02) EMOTE: *no key*/(monkey (316)) scratches. (Genetics Lab (160, 118, 2))
+ - (2020-09-07 00:51:02) EMOTE: *no key*/(coder monkey (145)) waves her tail. (Tear in the Fabric of Reality (19, 48, 1))
+ - (2020-09-07 00:51:02) EMOTE: *no key*/(Paperwork) yawns. (Cargo Office (87, 122, 2))
+ - (2020-09-07 00:51:04) SAY: *no key*/(mouse) "Squeak!" FORCED by poly (Fore Maintenance (88, 152, 2))
+ - (2020-09-07 00:51:04) SAY: *no key*/(Poly) "What are you before me?" FORCED by poly (Chief Engineer's Office (116, 79, 2))
+ - (2020-09-07 00:51:04) EMOTE: *no key*/(Paperwork) snores. (Cargo Office (87, 122, 2))
+ - (2020-09-07 00:51:06) EMOTE: *no key*/(coder monkey (883)) jumps! (Tear in the Fabric of Reality (22, 41, 1))
+ - (2020-09-07 00:51:13) SAY: *no key*/(Poly) "Poly wanna cracker!" FORCED by poly (Chief Engineer's Office (116, 81, 2))
+ - (2020-09-07 00:51:15) EMOTE: *no key*/(raving crab) clicks. (Unexplored Location (217, 31, 2))
+ - (2020-09-07 00:51:15) SAY: *no key*/(Poly) "Poly wanna cracker!" FORCED by poly (Chief Engineer's Office (116, 80, 2))
+ - (2020-09-07 00:51:16) EMOTE: *no key*/(monkey (659)) scratches. (Ghost Cafe Outdoors (32, 214, 1))
+ - (2020-09-07 00:51:17) EMOTE: *no key*/(Paperwork) looks around sleepily. (Cargo Office (87, 122, 2))
+ - (2020-09-07 00:51:18) EMOTE: *no key*/(monkey (659)) jumps! (Ghost Cafe Outdoors (32, 214, 1))
+ - (2020-09-07 00:51:25) EMOTE: *no key*/(Poly) flutters its wings. (Chief Engineer's Office (117, 80, 2))
+ - (2020-09-07 00:51:27) EMOTE: *no key*/(mouse) squeaks. (Fore Maintenance (137, 173, 2))
+ - (2020-09-07 00:51:27) SAY: *no key*/(Poly) "WHO TOOK THE DAMN HARDSUITS?" FORCED by poly (Chief Engineer's Office (116, 80, 2))
+ - (2020-09-07 00:51:28) EMOTE: *no key*/(Runtime) sits down. (Chief Medical Officer's Office (160, 108, 2))
+ - (2020-09-07 00:51:38) EMOTE: *no key*/(coder monkey (900)) jumps! (Tear in the Fabric of Reality (26, 40, 1))
+ - (2020-09-07 00:51:44) EMOTE: *no key*/(monkey (196)) jumps! (Genetics Lab (161, 120, 2))
+ - (2020-09-07 00:51:45) EMOTE: *no key*/(mouse) runs in a circle. (Fore Maintenance (134, 168, 2))
+ - (2020-09-07 00:51:57) SAY: *no key*/(Syndicate Hospitality Drone) "Delicious!" (Holding Facility (253, 127, 1))
+ - (2020-09-07 00:51:58) EMOTE: *no key*/(monkey (55)) jumps! (Ghost Cafe Outdoors (33, 213, 1))
+ - (2020-09-07 00:51:58) EMOTE: *no key*/(coder monkey (132)) lets out a faint chimper as it collapses and stops moving... (Space (219, 132, 3))
+ - (2020-09-07 00:51:59) EMOTE: *no key*/(opossum) runs in a circle. (Port Maintenance (58, 128, 2))
+ - (2020-09-07 00:52:01) SAY: *no key*/(�Medibot) "Delicious!" (CentCom Transport Shuttle Dock (154, 73, 1))
+ - (2020-09-07 00:52:01) EMOTE: *no key*/(�chicken) pecks at the ground. (Ghost Cafe Outdoors (61, 225, 1))
+ - (2020-09-07 00:52:01) EMOTE: *no key*/(�chicken) pecks at the ground. (Ghost Cafe Outdoors (55, 228, 1))
+ - (2020-09-07 00:52:08) EMOTE: *no key*/(Runtime) stops resting. (Chief Medical Officer's Office (160, 108, 2))
+ - (2020-09-07 00:52:12) EMOTE: *no key*/(monkey (55)) scratches. (Ghost Cafe Outdoors (32, 214, 1))
+ - (2020-09-07 00:52:13) SAY: *no key*/(Poly) "What are you before me?" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:52:15) SAY: *no key*/(opossum) "Hissss?" FORCED by poly (Port Maintenance (58, 127, 2))
+ - (2020-09-07 00:52:21) SAY: *no key*/(Poly) "Check the crystal, you chucklefucks!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:52:25) EMOTE: *no key*/(immortal chicken) pecks at the ground. (Charlie Station Hydroponics (162, 109, 3))
+ - (2020-09-07 00:52:33) EMOTE: *no key*/(Poly) bawks! (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:52:36) EMOTE: *no key*/(grey baby slime (43)) vibrates! (Xenobiology Lab (177, 89, 2))
+ - (2020-09-07 00:52:36) EMOTE: *no key*/(coder monkey (968)) jumps! (Tear in the Fabric of Reality (23, 38, 1))
+ - (2020-09-07 00:52:40) SAY: *no key*/(grey baby slime (43)) "I want to eat..." (Xenobiology Lab (177, 89, 2))
+ - (2020-09-07 00:52:41) EMOTE: *no key*/(Poly) bawks! (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:52:41) EMOTE: *no key*/(�chicken) pecks at the ground. (Ghost Cafe Outdoors (63, 225, 1))
+ - (2020-09-07 00:52:44) EMOTE: *no key*/(monkey (378)) rolls. (Virology (154, 90, 2))
+ - (2020-09-07 00:52:45) EMOTE: *no key*/(mouse) squeaks. (Fore Maintenance (137, 173, 2))
+ - (2020-09-07 00:52:49) EMOTE: *no key*/(Poly) looks in the �Power-ON cartridge's direction and takes flight. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:52:49) SAY: *no key*/(Poly) "Wire the solars, you lazy bums!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:52:52) EMOTE: *no key*/(Runtime) twitches its whiskers. (Chief Medical Officer's Office (160, 109, 2))
+ - (2020-09-07 00:52:58) EMOTE: *no key*/(Runtime) stretches out for a belly rub. (Chief Medical Officer's Office (160, 109, 2))
+ - (2020-09-07 00:53:01) EMOTE: *no key*/(Poly) squawks. (Chief Engineer's Office (116, 79, 2))
+ - (2020-09-07 00:53:03) EMOTE: *no key*/(crab) clicks. (Abandoned Zoo (77, 58, 7))
+ - (2020-09-07 00:53:05) EMOTE: *no key*/(Poly) flutters its wings. (Chief Engineer's Office (116, 80, 2))
+ - (2020-09-07 00:53:06) EMOTE: *no key*/(butterfly) stops moving... (Unexplored Location (53, 173, 7))
+ - (2020-09-07 00:53:08) EMOTE: *no key*/(monkey (659)) scratches. (Ghost Cafe Outdoors (34, 214, 1))
+ - (2020-09-07 00:53:11) EMOTE: *no key*/(�chicken) pecks at the ground. (Ghost Cafe Outdoors (59, 218, 1))
+ - (2020-09-07 00:53:12) EMOTE: *no key*/(monkey (787)) jumps! (Ghost Cafe Outdoors (32, 214, 1))
+ - (2020-09-07 00:53:14) EMOTE: *no key*/(coder monkey (832)) waves his tail. (Tear in the Fabric of Reality (29, 33, 1))
+ - (2020-09-07 00:53:16) EMOTE: *no key*/(coder monkey (832)) scratches. (Tear in the Fabric of Reality (29, 33, 1))
+ - (2020-09-07 00:53:17) SAY: *no key*/(mouse) "Squeak?" FORCED by poly (Port Maintenance (59, 125, 2))
+ - (2020-09-07 00:53:17) EMOTE: *no key*/(Cheems) yaps. (Cargo Bay (76, 123, 2))
+ - (2020-09-07 00:53:18) EMOTE: *no key*/(grey baby slime (599)) bounces in place. (Xenobiology Lab (165, 94, 2))
+ - (2020-09-07 00:53:18) EMOTE: *no key*/(monkey (55)) waves his tail. (Ghost Cafe Outdoors (33, 213, 1))
+ - (2020-09-07 00:53:19) EMOTE: *no key*/(mouse) shakes. (Fore Maintenance (137, 173, 2))
+ - (2020-09-07 00:53:19) EMOTE: *no key*/(raving crab) clicks. (Unexplored Location (220, 32, 2))
+ - (2020-09-07 00:53:25) EMOTE: *no key*/(opossum) shakes. (Starboard Quarter Maintenance (190, 80, 2))
+ - (2020-09-07 00:53:29) SAY: *no key*/(old medibot) "I knew it, I should&#39;ve been a plastic surgeon." (Charlie Station Main Corridor (176, 96, 3))
+ - (2020-09-07 00:53:35) SAY: *no key*/(Poly) "OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE" FORCED by poly (Chief Engineer's Office (118, 79, 2))
+ - (2020-09-07 00:53:37) EMOTE: *no key*/(Paperwork) snores. (Cargo Office (86, 120, 2))
+ - (2020-09-07 00:53:38) EMOTE: *no key*/(coder monkey (474)) scratches. (Tear in the Fabric of Reality (21, 40, 1))
+ - (2020-09-07 00:53:38) EMOTE: *no key*/(coder monkey (968)) waves his tail. (Tear in the Fabric of Reality (21, 39, 1))
+ - (2020-09-07 00:53:46) EMOTE: *no key*/(coder monkey (784)) jumps! (Tear in the Fabric of Reality (20, 42, 1))
+ - (2020-09-07 00:53:48) EMOTE: *no key*/(coder monkey (474)) rolls. (Tear in the Fabric of Reality (20, 40, 1))
+ - (2020-09-07 00:53:51) SAY: *no key*/(Poly) "OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE" FORCED by poly (Chief Engineer's Office (118, 82, 2))
+ - (2020-09-07 00:53:53) SAY: *no key*/(Poly) "Wire the solars, you lazy bums!" FORCED by poly (Chief Engineer's Office (117, 82, 2))
+ - (2020-09-07 00:53:55) SAY: *no key*/(�Medibot) "I knew it, I should&#39;ve been a plastic surgeon." (CentCom Transport Shuttle Dock (154, 73, 1))
+ - (2020-09-07 00:53:57) SAY: *no key*/(immortal chicken) "Bwaak bwak." FORCED by poly (Charlie Station Hydroponics (162, 109, 3))
+ - (2020-09-07 00:53:57) SAY: *no key*/(Poly) "Check the crystal, you chucklefucks!" FORCED by poly (Chief Engineer's Office (117, 80, 2))
+ - (2020-09-07 00:54:02) EMOTE: *no key*/(Runtime) walks around. (Chief Medical Officer's Office (160, 109, 2))
+ - (2020-09-07 00:54:06) EMOTE: *no key*/(monkey (583)) waves his tail. (Virology (152, 91, 2))
+ - (2020-09-07 00:54:06) EMOTE: *no key*/(coder monkey (485)) scratches. (Tear in the Fabric of Reality (24, 42, 1))
+ - (2020-09-07 00:54:07) EMOTE: *no key*/(Bumbles (14)) buzzes. (Hydroponics (156, 135, 2))
+ - (2020-09-07 00:54:07) SAY: *no key*/(Renault) "Ack-Ack" FORCED by poly (Captain's Office (121, 129, 2))
+ - (2020-09-07 00:54:09) EMOTE: *no key*/(Poly) bawks! (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:54:11) SAY: *no key*/(�Medibot) "Why are we still here? Just to suffer?" (CentCom Transport Shuttle Dock (155, 73, 1))
+ - (2020-09-07 00:54:11) EMOTE: *no key*/(immortal cow) brays. (Charlie Station Hydroponics (163, 108, 3))
+ - (2020-09-07 00:54:17) EMOTE: *no key*/(crab) clacks. (Tear in the Fabric of Reality (45, 18, 1))
+ - (2020-09-07 00:54:24) EMOTE: *no key*/(coder monkey (145)) groans! (Unexplored Location (22, 38, 2))
+ - (2020-09-07 00:54:27) SAY: *no key*/(Poly) "Check the crystal, you chucklefucks!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:54:39) EMOTE: *no key*/(Poly) flutters its wings. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:54:39) EMOTE: *no key*/(Cheems) chases its tail. (Cargo Bay (77, 120, 2))
+ - (2020-09-07 00:54:41) SAY: *no key*/(immortal chicken) "Bwaak bwak." FORCED by poly (Charlie Station Hydroponics (163, 109, 3))
+ - (2020-09-07 00:54:41) EMOTE: *no key*/(crab) clicks. (Tear in the Fabric of Reality (65, 9, 1))
+ - (2020-09-07 00:54:42) EMOTE: *no key*/(monkey (175)) jumps! (Genetics Lab (161, 116, 2))
+ - (2020-09-07 00:54:43) EMOTE: *no key*/(�chicken) flaps its wings viciously. (Ghost Cafe Outdoors (60, 218, 1))
+ - (2020-09-07 00:54:45) SAY: *no key*/(Poppy the Safety Possum) "Hiss!" FORCED by poly (Aft Maintenance (148, 94, 2))
+ - (2020-09-07 00:54:47) EMOTE: *no key*/(Poly) bawks! (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:54:47) EMOTE: *no key*/(�chicken) clucks. (Ghost Cafe Outdoors (66, 222, 1))
+ - (2020-09-07 00:54:53) SAY: *no key*/(Poly) "Check the crystal, you chucklefucks!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:54:54) SAY: *no key*/(grey baby slime (599)) "Rawr..." (Xenobiology Lab (167, 93, 2))
+ - (2020-09-07 00:54:57) EMOTE: *no key*/(crab) clicks. (Abandoned Zoo (76, 58, 7))
+ - (2020-09-07 00:54:59) SAY: *no key*/(mouse) "Squeak?" FORCED by poly (Starboard Bow Maintenance (178, 154, 2))
+ - (2020-09-07 00:54:59) EMOTE: *no key*/(raving crab) clacks. (Unexplored Location (220, 30, 2))
+ - (2020-09-07 00:54:59) EMOTE: *no key*/(Runtime) mews. (Chief Medical Officer's Office (159, 110, 2))
+ - (2020-09-07 00:54:59) EMOTE: *no key*/(Poly) looks in the �Power-ON cartridge's direction and takes flight. (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:55:01) SAY: *no key*/(Poly) "Check the crystal, you chucklefucks!" FORCED by poly (Chief Engineer's Office (115, 79, 2))
+ - (2020-09-07 00:55:03) EMOTE: *no key*/(mouse) squeaks. (Starboard Bow Maintenance (178, 154, 2))
+ - (2020-09-07 00:55:03) SAY: *no key*/(�Medibot) "There&#39;s always a catch, and I&#39;m the best there is." (CentCom Transport Shuttle Dock (155, 73, 1))
+ - (2020-09-07 00:55:07) EMOTE: *no key*/(Poly) squawks. (Chief Engineer's Office (116, 79, 2))
+ - (2020-09-07 00:55:08) SAY: *no key*/(grey baby slime (599)) "Blop..." (Xenobiology Lab (167, 93, 2))
+ - (2020-09-07 00:55:09) EMOTE: *no key*/(raving crab) clacks. (Unexplored Location (220, 32, 2))
+ - (2020-09-07 00:55:09) SAY: *no key*/(old medibot) "What kind of medbay is this? Everyone&#39;s dropping like flies." (Charlie Station Main Corridor (176, 96, 3))
+ - (2020-09-07 00:55:11) SAY: *no key*/(Poly) "OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE" FORCED by poly (Chief Engineer's Office (116, 79, 2))
+ - (2020-09-07 00:55:13) EMOTE: *no key*/(raving crab) clicks. (Unexplored Location (220, 30, 2))
+ - (2020-09-07 00:55:13) EMOTE: *no key*/(crab) clicks. (Tear in the Fabric of Reality (43, 18, 1))
+ - (2020-09-07 00:55:18) EMOTE: *no key*/(monkey (787)) scratches. (Ghost Cafe Outdoors (34, 213, 1))
+[2020-09-07 03:55:35.306] Logs from logging subsystem:
+ - (2020-09-07 00:55:23) SAY: *no key*/(mouse) "Squeak!" FORCED by poly (Port Maintenance (58, 129, 2))
+ - (2020-09-07 00:55:23) SAY: *no key*/(Poppy the Safety Possum) "Hissss?" FORCED by poly (Aft Maintenance (146, 94, 2))
+ - (2020-09-07 00:55:26) EMOTE: *no key*/(monkey (378)) rolls. (Virology (153, 90, 2))
+ - (2020-09-07 00:55:32) EMOTE: *no key*/(monkey (583)) waves his tail. (Virology (152, 91, 2))
+[2020-09-07 04:01:00.376] GAME: Random Event triggering: High Priority Bounty (/datum/round_event/high_priority_bounty)
+[2020-09-07 04:02:41.450] GAME: The nuclear authentication disk is stationary for too long in (Captain's Office (126, 127, 2)), and has increased the weight of the Lone Operative event to 1.
+[2020-09-07 04:02:51.224] ACCESS: Logout: Bob Joga/(Bob Joga)
+[2020-09-07 04:02:51.225] GAME: Bob Joga[DC]/(Bob Joga) Bob Joga[DC]/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))

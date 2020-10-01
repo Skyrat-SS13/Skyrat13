@@ -1,0 +1,63 @@
+[2020-09-29 22:57:41.092] Starting up round ID .
+ - -------------------------
+[2020-09-29 22:57:41.176] ADMIN: Loading Banlist
+[2020-09-29 22:57:41.229] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-29 22:57:41.231] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-29 22:57:44.046] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-29 22:57:47.682] GAME: Saved mode is 'extended'
+[2020-09-29 22:58:03.219] GAME: Hierophant's Arena loaded at 195,77,6
+[2020-09-29 22:58:03.237] GAME: Blood-Drunk Miner (Guidance) loaded at 212,138,6
+[2020-09-29 22:58:03.255] GAME: Blood-Drunk Miner (Hunter) loaded at 116,192,6
+[2020-09-29 22:58:03.276] GAME: Blood-Drunk Miner loaded at 198,25,6
+[2020-09-29 22:58:03.298] GAME: King Goat Boss Ruin loaded at 27,159,6
+[2020-09-29 22:58:03.324] GAME: Rogue's Arena loaded at 206,161,6
+[2020-09-29 22:58:03.377] GAME: Sif's Sword loaded at 31,182,6
+[2020-09-29 22:58:03.389] GAME: Pulsating Tumor loaded at 153,54,6
+[2020-09-29 22:58:03.460] GAME: Elephant Graveyard loaded at 74,68,6
+[2020-09-29 22:58:03.483] GAME: Ruin of Envy loaded at 142,72,6
+[2020-09-29 22:58:03.498] GAME: Crashed Shuttle loaded at 216,186,6
+[2020-09-29 22:58:03.498] GAME: Biodome Clown Planet loaded at 189,192,6
+[2020-09-29 22:58:03.551] GAME: Biodome Beach loaded at 163,35,6
+[2020-09-29 22:58:03.560] GAME: Pulsating Tumor loaded at 125,123,6
+[2020-09-29 22:58:07.256] GAME: Abandoned Teleporter loaded at 125,192,8
+[2020-09-29 22:58:07.280] GAME: Whiteship Dock loaded at 99,62,3
+[2020-09-29 22:58:07.335] GAME: Derelict 4 loaded at 76,27,3
+[2020-09-29 22:58:07.517] GAME: Syndicate Ambush loaded at 75,25,8
+[2020-09-29 22:58:07.581] GAME: Asteroid 2 loaded at 169,110,8
+[2020-09-29 22:58:07.663] GAME: DJ Station loaded at 84,103,3
+[2020-09-29 22:58:07.714] GAME: Waylaid Buses loaded at 180,107,7
+[2020-09-29 22:58:07.854] GAME: Space Hermit loaded at 122,119,3
+[2020-09-29 22:58:07.899] GAME: Roboticst Augmentation Facility loaded at 207,142,7
+[2020-09-29 22:58:08.318] GAME: The Twin-Nexus Hotel loaded at 163,34,3
+[2020-09-29 22:58:08.364] GAME: Asteroid 3 loaded at 180,136,8
+[2020-09-29 22:58:08.412] GAME: Crashed Clown Ship loaded at 174,208,7
+[2020-09-29 22:58:08.450] GAME: Salvation loaded at 189,205,3
+[2020-09-29 22:58:08.502] GAME: Unnamed Turreted Outpost loaded at 154,126,7
+[2020-09-29 22:58:08.550] GAME: Cleric's Den loaded at 25,206,4
+[2020-09-29 22:58:09.068] GAME: Kosmicheskaya Stantsiya 13 loaded at 28,112,7
+[2020-09-29 22:58:09.101] GAME: Dead wizard Roid loaded at 36,211,2
+[2020-09-29 22:58:09.109] GAME: Mineable Asteroid 1 loaded at 202,31,2
+[2020-09-29 22:58:09.148] GAME: Monitoring Roid loaded at 145,211,2
+[2020-09-29 22:58:09.165] GAME: Maze Roid loaded at 214,187,2
+[2020-09-29 22:58:09.181] GAME: Crab Roid loaded at 178,202,2
+[2020-09-29 22:58:09.196] GAME: Mineable Asteroid 3 loaded at 201,212,2
+[2020-09-29 22:58:09.230] GAME: Mineable Asteroid 5 loaded at 31,23,2
+[2020-09-29 22:58:09.256] GAME: Dorm Roid loaded at 213,25,2
+[2020-09-29 22:58:09.265] GAME: Mineable Asteroid 1 loaded at 39,198,2
+[2020-09-29 22:58:09.289] GAME: Mineable Asteroid 2 loaded at 33,46,2
+[2020-09-29 22:58:09.367] GAME: Box Singulo loaded at 96,49,2
+[2020-09-29 22:58:09.693] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-29 22:58:16.073] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-29 22:58:16.073] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-29 22:58:16.074] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-29 22:58:16.075] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-29 22:58:16.078] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-29 22:58:16.090] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-29 22:58:16.100] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-29 22:58:16.108] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-29 22:58:29.067] GAME: *no key*/(Auden Navas) Auden Navas name changed from Auden Navas to Razzle Dazzle (Unexplored Location (141, 144, 3))
+[2020-09-29 22:58:30.081] GAME: *no key*/(Rochell Randall) Rochell Randall name changed from Rochell Randall to Buttercup (Unexplored Location (192, 217, 7))
+[2020-09-29 22:58:30.144] GAME: *no key*/(Heather Tambwe) Heather Tambwe name changed from Heather Tambwe to Cluesky (Unexplored Location (193, 219, 7))
+[2020-09-29 22:58:30.248] GAME: *no key*/(Chloe Skidmore) Chloe Skidmore name changed from Chloe Skidmore to Pepinpop (Unexplored Location (195, 216, 7))
+[2020-09-29 22:59:12.092] ACCESS: Logout: Bob Joga/(Bob Joga)
+[2020-09-29 22:59:12.094] GAME: Bob Joga[DC]/(Bob Joga) Bob Joga[DC]/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))

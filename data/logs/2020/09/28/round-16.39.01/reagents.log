@@ -1,0 +1,7 @@
+[2020-09-28 19:39:01.603] Starting up round ID .
+ - -------------------------
+[2020-09-28 19:52:21.650] Logs from logging subsystem:
+ - (2020-09-28 16:44:34) REAGENT: MOB ADD: on_mob_add(): *no key*/(Mun Pannell) at Space (39, 174, 7) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-28 16:45:10) REAGENT: MOB ADD: on_merge(): *no key*/(Mun Pannell) at Space (39, 174, 7) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-28 16:49:16) REAGENT: MOB ADD: on_merge(): *no key*/(Mun Pannell) at Space (39, 174, 7) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-28 16:50:22) REAGENT: MOB ADD: on_merge(): *no key*/(Mun Pannell) at Space (39, 174, 7) - 8 of /datum/reagent/determination with 1 purity

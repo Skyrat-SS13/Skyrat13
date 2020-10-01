@@ -1,0 +1,59 @@
+[2020-09-14 16:50:14.047] Starting up round ID .
+ - -------------------------
+[2020-09-14 17:03:26.101] Logs from logging subsystem:
+ - (2020-09-14 13:54:26) REAGENT: MOB ADD: on_mob_add(): *no key*/(Quoc Kite) at Small Freighter (148, 206, 3) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:55:00) REAGENT: MOB ADD: on_merge(): *no key*/(Quoc Kite) at Small Freighter (148, 206, 3) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:55:02) REAGENT: MOB ADD: on_mob_add(): *no key*/(Manali Shariff) at Tiny Freighter (204, 205, 3) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:55:06) REAGENT: MOB ADD: on_mob_add(): *no key*/(Topcake) at Unexplored Location (119, 102, 7) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:55:08) REAGENT: MOB ADD: on_mob_add(): *no key*/(Buster Frown) at Unexplored Location (118, 100, 7) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:55:28) REAGENT: MOB ADD: on_mob_add(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (121, 99, 7) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:55:28) REAGENT: MOB ADD: on_merge(): *no key*/(Buster Frown) at Unexplored Location (118, 100, 7) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:55:59) REAGENT: MOB ADD: on_merge(): *no key*/(Buster Frown) at Unexplored Location (118, 100, 7) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:56:05) REAGENT: MOB ADD: on_merge(): *no key*/(Quoc Kite) at Small Freighter (148, 206, 3) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:56:37) REAGENT: MOB ADD: on_mob_add(): *no key*/(Jelani Mojica) at Small Freighter (141, 208, 3) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:56:39) REAGENT: MOB ADD: on_merge(): *no key*/(Manali Shariff) at Tiny Freighter (204, 205, 3) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:56:59) REAGENT: MOB ADD: on_merge(): *no key*/(Jelani Mojica) at Small Freighter (141, 208, 3) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:57:01) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (121, 99, 7) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:57:01) REAGENT: MOB ADD: on_merge(): *no key*/(Topcake) at Unexplored Location (119, 102, 7) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:57:03) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (121, 99, 7) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:57:05) REAGENT: MOB ADD: on_merge(): *no key*/(Buster Frown) at Unexplored Location (118, 100, 7) - 11 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:57:07) REAGENT: MOB ADD: on_merge(): *no key*/(Manali Shariff) at Tiny Freighter (204, 205, 3) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:57:11) REAGENT: MOB ADD: on_merge(): *no key*/(Buster Frown) at Unexplored Location (118, 100, 7) - 16 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:57:39) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (121, 99, 7) - 11 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:57:43) REAGENT: MOB ADD: on_merge(): *no key*/(Manali Shariff) at Tiny Freighter (204, 205, 3) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:57:49) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (121, 99, 7) - 16 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:58:07) REAGENT: MOB ADD: on_merge(): *no key*/(Manali Shariff) at Tiny Freighter (204, 205, 3) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:58:21) REAGENT: MOB ADD: on_merge(): *no key*/(Topcake) at Unexplored Location (119, 102, 7) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:58:31) REAGENT: MOB ADD: on_mob_add(): *no key*/(coder monkey (639)) at Space (142, 81, 3) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:58:33) REAGENT: MOB ADD: on_merge(): *no key*/(Buster Frown) at Unexplored Location (118, 100, 7) - 21 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:58:33) REAGENT: MOB ADD: on_merge(): *no key*/(Manali Shariff) at Tiny Freighter (204, 205, 3) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:58:37) REAGENT: MOB ADD: on_merge(): *no key*/(Manali Shariff) at Tiny Freighter (204, 205, 3) - 17 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:58:44) REAGENT: MOB ADD: on_merge(): *no key*/(Manali Shariff) at Tiny Freighter (204, 205, 3) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:58:44) REAGENT: MOB DELETE: on_mob_delete: *no key*/(coder monkey (639)) at Space (142, 81, 3) - /datum/reagent/determination
+ - (2020-09-14 13:59:02) REAGENT: MOB ADD: on_merge(): *no key*/(Buster Frown) at Unexplored Location (118, 100, 7) - 23 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:59:04) REAGENT: MOB ADD: on_merge(): *no key*/(Buster Frown) at Unexplored Location (118, 100, 7) - 25 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:59:12) REAGENT: MOB ADD: on_merge(): *no key*/(Buster Frown) at Unexplored Location (118, 100, 7) - 30 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:59:14) REAGENT: MOB ADD: on_merge(): *no key*/(Manali Shariff) at Tiny Freighter (204, 205, 3) - 27 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:59:30) REAGENT: MOB ADD: on_merge(): *no key*/(Manali Shariff) at Tiny Freighter (204, 205, 3) - 34.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:59:42) REAGENT: MOB ADD: on_merge(): *no key*/(Buster Frown) at Unexplored Location (118, 100, 7) - 35 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:59:44) REAGENT: MOB ADD: on_merge(): *no key*/(Buster Frown) at Unexplored Location (118, 100, 7) - 40 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:59:46) REAGENT: MOB ADD: on_merge(): *no key*/(Manali Shariff) at Tiny Freighter (204, 205, 3) - 39.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 13:59:56) REAGENT: MOB ADD: on_merge(): *no key*/(Jelani Mojica) at Small Freighter (141, 208, 3) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:00:12) REAGENT: MOB ADD: on_merge(): *no key*/(Quoc Kite) at Small Freighter (148, 206, 3) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:00:28) REAGENT: MOB ADD: on_merge(): *no key*/(Jelani Mojica) at Small Freighter (141, 208, 3) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:00:32) REAGENT: MOB ADD: on_merge(): *no key*/(Topcake) at Unexplored Location (119, 102, 7) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:00:48) REAGENT: MOB ADD: on_merge(): *no key*/(Jelani Mojica) at Small Freighter (141, 208, 3) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:00:48) REAGENT: MOB ADD: on_merge(): *no key*/(Topcake) at Unexplored Location (119, 102, 7) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:00:56) REAGENT: MOB ADD: on_merge(): *no key*/(Topcake) at Unexplored Location (119, 102, 7) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:01:10) REAGENT: MOB ADD: on_merge(): *no key*/(Topcake) at Unexplored Location (119, 102, 7) - 17 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:01:12) REAGENT: MOB ADD: on_merge(): *no key*/(Topcake) at Unexplored Location (119, 102, 7) - 24.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:01:34) REAGENT: MOB ADD: on_merge(): *no key*/(Quoc Kite) at Small Freighter (148, 206, 3) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:01:48) REAGENT: MOB ADD: on_merge(): *no key*/(Jelani Mojica) at Small Freighter (141, 208, 3) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:02:06) REAGENT: MOB ADD: on_merge(): *no key*/(Jelani Mojica) at Small Freighter (141, 208, 3) - 17 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:02:22) REAGENT: MOB ADD: on_merge(): *no key*/(Quoc Kite) at Small Freighter (148, 206, 3) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:02:30) REAGENT: MOB ADD: on_merge(): *no key*/(Quoc Kite) at Small Freighter (148, 206, 3) - 17 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:02:44) REAGENT: MOB ADD: on_merge(): *no key*/(Jelani Mojica) at Small Freighter (141, 208, 3) - 20.751 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:02:53) REAGENT: MOB ADD: on_merge(): *no key*/(Quoc Kite) at Small Freighter (148, 206, 3) - 22 of /datum/reagent/determination with 1 purity
+[2020-09-14 17:13:29.565] Logs from logging subsystem:
+ - (2020-09-14 14:05:04) REAGENT: MOB ADD: on_merge(): *no key*/(Quoc Kite) at Small Freighter (148, 206, 3) - 27 of /datum/reagent/determination with 1 purity
+ - (2020-09-14 14:06:31) REAGENT: MOB ADD: on_merge(): *no key*/(Quoc Kite) at Small Freighter (148, 206, 3) - 34.5 of /datum/reagent/determination with 1 purity

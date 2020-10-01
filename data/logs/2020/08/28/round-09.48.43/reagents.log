@@ -1,0 +1,23 @@
+[2020-08-28 12:48:43.666] Starting up round ID .
+ - -------------------------
+[2020-08-28 13:01:49.484] Logs from logging subsystem:
+ - (2020-08-28 09:55:13) REAGENT: MOB ADD: on_mob_add(): *no key*/(Rawiri Ott) at Space (31, 143, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:55:45) REAGENT: MOB ADD: on_mob_add(): *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:55:47) REAGENT: MOB ADD: on_merge(): *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - 3.4 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:55:52) REAGENT: MOB ADD: on_merge(): *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - 4.8 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:55:57) REAGENT: MOB ADD: on_merge(): *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - 9.2 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:55:57) REAGENT: MOB ADD: on_merge(): *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - 11.2 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:55:58) REAGENT: MOB ADD: on_merge(): *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:56:00) REAGENT: MOB ADD: on_merge(): *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:56:01) REAGENT: MOB ADD: on_merge(): *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - 22.2 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:56:05) REAGENT: MOB ADD: on_merge(): *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - 11.4 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:56:09) REAGENT: MOB ADD: on_merge(): *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - 11.4 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:56:38) REAGENT: MOB ADD: on_merge(): *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - 7.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:56:40) REAGENT: MOB ADD: on_merge(): *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - 9.2 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 09:57:42) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Frankie Sahraoui) at Medbay Lobby (133, 123, 2) - /datum/reagent/determination
+ - (2020-08-28 09:58:30) REAGENT: MOB ADD: on_merge(): *no key*/(Rawiri Ott) at Space (31, 143, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 10:00:46) REAGENT: MOB ADD: on_merge(): *no key*/(Rawiri Ott) at Space (31, 143, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 10:00:46) REAGENT: MOB ADD: on_merge(): *no key*/(Rawiri Ott) at Space (31, 143, 8) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 10:00:50) REAGENT: MOB ADD: on_merge(): *no key*/(Rawiri Ott) at Space (31, 143, 8) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 10:01:05) REAGENT: MOB ADD: on_merge(): *no key*/(Rawiri Ott) at Space (31, 143, 8) - 18 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 10:01:27) REAGENT: MOB ADD: on_merge(): *no key*/(Rawiri Ott) at Space (31, 143, 8) - 20 of /datum/reagent/determination with 1 purity

@@ -1,0 +1,61 @@
+[2020-09-15 01:28:45.358] Starting up round ID .
+ - -------------------------
+[2020-09-15 01:28:45.411] ADMIN: Loading Banlist
+[2020-09-15 01:28:45.455] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-15 01:28:45.455] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-15 01:28:48.210] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-15 01:28:51.609] GAME: Saved mode is 'extended'
+[2020-09-15 01:29:04.532] GAME: Hierophant's Arena loaded at 83,114,6
+[2020-09-15 01:29:04.548] GAME: Blood-Drunk Miner (Guidance) loaded at 127,117,6
+[2020-09-15 01:29:04.565] GAME: Blood-Drunk Miner (Hunter) loaded at 135,95,6
+[2020-09-15 01:29:04.584] GAME: Blood-Drunk Miner loaded at 149,174,6
+[2020-09-15 01:29:04.602] GAME: King Goat Boss Ruin loaded at 220,184,6
+[2020-09-15 01:29:04.627] GAME: Rogue's Arena loaded at 64,78,6
+[2020-09-15 01:29:04.663] GAME: Sif's Sword loaded at 105,66,6
+[2020-09-15 01:29:04.670] GAME: Pulsating Tumor loaded at 165,176,6
+[2020-09-15 01:29:04.701] GAME: Ruined Pizza Party loaded at 66,176,6
+[2020-09-15 01:29:04.733] GAME: The Wishgranter Cube loaded at 190,155,6
+[2020-09-15 01:29:04.760] GAME: Free Golem Ship loaded at 147,70,6
+[2020-09-15 01:29:04.798] GAME: Ruin of Wrath loaded at 73,195,6
+[2020-09-15 01:29:04.919] GAME: Elephant Graveyard loaded at 201,25,6
+[2020-09-15 01:29:08.634] GAME: Abandoned Teleporter loaded at 97,162,3
+[2020-09-15 01:29:08.657] GAME: Whiteship Dock loaded at 35,41,7
+[2020-09-15 01:29:08.697] GAME: Crashed Clown Ship loaded at 183,104,8
+[2020-09-15 01:29:08.729] GAME: Salvation loaded at 109,48,7
+[2020-09-15 01:29:08.883] GAME: Syndicate Ambush loaded at 26,78,3
+[2020-09-15 01:29:09.008] GAME: Abandoned Telecommunications Satellite loaded at 141,170,8
+[2020-09-15 01:29:09.055] GAME: DJ Station loaded at 114,23,3
+[2020-09-15 01:29:09.103] GAME: NT Medical Ship loaded at 167,48,8
+[2020-09-15 01:29:09.164] GAME: Biological Storage Facility loaded at 152,131,7
+[2020-09-15 01:29:09.357] GAME: Crashed Ship loaded at 171,176,4
+[2020-09-15 01:29:09.388] GAME: Strange Ship loaded at 108,202,3
+[2020-09-15 01:29:10.017] GAME: Ancient Space Station loaded at 69,68,8
+[2020-09-15 01:29:10.067] GAME: Ancient Cloning Lab loaded at 149,85,7
+[2020-09-15 01:29:10.127] GAME: Derelict 5 loaded at 134,122,4
+[2020-09-15 01:29:10.172] GAME: Derelict 1 loaded at 187,28,4
+[2020-09-15 01:29:10.201] GAME: Asteroid 2 loaded at 88,110,7
+[2020-09-15 01:29:10.232] GAME: Monitoring Roid loaded at 209,184,2
+[2020-09-15 01:29:10.251] GAME: Dead wizard Roid loaded at 25,197,2
+[2020-09-15 01:29:10.266] GAME: Crab Roid loaded at 210,23,2
+[2020-09-15 01:29:10.289] GAME: Dorm Roid loaded at 201,217,2
+[2020-09-15 01:29:10.312] GAME: Mineable Asteroid 4 loaded at 49,212,2
+[2020-09-15 01:29:10.320] GAME: Mineable Asteroid 1 loaded at 204,207,2
+[2020-09-15 01:29:10.342] GAME: Mineable Asteroid 2 loaded at 33,24,2
+[2020-09-15 01:29:10.357] GAME: Mineable Asteroid 3 loaded at 150,209,2
+[2020-09-15 01:29:10.365] GAME: Mineable Asteroid 1 loaded at 27,187,2
+[2020-09-15 01:29:10.373] GAME: Mineable Asteroid 1 loaded at 64,214,2
+[2020-09-15 01:29:10.480] GAME: Box TEG loaded at 96,49,2
+[2020-09-15 01:29:10.761] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-15 01:29:21.878] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-15 01:29:21.880] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-15 01:29:21.882] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-15 01:29:21.883] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-15 01:29:21.884] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-15 01:29:21.893] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-15 01:29:21.902] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-15 01:29:21.907] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-15 01:29:47.627] GAME: *no key*/(Raelene Astuti) Raelene Astuti name changed from Raelene Astuti to Pepinpop (Unexplored Location (201, 113, 8))
+[2020-09-15 01:29:47.670] GAME: *no key*/(Masahiro Neferu) Masahiro Neferu name changed from Masahiro Neferu to Dazzle (Unexplored Location (202, 115, 8))
+[2020-09-15 01:29:47.725] GAME: *no key*/(David Fett) David Fett name changed from David Fett to Mr Shoe (Unexplored Location (204, 112, 8))
+[2020-09-15 01:29:49.808] ACCESS: Logout: Bob Joga/(Bob Joga)
+[2020-09-15 01:29:49.809] GAME: Bob Joga[DC]/(Bob Joga) Bob Joga[DC]/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))

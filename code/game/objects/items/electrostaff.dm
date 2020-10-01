@@ -195,6 +195,9 @@
 
 /obj/item/electrostaff/proc/stun_act(mob/living/target, mob/living/user, no_charge_and_force = FALSE, list/block_return = list())
 	var/stunforce = block_calculate_resultant_damage(stun_stamdmg, block_return)
+	if(iscarbon(target))
+		var/mob/living/C = target
+		stunforce *= max(0.1, 1 - (C.chem_effects[CE_PAINKILLER]/100))
 	if(!no_charge_and_force)
 		if(!on)
 			target.visible_message("<span class='warning'>[user] has bapped [target] with [src]. Luckily it was off.</span>", \
@@ -218,7 +221,11 @@
 								"<span class='userdanger'>[user] has shocked you with [src]!</span>")
 		log_combat(user, target, "stunned with an electrostaff")
 	playsound(src, 'sound/weapons/staff.ogg', 50, 1, -1)
-	target.apply_status_effect(stun_status_effect, stun_status_duration)
+	if(iscarbon(target))
+		var/mob/living/C = target
+		target.apply_status_effect(stun_status_effect, stun_status_duration * max(0.1, 1 - (C.chem_effects[CE_PAINKILLER]/100)))
+	else
+		target.apply_status_effect(stun_status_effect, stun_status_duration)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.forcesay(GLOB.hit_appends)

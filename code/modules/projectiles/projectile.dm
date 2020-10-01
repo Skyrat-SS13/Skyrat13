@@ -127,7 +127,7 @@
 	var/ignore_source_check = FALSE
 
 	var/damage = 10
-	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
+	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, PAIN are the only things that should be in here
 	var/nodamage = 0 //Determines if the projectile will skip any damage inflictions
 	var/flag = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb
 	var/projectile_type = /obj/item/projectile
@@ -140,7 +140,8 @@
 	/// factor to multiply by for zone accuracy percent.
 	var/zone_accuracy_factor = 1
 
-		//Effects
+	//Effects
+	var/pain = 0
 	var/stun = 0
 	var/knockdown = 0
 	var/knockdown_stamoverride
@@ -253,6 +254,8 @@
 			if(starting)
 				splatter_dir = get_dir(starting, target_loca)
 			var/obj/item/bodypart/B = L.get_bodypart(def_zone)
+			if(B)
+				B.receive_damage(pain = src.pain)
 			if(B && B.status == BODYPART_ROBOTIC) // So if you hit a robotic, it sparks instead of bloodspatters
 				do_sparks(2, FALSE, target.loc)
 				if(prob(25))

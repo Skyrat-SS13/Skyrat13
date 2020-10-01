@@ -1,0 +1,69 @@
+[2020-09-10 15:12:49.193] Starting up round ID .
+ - -------------------------
+[2020-09-10 15:12:49.204] Running /tg/ revision: 2020-09-10
+ - origin/master: 79974a492819da3a629b706ad438e16605ee1f20
+ - HEAD: 87c459698b67669de58150ea9e69fc7d197bc82b
+[2020-09-10 15:12:50.659] Loading Box Station...
+[2020-09-10 15:13:00.984] Loaded Station in 10.3s!
+[2020-09-10 15:13:04.704] Loaded Lavaland in 3.6s!
+[2020-09-10 15:13:06.324] Ruin loader finished with 0 left to spend.
+[2020-09-10 15:13:10.088] Ruin loader finished with 0 left to spend.
+[2020-09-10 15:13:10.275] Ruin loader finished with 0 left to spend.
+[2020-09-10 15:13:50.537] ## WARNING: HEY! LISTEN! 1.1 seconds were wasted processing 462 turf(s) (connected to 38724 other turfs) with atmos differences at round start.
+[2020-09-10 15:13:52.684] ## WARNING: design /datum/design/ipc_kidneys with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'capcitor-ipc'
+[2020-09-10 15:14:11.531] Initializations complete within 81.3 seconds!
+[2020-09-10 15:14:55.177] Game start took 0s
+[2020-09-10 15:31:41.322] runtime error: Cannot read "map".x
+ - proc name: face atom (/mob/proc/face_atom)
+ -   source file: click.dm,431
+ -   usr: (src)
+ -   src: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src.loc: the floor (50,127,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Pedro Ilurdoz (/mob/living/carbon/human): face atom("map", 1)
+ - /datum/component/combat_mode (/datum/component/combat_mode): onMouseUpDown(Pedro Ilurdoz (/mob/living/carbon/human), null, "map", "mapwindow.map", "left=1;screen-loc=map:10:26,5:...")
+ - CallAsync(/datum/component/combat_mode (/datum/component/combat_mode), /datum/component/combat_mode/p... (/datum/component/combat_mode/proc/onMouseUpDown), /list (/list))
+ - Pedro Ilurdoz (/mob/living/carbon/human):  SendSignal("mob_client_mouseup", /list (/list))
+ - Bob Joga (/client): MouseUp(null, "map", "mapwindow.map", "left=1;screen-loc=map:10:26,5:...")
+ - 
+[2020-09-10 15:33:53.029] runtime error: Cannot read "map".x
+ - proc name: face atom (/mob/proc/face_atom)
+ -   source file: click.dm,431
+ -   usr: (src)
+ -   src: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src.loc: the floor (47,128,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Pedro Ilurdoz (/mob/living/carbon/human): face atom("map", 1)
+ - /datum/component/combat_mode (/datum/component/combat_mode): onMouseUpDown(Pedro Ilurdoz (/mob/living/carbon/human), null, "map", "mapwindow.map", "left=1;shift=1;screen-loc=map:...")
+ - CallAsync(/datum/component/combat_mode (/datum/component/combat_mode), /datum/component/combat_mode/p... (/datum/component/combat_mode/proc/onMouseUpDown), /list (/list))
+ - Pedro Ilurdoz (/mob/living/carbon/human):  SendSignal("mob_client_mouseup", /list (/list))
+ - Bob Joga (/client): MouseUp(null, "map", "mapwindow.map", "left=1;shift=1;screen-loc=map:...")
+ - 
+[2020-09-10 15:34:03.345] runtime error: Cannot read "map".x
+ - proc name: face atom (/mob/proc/face_atom)
+ -   source file: click.dm,431
+ -   usr: (src)
+ -   src: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src.loc: the floor (61,140,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Pedro Ilurdoz (/mob/living/carbon/human): face atom("map", 1)
+ - /datum/component/combat_mode (/datum/component/combat_mode): onMouseUpDown(Pedro Ilurdoz (/mob/living/carbon/human), null, "map", "mapwindow.map", "left=1;screen-loc=map:13:1,4:4")
+ - CallAsync(/datum/component/combat_mode (/datum/component/combat_mode), /datum/component/combat_mode/p... (/datum/component/combat_mode/proc/onMouseUpDown), /list (/list))
+ - Pedro Ilurdoz (/mob/living/carbon/human):  SendSignal("mob_client_mouseup", /list (/list))
+ - Bob Joga (/client): MouseUp(null, "map", "mapwindow.map", "left=1;screen-loc=map:13:1,4:4")
+ - 
+[2020-09-10 15:34:05.971] runtime error: Cannot read "map".x
+ - proc name: face atom (/mob/proc/face_atom)
+ -   source file: click.dm,431
+ -   usr: (src)
+ -   src: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src.loc: the floor (61,141,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Pedro Ilurdoz (/mob/living/carbon/human): face atom("map", 1)
+ - /datum/component/combat_mode (/datum/component/combat_mode): onMouseUpDown(Pedro Ilurdoz (/mob/living/carbon/human), null, "map", "mapwindow.map", "left=1;screen-loc=map:13:8,5:2...")
+ - CallAsync(/datum/component/combat_mode (/datum/component/combat_mode), /datum/component/combat_mode/p... (/datum/component/combat_mode/proc/onMouseUpDown), /list (/list))
+ - Pedro Ilurdoz (/mob/living/carbon/human):  SendSignal("mob_client_mouseup", /list (/list))
+ - Bob Joga (/client): MouseUp(null, "map", "mapwindow.map", "left=1;screen-loc=map:13:8,5:2...")
+ - 
+[2020-09-10 15:41:28.268] ### VarEdit by Bob Joga/(Pedro Ilurdoz): /obj/item/melee/baseball_bat/ablative/syndi force=21.6 => 30
+[2020-09-10 15:42:18.813] ### VarEdit by Bob Joga/(Pedro Ilurdoz): /obj/item/melee/baseball_bat/ablative/syndi force=25 => 30

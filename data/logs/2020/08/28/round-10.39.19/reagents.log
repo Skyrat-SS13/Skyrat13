@@ -1,0 +1,12 @@
+[2020-08-28 13:39:19.683] Starting up round ID .
+ - -------------------------
+[2020-08-28 13:50:55.479] Logs from logging subsystem:
+ - (2020-08-28 10:42:09) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Central Primary Hallway (98, 119, 2) - 7.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 10:42:47) REAGENT: MOB ADD: on_mob_add(): *no key*/(Beverly Dwyer) at Space (143, 59, 3) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 10:42:57) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Central Primary Hallway (97, 118, 2) - /datum/reagent/determination
+ - (2020-08-28 10:43:31) REAGENT: MOB ADD: on_merge(): *no key*/(Beverly Dwyer) at Space (143, 59, 3) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 10:47:26) REAGENT: MOB ADD: on_merge(): *no key*/(Beverly Dwyer) at Space (143, 59, 3) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 10:48:34) REAGENT: MOB ADD: on_merge(): *no key*/(Beverly Dwyer) at Space (143, 59, 3) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 10:49:06) REAGENT: MOB ADD: on_merge(): *no key*/(Beverly Dwyer) at Space (143, 59, 3) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 10:49:34) REAGENT: MOB ADD: on_merge(): *no key*/(Beverly Dwyer) at Space (143, 59, 3) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-08-28 10:49:56) REAGENT: MOB ADD: on_merge(): *no key*/(Beverly Dwyer) at Space (143, 59, 3) - 20 of /datum/reagent/determination with 1 purity

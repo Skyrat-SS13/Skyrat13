@@ -1,0 +1,16 @@
+[2020-08-26 09:50:41.133] Starting up round ID .
+ - -------------------------
+[2020-08-26 09:50:41.139] Running /tg/ revision: 2020-08-26
+ - origin/master: 7705e38e803a9e644c7871647cd23e1d37422dca
+ - HEAD: fcf99389b2a97ecb97bf768de3d9be309eed3d67
+[2020-08-26 09:50:47.025] Loading Box Station...
+[2020-08-26 09:50:54.836] Loaded Station in 7.8s!
+[2020-08-26 09:50:57.641] Loaded Lavaland in 2.7s!
+[2020-08-26 09:51:00.205] Ruin loader finished with 0 left to spend.
+[2020-08-26 09:51:04.759] Ruin loader finished with 0 left to spend.
+[2020-08-26 09:51:04.932] Ruin loader finished with 0 left to spend.
+[2020-08-26 09:51:44.443] ## WARNING: HEY! LISTEN! 0.9 seconds were wasted processing 352 turf(s) (connected to 34435 other turfs) with atmos differences at round start.
+[2020-08-26 09:52:06.515] Initializations complete within 79.8 seconds!
+[2020-08-26 09:52:08.825] Game start took 0.7s
+[2020-08-26 09:53:54.016] ### VarEdit by Bob Joga/(Cockmistress): /obj/item/bodypart/r_hand max_damage=50 => 1
+[2020-08-26 09:54:01.201] ### VarEdit by Bob Joga/(Cockmistress): /obj/item/bodypart/r_arm max_damage=50 => 1

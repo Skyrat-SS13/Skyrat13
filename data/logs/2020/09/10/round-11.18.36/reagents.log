@@ -1,0 +1,29 @@
+[2020-09-10 14:18:36.783] Starting up round ID .
+ - -------------------------
+[2020-09-10 14:31:15.612] Logs from logging subsystem:
+ - (2020-09-10 11:22:44) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Pedro Ilurdoz) at Medbay Central (143, 124, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:22:51) REAGENT: MOB ADD: on_mob_add(): *no key*/(Toodles Sharperton) at Unexplored Location (210, 64, 7) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:22:57) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Pedro Ilurdoz) at Medbay Central (149, 115, 2) - /datum/reagent/determination
+ - (2020-09-10 11:23:10) REAGENT: MOB ADD: on_merge(): *no key*/(Toodles Sharperton) at Unexplored Location (210, 64, 7) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:23:46) REAGENT: MOB ADD: on_mob_add(): *no key*/(Clueless) at Unexplored Location (207, 65, 7) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:24:42) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (207, 65, 7) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:25:02) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (207, 65, 7) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:25:20) REAGENT: MOB ADD: on_merge(): *no key*/(Toodles Sharperton) at Unexplored Location (210, 64, 7) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:25:36) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (207, 65, 7) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:26:06) REAGENT: MOB ADD: on_merge(): *no key*/(Toodles Sharperton) at Unexplored Location (210, 64, 7) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:26:49) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Pedro Ilurdoz) at Medbay Central (150, 113, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:26:50) REAGENT: MOB ADD: on_merge(): Bob Joga/(Pedro Ilurdoz) at Medbay Central (150, 113, 2) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:26:59) REAGENT: MOB ADD: on_mob_add(): *no key*/(coder monkey (834)) at Space (96, 38, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:27:13) REAGENT: MOB DELETE: on_mob_delete: *no key*/(coder monkey (834)) at Space (96, 38, 4) - /datum/reagent/determination
+ - (2020-09-10 11:27:16) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Pedro Ilurdoz) at Medbay Central (149, 117, 2) - /datum/reagent/determination
+ - (2020-09-10 11:27:18) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Pedro Ilurdoz) at Medbay Central (149, 117, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:27:27) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (207, 65, 7) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:27:31) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Pedro Ilurdoz) at Medbay Central (147, 119, 2) - /datum/reagent/determination
+ - (2020-09-10 11:27:42) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Pedro Ilurdoz) at Medbay Central (135, 117, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:27:43) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (207, 65, 7) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:27:47) REAGENT: MOB ADD: on_merge(): Bob Joga/(Pedro Ilurdoz) at Medbay Central (133, 116, 2) - 3.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:28:09) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Pedro Ilurdoz) at Medbay Central (136, 118, 2) - /datum/reagent/determination
+ - (2020-09-10 11:29:52) REAGENT: MOB ADD: on_merge(): *no key*/(Toodles Sharperton) at Unexplored Location (210, 64, 7) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:30:20) REAGENT: MOB ADD: on_merge(): *no key*/(Toodles Sharperton) at Unexplored Location (210, 64, 7) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:30:26) REAGENT: MOB ADD: on_mob_add(): *no key*/(Bonker) at Unexplored Location (208, 67, 7) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 11:30:40) REAGENT: MOB ADD: on_merge(): *no key*/(Toodles Sharperton) at Unexplored Location (210, 64, 7) - 17 of /datum/reagent/determination with 1 purity

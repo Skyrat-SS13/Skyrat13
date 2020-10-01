@@ -1,0 +1,57 @@
+[2020-08-30 00:31:29.246] Starting up round ID .
+ - -------------------------
+[2020-08-30 00:43:12.767] Logs from logging subsystem:
+ - (2020-08-29 21:33:10) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Detective's Office (91, 131, 2) - 0.4 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:12) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Detective's Office (91, 131, 2) - 0.8 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:14) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Detective's Office (94, 131, 2) - 1.2 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:16) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (98, 122, 2) - 1.4 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:18) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (101, 113, 2) - 1.6 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:20) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (121, 113, 2) - 1.8 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:22) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (130, 117, 2) - 2 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:24) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (139, 120, 2) - 2.2 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:26) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 119, 2) - 2.4 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:28) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 119, 2) - 2.6 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:30) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 119, 2) - 2.8 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:32) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 119, 2) - 3 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:34) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 119, 2) - 3.2 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:36) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 119, 2) - 3.4 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:38) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 119, 2) - 3.6 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:40) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 119, 2) - 3.8 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:42) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 119, 2) - 4 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:44) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 119, 2) - 4.2 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:46) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 120, 2) - 4.4 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:48) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 126, 2) - 10 of /datum/reagent/medicine/morphine with 1 purity
+ - (2020-08-29 21:33:48) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 126, 2) - 4.6 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:50) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 125, 2) - 4.8 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:51) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 125, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 21:33:52) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 125, 2) - 5 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:54) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 125, 2) - 5.2 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:56) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (138, 125, 2) - 5.4 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:33:58) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (137, 119, 2) - 5.6 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:00) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (131, 122, 2) - 5.8 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:02) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (129, 114, 2) - 6 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:04) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (129, 113, 2) - 6.2 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:05) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Central Primary Hallway (129, 113, 2) - /datum/reagent/determination
+ - (2020-08-29 21:34:06) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (129, 113, 2) - 6.4 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:08) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (129, 113, 2) - 6.6 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:10) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (129, 113, 2) - 6.8 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:13) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (129, 113, 2) - 7 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:15) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (129, 113, 2) - 7.2 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:17) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (127, 113, 2) - 7.4 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:19) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (127, 113, 2) - 7.6 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:21) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (127, 113, 2) - 7.8 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:23) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (127, 113, 2) - 8 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:34:25) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (127, 113, 2) - 8 of /datum/reagent/drug/nicotine with 1 purity
+ - (2020-08-29 21:35:08) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Central Primary Hallway (130, 122, 2) - /datum/reagent/drug/nicotine
+ - (2020-08-29 21:35:08) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Central Primary Hallway (130, 122, 2) - /datum/reagent/medicine/morphine
+ - (2020-08-29 21:35:59) REAGENT: MOB ADD: on_mob_add(): *no key*/(Imran Schumacher) at Central Primary Hallway (128, 130, 2) - 30 of /datum/reagent/medicine/mine_salve with 1 purity
+ - (2020-08-29 21:36:07) REAGENT: MOB ADD: on_mob_add(): *no key*/(Imran Schumacher) at Central Primary Hallway (128, 130, 2) - 7.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 21:36:19) REAGENT: MOB ADD: on_merge(): *no key*/(Imran Schumacher) at Central Primary Hallway (128, 130, 2) - 10.4 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 21:37:00) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Imran Schumacher) at Central Primary Hallway (129, 130, 2) - /datum/reagent/medicine/mine_salve
+ - (2020-08-29 21:37:00) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Imran Schumacher) at Central Primary Hallway (129, 130, 2) - /datum/reagent/determination
+ - (2020-08-29 21:37:35) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Central Primary Hallway (129, 115, 2) - 30 of /datum/reagent/medicine/mine_salve with 1 purity
+ - (2020-08-29 21:37:56) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Central Primary Hallway (129, 115, 2) - 7.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 21:37:56) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (129, 115, 2) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 21:37:56) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Central Primary Hallway (129, 115, 2) - 22.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 21:39:04) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Central Primary Hallway (129, 115, 2) - /datum/reagent/determination
+ - (2020-08-29 21:41:12) REAGENT: MOB DELETE: on_mob_delete: bobjoga/(Cockmistress) at Central Primary Hallway (129, 115, 2) - /datum/reagent/medicine/mine_salve

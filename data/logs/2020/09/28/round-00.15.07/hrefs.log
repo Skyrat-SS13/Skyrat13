@@ -1,0 +1,40 @@
+[2020-09-28 03:15:07.287] Starting up round ID .
+ - -------------------------
+[2020-09-28 03:16:44.656] Logs from logging subsystem:
+ - (2020-09-28 00:15:41) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=colorPresetPost&preset=normal
+ - (2020-09-28 00:15:41) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=doneLoading
+ - (2020-09-28 00:15:41) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-09-28 00:15:41) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-09-28 00:15:41) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=analyzeClientData&param[cookie]={"connData":[{"ckey":"bobjoga","ip":null,"compid":"3000796718"},{"ckey":"bobjoga","ip":"191.55.15.66","compid":"3000796718"},{"ckey":"bobjoga","ip":"189.41.210.246","compid":"3000796718"},{"ckey":"bobjoga","ip":"177.191.164.17","compid":"3000796718"},{"ckey":"bobjoga","ip":"177.106.98.221","compid":"3000796718"}]}
+ - (2020-09-28 00:15:47) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_116];ready=1
+ - (2020-09-28 00:15:50) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_116];show_preferences=1
+ - (2020-09-28 00:15:52) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : /datum/preferences close=1
+[2020-09-28 03:26:45.974] Logs from logging subsystem:
+ - (2020-09-28 00:17:46) HREF: Bob Joga (usr:Cock Advisor[(115,135,2)]) : bobjoga's admin datum (!localhost!) src=[0x2100c975];admin_token=10000949010123773750910116851795030;create_mob=1
+ - (2020-09-28 00:17:52) HREF: Bob Joga (usr:Cock Advisor[(115,135,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x2100c975%5D%3Badmin_token%3D10000949010123773750910116851795030&admin_token=10000949010123773750910116851795030&filter=felinid&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fmob%2Fliving%2Fcarbon%2Fhuman%2Fspecies%2Ffelinid
+ - (2020-09-28 00:19:03) HREF: Bob Joga (usr:Cock Advisor[(115,136,2)]) : _src_=vars;admin_token=10000949010123773750910116851795030;Vars=[0x2100c981]
+ - (2020-09-28 00:19:12) HREF: Bob Joga (usr:Cock Advisor[(115,136,2)]) : _src_=vars;admin_token=10000949010123773750910116851795030;Vars=[0x2100c985]
+ - (2020-09-28 00:19:16) HREF: Bob Joga (usr:Cock Advisor[(115,136,2)]) : _src_=vars;admin_token=10000949010123773750910116851795030;datumedit=TRUE;target=[0x2100c985];targetvar=level
+ - (2020-09-28 00:20:07) HREF: Bob Joga (usr:Cock Advisor[(110,134,2)]) : bobjoga's admin datum (!localhost!) src=[0x2100c975];admin_token=10000949010123773750910116851795030;create_mob=1
+ - (2020-09-28 00:20:23) HREF: Bob Joga (usr:Cock Advisor[(110,134,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x2100c975%5D%3Badmin_token%3D10000949010123773750910116851795030&admin_token=10000949010123773750910116851795030&filter=felinid&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fmob%2Fliving%2Fcarbon%2Fhuman%2Fspecies%2Ffelinid
+ - (2020-09-28 00:26:31) HREF: Bob Joga (usr:Cock Advisor[(97,124,2)]) : bobjoga's admin datum (!localhost!) src=[0x2100c975];admin_token=10000949010123773750910116851795030;create_mob=1
+ - (2020-09-28 00:26:43) HREF: Bob Joga (usr:Cock Advisor[(97,124,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x2100c975%5D%3Badmin_token%3D10000949010123773750910116851795030&admin_token=10000949010123773750910116851795030&filter=felinid&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fmob%2Fliving%2Fcarbon%2Fhuman%2Fspecies%2Ffelinid
+[2020-09-28 03:36:46.451] Logs from logging subsystem:
+ - (2020-09-28 00:30:03) HREF: Bob Joga (usr:Cock Advisor[(97,125,2)]) : /datum/tgui src=[0x2102a93b]&action=tgui:initialize
+ - (2020-09-28 00:30:03) HREF: Bob Joga (usr:Cock Advisor[(97,125,2)]) : 
+ - (2020-09-28 00:30:03) HREF: Bob Joga (usr:Cock Advisor[(97,125,2)]) : 
+ - (2020-09-28 00:30:35) HREF: Bob Joga (usr:Cock Advisor[(96,124,2)]) : _src_=holder;admin_token=10000949010123773750910116851795030;revive=[mob_210]
+ - (2020-09-28 00:31:36) HREF: Bob Joga (usr:Cock Advisor[(110,112,2)]) : bobjoga's admin datum (!localhost!) src=[0x2100c975];admin_token=10000949010123773750910116851795030;create_mob=1
+ - (2020-09-28 00:31:45) HREF: Bob Joga (usr:Cock Advisor[(110,112,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x2100c975%5D%3Badmin_token%3D10000949010123773750910116851795030&admin_token=10000949010123773750910116851795030&filter=felinid&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fmob%2Fliving%2Fcarbon%2Fhuman%2Fspecies%2Ffelinid
+ - (2020-09-28 00:36:25) HREF: Bob Joga (usr:Cock Advisor[(135,130,2)]) : bobjoga's admin datum (!localhost!) src=[0x2100c975];admin_token=10000949010123773750910116851795030;create_mob=1
+ - (2020-09-28 00:36:31) HREF: Bob Joga (usr:Cock Advisor[(135,130,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x2100c975%5D%3Badmin_token%3D10000949010123773750910116851795030&admin_token=10000949010123773750910116851795030&filter=felinid&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fmob%2Fliving%2Fcarbon%2Fhuman%2Fspecies%2Ffelinid
+[2020-09-28 03:46:47.199] Logs from logging subsystem:
+ - (2020-09-28 00:39:49) HREF: Bob Joga (usr:Cock Advisor[(125,142,2)]) : _src_=holder;admin_token=10000949010123773750910116851795030;revive=[mob_210]
+ - (2020-09-28 00:39:55) HREF: Bob Joga (usr:Cock Advisor[(126,140,2)]) : _src_=holder;admin_token=10000949010123773750910116851795030;revive=[mob_210]
+ - (2020-09-28 00:42:19) HREF: Bob Joga (usr:Cock Advisor[(129,130,2)]) : bobjoga's admin datum (!localhost!) src=[0x2100c975];admin_token=10000949010123773750910116851795030;create_mob=1
+ - (2020-09-28 00:42:34) HREF: Bob Joga (usr:Cock Advisor[(129,130,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x2100c975%5D%3Badmin_token%3D10000949010123773750910116851795030&admin_token=10000949010123773750910116851795030&filter=felinid&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fmob%2Fliving%2Fcarbon%2Fhuman%2Fspecies%2Ffelinid
+ - (2020-09-28 00:43:56) HREF: Bob Joga (usr:Cock Advisor[(141,129,2)]) : bobjoga's admin datum (!localhost!) src=[0x2100c975];admin_token=10000949010123773750910116851795030;create_mob=1
+ - (2020-09-28 00:44:02) HREF: Bob Joga (usr:Cock Advisor[(141,129,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x2100c975%5D%3Badmin_token%3D10000949010123773750910116851795030&admin_token=10000949010123773750910116851795030&filter=felinid&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fmob%2Fliving%2Fcarbon%2Fhuman%2Fspecies%2Ffelinid
+ - (2020-09-28 00:44:51) HREF: Bob Joga (usr:Cock Advisor[(151,130,2)]) : _src_=vars;admin_token=10000949010123773750910116851795030;auto_rename=TRUE;target=[mob_210]
+ - (2020-09-28 00:44:56) HREF: Bob Joga (usr:Trey Liam[(145,129,2)]) : bobjoga's admin datum (!localhost!) src=[0x2100c975];admin_token=10000949010123773750910116851795030;create_mob=1
+ - (2020-09-28 00:45:01) HREF: Bob Joga (usr:Trey Liam[(145,129,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x2100c975%5D%3Badmin_token%3D10000949010123773750910116851795030&admin_token=10000949010123773750910116851795030&filter=felinid&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fmob%2Fliving%2Fcarbon%2Fhuman%2Fspecies%2Ffelinid

@@ -1,0 +1,50 @@
+[2020-09-26 20:12:37.489] Starting up round ID .
+ - -------------------------
+[2020-09-26 20:12:43.718] INIT: Initialized Profiler subsystem within 0 seconds!
+[2020-09-26 20:12:43.917] Fail2Topic: Failed to drop firewall rule. Exit code: 1.
+[2020-09-26 20:12:43.917] INIT: Initialized Fail2Topic subsystem within 0.2 seconds!
+[2020-09-26 20:12:43.923] INIT: Initialized Title Screen subsystem within 0 seconds!
+[2020-09-26 20:12:43.923] INIT: Initialized Database subsystem within 0 seconds!
+[2020-09-26 20:12:43.923] INIT: Initialized Blackbox subsystem within 0 seconds!
+[2020-09-26 20:12:43.924] INIT: Initialized Server Tasks subsystem within 0 seconds!
+[2020-09-26 20:12:43.926] INIT: Initialized Input subsystem within 0 seconds!
+[2020-09-26 20:12:43.929] INIT: Initialized Sounds subsystem within 0 seconds!
+[2020-09-26 20:12:43.929] INIT: Initialized Vis contents overlays subsystem within 0 seconds!
+[2020-09-26 20:12:43.991] INIT: Initialized Research subsystem within 0 seconds!
+[2020-09-26 20:12:43.995] INIT: Initialized Events subsystem within 0 seconds!
+[2020-09-26 20:12:44.000] INIT: Initialized Jobs subsystem within 0.1 seconds!
+[2020-09-26 20:12:44.006] INIT: Initialized Quirks subsystem within 0 seconds!
+[2020-09-26 20:12:44.012] INIT: Initialized Ticker subsystem within 0 seconds!
+[2020-09-26 20:12:44.026] INIT: Initialized Instruments subsystem within 0 seconds!
+[2020-09-26 20:13:04.005] INIT: Initialized Mapping subsystem within 20 seconds!
+[2020-09-26 20:13:04.016] INIT: Initialized Economy subsystem within 0 seconds!
+[2020-09-26 20:13:04.017] INIT: Initialized Networks subsystem within 0 seconds!
+[2020-09-26 20:13:04.017] INIT: Initialized Holodeck subsystem within 0 seconds!
+[2020-09-26 20:13:44.619] INIT: Initialized Atoms subsystem within 40.6 seconds!
+[2020-09-26 20:13:44.647] INIT: Initialized Language subsystem within 0 seconds!
+[2020-09-26 20:13:44.996] INIT: Initialized Machines subsystem within 0.3 seconds!
+[2020-09-26 20:13:45.079] INIT: Initialized Circuit subsystem within 0 seconds!
+[2020-09-26 20:13:46.655] INIT: Initialized Atmos Adjacency subsystem within 1.6 seconds!
+[2020-09-26 20:13:46.655] INIT: Initialized Autotransfer Vote subsystem within 0 seconds!
+[2020-09-26 20:13:46.655] INIT: Initialized Chemistry subsystem within 0 seconds!
+[2020-09-26 20:13:46.655] INIT: Initialized Status Effects subsystem within 0 seconds!
+[2020-09-26 20:13:46.656] INIT: Initialized Weather subsystem within 0 seconds!
+[2020-09-26 20:13:46.659] INIT: Initialized Disease subsystem within 0 seconds!
+[2020-09-26 20:13:46.660] INIT: Initialized Jukeboxes subsystem within 0 seconds!
+[2020-09-26 20:13:46.660] INIT: Initialized Medals subsystem within 0 seconds!
+[2020-09-26 20:13:46.954] INIT: Initialized Minimaps subsystem within 0.3 seconds!
+[2020-09-26 20:13:47.012] INIT: Initialized Night Shift subsystem within 0 seconds!
+[2020-09-26 20:13:47.012] INIT: Initialized Parallax subsystem within 0 seconds!
+[2020-09-26 20:13:47.012] INIT: Initialized Sun subsystem within 0 seconds!
+[2020-09-26 20:13:47.265] INIT: Initialized Traumas subsystem within 0.2 seconds!
+[2020-09-26 20:13:47.344] INIT: Initialized Bluespace Locker subsystem within 0.1 seconds!
+[2020-09-26 20:13:47.344] INIT: Initialized Pacification Bans subsystem within 0 seconds!
+[2020-09-26 20:13:47.344] INIT: Initialized Logging subsystem within 0 seconds!
+[2020-09-26 20:13:47.344] INIT: Initialized Recycling subsystem within 0 seconds!
+[2020-09-26 20:13:54.797] INIT: Initialized Atmospherics subsystem within 7.4 seconds!
+[2020-09-26 20:13:54.797] INIT: Initialized Atmospherics - Turfs subsystem within 0 seconds!
+[2020-09-26 20:13:58.199] INIT: Initialized Assets subsystem within 3.4 seconds!
+[2020-09-26 20:14:05.544] INIT: Initialized Icon Smoothing subsystem within 7.3 seconds!
+[2020-09-26 20:14:07.018] INIT: Initialized Overlay subsystem within 1.5 seconds!
+[2020-09-26 20:14:07.018] INIT: Initialized XKeyScore subsystem within 0 seconds!
+[2020-09-26 20:14:07.018] INIT: Initialized Sticky Ban subsystem within 0 seconds!

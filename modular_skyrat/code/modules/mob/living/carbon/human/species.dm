@@ -12,7 +12,18 @@
 		/datum/mob_descriptor/height = "default",
 		/datum/mob_descriptor/build = "default",
 	)
-
+	var/static/list/pain_emote_by_power = list(
+	"100" = "scream",
+	"90" = "whimper",
+	"80" = "moan",
+	"70" = "cry",
+	"60" = "grunt",
+	"50" = "groan",
+	"40" = "moan",
+	"30" = "grunt",
+	"20" = "groan",
+	"10" = "groan", //Below 10 pain, we shouldn't emote.
+	)
 
 /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
 	var/hit_percent = (100-(blocked+armor))/100
@@ -100,3 +111,12 @@
 		for(var/obj/item/bodypart/B in C.bodyparts)
 			B.change_bodypart_status(BODYPART_ORGANIC, FALSE, TRUE)
 			B.render_like_organic = FALSE
+
+/datum/species/proc/get_pain_emote(power)
+	if((NOPAIN in species_traits) || (ROBOTIC_LIMBS in species_traits)) //Synthetics don't grunt because of "pain"
+		return
+	power = round(min(100, power), 10)
+	var/emote_string
+	if(power >= PAIN_EMOTE_MINIMUM)
+		emote_string = pain_emote_by_power["[power]"]
+	return emote_string

@@ -1,0 +1,40 @@
+[2020-09-03 16:39:54.942] Starting up round ID .
+ - -------------------------
+[2020-09-03 16:39:55.028] Running /tg/ revision: 2020-09-03
+ - origin/master: 1fa3efe4a2ec8c5b607932b39e3afe21262ca61d
+ - HEAD: 3907e08f3ba86515387e8f03845f6afeccb026ff
+[2020-09-03 16:40:00.833] runtime error: Safety violation: tried to access 'C:\Users\lucas\Documents\GitHub\Skyrat13\data\spritesheets\chat_16x16.png' outside of current directory.
+ - proc name: ensure stripped (/datum/asset/spritesheet/proc/ensure_stripped)
+ -   source file: asset_list.dm,101
+ -   usr: null
+ -   src: chat (/datum/asset/spritesheet/goonchat)
+ -   call stack:
+ - chat (/datum/asset/spritesheet/goonchat): ensure stripped(/list (/list))
+ - chat (/datum/asset/spritesheet/goonchat): register()
+ - chat (/datum/asset/spritesheet/goonchat): register()
+ - chat (/datum/asset/spritesheet/goonchat): register()
+ - chat (/datum/asset/spritesheet/goonchat): New()
+ - get asset datum(/datum/asset/spritesheet/goonc... (/datum/asset/spritesheet/goonchat))
+ - /datum/asset/group/goonchat (/datum/asset/group/goonchat): register()
+ - /datum/asset/group/goonchat (/datum/asset/group/goonchat): New()
+ - get asset datum(/datum/asset/group/goonchat (/datum/asset/group/goonchat))
+ - /datum/chatOutput (/datum/chatOutput): load()
+ - /datum/chatOutput (/datum/chatOutput): start()
+ - 
+[2020-09-03 16:40:02.493] runtime error: Safety violation: tried to access 'C:\Users\lucas\Documents\GitHub\Skyrat13\data\spritesheets\spritesheet_chat.css' outside of current directory.
+ - proc name: register (/datum/asset/spritesheet/register)
+ -   source file: asset_list.dm,76
+ -   usr: null
+ -   src: chat (/datum/asset/spritesheet/goonchat)
+ -   call stack:
+ - chat (/datum/asset/spritesheet/goonchat): register()
+ - chat (/datum/asset/spritesheet/goonchat): register()
+ - chat (/datum/asset/spritesheet/goonchat): register()
+ - chat (/datum/asset/spritesheet/goonchat): New()
+ - get asset datum(/datum/asset/spritesheet/goonc... (/datum/asset/spritesheet/goonchat))
+ - /datum/asset/group/goonchat (/datum/asset/group/goonchat): register()
+ - /datum/asset/group/goonchat (/datum/asset/group/goonchat): New()
+ - get asset datum(/datum/asset/group/goonchat (/datum/asset/group/goonchat))
+ - /datum/chatOutput (/datum/chatOutput): load()
+ - /datum/chatOutput (/datum/chatOutput): start()
+ - 
