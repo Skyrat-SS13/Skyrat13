@@ -1,0 +1,17 @@
+[2020-09-10 02:44:20.944] Starting up round ID .
+ - -------------------------
+[2020-09-10 02:44:20.950] Running /tg/ revision: 2020-09-10
+ - origin/master: 79974a492819da3a629b706ad438e16605ee1f20
+ - HEAD: 19635c60b6a9b572c5c2d3238508e63264347c7c
+[2020-09-10 02:44:26.786] Loading Box Station...
+[2020-09-10 02:44:34.108] Loaded Station in 7.4s!
+[2020-09-10 02:44:36.762] Loaded Lavaland in 2.6s!
+[2020-09-10 02:44:38.041] Ruin loader finished with 0 left to spend.
+[2020-09-10 02:44:41.607] Ruin loader finished with 0 left to spend.
+[2020-09-10 02:44:41.788] Ruin loader finished with 0 left to spend.
+[2020-09-10 02:45:22.375] ## WARNING: HEY! LISTEN! 0.6 seconds were wasted processing 443 turf(s) (connected to 24934 other turfs) with atmos differences at round start.
+[2020-09-10 02:45:24.431] ## WARNING: design /datum/design/ipc_stomach with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'microcell'
+[2020-09-10 02:45:24.435] ## WARNING: design /datum/design/ipc_kidneys with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'kidneys-ipc'
+[2020-09-10 02:45:44.059] Initializations complete within 77.5 seconds!
+[2020-09-10 02:45:46.322] Game start took 0.6s
+[2020-09-10 02:50:56.745] ### VarEdit by Bob Joga/(Pedro Ilurdoz): /obj/item/melee/cleric_mace/molagbal force=15 => 30

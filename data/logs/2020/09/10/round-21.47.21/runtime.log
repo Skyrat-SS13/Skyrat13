@@ -1,0 +1,27 @@
+[2020-09-11 00:47:21.839] Starting up round ID .
+ - -------------------------
+[2020-09-11 00:47:21.846] Running /tg/ revision: 2020-09-11
+ - origin/master: 773c9202bd803e20291a5ef3100b97a9e076ab65
+ - HEAD: aba45bfbf42e0a7d9d2d3006248690a42060925a
+[2020-09-11 00:47:23.081] Loading Box Station...
+[2020-09-11 00:47:30.101] Loaded Station in 7.1s!
+[2020-09-11 00:47:32.563] Loaded Lavaland in 2.4s!
+[2020-09-11 00:47:34.606] Ruin loader finished with 0 left to spend.
+[2020-09-11 00:47:38.986] Ruin loader finished with 0 left to spend.
+[2020-09-11 00:47:39.149] Ruin loader finished with 0 left to spend.
+[2020-09-11 00:48:23.199] ## WARNING: HEY! LISTEN! 0.5 seconds were wasted processing 435 turf(s) (connected to 22986 other turfs) with atmos differences at round start.
+[2020-09-11 00:48:25.846] ## WARNING: design /datum/design/ipc_kidneys with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'capcitor-ipc'
+[2020-09-11 00:48:47.995] Initializations complete within 85.1 seconds!
+[2020-09-11 00:50:18.306] Game start took 0s
+[2020-09-11 00:51:34.445] ### VarEdit by Bob Joga/(Pedro Ilurdoz): /obj/machinery/clonepod biomass=0 => 1200
+[2020-09-11 00:51:52.876] runtime error: Cannot read null.player_details
+ - proc name: Login (/mob/Login)
+ -   source file: login.dm,47
+ -   usr: (src)
+ -   src: Vivyan Glasgow (/mob/living/carbon/human)
+ -   src.loc: the cloning pod (/obj/machinery/clonepod)
+ -   call stack:
+ - Vivyan Glasgow (/mob/living/carbon/human): Login()
+ - Vivyan Glasgow (/mob/living/carbon/human): Login()
+ - Vivyan Glasgow (/mob/living/carbon/human): Login()
+ - 

@@ -1,0 +1,528 @@
+[2020-08-28 13:39:19.681] Starting up round ID .
+ - -------------------------
+[2020-08-28 13:39:19.689] Running /tg/ revision: 2020-08-28
+ - origin/master: 4f79c5ce07936ff70e9f963d03feb62ddf5c0362
+ - HEAD: 46147c0bf48003e2729ddc6428b61883d41fc353
+[2020-08-28 13:39:20.917] Loading Box Station...
+[2020-08-28 13:39:27.349] Loaded Station in 6.4s!
+[2020-08-28 13:39:29.770] Loaded Lavaland in 2.3s!
+[2020-08-28 13:39:31.046] Ruin loader finished with 0 left to spend.
+[2020-08-28 13:39:34.462] Ruin loader finished with 0 left to spend.
+[2020-08-28 13:39:34.607] Ruin loader finished with 0 left to spend.
+[2020-08-28 13:40:10.894] ## WARNING: HEY! LISTEN! 0.8 seconds were wasted processing 418 turf(s) (connected to 35188 other turfs) with atmos differences at round start.
+[2020-08-28 13:40:31.435] Initializations complete within 70.8 seconds!
+[2020-08-28 13:40:51.886] Game start took 0.8s
+[2020-08-28 13:41:10.039] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,139,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.702660b93c4d85288c4a3330...", /icon (/icon))
+ - icon2html(the engineering guard armband (/obj/item/clothing/accessory/armband/engine), Cockmistress (/mob/living/carbon/human), "engieband", 2, 1, 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=20;icon-y=17;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:10.064] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,139,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.ccbfb7558b93e5a6eb571326...", /icon (/icon))
+ - icon2html(the security jumpsuit (/obj/item/clothing/under/rank/security/officer), Cockmistress (/mob/living/carbon/human), "rsecurity", 2, 1, 0)
+ - the security jumpsuit (/obj/item/clothing/under/rank/security/officer): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=20;icon-y=17;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:10.088] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,139,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.1a56e73d6d9d039fe93efbd8...", /icon (/icon))
+ - icon2html(the helmet (/obj/item/clothing/head/helmet/sec), Cockmistress (/mob/living/carbon/human), "helmet", 2, 1, 0)
+ - the helmet (/obj/item/clothing/head/helmet/sec): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=20;icon-y=17;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:10.112] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,139,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.04690c89e00c9a09d00fa022...", /icon (/icon))
+ - icon2html(the armor vest (/obj/item/clothing/suit/armor/vest/alt), Cockmistress (/mob/living/carbon/human), "armor", 2, 1, 0)
+ - the armor vest (/obj/item/clothing/suit/armor/vest/alt): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=20;icon-y=17;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:10.136] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,139,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.17e84675d6f4a6171d4754db...", /icon (/icon))
+ - icon2html(the hybrid taser (/obj/item/gun/energy/e_gun/advtaser), Cockmistress (/mob/living/carbon/human), "advtaser", 2, 1, 0)
+ - the hybrid taser (/obj/item/gun/energy/e_gun/advtaser): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=20;icon-y=17;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:10.162] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,139,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.20fbfc344be51d67ca19568c...", /icon (/icon))
+ - icon2html(the security backpack (/obj/item/storage/backpack/security), Cockmistress (/mob/living/carbon/human), "securitypack", 2, 1, 0)
+ - the security backpack (/obj/item/storage/backpack/security): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=20;icon-y=17;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:10.186] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,139,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.00cdbbac53723fa91e864def...", /icon (/icon))
+ - icon2html(the black gloves (/obj/item/clothing/gloves/color/black), Cockmistress (/mob/living/carbon/human), "black", 2, 1, 0)
+ - the black gloves (/obj/item/clothing/gloves/color/black): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=20;icon-y=17;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:10.210] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,139,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.de18126d4455972f9336b66b...", /icon (/icon))
+ - icon2html(PDA-Cockmistress (Security Off... (/obj/item/pda/security), Cockmistress (/mob/living/carbon/human), "pda-security", 2, 1, 0)
+ - PDA-Cockmistress (Security Off... (/obj/item/pda/security): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=20;icon-y=17;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:10.236] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,139,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.eb493eeaa6bc63bf877ae2f6...", /icon (/icon))
+ - icon2html(the jackboots (/obj/item/clothing/shoes/jackboots), Cockmistress (/mob/living/carbon/human), "jackboots", 2, 1, 0)
+ - the jackboots (/obj/item/clothing/shoes/jackboots): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=20;icon-y=17;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:10.260] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,139,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.150d366a466b3387024ace92...", /icon (/icon))
+ - icon2html(the security bowman headset (/obj/item/radio/headset/headset_sec/alt/department/engi), Cockmistress (/mob/living/carbon/human), "sec_headset_alt", 2, 1, 0)
+ - the security bowman headset (/obj/item/radio/headset/headset_sec/alt/department/engi): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=20;icon-y=17;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:10.283] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,139,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.ea8397aca164b98e98482ed0...", /icon (/icon))
+ - icon2html(/icon (/icon), Cockmistress (/mob/living/carbon/human), "", 2, 1, 0)
+ - Cockmistress\'s ID Card (Secur... (/obj/item/card/id): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=20;icon-y=17;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,139,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=20;icon-y=17;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:59.636] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,119,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.702660b93c4d85288c4a3330...", /icon (/icon))
+ - icon2html(the engineering guard armband (/obj/item/clothing/accessory/armband/engine), Cockmistress (/mob/living/carbon/human), "engieband", 2, 1, 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:59.667] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,119,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.ccbfb7558b93e5a6eb571326...", /icon (/icon))
+ - icon2html(the security jumpsuit (/obj/item/clothing/under/rank/security/officer), Cockmistress (/mob/living/carbon/human), "rsecurity", 2, 1, 0)
+ - the security jumpsuit (/obj/item/clothing/under/rank/security/officer): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:59.690] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,119,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.1a56e73d6d9d039fe93efbd8...", /icon (/icon))
+ - icon2html(the helmet (/obj/item/clothing/head/helmet/sec), Cockmistress (/mob/living/carbon/human), "helmet", 2, 1, 0)
+ - the helmet (/obj/item/clothing/head/helmet/sec): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:59.713] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,119,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.04690c89e00c9a09d00fa022...", /icon (/icon))
+ - icon2html(the armor vest (/obj/item/clothing/suit/armor/vest/alt), Cockmistress (/mob/living/carbon/human), "armor", 2, 1, 0)
+ - the armor vest (/obj/item/clothing/suit/armor/vest/alt): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:59.737] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,119,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.17e84675d6f4a6171d4754db...", /icon (/icon))
+ - icon2html(the hybrid taser (/obj/item/gun/energy/e_gun/advtaser), Cockmistress (/mob/living/carbon/human), "advtaser", 2, 1, 0)
+ - the hybrid taser (/obj/item/gun/energy/e_gun/advtaser): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:59.762] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,119,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.20fbfc344be51d67ca19568c...", /icon (/icon))
+ - icon2html(the security backpack (/obj/item/storage/backpack/security), Cockmistress (/mob/living/carbon/human), "securitypack", 2, 1, 0)
+ - the security backpack (/obj/item/storage/backpack/security): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:59.787] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,119,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.00cdbbac53723fa91e864def...", /icon (/icon))
+ - icon2html(the black gloves (/obj/item/clothing/gloves/color/black), Cockmistress (/mob/living/carbon/human), "black", 2, 1, 0)
+ - the black gloves (/obj/item/clothing/gloves/color/black): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:59.809] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: Cockmistress (/mob/living/carbon/human)
+ -   src: null
+ -   usr.loc: the floor (98,119,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.de18126d4455972f9336b66b...", /icon (/icon))
+ - icon2html(PDA-Cockmistress (Security Off... (/obj/item/pda/security), Cockmistress (/mob/living/carbon/human), "pda-security", 2, 1, 0)
+ - PDA-Cockmistress (Security Off... (/obj/item/pda/security): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (98,119,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=16;left=1;shi...", 0)
+ - 
+[2020-08-28 13:41:59.816] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:41:59.822] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:41:59.828] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:09.502] runtime error: type mismatch: 0 |= /list (/list)
+ - proc name: blood DNA to color (/atom/proc/blood_DNA_to_color)
+ -   source file: atoms.dm,583
+ - 
+[2020-08-28 13:42:17.264] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:17.271] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:17.276] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:17.282] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:17.288] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:17.294] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:17.299] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:17.304] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:17.311] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:17.316] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:17.324] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:23.769] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:23.775] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:23.781] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:23.787] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:23.793] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:23.802] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:23.808] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:23.816] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:23.822] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:23.829] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:23.835] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:30.082] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:30.088] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:30.093] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:30.099] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:30.105] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:30.112] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:30.118] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 
+[2020-08-28 13:42:30.124] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ - 

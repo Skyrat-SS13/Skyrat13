@@ -1,0 +1,56 @@
+[2020-09-07 22:54:42.155] Starting up round ID .
+ - -------------------------
+[2020-09-07 22:54:47.579] INIT: Initialized Profiler subsystem within 0 seconds!
+[2020-09-07 22:54:47.729] Fail2Topic: Failed to drop firewall rule. Exit code: 1.
+[2020-09-07 22:54:47.729] INIT: Initialized Fail2Topic subsystem within 0.2 seconds!
+[2020-09-07 22:54:47.730] INIT: Initialized Title Screen subsystem within 0 seconds!
+[2020-09-07 22:54:47.730] INIT: Initialized Database subsystem within 0 seconds!
+[2020-09-07 22:54:47.730] INIT: Initialized Blackbox subsystem within 0 seconds!
+[2020-09-07 22:54:47.731] INIT: Initialized Server Tasks subsystem within 0 seconds!
+[2020-09-07 22:54:47.732] INIT: Initialized Input subsystem within 0 seconds!
+[2020-09-07 22:54:47.733] INIT: Initialized Sounds subsystem within 0 seconds!
+[2020-09-07 22:54:47.734] INIT: Initialized Vis contents overlays subsystem within 0 seconds!
+[2020-09-07 22:54:47.790] INIT: Initialized Research subsystem within 0 seconds!
+[2020-09-07 22:54:47.793] INIT: Initialized Events subsystem within 0 seconds!
+[2020-09-07 22:54:47.797] INIT: Initialized Jobs subsystem within 0 seconds!
+[2020-09-07 22:54:47.803] INIT: Initialized Quirks subsystem within 0.1 seconds!
+[2020-09-07 22:54:47.809] INIT: Initialized Ticker subsystem within 0 seconds!
+[2020-09-07 22:54:47.821] INIT: Initialized Instruments subsystem within 0 seconds!
+[2020-09-07 22:55:04.631] INIT: Initialized Mapping subsystem within 16.8 seconds!
+[2020-09-07 22:55:04.645] INIT: Initialized Economy subsystem within 0 seconds!
+[2020-09-07 22:55:04.646] INIT: Initialized Networks subsystem within 0 seconds!
+[2020-09-07 22:55:04.646] INIT: Initialized Holodeck subsystem within 0 seconds!
+[2020-09-07 22:55:36.946] INIT: Initialized Atoms subsystem within 32.3 seconds!
+[2020-09-07 22:55:36.969] INIT: Initialized Language subsystem within 0 seconds!
+[2020-09-07 22:55:37.117] INIT: Initialized Machines subsystem within 0.2 seconds!
+[2020-09-07 22:55:37.152] INIT: Initialized Circuit subsystem within 0 seconds!
+[2020-09-07 22:55:38.447] INIT: Initialized Atmos Adjacency subsystem within 1.3 seconds!
+[2020-09-07 22:55:38.447] INIT: Initialized Autotransfer Vote subsystem within 0 seconds!
+[2020-09-07 22:55:38.447] INIT: Initialized Chemistry subsystem within 0 seconds!
+[2020-09-07 22:55:38.447] INIT: Initialized Status Effects subsystem within 0 seconds!
+[2020-09-07 22:55:38.448] INIT: Initialized Weather subsystem within 0 seconds!
+[2020-09-07 22:55:38.451] INIT: Initialized Disease subsystem within 0 seconds!
+[2020-09-07 22:55:38.452] INIT: Initialized Jukeboxes subsystem within 0 seconds!
+[2020-09-07 22:55:38.452] INIT: Initialized Medals subsystem within 0 seconds!
+[2020-09-07 22:55:38.727] INIT: Initialized Minimaps subsystem within 0.3 seconds!
+[2020-09-07 22:55:38.777] INIT: Initialized Night Shift subsystem within 0 seconds!
+[2020-09-07 22:55:38.777] INIT: Initialized Parallax subsystem within 0 seconds!
+[2020-09-07 22:55:38.777] INIT: Initialized Sun subsystem within 0 seconds!
+[2020-09-07 22:55:38.987] INIT: Initialized Traumas subsystem within 0.2 seconds!
+[2020-09-07 22:55:39.024] INIT: Initialized Bluespace Locker subsystem within 0.1 seconds!
+[2020-09-07 22:55:39.024] INIT: Initialized Pacification Bans subsystem within 0 seconds!
+[2020-09-07 22:55:39.024] INIT: Initialized Logging subsystem within 0 seconds!
+[2020-09-07 22:55:39.025] INIT: Initialized Recycling subsystem within 0 seconds!
+[2020-09-07 22:55:45.419] INIT: Initialized Atmospherics subsystem within 6.4 seconds!
+[2020-09-07 22:55:45.420] INIT: Initialized Atmospherics - Turfs subsystem within 0 seconds!
+[2020-09-07 22:55:48.490] INIT: Initialized Assets subsystem within 3 seconds!
+[2020-09-07 22:55:54.676] INIT: Initialized Icon Smoothing subsystem within 6.1 seconds!
+[2020-09-07 22:55:55.935] INIT: Initialized Overlay subsystem within 1.3 seconds!
+[2020-09-07 22:55:55.935] INIT: Initialized XKeyScore subsystem within 0 seconds!
+[2020-09-07 22:55:55.935] INIT: Initialized Sticky Ban subsystem within 0 seconds!
+[2020-09-07 22:56:04.843] INIT: Initialized Lighting subsystem within 8.9 seconds!
+[2020-09-07 22:56:08.669] INIT: Initialized Shuttle subsystem within 3.8 seconds!
+[2020-09-07 22:56:08.765] INIT: Initialized Minor Mapping subsystem within 0.1 seconds!
+[2020-09-07 22:56:08.792] INIT: Initialized Pathfinder subsystem within 0 seconds!
+[2020-09-07 22:56:08.841] INIT: Initialized Persistence subsystem within 0.1 seconds!
+[2020-09-07 22:56:08.841] INIT: Initialized Chat subsystem within 0 seconds!

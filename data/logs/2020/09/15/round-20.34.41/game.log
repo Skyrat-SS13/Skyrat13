@@ -1,0 +1,66 @@
+[2020-09-15 23:34:41.412] Starting up round ID .
+ - -------------------------
+[2020-09-15 23:34:41.475] ADMIN: Loading Banlist
+[2020-09-15 23:34:41.518] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-15 23:34:41.519] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-15 23:34:44.530] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-15 23:34:48.398] GAME: Saved mode is 'extended'
+[2020-09-15 23:35:01.361] GAME: Hierophant's Arena loaded at 56,183,6
+[2020-09-15 23:35:01.378] GAME: Blood-Drunk Miner (Guidance) loaded at 182,167,6
+[2020-09-15 23:35:01.393] GAME: Blood-Drunk Miner (Hunter) loaded at 60,65,6
+[2020-09-15 23:35:01.410] GAME: Blood-Drunk Miner loaded at 201,24,6
+[2020-09-15 23:35:01.428] GAME: King Goat Boss Ruin loaded at 110,68,6
+[2020-09-15 23:35:01.452] GAME: Rogue's Arena loaded at 141,54,6
+[2020-09-15 23:35:01.489] GAME: Sif's Sword loaded at 176,97,6
+[2020-09-15 23:35:01.497] GAME: Pulsating Tumor loaded at 208,174,6
+[2020-09-15 23:35:01.515] GAME: Ruin of Envy loaded at 145,23,6
+[2020-09-15 23:35:01.539] GAME: UFO Crash loaded at 174,153,6
+[2020-09-15 23:35:01.552] GAME: Ancient Puzzle loaded at 226,47,6
+[2020-09-15 23:35:01.562] GAME: Pulsating Tumor loaded at 222,35,6
+[2020-09-15 23:35:01.568] GAME: Ripley loaded at 166,188,6
+[2020-09-15 23:35:01.653] GAME: Alien Nest loaded at 86,171,6
+[2020-09-15 23:35:01.668] GAME: Fountain Hall loaded at 160,27,6
+[2020-09-15 23:35:01.739] GAME: Elephant Graveyard loaded at 184,46,6
+[2020-09-15 23:35:05.047] GAME: Abandoned Teleporter loaded at 94,95,4
+[2020-09-15 23:35:05.068] GAME: Whiteship Dock loaded at 65,183,7
+[2020-09-15 23:35:05.220] GAME: Derelict Tradepost loaded at 84,188,8
+[2020-09-15 23:35:05.398] GAME: Syndicate Ambush loaded at 127,94,7
+[2020-09-15 23:35:05.441] GAME: Disposal Facility 17 loaded at 174,68,7
+[2020-09-15 23:35:05.466] GAME: Asteroid 1 loaded at 211,101,4
+[2020-09-15 23:35:05.525] GAME: Biological Storage Facility loaded at 62,107,7
+[2020-09-15 23:35:05.564] GAME: CF Corsair loaded at 45,189,3
+[2020-09-15 23:35:05.594] GAME: Empty Shell loaded at 179,115,3
+[2020-09-15 23:35:06.247] GAME: Ancient Space Station loaded at 35,125,4
+[2020-09-15 23:35:06.738] GAME: Kosmicheskaya Stantsiya 13 loaded at 27,63,3
+[2020-09-15 23:35:06.782] GAME: Abductor Replication Lab loaded at 170,52,4
+[2020-09-15 23:35:06.872] GAME: Feline-Human Combination Den loaded at 195,136,4
+[2020-09-15 23:35:07.277] GAME: The Twin-Nexus Hotel loaded at 167,164,7
+[2020-09-15 23:35:07.311] GAME: Dinner for Two loaded at 48,35,4
+[2020-09-15 23:35:07.353] GAME: Aesthetic Outpost loaded at 76,47,3
+[2020-09-15 23:35:07.389] GAME: Monitoring Roid loaded at 157,206,2
+[2020-09-15 23:35:07.399] GAME: Mineable Asteroid 1 loaded at 24,60,2
+[2020-09-15 23:35:07.412] GAME: Crab Roid loaded at 197,26,2
+[2020-09-15 23:35:07.421] GAME: Mineable Asteroid 1 loaded at 64,30,2
+[2020-09-15 23:35:07.448] GAME: Mineable Asteroid 5 loaded at 196,182,2
+[2020-09-15 23:35:07.471] GAME: Mineable Asteroid 2 loaded at 190,206,2
+[2020-09-15 23:35:07.489] GAME: Dead wizard Roid loaded at 30,213,2
+[2020-09-15 23:35:07.505] GAME: Maze Roid loaded at 30,42,2
+[2020-09-15 23:35:07.512] GAME: Mineable Asteroid 1 loaded at 176,30,2
+[2020-09-15 23:35:07.521] GAME: Mineable Asteroid 1 loaded at 217,215,2
+[2020-09-15 23:35:07.598] GAME: Box Tesla loaded at 96,49,2
+[2020-09-15 23:35:07.895] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-15 23:35:13.843] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-15 23:35:13.844] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-15 23:35:13.845] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-15 23:35:13.845] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-15 23:35:13.848] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-15 23:35:13.858] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-15 23:35:13.867] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-15 23:35:13.871] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-15 23:35:24.890] GAME: [�APLU "Miner"] �APLU "Miner" created. (Lavaland Wastes (168, 190, 6))
+[2020-09-15 23:35:24.891] GAME: [�APLU "Miner"] The exosuit drill initialized. (Lavaland Wastes (168, 190, 6))
+[2020-09-15 23:35:24.892] GAME: [�APLU "Miner"] The hydraulic clamp initialized. (Lavaland Wastes (168, 190, 6))
+[2020-09-15 23:35:24.894] GAME: [�APLU "Miner"] The exosuit mining scanner initialized. (Lavaland Wastes (168, 190, 6))
+[2020-09-15 23:35:26.568] GAME: [�APLU "Ripley"] �APLU "Ripley" created. (Mech Transport (52, 198, 3))
+[2020-09-15 23:35:49.796] ACCESS: Logout: Bob Joga/(Bob Joga)
+[2020-09-15 23:35:49.798] GAME: Bob Joga[DC]/(Bob Joga) Bob Joga[DC]/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))

@@ -1,0 +1,83 @@
+[2020-09-07 05:09:22.366] Starting up round ID .
+ - -------------------------
+[2020-09-07 05:09:22.416] ADMIN: Loading Banlist
+[2020-09-07 05:09:22.455] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-07 05:09:22.455] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-07 05:09:25.355] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-07 05:09:28.785] GAME: Saved mode is 'extended'
+[2020-09-07 05:09:43.706] GAME: Hierophant's Arena loaded at 22,197,6
+[2020-09-07 05:09:43.724] GAME: Blood-Drunk Miner (Guidance) loaded at 181,122,6
+[2020-09-07 05:09:43.741] GAME: Blood-Drunk Miner (Hunter) loaded at 63,187,6
+[2020-09-07 05:09:43.760] GAME: Blood-Drunk Miner loaded at 191,85,6
+[2020-09-07 05:09:43.779] GAME: King Goat Boss Ruin loaded at 170,103,6
+[2020-09-07 05:09:43.805] GAME: Rogue's Arena loaded at 71,120,6
+[2020-09-07 05:09:43.849] GAME: Sif's Sword loaded at 129,105,6
+[2020-09-07 05:09:43.858] GAME: Pulsating Tumor loaded at 216,103,6
+[2020-09-07 05:09:43.921] GAME: Ash Walker Nest loaded at 108,53,6
+[2020-09-07 05:09:43.922] GAME: Biodome Clown Planet loaded at 230,41,6
+[2020-09-07 05:09:43.929] GAME: Pulsating Tumor loaded at 224,180,6
+[2020-09-07 05:09:43.944] GAME: Summoning Ritual loaded at 119,175,6
+[2020-09-07 05:09:43.950] GAME: Ripley loaded at 171,136,6
+[2020-09-07 05:09:43.971] GAME: Ruin of Wrath loaded at 74,62,6
+[2020-09-07 05:09:44.005] GAME: Dead God loaded at 171,179,6
+[2020-09-07 05:09:44.012] GAME: Pulsating Tumor loaded at 193,211,6
+[2020-09-07 05:09:47.501] GAME: Abandoned Teleporter loaded at 139,126,4
+[2020-09-07 05:09:47.522] GAME: Whiteship Dock loaded at 43,123,8
+[2020-09-07 05:09:48.135] GAME: Ancient Space Station loaded at 99,106,8
+[2020-09-07 05:09:48.189] GAME: Unnamed Turreted Outpost loaded at 120,206,8
+[2020-09-07 05:09:48.280] GAME: Feline-Human Combination Den loaded at 199,68,8
+[2020-09-07 05:09:48.318] GAME: Aesthetic Outpost loaded at 80,128,8
+[2020-09-07 05:09:48.362] GAME: Derelict 4 loaded at 32,169,8
+[2020-09-07 05:09:48.453] GAME: A Giant Ball of Paper in Space loaded at 105,185,3
+[2020-09-07 05:09:48.484] GAME: Asteroid 4 loaded at 189,125,8
+[2020-09-07 05:09:48.509] GAME: Asteroid 1 loaded at 74,115,4
+[2020-09-07 05:09:48.518] GAME: Ordinary Space Tile loaded at 129,76,4
+[2020-09-07 05:09:48.576] GAME: Gondoland loaded at 185,106,7
+[2020-09-07 05:09:48.606] GAME: Dinner for Two loaded at 204,119,3
+[2020-09-07 05:09:48.677] GAME: DK Excavator 453 loaded at 187,143,3
+[2020-09-07 05:09:48.706] GAME: Empty Shell loaded at 146,68,7
+[2020-09-07 05:09:48.915] GAME: Survivalist Bunker loaded at 156,181,8
+[2020-09-07 05:09:48.932] GAME: Mineable Asteroid 3 loaded at 26,43,2
+[2020-09-07 05:09:48.948] GAME: Mineable Asteroid 4 loaded at 149,219,2
+[2020-09-07 05:09:48.976] GAME: Mineable Asteroid 5 loaded at 202,212,2
+[2020-09-07 05:09:48.991] GAME: Maze Roid loaded at 163,199,2
+[2020-09-07 05:09:49.012] GAME: Mineable Asteroid 2 loaded at 41,202,2
+[2020-09-07 05:09:49.040] GAME: Dead wizard Roid loaded at 207,181,2
+[2020-09-07 05:09:49.065] GAME: Monitoring Roid loaded at 42,23,2
+[2020-09-07 05:09:49.085] GAME: Dorm Roid loaded at 196,27,2
+[2020-09-07 05:09:49.093] GAME: Mineable Asteroid 1 loaded at 220,67,2
+[2020-09-07 05:09:49.102] GAME: Mineable Asteroid 1 loaded at 177,30,2
+[2020-09-07 05:09:49.182] GAME: Box Singulo loaded at 96,49,2
+[2020-09-07 05:09:49.512] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-07 05:09:54.402] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-07 05:09:54.402] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-07 05:09:54.403] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-07 05:09:54.403] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-07 05:09:54.404] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-07 05:09:54.411] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-07 05:09:54.418] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-07 05:09:54.422] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-07 05:10:03.450] GAME: [�APLU "Miner"] �APLU "Miner" created. (Lavaland Wastes (173, 138, 6))
+[2020-09-07 05:10:03.450] GAME: [�APLU "Miner"] The diamond-tipped exosuit drill initialized. (Lavaland Wastes (173, 138, 6))
+[2020-09-07 05:10:03.450] GAME: [�APLU "Miner"] The hydraulic clamp initialized. (Lavaland Wastes (173, 138, 6))
+[2020-09-07 05:10:03.451] GAME: [�APLU "Miner"] The exosuit mining scanner initialized. (Lavaland Wastes (173, 138, 6))
+[2020-09-07 05:10:05.231] GAME: *no key*/(Frank Tawiah) Frank Tawiah name changed from Frank Tawiah to Skiddle (Unexplored Location (200, 128, 8))
+[2020-09-07 05:10:57.373] GAME: Backup Shuttle loaded at 143,212,1
+[2020-09-07 05:10:57.494] GAME: assault pod (Default) loaded at 144,213,1
+[2020-09-07 05:10:57.880] GAME: basic syndicate infiltrator loaded at 139,205,1
+[2020-09-07 05:10:58.179] GAME: fancy transport ferry loaded at 141,214,1
+[2020-09-07 05:10:58.360] GAME: Box Station Emergency Shuttle loaded at 142,205,1
+[2020-09-07 05:10:58.578] GAME: cargo ferry (Box) loaded at 144,210,1
+[2020-09-07 05:10:59.183] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-07 05:10:59.209] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-07 05:10:59.263] GAME: auxilliary base (Default) loaded at 143,212,1
+[2020-09-07 05:10:59.387] GAME: arrival shuttle (Box) loaded at 140,213,1
+[2020-09-07 05:10:59.487] GAME: mining shuttle (Box) loaded at 145,213,1
+[2020-09-07 05:10:59.542] GAME: labour shuttle (Box) loaded at 145,212,1
+[2020-09-07 05:10:59.590] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-07 05:10:59.619] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-07 05:10:59.646] GAME: lavaland Mining Elevator loaded at 145,214,1
+[2020-09-07 05:11:00.793] GAME: Hospital Ship loaded at 132,208,1
+[2020-09-07 05:11:01.216] VOTE: Roundtype vote started by server.
+[2020-09-07 05:11:31.225] ACCESS: Logout: Bob Joga/(Bob Joga)
+[2020-09-07 05:11:31.225] GAME: Bob Joga[DC]/(Bob Joga) Bob Joga[DC]/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))

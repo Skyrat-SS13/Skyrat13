@@ -1,0 +1,80 @@
+[2020-09-27 22:26:47.207] Starting up round ID .
+ - -------------------------
+[2020-09-27 22:26:47.255] ADMIN: Loading Banlist
+[2020-09-27 22:26:47.293] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-27 22:26:47.295] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-27 22:26:50.517] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-27 22:26:54.260] GAME: Saved mode is 'extended'
+[2020-09-27 22:27:02.342] ADMIN: Bob Joga has started the game.
+[2020-09-27 22:27:06.930] GAME: Hierophant's Arena loaded at 107,88,6
+[2020-09-27 22:27:06.947] GAME: Blood-Drunk Miner (Guidance) loaded at 148,44,6
+[2020-09-27 22:27:06.965] GAME: Blood-Drunk Miner (Hunter) loaded at 171,153,6
+[2020-09-27 22:27:06.981] GAME: Blood-Drunk Miner loaded at 101,161,6
+[2020-09-27 22:27:06.999] GAME: King Goat Boss Ruin loaded at 93,108,6
+[2020-09-27 22:27:07.025] GAME: Rogue's Arena loaded at 61,93,6
+[2020-09-27 22:27:07.060] GAME: Sif's Sword loaded at 172,78,6
+[2020-09-27 22:27:07.073] GAME: Pulsating Tumor loaded at 50,178,6
+[2020-09-27 22:27:07.073] GAME: Biodome Clown Planet loaded at 49,214,6
+[2020-09-27 22:27:07.094] GAME: UFO Crash loaded at 136,102,6
+[2020-09-27 22:27:07.141] GAME: Biodome Beach loaded at 133,178,6
+[2020-09-27 22:27:07.164] GAME: Free Golem Ship loaded at 134,23,6
+[2020-09-27 22:27:07.187] GAME: Ruin of Greed loaded at 208,112,6
+[2020-09-27 22:27:07.211] GAME: Dark Wizard Altar loaded at 170,111,6
+[2020-09-27 22:27:07.218] GAME: Pulsating Tumor loaded at 71,78,6
+[2020-09-27 22:27:10.745] GAME: Abandoned Teleporter loaded at 190,205,3
+[2020-09-27 22:27:10.766] GAME: Whiteship Dock loaded at 152,112,4
+[2020-09-27 22:27:10.791] GAME: Asteroid 1 loaded at 50,86,4
+[2020-09-27 22:27:11.238] GAME: Kosmicheskaya Stantsiya 13 loaded at 62,112,4
+[2020-09-27 22:27:11.315] GAME: Derelict 6 loaded at 194,175,4
+[2020-09-27 22:27:11.350] GAME: Ancient Cloning Lab loaded at 89,66,3
+[2020-09-27 22:27:11.380] GAME: Asteroid 3 loaded at 168,209,4
+[2020-09-27 22:27:11.420] GAME: Space Arcade loaded at 145,111,8
+[2020-09-27 22:27:11.464] GAME: DJ Station loaded at 102,25,3
+[2020-09-27 22:27:11.501] GAME: Cleric's Den loaded at 117,127,7
+[2020-09-27 22:27:11.565] GAME: Biological Storage Facility loaded at 82,128,8
+[2020-09-27 22:27:11.595] GAME: Dinner for Two loaded at 143,79,3
+[2020-09-27 22:27:11.631] GAME: Abductor Replication Lab loaded at 97,55,8
+[2020-09-27 22:27:11.982] GAME: The Twin-Nexus Hotel loaded at 100,143,3
+[2020-09-27 22:27:12.638] GAME: Ancient Space Station loaded at 128,44,8
+[2020-09-27 22:27:12.686] GAME: Derelict 1 loaded at 160,92,3
+[2020-09-27 22:27:12.706] GAME: Mineable Asteroid 4 loaded at 150,214,2
+[2020-09-27 22:27:12.726] GAME: Mineable Asteroid 2 loaded at 35,204,2
+[2020-09-27 22:27:12.755] GAME: Mineable Asteroid 5 loaded at 202,197,2
+[2020-09-27 22:27:12.768] GAME: Mineable Asteroid 3 loaded at 66,23,2
+[2020-09-27 22:27:12.782] GAME: Crab Roid loaded at 166,199,2
+[2020-09-27 22:27:12.790] GAME: Mineable Asteroid 1 loaded at 199,26,2
+[2020-09-27 22:27:12.811] GAME: Dorm Roid loaded at 32,46,2
+[2020-09-27 22:27:12.840] GAME: Maze Roid loaded at 174,25,2
+[2020-09-27 22:27:12.858] GAME: Dead wizard Roid loaded at 210,23,2
+[2020-09-27 22:27:12.865] GAME: Mineable Asteroid 1 loaded at 190,220,2
+[2020-09-27 22:27:12.937] GAME: Box Tesla loaded at 96,49,2
+[2020-09-27 22:27:13.241] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-27 22:27:18.850] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-27 22:27:18.851] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-27 22:27:18.852] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-27 22:27:18.853] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-27 22:27:18.855] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-27 22:27:18.865] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-27 22:27:18.874] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-27 22:27:18.879] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-27 22:28:29.005] GAME: Backup Shuttle loaded at 143,212,1
+[2020-09-27 22:28:29.119] GAME: assault pod (Default) loaded at 144,213,1
+[2020-09-27 22:28:29.506] GAME: basic syndicate infiltrator loaded at 139,205,1
+[2020-09-27 22:28:29.808] GAME: fancy transport ferry loaded at 141,214,1
+[2020-09-27 22:28:29.997] GAME: Box Station Emergency Shuttle loaded at 142,205,1
+[2020-09-27 22:28:30.205] GAME: cargo ferry (Box) loaded at 144,210,1
+[2020-09-27 22:28:30.818] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-27 22:28:30.851] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-27 22:28:30.915] GAME: auxilliary base (Default) loaded at 143,212,1
+[2020-09-27 22:28:31.044] GAME: arrival shuttle (Box) loaded at 140,213,1
+[2020-09-27 22:28:31.148] GAME: mining shuttle (Box) loaded at 145,213,1
+[2020-09-27 22:28:31.207] GAME: labour shuttle (Box) loaded at 145,212,1
+[2020-09-27 22:28:31.257] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-27 22:28:31.291] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-27 22:28:31.339] GAME: lavaland Mining Elevator loaded at 145,214,1
+[2020-09-27 22:28:32.504] GAME: Hospital Ship loaded at 132,208,1
+[2020-09-27 22:28:32.933] VOTE: Roundtype vote started by server.
+[2020-09-27 22:28:34.559] VOTE: <b>Roundtype Vote</b><b>Vote Result: Inconclusive - No Votes!</b>
+[2020-09-27 22:28:35.103] GAME: *no key*/(Bob Joga) *no key*/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-27 22:28:35.103] ACCESS: Mob Login: Bob Joga/(Cock Advisor) was assigned to a /mob/living/carbon/human
+[2020-09-27 22:28:35.642] GAME: Bob Joga/(Cock Advisor) Client Bob Joga/(Cock Advisor) has taken ownership of mob (/mob/living/carbon/human) (Chief Medical Officer's Office (158, 110, 2))

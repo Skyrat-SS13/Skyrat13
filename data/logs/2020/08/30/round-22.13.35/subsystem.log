@@ -1,0 +1,26 @@
+[2020-08-31 01:13:35.537] Starting up round ID .
+ - -------------------------
+[2020-08-31 01:13:41.193] INIT: Initialized Profiler subsystem within 0 seconds!
+[2020-08-31 01:13:41.391] Fail2Topic: Failed to drop firewall rule. Exit code: 1.
+[2020-08-31 01:13:41.391] INIT: Initialized Fail2Topic subsystem within 0.2 seconds!
+[2020-08-31 01:13:41.393] INIT: Initialized Title Screen subsystem within 0 seconds!
+[2020-08-31 01:13:41.394] INIT: Initialized Database subsystem within 0 seconds!
+[2020-08-31 01:13:41.394] INIT: Initialized Blackbox subsystem within 0 seconds!
+[2020-08-31 01:13:41.394] INIT: Initialized Server Tasks subsystem within 0 seconds!
+[2020-08-31 01:13:41.396] INIT: Initialized Input subsystem within 0 seconds!
+[2020-08-31 01:13:41.398] INIT: Initialized Sounds subsystem within 0 seconds!
+[2020-08-31 01:13:41.398] INIT: Initialized Vis contents overlays subsystem within 0 seconds!
+[2020-08-31 01:13:41.454] INIT: Initialized Research subsystem within 0.1 seconds!
+[2020-08-31 01:13:41.457] INIT: Initialized Events subsystem within 0 seconds!
+[2020-08-31 01:13:41.462] INIT: Initialized Jobs subsystem within 0 seconds!
+[2020-08-31 01:13:41.467] INIT: Initialized Quirks subsystem within 0 seconds!
+[2020-08-31 01:13:41.473] INIT: Initialized Ticker subsystem within 0 seconds!
+[2020-08-31 01:13:41.485] INIT: Initialized Instruments subsystem within 0 seconds!
+[2020-08-31 01:14:00.032] INIT: Initialized Mapping subsystem within 18.6 seconds!
+[2020-08-31 01:14:00.045] INIT: Initialized Economy subsystem within 0 seconds!
+[2020-08-31 01:14:00.046] INIT: Initialized Networks subsystem within 0 seconds!
+[2020-08-31 01:14:00.046] INIT: Initialized Holodeck subsystem within 0 seconds!
+[2020-08-31 01:14:32.581] INIT: Initialized Atoms subsystem within 32.5 seconds!
+[2020-08-31 01:14:32.608] INIT: Initialized Language subsystem within 0.1 seconds!
+[2020-08-31 01:14:32.841] INIT: Initialized Machines subsystem within 0.2 seconds!
+[2020-08-31 01:14:32.879] INIT: Initialized Circuit subsystem within 0 seconds!

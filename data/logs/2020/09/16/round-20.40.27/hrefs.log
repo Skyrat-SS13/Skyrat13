@@ -1,0 +1,34 @@
+[2020-09-16 23:40:27.516] Starting up round ID .
+ - -------------------------
+[2020-09-16 23:43:30.961] Logs from logging subsystem:
+ - (2020-09-16 20:40:32) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=colorPresetPost&preset=normal
+ - (2020-09-16 20:40:32) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=doneLoading
+ - (2020-09-16 20:40:32) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-09-16 20:40:32) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-09-16 20:40:32) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=analyzeClientData&param[cookie]={"connData":[{"ckey":"bobjoga","ip":"186.242.39.89","compid":"3000796718"},{"ckey":"bobjoga","ip":"201.5.120.41","compid":"3000796718"},{"ckey":"bobjoga","ip":"189.112.79.105","compid":"3000796718"},{"ckey":"bobjoga","ip":null,"compid":"3000796718"},{"ckey":"bobjoga","ip":"127.0.0.1","compid":"3000796718"}]}
+[2020-09-16 23:53:34.146] Logs from logging subsystem:
+ - (2020-09-16 20:45:47) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_27];late_join=1
+ - (2020-09-16 20:45:48) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_27];SelectedJob=Assistant
+ - (2020-09-16 20:47:05) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : /datum/tgui src=[0x21011189]&action=tgui:initialize
+ - (2020-09-16 20:47:05) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : 
+ - (2020-09-16 20:47:05) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : 
+ - (2020-09-16 20:47:07) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : __keydown=116
+ - (2020-09-16 20:47:07) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : __keyup=116
+ - (2020-09-16 20:47:07) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : /datum/tgui src=[0x21011189]&action=tgui:initialize
+ - (2020-09-16 20:47:07) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : 
+ - (2020-09-16 20:47:07) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : 
+ - (2020-09-16 20:47:08) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : __keydown=116
+ - (2020-09-16 20:47:08) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : __keyup=116
+ - (2020-09-16 20:47:08) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : /datum/tgui src=[0x21011189]&action=tgui:initialize
+ - (2020-09-16 20:47:08) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : 
+ - (2020-09-16 20:47:08) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : 
+ - (2020-09-16 20:47:09) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : __keydown=116
+ - (2020-09-16 20:47:09) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : __keyup=116
+ - (2020-09-16 20:47:09) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : /datum/tgui src=[0x21011189]&action=tgui:initialize
+ - (2020-09-16 20:47:09) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : 
+ - (2020-09-16 20:47:09) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : 
+ - (2020-09-16 20:47:10) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : __keydown=116
+ - (2020-09-16 20:47:10) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : __keyup=116
+ - (2020-09-16 20:47:10) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : /datum/tgui src=[0x21011189]&action=tgui:initialize
+ - (2020-09-16 20:47:11) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : 
+ - (2020-09-16 20:47:11) HREF: Bob Joga (usr:Cock Advisor[(58,138,2)]) : 

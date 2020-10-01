@@ -1,0 +1,67 @@
+[2020-08-28 01:31:02.896] Starting up round ID .
+ - -------------------------
+[2020-08-28 01:31:02.955] ADMIN: Loading Banlist
+[2020-08-28 01:31:04.136] GAME: Saved mode is 'extended'
+[2020-08-28 01:31:15.310] GAME: Hierophant's Arena loaded at 162,35,6
+[2020-08-28 01:31:15.324] GAME: Blood-Drunk Miner (Guidance) loaded at 81,77,6
+[2020-08-28 01:31:15.338] GAME: Blood-Drunk Miner (Hunter) loaded at 86,115,6
+[2020-08-28 01:31:15.353] GAME: Blood-Drunk Miner loaded at 103,61,6
+[2020-08-28 01:31:15.370] GAME: King Goat Boss Ruin loaded at 52,84,6
+[2020-08-28 01:31:15.392] GAME: Rogue's Arena loaded at 172,180,6
+[2020-08-28 01:31:15.427] GAME: Sif's Sword loaded at 128,36,6
+[2020-08-28 01:31:15.434] GAME: Pulsating Tumor loaded at 188,63,6
+[2020-08-28 01:31:15.456] GAME: Ruin of Wrath loaded at 166,112,6
+[2020-08-28 01:31:15.486] GAME: Dead God loaded at 121,105,6
+[2020-08-28 01:31:15.505] GAME: Makeshift Shelter loaded at 92,204,6
+[2020-08-28 01:31:15.523] GAME: UFO Crash loaded at 79,99,6
+[2020-08-28 01:31:15.551] GAME: Seed Vault loaded at 212,181,6
+[2020-08-28 01:31:15.909] GAME: Syndicate Lava Base loaded at 31,151,6
+[2020-08-28 01:31:18.880] GAME: Abandoned Teleporter loaded at 37,165,7
+[2020-08-28 01:31:18.902] GAME: Whiteship Dock loaded at 23,56,3
+[2020-08-28 01:31:18.986] GAME: DK Excavator 453 loaded at 50,193,3
+[2020-08-28 01:31:19.244] GAME: Survivalist Bunker loaded at 33,160,8
+[2020-08-28 01:31:19.317] GAME: Asteroid 5 loaded at 106,139,3
+[2020-08-28 01:31:19.359] GAME: Salvation loaded at 149,85,3
+[2020-08-28 01:31:19.399] GAME: Cleric's Den loaded at 103,177,4
+[2020-08-28 01:31:19.430] GAME: Asteroid 2 loaded at 163,23,3
+[2020-08-28 01:31:19.463] GAME: Empty Shell loaded at 58,118,3
+[2020-08-28 01:31:19.531] GAME: Gondoland loaded at 86,146,8
+[2020-08-28 01:31:19.601] GAME: Hilbert Research Facility loaded at 103,84,3
+[2020-08-28 01:31:19.654] GAME: Waylaid Buses loaded at 164,146,8
+[2020-08-28 01:31:19.655] GAME: Detached Teleporter loaded at 87,103,3
+[2020-08-28 01:31:19.747] GAME: Space Hermit loaded at 125,162,7
+[2020-08-28 01:31:19.909] GAME: Syndicate Ambush loaded at 134,53,7
+[2020-08-28 01:31:20.005] GAME: A Giant Ball of Paper in Space loaded at 112,22,3
+[2020-08-28 01:31:20.025] GAME: Crab Roid loaded at 219,162,2
+[2020-08-28 01:31:20.050] GAME: Mineable Asteroid 5 loaded at 203,209,2
+[2020-08-28 01:31:20.065] GAME: Mineable Asteroid 4 loaded at 206,32,2
+[2020-08-28 01:31:20.087] GAME: Monitoring Roid loaded at 153,202,2
+[2020-08-28 01:31:20.094] GAME: Mineable Asteroid 1 loaded at 126,222,2
+[2020-08-28 01:31:20.107] GAME: Maze Roid loaded at 173,215,2
+[2020-08-28 01:31:20.125] GAME: Dorm Roid loaded at 176,22,2
+[2020-08-28 01:31:20.144] GAME: Dead wizard Roid loaded at 34,210,2
+[2020-08-28 01:31:20.151] GAME: Mineable Asteroid 1 loaded at 83,25,2
+[2020-08-28 01:31:20.170] GAME: Mineable Asteroid 2 loaded at 22,62,2
+[2020-08-28 01:31:20.248] GAME: Box Singulo loaded at 96,49,2
+[2020-08-28 01:31:20.497] GAME: Public Mining Base loaded at 1,1,6
+[2020-08-28 01:31:34.831] GAME: *no key*/(Parker McCarthy) Parker McCarthy name changed from Parker McCarthy to Duckie (Unexplored Location (144, 187, 7))
+[2020-08-28 01:32:24.055] GAME: Backup Shuttle loaded at 84,206,1
+[2020-08-28 01:32:24.173] GAME: assault pod (Default) loaded at 85,207,1
+[2020-08-28 01:32:24.676] GAME: basic syndicate infiltrator loaded at 80,199,1
+[2020-08-28 01:32:25.037] GAME: fancy transport ferry loaded at 82,208,1
+[2020-08-28 01:32:25.200] GAME: Box Station Emergency Shuttle loaded at 83,199,1
+[2020-08-28 01:32:25.433] GAME: cargo ferry (Box) loaded at 85,204,1
+[2020-08-28 01:32:26.048] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 01:32:26.075] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 01:32:26.149] GAME: auxilliary base (Default) loaded at 84,206,1
+[2020-08-28 01:32:26.307] GAME: arrival shuttle (Box) loaded at 81,207,1
+[2020-08-28 01:32:26.398] GAME: mining shuttle (Box) loaded at 86,207,1
+[2020-08-28 01:32:26.454] GAME: labour shuttle (Box) loaded at 86,206,1
+[2020-08-28 01:32:26.505] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 01:32:26.534] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 01:32:26.570] GAME: lavaland Mining Elevator loaded at 86,208,1
+[2020-08-28 01:32:28.135] GAME: Hospital Ship loaded at 73,202,1
+[2020-08-28 01:32:28.702] GAME: Syndicate Fighter loaded at 86,206,1
+[2020-08-28 01:32:29.137] GAME: Small Freighter loaded at 78,205,1
+[2020-08-28 01:32:29.582] GAME: Pirate Cutter loaded at 77,204,1
+[2020-08-28 01:32:29.906] GAME: Syndicate Dropship loaded at 81,207,1

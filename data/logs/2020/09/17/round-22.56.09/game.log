@@ -1,0 +1,93 @@
+[2020-09-18 01:56:09.635] Starting up round ID .
+ - -------------------------
+[2020-09-18 01:56:09.709] ADMIN: Loading Banlist
+[2020-09-18 01:56:09.754] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-18 01:56:09.754] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-18 01:56:12.546] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-18 01:56:16.353] GAME: Saved mode is 'extended'
+[2020-09-18 01:56:28.878] GAME: Hierophant's Arena loaded at 200,69,6
+[2020-09-18 01:56:28.894] GAME: Blood-Drunk Miner (Guidance) loaded at 162,136,6
+[2020-09-18 01:56:28.910] GAME: Blood-Drunk Miner (Hunter) loaded at 223,109,6
+[2020-09-18 01:56:28.927] GAME: Blood-Drunk Miner loaded at 51,185,6
+[2020-09-18 01:56:28.944] GAME: King Goat Boss Ruin loaded at 73,144,6
+[2020-09-18 01:56:28.967] GAME: Rogue's Arena loaded at 204,162,6
+[2020-09-18 01:56:29.003] GAME: Sif's Sword loaded at 173,186,6
+[2020-09-18 01:56:29.012] GAME: Pulsating Tumor loaded at 118,179,6
+[2020-09-18 01:56:29.051] GAME: Dead God loaded at 189,109,6
+[2020-09-18 01:56:29.078] GAME: Ruin of Pride loaded at 121,75,6
+[2020-09-18 01:56:29.079] GAME: E1M1 loaded at 72,165,6
+[2020-09-18 01:56:29.100] GAME: Makeshift Shelter loaded at 208,24,6
+[2020-09-18 01:56:29.130] GAME: Ruined Pizza Party loaded at 129,101,6
+[2020-09-18 01:56:29.151] GAME: Ruin of Sloth loaded at 109,61,6
+[2020-09-18 01:56:29.175] GAME: Free Golem Ship loaded at 180,92,6
+[2020-09-18 01:56:29.208] GAME: The Wishgranter Cube loaded at 84,99,6
+[2020-09-18 01:56:32.303] GAME: Abandoned Teleporter loaded at 191,167,3
+[2020-09-18 01:56:32.325] GAME: Whiteship Dock loaded at 179,193,3
+[2020-09-18 01:56:32.372] GAME: Crashed Clown Ship loaded at 74,60,7
+[2020-09-18 01:56:32.410] GAME: Salvation loaded at 163,34,4
+[2020-09-18 01:56:32.474] GAME: Derelict 5 loaded at 146,130,3
+[2020-09-18 01:56:32.518] GAME: Asteroid 3 loaded at 212,118,8
+[2020-09-18 01:56:32.705] GAME: Syndicate Ambush loaded at 56,38,4
+[2020-09-18 01:56:32.759] GAME: Derelict 3 loaded at 196,130,7
+[2020-09-18 01:56:32.810] GAME: Roboticst Augmentation Facility loaded at 42,163,3
+[2020-09-18 01:56:32.853] GAME: Authorship loaded at 174,114,8
+[2020-09-18 01:56:32.857] GAME: Ordinary Space Tile loaded at 96,229,7
+[2020-09-18 01:56:33.508] GAME: Ancient Space Station loaded at 53,154,7
+[2020-09-18 01:56:33.538] GAME: Asteroid 1 loaded at 99,72,3
+[2020-09-18 01:56:33.587] GAME: Derelict 6 loaded at 64,99,4
+[2020-09-18 01:56:33.634] GAME: Disposal Facility 17 loaded at 137,148,8
+[2020-09-18 01:56:33.878] GAME: Survivalist Bunker loaded at 121,116,4
+[2020-09-18 01:56:33.909] GAME: Mineable Asteroid 3 loaded at 184,22,2
+[2020-09-18 01:56:33.935] GAME: Mineable Asteroid 2 loaded at 209,206,2
+[2020-09-18 01:56:33.952] GAME: Crab Roid loaded at 36,26,2
+[2020-09-18 01:56:33.976] GAME: Dorm Roid loaded at 27,209,2
+[2020-09-18 01:56:34.002] GAME: Maze Roid loaded at 185,211,2
+[2020-09-18 01:56:34.024] GAME: Mineable Asteroid 4 loaded at 22,65,2
+[2020-09-18 01:56:34.052] GAME: Monitoring Roid loaded at 143,207,2
+[2020-09-18 01:56:34.085] GAME: Mineable Asteroid 5 loaded at 30,43,2
+[2020-09-18 01:56:34.109] GAME: Dead wizard Roid loaded at 165,213,2
+[2020-09-18 01:56:34.118] GAME: Mineable Asteroid 1 loaded at 51,218,2
+[2020-09-18 01:56:34.263] GAME: Box SM loaded at 96,49,2
+[2020-09-18 01:56:34.585] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-18 01:56:39.806] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-18 01:56:39.807] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-18 01:56:39.807] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-18 01:56:39.808] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-18 01:56:39.810] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-18 01:56:39.816] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-18 01:56:39.822] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-18 01:56:39.825] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-18 01:56:42.295] ADMIN: Bob Joga has started the game.
+[2020-09-18 01:56:48.251] GAME: *no key*/(Sydney Darling) Sydney Darling name changed from Sydney Darling to Pancake (Unexplored Location (92, 69, 7))
+[2020-09-18 01:56:48.290] GAME: *no key*/(Perry Rasam) Perry Rasam name changed from Perry Rasam to Squigley (Unexplored Location (93, 71, 7))
+[2020-09-18 01:56:48.328] GAME: *no key*/(Leen Xiang) Leen Xiang name changed from Leen Xiang to Lala (Unexplored Location (95, 68, 7))
+[2020-09-18 01:56:50.221] ADMIN: Bob Joga has started the game.
+[2020-09-18 01:57:07.215] ADMIN: Bob Joga has started the game.
+[2020-09-18 01:57:37.753] GAME: Backup Shuttle loaded at 143,212,1
+[2020-09-18 01:57:37.836] GAME: assault pod (Default) loaded at 144,213,1
+[2020-09-18 01:57:38.192] GAME: basic syndicate infiltrator loaded at 139,205,1
+[2020-09-18 01:57:38.481] GAME: fancy transport ferry loaded at 141,214,1
+[2020-09-18 01:57:38.651] GAME: Box Station Emergency Shuttle loaded at 142,205,1
+[2020-09-18 01:57:38.865] GAME: cargo ferry (Box) loaded at 144,210,1
+[2020-09-18 01:57:39.466] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-18 01:57:39.493] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-18 01:57:39.549] GAME: auxilliary base (Default) loaded at 143,212,1
+[2020-09-18 01:57:39.718] GAME: arrival shuttle (Box) loaded at 140,213,1
+[2020-09-18 01:57:39.813] GAME: mining shuttle (Box) loaded at 145,213,1
+[2020-09-18 01:57:39.875] GAME: labour shuttle (Box) loaded at 145,212,1
+[2020-09-18 01:57:39.929] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-18 01:57:39.959] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-18 01:57:40.023] GAME: lavaland Mining Elevator loaded at 145,214,1
+[2020-09-18 01:57:41.204] GAME: Hospital Ship loaded at 132,208,1
+[2020-09-18 01:57:41.511] GAME: Syndicate Fighter loaded at 145,212,1
+[2020-09-18 01:57:41.759] GAME: Small Freighter loaded at 137,211,1
+[2020-09-18 01:57:42.108] GAME: Pirate Cutter loaded at 136,210,1
+[2020-09-18 01:57:42.196] ADMIN: Bob Joga has started the game.
+[2020-09-18 01:57:42.407] GAME: Syndicate Dropship loaded at 140,213,1
+[2020-09-18 01:57:42.616] VOTE: Roundtype vote started by server.
+[2020-09-18 01:57:44.167] VOTE: <b>Roundtype Vote</b><b>Vote Result: Inconclusive - No Votes!</b>
+[2020-09-18 01:57:44.574] GAME: *no key*/(Bob Joga) *no key*/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-18 01:57:44.574] ACCESS: Mob Login: Bob Joga/(Cock Advisor) was assigned to a /mob/living/carbon/human
+[2020-09-18 01:57:45.242] GAME: Bob Joga/(Cock Advisor) Client Bob Joga/(Cock Advisor) has taken ownership of mob (/mob/living/carbon/human) (Chief Medical Officer's Office (158, 110, 2))
+[2020-09-18 01:59:52.442] ACCESS: Logout: Bob Joga/(Cock Advisor)
+[2020-09-18 01:59:52.443] GAME: Bob Joga[DC]/(Cock Advisor) Bob Joga[DC]/(Cock Advisor) is no longer owning mob Cock Advisor(/mob/living/carbon/human) (Medbay Treatment Center (145, 113, 2))

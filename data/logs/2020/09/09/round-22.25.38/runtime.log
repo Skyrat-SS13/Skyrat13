@@ -1,0 +1,407 @@
+[2020-09-10 01:25:38.322] Starting up round ID .
+ - -------------------------
+[2020-09-10 01:25:38.328] Running /tg/ revision: 2020-09-10
+ - origin/master: 8e1ad4bdc1004dd28eed8c01ce785ffd08ba24dc
+ - HEAD: a37ef8efda98709ba2b023ccff88ff24e7183908
+[2020-09-10 01:25:39.578] Loading Box Station...
+[2020-09-10 01:25:47.466] Loaded Station in 7.9s!
+[2020-09-10 01:25:50.163] Loaded Lavaland in 2.6s!
+[2020-09-10 01:25:51.452] Ruin loader finished with 0 left to spend.
+[2020-09-10 01:25:55.557] Ruin loader finished with 0 left to spend.
+[2020-09-10 01:25:55.724] Ruin loader finished with 0 left to spend.
+[2020-09-10 01:26:39.473] ## WARNING: HEY! LISTEN! 0.5 seconds were wasted processing 546 turf(s) (connected to 24028 other turfs) with atmos differences at round start.
+[2020-09-10 01:26:41.659] ## WARNING: design /datum/design/ipc_stomach with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'microcell'
+[2020-09-10 01:26:41.662] ## WARNING: design /datum/design/ipc_kidneys with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'kidneys-ipc'
+[2020-09-10 01:27:01.245] Initializations complete within 81.9 seconds!
+[2020-09-10 01:27:06.408] Game start took 0.6s
+[2020-09-10 01:38:51.428] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (143,114,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=14;icon-y=14;vis-x=-12;...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=14;icon-y=14;vis-x=-12;...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=14;icon-y=14;vis-x=-12;...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=14;icon-y=14;vis-x=-12;...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (144,114,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=14;icon-y=14;vis-x=-12;...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (144,114,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=14;icon-y=14;vis-x=-12;...", 0)
+ - 
+[2020-09-10 01:39:00.489] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (139,117,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=14;icon-y=14;vis-x=-12;...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=14;icon-y=14;vis-x=-12;...", null, 1)
+ - the butcher\'s cleaver (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=14;icon-y=14;vis-x=-12;...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=14;icon-y=14;vis-x=-12;...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (139,116,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=14;icon-y=14;vis-x=-12;...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (139,116,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=14;icon-y=14;vis-x=-12;...", 0)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): MouseDrop(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (139,116,2) (/turf/open/floor/plasteel/white), the floor (139,116,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "mapwindow.map", "icon-x=14;icon-y=14;vis-x=-12;...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): MouseDrop(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (139,116,2) (/turf/open/floor/plasteel/white), the floor (139,116,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "mapwindow.map", "icon-x=14;icon-y=14;vis-x=-12;...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): MouseDrop(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (139,116,2) (/turf/open/floor/plasteel/white), the floor (139,116,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "mapwindow.map", "icon-x=14;icon-y=14;vis-x=-12;...")
+ - Bob Joga (/client): MouseDrop(Hedwig Avery (/mob/living/carbon/human/species/felinid), Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (139,116,2) (/turf/open/floor/plasteel/white), the floor (139,116,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "mapwindow.map", "icon-x=14;icon-y=14;vis-x=-12;...")
+ - 
+[2020-09-10 01:39:23.252] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (140,119,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=16;icon-y=19;vis-x=20;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=16;icon-y=19;vis-x=20;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=19;vis-x=20;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=19;vis-x=20;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=16;icon-y=19;vis-x=20;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=16;icon-y=19;vis-x=20;v...", 0)
+ - 
+[2020-09-10 01:39:26.749] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (140,119,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=17;icon-y=18;vis-x=19;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=17;icon-y=18;vis-x=19;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=18;vis-x=19;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=18;vis-x=19;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=18;vis-x=19;v...", 0)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): MouseDrop(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "mapwindow.map", "icon-x=17;icon-y=18;vis-x=19;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): MouseDrop(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "mapwindow.map", "icon-x=17;icon-y=18;vis-x=19;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): MouseDrop(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "mapwindow.map", "icon-x=17;icon-y=18;vis-x=19;v...")
+ - Bob Joga (/client): MouseDrop(Hedwig Avery (/mob/living/carbon/human/species/felinid), Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "mapwindow.map", "icon-x=17;icon-y=18;vis-x=19;v...")
+ - 
+[2020-09-10 01:39:49.000] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (140,119,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=16;icon-y=18;vis-x=19;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=16;icon-y=18;vis-x=19;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=18;vis-x=19;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=18;vis-x=19;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=16;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=16;icon-y=18;vis-x=19;v...", 0)
+ - 
+[2020-09-10 01:39:52.791] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (140,119,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=13;icon-y=18;vis-x=19;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=13;icon-y=18;vis-x=19;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=13;icon-y=18;vis-x=19;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=13;icon-y=18;vis-x=19;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=13;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=13;icon-y=18;vis-x=19;v...", 0)
+ - 
+[2020-09-10 01:39:55.969] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (139,118,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=18;icon-y=19;vis-x=20;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=18;icon-y=19;vis-x=20;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=18;icon-y=19;vis-x=20;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=18;icon-y=19;vis-x=20;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=18;icon-y=19;vis-x=20;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=18;icon-y=19;vis-x=20;v...", 0)
+ - 
+[2020-09-10 01:40:12.804] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (141,118,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=18;icon-y=17;vis-x=18;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=18;icon-y=17;vis-x=18;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=18;icon-y=17;vis-x=18;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=18;icon-y=17;vis-x=18;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=18;icon-y=17;vis-x=18;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=18;icon-y=17;vis-x=18;v...", 0)
+ - 
+[2020-09-10 01:40:19.058] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (139,118,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=17;icon-y=17;vis-x=18;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=17;icon-y=17;vis-x=18;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=17;vis-x=18;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=17;vis-x=18;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=17;vis-x=18;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=17;vis-x=18;v...", 0)
+ - 
+[2020-09-10 01:40:21.901] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (139,118,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=17;icon-y=18;vis-x=19;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=17;icon-y=18;vis-x=19;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=18;vis-x=19;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=18;vis-x=19;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=18;vis-x=19;v...", 0)
+ - 
+[2020-09-10 01:40:24.522] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (139,118,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=16;icon-y=23;vis-x=24;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=16;icon-y=23;vis-x=24;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=23;vis-x=24;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): rightclick melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=23;vis-x=24;v...")
+ - Pedro Ilurdoz (/mob/living/carbon/human): RightClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=23;vis-x=24;v...")
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=23;vis-x=24;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=16;icon-y=23;vis-x=24;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=16;icon-y=23;vis-x=24;v...", 0)
+ - 
+[2020-09-10 01:40:28.169] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (139,118,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=17;icon-y=17;vis-x=18;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=17;icon-y=17;vis-x=18;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=17;vis-x=18;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=17;vis-x=18;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=17;vis-x=18;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=17;vis-x=18;v...", 0)
+ - 
+[2020-09-10 01:40:37.490] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (139,118,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Unknown (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Unknown (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Unknown (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Unknown (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Unknown (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Unknown (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=18;icon-y=17;vis-x=18;v...", null, 1)
+ - Unknown (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=18;icon-y=17;vis-x=18;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Unknown (/mob/living/carbon/human/species/felinid), "icon-x=18;icon-y=17;vis-x=18;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Unknown (/mob/living/carbon/human/species/felinid), "icon-x=18;icon-y=17;vis-x=18;v...")
+ - Unknown (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=18;icon-y=17;vis-x=18;v...", 0)
+ - Bob Joga (/client): Click(Unknown (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=18;icon-y=17;vis-x=18;v...", 0)
+ - 
+[2020-09-10 01:41:09.412] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (139,117,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Unknown (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Unknown (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Unknown (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Unknown (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Unknown (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Unknown (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=14;icon-y=16;vis-x=17;v...", null, 1)
+ - Unknown (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=14;icon-y=16;vis-x=17;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Unknown (/mob/living/carbon/human/species/felinid), "icon-x=14;icon-y=16;vis-x=17;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Unknown (/mob/living/carbon/human/species/felinid), "icon-x=14;icon-y=16;vis-x=17;v...")
+ - Unknown (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=14;icon-y=16;vis-x=17;v...", 0)
+ - Bob Joga (/client): Click(Unknown (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=14;icon-y=16;vis-x=17;v...", 0)
+ - 
+[2020-09-10 01:41:46.584] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (139,118,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=14;icon-y=15;vis-x=16;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=14;icon-y=15;vis-x=16;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=14;icon-y=15;vis-x=16;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=14;icon-y=15;vis-x=16;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=14;icon-y=15;vis-x=16;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=14;icon-y=15;vis-x=16;v...", 0)
+ - 
+[2020-09-10 01:41:50.748] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (139,117,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=15;icon-y=16;vis-x=17;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=15;icon-y=16;vis-x=17;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=15;icon-y=16;vis-x=17;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=15;icon-y=16;vis-x=17;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=15;icon-y=16;vis-x=17;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (140,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=15;icon-y=16;vis-x=17;v...", 0)
+ - 
+[2020-09-10 01:42:08.221] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (137,118,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=16;icon-y=15;vis-x=16;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=16;icon-y=15;vis-x=16;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=15;vis-x=16;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=15;vis-x=16;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=16;icon-y=15;vis-x=16;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=16;icon-y=15;vis-x=16;v...", 0)
+ - 
+[2020-09-10 01:42:15.718] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (137,118,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=13;icon-y=15;vis-x=16;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=13;icon-y=15;vis-x=16;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=13;icon-y=15;vis-x=16;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=13;icon-y=15;vis-x=16;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=13;icon-y=15;vis-x=16;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=13;icon-y=15;vis-x=16;v...", 0)
+ - 
+[2020-09-10 01:42:24.882] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Felinid (/datum/species/human/felinid)
+ -   usr.loc: the floor (137,117,2) (/turf/open/floor/plasteel/white)
+ -   call stack:
+ - Felinid (/datum/species/human/felinid): spec attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), null, "help", Hedwig Avery (/mob/living/carbon/human/species/felinid), 0, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attacked by(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 0, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): attack(Hedwig Avery (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=17;icon-y=20;vis-x=21;v...", null, 1)
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): attackby(the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher), Pedro Ilurdoz (/mob/living/carbon/human), "icon-x=17;icon-y=20;vis-x=21;v...", null, 1)
+ - the butcher\'s cleaver (Wielde... (/obj/item/kitchen/knife/butcher): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=20;vis-x=21;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Hedwig Avery (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=20;vis-x=21;v...")
+ - Hedwig Avery (/mob/living/carbon/human/species/felinid): Click(the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=20;vis-x=21;v...", 0)
+ - Bob Joga (/client): Click(Hedwig Avery (/mob/living/carbon/human/species/felinid), the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=20;vis-x=21;v...", 0)
+ - 
+[2020-09-10 01:43:37.145] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ - 
+[2020-09-10 01:43:39.541] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ - 
+[2020-09-10 01:43:43.269] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ - 
+[2020-09-10 01:44:00.951] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ - 
+[2020-09-10 01:44:12.579] runtime error: Cannot read null.body_zone
+ - proc name: spec attacked by (/datum/species/proc/spec_attacked_by)
+ -   source file: species.dm,1899
+ - 

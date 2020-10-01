@@ -1,0 +1,50 @@
+[2020-09-18 04:05:37.488] Starting up round ID .
+ - -------------------------
+[2020-09-18 04:05:37.540] ADMIN: Loading Banlist
+[2020-09-18 04:05:37.573] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-18 04:05:37.574] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-18 04:05:40.317] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-18 04:05:43.746] GAME: Saved mode is 'extended'
+[2020-09-18 04:05:55.612] GAME: Hierophant's Arena loaded at 209,151,6
+[2020-09-18 04:05:55.635] GAME: Blood-Drunk Miner (Guidance) loaded at 90,189,6
+[2020-09-18 04:05:55.668] GAME: Blood-Drunk Miner (Hunter) loaded at 177,96,6
+[2020-09-18 04:05:55.704] GAME: Blood-Drunk Miner loaded at 30,182,6
+[2020-09-18 04:05:55.745] GAME: King Goat Boss Ruin loaded at 153,111,6
+[2020-09-18 04:05:55.775] GAME: Rogue's Arena loaded at 193,180,6
+[2020-09-18 04:05:55.814] GAME: Sif's Sword loaded at 67,110,6
+[2020-09-18 04:05:55.822] GAME: Pulsating Tumor loaded at 75,188,6
+[2020-09-18 04:05:55.840] GAME: Summoning Ritual loaded at 121,71,6
+[2020-09-18 04:05:55.879] GAME: Ruin of Gluttony loaded at 183,75,6
+[2020-09-18 04:05:55.896] GAME: Ruin of Envy loaded at 151,70,6
+[2020-09-18 04:05:55.897] GAME: Biodome Winter loaded at 45,194,6
+[2020-09-18 04:05:55.903] GAME: Ancient Puzzle loaded at 154,192,6
+[2020-09-18 04:05:55.927] GAME: Ruin of Pride loaded at 137,91,6
+[2020-09-18 04:05:55.959] GAME: The Wishgranter Cube loaded at 112,174,6
+[2020-09-18 04:05:58.992] GAME: Abandoned Teleporter loaded at 65,165,4
+[2020-09-18 04:05:59.014] GAME: Whiteship Dock loaded at 183,148,8
+[2020-09-18 04:05:59.217] GAME: Survivalist Bunker loaded at 32,69,4
+[2020-09-18 04:05:59.837] GAME: Ancient Space Station loaded at 120,160,4
+[2020-09-18 04:05:59.914] GAME: Feline-Human Combination Den loaded at 82,143,7
+[2020-09-18 04:05:59.944] GAME: Asteroid 2 loaded at 113,33,7
+[2020-09-18 04:06:00.006] GAME: Gondoland loaded at 130,31,4
+[2020-09-18 04:06:00.169] GAME: Syndicate Ambush loaded at 137,104,4
+[2020-09-18 04:06:00.269] GAME: Space Hermit loaded at 174,30,7
+[2020-09-18 04:06:00.300] GAME: Asteroid 4 loaded at 155,81,4
+[2020-09-18 04:06:00.357] GAME: Derelict 4 loaded at 30,103,7
+[2020-09-18 04:06:00.360] GAME: Ordinary Space Tile loaded at 121,227,4
+[2020-09-18 04:06:00.388] GAME: Authorship loaded at 192,74,8
+[2020-09-18 04:06:00.418] GAME: CF Corsair loaded at 196,81,4
+[2020-09-18 04:06:00.454] GAME: Cleric's Den loaded at 161,154,7
+[2020-09-18 04:06:00.484] GAME: Asteroid 3 loaded at 46,73,8
+[2020-09-18 04:06:00.519] GAME: Mineable Asteroid 5 loaded at 22,190,2
+[2020-09-18 04:06:00.539] GAME: Mineable Asteroid 4 loaded at 39,23,2
+[2020-09-18 04:06:00.556] GAME: Mineable Asteroid 3 loaded at 205,196,2
+[2020-09-18 04:06:00.589] GAME: Monitoring Roid loaded at 148,206,2
+[2020-09-18 04:06:00.608] GAME: Dead wizard Roid loaded at 24,46,2
+[2020-09-18 04:06:00.625] GAME: Maze Roid loaded at 176,209,2
+[2020-09-18 04:06:00.649] GAME: Dorm Roid loaded at 60,24,2
+[2020-09-18 04:06:00.664] GAME: Crab Roid loaded at 44,205,2
+[2020-09-18 04:06:00.688] GAME: Mineable Asteroid 2 loaded at 186,22,2
+[2020-09-18 04:06:00.699] GAME: Mineable Asteroid 1 loaded at 90,22,2
+[2020-09-18 04:06:00.772] GAME: Box Tesla loaded at 96,49,2
+[2020-09-18 04:06:01.041] GAME: Public Mining Base loaded at 1,1,6

@@ -1,0 +1,17 @@
+[2020-08-29 21:57:04.218] Starting up round ID .
+ - -------------------------
+[2020-08-29 21:58:34.943] Logs from logging subsystem:
+ - (2020-08-29 18:57:50) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=doneLoading
+ - (2020-08-29 18:57:50) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-08-29 18:57:50) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-08-29 18:57:50) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=analyzeClientData&param[cookie]={"connData":[{"ckey":"bobjoga","ip":"127.0.0.1","compid":"3000796718"},{"ckey":"bobjoga","ip":"177.106.255.43","compid":"3000796718"},{"ckey":"bobjoga","ip":"179.126.113.169","compid":"3000796718"},{"ckey":"bobjoga","ip":null,"compid":"3000796718"},{"ckey":"bobjoga","ip":"177.191.16.185","compid":"3000796718"}]}
+[2020-08-29 22:08:37.655] Logs from logging subsystem:
+ - (2020-08-29 18:59:30) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_236];late_join=1
+ - (2020-08-29 18:59:31) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_236];SelectedJob=Captain
+ - (2020-08-29 19:05:22) HREF: Bob Joga (usr:Cockmistress[(76,137,2)]) : _src_=vars;admin_token=76532335025003104259431081261016488;Vars=[0x203fa9a]
+ - (2020-08-29 19:05:24) HREF: Bob Joga (usr:Cockmistress[(76,137,2)]) : _src_=vars;admin_token=76532335025003104259431081261016488;proc_call=TRUE;target=[0x203fa9a]
+[2020-08-29 22:18:40.790] Logs from logging subsystem:
+ - (2020-08-29 19:15:45) HREF: Bob Joga (usr:Cockmistress[(76,137,2)]) : _src_=vars;admin_token=76532335025003104259431081261016488;Vars=[0x203fa9a]
+ - (2020-08-29 19:16:53) HREF: Bob Joga (usr:Cockmistress[(76,137,2)]) : _src_=vars;admin_token=76532335025003104259431081261016488;Vars=[0x203fa9a]
+ - (2020-08-29 19:18:09) HREF: Bob Joga (usr:Cockmistress[(76,137,2)]) : _src_=holder;admin_token=76532335025003104259431081261016488;viewruntime=[0x21012fec];viewruntime_backto=[0x2100023b]
+ - (2020-08-29 19:18:10) HREF: Bob Joga (usr:Cockmistress[(76,137,2)]) : _src_=holder;admin_token=76532335025003104259431081261016488;viewruntime=[0x2101369b];viewruntime_backto=[0x21012fec]

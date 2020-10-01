@@ -1,0 +1,15 @@
+[2020-09-02 20:20:18.978] Starting up round ID .
+ - -------------------------
+[2020-09-02 20:23:21.010] Logs from logging subsystem:
+ - (2020-09-02 17:20:23) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=doneLoading
+ - (2020-09-02 17:20:23) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-09-02 17:20:23) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-09-02 17:20:23) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=analyzeClientData&param[cookie]={"connData":[{"ckey":"bobjoga","ip":"179.104.27.255","compid":"3000796718"},{"ckey":"bobjoga","ip":"127.0.0.1","compid":"3000796718"},{"ckey":"bobjoga","ip":"179.104.31.67","compid":"3000796718"},{"ckey":"bobjoga","ip":"189.41.143.175","compid":"3000796718"},{"ckey":"bobjoga","ip":null,"compid":"3000796718"}]}
+[2020-09-02 20:43:29.762] Logs from logging subsystem:
+ - (2020-09-02 17:35:13) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_27];late_join=1
+ - (2020-09-02 17:35:14) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_27];SelectedJob=Captain
+ - (2020-09-02 17:37:58) HREF: Bob Joga (usr:Pedro Ilurdoz[(118,134,2)]) : bobjoga's admin datum (!localhost!) src=[0x2100187b];admin_token=4618421332104956609110801568420474;create_object=1
+ - (2020-09-02 17:38:04) HREF: Bob Joga (usr:Pedro Ilurdoz[(118,134,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x2100187b%5D%3Badmin_token%3D4618421332104956609110801568420474&admin_token=4618421332104956609110801568420474&filter=captain&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fobj%2Fitem%2Fgun%2Fenergy%2Flaser%2Fcaptain
+ - (2020-09-02 17:38:10) HREF: Bob Joga (usr:Pedro Ilurdoz[(118,135,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x2100187b%5D%3Badmin_token%3D4618421332104956609110801568420474&admin_token=4618421332104956609110801568420474&filter=captain&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fobj%2Fitem%2Fgun%2Fenergy%2Flaser%2Fcaptain%2Fscattershot
+ - (2020-09-02 17:38:17) HREF: Bob Joga (usr:Pedro Ilurdoz[(111,135,2)]) : bobjoga's admin datum (!localhost!) src=[0x2100187b];admin_token=4618421332104956609110801568420474;create_mob=1
+ - (2020-09-02 17:38:23) HREF: Bob Joga (usr:Pedro Ilurdoz[(111,135,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x2100187b%5D%3Badmin_token%3D4618421332104956609110801568420474&admin_token=4618421332104956609110801568420474&filter=felinid&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fmob%2Fliving%2Fcarbon%2Fhuman%2Fspecies%2Ffelinid

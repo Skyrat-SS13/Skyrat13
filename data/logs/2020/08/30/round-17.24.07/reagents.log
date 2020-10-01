@@ -1,0 +1,12 @@
+[2020-08-30 20:24:07.284] Starting up round ID .
+ - -------------------------
+[2020-08-30 20:35:43.876] Logs from logging subsystem:
+ - (2020-08-30 17:27:50) REAGENT: MOB ADD: on_mob_add(): *no key*/(Yobanna Savang) at Space (26, 171, 3) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-30 17:29:38) REAGENT: MOB ADD: on_merge(): *no key*/(Yobanna Savang) at Space (26, 171, 3) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-30 17:31:40) REAGENT: MOB ADD: on_merge(): *no key*/(Yobanna Savang) at Space (26, 171, 3) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-30 17:34:14) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Medbay Lobby (136, 127, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-30 17:34:17) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (136, 127, 2) - 3.4 of /datum/reagent/determination with 1 purity
+ - (2020-08-30 17:34:37) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Medbay Lobby (135, 126, 2) - 2.4 of /datum/reagent/determination with 1 purity
+ - (2020-08-30 17:34:50) REAGENT: MOB ADD: on_merge(): *no key*/(Yobanna Savang) at Space (26, 171, 3) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-08-30 17:34:52) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Medbay Lobby (136, 126, 2) - /datum/reagent/determination
+ - (2020-08-30 17:35:42) REAGENT: MOB ADD: on_merge(): *no key*/(Yobanna Savang) at Space (26, 171, 3) - 10 of /datum/reagent/determination with 1 purity

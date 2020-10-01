@@ -1,0 +1,34 @@
+[2020-09-10 02:04:13.730] Starting up round ID .
+ - -------------------------
+[2020-09-10 02:15:44.847] Logs from logging subsystem:
+ - (2020-09-09 23:07:14) REAGENT: MOB ADD: on_mob_add(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:07:15) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 3.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:07:18) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 8.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:07:21) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 12.8 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:07:22) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 17.8 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:07:23) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:07:27) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:07:28) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 16.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:07:31) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 21.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:07:39) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 23.591 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:09:24) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - /datum/reagent/determination
+ - (2020-09-09 23:09:27) REAGENT: MOB ADD: on_mob_add(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:09:55) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 2.8 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:09:56) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 7.8 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:09:57) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 12.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:09:59) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:10:00) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 16.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:10:13) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 12.9 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:11:22) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (143, 118, 2) - 14.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:12:01) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (147, 118, 2) - 16.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:13:08) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (147, 118, 2) - 18.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:13:33) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Berny Marler) at Medbay Central (149, 114, 2) - /datum/reagent/determination
+ - (2020-09-09 23:13:39) REAGENT: MOB ADD: on_mob_add(): *no key*/(coder monkey (628)) at Space (129, 65, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:13:42) REAGENT: MOB ADD: on_mob_add(): *no key*/(Berny Marler) at Medbay Central (149, 114, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:13:44) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (149, 114, 2) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:13:45) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (149, 114, 2) - 9 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:13:47) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (149, 114, 2) - 11 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:13:49) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (149, 114, 2) - 16 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:13:51) REAGENT: MOB DELETE: on_mob_delete: *no key*/(coder monkey (628)) at Space (129, 65, 2) - /datum/reagent/determination
+ - (2020-09-09 23:13:51) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (149, 114, 2) - 21 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 23:15:42) REAGENT: MOB ADD: on_merge(): *no key*/(Berny Marler) at Medbay Central (149, 114, 2) - 26 of /datum/reagent/determination with 1 purity

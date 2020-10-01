@@ -1,0 +1,80 @@
+[2020-08-28 00:30:12.977] Starting up round ID .
+ - -------------------------
+[2020-08-28 00:30:13.027] ADMIN: Loading Banlist
+[2020-08-28 00:30:13.056] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-08-28 00:30:13.057] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-08-28 00:30:16.198] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-08-28 00:30:20.169] GAME: Saved mode is 'extended'
+[2020-08-28 00:30:33.213] GAME: Hierophant's Arena loaded at 55,160,6
+[2020-08-28 00:30:33.228] GAME: Blood-Drunk Miner (Guidance) loaded at 64,115,6
+[2020-08-28 00:30:33.243] GAME: Blood-Drunk Miner (Hunter) loaded at 153,116,6
+[2020-08-28 00:30:33.261] GAME: Blood-Drunk Miner loaded at 146,189,6
+[2020-08-28 00:30:33.278] GAME: King Goat Boss Ruin loaded at 67,97,6
+[2020-08-28 00:30:33.300] GAME: Rogue's Arena loaded at 80,198,6
+[2020-08-28 00:30:33.333] GAME: Sif's Sword loaded at 196,43,6
+[2020-08-28 00:30:33.341] GAME: Pulsating Tumor loaded at 199,192,6
+[2020-08-28 00:30:33.347] GAME: Pulsating Tumor loaded at 204,183,6
+[2020-08-28 00:30:33.348] GAME: Biodome Winter loaded at 50,154,6
+[2020-08-28 00:30:33.367] GAME: Makeshift Shelter loaded at 72,64,6
+[2020-08-28 00:30:33.425] GAME: Animal Hospital loaded at 177,166,6
+[2020-08-28 00:30:33.448] GAME: Ruin of Gluttony loaded at 183,106,6
+[2020-08-28 00:30:33.848] GAME: Syndicate Lava Base loaded at 137,47,6
+[2020-08-28 00:30:37.471] GAME: Abandoned Teleporter loaded at 94,143,4
+[2020-08-28 00:30:37.497] GAME: Whiteship Dock loaded at 23,81,4
+[2020-08-28 00:30:37.546] GAME: Ancient Cloning Lab loaded at 85,188,4
+[2020-08-28 00:30:37.607] GAME: Derelict 1 loaded at 142,185,3
+[2020-08-28 00:30:37.646] GAME: Roboticst Augmentation Facility loaded at 170,41,8
+[2020-08-28 00:30:37.689] GAME: Abductor Replication Lab loaded at 127,163,4
+[2020-08-28 00:30:37.730] GAME: Asteroid 2 loaded at 63,167,3
+[2020-08-28 00:30:37.762] GAME: Asteroid 4 loaded at 97,34,3
+[2020-08-28 00:30:37.763] GAME: Detached Teleporter loaded at 214,31,3
+[2020-08-28 00:30:37.815] GAME: Asteroid 5 loaded at 186,131,8
+[2020-08-28 00:30:37.855] GAME: Disposal Facility 17 loaded at 167,128,8
+[2020-08-28 00:30:37.934] GAME: Feline-Human Combination Den loaded at 159,97,3
+[2020-08-28 00:30:38.295] GAME: The Twin-Nexus Hotel loaded at 148,155,7
+[2020-08-28 00:30:38.354] GAME: Derelict 5 loaded at 136,77,7
+[2020-08-28 00:30:38.526] GAME: Syndicate Ambush loaded at 29,90,7
+[2020-08-28 00:30:38.630] GAME: A Giant Ball of Paper in Space loaded at 93,33,7
+[2020-08-28 00:30:38.656] GAME: Mineable Asteroid 4 loaded at 28,36,2
+[2020-08-28 00:30:38.676] GAME: Dead wizard Roid loaded at 131,215,2
+[2020-08-28 00:30:38.687] GAME: Mineable Asteroid 1 loaded at 216,210,2
+[2020-08-28 00:30:38.723] GAME: Mineable Asteroid 2 loaded at 34,209,2
+[2020-08-28 00:30:38.732] GAME: Mineable Asteroid 1 loaded at 210,221,2
+[2020-08-28 00:30:38.766] GAME: Monitoring Roid loaded at 189,23,2
+[2020-08-28 00:30:38.790] GAME: Dorm Roid loaded at 192,212,2
+[2020-08-28 00:30:38.825] GAME: Mineable Asteroid 5 loaded at 167,201,2
+[2020-08-28 00:30:38.841] GAME: Crab Roid loaded at 203,192,2
+[2020-08-28 00:30:38.848] GAME: Mineable Asteroid 1 loaded at 107,22,2
+[2020-08-28 00:30:38.964] GAME: Box TEG loaded at 96,49,2
+[2020-08-28 00:30:39.283] GAME: Public Mining Base loaded at 1,1,6
+[2020-08-28 00:30:51.802] ADMIN: Bob Joga has started the game.
+[2020-08-28 00:30:53.189] GAME: *no key*/(Abdul Grigorov) Abdul Grigorov name changed from Abdul Grigorov to Clueless (Unexplored Location (108, 37, 3))
+[2020-08-28 00:31:32.872] ADMIN: Bob Joga has started the game.
+[2020-08-28 00:31:40.822] GAME: Backup Shuttle loaded at 84,206,1
+[2020-08-28 00:31:40.910] GAME: assault pod (Default) loaded at 85,207,1
+[2020-08-28 00:31:41.243] GAME: basic syndicate infiltrator loaded at 80,199,1
+[2020-08-28 00:31:41.528] GAME: fancy transport ferry loaded at 82,208,1
+[2020-08-28 00:31:41.707] GAME: Box Station Emergency Shuttle loaded at 83,199,1
+[2020-08-28 00:31:41.900] GAME: cargo ferry (Box) loaded at 85,204,1
+[2020-08-28 00:31:42.490] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 00:31:42.519] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 00:31:42.576] GAME: auxilliary base (Default) loaded at 84,206,1
+[2020-08-28 00:31:42.688] GAME: arrival shuttle (Box) loaded at 81,207,1
+[2020-08-28 00:31:42.793] GAME: mining shuttle (Box) loaded at 86,207,1
+[2020-08-28 00:31:42.850] GAME: labour shuttle (Box) loaded at 86,206,1
+[2020-08-28 00:31:42.899] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 00:31:42.931] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 00:31:42.961] GAME: lavaland Mining Elevator loaded at 86,208,1
+[2020-08-28 00:31:44.066] GAME: Hospital Ship loaded at 73,202,1
+[2020-08-28 00:31:44.378] GAME: Syndicate Fighter loaded at 86,206,1
+[2020-08-28 00:31:44.632] GAME: Small Freighter loaded at 78,205,1
+[2020-08-28 00:31:45.002] GAME: Pirate Cutter loaded at 77,204,1
+[2020-08-28 00:31:45.285] GAME: Syndicate Dropship loaded at 81,207,1
+[2020-08-28 00:31:45.504] VOTE: Roundtype vote started by server.
+[2020-08-28 00:31:47.081] VOTE: <b>Roundtype Vote</b><b>Vote Result: Inconclusive - No Votes!</b>
+[2020-08-28 00:31:47.747] GAME: *no key*/(Bob Joga) *no key*/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-08-28 00:31:47.747] ACCESS: Mob Login: Bob Joga/(Cockmistress) was assigned to a /mob/living/carbon/human
+[2020-08-28 00:31:48.679] GAME: Bob Joga/(Cockmistress) Client Bob Joga/(Cockmistress) has taken ownership of mob (/mob/living/carbon/human) (Genetics Lab (154, 116, 2))
+[2020-08-28 00:32:37.639] ADMIN: Bob Joga/(Cockmistress) changed the equipment of Bob Joga/(Cockmistress) to /datum/outfit/job/cmo.
+[2020-08-28 00:33:28.313] ADMIN: Bob Joga/(Cockmistress) called Cockmistress's get_shock() with no arguments.
+[2020-08-28 00:33:40.650] ADMIN: Bob Joga/(Cockmistress) called Cockmistress's get_shock() with no arguments.

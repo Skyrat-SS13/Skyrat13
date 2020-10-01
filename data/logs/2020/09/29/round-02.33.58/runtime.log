@@ -1,0 +1,51 @@
+[2020-09-29 05:33:58.578] Starting up round ID .
+ - -------------------------
+[2020-09-29 05:33:58.583] Running /tg/ revision: 2020-09-29
+ - origin/master: ef7ac28fe7b1dabb5238c9cb88150fb644a9201e
+ - HEAD: 723851ff697021c44887312469b04513cb6e5ef8
+[2020-09-29 05:33:59.848] Loading Box Station...
+[2020-09-29 05:34:06.926] Loaded Station in 7.1s!
+[2020-09-29 05:34:09.603] Loaded Lavaland in 2.6s!
+[2020-09-29 05:34:10.926] Ruin loader finished with 0 left to spend.
+[2020-09-29 05:34:14.869] Ruin loader finished with 0 left to spend.
+[2020-09-29 05:34:15.032] Ruin loader finished with 0 left to spend.
+[2020-09-29 05:34:58.138] ## WARNING: HEY! LISTEN! 0.7 seconds were wasted processing 444 turf(s) (connected to 24727 other turfs) with atmos differences at round start.
+[2020-09-29 05:35:25.598] Initializations complete within 86 seconds!
+[2020-09-29 05:35:48.463] Game start took 0.7s
+[2020-09-29 05:58:02.260] runtime error: Cannot read "map".x
+ - proc name: face atom (/mob/proc/face_atom)
+ -   source file: click.dm,431
+ -   usr: (src)
+ -   src: Cock Advisor (/mob/living/carbon/human)
+ -   src.loc: the floor (100,141,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Cock Advisor (/mob/living/carbon/human): face atom("map", 1)
+ - /datum/component/combat_mode (/datum/component/combat_mode): onMouseUpDown(Cock Advisor (/mob/living/carbon/human), null, "map", "mapwindow.map", "left=1;screen-loc=map:20:14,3:...")
+ - CallAsync(/datum/component/combat_mode (/datum/component/combat_mode), /datum/component/combat_mode/p... (/datum/component/combat_mode/proc/onMouseUpDown), /list (/list))
+ - Cock Advisor (/mob/living/carbon/human):  SendSignal("mob_client_mouseup", /list (/list))
+ - Bob Joga (/client): MouseUp(null, "map", "mapwindow.map", "left=1;screen-loc=map:20:14,3:...")
+ - 
+[2020-09-29 06:17:22.951] runtime error: Cannot read "map".x
+ - proc name: face atom (/mob/proc/face_atom)
+ -   source file: click.dm,431
+ -   usr: (src)
+ -   src: Cock Advisor (/mob/living/carbon/human)
+ -   src.loc: the floor (98,141,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Cock Advisor (/mob/living/carbon/human): face atom("map", 1)
+ - /datum/component/combat_mode (/datum/component/combat_mode): onMouseUpDown(Cock Advisor (/mob/living/carbon/human), null, "map", "mapwindow.map", "left=1;screen-loc=map:1:1,11:1...")
+ - CallAsync(/datum/component/combat_mode (/datum/component/combat_mode), /datum/component/combat_mode/p... (/datum/component/combat_mode/proc/onMouseUpDown), /list (/list))
+ - Cock Advisor (/mob/living/carbon/human):  SendSignal("mob_client_mouseup", /list (/list))
+ - Bob Joga (/client): MouseUp(null, "map", "mapwindow.map", "left=1;screen-loc=map:1:1,11:1...")
+ - 
+[2020-09-29 06:24:27.972] runtime error: Cannot read null.player_details
+ - proc name: Login (/mob/Login)
+ -   source file: login.dm,51
+ -   usr: (src)
+ -   src: Cock Advisor (/mob/living/brain)
+ -   src.loc: Cock Advisor\'s brain (/obj/item/organ/brain)
+ -   call stack:
+ - Cock Advisor (/mob/living/brain): Login()
+ - Cock Advisor (/mob/living/brain): Login()
+ - 
+[2020-09-29 06:27:28.812] ### VarEdit by Bob Joga/(Cock Advisor): /datum/stats/str level=5 => 20

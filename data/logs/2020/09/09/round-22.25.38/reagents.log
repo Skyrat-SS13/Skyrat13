@@ -1,0 +1,137 @@
+[2020-09-10 01:25:38.324] Starting up round ID .
+ - -------------------------
+[2020-09-10 01:37:09.185] Logs from logging subsystem:
+ - (2020-09-09 22:27:48) REAGENT: MOB ADD: on_mob_add(): *no key*/(Hedwig Avery) at Medbay Treatment Center (147, 114, 2) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:27:49) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (147, 114, 2) - 6.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:27:53) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (147, 114, 2) - 11.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:27:58) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (147, 114, 2) - 11.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:27:58) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (147, 114, 2) - 13.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:27:59) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (147, 114, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:27:59) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (147, 114, 2) - 16.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:28:50) REAGENT: MOB ADD: on_mob_add(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:31:33) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:31:45) REAGENT: MOB ADD: on_mob_add(): *no key*/(Antsy) at Unexplored Location (155, 154, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:31:46) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - /datum/reagent/determination
+ - (2020-09-09 22:31:57) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:00) REAGENT: MOB ADD: on_mob_add(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:01) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 6.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:04) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 8.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:05) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 10.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:05) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 12.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:08) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:12) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 11.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:21) REAGENT: MOB ADD: on_mob_add(): *no key*/(coder monkey (361)) at Space (157, 78, 8) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:45) REAGENT: MOB ADD: on_mob_add(): *no key*/(Redshirt McBeat) at Unexplored Location (154, 152, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:50) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 9.3 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:51) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 11.3 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:51) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:51) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 16.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:53) REAGENT: MOB DELETE: on_mob_delete: *no key*/(coder monkey (361)) at Space (157, 78, 8) - /datum/reagent/determination
+ - (2020-09-09 22:32:53) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:55) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:58) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 17.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:58) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 22.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:32:59) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:03) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (154, 152, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:07) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 14.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:08) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:09) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:09) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (154, 152, 8) - 9 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:25) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (154, 152, 8) - 11 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:27) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (154, 152, 8) - 16 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:29) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:30) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 19.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:30) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 21.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:31) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:32) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 13.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:33) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (154, 152, 8) - 18 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:34) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 17.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:37) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 17.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:38) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:39) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 19.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:40) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:33:53) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:34:26) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 8.55905 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:34:34) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - 10.5104 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:34:50) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Hedwig Avery) at Medbay Central (149, 115, 2) - /datum/reagent/determination
+ - (2020-09-09 22:34:59) REAGENT: MOB ADD: on_mob_add(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:35:00) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:35:04) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 8.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:35:11) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 9.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:35:15) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:35:21) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 14 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:35:29) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 16 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:35:55) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 21 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:35:59) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 4.3 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:36:10) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 4.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:36:40) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - /datum/reagent/determination
+ - (2020-09-09 22:36:44) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (155, 154, 8) - 4 of /datum/reagent/determination with 1 purity
+[2020-09-10 01:47:10.244] Logs from logging subsystem:
+ - (2020-09-09 22:37:32) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 23 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:37:33) REAGENT: MOB ADD: on_mob_add(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:37:37) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 6.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:37:42) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 28 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:37:43) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 10.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:37:48) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 30 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:37:54) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 35 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:37:54) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (155, 154, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:38:27) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 6.66752 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:38:28) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 11.3675 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:38:28) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 13.3675 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:38:29) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 15.3675 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:38:33) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 14.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:38:36) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (149, 112, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:38:42) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (155, 154, 8) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:38:50) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (144, 114, 2) - 10.8684 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:38:50) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (144, 114, 2) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:38:58) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (139, 116, 2) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:38:58) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (139, 116, 2) - 17 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:38:59) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (139, 116, 2) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:39:01) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (139, 116, 2) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:39:01) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (139, 116, 2) - 14 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:39:04) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (139, 116, 2) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:39:04) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Treatment Center (139, 116, 2) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:39:20) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 40 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:39:21) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (139, 117, 2) - 17.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:39:24) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (140, 118, 2) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:39:42) REAGENT: MOB ADD: on_merge(): *no key*/(Zippy) at Unexplored Location (157, 151, 8) - 42 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:39:45) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (140, 118, 2) - 12.104 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:39:49) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (140, 118, 2) - 13.056 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:39:54) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (140, 118, 2) - 12.906 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:41:36) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Hedwig Avery) at Medbay Central (140, 118, 2) - /datum/reagent/determination
+ - (2020-09-09 22:41:41) REAGENT: MOB ADD: on_mob_add(): *no key*/(Hedwig Avery) at Medbay Central (140, 118, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:41:42) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (140, 118, 2) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:41:43) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (140, 118, 2) - 5.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:41:45) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (140, 118, 2) - 15.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:10) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 8.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:10) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 10.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:10) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 15.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:11) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:11) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 13.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:13) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:13) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 19.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:16) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:18) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:19) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 14.523 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:31) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 10.411 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:32) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 11.296 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:35) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 11.545 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:40) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 10.531 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:42:40) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - 11.362 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:44:48) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Hedwig Avery) at Medbay Central (136, 118, 2) - /datum/reagent/determination
+ - (2020-09-09 22:44:53) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (155, 154, 8) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:44:59) REAGENT: MOB ADD: on_mob_add(): *no key*/(Hedwig Avery) at Medbay Central (139, 119, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:45:05) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (139, 119, 2) - 3.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:45:13) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (138, 120, 2) - 3.9 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:45:13) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (138, 120, 2) - 5.9 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:45:14) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (138, 120, 2) - 7.9 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:45:19) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (138, 120, 2) - 9 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:45:20) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (138, 120, 2) - 11 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:45:23) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (138, 120, 2) - 11.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:45:27) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (138, 120, 2) - 13.849 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:45:30) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (138, 120, 2) - 16.298 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:45:30) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (138, 120, 2) - 17.277 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:45:33) REAGENT: MOB ADD: on_merge(): *no key*/(Hedwig Avery) at Medbay Central (138, 120, 2) - 19.726 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:45:45) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (155, 154, 8) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:47:07) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (155, 154, 8) - 14 of /datum/reagent/determination with 1 purity
+ - (2020-09-09 22:47:07) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (155, 154, 8) - 16 of /datum/reagent/determination with 1 purity

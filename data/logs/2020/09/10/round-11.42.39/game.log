@@ -1,0 +1,59 @@
+[2020-09-10 14:42:39.815] Starting up round ID .
+ - -------------------------
+[2020-09-10 14:42:39.885] ADMIN: Loading Banlist
+[2020-09-10 14:42:39.925] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-10 14:42:39.926] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-10 14:42:42.322] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-10 14:42:45.365] GAME: Saved mode is 'extended'
+[2020-09-10 14:42:56.684] GAME: Hierophant's Arena loaded at 186,112,6
+[2020-09-10 14:42:56.700] GAME: Blood-Drunk Miner (Guidance) loaded at 158,123,6
+[2020-09-10 14:42:56.716] GAME: Blood-Drunk Miner (Hunter) loaded at 106,125,6
+[2020-09-10 14:42:56.733] GAME: Blood-Drunk Miner loaded at 203,175,6
+[2020-09-10 14:42:56.750] GAME: King Goat Boss Ruin loaded at 153,37,6
+[2020-09-10 14:42:56.774] GAME: Rogue's Arena loaded at 80,150,6
+[2020-09-10 14:42:56.808] GAME: Sif's Sword loaded at 65,104,6
+[2020-09-10 14:42:56.815] GAME: Pulsating Tumor loaded at 87,59,6
+[2020-09-10 14:42:56.854] GAME: Dead God loaded at 104,78,6
+[2020-09-10 14:42:56.861] GAME: Pulsating Tumor loaded at 52,137,6
+[2020-09-10 14:42:56.889] GAME: Dark Wizard Altar loaded at 161,194,6
+[2020-09-10 14:42:56.911] GAME: Dark Wizard Altar loaded at 81,77,6
+[2020-09-10 14:42:56.911] GAME: Biodome Winter loaded at 176,28,6
+[2020-09-10 14:42:56.950] GAME: Free Golem Ship loaded at 148,148,6
+[2020-09-10 14:42:57.009] GAME: Elephant Graveyard loaded at 123,33,6
+[2020-09-10 14:42:57.016] GAME: Pulsating Tumor loaded at 104,174,6
+[2020-09-10 14:42:59.841] GAME: Abandoned Teleporter loaded at 22,71,8
+[2020-09-10 14:42:59.865] GAME: Whiteship Dock loaded at 100,142,3
+[2020-09-10 14:42:59.916] GAME: DJ Station loaded at 41,36,3
+[2020-09-10 14:42:59.975] GAME: Hilbert Research Facility loaded at 152,154,8
+[2020-09-10 14:43:00.401] GAME: The Twin-Nexus Hotel loaded at 103,31,8
+[2020-09-10 14:43:00.432] GAME: Authorship loaded at 98,107,3
+[2020-09-10 14:43:00.507] GAME: DK Excavator 453 loaded at 90,190,3
+[2020-09-10 14:43:00.513] GAME: Ordinary Space Tile loaded at 93,220,8
+[2020-09-10 14:43:00.542] GAME: Asteroid 2 loaded at 70,192,8
+[2020-09-10 14:43:01.147] GAME: Ancient Space Station loaded at 80,126,7
+[2020-09-10 14:43:01.208] GAME: Asteroid 5 loaded at 103,104,8
+[2020-09-10 14:43:01.263] GAME: Gondoland loaded at 24,73,7
+[2020-09-10 14:43:01.302] GAME: Derelict 3 loaded at 171,68,3
+[2020-09-10 14:43:01.341] GAME: Space Arcade loaded at 184,197,4
+[2020-09-10 14:43:01.381] GAME: Aesthetic Outpost loaded at 60,158,3
+[2020-09-10 14:43:01.418] GAME: Cleric's Den loaded at 119,215,4
+[2020-09-10 14:43:01.433] GAME: Mineable Asteroid 1 loaded at 199,181,2
+[2020-09-10 14:43:01.446] GAME: Mineable Asteroid 3 loaded at 177,217,2
+[2020-09-10 14:43:01.462] GAME: Mineable Asteroid 4 loaded at 186,25,2
+[2020-09-10 14:43:01.470] GAME: Mineable Asteroid 1 loaded at 149,210,2
+[2020-09-10 14:43:01.477] GAME: Mineable Asteroid 1 loaded at 45,31,2
+[2020-09-10 14:43:01.501] GAME: Monitoring Roid loaded at 208,206,2
+[2020-09-10 14:43:01.516] GAME: Maze Roid loaded at 160,215,2
+[2020-09-10 14:43:01.543] GAME: Mineable Asteroid 5 loaded at 210,24,2
+[2020-09-10 14:43:01.556] GAME: Crab Roid loaded at 179,199,2
+[2020-09-10 14:43:01.576] GAME: Dorm Roid loaded at 27,198,2
+[2020-09-10 14:43:01.644] GAME: Box Tesla loaded at 96,49,2
+[2020-09-10 14:43:01.899] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-10 14:43:07.349] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-10 14:43:07.350] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-10 14:43:07.351] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-10 14:43:07.352] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-10 14:43:07.354] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-10 14:43:07.366] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-10 14:43:07.377] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-10 14:43:07.382] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))

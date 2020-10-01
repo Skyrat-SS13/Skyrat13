@@ -1,0 +1,92 @@
+[2020-09-29 05:33:58.580] Starting up round ID .
+ - -------------------------
+[2020-09-29 05:45:50.508] Logs from logging subsystem:
+ - (2020-09-29 02:37:31) REAGENT: MOB ADD: on_mob_add(): *no key*/(Niilo Butts) at Bridge (118, 135, 2) - 7.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:37:34) REAGENT: MOB ADD: on_merge(): *no key*/(Niilo Butts) at Bridge (118, 135, 2) - 14.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:39:42) REAGENT: MOB ADD: on_mob_add(): *no key*/(coder monkey (185)) at Space (102, 53, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:39:55) REAGENT: MOB DELETE: on_mob_delete: *no key*/(coder monkey (185)) at Space (103, 53, 2) - /datum/reagent/determination
+ - (2020-09-29 02:45:12) REAGENT: MOB ADD: on_mob_add(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:45:20) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - /datum/reagent/determination
+[2020-09-29 05:55:50.681] Logs from logging subsystem:
+ - (2020-09-29 02:52:56) REAGENT: MOB ADD: on_mob_add(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:53:03) REAGENT: MOB ADD: on_merge(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 6.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:53:04) REAGENT: MOB ADD: on_merge(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 7.8 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:53:05) REAGENT: MOB ADD: on_merge(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:53:05) REAGENT: MOB ADD: on_merge(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 17 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:53:07) REAGENT: MOB ADD: on_merge(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:53:55) REAGENT: MOB ADD: on_merge(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:53:55) REAGENT: MOB ADD: on_merge(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 14 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:53:56) REAGENT: MOB ADD: on_merge(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 21.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:53:56) REAGENT: MOB ADD: on_merge(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 26.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:53:58) REAGENT: MOB ADD: on_merge(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 31.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:54:04) REAGENT: MOB ADD: on_merge(): *no key*/(Astor Rizzi) at Central Primary Hallway (129, 130, 2) - 39 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:54:20) REAGENT: MOB ADD: on_mob_add(): *no key*/(coder monkey (76)) at Space (90, 49, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:54:33) REAGENT: MOB DELETE: on_mob_delete: *no key*/(coder monkey (76)) at Space (95, 49, 8) - /datum/reagent/determination
+[2020-09-29 06:05:50.889] Logs from logging subsystem:
+ - (2020-09-29 02:57:58) REAGENT: MOB ADD: on_mob_add(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (97, 140, 2) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 02:58:09) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Mei-Hui Donev) at Central Primary Hallway (99, 141, 2) - /datum/reagent/determination
+[2020-09-29 06:25:51.371] Logs from logging subsystem:
+ - (2020-09-29 03:16:47) REAGENT: MOB ADD: on_mob_add(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 7.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:16:48) REAGENT: MOB ADD: on_merge(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 12.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:16:49) REAGENT: MOB ADD: on_merge(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 17.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:17:36) REAGENT: MOB ADD: on_merge(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 17.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:17:36) REAGENT: MOB ADD: on_merge(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 19.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:17:40) REAGENT: MOB ADD: on_merge(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 21.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:17:40) REAGENT: MOB ADD: on_merge(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 23.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:17:40) REAGENT: MOB ADD: on_merge(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 25.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:17:43) REAGENT: MOB ADD: on_merge(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 27.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:17:44) REAGENT: MOB ADD: on_merge(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 37.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:17:49) REAGENT: MOB ADD: on_merge(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 44.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:17:50) REAGENT: MOB ADD: on_merge(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 46.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:17:50) REAGENT: MOB ADD: on_merge(): *no key*/(Mei-Hui Donev) at Central Primary Hallway (100, 141, 2) - 54.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:19:15) REAGENT: MOB ADD: on_mob_add(): *no key*/(Angila Muthoni) at Central Primary Hallway (98, 120, 2) - 7.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:19:19) REAGENT: MOB ADD: on_merge(): *no key*/(Angila Muthoni) at Central Primary Hallway (98, 120, 2) - 14.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:19:21) REAGENT: MOB ADD: on_merge(): *no key*/(Angila Muthoni) at Central Primary Hallway (98, 120, 2) - 16.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:19:22) REAGENT: MOB ADD: on_merge(): *no key*/(Angila Muthoni) at Central Primary Hallway (98, 120, 2) - 18.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:19:22) REAGENT: MOB ADD: on_merge(): *no key*/(Angila Muthoni) at Central Primary Hallway (98, 120, 2) - 20.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:19:37) REAGENT: MOB ADD: on_merge(): *no key*/(Angila Muthoni) at Central Primary Hallway (98, 120, 2) - 30.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:20:50) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cock Advisor) at Central Primary Hallway (129, 127, 2) - 7.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:20:53) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cock Advisor) at Central Primary Hallway (129, 117, 2) - 12.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:20:55) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cock Advisor) at Central Primary Hallway (129, 112, 2) - 17.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:21:55) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cock Advisor) at Central Primary Hallway (129, 112, 2) - /datum/reagent/determination
+ - (2020-09-29 03:22:15) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cock Advisor) at Central Primary Hallway (115, 113, 2) - 7.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:22:45) REAGENT: MOB DELETE: on_mob_delete: bobjoga/(Cock Advisor) at Central Primary Hallway (111, 113, 2) - /datum/reagent/determination
+ - (2020-09-29 03:23:41) REAGENT: MOB ADD: on_mob_add(): bobjoga/(Cock Advisor) at Central Primary Hallway (107, 112, 2) - 7.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:23:48) REAGENT: MOB ADD: on_merge(): bobjoga/(Cock Advisor) at Central Primary Hallway (106, 112, 2) - 13.8 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:23:50) REAGENT: MOB ADD: on_merge(): bobjoga/(Cock Advisor) at Central Primary Hallway (99, 112, 2) - 15.8 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:23:55) REAGENT: MOB ADD: on_merge(): bobjoga/(Cock Advisor) at Central Primary Hallway (97, 114, 2) - 14.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:23:55) REAGENT: MOB ADD: on_merge(): bobjoga/(Cock Advisor) at Central Primary Hallway (97, 114, 2) - 21.6 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:23:57) REAGENT: MOB ADD: on_merge(): bobjoga/(Cock Advisor) at Central Primary Hallway (98, 117, 2) - 17.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:24:00) REAGENT: MOB ADD: on_merge(): bobjoga/(Cock Advisor) at Central Primary Hallway (97, 117, 2) - 17.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:24:11) REAGENT: MOB DELETE: on_mob_delete: bobjoga/(Cock Advisor) at Central Primary Hallway (97, 117, 2) - /datum/reagent/determination
+ - (2020-09-29 03:24:23) REAGENT: MOB ADD: on_mob_add(): bobjoga/(Cock Advisor) at Central Primary Hallway (117, 141, 2) - 5 of /datum/reagent/determination with 1 purity
+[2020-09-29 06:35:51.711] Logs from logging subsystem:
+ - (2020-09-29 03:27:55) REAGENT: MOB ADD: on_mob_add(): *no key*/(Rafal Hacker) at Starboard Primary Hallway (152, 129, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:27:56) REAGENT: MOB ADD: on_merge(): *no key*/(Rafal Hacker) at Starboard Primary Hallway (152, 129, 2) - 7 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:27:57) REAGENT: MOB ADD: on_merge(): *no key*/(Rafal Hacker) at Starboard Primary Hallway (152, 129, 2) - 8.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:28:00) REAGENT: MOB ADD: on_merge(): *no key*/(Rafal Hacker) at Starboard Primary Hallway (147, 130, 2) - 13.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:28:01) REAGENT: MOB ADD: on_merge(): *no key*/(Rafal Hacker) at Starboard Primary Hallway (145, 128, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:28:03) REAGENT: MOB ADD: on_merge(): *no key*/(Rafal Hacker) at Starboard Primary Hallway (145, 128, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:28:06) REAGENT: MOB ADD: on_merge(): *no key*/(Rafal Hacker) at Starboard Primary Hallway (144, 128, 2) - 16.9 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:28:13) REAGENT: MOB ADD: on_merge(): *no key*/(Rafal Hacker) at Starboard Primary Hallway (144, 128, 2) - 16.6 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:28:55) REAGENT: MOB ADD: on_mob_add(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 7.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:28:56) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:28:58) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 16.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:29:00) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:29:02) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 14.6261 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:29:04) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 17.4251 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:29:04) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 22.4251 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:29:05) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 24.4251 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:29:05) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 26.4251 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:29:07) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:29:08) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 14 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:29:18) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:29:19) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 27.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:29:19) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 29.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:29:21) REAGENT: MOB ADD: on_merge(): *no key*/(Fenna Farooq) at Starboard Primary Hallway (142, 128, 2) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:31:43) REAGENT: MOB ADD: on_mob_add(): bobjoga/(Cock Advisor) at Central Primary Hallway (99, 112, 2) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:31:44) REAGENT: MOB ADD: on_merge(): bobjoga/(Cock Advisor) at Central Primary Hallway (99, 112, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:31:50) REAGENT: MOB ADD: on_merge(): bobjoga/(Cock Advisor) at Central Primary Hallway (99, 112, 2) - 14.8704 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:31:59) REAGENT: MOB ADD: on_merge(): bobjoga/(Cock Advisor) at Central Primary Hallway (97, 115, 2) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:32:03) REAGENT: MOB ADD: on_merge(): bobjoga/(Cock Advisor) at Central Primary Hallway (96, 113, 2) - 17.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 03:32:04) REAGENT: MOB ADD: on_merge(): bobjoga/(Cock Advisor) at Central Primary Hallway (96, 112, 2) - 19.5 of /datum/reagent/determination with 1 purity

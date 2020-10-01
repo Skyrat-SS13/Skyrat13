@@ -1,0 +1,33 @@
+[2020-09-02 18:22:44.090] Starting up round ID .
+ - -------------------------
+[2020-09-02 18:35:44.962] Logs from logging subsystem:
+ - (2020-09-02 15:27:32) REAGENT: MOB ADD: on_mob_add(): *no key*/(Trixy) at Unexplored Location (147, 163, 3) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:27:50) REAGENT: MOB ADD: on_mob_add(): *no key*/(Jazzy Bella) at Unexplored Location (149, 160, 3) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:28:04) REAGENT: MOB ADD: on_merge(): *no key*/(Trixy) at Unexplored Location (147, 163, 3) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:28:34) REAGENT: MOB ADD: on_mob_add(): *no key*/(Bonbon) at Unexplored Location (146, 161, 3) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:29:00) REAGENT: MOB ADD: on_merge(): *no key*/(Bonbon) at Unexplored Location (146, 161, 3) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:29:10) REAGENT: MOB ADD: on_merge(): *no key*/(Jazzy Bella) at Unexplored Location (149, 160, 3) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:29:44) REAGENT: MOB ADD: on_merge(): *no key*/(Bonbon) at Unexplored Location (146, 161, 3) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:30:00) REAGENT: MOB ADD: on_merge(): *no key*/(Trixy) at Unexplored Location (147, 163, 3) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:30:08) REAGENT: MOB ADD: on_merge(): *no key*/(Trixy) at Unexplored Location (147, 163, 3) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:30:12) REAGENT: MOB ADD: on_merge(): *no key*/(Bonbon) at Unexplored Location (146, 161, 3) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:30:14) REAGENT: MOB ADD: on_merge(): *no key*/(Trixy) at Unexplored Location (147, 163, 3) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:30:28) REAGENT: MOB ADD: on_merge(): *no key*/(Trixy) at Unexplored Location (147, 163, 3) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:30:36) REAGENT: MOB ADD: on_merge(): *no key*/(Jazzy Bella) at Unexplored Location (149, 160, 3) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:31:25) REAGENT: MOB ADD: on_merge(): *no key*/(Bonbon) at Unexplored Location (146, 161, 3) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:31:29) REAGENT: MOB ADD: on_merge(): *no key*/(Bonbon) at Unexplored Location (146, 161, 3) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:31:51) REAGENT: MOB ADD: on_merge(): *no key*/(Bonbon) at Unexplored Location (146, 161, 3) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:32:11) REAGENT: MOB ADD: on_merge(): *no key*/(Bonbon) at Unexplored Location (146, 161, 3) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:32:17) REAGENT: MOB ADD: on_merge(): *no key*/(Bonbon) at Unexplored Location (146, 161, 3) - 24 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:32:21) REAGENT: MOB ADD: on_merge(): *no key*/(Bonbon) at Unexplored Location (146, 161, 3) - 29 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:32:29) REAGENT: MOB ADD: on_merge(): *no key*/(Trixy) at Unexplored Location (147, 163, 3) - 14 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:32:33) REAGENT: MOB ADD: on_merge(): *no key*/(Trixy) at Unexplored Location (147, 163, 3) - 19 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:32:35) REAGENT: MOB ADD: on_merge(): *no key*/(Trixy) at Unexplored Location (147, 163, 3) - 21 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:32:39) REAGENT: MOB ADD: on_merge(): *no key*/(Jazzy Bella) at Unexplored Location (149, 160, 3) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:32:45) REAGENT: MOB ADD: on_merge(): *no key*/(Bonbon) at Unexplored Location (146, 161, 3) - 34 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:32:51) REAGENT: MOB ADD: on_merge(): *no key*/(Jazzy Bella) at Unexplored Location (149, 160, 3) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:32:53) REAGENT: MOB ADD: on_merge(): *no key*/(Jazzy Bella) at Unexplored Location (149, 160, 3) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:33:11) REAGENT: MOB ADD: on_merge(): *no key*/(Jazzy Bella) at Unexplored Location (149, 160, 3) - 17 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:33:17) REAGENT: MOB ADD: on_merge(): *no key*/(Jazzy Bella) at Unexplored Location (149, 160, 3) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:34:11) REAGENT: MOB ADD: on_merge(): *no key*/(Jazzy Bella) at Unexplored Location (149, 160, 3) - 29.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-02 15:35:09) REAGENT: MOB ADD: on_merge(): *no key*/(Trixy) at Unexplored Location (147, 163, 3) - 26 of /datum/reagent/determination with 1 purity

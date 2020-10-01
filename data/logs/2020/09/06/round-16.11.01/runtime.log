@@ -1,0 +1,32 @@
+[2020-09-06 19:11:01.516] Starting up round ID .
+ - -------------------------
+[2020-09-06 19:11:01.527] Running /tg/ revision: 2020-09-06
+ - origin/master: 26b97f7c3b07c51db166b4ec21801ee44997aeac
+ - HEAD: 31fba4a0548aa946c6812cd33e1888f550a549ef
+[2020-09-06 19:11:02.816] Loading Box Station...
+[2020-09-06 19:11:12.014] Loaded Station in 9.2s!
+[2020-09-06 19:11:16.016] Loaded Lavaland in 3.9s!
+[2020-09-06 19:11:18.686] Ruin loader finished with 0 left to spend.
+[2020-09-06 19:11:25.215] Ruin loader finished with 0 left to spend.
+[2020-09-06 19:11:25.463] Ruin loader finished with 0 left to spend.
+[2020-09-06 19:12:08.660] ## WARNING: HEY! LISTEN! 1.1 seconds were wasted processing 510 turf(s) (connected to 39247 other turfs) with atmos differences at round start.
+[2020-09-06 19:12:30.604] Initializations complete within 88.1 seconds!
+[2020-09-06 20:01:01.788] Game start took 0.6s
+[2020-09-06 20:06:03.303] runtime error: 
+ - proc name: stack trace (/proc/stack_trace)
+ -   source file: unsorted.dm,1093
+ -   usr: (src)
+ -   src: null
+ -   call stack:
+ - stack trace(null)
+ - gib stack trace()
+ - register asset("asset.ef9865e284d3368b5c87ec98...", /icon (/icon))
+ - icon2html(Pedro Ilurdoz\'s ID Card (Chie... (/obj/item/card/id/silver), Pedro Ilurdoz (/mob/living/carbon/human), "silver", 2, 1, 0)
+ - /datum/bank_account (/datum/bank_account): bank card talk("Payday processed, account now ...", null)
+ - /datum/bank_account (/datum/bank_account): payday(1, 0)
+ - Economy (/datum/controller/subsystem/economy): fire(0)
+ - Economy (/datum/controller/subsystem/economy): ignite(0)
+ - Master (/datum/controller/master): RunQueue()
+ - Master (/datum/controller/master): Loop()
+ - Master (/datum/controller/master): StartProcessing(0)
+ - 

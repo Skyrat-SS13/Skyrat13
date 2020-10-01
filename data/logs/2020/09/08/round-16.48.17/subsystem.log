@@ -1,0 +1,18 @@
+[2020-09-08 19:48:17.839] Starting up round ID .
+ - -------------------------
+[2020-09-08 19:48:24.038] INIT: Initialized Profiler subsystem within 0 seconds!
+[2020-09-08 19:48:24.238] Fail2Topic: Failed to drop firewall rule. Exit code: 1.
+[2020-09-08 19:48:24.238] INIT: Initialized Fail2Topic subsystem within 0.2 seconds!
+[2020-09-08 19:48:24.242] INIT: Initialized Title Screen subsystem within 0 seconds!
+[2020-09-08 19:48:24.242] INIT: Initialized Database subsystem within 0 seconds!
+[2020-09-08 19:48:24.243] INIT: Initialized Blackbox subsystem within 0 seconds!
+[2020-09-08 19:48:24.243] INIT: Initialized Server Tasks subsystem within 0 seconds!
+[2020-09-08 19:48:24.245] INIT: Initialized Input subsystem within 0 seconds!
+[2020-09-08 19:48:24.247] INIT: Initialized Sounds subsystem within 0 seconds!
+[2020-09-08 19:48:24.247] INIT: Initialized Vis contents overlays subsystem within 0 seconds!
+[2020-09-08 19:48:24.317] INIT: Initialized Research subsystem within 0.1 seconds!
+[2020-09-08 19:48:24.320] INIT: Initialized Events subsystem within 0 seconds!
+[2020-09-08 19:48:24.324] INIT: Initialized Jobs subsystem within 0 seconds!
+[2020-09-08 19:48:24.329] INIT: Initialized Quirks subsystem within 0 seconds!
+[2020-09-08 19:48:24.336] INIT: Initialized Ticker subsystem within 0 seconds!
+[2020-09-08 19:48:24.349] INIT: Initialized Instruments subsystem within 0 seconds!

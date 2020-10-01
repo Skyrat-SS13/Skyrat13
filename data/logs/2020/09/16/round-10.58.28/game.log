@@ -1,0 +1,58 @@
+[2020-09-16 13:58:28.868] Starting up round ID .
+ - -------------------------
+[2020-09-16 13:58:28.909] ADMIN: Loading Banlist
+[2020-09-16 13:58:28.942] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-16 13:58:28.943] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-16 13:58:32.488] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-16 13:58:34.614] GAME: Saved mode is 'extended'
+[2020-09-16 13:58:46.398] GAME: Hierophant's Arena loaded at 206,23,6
+[2020-09-16 13:58:46.412] GAME: Blood-Drunk Miner (Guidance) loaded at 120,103,6
+[2020-09-16 13:58:46.427] GAME: Blood-Drunk Miner (Hunter) loaded at 111,183,6
+[2020-09-16 13:58:46.443] GAME: Blood-Drunk Miner loaded at 179,167,6
+[2020-09-16 13:58:46.460] GAME: King Goat Boss Ruin loaded at 221,123,6
+[2020-09-16 13:58:46.499] GAME: Rogue's Arena loaded at 143,65,6
+[2020-09-16 13:58:46.534] GAME: Sif's Sword loaded at 47,191,6
+[2020-09-16 13:58:46.541] GAME: Pulsating Tumor loaded at 206,173,6
+[2020-09-16 13:58:46.562] GAME: Ruin of Wrath loaded at 153,106,6
+[2020-09-16 13:58:46.589] GAME: Ruined Pizza Party loaded at 63,72,6
+[2020-09-16 13:58:46.646] GAME: Ash Walker Nest loaded at 175,112,6
+[2020-09-16 13:58:46.647] GAME: E1M1 loaded at 136,144,6
+[2020-09-16 13:58:46.677] GAME: The Wishgranter Cube loaded at 56,98,6
+[2020-09-16 13:58:46.700] GAME: Ruin of Greed loaded at 27,195,6
+[2020-09-16 13:58:49.620] GAME: Abandoned Teleporter loaded at 179,50,8
+[2020-09-16 13:58:49.641] GAME: Whiteship Dock loaded at 68,177,7
+[2020-09-16 13:58:49.677] GAME: Aesthetic Outpost loaded at 182,81,7
+[2020-09-16 13:58:49.712] GAME: Abductor Replication Lab loaded at 100,90,3
+[2020-09-16 13:58:49.757] GAME: Derelict 6 loaded at 163,127,3
+[2020-09-16 13:58:49.813] GAME: Biological Storage Facility loaded at 141,208,7
+[2020-09-16 13:58:49.854] GAME: Derelict 1 loaded at 196,198,8
+[2020-09-16 13:58:49.939] GAME: DJ Station loaded at 74,136,7
+[2020-09-16 13:58:49.994] GAME: Unnamed Turreted Outpost loaded at 73,68,7
+[2020-09-16 13:58:50.202] GAME: Survivalist Bunker loaded at 52,122,4
+[2020-09-16 13:58:50.238] GAME: Ancient Cloning Lab loaded at 110,77,7
+[2020-09-16 13:58:50.336] GAME: Space Hermit loaded at 118,138,4
+[2020-09-16 13:58:50.386] GAME: Asteroid 5 loaded at 172,30,7
+[2020-09-16 13:58:50.502] GAME: Abandoned Telecommunications Satellite loaded at 99,37,4
+[2020-09-16 13:58:50.655] GAME: Syndicate Ambush loaded at 137,35,3
+[2020-09-16 13:58:50.707] GAME: NT Medical Ship loaded at 39,171,3
+[2020-09-16 13:58:50.735] GAME: Monitoring Roid loaded at 213,210,2
+[2020-09-16 13:58:50.762] GAME: Mineable Asteroid 5 loaded at 42,24,2
+[2020-09-16 13:58:50.775] GAME: Crab Roid loaded at 216,195,2
+[2020-09-16 13:58:50.792] GAME: Dead wizard Roid loaded at 26,193,2
+[2020-09-16 13:58:50.811] GAME: Dorm Roid loaded at 177,203,2
+[2020-09-16 13:58:50.833] GAME: Mineable Asteroid 2 loaded at 153,213,2
+[2020-09-16 13:58:50.847] GAME: Maze Roid loaded at 197,184,2
+[2020-09-16 13:58:50.863] GAME: Mineable Asteroid 4 loaded at 196,28,2
+[2020-09-16 13:58:50.871] GAME: Mineable Asteroid 1 loaded at 127,220,2
+[2020-09-16 13:58:50.878] GAME: Mineable Asteroid 1 loaded at 66,24,2
+[2020-09-16 13:58:50.989] GAME: Box SM 5x5 loaded at 96,49,2
+[2020-09-16 13:58:51.269] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-16 13:58:55.829] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-16 13:58:55.830] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-16 13:58:55.830] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-16 13:58:55.831] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-16 13:58:55.832] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-16 13:58:55.839] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-16 13:58:55.844] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-16 13:58:55.848] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-16 13:59:04.200] GAME: *no key*/(Gavin Oliphant) Gavin Oliphant name changed from Gavin Oliphant to Jazzy Bella (Unexplored Location (137, 163, 4))

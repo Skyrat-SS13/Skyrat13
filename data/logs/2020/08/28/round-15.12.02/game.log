@@ -1,0 +1,74 @@
+[2020-08-28 18:12:02.660] Starting up round ID .
+ - -------------------------
+[2020-08-28 18:12:02.703] ADMIN: Loading Banlist
+[2020-08-28 18:12:02.735] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-08-28 18:12:02.736] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-08-28 18:12:05.297] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-08-28 18:12:08.485] GAME: Saved mode is 'extended'
+[2020-08-28 18:12:22.872] GAME: Hierophant's Arena loaded at 62,128,6
+[2020-08-28 18:12:22.913] GAME: Blood-Drunk Miner (Guidance) loaded at 113,33,6
+[2020-08-28 18:12:22.939] GAME: Blood-Drunk Miner (Hunter) loaded at 38,188,6
+[2020-08-28 18:12:22.963] GAME: Blood-Drunk Miner loaded at 65,167,6
+[2020-08-28 18:12:22.985] GAME: King Goat Boss Ruin loaded at 194,164,6
+[2020-08-28 18:12:23.016] GAME: Rogue's Arena loaded at 181,198,6
+[2020-08-28 18:12:23.062] GAME: Sif's Sword loaded at 141,37,6
+[2020-08-28 18:12:23.070] GAME: Pulsating Tumor loaded at 77,63,6
+[2020-08-28 18:12:23.078] GAME: Pulsating Tumor loaded at 96,171,6
+[2020-08-28 18:12:23.104] GAME: Ruin of Gluttony loaded at 159,157,6
+[2020-08-28 18:12:23.130] GAME: Ruin of Sloth loaded at 132,23,6
+[2020-08-28 18:12:23.162] GAME: Ruin of Wrath loaded at 143,107,6
+[2020-08-28 18:12:23.169] GAME: Pulsating Tumor loaded at 139,211,6
+[2020-08-28 18:12:23.195] GAME: Makeshift Shelter loaded at 178,77,6
+[2020-08-28 18:12:23.228] GAME: Seed Vault loaded at 113,113,6
+[2020-08-28 18:12:23.281] GAME: Biodome Beach loaded at 95,52,6
+[2020-08-28 18:12:26.349] GAME: Abandoned Teleporter loaded at 172,189,8
+[2020-08-28 18:12:26.369] GAME: Whiteship Dock loaded at 76,120,3
+[2020-08-28 18:12:26.397] GAME: Asteroid 2 loaded at 167,136,3
+[2020-08-28 18:12:26.601] GAME: Survivalist Bunker loaded at 110,38,3
+[2020-08-28 18:12:26.639] GAME: Asteroid 3 loaded at 154,214,8
+[2020-08-28 18:12:26.666] GAME: Authorship loaded at 146,202,8
+[2020-08-28 18:12:26.718] GAME: Hilbert Research Facility loaded at 89,161,8
+[2020-08-28 18:12:26.769] GAME: NT Medical Ship loaded at 131,143,3
+[2020-08-28 18:12:26.816] GAME: Derelict 1 loaded at 90,107,8
+[2020-08-28 18:12:26.840] GAME: Big Ape loaded at 53,208,3
+[2020-08-28 18:12:27.217] GAME: The Twin-Nexus Hotel loaded at 146,160,7
+[2020-08-28 18:12:27.320] GAME: Syndicate Listening Station loaded at 101,161,7
+[2020-08-28 18:12:27.441] GAME: Abandoned Telecommunications Satellite loaded at 92,25,8
+[2020-08-28 18:12:27.447] GAME: Ordinary Space Tile loaded at 82,105,7
+[2020-08-28 18:12:27.485] GAME: Space Arcade loaded at 82,138,8
+[2020-08-28 18:12:27.660] GAME: Crashed Ship loaded at 55,152,3
+[2020-08-28 18:12:27.711] GAME: Maze Roid loaded at 199,27,2
+[2020-08-28 18:12:27.729] GAME: Crab Roid loaded at 41,42,2
+[2020-08-28 18:12:27.741] GAME: Mineable Asteroid 1 loaded at 153,214,2
+[2020-08-28 18:12:27.760] GAME: Dead wizard Roid loaded at 23,73,2
+[2020-08-28 18:12:27.789] GAME: Mineable Asteroid 5 loaded at 37,201,2
+[2020-08-28 18:12:27.813] GAME: Monitoring Roid loaded at 213,177,2
+[2020-08-28 18:12:27.834] GAME: Mineable Asteroid 2 loaded at 187,206,2
+[2020-08-28 18:12:27.853] GAME: Mineable Asteroid 4 loaded at 26,56,2
+[2020-08-28 18:12:27.862] GAME: Mineable Asteroid 1 loaded at 143,215,2
+[2020-08-28 18:12:27.890] GAME: Dorm Roid loaded at 57,214,2
+[2020-08-28 18:12:28.007] GAME: Box SM loaded at 96,49,2
+[2020-08-28 18:12:28.279] GAME: Public Mining Base loaded at 1,1,6
+[2020-08-28 18:13:33.412] GAME: Backup Shuttle loaded at 84,206,1
+[2020-08-28 18:13:33.519] GAME: assault pod (Default) loaded at 85,207,1
+[2020-08-28 18:13:33.907] GAME: basic syndicate infiltrator loaded at 80,199,1
+[2020-08-28 18:13:34.213] GAME: fancy transport ferry loaded at 82,208,1
+[2020-08-28 18:13:34.425] GAME: Box Station Emergency Shuttle loaded at 83,199,1
+[2020-08-28 18:13:34.673] GAME: cargo ferry (Box) loaded at 85,204,1
+[2020-08-28 18:13:35.443] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 18:13:35.488] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 18:13:35.587] GAME: auxilliary base (Default) loaded at 84,206,1
+[2020-08-28 18:13:35.761] GAME: arrival shuttle (Box) loaded at 81,207,1
+[2020-08-28 18:13:35.867] GAME: mining shuttle (Box) loaded at 86,207,1
+[2020-08-28 18:13:35.928] GAME: labour shuttle (Box) loaded at 86,206,1
+[2020-08-28 18:13:36.006] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 18:13:36.059] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 18:13:36.108] GAME: lavaland Mining Elevator loaded at 86,208,1
+[2020-08-28 18:13:37.733] GAME: Hospital Ship loaded at 73,202,1
+[2020-08-28 18:13:38.205] VOTE: Roundtype vote started by server.
+[2020-08-28 18:13:38.406] ADMIN: Bob Joga has started the game.
+[2020-08-28 18:13:39.867] VOTE: <b>Roundtype Vote</b><b>Vote Result: Inconclusive - No Votes!</b>
+[2020-08-28 18:13:42.067] GAME: *no key*/(Bob Joga) *no key*/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-08-28 18:13:42.068] ACCESS: Mob Login: Bob Joga/(Cockmistress) was assigned to a /mob/living/carbon/human
+[2020-08-28 18:13:42.613] GAME: Bob Joga/(Cockmistress) Client Bob Joga/(Cockmistress) has taken ownership of mob (/mob/living/carbon/human) (Arrival Shuttle (35, 146, 2))
+[2020-08-28 18:14:00.788] ADMIN: Bob Joga/(Cockmistress) dealt 50 amount of toxin damage to Bob Joga/(Cockmistress)

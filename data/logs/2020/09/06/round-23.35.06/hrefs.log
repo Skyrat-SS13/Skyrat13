@@ -1,0 +1,12 @@
+[2020-09-07 02:35:06.446] Starting up round ID .
+ - -------------------------
+[2020-09-07 02:36:41.792] Logs from logging subsystem:
+ - (2020-09-06 23:35:10) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=colorPresetPost&preset=normal
+ - (2020-09-06 23:35:10) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=doneLoading
+ - (2020-09-06 23:35:10) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-09-06 23:35:10) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-09-06 23:35:10) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=analyzeClientData&param[cookie]={"connData":[{"ckey":"bobjoga","ip":"179.104.232.34","compid":"3000796718"},{"ckey":"bobjoga","ip":"179.104.235.29","compid":"3000796718"},{"ckey":"bobjoga","ip":"177.106.103.29","compid":"3000796718"},{"ckey":"bobjoga","ip":null,"compid":"3000796718"},{"ckey":"bobjoga","ip":"127.0.0.1","compid":"3000796718"}]}
+ - (2020-09-06 23:35:49) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_27];ready=1
+[2020-09-07 02:46:48.415] Logs from logging subsystem:
+ - (2020-09-06 23:37:19) HREF: Bob Joga (usr:Pedro Ilurdoz[(159,110,2)]) : _src_=vars;admin_token=755107108841009830586328910372823993;mobToDamage=[mob_267];adjustDamage=pain
+ - (2020-09-06 23:43:02) HREF: Bob Joga (usr:Pedro Ilurdoz[(160,109,2)]) : _src_=vars;admin_token=755107108841009830586328910372823993;mobToDamage=[mob_267];adjustDamage=pain

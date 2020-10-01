@@ -1,0 +1,16 @@
+[2020-09-11 00:44:08.619] Starting up round ID .
+ - -------------------------
+[2020-09-11 00:44:08.629] Running /tg/ revision: 2020-09-11
+ - origin/master: 773c9202bd803e20291a5ef3100b97a9e076ab65
+ - HEAD: aba45bfbf42e0a7d9d2d3006248690a42060925a
+[2020-09-11 00:44:15.758] Loading Box Station...
+[2020-09-11 00:44:24.968] Loaded Station in 9.2s!
+[2020-09-11 00:44:28.652] Loaded Lavaland in 3.6s!
+[2020-09-11 00:44:30.264] Ruin loader finished with 0 left to spend.
+[2020-09-11 00:44:34.550] Ruin loader finished with 0 left to spend.
+[2020-09-11 00:44:34.734] Ruin loader finished with 0 left to spend.
+[2020-09-11 00:45:15.937] ## WARNING: HEY! LISTEN! 1 second were wasted processing 425 turf(s) (connected to 37024 other turfs) with atmos differences at round start.
+[2020-09-11 00:45:17.922] ## WARNING: design /datum/design/ipc_kidneys with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'capcitor-ipc'
+[2020-09-11 00:45:37.818] Initializations complete within 82.5 seconds!
+[2020-09-11 00:45:40.060] Game start took 0.6s
+[2020-09-11 00:46:59.316] ### VarEdit by Bob Joga/(Pedro Ilurdoz): /obj/machinery/clonepod biomass=0 => 1200
