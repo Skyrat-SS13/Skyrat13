@@ -4513,6 +4513,12 @@
 /area/security/brig)
 "akg" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "akh" = (
@@ -4578,6 +4584,12 @@
 /area/security/brig)
 "akm" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -5224,6 +5236,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "alA" = (
@@ -5436,6 +5451,10 @@
 	pixel_y = -32
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ama" = (
@@ -5516,6 +5535,12 @@
 	},
 /obj/item/radio/intercom{
 	pixel_y = 20
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -5674,6 +5699,10 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "amM" = (
@@ -5725,6 +5754,10 @@
 	c_tag = "Brig West";
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "amQ" = (
@@ -55922,6 +55955,14 @@
 	},
 /turf/open/floor/wood,
 /area/security/prison)
+"hUR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "hVW" = (
 /obj/effect/spawner/structure/window,
 /obj/structure/disposalpipe/segment{
@@ -58584,6 +58625,12 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "lsk" = (
@@ -59796,6 +59843,13 @@
 	},
 /turf/closed/wall,
 /area/medical/genetics)
+"mXt" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "mXw" = (
 /obj/structure/table/wood,
 /obj/machinery/airalarm{
@@ -61215,6 +61269,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "oLl" = (
@@ -61241,11 +61304,23 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "oMS" = (
 /obj/structure/cable{
 	icon_state = "1-4"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -63132,6 +63207,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"sbV" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "sci" = (
 /obj/machinery/vr_sleeper{
 	dir = 4
@@ -64582,6 +64667,12 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "usK" = (
@@ -65257,6 +65348,12 @@
 "vyc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -65995,6 +66092,10 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "wul" = (
@@ -90250,7 +90351,7 @@ mcp
 amc
 oKP
 oMS
-afM
+sbV
 pek
 akI
 ubI
@@ -90507,7 +90608,7 @@ aih
 aih
 vyc
 wZe
-sAr
+hUR
 ahr
 ahD
 ahV
@@ -91021,7 +91122,7 @@ ohL
 oHH
 oLq
 pDW
-afM
+mXt
 aiX
 aiX
 aiX
@@ -91278,7 +91379,7 @@ adG
 agj
 lrW
 ajX
-afM
+mXt
 agj
 apK
 amX
@@ -91792,7 +91893,7 @@ fsj
 agj
 ami
 qUk
-sAr
+hUR
 and
 arS
 anq
