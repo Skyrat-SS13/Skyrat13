@@ -60434,6 +60434,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 8
 	},
@@ -60695,6 +60698,9 @@
 /area/hallway/secondary/exit)
 "odq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/dark/side,
 /area/security/brig)
 "odx" = (
@@ -60728,6 +60734,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/pool)
+"ohL" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "oiu" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/plating,
@@ -61106,6 +61119,9 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "oEP" = (
@@ -61149,6 +61165,9 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "Prison Gate";
 	name = "prison blast door"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -61218,6 +61237,9 @@
 	pixel_x = -24;
 	pixel_y = 24;
 	req_access_txt = "2"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -61655,6 +61677,16 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
+"pDW" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "pEn" = (
 /obj/machinery/light_switch{
 	pixel_x = -20
@@ -64813,6 +64845,15 @@
 /obj/machinery/power/terminal,
 /turf/closed/wall/r_wall,
 /area/engine/gravity_generator)
+"uRL" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "uRN" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Medbay Storage";
@@ -90713,7 +90754,7 @@ vdU
 aiX
 aiX
 nrZ
-kdS
+aeT
 ryK
 adG
 aiE
@@ -90970,16 +91011,16 @@ vdU
 mKX
 mTp
 qNl
-akl
+uRL
 odq
-arS
-arS
-arS
+ohL
+ohL
+ohL
 oEn
-arS
+ohL
 oHH
 oLq
-aeT
+pDW
 afM
 aiX
 aiX
