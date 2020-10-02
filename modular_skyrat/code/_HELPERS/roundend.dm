@@ -7,7 +7,7 @@
 		m.client.verbs += /client/proc/eorg_teleport
 		if (m.client && m.client.prefs && m.client.prefs.eorg_teleport)
 			var/eorg_tele_loc = pick(GLOB.eorg_teleport.loc)
-			if (!ishuman(m))
+			if (!isobserver(m))
 				continue
 			m.forceMove(eorg_tele_loc)
 			to_chat(m, "<BR><span class='narsiesmall'>You have chosen not to EORG. Do not commit EORG or you will be banned!</span>")
