@@ -13,33 +13,15 @@ k// PARTS //
 	desc = "A long piece of thread with some resemblance to cable coil."
 	icon_state = "durastring"
 
-////////////////////////////////
-// KAT IMPROVISED WEAPON PARTS//
-////////////////////////////////
+////////////////////////////
+// IMPROVISED WEAPON PARTS//
+////////////////////////////
 
 /obj/item/weaponcrafting/improvised_parts
 	name = "Eerie bunch of coloured dots."
 	desc = "You feel the urge to report to Central that the parent type of guncrafting, which should never appear in this reality, has appeared. Whatever that means."
 	icon = 'icons/obj/guns/gun_parts.dmi'
 	icon_state = "palette"
-
-// BARRELS
-
-/obj/item/weaponcrafting/improvised_parts/barrel_rifle
-	name = "rifle barrel"
-	desc = "A pipe with a diameter just the right size to fire 7.62 rounds out of."
-	icon_state = "barrel_rifle"
-
-/obj/item/weaponcrafting/improvised_parts/barrel_shotgun
-	name = "shotgun barrel"
-	desc = "A twenty bore shotgun barrel."
-	icon_state = "barrel_shotgun"
-
-/obj/item/weaponcrafting/improvised_parts/barrel_pistol
-	name = "pistol barrel"
-	desc = "A pipe with a small diameter and some holes finely cut into it. It fits .32 ACP bullets. Probably."
-	icon_state = "barrel_pistol"
-	w_class = WEIGHT_CLASS_SMALL
 
 // RECEIVERS
 

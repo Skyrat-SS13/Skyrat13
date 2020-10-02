@@ -20,6 +20,10 @@
 #define MODE_KEY_BINARY "b"
 #define MODE_TOKEN_BINARY ":b"
 
+#define MODE_DRONE "drone"
+#define MODE_KEY_DRONE "r"
+#define MODE_TOKEN_DRONE ":r"
+
 #define MODE_WHISPER "whisper"
 #define MODE_WHISPER_CRIT "whispercrit"
 
@@ -40,7 +44,7 @@
 
 //skyrat change start
 #define MODE_TERROR_SPIDER "terrortalk"
-#define MODE_KEY_TERROR_SPIDER "t"
+#define MODE_KEY_TERROR_SPIDER "w"
 //skyrat change stop
 
 #define MODE_CHANGELING "changeling"
