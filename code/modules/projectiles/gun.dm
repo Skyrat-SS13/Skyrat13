@@ -280,7 +280,7 @@
 			if(G == src || G.weapon_weight >= WEAPON_MEDIUM)
 				continue
 			else if(G.can_trigger_gun(user))
-				bonus_spread += (24 * G.weapon_weight * G.dualwield_spread_mult * (ranged ? (ranged/(MAX_SKILL/2) : 1)))
+				bonus_spread += (24 * G.weapon_weight * G.dualwield_spread_mult * (ranged ? ranged/(MAX_SKILL/2) : 1))
 				loop_counter++
 				var/stam_cost = G.getstamcost(user)
 				addtimer(CALLBACK(G, /obj/item/gun.proc/process_fire, target, user, TRUE, params, null, bonus_spread, stam_cost), loop_counter)

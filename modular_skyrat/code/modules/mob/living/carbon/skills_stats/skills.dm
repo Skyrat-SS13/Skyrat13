@@ -32,5 +32,14 @@
 /datum/skills/electronics
 	name = "Electronics"
 
+/datum/skills/research
+	name = "Research"
+
+/datum/skills/cooking
+	name = "Cooking"
+
+/datum/skills/agriculture
+	name = "Agriculture"
+
 /datum/skills/gaming
 	name = "Gaming"
