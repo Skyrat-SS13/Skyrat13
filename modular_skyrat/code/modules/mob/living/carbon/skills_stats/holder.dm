@@ -1,8 +1,8 @@
 //Mind holders for stats and skills
 //Every mind spawns by default with average skills at everything
 /datum/mind
-	var/list/mob_stats = list()
-	var/list/mob_skills = list()
+	var/list/datum/stats/mob_stats = list()
+	var/list/datum/skills/mob_skills = list()
 	var/available_skill_points = 0
 	var/available_stat_points = 0
 
