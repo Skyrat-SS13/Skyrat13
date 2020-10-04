@@ -24,6 +24,13 @@
 //For example: two stats will need 6d6 dicetype and also 20 crit instead of 1.
 //REMEMBER THIS: when adding proc to action you BOUND to specify SUCCESS and CRIT_FAILURE in it! FAILURE may do nothing and CRIT_SUCCESS may be same as SUCCESS though.
 /datum/mind/proc/diceroll(stats = 0, skills = 0, dicetype = "3d6", crit = 10, mod = 0)
+	//We need numbers, not datums
+	if(ispath(stats))
+		var/datum/stats/stat = mob_stats[stats]
+		stats = stat.level
+	if(ispath(skills))
+		var/datum/skills/skill = mob_skills[skills]
+		skills = (skill.level)/2
 	//Get the carbon mob, if the mind controls one
 	var/mob/living/carbon/carbonmob = current
 	if(!istype(carbonmob))

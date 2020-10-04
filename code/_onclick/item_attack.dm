@@ -130,7 +130,7 @@
 	//Dexterity alters how quickly we recover from an attack
 	var/click_stat_mod = 1
 	if(user.mind)
-		var/datum/stats/dex/dex = user.mind.mob_stats[/datum/stats/dex]
+		var/datum/stats/dex/dex = GET_STAT(user, dex)
 		if(dex)
 			click_stat_mod *= dex.get_click_mod()
 	
@@ -212,7 +212,7 @@
 					//Successful feint attack - victim is unable to attack for a while
 					var/multi = 2
 					if(user.mind)
-						var/datum/skills/melee/melee = user.mind.mob_skills[/datum/skills/melee]
+						var/datum/skills/melee/melee = GET_SKILL(user, melee)
 						if(melee)
 							multi = melee.level/(MAX_SKILL/4)
 					changeNext_move(CLICK_CD_MELEE * multi)
@@ -245,7 +245,7 @@
 	//Dexterity alters how quickly we recover from an attack
 	var/click_stat_mod = 1
 	if(user.mind)
-		var/datum/stats/dex/dex = user.mind.mob_stats[/datum/stats/dex]
+		var/datum/stats/dex/dex = GET_STAT(user, dex)
 		if(dex)
 			click_stat_mod *= dex.get_click_mod()
 	
@@ -360,7 +360,7 @@
 				//Endurance lowers the staminaloss penalty
 				var/multi = 2
 				if(user.mind)
-					var/datum/stats/end/end = user.mind.mob_stats[/datum/stats/end]
+					var/datum/stats/end/end = GET_STAT(user, end)
 					if(end)
 						multi = (2.5 - (end.level/MAX_STAT))
 				. *= multi
@@ -369,7 +369,7 @@
 				//Endurance lowers the staminaloss penalty
 				var/multi = 2.5
 				if(user.mind)
-					var/datum/stats/end = user.mind.mob_stats[/datum/stats/end]
+					var/datum/stats/end/end = GET_STAT(user, end)
 					if(end)
 						multi = (3 - ((end.level/MAX_STAT) * 1.5))
 				. *= multi

@@ -103,9 +103,15 @@
 		to_chat(user, "<span class='warning'>The limb has already been patched!</span>")
 		return
 	user.visible_message("<span class='notice'>[user] begins wrapping [victim]'s [limb.name] with \the [I]...</span>", "<span class='notice'>You begin wrapping [user == victim ? "your" : "[victim]'s"] [limb.name] with \the [I]...</span>")
-	var/self_penalty_mult = (user == victim ? 2 : 1)
-	var/time_mod = 1
-	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	var/time_mod = (user == victim ? 2 : 1)
+
+	//Electronics skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/electronics/electronics = GET_SKILL(user, electronics)
+		if(electronics)
+			time_mod *= ((MAX_SKILL/2)/electronics.level)
+	
+	if(!do_after(user, base_treat_time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 	
 	if(!I.use(max(1, severity - WOUND_SEVERITY_TRIVIAL)))
@@ -130,9 +136,15 @@
 		user.visible_message("<span class='notice'>[user] begins welding \the [patch] on [victim]'s [limb.name] with \the [I]...</span>", "<span class='notice'>You begin welding \the [patch] [user == victim ? "your" : "[victim]'s"] [limb.name] with \the [I]...</span>")
 	else
 		user.visible_message("<span class='notice'>[user] begins welding \the [lowertext(name)] on [victim]'s [limb.name] with \the [I]...</span>", "<span class='notice'>You begin welding \the [lowertext(name)] on [user == victim ? "your" : "[victim]'s"] [limb.name] with \the [I]...</span>")
-	var/self_penalty_mult = (user == victim ? 2 : 1)
-	var/time_mod = 1
-	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	var/time_mod = (user == victim ? 2 : 1)
+
+	//Electronics skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/electronics/electronics = GET_SKILL(user, electronics)
+		if(electronics)
+			time_mod *= ((MAX_SKILL/2)/electronics.level)
+	
+	if(!do_after(user, base_treat_time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
 	limb.heal_damage(10, 10)
@@ -151,9 +163,15 @@
 		to_chat(user, "<span class='warning'>The limb has already been taped!</span>")
 		return
 	user.visible_message("<span class='notice'>[user] begins wrapping [victim]'s [limb.name] with \the [I]...</span>", "<span class='notice'>You begin wrapping [user == victim ? "your" : "[victim]'s"] [limb.name] with \the [I]...</span>")
-	var/self_penalty_mult = (user == victim ? 2 : 1)
-	var/time_mod = 1
-	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	var/time_mod = (user == victim ? 2 : 1)
+
+	//Electronics skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/electronics/electronics = GET_SKILL(user, electronics)
+		if(electronics)
+			time_mod *= ((MAX_SKILL/2)/electronics.level)
+	
+	if(!do_after(user, base_treat_time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
 	limb.heal_damage(10, 10)

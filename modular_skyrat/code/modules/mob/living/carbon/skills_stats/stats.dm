@@ -10,6 +10,9 @@
 	name = "Endurance"
 	shorthand = "EN"
 
+/datum/stats/end/proc/get_shock_mult()
+	return round(1.25 - (0.5 * level/MAX_STAT), 0.1) //Varies from 1.25 to 0.75 depending on how good/bad we are
+
 //Dexterity
 /datum/stats/dex
 	name = "Dexterity"
@@ -34,8 +37,3 @@
 /datum/stats/int
 	name = "Intelligence"
 	shorthand = "IT"
-
-//Luck
-/datum/stats/luck
-	name = "Luck"
-	shorthand = "LK"

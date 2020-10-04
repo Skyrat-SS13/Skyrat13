@@ -133,8 +133,8 @@
 	var/pain_dam = 0
 	/// Like stam_damage_coeff - but for pain
 	var/pain_damage_coeff = 1
-	/// Amount of pain healed per on_life() tick
-	var/pain_heal_tick = 1.6
+	/// Amount of pain healed per on_life() tick, which gets multiplied by 1/10 of the owner's endurance
+	var/pain_heal_tick = 1
 	/// How much we multiply pain_heal_tick by if the owner is lying down
 	var/pain_heal_rest_multiplier = 3
 	/// Multiply incoming pain by this. Works like incoming_stam_mult in a way.
@@ -626,7 +626,7 @@
 		if(heal_damage(stamina = (stam_heal_tick * (disabled ? 2 : 1) * pain_multiplier), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(pain_heal_tick && pain_dam > DAMAGE_PRECISION)
-		if(heal_damage(pain = (pain_heal_tick * (owner?.lying ? pain_heal_rest_multiplier : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
+		if(heal_damage(pain = (pain_heal_tick * (owner?.lying ? pain_heal_rest_multiplier : 1) * (owner.mind?.mob_stats[STAT_DATUM(end)] ? (owner.mind.mob_stats[STAT_DATUM(end)]/10) : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(tox_filter_per_tick && tox_dam > DAMAGE_PRECISION)
 		filter_toxins(toxins = tox_filter_per_tick, only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE)

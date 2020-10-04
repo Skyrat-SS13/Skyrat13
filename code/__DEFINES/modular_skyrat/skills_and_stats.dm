@@ -17,29 +17,32 @@
 #define DICE_CRIT_FAILURE -2
 
 //Job skill point allocation
-#define JOB_SKILLPOINTS_HORRENDOUS 20
-#define JOB_SKILLPOINTS_WORTHLESS 25
-#define JOB_SKILLPOINTS_NOVICE 30
-#define JOB_SKILLPOINTS_AVERAGE 35
-#define JOB_SKILLPOINTS_TRAINED 40
-#define JOB_SKILLPOINTS_EXPERT 50
-#define JOB_SKILLPOINTS_LEGENDARY 60
+#define JOB_SKILLPOINTS_HORRENDOUS 1
+#define JOB_SKILLPOINTS_WORTHLESS 5
+#define JOB_SKILLPOINTS_NOVICE 7
+#define JOB_SKILLPOINTS_AVERAGE 10
+#define JOB_SKILLPOINTS_TRAINED 12
+#define JOB_SKILLPOINTS_EXPERT 16
+#define JOB_SKILLPOINTS_LEGENDARY 20
 
 //Job stat point allocation
 #define JOB_STATPOINTS_HORRENDOUS 1
 #define JOB_STATPOINTS_WORTHLESS 5
-#define JOB_STATPOINTS_NOVICE 10
-#define JOB_STATPOINTS_AVERAGE 15
-#define JOB_STATPOINTS_TRAINED 20
-#define JOB_STATPOINTS_EXPERT 25
-#define JOB_STATPOINTS_LEGENDARY 35
+#define JOB_STATPOINTS_NOVICE 7
+#define JOB_STATPOINTS_AVERAGE 10
+#define JOB_STATPOINTS_TRAINED 12
+#define JOB_STATPOINTS_EXPERT 16
+#define JOB_STATPOINTS_LEGENDARY 20
 
 //Helpers
-#define SKILL(x) /datum/skills/##x
-#define STAT(x) /datum/stats/##x
+#define SKILL_DATUM(x) /datum/skills/##x
+#define STAT_DATUM(x) /datum/stats/##x
 
-#define GET_STAT(x) mob_stats[STAT(x)]
-#define GET_SKILL(x) mob_skills[SKILL(x)]
+#define GET_STAT(mindmob, x) mindmob.mind?.mob_stats[STAT_DATUM(x)]
+#define GET_SKILL(mindmob, x) mindmob.mind?.mob_skills[SKILL_DATUM(x)]
 
-#define STAT_LEVEL(x) mob_stats[STAT(x)]?.level
-#define SKILL_LEVEL(x) mob_skills[SKILL(x)]?.level
+#define STAT_LEVEL(mindmob, x) mindmob.mind?.mob_stats[STAT_DATUM(x)]?.level
+#define SKILL_LEVEL(mindmob, x) mindmob.mind?.mob_skills[SKILL_DATUM(x)]?.level
+
+#define GET_STAT_LEVEL(mindmob, x) STAT_LEVEL(mindmob, x)
+#define GET_SKILL_LEVEL(mindmob, x) SKILL_LEVEL(mindmob, x)

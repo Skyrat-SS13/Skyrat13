@@ -229,17 +229,22 @@
 	
 	var/time = base_treat_time
 	var/time_mod = 2
-	var/prob_mod = 20
+	var/prob_mod = 12.5
 	
 	if(first_time)
 		user.visible_message("<span class='notice'>[user] starts to force their [limb.name]'s rotors back in place...</span>", "<span class='notice'>You start forcing your [limb.name]'s rotors back in place...</span>")
-	if(time_mod)
-		time *= time_mod
 
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	//Electronics skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/electronics/electronics = GET_SKILL(user, electronics)
+		if(electronics)
+			time_mod *= ((MAX_SKILL/2)/electronics.level)
+			prob_mod *= ((MAX_SKILL/2)/electronics.level)
+
+	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(30 + prob_mod))
+	if(prob(50 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps their own [limb.name]'s rotors back in place!</span>", "<span class='danger'>You snap your own [limb.name]'s rotors back into place!</span>")
 		victim.emote("scream")
 		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
@@ -277,13 +282,18 @@
 	var/time = base_treat_time
 	var/time_mod = 1
 	var/prob_mod = 10
-	if(time_mod)
-		time *= time_mod
 
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	//Electronics skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/electronics/electronics = GET_SKILL(user, electronics)
+		if(electronics)
+			time_mod *= ((MAX_SKILL/2)/electronics.level)
+			prob_mod *= ((MAX_SKILL/2)/electronics.level)
+
+	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(45 + prob_mod))
+	if(prob(50 + prob_mod))
 		user.visible_message("<span class='danger'>[user] forcefully connects [victim]'s disconnected [limb.name] actuators!</span>", "<span class='notice'>You forcefully connect [victim]'s disconnected [limb.name] actuators!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your desynchronized [limb.name] actuators back into place!</span>")
 		victim.emote("scream")
@@ -300,12 +310,18 @@
 	var/time = base_treat_time
 	var/time_mod = 1
 	var/prob_mod = 10
-	if(time_mod)
-		time *= time_mod
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+
+	//Electronics skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/electronics/electronics = GET_SKILL(user, electronics)
+		if(electronics)
+			time_mod *= ((MAX_SKILL/2)/electronics.level)
+			prob_mod *= ((MAX_SKILL/2)/electronics.level)
+	
+	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(45 + prob_mod))
+	if(prob(50 + prob_mod))
 		user.visible_message("<span class='danger'>[user] torques [victim]'s disconnected [limb.name] actuators with a loud pop!</span>", "<span class='danger'>You torque [victim]'s disconnected [limb.name] actuators with a loud pop!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
 		victim.emote("scream")

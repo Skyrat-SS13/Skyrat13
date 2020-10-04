@@ -61,15 +61,23 @@
 /obj/item/stack/medical/proc/try_heal(mob/living/M, mob/user, silent = FALSE, obj/item/bodypart/specific_part)
 	if(!M.can_inject(user, TRUE))
 		return
+	var/time_mod = 1
+
+	//Medical skill affects the speed of the do_mob
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
+	
 	if(M == user)
 		if(!silent)
 			user.visible_message("<span class='notice'>[user] starts to apply \the [src] on [user.p_them()]self...</span>", "<span class='notice'>You begin applying \the [src] on yourself...</span>")
-		if(!do_mob(user, M, self_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
+		if(!do_mob(user, M, self_delay * time_mod, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
 			return
 	else if(other_delay)
 		if(!silent)
 			user.visible_message("<span class='notice'>[user] starts to apply \the [src] on [M].</span>", "<span class='notice'>You begin applying \the [src] on [M]...</span>")
-		if(!do_mob(user, M, other_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
+		if(!do_mob(user, M, other_delay * time_mod, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
 			return
 
 	if(heal(M, user))
@@ -211,6 +219,11 @@
 	if(!silent)
 		user.visible_message("<span class='warning'>[user] begins wrapping the wounds on [M]'s [limb.name] with [src]...</span>", "<span class='warning'>You begin wrapping the wounds on [user == M ? "your" : "[M]'s"] [limb.name] with [src]...</span>")
 	var/time_mod = 1
+	//Medical skill affects the speed of the do_after
+	if(user.mind)
+		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
+		if(firstaid)
+			time_mod *= firstaid.get_medicalstack_mod()
 	if(!do_after(user, (user == M ? self_delay : other_delay) * time_mod, target=M))
 		return
 
