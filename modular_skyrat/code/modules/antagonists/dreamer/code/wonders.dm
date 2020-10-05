@@ -1,7 +1,7 @@
 //Wonder recipes
 //NOTE: Wonders are named after their proper keys, the wonder structure handles that code
 /datum/crafting_recipe/wonder
-	name = "First Wonder"
+	name = "Wonder"
 	result = /obj/structure/wonder
 	reqs = list(
 				/obj/item/bodypart = 2,
@@ -12,7 +12,6 @@
 	always_availible = FALSE
 
 /datum/crafting_recipe/wonder/second
-	name = "Second Wonder"
 	result = /obj/structure/wonder
 	reqs = list(
 				/mob/living/carbon/human = 1,
@@ -32,7 +31,6 @@
 	return satisfied_requirements
 
 /datum/crafting_recipe/wonder/third
-	name = "Third Wonder"
 	result = /obj/structure/wonder
 	reqs = list(
 				/obj/item/bodypart/head = 3,
@@ -41,7 +39,6 @@
 				)
 
 /datum/crafting_recipe/wonder/fourth
-	name = "Fourth Wonder"
 	result = /obj/structure/wonder
 	reqs = list(
 				/obj/item/organ/tongue = 4,
@@ -73,6 +70,7 @@
 			for(var/datum/antagonist/dreamer/dreammy in H.mind.antag_datums)
 				dream_master = dreammy
 				icon_state = "creation[min(4, dream_master.current_wonder)]"
+				name = "[dream_master.associated_keys[dream_master.current_wonder]] Wonder"
 				if(length(dream_master.recipe_progression) >= dream_master.current_wonder)
 					H.mind.learned_recipes -= dream_master.recipe_progression[dream_master.current_wonder]
 				dream_master.current_wonder++
