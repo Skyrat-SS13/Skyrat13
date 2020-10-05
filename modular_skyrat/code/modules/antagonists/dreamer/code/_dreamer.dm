@@ -63,7 +63,7 @@
 	for(var/stat in M.mind.mob_stats)
 		var/datum/stats/str/str = stat
 		if(istype(str))
-			str.level = min(end.level + 10, MAX_STAT)
+			str.level = min(str.level + 10, MAX_STAT)
 	for(var/stat in M.mind.mob_stats)
 		var/datum/stats/end/end = stat
 		if(istype(end))
