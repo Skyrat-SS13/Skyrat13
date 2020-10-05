@@ -22,21 +22,10 @@
 /datum/crafting_recipe/wonder/second
 	result = /obj/structure/wonder
 	reqs = list(
-				/mob/living/carbon/human = 1,
+				/obj/item/bodypart/groin = 1,
 				/obj/item/bodypart = 2,
 				/obj/item/organ/lungs = 1,
 				)
-
-/datum/crafting_recipe/wonder/second/check_requirements(mob/user, list/collected_requirements)
-	var/satisfied_requirements = FALSE
-	for(var/mob/living/carbon/human/H in collected_requirements)
-		if(user == H)
-			continue
-		if(length(H.bodyparts) == 1)
-			satisfied_requirements = TRUE
-	if(!satisfied_requirements)
-		to_chat(user, "<span class='warning'>This WONDER requires the very CARCASS of a HUMAN BEING.</span>")
-	return satisfied_requirements
 
 /datum/crafting_recipe/wonder/third
 	result = /obj/structure/wonder
