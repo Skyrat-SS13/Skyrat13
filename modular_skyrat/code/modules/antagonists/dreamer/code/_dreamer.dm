@@ -63,11 +63,11 @@
 	for(var/stat in M.mind.mob_stats)
 		var/datum/stats/str/str = stat
 		if(istype(str))
-			str.level = min(stat.level + 10, MAX_STAT)
+			str.level = min(end.level + 10, MAX_STAT)
 	for(var/stat in M.mind.mob_stats)
 		var/datum/stats/end/end = stat
 		if(istype(end))
-			stat.level = min(stat.level + 10, MAX_STAT)
+			end.level = min(end.level + 10, MAX_STAT)
 	for(var/skill in M.mind?.mob_skills)
 		var/datum/skills/surgery/surgery = skill
 		if(istype(surgery))
