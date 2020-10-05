@@ -101,7 +101,7 @@
 			if(H.stat == DEAD)
 				continue
 			for(var/mob/living/carbon/human/Y in viewers - H)
-				H.blur_eyes(40)
+				H.blur_eyes(2)
 				if(!(world.time % 200))
 					to_chat(H, "<span class='userdanger'>It is WONDERFUL!</span>")
 				break
