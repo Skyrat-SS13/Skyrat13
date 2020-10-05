@@ -57,7 +57,7 @@
 	//Talking objects
 	if(prob(5))
 		var/list/objects = list()
-		for(var/obj/O in view(src,world.view))
+		for(var/obj/O in view(src))
 			objects += O
 		if(length(objects))
 			var/message
@@ -123,20 +123,24 @@
 				playsound_local(get_turf(src), speak_sound, 50, 0)
 				to_chat(src, "<b>[capitalize(speaker.name)]</b> says, \"[message]\"")
 				create_chat_message(speaker, null, message)
-	if(prob(30))
-		var/list/turf/open/floor/floorlist = list()
-		for(var/turf/open/floor/F in view(src,world.view))
-			if(prob(25))
-				floorlist += F
-		for(var/F in floorlist)
+	//Floors go crazy go stupid
+	var/list/turf/open/floor/floorlist = list()
+	for(var/turf/open/floor/F in view(src))
+		if(prob(15))
+			floorlist += F
+	for(var/F in floorlist)
+		spawn(0)
 			handle_dreamer_floor(F)
-	if(prob(30))
-		var/list/turf/closed/wall/walllist = list()
-		for(var/turf/closed/wall/W in view(src,world.view))
-			if(prob(35))
-				walllist += W
-		for(var/W in walllist)
+	
+	//Walls go crazy go stupid
+	var/list/turf/closed/wall/walllist = list()
+	for(var/turf/closed/wall/W in view(src))
+		if(prob(25))
+			walllist += W
+	for(var/W in walllist)
+		spawn(0)
 			handle_dreamer_wall(W)
+	
 	dreamer_dreaming = FALSE
 
 /mob/living/carbon/proc/handle_dreamer_floor(turf/open/floor/T)
@@ -183,7 +187,7 @@
 
 /mob/living/carbon/proc/handle_dreamer_mob_hallucination()
 	var/mob_msg = pick("It's mom!", "I have to HURRY UP!", "They are close!")
-	var/turf/turfie = pick(/turf in view(src,world.view))
+	var/turf/turfie = pick(/turf in view(src))
 	if(!turfie)
 		return
 	var/hall_type = pick("mom", "cam")
