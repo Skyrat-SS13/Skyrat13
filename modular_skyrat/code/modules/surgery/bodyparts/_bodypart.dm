@@ -626,7 +626,7 @@
 		if(heal_damage(stamina = (stam_heal_tick * (disabled ? 2 : 1) * pain_multiplier), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(pain_heal_tick && pain_dam > DAMAGE_PRECISION)
-		if(heal_damage(pain = (pain_heal_tick * (owner?.lying ? pain_heal_rest_multiplier : 1) * (owner.mind?.mob_stats[STAT_DATUM(end)] ? (owner.mind.mob_stats[STAT_DATUM(end)]/10) : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
+		if(heal_damage(pain = (pain_heal_tick * (owner?.lying ? pain_heal_rest_multiplier : 1) * (owner?.mind?.mob_stats[STAT_DATUM(end)] ? (owner.mind.mob_stats[STAT_DATUM(end)]/10) : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(tox_filter_per_tick && tox_dam > DAMAGE_PRECISION)
 		filter_toxins(toxins = tox_filter_per_tick, only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE)
