@@ -14,6 +14,9 @@
 
 /datum/antagonist/dreamer/New()
 	. = ..()
+	set_keys()
+
+/datum/antagonist/dreamer/proc/set_keys()
 	var/list/alphabet = list("A", "B", "C",\
 							"D", "E", "F",\
 							"G", "H", "I",\
