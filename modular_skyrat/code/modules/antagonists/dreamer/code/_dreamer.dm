@@ -66,6 +66,24 @@
 	for(var/datum/skills/surgery/surgery in M.mind?.mob_skills)
 		surgery.level = min(surgery.level + 10, MAX_SKILL)
 
+/datum/antagonist/dreamer/proc/grant_first_wonder_recipe(mob/living/carbon/M)
+	if(!istype(M))
+		return
+	var/datum/crafting_recipe/wonder/wonderful = new()
+	wonderful.name = "[associated_keys[1]] Wonder"
+	wonderful.update_global_wonder()
+	owner.teach_crafting_recipe(wonderful.type)
+	qdel(wonderful)
+
+/datum/antagonist/dreamer/proc/wake_up()
+	to_chat(world, "<span class='userdanger'>The dreamer has awakened!</span>")
+	var/mob/dreamer = owner.current
+	dreamer.stop_sound_channel(CHANNEL_HIGHEST_AVAILABLE)
+	for(var/mob/M in GLOB.player_list)
+		if(M.client)
+			M.playsound_local(get_turf(M), 'modular_skyrat/code/modules/antagonists/dreamer/sound/dreamer_win.ogg', 100, 0)
+	SSticker.declare_completion()
+
 /datum/antagonist/dreamer/proc/agony(mob/living/carbon/M)
 	if(!istype(M))
 		return
@@ -90,16 +108,5 @@
 	give_wakeup_call()
 	give_hallucination_object(owner.current)
 	give_stats(owner.current)
+	grant_first_wonder_recipe(owner.current)
 	greet()
-	var/datum/crafting_recipe/wonder/wonderful = new()
-	wonderful.name = "[associated_keys[1]] Wonder"
-	owner.teach_crafting_recipe(wonderful)
-
-/datum/antagonist/dreamer/proc/wake_up()
-	to_chat(world, "<span class='userdanger'>The dreamer has awakened!</span>")
-	var/mob/dreamer = owner.current
-	dreamer.stop_sound_channel(CHANNEL_HIGHEST_AVAILABLE)
-	for(var/mob/M in GLOB.player_list)
-		if(M.client)
-			M.playsound_local(get_turf(M), 'modular_skyrat/code/modules/antagonists/dreamer/sound/dreamer_win.ogg', 100, 0)
-	SSticker.declare_completion()

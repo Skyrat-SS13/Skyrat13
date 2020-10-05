@@ -11,6 +11,14 @@
 	category = CAT_PRIMAL
 	always_availible = FALSE
 
+//Crafting recipes do not support singleton names. I had to do stupid.
+/datum/crafting_recipe/wonder/proc/update_global_wonder()
+	. = FALSE
+	for(var/datum/crafting_recipe/wonder/wonderer in GLOB.crafting_recipes)
+		if(wonderer.type == src.type)
+			wonderer.name = src.name
+			return TRUE
+
 /datum/crafting_recipe/wonder/second
 	result = /obj/structure/wonder
 	reqs = list(
@@ -78,7 +86,9 @@
 					var/wonder = dream_master.recipe_progression[dream_master.current_wonder]
 					var/datum/crafting_recipe/wonder/wonderful = new wonder()
 					wonderful.name = "[dream_master.associated_keys[dream_master.current_wonder]] Wonder"
-					H.mind.teach_crafting_recipe(wonderful)
+					wonderful.update_global_wonder()
+					H.mind.teach_crafting_recipe(wonderful.type)
+					qdel(wonderful)
 				wonder_id = dream_master.current_wonder
 				if(length(dream_master.heart_keys) >= wonder_id)
 					key_num = dream_master.heart_keys[wonder_id]
