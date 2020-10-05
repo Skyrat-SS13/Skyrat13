@@ -74,6 +74,8 @@
 
 /obj/structure/wonder/Initialize()
 	. = ..()
+	START_PROCESSING(SSobj, src)
+	playsound(src, 'modular_skyrat/code/modules/antagonists/dreamer/sound/wonder.ogg', 100, 0)
 	for(var/mob/living/carbon/human/H in view(7, src))
 		if(is_dreamer(H))
 			for(var/datum/antagonist/dreamer/dreammy in H.mind.antag_datums)
@@ -102,8 +104,6 @@
 						droomer.agony(H)
 				break
 			break
-	START_PROCESSING(SSobj, src)
-	playsound(src, 'modular_skyrat/code/modules/antagonists/dreamer/sound/wonder.ogg', 100, 0)
 
 /obj/structure/wonder/process()
 	. = ..()
