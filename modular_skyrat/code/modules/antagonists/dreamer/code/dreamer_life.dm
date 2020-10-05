@@ -24,24 +24,26 @@
 		var/obj/screen/fullscreen/dreamer/dream = hud_used?.dreamer
 		if(dream)
 			dream.icon_state = "hall[rand(1,9)]"
-			dream.alpha = 255
-			var/hallsound = pick(
-								'modular_skyrat/code/modules/antagonists/dreamer/sound/hall_appear1.ogg',
-								'modular_skyrat/code/modules/antagonists/dreamer/sound/hall_appear2.ogg',
-								'modular_skyrat/code/modules/antagonists/dreamer/sound/hall_appear3.ogg',
-								)
-			playsound_local(get_turf(src), hallsound, 100, 0)
-			spawn(1)
-				if(prob(50))
-					var/comicsound = pick(
-										'modular_skyrat/code/modules/antagonists/dreamer/sound/comic1.ogg',
-										'modular_skyrat/code/modules/antagonists/dreamer/sound/comic2.ogg',
-										'modular_skyrat/code/modules/antagonists/dreamer/sound/comic3.ogg',
-										'modular_skyrat/code/modules/antagonists/dreamer/sound/comic4.ogg',
-										)
-					playsound_local(get_turf(src), comicsound, 100, 0)
-				spawn(rand(5, 15))
-					animate(dream, alpha = 0, time = 10)
+			var/kill_her = rand(3, 6)
+			animate(dream, alpha = 255, time = kill_her)
+			spawn(kill_her)
+				var/hallsound = pick(
+									'modular_skyrat/code/modules/antagonists/dreamer/sound/hall_appear1.ogg',
+									'modular_skyrat/code/modules/antagonists/dreamer/sound/hall_appear2.ogg',
+									'modular_skyrat/code/modules/antagonists/dreamer/sound/hall_appear3.ogg',
+									)
+				playsound_local(get_turf(src), hallsound, 100, 0)
+				spawn(1)
+					if(prob(50))
+						var/comicsound = pick(
+											'modular_skyrat/code/modules/antagonists/dreamer/sound/comic1.ogg',
+											'modular_skyrat/code/modules/antagonists/dreamer/sound/comic2.ogg',
+											'modular_skyrat/code/modules/antagonists/dreamer/sound/comic3.ogg',
+											'modular_skyrat/code/modules/antagonists/dreamer/sound/comic4.ogg',
+											)
+						playsound_local(get_turf(src), comicsound, 100, 0)
+					spawn(rand(5, 15))
+						animate(dream, alpha = 0, time = 10)
 	//Just random laughter
 	else if(prob(2))
 		var/comicsound = pick('modular_skyrat/code/modules/antagonists/dreamer/sound/comic1.ogg',
@@ -192,13 +194,14 @@
 	for(var/turf/torf in view(src))
 		turfies += torf
 	if(length(turfies))
-		turfie = turfies
+		turfie = pick(turfies)
 	if(!turfie)
 		return
 	var/hall_type = pick("mom", "M3", "deepone")
 	if(mob_msg == "It's mom!")
 		hall_type = "mom"
 	var/image/I = image('modular_skyrat/code/modules/antagonists/dreamer/icons/dreamer_mobs.dmi', turfie, hall_type, FLOAT_LAYER, get_dir(turfie, src))
+	I.plane = FLOAT_PLANE
 	src.client.images += I
 	to_chat(src, "<span class='userdanger'>[mob_msg]</span>")
 	sleep(5)
@@ -208,19 +211,21 @@
 						'modular_skyrat/code/modules/antagonists/dreamer/sound/hall_attack3.ogg',
 						'modular_skyrat/code/modules/antagonists/dreamer/sound/hall_attack4.ogg',
 						)
-	var/chase_tiles = 7
-	var/chase_wait_per_tile = 4
-	var/caught_dreamer = FALSE
 	playsound_local(get_turf(src), hallsound, 100, 0)
+	var/chase_tiles = 7
+	var/chase_wait_per_tile = rand(3,5)
+	var/caught_dreamer = FALSE
 	while(chase_tiles > 0)
-		turfie = get_step(turfie, src.loc)
+		turfie = get_step(turfie, get_dir(turfie, src))
 		if(turfie)
 			src.client.images -= I
 			qdel(I)
 			I = image('modular_skyrat/code/modules/antagonists/dreamer/icons/dreamer_mobs.dmi', turfie, hall_type, FLOAT_LAYER, get_dir(turfie, src))
+			I.plane = FLOAT_PLANE
 			src.client.images += I
 			if(turfie == get_turf(src))
 				caught_dreamer = TRUE
+				sleep(chase_wait_per_tile)
 				break
 		chase_tiles--
 		sleep(chase_wait_per_tile)

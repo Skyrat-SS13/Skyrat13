@@ -91,12 +91,33 @@
 	SSticker.declare_completion()
 	to_chat(world, "<span class='deadsay'><span class='big bold'>The dreamer has awakened!</span></span>")
 
+/datum/antagonist/dreamer/proc/cant_wake_up()
+	if(!iscarbon(owner.current))
+		return
+	to_chat(owner.current, "<span class='deadsay'><span class='big bold'>I CAN'T WAKE UP.</span></span>")
+	sleep(20)
+	to_chat(owner.current, "<span class='deadsay'><span class='big bold'>ICANTWAKEUP</span></span>")
+	sleep(10)
+	var/mob/living/carbon/C = owner.current
+	var/obj/item/organ/brain/brain = C.getorganslot(ORGAN_SLOT_BRAIN)
+	var/obj/item/bodypart/head/head = C.get_bodypart(BODY_ZONE_HEAD)
+	if(head)
+		head.dismember_wound(WOUND_BURN)
+	if(brain)
+		qdel(brain)
+
 /datum/antagonist/dreamer/proc/agony(mob/living/carbon/M)
 	if(!istype(M))
 		return
 	var/sound/im_sick = sound('modular_skyrat/code/modules/antagonists/dreamer/sound/dreamt.ogg', TRUE, FALSE, CHANNEL_HIGHEST_AVAILABLE, 100)
 	M.playsound_local(turf_source = get_turf(M), S = im_sick, vol = 100, vary = 0)
 	M.hud_used?.dreamer?.waking_up = TRUE
+
+/datum/antagonist/dreamer/on_removal()
+	. = ..()
+	agony(owner.current)
+	spawn(40)
+		cant_wake_up()
 
 /datum/antagonist/dreamer/Destroy()
 	. = ..()
