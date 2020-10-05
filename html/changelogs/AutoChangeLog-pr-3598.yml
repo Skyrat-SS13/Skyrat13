@@ -1,0 +1,4 @@
+author: "KathrinBailey"
+delete-after: True
+changes: 
+  - bugfix: "Ghosts don't get teleported to the cafe to avoid EORG anymore."
