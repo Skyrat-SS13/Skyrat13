@@ -10,7 +10,10 @@
 	name = "Endurance"
 	shorthand = "EN"
 
-/datum/stats/end/proc/get_shock_mult()
+/datum/stats/proc/get_shock_mult() //this is stupid
+	return 1
+
+/datum/stats/end/get_shock_mult()
 	return round(1.25 - (0.5 * level/MAX_STAT), 0.1) //Varies from 1.25 to 0.75 depending on how good/bad we are
 
 //Dexterity
