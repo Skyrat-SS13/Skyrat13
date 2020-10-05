@@ -142,7 +142,7 @@
 /mob/living/carbon/proc/handle_dreamer_floor(turf/open/floor/T)
 	if(!T)
 		return
-	var/image/I = image(T.icon, T.loc, T.icon_state, T.layer+0.1, T.dir)
+	var/image/I = image(T.icon, T, T.icon_state, T.layer+0.1, T.dir)
 	src.client.images += I
 	var/offset = pick(-3,-2, -1, 1, 2, 3)
 	var/disappearfirst = rand(5, 20)
@@ -157,7 +157,7 @@
 /mob/living/carbon/proc/handle_dreamer_wall(turf/closed/wall/W)
 	if(!W)
 		return
-	var/image/I = image('icons/effects/blood.dmi', W.loc, "floor[rand(1,7)]", W.layer+0.1)
+	var/image/I = image('icons/effects/blood.dmi', W, "floor[rand(1,7)]", W.layer+0.1)
 	I.color = BLOOD_COLOR_HUMAN
 	src.client.images += I
 	var/offset = pick(-2, -1, 1, 2)
@@ -187,7 +187,7 @@
 	if(!turfie)
 		return
 	var/hall_type = pick("mom", "cam")
-	var/image/I = image('modular_skyrat/code/modules/antagonists/dreamer/icons/dreamer_mobs.dmi', turfie.loc, hall_type, FLOAT_LAYER, get_dir(turfie, src))
+	var/image/I = image('modular_skyrat/code/modules/antagonists/dreamer/icons/dreamer_mobs.dmi', turfie, hall_type, FLOAT_LAYER, get_dir(turfie, src))
 	to_chat(src, "<span class='userdanger'>[mob_msg]</span>")
 	sleep(2)
 	var/hallsound = pick(
