@@ -104,7 +104,7 @@
 				H.blur_eyes(40)
 				if(!(world.time % 200))
 					to_chat(H, "<span class='userdanger'>It is WONDERFUL!</span>")
-				break
+				continue
 			continue
 		else
 			if(H.stat == DEAD)
