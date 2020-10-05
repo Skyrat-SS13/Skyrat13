@@ -126,14 +126,14 @@
 	if(prob(1))
 		var/list/turf/open/floor/floorlist = list()
 		for(var/turf/open/floor/F in view(src,world.view))
-			if(prob(10))
+			if(prob(25))
 				floorlist += F
 		for(var/F in floorlist)
 			handle_dreamer_floor(F)
 	if(prob(2))
 		var/list/turf/closed/wall/walllist = list()
 		for(var/turf/closed/wall/W in view(src,world.view))
-			if(prob(15))
+			if(prob(35))
 				walllist += W
 		for(var/W in walllist)
 			handle_dreamer_wall(W)
