@@ -1,0 +1,113 @@
+//Wonder recipes
+/datum/crafting_recipe/wonder
+	name = "First Wonder"
+	result = /obj/structure/wonder
+	reqs = list(
+				/obj/item/bodypart = 2,
+				/obj/item/stack/sheet/bone = 2,
+				/obj/item/organ/intestines = 1,
+				)
+	category = CAT_PRIMAL
+	always_availible = FALSE
+
+/datum/crafting_recipe/wonder/second
+	name = "Second Wonder"
+	result = /obj/structure/wonder
+	reqs = list(
+				/mob/living/carbon/human = 1,
+				/obj/item/bodypart = 2,
+				/obj/item/organ/lungs = 1,
+				)
+
+/datum/crafting_recipe/wonder/second/check_requirements(mob/user, list/collected_requirements)
+	var/satisfied_requirements = FALSE
+	for(var/mob/living/carbon/human/H in collected_requirements)
+		if(user == H)
+			continue
+		if(length(H.bodyparts) == 1)
+			satisfied_requirements = TRUE
+	if(!satisfied_requirements)
+		to_chat(user, "<span class='warning'>This WONDER requires the very CARCASS of a HUMAN BEING.</span>")
+	return satisfied_requirements
+
+/datum/crafting_recipe/wonder/third
+	name = "Third Wonder"
+	result = /obj/structure/wonder
+	reqs = list(
+				/obj/item/bodypart/head = 3,
+				/obj/item/organ/intestines = 2,
+				/obj/item/bodypart = 1,
+				)
+
+/datum/crafting_recipe/wonder/fourth
+	name = "Fourth Wonder"
+	result = /obj/structure/wonder
+	reqs = list(
+				/obj/item/organ/tongue = 4,
+				/obj/item/organ/intestines = 3,
+				/obj/item/stack/sheet/bone = 2,
+				)
+
+//Wonder structure
+/obj/structure/wonder
+	name = "wonder"
+	desc = "<span class ='narsiesmall'>FEAST YOUR EYES, UPON THE WONDER!</span>"
+	icon = 'modular_skyrat/code/modules/antagonists/dreamer/icons/creations.dmi'
+	icon_state = "creation1"
+	var/datum/antagonist/dreamer/dream_master
+	var/wonder_id = 1
+	var/gazed_at = FALSE
+	var/key_num = ""
+	var/key_text = ""
+	resistance_flags = INDESTRUCTIBLE
+	max_integrity = INFINITY
+	obj_integrity = INFINITY
+	integrity_failure = INFINITY
+	density = TRUE
+
+/obj/structure/wonder/Initialize()
+	. = ..()
+	for(var/mob/living/carbon/human/H in view(7, src))
+		if(is_dreamer(H))
+			for(var/datum/antagonist/dreamer/dreammy in H.mind.antag_datums)
+				dream_master = dreammy
+				icon_state = "creation[min(4, dream_master.current_wonder)]"
+				if(length(dream_master.recipe_progression) >= dream_master.current_wonder)
+					H.mind.learned_recipes -= dream_master.recipe_progression[dream_master.current_wonder]
+				dream_master.current_wonder++
+				if(length(dream_master.recipe_progression) >= dream_master.current_wonder)
+					H.mind.teach_crafting_recipe(dream_master.recipe_progression[dream_master.current_wonder])
+				wonder_id = dream_master.current_wonder
+				if(length(dream_master.heart_keys) >= wonder_id)
+					key_num = dream_master.heart_keys[wonder_id]
+				if(length(dream_master.associated_keys) >= wonder_id)
+					key_text = dream_master.associated_keys[wonder_id]
+				if(wonder_id > 4)
+					to_chat(H, "<span class='userdanger'>I MUST FIND THE KEY. I AM WAKING UP!</span>")
+					H.hud_used?.dreamer?.waking_up = TRUE
+				break
+			break
+	START_PROCESSING(SSobj, src)
+	playsound(src, 'modular_skyrat/code/modules/antagonists/dreamer/sound/wonder.ogg', 100, 0)
+
+/obj/structure/wonder/process()
+	. = ..()
+	var/list/viewers = view(5, src)
+	for(var/mob/living/carbon/human/H in view(5, src))
+		if((H.stat != DEAD) && is_dreamer(H))
+			for(var/mob/living/carbon/human/Y in viewers - H)
+				H.blur_eyes(40)
+				if(!(world.time % 200))
+					to_chat(H, "<span class='userdanger'>It is WONDERFUL!</span>")
+				break
+			continue
+		else
+			if(H.stat == DEAD)
+				return
+			var/obj/item/organ/heart/heart = H.getorganslot(ORGAN_SLOT_HEART)
+			if(dream_master && heart && (!heart.etching || !(heart.etching in dream_master.heart_keys)))
+				heart.etching = key_num
+				SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "wonder", /datum/mood_event/saw_wonder)
+				H.emote("scream")
+				H.playsound_local(get_turf(H), 'modular_skyrat/code/modules/antagonists/dreamer/sound/seen_wonder.ogg', 100, 0)
+				H.Paralyze(3 SECONDS)

@@ -479,7 +479,15 @@
 	if(W.sharpness)
 		add_fingerprint(user)
 		if(!contents.len)
-			to_chat(user, "<span class='warning'>There is nothing left inside [src]!</span>")
+			user.visible_message("<span class='warning'>[user] begins to butcher [src].</span>",\
+				"<span class='notice'>You begin butchering [src]...</span>")
+			if(do_after(user, 54, target = src))
+				user.visible_message("<span class='warning'>[user] butchers [src] into giblets!</span>",\
+					"<span class='warning'>You butcher [src] into giblets!</span>")
+				new /obj/item/reagent_containers/food/snacks/meat/slab/human(get_turf(src))
+				new /obj/item/reagent_containers/food/snacks/meat/slab/human(get_turf(src))
+				new /obj/item/stack/sheet/bone(get_turf(src))
+				return qdel(src)
 			return
 		playsound(loc, 'sound/weapons/slice.ogg', 50, 1, -1)
 		user.visible_message("<span class='warning'>[user] begins to cut open [src].</span>",\

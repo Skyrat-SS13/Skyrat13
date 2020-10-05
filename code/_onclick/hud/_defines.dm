@@ -79,6 +79,7 @@
 //SKYRAT CHANGE
 #define ui_wield "EAST-3:24,SOUTH+1:7"
 #define ui_combatintent "EAST-5:21,SOUTH:5"
+#define ui_dreamer "CENTER:0,CENTER:0"
 //END OF SKYRAT CHANGES
 #define ui_drop_throw "EAST-1:28,SOUTH+1:7"
 #define ui_pull_resist "EAST-2:26,SOUTH+1:7"
