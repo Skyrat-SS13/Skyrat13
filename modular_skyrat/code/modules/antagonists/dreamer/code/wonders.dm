@@ -77,7 +77,7 @@
 		if(is_dreamer(H))
 			for(var/datum/antagonist/dreamer/dreammy in H.mind.antag_datums)
 				dream_master = dreammy
-				icon_state = "creation[min(4, dream_master.current_wonder)]"
+				icon_state = "creation[clamp(dream_master.current_wonder, 1, 4)]"
 				name = "[dream_master.associated_keys[dream_master.current_wonder]] Wonder"
 				if(length(dream_master.recipe_progression) >= dream_master.current_wonder)
 					H.mind.learned_recipes -= dream_master.recipe_progression[dream_master.current_wonder]

@@ -69,6 +69,7 @@
 /datum/antagonist/dreamer/proc/grant_first_wonder_recipe(mob/living/carbon/M)
 	if(!istype(M))
 		return
+	current_wonder++
 	var/datum/crafting_recipe/wonder/wonderful = new()
 	wonderful.name = "[associated_keys[1]] Wonder"
 	wonderful.update_global_wonder()

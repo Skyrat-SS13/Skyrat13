@@ -175,7 +175,7 @@
 	var/shakeit = 0
 	while(shakeit < 10)
 		shakeit++
-		var/intensity = rand(1,2)
+		var/intensity = 1 //i tried rand(1,2) but even that was 2 intense
 		animate(C, pixel_y = (pixel_y + intensity), time = intensity)
 		sleep(intensity)
 		animate(C, pixel_y = (pixel_y - intensity), time = intensity)
