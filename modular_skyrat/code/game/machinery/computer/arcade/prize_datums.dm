@@ -312,7 +312,7 @@ var/global/datum/prizes/global_prizes = new
 	typepath = /obj/item/grenade/chem_grenade/glitter/pink
 	cost = 150
 	tier_unlocked = 1
-	
+
 /datum/prize_item/glitterblue
 	name = "Blue glitter bomb"
 	desc = "For that COOL glittery look."
