@@ -3803,6 +3803,7 @@
 #include "modular_skyrat\code\modules\antagonists\devil\sintouched\sintouched.dm"
 #include "modular_skyrat\code\modules\antagonists\dreamer\code\_dreamer.dm"
 #include "modular_skyrat\code\modules\antagonists\dreamer\code\dreamer_life.dm"
+#include "modular_skyrat\code\modules\antagonists\dreamer\code\gamemode.dm"
 #include "modular_skyrat\code\modules\antagonists\dreamer\code\helpers.dm"
 #include "modular_skyrat\code\modules\antagonists\dreamer\code\moodlets.dm"
 #include "modular_skyrat\code\modules\antagonists\dreamer\code\objective.dm"

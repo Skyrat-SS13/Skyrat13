@@ -9,7 +9,7 @@
 		var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
 		if(heart && heart.etching && (heart.etching in dreamer.heart_keys))
 			. -= "*---------*</span>"
-			. += "<span class='userdanger'>[p_they(TRUE)] have the [dreamer.heart_keys[heart.etching]] key!</span>"
+			. += "<span class='userdanger'>[p_they(TRUE)] KNOW[p_they() != "they" ? "S" : ""] the [dreamer.heart_keys[heart.etching]] key!</span>"
 			. += "*---------*</span>"
 
 /proc/is_dreamer(mob/living/M)

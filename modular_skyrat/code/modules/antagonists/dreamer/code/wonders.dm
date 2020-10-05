@@ -1,4 +1,5 @@
 //Wonder recipes
+//NOTE: Wonders are named after their proper keys, the wonder structure handles that code
 /datum/crafting_recipe/wonder
 	name = "First Wonder"
 	result = /obj/structure/wonder
@@ -76,15 +77,20 @@
 					H.mind.learned_recipes -= dream_master.recipe_progression[dream_master.current_wonder]
 				dream_master.current_wonder++
 				if(length(dream_master.recipe_progression) >= dream_master.current_wonder)
-					H.mind.teach_crafting_recipe(dream_master.recipe_progression[dream_master.current_wonder])
+					var/wonder = dream_master.recipe_progression[dream_master.current_wonder]
+					var/datum/crafting_recipe/wonder/wonderful = new wonder()
+					wonderful.name = "[dream_master.associated_keys[dream_master.current_wonder]] Wonder"
+					H.mind.teach_crafting_recipe(wonderful)
 				wonder_id = dream_master.current_wonder
 				if(length(dream_master.heart_keys) >= wonder_id)
 					key_num = dream_master.heart_keys[wonder_id]
 				if(length(dream_master.associated_keys) >= wonder_id)
 					key_text = dream_master.associated_keys[wonder_id]
 				if(wonder_id > 4)
-					to_chat(H, "<span class='userdanger'>I MUST FIND THE KEY. I AM WAKING UP!</span>")
+					to_chat(H, "<span class='userdanger'>I must NOTE the key.<br>I am WAKING up!</span>")
 					H.hud_used?.dreamer?.waking_up = TRUE
+					for(var/datum/antagonist/dreamer/droomer in H.mind?.antag_datums)
+						droomer.agony(H)
 				break
 			break
 	START_PROCESSING(SSobj, src)
@@ -110,4 +116,4 @@
 				SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "wonder", /datum/mood_event/saw_wonder)
 				H.emote("scream")
 				H.playsound_local(get_turf(H), 'modular_skyrat/code/modules/antagonists/dreamer/sound/seen_wonder.ogg', 100, 0)
-				H.Paralyze(3 SECONDS)
+				H.Paralyze(5 SECONDS)

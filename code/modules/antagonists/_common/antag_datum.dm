@@ -211,7 +211,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/roundend_report_footer()
 	return
 
-
 //ADMIN TOOLS
 
 //Called when using admin tools to give antag status
