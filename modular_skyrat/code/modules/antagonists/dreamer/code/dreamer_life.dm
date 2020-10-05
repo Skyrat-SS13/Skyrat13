@@ -135,7 +135,7 @@
 	//Walls go crazy go stupid
 	var/list/turf/closed/wall/walllist = list()
 	for(var/turf/closed/wall/W in view(src))
-		if(prob(10))
+		if(prob(5))
 			walllist += W
 	for(var/W in walllist)
 		spawn(0)
