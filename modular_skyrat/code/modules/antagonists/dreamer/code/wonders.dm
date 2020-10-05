@@ -63,7 +63,7 @@
 
 /obj/structure/wonder/Initialize()
 	. = ..()
-	START_PROCESSING(SSobj, src)
+	START_PROCESSING(SSfastprocess, src)
 	playsound(src, 'modular_skyrat/code/modules/antagonists/dreamer/sound/wonder.ogg', 100, 0)
 	for(var/mob/living/carbon/human/H in view(7, src))
 		if(is_dreamer(H))
