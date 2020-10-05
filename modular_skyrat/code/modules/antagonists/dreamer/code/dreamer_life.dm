@@ -51,7 +51,7 @@
 							)
 		playsound_local(get_turf(src), comicsound, 100, 0)
 	//VERY rare mom/mob hallucination
-	else if(prob(1))
+	else if(prob(1) && prob(40))
 		spawn(0)
 			handle_dreamer_mob_hallucination()
 	//Talking objects
@@ -135,7 +135,7 @@
 	//Walls go crazy go stupid
 	var/list/turf/closed/wall/walllist = list()
 	for(var/turf/closed/wall/W in view(src))
-		if(prob(5))
+		if(prob(7))
 			walllist += W
 	for(var/W in walllist)
 		spawn(0)
@@ -186,7 +186,7 @@
 		sleep(intensity)
 
 /mob/living/carbon/proc/handle_dreamer_mob_hallucination()
-	var/mob_msg = pick("It's mom!", "I have to HURRY UP!", "They are close!")
+	var/mob_msg = pick("It's mom!", "I have to HURRY UP!", "They are CLOSE!","They are NEAR!")
 	var/turf/turfie
 	var/list/turf/turfies = list()
 	for(var/turf/torf in view(src))
@@ -195,10 +195,13 @@
 		turfie = turfies
 	if(!turfie)
 		return
-	var/hall_type = pick("mom", "cam")
+	var/hall_type = pick("mom", "M3", "deepone")
+	if(mob_msg == "It's mom!")
+		hall_type = "mom"
 	var/image/I = image('modular_skyrat/code/modules/antagonists/dreamer/icons/dreamer_mobs.dmi', turfie, hall_type, FLOAT_LAYER, get_dir(turfie, src))
+	src.client.images += I
 	to_chat(src, "<span class='userdanger'>[mob_msg]</span>")
-	sleep(2)
+	sleep(5)
 	var/hallsound = pick(
 						'modular_skyrat/code/modules/antagonists/dreamer/sound/hall_attack1.ogg',
 						'modular_skyrat/code/modules/antagonists/dreamer/sound/hall_attack2.ogg',
@@ -206,19 +209,22 @@
 						'modular_skyrat/code/modules/antagonists/dreamer/sound/hall_attack4.ogg',
 						)
 	var/chase_tiles = 7
-	var/chase_wait_per_tile = 3
+	var/chase_wait_per_tile = 4
 	var/caught_dreamer = FALSE
 	playsound_local(get_turf(src), hallsound, 100, 0)
 	while(chase_tiles > 0)
 		turfie = get_step(turfie, src.loc)
-		I.loc = turfie.loc
-		I.dir = get_dir(turfie, src.loc)
-		if(turfie == get_turf(src))
-			caught_dreamer = TRUE
+		if(turfie)
+			src.client.images -= I
 			qdel(I)
-			break
+			I = image('modular_skyrat/code/modules/antagonists/dreamer/icons/dreamer_mobs.dmi', turfie, hall_type, FLOAT_LAYER, get_dir(turfie, src))
+			src.client.images += I
+			if(turfie == get_turf(src))
+				caught_dreamer = TRUE
+				break
 		chase_tiles--
 		sleep(chase_wait_per_tile)
+	src.client.images -= I
 	if(!QDELETED(I))
 		qdel(I)
 	if(caught_dreamer)

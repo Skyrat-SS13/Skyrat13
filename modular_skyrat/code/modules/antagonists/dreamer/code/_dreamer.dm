@@ -60,18 +60,15 @@
 /datum/antagonist/dreamer/proc/give_stats(mob/living/carbon/M)
 	if(!istype(M) || !M.mind)
 		return
-	for(var/stat in M.mind.mob_stats)
-		var/datum/stats/str/str = stat
-		if(istype(str))
-			str.level = min(str.level + 10, MAX_STAT)
-	for(var/stat in M.mind.mob_stats)
-		var/datum/stats/end/end = stat
-		if(istype(end))
-			end.level = min(end.level + 10, MAX_STAT)
-	for(var/skill in M.mind?.mob_skills)
-		var/datum/skills/surgery/surgery = skill
-		if(istype(surgery))
-			surgery.level = min(surgery.level + 10, MAX_SKILL)
+	var/datum/stats/str/str = GET_STAT(M, str)
+	if(istype(str))
+		str.level = min(str.level + 10, MAX_STAT)
+	var/datum/stats/end/end = GET_STAT(M, end)
+	if(istype(end))
+		end.level = min(end.level + 10, MAX_STAT)
+	var/datum/skills/surgery/surgery = GET_SKILL(M, surgery)
+	if(istype(surgery))
+		surgery.level = min(surgery.level + 10, MAX_SKILL)
 
 /datum/antagonist/dreamer/proc/grant_first_wonder_recipe(mob/living/carbon/M)
 	if(!istype(M))
@@ -98,7 +95,8 @@
 	if(!istype(M))
 		return
 	var/sound/im_sick = sound('modular_skyrat/code/modules/antagonists/dreamer/sound/dreamt.ogg', TRUE, FALSE, CHANNEL_HIGHEST_AVAILABLE, 100)
-	M.playsound_local(get_turf(M), im_sick, 100, 0)
+	M.playsound_local(turf_source = get_turf(M), S = im_sick, vol = 100, vary = 0)
+	M.hud_used?.dreamer?.waking_up = TRUE
 
 /datum/antagonist/dreamer/Destroy()
 	. = ..()

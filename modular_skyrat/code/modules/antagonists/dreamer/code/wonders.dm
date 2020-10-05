@@ -88,7 +88,6 @@
 					key_text = dream_master.associated_keys[wonder_id]
 				if(wonder_id > 4)
 					to_chat(H, "<span class='userdanger'>I must NOTE the key.<br>I am WAKING up!</span>")
-					H.hud_used?.dreamer?.waking_up = TRUE
 					for(var/datum/antagonist/dreamer/droomer in H.mind?.antag_datums)
 						droomer.agony(H)
 				break
