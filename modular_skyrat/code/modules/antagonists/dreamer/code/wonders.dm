@@ -70,6 +70,7 @@
 	obj_integrity = INFINITY
 	integrity_failure = INFINITY
 	density = TRUE
+	anchored = TRUE
 
 /obj/structure/wonder/Initialize()
 	. = ..()
