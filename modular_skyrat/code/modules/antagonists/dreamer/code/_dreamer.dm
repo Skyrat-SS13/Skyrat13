@@ -60,12 +60,18 @@
 /datum/antagonist/dreamer/proc/give_stats(mob/living/carbon/M)
 	if(!istype(M) || !M.mind)
 		return
-	for(var/datum/stats/end/stat in M.mind?.mob_stats)
-		stat.level = min(stat.level + 10, MAX_STAT)
-	for(var/datum/stats/str/stat in M.mind?.mob_stats)
-		stat.level = min(stat.level + 10, MAX_STAT)
-	for(var/datum/skills/surgery/surgery in M.mind?.mob_skills)
-		surgery.level = min(surgery.level + 10, MAX_SKILL)
+	for(var/stat in M.mind.mob_stats)
+		var/datum/stats/str/str = stat
+		if(istype(str))
+			str.level = min(stat.level + 10, MAX_STAT)
+	for(var/stat in M.mind.mob_stats)
+		var/datum/stats/end/end = stat
+		if(istype(end))
+			stat.level = min(stat.level + 10, MAX_STAT)
+	for(var/skill in M.mind?.mob_skills)
+		var/datum/skills/surgery/surgery = skill
+		if(istype(surgery))
+			surgery.level = min(surgery.level + 10, MAX_SKILL)
 
 /datum/antagonist/dreamer/proc/grant_first_wonder_recipe(mob/living/carbon/M)
 	if(!istype(M))

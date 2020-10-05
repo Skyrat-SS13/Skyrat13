@@ -13,6 +13,7 @@
 /obj/screen/fullscreen/dreamer/Initialize()
 	. = ..()
 	black_underlay = mutable_appearance(icon, "black", layer-0.1, plane, color)
+	update_overlays()
 
 /obj/screen/fullscreen/dreamer/update_for_view(client_view)
 	if(screen_loc == "CENTER-7,CENTER-7" && view != client_view && black_underlay)
