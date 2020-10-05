@@ -46,7 +46,7 @@
 //Wonder structure
 /obj/structure/wonder
 	name = "wonder"
-	desc = "<span class ='narsiesmall'>FEAST YOUR EYES, UPON THE WONDER!</span>"
+	desc = "What a disgusting thing, what type of maniac would make this!?"
 	icon = 'modular_skyrat/code/modules/antagonists/dreamer/icons/creations.dmi'
 	icon_state = "creation1"
 	var/datum/antagonist/dreamer/dream_master
@@ -98,7 +98,9 @@
 	. = ..()
 	var/list/viewers = view(5, src)
 	for(var/mob/living/carbon/human/H in view(5, src))
-		if((H.stat != DEAD) && is_dreamer(H))
+		if(is_dreamer(H))
+			if(H.stat == DEAD)
+				continue
 			for(var/mob/living/carbon/human/Y in viewers - H)
 				H.blur_eyes(40)
 				if(!(world.time % 200))
@@ -107,7 +109,7 @@
 			continue
 		else
 			if(H.stat == DEAD)
-				return
+				continue
 			var/obj/item/organ/heart/heart = H.getorganslot(ORGAN_SLOT_HEART)
 			if(dream_master && heart && (!heart.etching || !(heart.etching in dream_master.heart_keys)))
 				heart.etching = key_num

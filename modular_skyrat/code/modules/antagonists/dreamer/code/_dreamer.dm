@@ -58,11 +58,12 @@
 		M.client?.screen += M.hud_used.dreamer
 
 /datum/antagonist/dreamer/proc/give_stats(mob/living/carbon/M)
-	if(!istype(M))
+	if(!istype(M) || !M.mind)
 		return
-	for(var/datum/stats/stat in M.mind?.mob_stats)
-		if(istype(stat, /datum/stats/end) || istype(stat, /datum/stats/str))
-			stat.level = min(stat.level + 10, MAX_STAT)
+	for(var/datum/stats/end/stat in M.mind?.mob_stats)
+		stat.level = min(stat.level + 10, MAX_STAT)
+	for(var/datum/stats/str/stat in M.mind?.mob_stats)
+		stat.level = min(stat.level + 10, MAX_STAT)
 	for(var/datum/skills/surgery/surgery in M.mind?.mob_skills)
 		surgery.level = min(surgery.level + 10, MAX_SKILL)
 
@@ -77,13 +78,15 @@
 	qdel(wonderful)
 
 /datum/antagonist/dreamer/proc/wake_up()
-	to_chat(world, "<span class='userdanger'>The dreamer has awakened!</span>")
 	var/mob/dreamer = owner.current
 	dreamer.stop_sound_channel(CHANNEL_HIGHEST_AVAILABLE)
+	for(var/datum/objective/objective in objectives)
+		objective.completed = TRUE
 	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			M.playsound_local(get_turf(M), 'modular_skyrat/code/modules/antagonists/dreamer/sound/dreamer_win.ogg', 100, 0)
 	SSticker.declare_completion()
+	to_chat(world, "<span class='deadsay'><span class='big bold'>The dreamer has awakened!</span></span>")
 
 /datum/antagonist/dreamer/proc/agony(mob/living/carbon/M)
 	if(!istype(M))
