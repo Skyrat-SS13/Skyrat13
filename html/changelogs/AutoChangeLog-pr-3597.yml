@@ -1,0 +1,4 @@
+author: "KathrinBailey"
+delete-after: True
+changes: 
+  - bugfix: "Boxstation Security - Transfer centre is now wired."
