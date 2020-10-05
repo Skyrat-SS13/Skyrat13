@@ -135,7 +135,7 @@
 	//Walls go crazy go stupid
 	var/list/turf/closed/wall/walllist = list()
 	for(var/turf/closed/wall/W in view(src))
-		if(prob(25))
+		if(prob(10))
 			walllist += W
 	for(var/W in walllist)
 		spawn(0)
@@ -149,10 +149,10 @@
 	var/image/I = image(T.icon, T, T.icon_state, T.layer+0.1, T.dir)
 	src.client.images += I
 	var/offset = pick(-3,-2, -1, 1, 2, 3)
-	var/disappearfirst = rand(5, 20)
+	var/disappearfirst = (rand(10, 30) * abs(offset))
 	animate(I, pixel_y = (pixel_y + offset), time = disappearfirst)
 	sleep(disappearfirst)
-	var/disappearsecond = rand(5, 20)	
+	var/disappearsecond = (rand(10, 30) * abs(offset))	
 	animate(I, pixel_y = (pixel_y - offset), time = disappearsecond)
 	sleep(disappearsecond)
 	src.client.images -= I
@@ -164,11 +164,11 @@
 	var/image/I = image('icons/effects/blood.dmi', W, "floor[rand(1,7)]", W.layer+0.1)
 	I.color = BLOOD_COLOR_HUMAN
 	src.client.images += I
-	var/offset = pick(-2, -1, 1, 2)
-	var/disappearfirst = rand(5, 20)
+	var/offset = pick(-1, 1, 2)
+	var/disappearfirst = rand(20, 40)
 	animate(I, pixel_y = (pixel_y + offset), time = disappearfirst)
 	sleep(disappearfirst)
-	var/disappearsecond = rand(5, 20)	
+	var/disappearsecond = rand(20, 40)	
 	animate(I, pixel_y = (pixel_y - offset), time = disappearsecond)
 	sleep(disappearsecond)
 	src.client.images -= I
