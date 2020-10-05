@@ -599,16 +599,28 @@ world
 
 	amount<0 or amount>1 are allowed
  */
-/proc/BlendRGB(rgb1, rgb2, amount)
+/proc/BlendRGB(rgb1 = BLOOD_COLOR_HUMAN, rgb2 = BLOOD_COLOR_HUMAN, amount = 0.5) //skyrat edit makes my fucking life easier
 	var/list/RGB1 = ReadRGB(rgb1)
 	var/list/RGB2 = ReadRGB(rgb2)
+	//skyrat edit
+	if(!length(RGB1))
+		if(length(RGB2))
+			return RGB2
+		else
+			return FALSE
+	if(!length(RGB2))
+		if(length(RGB1))
+			return RGB1
+		else
+			return FALSE
+	//
 
 	// add missing alpha if needed
-	if(RGB1.len < RGB2.len)
+	if(length(RGB1) < length(RGB2))
 		RGB1 += 255
 	else if(RGB2.len < RGB1.len)
 		RGB2 += 255
-	var/usealpha = RGB1.len > 3
+	var/usealpha = length(RGB1) > 3
 
 	var/r = round(RGB1[1] + (RGB2[1] - RGB1[1]) * amount, 1)
 	var/g = round(RGB1[2] + (RGB2[2] - RGB1[2]) * amount, 1)
@@ -1136,9 +1148,10 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 	if (!isicon(I))
 		if (isfile(thing)) //special snowflake
 			var/name = sanitize_filename("[generate_asset_name(thing)].png")
-			register_asset(name, thing)
+			if(!SSassets.cache[name])
+				register_asset(name, thing)
 			for (var/thing2 in targets)
-				send_asset(thing2, key, FALSE)
+				send_asset(thing2, key)
 			return "<img class='icon icon-misc' src=\"[url_encode(name)]\">"
 		var/atom/A = thing
 		if (isnull(dir))
@@ -1160,9 +1173,10 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 	I = icon(I, icon_state, dir, frame, moving)
 
 	key = "[generate_asset_name(I)].png"
-	register_asset(key, I)
+	if(!SSassets.cache[key])
+		register_asset(key, I)
 	for (var/thing2 in targets)
-		send_asset(thing2, key, FALSE)
+		send_asset(thing2, key)
 
 	return "<img class='icon icon-[icon_state]' src=\"[url_encode(key)]\">"
 

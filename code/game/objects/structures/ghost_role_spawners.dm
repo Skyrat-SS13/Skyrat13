@@ -630,18 +630,18 @@
 	rank = "Gunner"
 
 /obj/effect/mob_spawn/human/ghostcafe
-	name = "Ghost Cafe Sleeper"
+	name = "Cafe Sleeper"
 	uses = -1
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	mob_name = "a ghost cafe visitor"
+	mob_name = "a cafe visitor"
 	roundstart = FALSE
 	anchored = TRUE
 	density = FALSE
 	death = FALSE
-	assignedrole = "Ghost Cafe Visitor"
-	short_desc = "You are a Ghost Cafe Visitor!"
-	flavour_text = "You know one thing for sure. You arent actually alive. Are you in a simulation?"
+	assignedrole = "Cafe Visitor"
+	short_desc = "You are a Cafe Visitor!"
+	flavour_text = "You are off-duty and have decided to visit your favourite cafe. Enjoy yourself."
 	skip_reentry_check = TRUE
 	banType = ROLE_GHOSTCAFE
 
@@ -673,12 +673,13 @@
 		SSquirks.AssignQuirks(new_spawn, new_spawn.client, TRUE, TRUE, null, FALSE, new_spawn)
 		new_spawn.AddElement(/datum/element/ghost_role_eligibility, free_ghosting = TRUE)
 		new_spawn.AddElement(/datum/element/dusts_on_catatonia)
-		new_spawn.AddElement(/datum/element/dusts_on_leaving_area,list(A.type,/area/hilbertshotel))
+		new_spawn.AddElement(/datum/element/dusts_on_leaving_area,list(A.type, /area/hilbertshotel, /area/centcom/holding/cafe, /area/centcom/holding/cafewar, /area/centcom/holding/cafebotany,
+		/area/centcom/holding/cafebuild, /area/centcom/holding/cafevox, /area/centcom/holding/cafedorms, /area/centcom/holding/cafepark))
 		ADD_TRAIT(new_spawn, TRAIT_SIXTHSENSE, GHOSTROLE_TRAIT)
 		ADD_TRAIT(new_spawn, TRAIT_EXEMPT_HEALTH_EVENTS, GHOSTROLE_TRAIT)
 		ADD_TRAIT(new_spawn, TRAIT_NO_MIDROUND_ANTAG, GHOSTROLE_TRAIT) //The mob can't be made into a random antag, they are still eligible for ghost roles popups.
-		ADD_TRAIT(new_spawn, TRAIT_PACIFISM, GHOSTROLE_TRAIT)
 		to_chat(new_spawn,"<span class='boldwarning'>Ghosting is free!</span>")
+		to_chat(new_spawn,"<span class='narsiesmall'>Be warned: People who opt out of EORG will come here. Do not make the area uninhabitable and do NOT commit EORG. This is a safe-zone. If you attack people in EORG, you will be banned for griefing.</span>")
 		var/datum/action/toggle_dead_chat_mob/D = new(new_spawn)
 		D.Grant(new_spawn)
 
@@ -702,7 +703,7 @@
 			uniform = suited ? /obj/item/clothing/under/color/random : /obj/item/clothing/under/color/jumpskirt/random
 
 /obj/item/storage/box/syndie_kit/chameleon/ghostcafe
-	name = "ghost cafe costuming kit"
+	name = "cafe costuming kit"
 	desc = "Look just the way you did in life - or better!"
 
 /obj/item/storage/box/syndie_kit/chameleon/ghostcafe/PopulateContents() // Doesn't contain a PDA, for isolation reasons.

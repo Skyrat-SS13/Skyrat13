@@ -12,6 +12,7 @@
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_HEAD)
 	requires_bodypart_type = 0
+
 /datum/surgery/advanced/revival/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
 	if(!..())
 		return FALSE
@@ -23,14 +24,16 @@
 	if(!B)
 		return FALSE
 	return TRUE
+
 /datum/surgery_step/revive
-	name = "electrically stimulate brain"
-	implements = list(/obj/item/twohanded/shockpaddles = 100, /obj/item/abductor/gizmo = 100, /obj/item/melee/baton = 75, /obj/item/organ/cyberimp/arm/baton = 75, /obj/item/organ/cyberimp/arm/gun/taser = 60, /obj/item/gun/energy/e_gun/advtaser = 60, /obj/item/gun/energy/taser = 60)
+	name = "Electrically stimulate brain"
+	implements = list(/obj/item/shockpaddles = 100, /obj/item/abductor/gizmo = 100, /obj/item/melee/baton = 75, /obj/item/organ/cyberimp/arm/baton = 75, /obj/item/organ/cyberimp/arm/gun/taser = 60, /obj/item/gun/energy/e_gun/advtaser = 60, /obj/item/gun/energy/taser = 60)
 	time = 120
-/datum/surgery_step/revive/tool_check(mob/user, obj/item/tool)
+
+/datum/surgery_step/revive/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	. = TRUE
-	if(istype(tool, /obj/item/twohanded/shockpaddles))
-		var/obj/item/twohanded/shockpaddles/S = tool
+	if(istype(tool, /obj/item/shockpaddles))
+		var/obj/item/shockpaddles/S = tool
 		if((S.req_defib && !S.defib.powered) || !S.wielded || S.cooldown || S.busy)
 			to_chat(user, "<span class='warning'>You need to wield both paddles, and [S.defib] must be powered!</span>")
 			return FALSE
@@ -65,9 +68,11 @@
 		target.visible_message("...[target] wakes up, alive and aware!")
 		target.emote("gasp")
 		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50, 199) //MAD SCIENCE
+		/* skyrat edit
 		for(var/obj/item/organ/O in target.internal_organs)//zap those buggers back to life!
 			if(O.organ_flags & ORGAN_FAILING)
 				O.applyOrganDamage(-5)
+		*/
 		return TRUE
 	else
 		user.visible_message("...[target.p_they()] convulses, then lies still.")
@@ -79,5 +84,5 @@
 		"[user] send a powerful shock to [target]'s brain with [tool], but [target.p_they()] doesn't react.",
 		"[user] send a powerful shock to [target]'s brain with [tool], but [target.p_they()] doesn't react.")
 	playsound(get_turf(target), 'sound/magic/lightningbolt.ogg', 50, 1)
-	target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 199)
+	target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50, 199)
 	return FALSE

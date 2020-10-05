@@ -14,7 +14,7 @@
 	item_state = "goatpelt"
 	color = "#ffd700"
 	body_parts_covered = HEAD
-	armor = list("melee" = 60, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 60, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100, "wound" = 35)
 	dog_fashion = null
 	resistance_flags = FIRE_PROOF
 
@@ -31,6 +31,7 @@
 /obj/item/clothing/head/goatpope
 	name = "goat pope hat"
 	desc = "And on the seventh day King Goat said there will be cabbage!"
+	icon = 'modular_skyrat/icons/mob/large-worn-icons/64x64/head.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/large-worn-icons/64x64/head.dmi'
 	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	icon_state = "goatpope"

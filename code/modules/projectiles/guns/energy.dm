@@ -243,7 +243,7 @@
 	var/itemState = null
 	if(!initial(item_state))
 		itemState = icon_state
-	if (modifystate)
+	if(modifystate)
 		var/obj/item/ammo_casing/energy/shot = ammo_type[current_firemode_index]
 		add_overlay("[icon_state]_[shot.select_name]")
 		iconState += "_[shot.select_name]"
@@ -290,7 +290,7 @@
 
 /obj/item/gun/energy/vv_edit_var(var_name, var_value)
 	switch(var_name)
-		if("selfcharge")
+		if(NAMEOF(src, selfcharge))
 			if(var_value)
 				START_PROCESSING(SSobj, src)
 			else

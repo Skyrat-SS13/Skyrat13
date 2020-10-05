@@ -1,6 +1,6 @@
 //make incision
 /datum/surgery_step/incise
-	name = "make incision"
+	name = "Make incision"
 	implements = list(TOOL_SCALPEL = 100, /obj/item/melee/transforming/energy/sword = 75, /obj/item/kitchen/knife = 65,
 		/obj/item/shard = 45, /obj/item = 30) // 30% success with any sharp item.
 	time = 16
@@ -10,10 +10,16 @@
 		"[user] begins to make an incision in [target]'s [parse_zone(target_zone)].",
 		"[user] begins to make an incision in [target]'s [parse_zone(target_zone)].")
 
-/datum/surgery_step/incise/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/incise/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
+	if(istype(tool, /obj/item/pen) && user.a_intent == INTENT_HELP && target)
+		var/obj/item/bodypart/BP = target.get_bodypart(user.zone_selected)
+		if(istype(BP))
+			BP.attackby(tool, user)
+		return FALSE
 	if(implement_type == /obj/item && !tool.get_sharpness())
 		return FALSE
 	return TRUE
+
 /datum/surgery_step/incise/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if ishuman(target)
 		var/mob/living/carbon/human/H = target
@@ -21,7 +27,13 @@
 			display_results(user, target, "<span class='notice'>Blood pools around the incision in [H]'s [parse_zone(target_zone)].</span>",
 				"Blood pools around the incision in [H]'s [parse_zone(target_zone)].",
 				"")
-			H.bleed_rate += 3
+			//skyrat edit
+			var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
+			if(istype(BP))
+				var/datum/wound/slash/critical/incision/inch = new()
+				inch.apply_wound(BP, TRUE)
+				BP.generic_bleedstacks += 5
+			//
 	return TRUE
 
 /datum/surgery_step/incise/nobleed //silly friendly!
@@ -36,7 +48,7 @@
 
 //clamp bleeders
 /datum/surgery_step/clamp_bleeders
-	name = "clamp bleeders"
+	name = "Clamp bleeders"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_WIRECUTTER = 60, /obj/item/stack/packageWrap = 35, /obj/item/stack/cable_coil = 15)
 	time = 24
 
@@ -46,15 +58,17 @@
 		"[user] begins to clamp bleeders in [target]'s [parse_zone(target_zone)].")
 
 /datum/surgery_step/clamp_bleeders/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(locate(/datum/surgery_step/saw) in surgery.steps)
-		target.heal_bodypart_damage(20,0)
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.bleed_rate = max( (H.bleed_rate - 3), 0)
+		//skyrat edit
+		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
+		if(BP)
+			BP.generic_bleedstacks -= 3
+		//
 	return ..()
 //retract skin
 /datum/surgery_step/retract_skin
-	name = "retract skin"
+	name = "Retract skin"
 	implements = list(TOOL_RETRACTOR = 100, TOOL_SCREWDRIVER = 45, TOOL_WIRECUTTER = 35)
 	time = 24
 
@@ -67,9 +81,8 @@
 
 //close incision
 /datum/surgery_step/close
-	name = "mend incision"
-	implements = list(TOOL_CAUTERY = 100, /obj/item/gun/energy/laser = 90, TOOL_WELDER = 70,
-		/obj/item = 30) // 30% success with any hot item.
+	name = "Mend incision"
+	implements = list(TOOL_CAUTERY = 100, /obj/item/gun/energy/laser = 90, TOOL_WELDER = 70, /obj/item = 30) // 30% success with any hot item.
 	time = 24
 
 /datum/surgery_step/close/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -77,21 +90,27 @@
 		"[user] begins to mend the incision in [target]'s [parse_zone(target_zone)].",
 		"[user] begins to mend the incision in [target]'s [parse_zone(target_zone)].")
 
-/datum/surgery_step/close/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/close/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == TOOL_WELDER || implement_type == /obj/item)
 		return tool.get_temperature()
 	return TRUE
+
 /datum/surgery_step/close/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(locate(/datum/surgery_step/saw) in surgery.steps)
-		target.heal_bodypart_damage(45,0)
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.bleed_rate = max( (H.bleed_rate - 3), 0)
+		//skyrat edit
+		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
+		if(istype(BP))
+			for(var/datum/wound/slash/critical/incision/inch in BP.wounds)
+				inch.remove_wound()
+			for(var/datum/wound/mechanical/slash/critical/incision/inch in BP.wounds)
+				inch.remove_wound()
+		//
 	return ..()
 //saw bone
 /datum/surgery_step/saw
-	name = "saw bone"
-	implements = list(TOOL_SAW = 100, /obj/item/melee/arm_blade = 75, /obj/item/twohanded/fireaxe = 50, /obj/item/hatchet = 35, /obj/item/kitchen/knife/butcher = 25)
+	name = "Saw bone"
+	implements = list(TOOL_SAW = 100, /obj/item/melee/arm_blade = 75, /obj/item/fireaxe = 50, /obj/item/hatchet = 35, /obj/item/kitchen/knife/butcher = 25)
 	time = 54
 
 /datum/surgery_step/saw/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -100,7 +119,6 @@
 		"[user] begins to saw through the bone in [target]'s [parse_zone(target_zone)].")
 
 /datum/surgery_step/saw/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	target.apply_damage(50, BRUTE, "[target_zone]")
 	display_results(user, target, "<span class='notice'>You saw [target]'s [parse_zone(target_zone)] open.</span>",
 		"[user] saws [target]'s [parse_zone(target_zone)] open!",
 		"[user] saws [target]'s [parse_zone(target_zone)] open!")
@@ -108,7 +126,7 @@
 
 //drill bone
 /datum/surgery_step/drill
-	name = "drill bone"
+	name = "Drill bone"
 	implements = list(TOOL_DRILL = 100, /obj/item/screwdriver/power = 80, /obj/item/pickaxe/drill = 60, TOOL_SCREWDRIVER = 20)
 	time = 30
 

@@ -586,7 +586,7 @@
 /obj/item/storage/crayons/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 7
+	STR.max_items = 8
 	STR.can_hold = typecacheof(list(/obj/item/toy/crayon))
 
 /obj/item/storage/crayons/PopulateContents()
@@ -597,6 +597,7 @@
 	new /obj/item/toy/crayon/blue(src)
 	new /obj/item/toy/crayon/purple(src)
 	new /obj/item/toy/crayon/black(src)
+	new /obj/item/toy/crayon/white(src)
 	update_icon()
 
 /obj/item/storage/crayons/update_overlays()
@@ -737,12 +738,7 @@
 				to_chat(usr, "<span class='warning'>A color that dark on an object like this? Surely not...</span>")
 				return FALSE
 
-
-			if(istype(target, /obj/structure/window))
-				var/obj/structure/window/W = target
-				W.spraycan_paint(paint_color)
-			else
-				target.add_atom_colour(paint_color, WASHABLE_COLOUR_PRIORITY)
+			target.add_atom_colour(paint_color, WASHABLE_COLOUR_PRIORITY)
 
 		. = use_charges(user, 2)
 		var/fraction = min(1, . / reagents.maximum_volume)

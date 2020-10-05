@@ -65,8 +65,9 @@ Difficulty: Hard
 	desc = "You're not quite sure how a signal can be bloody."
 	invisibility = 100
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/Life()
-	..()
+/mob/living/simple_animal/hostile/megafauna/bubblegum/BiologicalLife(seconds, times_fired)
+	if(!(. = ..()))
+		return
 	move_to_delay = clamp(round((health/maxHealth) * 10), 3, 10)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/OpenFire()
@@ -170,7 +171,7 @@ Difficulty: Hard
 	else if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		L.visible_message("<span class='danger'>[src] slams into [L]!</span>", "<span class='userdanger'>[src] slams into you!</span>")
-		L.apply_damage(40, BRUTE)
+		L.apply_damage(damage = 40, damagetype = BRUTE, sharpness = SHARP_NONE)
 		playsound(get_turf(L), 'sound/effects/meteorimpact.ogg', 100, 1)
 		shake_camera(L, 4, 3)
 		shake_camera(src, 2, 3)

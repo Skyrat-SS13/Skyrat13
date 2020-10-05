@@ -145,7 +145,7 @@
 	replacementmode = pickweight(usable_modes)
 
 	switch(SSshuttle.emergency.mode) //Rounds on the verge of ending don't get new antags, they just run out
-		if(SHUTTLE_STRANDED, SHUTTLE_ESCAPE)
+		if(SHUTTLE_STRANDED, SHUTTLE_ESCAPE, SHUTTLE_DISABLED) //MODULE: SHUTTLE TOGGLE
 			return 1
 		if(SHUTTLE_CALL)
 			if(SSshuttle.emergency.timeLeft(1) < initial(SSshuttle.emergencyCallTime)*0.5)
@@ -580,6 +580,8 @@
 /datum/game_mode/proc/get_remaining_days(client/C)
 	if(!C)
 		return 0
+	if(C.prefs?.db_flags & DB_FLAG_EXEMPT)
+		return 0
 	if(!CONFIG_GET(flag/use_age_restriction_for_jobs))
 		return 0
 	if(!isnum(C.player_age))
@@ -608,12 +610,15 @@
 		if(config_tag in initial(G.gamemode_blacklist))
 			continue
 		possible += T
-	var/goal_weights = 0
+	
+	// Skyrat change: All station goals, all the time.
+
+	station_goals = possible
+	/*var/goal_weights = 0
 	while(possible.len && goal_weights < STATION_GOAL_BUDGET)
 		var/datum/station_goal/picked = pick_n_take(possible)
 		goal_weights += initial(picked.weight)
-		station_goals += new picked
-
+		station_goals += new picked*/
 
 /datum/game_mode/proc/generate_report() //Generates a small text blurb for the gamemode in centcom report
 	return "Gamemode report for [name] not set.  Contact a coder."

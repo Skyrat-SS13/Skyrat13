@@ -27,4 +27,4 @@
 	new /obj/item/crusher_trophy/legion_skull(H.loc)
 	new /obj/item/crusher_trophy/miner_eye(H.loc)
 	new /obj/item/crusher_trophy/blaster_tubes/mask(H.loc)
-	new /obj/item/twohanded/kinetic_crusher(H.loc)
+	new /obj/item/kinetic_crusher(H.loc)

@@ -1,8 +1,8 @@
 /datum/surgery/core_removal
 	name = "Core removal"
-	steps = list(/datum/surgery_step/incise, /datum/surgery_step/extract_core)
+	steps = list(/datum/surgery_step/incise, /datum/surgery_step/extract_core, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/simple_animal/slime)
-	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
+	possible_locs = ALL_BODYPARTS //skyrat edit
 	lying_required = FALSE
 	ignore_clothes = TRUE
 
@@ -10,9 +10,10 @@
 	if(target.stat == DEAD)
 		return 1
 	return 0
+
 //extract brain
 /datum/surgery_step/extract_core
-	name = "extract core"
+	name = "Extract core"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 100)
 	time = 16
 

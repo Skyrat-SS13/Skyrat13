@@ -76,6 +76,8 @@ h1.alert, h2.alert		{color: #99aab5;}
 .greenannounce			{color: #059223;}
 .info					{color: #6685f5;}
 .notice					{color: #6685f5;}
+.tinynotice				{color: #000099; font-style: italic;	font-size: 85%;}
+.smallnotice			{color: #000099; font-style: italic;	font-size: 90%;}
 .boldnotice				{color: #6685f5;}
 .adminnotice			{color: #6685f5;}
 .adminhelp              {color: #ff0000;}

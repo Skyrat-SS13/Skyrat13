@@ -115,6 +115,7 @@
 	icon_state = "flatgun"
 
 /obj/item/gun/ballistic/automatic/pistol/stickman/pickup(mob/living/user)
+	. = ..()
 	to_chat(user, "<span class='notice'>As you try to pick up [src], it slips out of your grip..</span>")
 	if(prob(50))
 		to_chat(user, "<span class='notice'>..and vanishes from your vision! Where the hell did it go?</span>")
@@ -164,7 +165,7 @@
 	icon_state = "ipistol"
 	item_state = "pistol"
 	mag_type = /obj/item/ammo_box/magazine/m32acp
-	fire_delay = 7.5
+	fire_delay = 5
 	can_suppress = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	spread = 15		// Keep the spread between 15 and 20. This hardlocks it into being a mid-range pistol, the magazine size means you're allowed to miss. Fills the mid-range niche that slugs/rifle and buckshot doesn't fill.

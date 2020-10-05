@@ -1,7 +1,7 @@
 /obj/item/organ/genital
 	color = "#fcccb3"
 	w_class = WEIGHT_CLASS_SMALL
-	organ_flags = ORGAN_NO_DISMEMBERMENT
+	organ_flags = ORGAN_NO_DISMEMBERMENT //skyrat edit - fuck this shit i want to castrate people with a cleaver
 	var/shape
 	var/sensitivity = 1 // wow if this were ever used that'd be cool but it's not but i'm keeping it for my unshit code
 	var/genital_flags //see citadel_defines.dm
@@ -49,6 +49,13 @@
 	if(linked_organ_slot || (linked_organ && !owner))
 		update_link()
 
+/obj/item/organ/genital/examine(mob/user)
+	. = ..()
+	. |= genital_examine(user)
+
+/obj/item/organ/genital/proc/genital_examine(mob/user)
+	return
+
 //exposure and through-clothing code
 /mob/living/carbon
 	var/list/exposed_genitals = list() //Keeping track of them so we don't have to iterate through every genitalia and see if exposed
@@ -56,6 +63,7 @@
 /obj/item/organ/genital/proc/is_exposed()
 	if(!owner || genital_flags & (GENITAL_INTERNAL|GENITAL_HIDDEN))
 		return FALSE
+	/* skyrat edit
 	if(genital_flags & GENITAL_UNDIES_HIDDEN && ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		if(!(NO_UNDERWEAR in H.dna.species.species_traits))
@@ -63,6 +71,7 @@
 			var/datum/sprite_accessory/underwear/bottom/B = H.hidden_underwear ? null : GLOB.underwear_list[H.underwear]
 			if(zone == BODY_ZONE_CHEST ? (T?.covers_chest || B?.covers_chest) : (T?.covers_groin || B?.covers_groin))
 				return FALSE
+	*/
 	if(genital_flags & GENITAL_THROUGH_CLOTHES)
 		return TRUE
 

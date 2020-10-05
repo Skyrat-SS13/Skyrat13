@@ -1,6 +1,7 @@
 /datum/uplink_item/explosives/syndicate_bomb
-	cost = 8
+	cost = 11
 
+/* Temporary removal for balancing. - SK13
 /datum/uplink_item/explosives/syndicate_bomb_he
 	name = "Syndicate Bomb (HE)"
 	desc = "The Syndicate bomb is a fearsome device capable of massive destruction. It has an adjustable timer, \
@@ -10,3 +11,4 @@
 			be defused, and some crew may attempt to do so. This one is extra highly explosive"
 	item = /obj/item/sbeacondrop/bomb_high_explosive
 	cost = 15
+*/

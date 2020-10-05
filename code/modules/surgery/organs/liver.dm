@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 #define LIVER_DEFAULT_HEALTH 100 //amount of damage required for liver failure
 #define LIVER_DEFAULT_TOX_TOLERANCE 3 //amount of toxins the liver can filter out
 #define LIVER_DEFAULT_TOX_LETHALITY 0.01 //lower values lower how harmful toxins are to the liver
@@ -23,6 +24,7 @@
 	var/toxLethality = LIVER_DEFAULT_TOX_LETHALITY//affects how much damage toxins do to the liver
 	var/filterToxins = TRUE //whether to filter toxins
 	var/cachedmoveCalc = 1
+	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/iron = 5)
 
 /obj/item/organ/liver/on_life()
 	. = ..()
@@ -42,11 +44,6 @@
 
 	if(damage > 10 && prob(damage/3))//the higher the damage the higher the probability
 		to_chat(owner, "<span class='warning'>You feel a dull pain in your abdomen.</span>")
-
-/obj/item/organ/liver/prepare_eat()
-	var/obj/S = ..()
-	S.reagents.add_reagent(/datum/reagent/iron, 5)
-	return S
 
 /obj/item/organ/liver/applyOrganDamage(d, maximum = maxHealth)
 	. = ..()
@@ -120,3 +117,4 @@
 			damage+=100
 		if(2)
 			damage+=50
+*/

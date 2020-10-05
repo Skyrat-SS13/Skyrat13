@@ -38,7 +38,12 @@
 			C = new /obj/item/clothing/under/rank/civilian/clown(H)
 			ADD_TRAIT(C, TRAIT_NODROP, CLOWN_NUKE_TRAIT)
 			H.equip_to_slot_or_del(C, SLOT_W_UNIFORM)
-
+		//skyrat edit
+		if(!H.w_shirt || H.dropItemToGround(H.w_shirt))
+			C = new /obj/item/clothing/underwear/shirt/clown(H)
+			ADD_TRAIT(C, TRAIT_NODROP, CLOWN_NUKE_TRAIT)
+			H.equip_to_slot_or_del(C, SLOT_W_SHIRT)
+		//
 		if(!H.shoes || H.dropItemToGround(H.shoes))
 			C = new /obj/item/clothing/shoes/clown_shoes(H)
 			ADD_TRAIT(C, TRAIT_NODROP, CLOWN_NUKE_TRAIT)
@@ -51,4 +56,4 @@
 
 		H.dna.add_mutation(CLOWNMUT)
 		H.dna.add_mutation(SMILE)
-		H.gain_trauma(/datum/brain_trauma/mild/phobia, TRAUMA_RESILIENCE_LOBOTOMY, "clowns") //MWA HA HA
+		H.gain_trauma(/datum/brain_trauma/mild/phobia/clowns, TRAUMA_RESILIENCE_LOBOTOMY) //MWA HA HA

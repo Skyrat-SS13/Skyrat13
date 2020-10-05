@@ -22,7 +22,7 @@
 		icon_state = icon_state_powered = icon_state_unpowered = "tablet-[finish_color]"
 
 /obj/item/modular_computer/tablet/syndicate_contract_uplink
-	name = "contractor tablet"
+	name = "tablet computer" // Skyrat Edit - antimeta
 	icon = 'icons/obj/contractor_tablet.dmi'
 	icon_state = "tablet"
 	icon_state_unpowered = "tablet"

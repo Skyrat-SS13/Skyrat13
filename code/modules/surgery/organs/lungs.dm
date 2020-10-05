@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 #define LUNGS_MAX_HEALTH 300
 
 /obj/item/organ/lungs
@@ -23,6 +24,8 @@
 	high_threshold_passed = "<span class='warning'>You feel some sort of constriction around your chest as your breathing becomes shallow and rapid.</span>"
 	now_fixed = "<span class='warning'>Your lungs seem to once again be able to hold air.</span>"
 	high_threshold_cleared = "<span class='info'>The constriction around your chest loosens as your breathing calms down.</span>"
+
+	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/salbutamol = 5)
 
 	//Breath damage
 
@@ -336,7 +339,8 @@
 			H.adjustFireLoss(nitryl_pp/4)
 		gas_breathed = breath_gases[/datum/gas/nitryl]
 		if (gas_breathed > gas_stimulation_min)
-			H.reagents.add_reagent(/datum/reagent/nitryl,1)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/nitryl) // Skyrat edit: makes it actually spawn enough reagent to have an effect
+			H.reagents.add_reagent(/datum/reagent/nitryl, max(0, 5 - existing))
 
 		breath_gases[/datum/gas/nitryl]-=gas_breathed
 
@@ -466,11 +470,6 @@
 	else if(!(organ_flags & ORGAN_FAILING))
 		failed = FALSE
 
-/obj/item/organ/lungs/prepare_eat()
-	var/obj/S = ..()
-	S.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 5)
-	return S
-
 /obj/item/organ/lungs/ipc
 	name = "ipc lungs"
 	icon_state = "lungs-c"
@@ -558,3 +557,4 @@
 	. = ..()
 	if(.)
 		applyOrganDamage(2) //Yamerol lungs are temporary
+*/

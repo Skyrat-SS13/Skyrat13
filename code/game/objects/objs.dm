@@ -31,18 +31,20 @@
 	var/req_one_access_txt = "0"
 
 	var/renamedByPlayer = FALSE //set when a player uses a pen on a renamable object
+	//skyrat edit
+	/// How good a given object is at causing wounds on carbons. Higher values equal better shots at creating serious wounds.
+	var/wound_bonus = 0
+	/// If this attacks a human with no wound armor on the affected body part, add this to the wound mod. Some attacks may be significantly worse at wounding if there's even a slight layer of armor to absorb some of it vs bare flesh
+	var/bare_wound_bonus = 0
+	//
 
 /obj/vv_edit_var(vname, vval)
 	switch(vname)
 		if("anchored")
 			setAnchored(vval)
 			return TRUE
-		if("obj_flags")
+		if(NAMEOF(src, obj_flags))
 			if ((obj_flags & DANGEROUS_POSSESSION) && !(vval & DANGEROUS_POSSESSION))
-				return FALSE
-		if("control_object")
-			var/obj/O = vval
-			if(istype(O) && (O.obj_flags & DANGEROUS_POSSESSION))
 				return FALSE
 	return ..()
 
@@ -323,3 +325,8 @@
 
 /obj/proc/rnd_crafted(obj/machinery/rnd/production/P)
 	return
+
+/obj/handle_ricochet(obj/item/projectile/P)
+	. = ..()
+	if(. && ricochet_damage_mod)
+		take_damage(P.damage * ricochet_damage_mod, P.damage_type, P.flag, 0, turn(P.dir, 180), P.armour_penetration) // pass along ricochet_damage_mod damage to the structure for the ricochet

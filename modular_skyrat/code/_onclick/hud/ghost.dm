@@ -1,5 +1,6 @@
 /obj/screen/ghost/eventsignup
 	name = "Event Signup"
+	icon = 'modular_skyrat/icons/mob/screen_ghost.dmi'
 	icon_state = "eventsignupoff"
 
 /obj/screen/ghost/eventsignup/New()
@@ -15,7 +16,7 @@
 
 /datum/hud/ghost/New(mob/owner)
 	..()
-	
+
 	var/obj/screen/using
 
 	using = new /obj/screen/ghost/eventsignup()

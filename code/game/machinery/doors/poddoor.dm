@@ -15,6 +15,8 @@
 	resistance_flags = FIRE_PROOF
 	damage_deflection = 70
 	poddoor = TRUE
+	var/opensound = 'sound/machines/blastdoor.ogg' //SKYRAT CHANGE - Various poddoor sounds
+	var/closesound = 'sound/machines/blastdoor.ogg' //SKYRAT CHANGE - Various poddoor sounds
 
 /obj/machinery/door/poddoor/preopen
 	icon_state = "open"
@@ -72,10 +74,10 @@
 	switch(animation)
 		if("opening")
 			flick("opening", src)
-			playsound(src, 'sound/machines/blastdoor.ogg', 30, 1)
+			playsound(src, opensound, 30, 1) //SKYRAT CHANGE - Various poddoor sounds
 		if("closing")
 			flick("closing", src)
-			playsound(src, 'sound/machines/blastdoor.ogg', 30, 1)
+			playsound(src, closesound, 30, 1) //SKYRAT CHANGE - Various poddoor sounds
 
 /obj/machinery/door/poddoor/update_icon_state()
 	if(density)

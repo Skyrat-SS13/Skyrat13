@@ -105,32 +105,161 @@
 	range = 4
 	log_override = TRUE
 
+//Rapid KA
+/obj/item/gun/energy/kinetic_accelerator/premiumka/rapid
+	name = "Rapid accelerator"
+	desc = "A Kinetic Accelerator featuring an overclocked charger and a smaller pressure tank."
+	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	icon_state = "rapidka"
+	item_state = "kineticgun"
+	can_flashlight = 0
+	overheat_time = 12
+	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/rapid)
+	can_bayonet = FALSE
+	max_mod_capacity = 80
+
+/obj/item/ammo_casing/energy/kinetic/premium/rapid
+	projectile_type = /obj/item/projectile/kinetic/premium/rapid
+
+/obj/item/projectile/kinetic/premium/rapid
+	name = "Rapid kinetic force"
+	damage = 25
+	damage_type = BRUTE
+	flag = "bomb"
+	range = 4
+	log_override = TRUE
+
+
+//Heavy KA
+/obj/item/gun/energy/kinetic_accelerator/premiumka/heavy
+	name = "Heavy accelerator"
+	desc = "A rather bulky Kinetic Accelerator capable of splitting large groups of rocks and hurting those near its impact"
+	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	icon_state = "heavyka"
+	item_state = "kineticgun"
+	flight_x_offset = 12
+	flight_y_offset = 11
+	overheat_time = 22
+	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/heavy)
+	max_mod_capacity = 80
+	knife_x_offset = 15
+	knife_y_offset = 8
+
+/obj/item/gun/energy/kinetic_accelerator/premiumka/heavy/Initialize()
+	. = ..()
+	var/obj/item/borg/upgrade/modkit/aoe/heavy/initial_kit = new /obj/item/borg/upgrade/modkit/aoe/heavy(src)
+	initial_kit.install(src)
+
+/obj/item/ammo_casing/energy/kinetic/premium/heavy
+	projectile_type = /obj/item/projectile/kinetic/premium/heavy
+
+/obj/item/projectile/kinetic/premium/heavy
+	name = "Heavy kinetic force"
+	damage = 65
+	damage_type = BRUTE
+	flag = "bomb"
+	range = 3
+	log_override = TRUE
+
+//Precise KA
+/obj/item/gun/energy/kinetic_accelerator/premiumka/precise
+	name = "Precise accelerator"
+	desc = "A modified Accelerator. This one has been zeroed in with a choked down barrel to give a longer range"
+	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	icon_state = "preciseka"
+	item_state = "kineticgun"
+	flight_x_offset = 16
+	flight_y_offset = 13
+	overheat_time = 18
+	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/precise)
+	max_mod_capacity = 80
+	knife_x_offset = 21
+	knife_y_offset = 13
+
+/obj/item/ammo_casing/energy/kinetic/premium/precise
+	projectile_type = /obj/item/projectile/kinetic/premium/precise
+
+/obj/item/projectile/kinetic/premium/precise
+	name = "Precise kinetic force"
+	damage = 45
+	damage_type = BRUTE
+	flag = "bomb"
+	range = 6
+	log_override = TRUE
+
+//Modular KA
+/obj/item/gun/energy/kinetic_accelerator/premiumka/modular
+	name = "Modular accelerator"
+	desc = "A rather bare-bones kinetic accelerator capable of forming to one's preferences."
+	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	icon_state = "modularka"
+	item_state = "kineticgun"
+	flight_x_offset = 15
+	flight_y_offset = 21
+	overheat_time = 30
+	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/modular)
+	max_mod_capacity = 180
+	knife_x_offset = 14
+	knife_y_offset = 14
+
+/obj/item/ammo_casing/energy/kinetic/premium/modular
+	projectile_type = /obj/item/projectile/kinetic/premium/modular
+
+/obj/item/projectile/kinetic/premium/modular
+	name = "Modular kinetic force"
+	damage = 25
+	damage_type = BRUTE
+	flag = "bomb"
+	range = 4
+	log_override = TRUE
+
+//BYOKA
+/obj/item/gun/energy/kinetic_accelerator/premiumka/byoka
+	name = "Custom accelerator"
+	desc = "You're not sure how it's made, but it is truly a kinetic accelerator fit for a clown. Its handle smells faintly of bananas."
+	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	icon_state = "byoka"
+	item_state = "kineticgun"
+	overheat_time = 27
+	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/byoka)
+	max_mod_capacity = 300
+
+/obj/item/ammo_casing/energy/kinetic/premium/byoka
+	projectile_type = /obj/item/projectile/kinetic/premium/byoka
+
+/obj/item/projectile/kinetic/premium/byoka
+	name = "Odd kinetic force"
+	damage = 0
+	damage_type = BRUTE
+	flag = "bomb"
+	range = 1
+	log_override = TRUE
+
+//Ashen KA
+/obj/item/gun/energy/kinetic_accelerator/premiumka/ashenka
+	name = "Ashen accelerator"
+	desc = "A kinetic accelerator of a bygone era, its design emits an aura of dread and malice. Holding it makes you want to hunt..."
+	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	icon_state = "ashenka"
+	item_state = "kineticgun"
+	can_flashlight = 0
+	overheat_time = 13.5
+	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/ashen)
+	can_bayonet = FALSE
+	max_mod_capacity = 100
+
+/obj/item/ammo_casing/energy/kinetic/premium/ashen
+	projectile_type = /obj/item/projectile/kinetic/premium/ashen
+
+/obj/item/projectile/kinetic/premium/ashen
+	name = "harsh kinetic force"
+	damage = 60
+	damage_type = BRUTE
+	flag = "bomb"
+	range = 5
+	log_override = TRUE
+
 //Megafauna & other unique modkits
-
-//bubblegum
-/obj/item/borg/upgrade/modkit/shotgun
-	name = "shotgun blast modification kit"
-	desc = "Makes you fire 3 kinetic shots instead of one."
-	denied_type = /obj/item/borg/upgrade/modkit/aoe
-	cost = 40
-	modifier = 3
-
-/obj/item/borg/upgrade/modkit/shotgun/modify_projectile(obj/item/projectile/kinetic/K)
-	..()
-	if(K.kinetic_gun)
-		var/obj/item/gun/energy/kinetic_accelerator/KA = K.kinetic_gun
-		var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1]
-		C.pellets = src.modifier
-		C.variance = 45
-		KA.chambered = C
-
-/obj/item/borg/upgrade/modkit/shotgun/uninstall(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
-	..()
-	var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1]
-	C.pellets = initial(C.pellets)
-	C.variance = initial(C.variance)
-	KA.chambered = C
-
 //drake
 /obj/item/borg/upgrade/modkit/knockback
 	name = "knockback modification kit"
@@ -146,7 +275,7 @@
 		playsound(T, 'sound/magic/fireball.ogg', 20, 1)
 		new /obj/effect/temp_visual/fire(T.loc)
 		step(target, get_dir(K, T))
-		T.adjustFireLoss(burndam, forced = TRUE)
+		T.adjustFireLoss(burndam)
 
 //hierophant
 
@@ -155,9 +284,9 @@
 /obj/item/borg/upgrade/modkit/wall
 	name = "wall modification kit"
 	desc = "Makes a wall on impact on a living being."
-	cost = 60
+	cost = 40
 	var/cooldown = 0
-	var/cdmultiplier = 1.75
+	var/cdmultiplier = 2.25
 
 /obj/item/borg/upgrade/modkit/wall/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	..()
@@ -219,11 +348,11 @@
 	friendly_verb_continuous = "buzzes near"
 	friendly_verb_simple = "buzz near"
 	vision_range = 10
-	maxHealth = 1
+	maxHealth = 5
 	health = 5
-	harm_intent_damage = 5
-	melee_damage_lower = 12
-	melee_damage_upper = 12
+	harm_intent_damage = 20
+	melee_damage_lower = 20
+	melee_damage_upper = 20
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	speak_emote = list("echoes")
@@ -231,13 +360,13 @@
 	throw_message = "is shrugged off by"
 	pass_flags = PASSTABLE
 	del_on_death = TRUE
-	stat_attack = UNCONSCIOUS
+	stat_attack = CONSCIOUS
 	robust_searching = 1
 	var/can_infest_dead = FALSE
-	attack_same = 1
+	faction = list("explosive")
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/explosivelegion/death()
-	explosion(src.loc, 0, 0, 0, 2, 0)
+	explosion(src.loc, 0, 0, 1, 2, 0, FALSE, 2)
 	src.visible_message("<span class='danger'>The [src] explodes!</span>")
 	..()
 
@@ -259,11 +388,13 @@
 	desc = "Causes kinetic accelerator shots to heal the firer on striking a living target."
 	modifier = 4
 	cost = 30
+	denied_type = /obj/item/borg/upgrade/modkit/lifesteal/miner
+	maximum_of_type = 2
 
 //drakeling
 /obj/item/borg/upgrade/modkit/fire
 	name = "flamethrower modification kit"
-	desc = "Makes your kinetic shots deal a mild amount of burn damage."
+	desc = "Makes your kinetic shots deal a mild amount of burn damage, along with spewing flames."
 	modifier = 10
 	cost = 25
 
@@ -383,12 +514,33 @@
 //sif
 /obj/item/borg/upgrade/modkit/critical
 	name = "critical modification kit"
-	desc = "Makes your kinetic accelerator have a <b>10%</b> chance to critically wound your target."
-	modifier = 10
+	desc = "Makes your kinetic accelerator have a <b>20%</b> chance to critically wound your target."
+	modifier = 20
+	var/multiplier = 2
 	cost = 30
 
 /obj/item/borg/upgrade/modkit/critical/modify_projectile(obj/item/projectile/kinetic/K)
 	. = ..()
 	if(prob(modifier))
-		K.damage *= 2
+		K.damage *= multiplier
 		K.name = "critical [K.name]"
+
+//This is Messy fucking code to get something to work... trust me, I wish i was good enough of a coder to not rely on this
+//AoE blasts (Unremovable)
+/obj/item/borg/upgrade/modkit/aoe/heavy
+	name = "mining explosion"
+	desc = "Causes the Heavy KA to work properly. If you have this, Report it to ZenithEevee on Discord."
+	denied_type = /obj/item/borg/upgrade/modkit/aoe
+	turf_aoe = TRUE
+	modifier = 0.33
+	cost = 0
+
+/obj/item/borg/upgrade/modkit/aoe/heavy/install(obj/item/gun/energy/kinetic_accelerator/KA)
+	KA.modkits += src
+	return TRUE
+
+/obj/item/borg/upgrade/modkit/aoe/heavy/uninstall(obj/item/gun/energy/kinetic_accelerator/KA)
+	return FALSE
+
+/obj/item/borg/upgrade/modkit/aoe/heavy/modify_projectile(obj/item/projectile/kinetic/K)
+	K.name = "heavy kinetic explosion"

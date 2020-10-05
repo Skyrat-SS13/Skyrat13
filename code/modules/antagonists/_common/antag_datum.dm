@@ -31,6 +31,11 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 	var/list/skill_modifiers
 
+//SKYRAT CHANGES BEGIN
+	///Possible values: NONE, CAN_SEE_EXPOITABLE_INFO
+	var/antag_flags = CAN_SEE_EXPOITABLE_INFO
+//SKYRANT CHANGES END
+
 /datum/antagonist/New()
 	GLOB.antagonists += src
 	typecache_datum_blacklist = typecacheof(typecache_datum_blacklist)
@@ -70,6 +75,18 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/remove_innate_effects(mob/living/mob_override)
 	return
 
+// Adds the specified antag hud to the player. Usually called in an antag datum file
+/datum/antagonist/proc/add_antag_hud(antag_hud_type, antag_hud_name, mob/living/mob_override)
+	var/datum/atom_hud/antag/hud = GLOB.huds[antag_hud_type]
+	hud.join_hud(mob_override)
+	set_antag_hud(mob_override, antag_hud_name)
+
+// Removes the specified antag hud from the player. Usually called in an antag datum file
+/datum/antagonist/proc/remove_antag_hud(antag_hud_type, mob/living/mob_override)
+	var/datum/atom_hud/antag/hud = GLOB.huds[antag_hud_type]
+	hud.leave_hud(mob_override)
+	set_antag_hud(mob_override, null)
+
 //Assign default team and creates one for one of a kind team antagonists
 /datum/antagonist/proc/create_team(datum/team/team)
 	return
@@ -93,6 +110,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if(skill_modifiers)
 		for(var/A in skill_modifiers)
 			ADD_SINGLETON_SKILL_MODIFIER(owner, A, type)
+			var/datum/skill_modifier/job/M = GLOB.skill_modifiers[GET_SKILL_MOD_ID(A, type)]
+			if(istype(M))
+				M.name = "[name] Training"
 	SEND_SIGNAL(owner.current, COMSIG_MOB_ANTAG_ON_GAIN, src)
 
 /datum/antagonist/proc/is_banned(mob/M)

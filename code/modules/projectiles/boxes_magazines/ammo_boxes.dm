@@ -7,6 +7,11 @@
 	max_ammo = 7
 	multiple_sprites = 1
 
+/obj/item/ammo_box/a357/match
+	name = "speed loader (.357 Match)"
+	desc = "Designed to quickly reload revolvers. These rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	ammo_type = /obj/item/ammo_casing/a357/match
+
 /obj/item/ammo_box/a357/ap
 	name = "speed loader (.357 AP)"
 	ammo_type = /obj/item/ammo_casing/a357/ap
@@ -39,6 +44,16 @@
 	name = "speed loader (.38 Iceblox)"
 	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
 	ammo_type = /obj/item/ammo_casing/c38/iceblox
+
+/obj/item/ammo_box/c38/dumdum
+	name = "speed loader (.38 DumDum)"
+	desc = "Designed to quickly reload revolvers. DumDum bullets shatter on impact and shred the target's innards, likely getting caught inside."
+	ammo_type = /obj/item/ammo_casing/c38/dumdum
+
+/obj/item/ammo_box/c38/match
+	name = "speed loader (.38 Match)"
+	desc = "Designed to quickly reload revolvers. These rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	ammo_type = /obj/item/ammo_casing/c38/match
 
 /obj/item/ammo_box/c32mm
 	name = "ammo box (.32 acp)"
@@ -181,3 +196,24 @@
 
 /obj/item/ammo_box/shotgun/loaded/dart
 	ammo_type = /obj/item/ammo_casing/shotgun/dart
+
+//skyrat h
+/obj/item/ammo_box/a357/match
+	name = "speed loader (.357 Match)"
+	desc = "Designed to quickly reload revolvers. These rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	ammo_type = /obj/item/ammo_casing/a357/match
+
+/obj/item/ammo_box/c38/match
+	name = "speed loader (.38 Match)"
+	desc = "Designed to quickly reload revolvers. These rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	ammo_type = /obj/item/ammo_casing/c38/match
+
+/obj/item/ammo_box/c38/match/bouncy
+	name = "speed loader (.38 Rubber)"
+	desc = "Designed to quickly reload revolvers. These rounds are incredibly bouncy and MOSTLY nonlethal, making them great to show off trickshots with."
+	ammo_type = /obj/item/ammo_casing/c38/match/bouncy
+
+/obj/item/ammo_box/c38/dumdum
+	name = "speed loader (.38 DumDum)"
+	desc = "Designed to quickly reload revolvers. These rounds expand on impact, allowing them to shred the target and cause massive bleeding. Very weak against armor and distant targets."
+	ammo_type = /obj/item/ammo_casing/c38/dumdum

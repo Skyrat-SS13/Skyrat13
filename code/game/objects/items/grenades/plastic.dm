@@ -55,7 +55,7 @@
 		return
 	..()
 
-/obj/item/grenade/plastic/prime()
+/obj/item/grenade/plastic/prime(mob/living/lanced_by)
 	var/turf/location
 	if(target)
 		if(!QDELETED(target))
@@ -122,7 +122,9 @@
 			var/obj/item/I = AM
 			I.throw_speed = max(1, (I.throw_speed - 3))
 			I.throw_range = max(1, (I.throw_range - 3))
-			I.embedding = I.embedding.setRating(embed_chance = 0)
+			if(I.embedding)
+				I.embedding["embed_chance"] = 0
+				I.updateEmbedding()
 
 		target.add_overlay(plastic_overlay, TRUE)
 		if(!nadeassembly)
@@ -154,9 +156,11 @@
 	log_game("[key_name(user)] suicided with [src] at [AREACOORD(user)]")
 	user.visible_message("<span class='suicide'>[user] activates [src] and holds it above [user.p_their()] head! It looks like [user.p_theyre()] going out with a bang!</span>")
 	shout_syndicate_crap(user)
-	explosion(user,0,2,0) //Cheap explosion imitation because putting prime() here causes runtimes
+	explosion(user,0,2,0) //Cheap explosion imitation because putting prime(mob/living/lanced_by) here causes runtimes
 	user.gib(1, 1)
+	//skyrat edit
 	qdel(src)
+	//
 
 /obj/item/grenade/plastic/update_icon_state()
 	if(nadeassembly)
@@ -193,7 +197,7 @@
 	message_admins("[ADMIN_LOOKUPFLW(user)] suicided with [name] at [ADMIN_VERBOSEJMP(src)]")
 	log_game("[key_name(user)] suicided with [name] at [AREACOORD(user)]")
 	sleep(10)
-	prime()
+	prime(user)
 	user.gib(1, 1)
 
 /obj/item/grenade/plastic/c4/attackby(obj/item/I, mob/user, params)
@@ -205,9 +209,10 @@
 	else
 		return ..()
 
-/obj/item/grenade/plastic/c4/prime()
+/obj/item/grenade/plastic/c4/prime(mob/living/lanced_by)
 	if(QDELETED(src))
 		return
+	. = ..()
 	var/turf/location
 	if(target)
 		if(!QDELETED(target))

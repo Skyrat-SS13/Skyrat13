@@ -79,9 +79,9 @@
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
 		if(29)
 			if(prob(50))
-				new /obj/item/malf_upgrade
+				new /obj/item/malf_upgrade(src)
 			else
-				new /obj/item/disk/tech_disk/illegal
+				new /obj/item/disk/tech_disk/illegal(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -492,7 +492,7 @@
 	setDir(user.dir)
 
 	user.forceMove(src)
-	user.notransform = TRUE
+	user.mob_transforming = TRUE
 	user.status_flags |= GODMODE
 
 	can_destroy = FALSE
@@ -501,7 +501,7 @@
 
 /obj/effect/immortality_talisman/proc/unvanish(mob/user)
 	user.status_flags &= ~GODMODE
-	user.notransform = FALSE
+	user.mob_transforming = FALSE
 	user.forceMove(get_turf(src))
 
 	user.visible_message("<span class='danger'>[user] pops back into reality!</span>")
@@ -659,7 +659,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	hitsound_on = 'sound/weapons/bladeslice.ogg'
 	w_class = WEIGHT_CLASS_BULKY
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	faction_bonus_force = 30
 	nemesis_factions = list("mining", "boss")
 	var/transform_cooldown
@@ -765,7 +765,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_BULKY
 	force = 1
 	throwforce = 1
@@ -929,6 +929,9 @@
 
 /obj/item/lava_staff/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
+	INVOKE_ASYNC(src, .proc/attempt_lava, target, user, proximity_flag, click_parameters)
+
+/obj/item/lava_staff/proc/attempt_lava(atom/target, mob/user, proximity_flag, click_parameters)
 	if(timer > world.time)
 		return
 
@@ -1104,7 +1107,7 @@
 	var/blast_range = 13 //how long the cardinal blast's walls are
 	var/obj/effect/hierophant/beacon //the associated beacon we teleport to
 	var/teleporting = FALSE //if we ARE teleporting
-	var/friendly_fire_check = FALSE //if the blasts we make will consider our faction against the faction of hit targets
+	var/friendly_fire_check = TRUE //if the blasts we make will consider our faction against the faction of hit targets
 
 /obj/item/hierophant_club/ComponentInitialize()
 	. = ..()

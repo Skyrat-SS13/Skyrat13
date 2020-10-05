@@ -591,14 +591,14 @@ Turf and target are separate in case you want to teleport some distance from a t
 	return
 
 /proc/parse_zone(zone)
-	if(zone == BODY_ZONE_PRECISE_R_HAND)
-		return "right hand"
-	else if (zone == BODY_ZONE_PRECISE_L_HAND)
-		return "left hand"
-	else if (zone == BODY_ZONE_L_ARM)
+	if (zone == BODY_ZONE_L_ARM)
 		return "left arm"
 	else if (zone == BODY_ZONE_R_ARM)
 		return "right arm"
+	else if (zone == BODY_ZONE_PRECISE_L_HAND)
+		return "left hand"
+	else if(zone == BODY_ZONE_PRECISE_R_HAND)
+		return "right hand"
 	else if (zone == BODY_ZONE_L_LEG)
 		return "left leg"
 	else if (zone == BODY_ZONE_R_LEG)
@@ -674,12 +674,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 			return loc
 		loc = loc.loc
 	return null
-
-//For objects that should embed, but make no sense being is_sharp or is_pointed()
-//e.g: rods
-GLOBAL_LIST_INIT(can_embed_types, typecacheof(list(
-	/obj/item/stack/rods,
-	/obj/item/pipe)))
 
 /*
 Checks if that loc and dir has an item on the wall
@@ -1260,6 +1254,10 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 			var/obj/structure/window/W = O
 			if(W.ini_dir == dir_to_check || W.ini_dir == FULLTILE_WINDOW_DIR || dir_to_check == FULLTILE_WINDOW_DIR)
 				return FALSE
+		if(istype(O, /obj/structure/railing))
+			var/obj/structure/railing/rail = O
+			if(rail.ini_dir == dir_to_check || rail.ini_dir == FULLTILE_WINDOW_DIR || dir_to_check == FULLTILE_WINDOW_DIR)
+				return FALSE
 	return TRUE
 
 /proc/pass()
@@ -1443,7 +1441,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		/obj/item/reagent_containers/food/snacks/grown,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom,
 		/obj/item/reagent_containers/food/snacks/grown/nettle, // base type
-		/obj/item/reagent_containers/food/snacks/deepfryholder,
 		/obj/item/reagent_containers/food/snacks/grown/shell,
 		/obj/item/reagent_containers/food/snacks/clothing,
 		/obj/item/reagent_containers/food/snacks/store/bread

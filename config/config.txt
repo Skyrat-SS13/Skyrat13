@@ -258,10 +258,10 @@ CHECK_RANDOMIZER
 # WIKIURL https://katlin.dog/citadel-wiki
 
 ## Rules address
-# RULESURL https://katlin.dog/citadel-rules/main
+# RULESURL https://skyrat13.tk/wiki/index.php/Rules
 
 ## Github address
-# GITHUBURL https://github.com/Citadel-Station-13/Citadel-Station-13
+# GITHUBURL https://github.com/Skyrat-SS13/Skyrat13
 
 ## Round specific stats address
 ## Link to round specific parsed logs; IE statbus. It is appended with the RoundID automatically by ticker/Reboot()

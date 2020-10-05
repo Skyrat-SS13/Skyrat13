@@ -8,6 +8,7 @@
 	nodamage = TRUE
 	var/power = 4
 	var/list/thrown = list()		//normally we wouldn't need this but incase on_hit is called multiple times, yeah.. this is a good idea.
+	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/gravity/Initialize(mapload)
 	. = ..()

@@ -5,6 +5,7 @@
 	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/toxic)
 	var/pulse_cooldown = 0
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/viral/register_extra_settings()
 	extra_settings[NES_PROGRAM_OVERWRITE] = new /datum/nanite_extra_setting/type("Add To", list("Overwrite", "Add To", "Ignore"))
@@ -300,6 +301,7 @@
 	desc = "Displays a button on the host's skin, which can be used to send a signal to the nanites."
 	unique = FALSE
 	var/datum/action/innate/nanite_button/button
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/dermal_button/register_extra_settings()
 	extra_settings[NES_SENT_CODE] = new /datum/nanite_extra_setting/number(1, 1, 9999)

@@ -31,12 +31,21 @@
 
 /datum/supply_pack/security/armor
 	name = "Armor Crate"
-	desc = "Three vests of well-rounded, decently-protective armor. Requires Security access to open."
+	desc = "Three vests of decently-protective (if outdated) armor. Requires Security access to open."
 	cost = 1200
 	contains = list(/obj/item/clothing/suit/armor/vest,
 					/obj/item/clothing/suit/armor/vest,
 					/obj/item/clothing/suit/armor/vest)
 	crate_name = "armor crate"
+
+/datum/supply_pack/security/armor
+	name = "Techarmor Crate"
+	desc = "Three vests of advanced, well-rounded type I techarmor. Requires Security access to open."
+	cost = 2200
+	contains = list(/obj/item/clothing/suit/space/hardsuit/security_armor,
+					/obj/item/clothing/suit/space/hardsuit/security_armor,
+					/obj/item/clothing/suit/space/hardsuit/security_armor)
+	crate_name = "exoskeleton armor crate"
 
 /datum/supply_pack/security/disabler
 	name = "Disabler Crate"
@@ -228,3 +237,35 @@
 	access = ACCESS_ARMORY
 	crate_name = "sporting crate"
 	crate_type = /obj/structure/closet/crate/secure // Would have liked a wooden crate but access >:(
+
+/datum/supply_pack/security/dumdum
+	name = ".38 DumDum Speedloader"
+	desc = "Contains one speedloader of .38 DumDum ammunition, good for embedding in soft targets. Requires Security or Forensics access to open."
+	cost = 1200
+	access = FALSE
+	access_any = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
+	contains = list(/obj/item/ammo_box/c38/dumdum)
+	crate_name = ".38 match crate"
+
+/datum/supply_pack/security/match
+	name = ".38 Match Grade Speedloader"
+	desc = "Contains one speedloader of match grade .38 ammunition, perfect for showing off trickshots. Requires Security or Forensics access to open."
+	cost = 1200
+	access = FALSE
+	access_any = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
+	contains = list(/obj/item/ammo_box/c38/match)
+	crate_name = ".38 match crate"
+
+/datum/supply_pack/security/stingpack
+	name = "Stingbang Grenade Pack"
+	desc = "Contains five \"stingbang\" grenades, perfect for stopping riots and playing morally unthinkable pranks. Requires Security access to open."
+	cost = 2500
+	contains = list(/obj/item/storage/box/stingbangs)
+	crate_name = "stingbang grenade pack crate"
+
+/datum/supply_pack/security/stingpack/single
+	name = "Stingbang Single-Pack"
+	desc = "Contains one \"stingbang\" grenade, perfect for playing meanhearted pranks. Requires Security access to open."
+	cost = 1400
+	contains = list(/obj/item/grenade/stingbang)
+

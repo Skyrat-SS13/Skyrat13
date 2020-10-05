@@ -2,6 +2,7 @@
 	name ="explosive bolt"
 	icon_state= "bolter"
 	damage = 50
+	wound_bonus = 40
 
 /obj/item/projectile/bullet/gyro/on_hit(atom/target, blocked = FALSE)
 	..()
@@ -17,6 +18,7 @@
 	armour_penetration = 100
 	dismemberment = 100
 	ricochets_max = 0
+	wound_bonus = 100
 
 /obj/item/projectile/bullet/a84mm/on_hit(atom/target, blocked = FALSE)
 	..()
@@ -36,6 +38,7 @@
 	icon_state = "missile"
 	damage = 30
 	ricochets_max = 0 //it's a MISSILE
+	wound_bonus = 100
 
 /obj/item/projectile/bullet/a84mm_he/on_hit(atom/target, blocked=0)
 	..()
@@ -57,6 +60,7 @@
 	/obj/machinery/door/,
 	/obj/machinery/door/poddoor/shutters
 	)
+	wound_bonus = 100
 
 /obj/item/broken_missile
 	name = "\improper broken missile"

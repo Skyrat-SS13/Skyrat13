@@ -206,7 +206,7 @@
 			user.set_resting(FALSE, TRUE, FALSE)
 			user.forceMove(get_turf(target))
 			target.adjustStaminaLoss(65)
-			target.Paralyze(10) 
+			target.Paralyze(10)
 			target.DefaultCombatKnockdown(20)
 			if(ishuman(target) && iscarbon(user))
 				target.grabbedby(user)
@@ -253,13 +253,16 @@
 
 		if(isnull(T.wear_suit) && isnull(T.w_uniform)) // who honestly puts all of their effort into tackling a naked guy?
 			defense_mod += 2
+			//skyrat edit
+			if(isnull(T.w_underwear) && isnull(T.w_socks) && isnull(T.w_shirt))
+				defense_mod += 1
+			//
 		if(suit_slot && (istype(suit_slot,/obj/item/clothing/suit/space/hardsuit)))
 			defense_mod += 1
 		if(T.is_shove_knockdown_blocked()) // riot armor and such
 			defense_mod += 5
 		if(T.is_holding_item_of_type(/obj/item/shield))
 			defense_mod += 2
-
 		if(islizard(T))
 			if(!T.getorganslot(ORGAN_SLOT_TAIL)) // lizards without tails are off-balance
 				defense_mod -= 1
@@ -414,11 +417,10 @@
 	if(W.type in list(/obj/structure/window, /obj/structure/window/fulltile, /obj/structure/window/unanchored, /obj/structure/window/fulltile/unanchored)) // boring unreinforced windows
 		for(var/i = 0, i < speed, i++)
 			var/obj/item/shard/shard = new /obj/item/shard(get_turf(user))
-			//shard.embedding = list(embed_chance = 100, ignore_throwspeed_threshold = TRUE, impact_pain_mult=3, pain_chance=5)
-			//shard.AddElement(/datum/element/embed, shard.embedding)
+			shard.updateEmbedding()
 			user.hitby(shard, skipcatch = TRUE, hitpush = FALSE)
-			//shard.embedding = list()
-			//shard.AddElement(/datum/element/embed, shard.embedding)
+			shard.embedding = list()
+			shard.updateEmbedding()
 		W.obj_destruction()
 		user.adjustStaminaLoss(10 * speed)
 		user.DefaultCombatKnockdown(40)

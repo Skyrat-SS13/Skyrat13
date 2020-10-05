@@ -19,7 +19,7 @@
 		return
 	if(user.stat == DEAD || (user.combat_flags & COMBAT_FLAG_HARD_STAMCRIT) || (user.hal_screwyhud in 1 to 2))
 		icon_state = "staminacrit"
-	else if(user.hal_screwyhud == 5)
+	else if((user.hal_screwyhud == SCREWYHUD_HEALTHY) || HAS_TRAIT(hud?.mymob, TRAIT_SCREWY_CHECKSELF))
 		icon_state = "stamina0"
 	else
 		icon_state = "stamina[clamp(FLOOR(user.getStaminaLoss() /20, 1), 0, 6)]"

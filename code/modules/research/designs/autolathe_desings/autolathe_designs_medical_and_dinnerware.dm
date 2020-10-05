@@ -188,3 +188,22 @@
 	build_path = /obj/item/reagent_containers/glass/bottle/vial/large
 	category = list("initial","Medical","Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+//skyrat edit
+/datum/design/bonesetter
+	name = "Bonesetter"
+	id = "bonesetter"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 1000)
+	build_path = /obj/item/bonesetter
+	category = list("initial", "Medical", "Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/sticky_tape/surgical
+	name = "Surgical Tape"
+	id = "surgical_tape"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/plastic = 500)
+	build_path = /obj/item/stack/sticky_tape/surgical
+	category = list("initial", "Medical")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL

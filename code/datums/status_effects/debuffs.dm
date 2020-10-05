@@ -365,9 +365,9 @@
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
 	var/mutable_appearance/marked_underlay
-	var/obj/item/twohanded/kinetic_crusher/hammer_synced
+	var/obj/item/kinetic_crusher/hammer_synced
 
-/datum/status_effect/crusher_mark/on_creation(mob/living/new_owner, obj/item/twohanded/kinetic_crusher/new_hammer_synced)
+/datum/status_effect/crusher_mark/on_creation(mob/living/new_owner, obj/item/kinetic_crusher/new_hammer_synced)
 	. = ..()
 	if(.)
 		hammer_synced = new_hammer_synced
@@ -413,7 +413,7 @@
 	var/turf/T = get_turf(owner)
 	new /obj/effect/temp_visual/bleed/explode(T)
 	for(var/d in GLOB.alldirs)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(T, d)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(T, d, null, owner.get_blood_dna_list())
 	playsound(T, "desceration", 100, TRUE, -1)
 
 /datum/status_effect/stacking/saw_bleed/bloodletting
@@ -430,10 +430,23 @@
 
 /datum/status_effect/neck_slice/tick()
 	var/mob/living/carbon/human/H = owner
-	if(H.stat == DEAD || H.bleed_rate <= 8)
+	//skytrat edit heehoo
+	var/obj/item/bodypart/throat = H.get_bodypart(BODY_ZONE_HEAD)
+	if(H.stat == DEAD || !throat)
 		H.remove_status_effect(/datum/status_effect/neck_slice)
+
+	var/still_bleeding = FALSE
+	for(var/thing in throat.wounds)
+		var/datum/wound/W = thing
+		if(W.wound_type == WOUND_LIST_SLASH && W.severity > WOUND_SEVERITY_MODERATE)
+			still_bleeding = TRUE
+			break
+	if(!still_bleeding)
+		H.remove_status_effect(/datum/status_effect/neck_slice)
+
 	if(prob(10))
 		H.emote(pick("gasp", "gag", "choke"))
+	//
 
 /mob/living/proc/apply_necropolis_curse(set_curse, duration = 10 MINUTES)
 	var/datum/status_effect/necropolis_curse/C = has_status_effect(STATUS_EFFECT_NECROPOLIS_CURSE)
@@ -711,8 +724,9 @@ datum/status_effect/pacify
 	if(hearing_args[HEARING_SPEAKER] == owner)
 		return
 	var/mob/living/carbon/C = owner
+	var/hypnomsg = uncostumize_say(hearing_args[HEARING_RAW_MESSAGE], hearing_args[HEARING_MESSAGE_MODE])
 	C.cure_trauma_type(/datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY) //clear previous hypnosis
-	addtimer(CALLBACK(C, /mob/living/carbon.proc/gain_trauma, /datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY, hearing_args[HEARING_RAW_MESSAGE]), 10)
+	addtimer(CALLBACK(C, /mob/living/carbon.proc/gain_trauma, /datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY, hypnomsg), 10)
 	addtimer(CALLBACK(C, /mob/living.proc/Stun, 60, TRUE, TRUE), 15) //Take some time to think about it
 	qdel(src)
 
@@ -795,3 +809,44 @@ datum/status_effect/pacify
 	name = "Genetic Breakdown"
 	desc = "I don't feel so good. Your body can't handle the mutations! You have one minute to remove your mutations, or you will be met with a horrible fate."
 	icon_state = "dna_melt"
+
+/datum/status_effect/fake_virus
+	id = "fake_virus"
+	duration = 1800//3 minutes
+	status_type = STATUS_EFFECT_REPLACE
+	tick_interval = 1
+	alert_type = null
+	var/msg_stage = 0//so you dont get the most intense messages immediately
+
+/datum/status_effect/fake_virus/tick()
+	var/fake_msg = ""
+	var/fake_emote = ""
+	switch(msg_stage)
+		if(0 to 300)
+			if(prob(1))
+				fake_msg = pick("<span class='warning'>[pick("Your head hurts.", "Your head pounds.")]</span>",
+				"<span class='warning'>[pick("You're having difficulty breathing.", "Your breathing becomes heavy.")]</span>",
+				"<span class='warning'>[pick("You feel dizzy.", "Your head spins.")]</span>",
+				"<span notice='warning'>[pick("You swallow excess mucus.", "You lightly cough.")]</span>",
+				"<span class='warning'>[pick("Your head hurts.", "Your mind blanks for a moment.")]</span>",
+				"<span class='warning'>[pick("Your throat hurts.", "You clear your throat.")]</span>")
+		if(301 to 600)
+			if(prob(2))
+				fake_msg = pick("<span class='warning'>[pick("Your head hurts a lot.", "Your head pounds incessantly.")]</span>",
+				"<span class='warning'>[pick("Your windpipe feels like a straw.", "Your breathing becomes tremendously difficult.")]</span>",
+				"<span class='warning'>You feel very [pick("dizzy","woozy","faint")].</span>",
+				"<span class='warning'>[pick("You hear a ringing in your ear.", "Your ears pop.")]</span>",
+				"<span class='warning'>You nod off for a moment.</span>")
+		else
+			if(prob(3))
+				if(prob(50))// coin flip to throw a message or an emote
+					fake_msg = pick("<span class='userdanger'>[pick("Your head hurts!", "You feel a burning knife inside your brain!", "A wave of pain fills your head!")]</span>",
+					"<span class='userdanger'>[pick("Your lungs hurt!", "It hurts to breathe!")]</span>",
+					"<span class='warning'>[pick("You feel nauseated.", "You feel like you're going to throw up!")]</span>")
+				else
+					fake_emote = pick("cough", "sniff", "sneeze")
+	if(fake_emote)
+		owner.emote(fake_emote)
+	else if(fake_msg)
+		to_chat(owner, fake_msg)
+	msg_stage++

@@ -11,7 +11,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/belt.dmi'
 	force = 15
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	hitsound = 'modular_skyrat/sound/weapons/bloodyslice.ogg'
 	var/obj/item/reagent_containers/syringe/poison
 
@@ -74,7 +74,7 @@
 	hitsound = 'modular_skyrat/sound/weapons/smash.ogg'
 	icon_state = "executioners_sword"
 	item_state = "executioners_sword"
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	var/delimb_chance = 15
 	var/armorthreshold = 25
 
@@ -86,23 +86,22 @@
 		var/obj/item/bodypart/BP = C.get_bodypart(check_zone(user.zone_selected))
 		if(!istype(BP))
 			return
+		if((C.getarmor(def_zone, "melee") >= armorthreshold) || (def_zone in list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)))
+			user.changeNext_move(CLICK_CD_MELEE * 2)
+			return
 		if(prob(delimb_chance))
-			if(BP.body_zone == (BODY_ZONE_CHEST || BODY_ZONE_HEAD))
-				if(C.getarmor(def_zone, "melee") >= armorthreshold)
-					user.changeNext_move(CLICK_CD_MELEE * 2)
-					return
 			BP.dismember(BRUTE)
-		user.changeNext_move(CLICK_CD_MELEE * 2)
+	user.changeNext_move(CLICK_CD_MELEE * 2)
 
 /obj/item/melee/sword/shortsword
 	name = "shortsword"
 	desc = "A short-bladed sword, used for close combat agility, over overpowering your foes."
 	icon_state = "shortsword"
-	item_state = "sword"
+	item_state = "shortsword"
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = "sound/weapons/slash.ogg"
 	force = 12
 
 /obj/item/melee/sword/shortsword/melee_attack_chain(mob/user, atom/target, params)
 	..()
-	user.changeNext_move(CLICK_CD_MELEE * 0.75)
+	user.changeNext_move(CLICK_CD_MELEE * 0.65)

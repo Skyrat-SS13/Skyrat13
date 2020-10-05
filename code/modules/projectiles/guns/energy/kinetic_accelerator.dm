@@ -34,13 +34,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium)
 
-/obj/item/gun/energy/kinetic_accelerator/premiumka/dropped(mob/user)
-	. = ..()
-	if(!QDELING(src) && !holds_charge)
-		// Put it on a delay because moving item from slot to hand
-		// calls dropped().
-		addtimer(CALLBACK(src, .proc/empty_if_not_held), 1.60)
-
 /obj/item/ammo_casing/energy/kinetic/premium
 	projectile_type = /obj/item/projectile/kinetic/premium
 
@@ -151,7 +144,7 @@
 		addtimer(CALLBACK(src, .proc/empty_if_not_held), 2)
 
 /obj/item/gun/energy/kinetic_accelerator/proc/empty_if_not_held()
-	if(!ismob(loc))
+	if(!ismob(loc) && !istype(loc, /obj/item/integrated_circuit))
 		empty()
 
 /obj/item/gun/energy/kinetic_accelerator/proc/empty()
@@ -511,7 +504,7 @@
 		if(L.stat == DEAD)
 			return
 		L = K.firer
-		L.heal_ordered_damage(modifier, damage_heal_order)
+		L.heal_ordered_damage(modifier/(KA?.chambered?.pellets ? KA.chambered.pellets : 1), damage_heal_order) //skyrat edit - healing is divided by pellets to prevent shotgun mod memes
 
 /obj/item/borg/upgrade/modkit/resonator_blasts
 	name = "resonator blast"

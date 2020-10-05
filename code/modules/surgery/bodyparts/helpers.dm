@@ -1,4 +1,3 @@
-
 /mob/living/proc/get_bodypart(zone)
 	return
 
@@ -11,6 +10,8 @@
 			return L
 
 /mob/living/carbon/has_hand_for_held_index(i)
+	if(i >= hand_bodyparts.len)
+		i = hand_bodyparts.len
 	if(i)
 		var/obj/item/bodypart/L = hand_bodyparts[i]
 		if(L && !L.disabled)
@@ -68,6 +69,9 @@
 /mob/proc/get_num_arms(check_disabled = TRUE)
 	return 2
 
+/mob/proc/get_num_hands(check_disabled = TRUE)
+	return 2
+
 /mob/living/carbon/get_num_arms(check_disabled = TRUE)
 	. = 0
 	for(var/X in bodyparts)
@@ -79,6 +83,16 @@
 			if(!check_disabled || !affecting.disabled)
 				.++
 
+/mob/living/carbon/get_num_hands(check_disabled = TRUE)
+	. = 0
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/affecting = X
+		if(affecting.body_part == HAND_RIGHT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+		if(affecting.body_part == HAND_LEFT)
+			if(!check_disabled || !affecting.disabled)
+				.++
 
 //sometimes we want to ignore that we don't have the required amount of arms.
 /mob/proc/get_arm_ignore()
@@ -89,6 +103,9 @@
 
 
 /mob/proc/get_num_legs(check_disabled = TRUE)
+	return 2
+
+/mob/proc/get_num_feet(check_disabled = TRUE)
 	return 2
 
 /mob/living/carbon/get_num_legs(check_disabled = TRUE)
@@ -102,8 +119,22 @@
 			if(!check_disabled || !affecting.disabled)
 				.++
 
+/mob/living/carbon/get_num_feet(check_disabled = TRUE)
+	. = 0
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/affecting = X
+		if(affecting.body_part == FOOT_RIGHT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+		if(affecting.body_part == FOOT_LEFT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+
 //sometimes we want to ignore that we don't have the required amount of legs.
 /mob/proc/get_leg_ignore()
+	return FALSE
+
+/mob/proc/get_feet_ignore()
 	return FALSE
 
 /mob/living/carbon/get_leg_ignore()
@@ -111,14 +142,22 @@
 		return TRUE
 	return FALSE
 
+/mob/living/carbon/get_feet_ignore()
+	if(movement_type & (FLYING|FLOATING))
+		return TRUE
+	return FALSE
+
 /mob/living/carbon/alien/larva/get_leg_ignore()
+	return TRUE
+
+/mob/living/carbon/alien/larva/get_feet_ignore()
 	return TRUE
 
 /mob/living/proc/get_missing_limbs()
 	return list()
 
 /mob/living/carbon/get_missing_limbs()
-	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+	var/list/full = ALL_BODYPARTS //skyrat edit
 	for(var/zone in full)
 		if(get_bodypart(zone))
 			full -= zone
@@ -135,7 +174,7 @@
 	return list()
 
 /mob/living/carbon/get_disabled_limbs()
-	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+	var/list/full = ALL_BODYPARTS //skyrat edit
 	var/list/disabled = list()
 	for(var/zone in full)
 		var/obj/item/bodypart/affecting = get_bodypart(zone)
@@ -152,26 +191,24 @@
 			disabled += zone
 	return disabled
 
-//Remove all embedded objects from all limbs on the carbon mob
+///Remove a specific embedded item from the carbon mob
+/mob/living/carbon/proc/remove_embedded_object(obj/item/I)
+	SEND_SIGNAL(src, COMSIG_CARBON_EMBED_REMOVAL, I)
+
+///Remove all embedded objects from all limbs on the carbon mob
 /mob/living/carbon/proc/remove_all_embedded_objects()
-	var/turf/T = get_turf(src)
-
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/L = X
 		for(var/obj/item/I in L.embedded_objects)
-			L.embedded_objects -= I
-			I.forceMove(T)
-			I.unembedded()
+			remove_embedded_object(I)
 
-	clear_alert("embeddedobject")
-	SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
-
-/mob/living/carbon/proc/has_embedded_objects()
-	. = 0
+/mob/living/carbon/proc/has_embedded_objects(include_harmless=FALSE)
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/L = X
 		for(var/obj/item/I in L.embedded_objects)
-			return 1
+			if(!include_harmless && I.isEmbedHarmless())
+				continue
+			return TRUE
 
 
 //Helper for quickly creating a new limb - used by augment code in species.dm spec_attacked_by
@@ -180,16 +217,36 @@
 	switch(zone)
 		if(BODY_ZONE_L_ARM)
 			L = new /obj/item/bodypart/l_arm()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_HAND)
+			L = new /obj/item/bodypart/l_hand()
+		//
 		if(BODY_ZONE_R_ARM)
 			L = new /obj/item/bodypart/r_arm()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_R_HAND)
+			L = new /obj/item/bodypart/r_hand()
+		//
 		if(BODY_ZONE_HEAD)
 			L = new /obj/item/bodypart/head()
 		if(BODY_ZONE_L_LEG)
 			L = new /obj/item/bodypart/l_leg()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			L = new /obj/item/bodypart/l_foot()
+		//
 		if(BODY_ZONE_R_LEG)
 			L = new /obj/item/bodypart/r_leg()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_R_FOOT)
+			L = new /obj/item/bodypart/r_foot()
+		//
 		if(BODY_ZONE_CHEST)
 			L = new /obj/item/bodypart/chest()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_GROIN)
+			L = new /obj/item/bodypart/groin()
+		//
 	if(L)
 		L.update_limb(fixed_icon, src)
 		if(robotic)
@@ -202,16 +259,36 @@
 	switch(zone)
 		if(BODY_ZONE_L_ARM)
 			L = new /obj/item/bodypart/l_arm/monkey()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_HAND)
+			L = new /obj/item/bodypart/l_hand/monkey()
+		//
 		if(BODY_ZONE_R_ARM)
 			L = new /obj/item/bodypart/r_arm/monkey()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_R_HAND)
+			L = new /obj/item/bodypart/r_hand/monkey()
+		//
 		if(BODY_ZONE_HEAD)
 			L = new /obj/item/bodypart/head/monkey()
 		if(BODY_ZONE_L_LEG)
 			L = new /obj/item/bodypart/l_leg/monkey()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			L = new /obj/item/bodypart/l_foot/monkey()
+		//
 		if(BODY_ZONE_R_LEG)
 			L = new /obj/item/bodypart/r_leg/monkey()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			L = new /obj/item/bodypart/r_foot/monkey()
+		//
 		if(BODY_ZONE_CHEST)
 			L = new /obj/item/bodypart/chest/monkey()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_GROIN)
+			L = new /obj/item/bodypart/groin/monkey()
+		//
 	if(L)
 		L.update_limb(fixed_icon, src)
 		if(robotic)
@@ -236,16 +313,36 @@
 	switch(zone)
 		if(BODY_ZONE_L_ARM)
 			L = new /obj/item/bodypart/l_arm/alien()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_HAND)
+			L = new /obj/item/bodypart/l_hand/alien()
+		//
 		if(BODY_ZONE_R_ARM)
 			L = new /obj/item/bodypart/r_arm/alien()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_R_HAND)
+			L = new /obj/item/bodypart/r_hand/alien()
+		//
 		if(BODY_ZONE_HEAD)
 			L = new /obj/item/bodypart/head/alien()
 		if(BODY_ZONE_L_LEG)
 			L = new /obj/item/bodypart/l_leg/alien()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			L = new /obj/item/bodypart/l_foot/alien()
+		//
 		if(BODY_ZONE_R_LEG)
 			L = new /obj/item/bodypart/r_leg/alien()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			L = new /obj/item/bodypart/r_foot/alien()
+		//
 		if(BODY_ZONE_CHEST)
 			L = new /obj/item/bodypart/chest/alien()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_GROIN)
+			L = new /obj/item/bodypart/groin/alien()
+		//
 	if(L)
 		L.update_limb(fixed_icon, src)
 		if(robotic)
@@ -255,12 +352,20 @@
 /mob/living/carbon/proc/Digitigrade_Leg_Swap(swap_back)
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/O = X
-		if((O.body_part == LEG_LEFT || O.body_part == LEG_RIGHT) && ((!O.use_digitigrade && !swap_back) || (O.use_digitigrade && swap_back)))
+		if((O.body_part == LEG_LEFT || O.body_part == LEG_RIGHT || O.body_part == FOOT_RIGHT || O.body_part == FOOT_LEFT) && ((!O.use_digitigrade && !swap_back) || (O.use_digitigrade && swap_back))) //skyrat edit
 			O.use_digitigrade = swap_back ? NOT_DIGITIGRADE : FULL_DIGITIGRADE
 			O.update_limb(FALSE, src)
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
+		//skyrat edit
+		if(H.w_shirt)
+			H.update_inv_w_shirt()
+		if(H.w_socks)
+			H.update_inv_w_socks()
+		if(H.w_underwear)
+			H.update_inv_w_underwear()
+		//
 		if(H.w_uniform)
 			H.update_inv_w_uniform()
 		if(H.shoes)
@@ -272,14 +377,36 @@
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/L = X
 		switch(L.body_part)
+			//skyrat edit on all of this pretty much
 			if(CHEST)
+				. |= CHEST
+			if(GROIN)
 				. |= GROIN
 			if(LEG_LEFT)
-				. |= FOOT_LEFT
+				. |= LEG_LEFT
 			if(LEG_RIGHT)
+				. |= LEG_RIGHT
+			if(FOOT_LEFT)
+				. |= FOOT_LEFT
+			if(FOOT_RIGHT)
 				. |= FOOT_RIGHT
 			if(ARM_LEFT)
-				. |= HAND_LEFT
+				. |= ARM_LEFT
 			if(ARM_RIGHT)
+				. |= ARM_RIGHT
+			if(HAND_LEFT)
+				. |= HAND_LEFT
+			if(HAND_RIGHT)
 				. |= HAND_RIGHT
+			//
 		. |= L.body_part
+
+///Get the bodypart for whatever hand we have active, Only relevant for carbons
+/mob/proc/get_active_hand()
+	return FALSE
+
+/mob/living/carbon/get_active_hand()
+	var/which_hand = BODY_ZONE_PRECISE_L_HAND
+	if(!(active_hand_index % 2))
+		which_hand = BODY_ZONE_PRECISE_R_HAND
+	return get_bodypart(check_zone(which_hand))

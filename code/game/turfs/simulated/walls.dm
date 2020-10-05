@@ -11,8 +11,11 @@
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
 	baseturfs = /turf/open/floor/plating
-
-	var/hardness = 40 //lower numbers are harder. Used to determine the probability of a hulk smashing through.
+	//skyrat edit
+	///lower numbers are harder. Used to determine the probability of a hulk smashing through. Also, (hardness - 40) is used as a modifier for objects trying to embed in this (hardness of 30 results in a -10% chance)
+	var/hardness = 40
+	flags_ricochet = RICOCHET_HARD
+	//
 	var/slicing_duration = 100  //default time taken to slice the wall
 	var/sheet_type = /obj/item/stack/sheet/metal
 	var/sheet_amount = 2
@@ -238,12 +241,14 @@
 
 /turf/closed/wall/proc/try_destroy(obj/item/I, mob/user, turf/T)
 	if(istype(I, /obj/item/pickaxe/drill/jackhammer))
-		if(!iswallturf(src))
-			return TRUE
-		if(user.loc == T)
+		var/obj/item/pickaxe/drill/jackhammer/J = I
+		to_chat(user, "<span class='notice'>You begin to smash though [src]...</span>")
+		if(do_after(user, J.wallsmash_time, target = src))
+			if(!istype(src, /turf/closed/wall/))
+				return TRUE
 			I.play_tool_sound(src)
-			dismantle_wall()
 			visible_message("<span class='warning'>[user] smashes through [src] with [I]!</span>", "<span class='italics'>You hear the grinding of metal.</span>")
+			dismantle_wall()
 			return TRUE
 	return FALSE
 

@@ -12,6 +12,8 @@
 #define MOVE_INTENT_RUN  "run"
 
 //Blood levels
+#define BLOOD_VOLUME_MAX_LETHAL		2150
+#define BLOOD_VOLUME_EXCESS			2100
 #define BLOOD_VOLUME_MAXIMUM		2000
 #define BLOOD_VOLUME_SLIME_SPLIT	1120
 #define BLOOD_VOLUME_NORMAL			560
@@ -47,21 +49,12 @@
 #define MOB_REPTILE		(1 << 8)
 #define MOB_SPIRIT		(1 << 9)
 
-//Organ defines for carbon mobs
-#define ORGAN_ORGANIC   1
-#define ORGAN_ROBOTIC   2
-
-#define BODYPART_ORGANIC   1
-#define BODYPART_ROBOTIC   2
-
-#define BODYPART_NOT_DISABLED 0
-#define BODYPART_DISABLED_DAMAGE 1
-#define BODYPART_DISABLED_PARALYSIS 2
-
-#define DEFAULT_BODYPART_ICON 'icons/mob/human_parts.dmi'
-#define DEFAULT_BODYPART_ICON_ORGANIC 'icons/mob/human_parts_greyscale.dmi'
-#define DEFAULT_BODYPART_ICON_ROBOTIC 'icons/mob/augmentation/augments.dmi'
-#define DEFAULT_BODYPART_ICON_CITADEL 'modular_citadel/icons/mob/mutant_bodyparts.dmi'
+//skyrat edit
+#define DEFAULT_BODYPART_ICON 'modular_skyrat/icons/mob/human_parts.dmi'
+#define DEFAULT_BODYPART_ICON_ORGANIC 'modular_skyrat/icons/mob/human_parts_greyscale.dmi'
+#define DEFAULT_BODYPART_ICON_ROBOTIC 'modular_skyrat/icons/mob/augments/augments.dmi'
+#define DEFAULT_BODYPART_ICON_CITADEL 'modular_skyrat/icons/mob/mutant_bodyparts.dmi'
+//
 
 #define MONKEY_BODYPART "monkey"
 #define ALIEN_BODYPART "alien"
@@ -98,12 +91,16 @@
 #define BRAIN_TRAUMA_MILD /datum/brain_trauma/mild
 #define BRAIN_TRAUMA_SEVERE /datum/brain_trauma/severe
 #define BRAIN_TRAUMA_SPECIAL /datum/brain_trauma/special
+#define BRAIN_TRAUMA_MAGIC /datum/brain_trauma/magic
 
 #define TRAUMA_RESILIENCE_BASIC 1      //Curable with chems
 #define TRAUMA_RESILIENCE_SURGERY 2    //Curable with brain surgery
 #define TRAUMA_RESILIENCE_LOBOTOMY 3   //Curable with lobotomy
-#define TRAUMA_RESILIENCE_MAGIC 4      //Curable only with magic
-#define TRAUMA_RESILIENCE_ABSOLUTE 5   //This is here to stay
+//skyrat edit
+#define TRAUMA_RESILIENCE_WOUND 4    //Curable by healing the head wound
+#define TRAUMA_RESILIENCE_MAGIC 5      //Curable only with magic
+#define TRAUMA_RESILIENCE_ABSOLUTE 6   //This is here to stay
+//
 
 //Limit of traumas for each resilience tier
 #define TRAUMA_LIMIT_BASIC 3
@@ -266,6 +263,12 @@
 #define OFFSET_HAIR "hair"
 #define OFFSET_FHAIR "fhair"
 #define OFFSET_MUTPARTS "mutantparts"
+//skyrat edit
+#define OFFSET_UNDERWEAR "underwear"
+#define	OFFSET_SOCKS "socks"
+#define OFFSET_SHIRT "shirt"
+#define OFFSET_WRISTS "wrist"
+//
 
 //MINOR TWEAKS/MISC
 #define AGE_MIN				18	//youngest a character can be //CITADEL EDIT - 17 --> 18
@@ -309,3 +312,9 @@
 #define FOV_90_DEGREES	90
 #define FOV_180_DEGREES	180
 #define FOV_270_DEGREES	270
+
+/// How far away you can be to make eye contact with someone while examining
+#define EYE_CONTACT_RANGE	5
+
+/// If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()
+#define EXAMINE_MORE_TIME	2 SECONDS //skyrat edit

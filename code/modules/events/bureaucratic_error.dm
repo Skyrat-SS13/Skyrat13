@@ -11,4 +11,9 @@
 	priority_announce("A recent bureaucratic error in the Organic Resources Department may result in personnel shortages in some departments and redundant staffing in others.", "Paperwork Mishap Alert")
 
 /datum/round_event/bureaucratic_error/start()
-	SSjob.set_overflow_role(pick(get_all_jobs()))
+	//Skyrat edit -- start
+	var/datum/job/random_job = SSjob.GetJob(pick(get_all_jobs() - "Assistant"))
+	var/cap = rand(10,15)
+	random_job.spawn_positions = cap
+	random_job.total_positions = cap
+	//Skyrat edit -- end

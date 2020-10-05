@@ -83,7 +83,7 @@
 		icon_state = extended_icon_state
 		attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		hitsound = 'sound/weapons/bladeslice.ogg'
-		sharpness = IS_SHARP
+		sharpness = SHARP_EDGED
 		light_color = "#cc00ff"
 		light_range = 1
 		light_power = 1
@@ -95,7 +95,7 @@
 		icon_state = retracted_icon_state
 		attack_verb = list("stubbed", "poked")
 		hitsound = 'sound/weapons/genhit.ogg'
-		sharpness = IS_BLUNT
+		sharpness = SHARP_NONE
 		light_color = null
 		light_range = 0
 		light_power = 0
@@ -112,7 +112,7 @@
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("oofed")
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	var/cooldown = 10
 	var/cooldowntime = 0
@@ -159,7 +159,7 @@
 	layer = ABOVE_MOB_LAYER
 
 //ebony blade
-/obj/item/twohanded/ebonyblade
+/obj/item/ebonyblade
 	name = "Ebony Blade"
 	desc = "Forged in deceit, this weapon gets more powerful with the blood of those that are alligned with you."
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
@@ -168,12 +168,9 @@
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	item_state = "ebonyblade"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "destroyed", "ripped", "devastated", "shredded")
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 	block_chance = 0
 	var/block_chance_wielded = 20
-	force = 5
-	force_unwielded = 5
-	force_wielded = 13
 	var/current_lifesteal = 0
 	var/lifesteal = 2.5
 	var/forceadd_samerole = 5
@@ -181,21 +178,24 @@
 	var/blockadd_anydeceit = 10
 	var/datum/status_effect/tracker = /datum/status_effect/ebony_damage
 
-/obj/item/twohanded/ebonyblade/Initialize()
+/obj/item/ebonyblade/Initialize()
 	. = ..()
-	AddComponent(/datum/component/butchering, 100, 110)
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/wield)
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/unwield)
 
-/obj/item/twohanded/ebonyblade/unwield(mob/living/carbon/user, show_message = TRUE)
-	..()
+/obj/item/ebonyblade/ComponentInitialize()
+	AddComponent(/datum/component/butchering, 100, 110)
+	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=13, icon_wielded="ebonyblade1")
+
+/obj/item/ebonyblade/proc/unwield(mob/living/carbon/user, show_message = TRUE)
 	block_chance = initial(block_chance)
 	lifesteal = initial(current_lifesteal)
 
-/obj/item/twohanded/ebonyblade/wield(mob/living/carbon/user, show_message = TRUE)
-	..()
+/obj/item/ebonyblade/proc/wield(mob/living/carbon/user, show_message = TRUE)
 	block_chance = block_chance_wielded
 	current_lifesteal = lifesteal
 
-/obj/item/twohanded/ebonyblade/attack(mob/living/target, mob/living/carbon/user)
+/obj/item/ebonyblade/attack(mob/living/target, mob/living/carbon/user)
 	if(target.stat == DEAD)
 		..()
 		return
@@ -213,29 +213,26 @@
 		C.total_damage += target_health - target.health
 		if(C.total_damage > (target.maxHealth * 0.33)) //At least a third of the damage must be done by the blade for the kill to count.
 			if(target.stat == DEAD && user.mind && target.mind)
+				var/datum/component/two_handed/TH = GetComponent(/datum/component/two_handed)
 				var/obj/item/card/id/userid = user.get_item_by_slot(SLOT_WEAR_ID)
 				var/list/useraccess = userid.GetAccess()
 				var/obj/item/card/id/targetid = target.get_item_by_slot(SLOT_WEAR_ID)
 				var/list/targetaccess = targetid.GetAccess()
 				var/combinedaccess = useraccess | targetaccess
-				if((user.mind.assigned_role == target.mind.assigned_role) || (targetaccess == combinedaccess))
-					src.force_wielded += forceadd_samerole
+				if((user.mind.assigned_role == target.mind.assigned_role) || (useraccess == combinedaccess))
+					TH.force_wielded += forceadd_samerole
 					src.lifesteal += forceadd_samerole/2
 					src.block_chance_wielded += blockadd_anydeceit
-					if(src.block_chance_wielded > 90)
-						src.block_chance_wielded = 90
 				if(user.mind.special_role == target.mind.special_role)
-					src.force_wielded += forceadd_sameantagonist
+					TH.force_wielded += forceadd_sameantagonist
 					src.lifesteal += forceadd_sameantagonist/2
 					src.block_chance_wielded += (blockadd_anydeceit * 2)
-					if(src.block_chance_wielded > 90)
-						src.block_chance_wielded = 90
-				if(user.mind.isholy == target.mind.isholy)
-					src.force_wielded += forceadd_samerole
+				if(user.mind.isholy && target.mind.isholy)
+					TH.force_wielded += forceadd_samerole
 					src.lifesteal += forceadd_samerole/2
 					src.block_chance_wielded += blockadd_anydeceit
-					if(src.block_chance_wielded > 90)
-						src.block_chance_wielded = 90
+				if(src.block_chance_wielded > 90)
+					src.block_chance_wielded = 90
 
 //shitty hatchet
 /obj/item/hatchet/improvised
@@ -268,7 +265,7 @@
 	icon_state = "shank"
 	force = 5 // Bad force, but it stabs twice as fast
 	throwforce = 10
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_TINY
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "shanked", "sliced", "cut")
@@ -364,7 +361,7 @@
 		final_block_chance = 0
 	return ..()
 
-/obj/item/twohanded/spear/halberd
+/obj/item/halberd
 	name = "makeshift halberd"
 	desc = "A horrible creation that shouldn't even work. Simply put, a hatchet attached to the end of a makeshift glass spear."
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
@@ -372,30 +369,12 @@
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/axes_righthand.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/axes_lefthand.dmi'
 	item_state = "mhalberd0"
-	icon_prefix = "mhalberd"
 	embedding = list("embedded_impact_pain_multiplier" = 3, "embed_chance" = 50)
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "stabbed", "slashed")
 	armour_penetration = 5
 
-/obj/item/twohanded/spear/halberd/CheckParts(list/parts_list)
-	var/obj/item/hatchet/tip = locate() in parts_list
-	if(tip)
-		force = tip.force
-		force_unwielded = tip.force
-		parts_list -= tip
-		qdel(tip)
-	var/obj/item/twohanded/spear/pear = locate() in parts_list
-	if(pear)
-		if(!istype(pear, /obj/item/twohanded/spear/halberd))
-			force_wielded = pear.force_wielded + (tip.force/10)
-			throwforce = pear.throwforce + (tip.throwforce/10)
-		else
-			force_wielded = pear.force_wielded
-			throwforce = pear.throwforce
-		parts_list -= pear
-		qdel(pear)
-	update_icon()
-	return ..()
+/obj/item/halberd/ComponentInitialize()
+	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=18, icon_wielded="mhalberd1")
 
 //KINKY. Clone of the banhammer.
 /obj/item/bdsm_whip
@@ -570,7 +549,10 @@
 			LM.apply_damage(25, BRUTE, BODY_ZONE_HEAD, 0, TRUE)
 			if(ishuman(LM))
 				var/mob/living/carbon/human/H = LM
-				H.bleed_rate += 30
+				for(var/x in H.bodyparts)
+					var/obj/item/bodypart/BP = x
+					if(istype(BP))
+						BP.generic_bleedstacks += 5
 				if(NOBLOOD in H.dna.species.species_traits)
 					H.apply_damage(125, BRUTE, user.zone_selected, 0, TRUE)
 			if(!LM.has_status_effect(/datum/status_effect/neck_slice))
@@ -620,7 +602,10 @@
 		if(istype(S, /datum/species/pod) || istype(S, /datum/species/mush))
 			ooser.visible_message("<span class='userdanger'>[user] slits [H]'s throat with [src]!</span>", \
 					"<span class='userdanger'>You slit [H]'s throat!</span>")
-			H.bleed_rate = 30
+			for(var/x in H.bodyparts)
+				var/obj/item/bodypart/BP = x
+				if(istype(BP))
+					BP.generic_bleedstacks += 5
 			if(NOBLOOD in H.dna.species.species_traits)
 				H.apply_damage(100, BRUTE, user.zone_selected, 0, TRUE)
 			if(!H.has_status_effect(/datum/status_effect/neck_slice))
@@ -649,12 +634,12 @@
 	attack_verb_on = list("poked", "slashed", "stabbed", "sliced", "torn", "pierced", "diced", "cut")
 	attack_verb_off = list("tapped", "prodded")
 	w_class = WEIGHT_CLASS_SMALL
-	sharpness = IS_BLUNT
-	var/sharpness_on = IS_SHARP_ACCURATE
+	sharpness = SHARP_NONE
+	var/sharpness_on = SHARP_EDGED
 	w_class_on = WEIGHT_CLASS_NORMAL
 	custom_materials = list(MAT_METAL=12000)
-	var/onsound
-	var/offsound
+	var/onsound = 'sound/weapons/batonextend.ogg'
+	var/offsound = 'sound/weapons/batonextend.ogg'
 
 /obj/item/melee/transforming/butterfly/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
@@ -668,7 +653,7 @@
 
 
 /obj/item/melee/transforming/butterfly/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(check_target_facings(user, M) == FACING_SAME_DIR && active && user.a_intent != INTENT_HELP && ishuman(M))
+	if(check_target_facings(user, M) == FACING_SAME_DIR && active && user.a_intent != INTENT_HELP)
 		var/mob/living/carbon/human/U = M
 		return backstab(U,user,backstabforce)
 
@@ -685,7 +670,7 @@
 		to_chat(user, "<span class='notice'>[src] [active ? "is now active":"can now be concealed"].</span>")
 
 
-/obj/item/melee/transforming/butterfly/proc/backstab(mob/living/carbon/human/U, mob/living/carbon/user, damage)
+/obj/item/melee/transforming/butterfly/proc/backstab(mob/living/U, mob/living/carbon/user, damage)
 	var/obj/item/bodypart/affecting = U.get_bodypart("chest")
 
 	if(!affecting || U == user || U.stat == DEAD) //no chest???!!!!
@@ -714,3 +699,13 @@
 	icon_state_on = "butterflyknifeenergy1"
 	onsound = 'modular_skyrat/sound/weapons/knifeopen.ogg'
 	offsound = 'modular_skyrat/sound/weapons/knifeclose.ogg'
+
+//black police baton
+/obj/item/melee/classic_baton/black
+	name = "Black Police Baton"
+	desc = "The safeword is police brutality."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "blackbaton"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_righthand.dmi'
+	item_state = "blackbaton"

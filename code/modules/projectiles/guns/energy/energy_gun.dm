@@ -52,7 +52,7 @@
 
 /obj/item/gun/energy/e_gun/hos
 	name = "\improper X-01 MultiPhase Energy Gun"
-	desc = "This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time in exchange for inbuilt advanced firearm EMP shielding."
+	desc = "This is an expensive, modern recreation of a Z-10 MultiPhase Energy Gun. This gun has several unique firemodes, but lacks the ability to recharge over time in exchange for inbuilt advanced firearm EMP shielding."
 	icon_state = "hoslaser"
 	force = 10
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser/hos, /obj/item/ammo_casing/energy/ion/hos)
@@ -150,3 +150,80 @@
 				add_overlay("[icon_state]_fail_1")
 			if(151 to INFINITY)
 				add_overlay("[icon_state]_fail_2")
+
+/obj/item/gun/energy/e_gun/large //SPECIAL THANKS to Jake Park for helping me with the alert lock code! You're the best, man <3
+	name = "energy rifle"
+	desc = "A basic hybrid energy rifle with two settings: disable and kill."
+	icon_state = "energy_rifle"
+	cell_type = /obj/item/stock_parts/cell/secborg
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
+	charge_sections = 3
+	var/weapon_hacked = FALSE //Is this weapon hacked to allow lethal blasts outside of an alert level?
+	var/weapon_superhacked = FALSE //Have the weapon's safeties been irreparably damaged?
+	var/panel_open = FALSE //Is this weapon's modification panel currently open?
+	var/sec_level = SEC_LEVEL_GREEN
+
+/obj/item/gun/energy/e_gun/large/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/gun/energy/e_gun/large/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/gun/energy/e_gun/large/process()
+	if(GLOB.security_level == SEC_LEVEL_GREEN && current_firemode_index == 2)
+		if(!weapon_hacked && !weapon_superhacked)
+			audible_message("<span class='warning'>WARNING: Security level mismatch, changing energy mode!</span>")
+			playsound(loc, 'sound/machines/beep.ogg', 50, 1)
+			chambered = null
+			current_firemode_index = 1
+			fire_sound = 'sound/weapons/taser2.ogg' //I have to set these manually unfortunately
+			fire_delay = 3.5
+			post_set_firemode()
+			update_icon(TRUE)
+
+/obj/item/gun/energy/e_gun/large/attack_self(mob/living/user)
+	. = ..()
+	if(can_select_fire(user))
+		if(GLOB.security_level == SEC_LEVEL_GREEN && !weapon_hacked && !weapon_superhacked)
+			audible_message("<span class='warning'>ERROR: Security level mismatch, cannot change energy mode!</span>")
+			playsound(loc, 'sound/machines/beep.ogg', 50, 1)
+			chambered = null
+			current_firemode_index = 1
+			fire_sound = 'sound/weapons/taser2.ogg'
+			fire_delay = 3.5
+			post_set_firemode()
+			update_icon(TRUE)
+		else
+			return
+
+/obj/item/gun/energy/e_gun/large/screwdriver_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
+
+	panel_open = !panel_open
+	to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the circuitry panel on the rifle.</span>")
+	desc = "A basic hybrid energy rifle with two settings: disable and kill. [panel_open ? "<b>Its modification panel is open!</b>" : " "]"
+
+/obj/item/gun/energy/e_gun/large/multitool_act(mob/user, obj/item/I)
+	if(panel_open)
+		weapon_hacked = !weapon_hacked
+		to_chat(user, "<span class='warning'>You modify the safety circuit on the rifle, [weapon_hacked ? "enabling" : "disabling"] unrestricted lethal firing.</span>")
+		playsound(src, 'sound/machines/terminal_alert.ogg', 10, 1)
+	else
+		return
+
+/obj/item/gun/energy/e_gun/large/emag_act(mob/user)
+	. = ..()
+	if(obj_flags & EMAGGED)
+		return
+	obj_flags |= EMAGGED
+	weapon_hacked = TRUE
+	weapon_superhacked = TRUE
+	to_chat(user, "<span class='warning'>You swipe the card along the rifle, shutting off its lethal firing safeties!</span>")
+	playsound(src, 'sound/machines/terminal_alert.ogg', 20, 2)
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+

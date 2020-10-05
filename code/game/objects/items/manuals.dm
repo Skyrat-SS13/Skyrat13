@@ -251,7 +251,7 @@
 		initialize_wikibook()
 	..()
 
-/obj/item/book/manual/wiki/proc/initialize_wikibook()
+/*/obj/item/book/manual/wiki/proc/initialize_wikibook() MOVED TO MODULAR_SKYRAT
 	var/wikiurl = CONFIG_GET(string/wikiurltg)
 	if(wikiurl)
 		dat = {"
@@ -277,7 +277,7 @@
 
 			</html>
 
-			"}
+			"}*/
 
 /obj/item/book/manual/wiki/cit
 	name = "Citadel infobook"
@@ -362,13 +362,13 @@
 	title = "Singularity and Tesla for Dummies"
 	page_link = "Singularity_and_Tesla_engines"
 
-/obj/item/book/manual/wiki/security_space_law
+/*/obj/item/book/manual/wiki/security_space_law MOVED TO MODULAR_SKYRAT
 	name = "Space Law"
 	desc = "A set of Nanotrasen guidelines for keeping law and order on their space stations."
 	icon_state = "bookSpaceLaw"
 	author = "Nanotrasen"
 	title = "Space Law"
-	page_link = "Space_Law"
+	page_link = "Space_Law"*/
 
 /obj/item/book/manual/wiki/security_space_law/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] pretends to read \the [src] intently... then promptly dies of laughter!</span>")
@@ -506,7 +506,11 @@
 			if(prob(50))
 				step(W, pick(GLOB.alldirs))
 		ADD_TRAIT(H, TRAIT_DISFIGURED, TRAIT_GENERIC)
-		H.bleed_rate = 5
+		//skyrat edit
+		for(var/i in H.bodyparts)
+			var/obj/item/bodypart/BP = i
+			BP.generic_bleedstacks += 5
+		//
 		H.gib_animation()
 		sleep(3)
 		H.adjustBruteLoss(1000) //to make the body super-bloody

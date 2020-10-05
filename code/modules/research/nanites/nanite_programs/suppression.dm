@@ -7,6 +7,7 @@
 	trigger_cost = 15
 	trigger_cooldown = 1200
 	rogue_types = list(/datum/nanite_program/brain_misfire, /datum/nanite_program/brain_decay)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/sleepy/on_trigger(comm_message)
 	to_chat(host_mob, "<span class='warning'>You start to feel very sleepy...</span>")
@@ -61,6 +62,7 @@
 	desc = "The nanites suppress the aggression center of the brain, preventing the host from causing direct harm to others."
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/brain_misfire, /datum/nanite_program/brain_decay)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/pacifying/enable_passive_effect()
 	. = ..()
@@ -75,6 +77,7 @@
 	desc = "The nanites suppress the host's ocular nerves, blinding them while they're active."
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/nerve_decay)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/blinding/enable_passive_effect()
 	. = ..()
@@ -103,6 +106,7 @@
 	desc = "The nanites induce a death-like coma into the host, able to fool most medical scans."
 	use_rate = 3.5
 	rogue_types = list(/datum/nanite_program/nerve_decay, /datum/nanite_program/necrotic, /datum/nanite_program/brain_decay)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/fake_death/enable_passive_effect()
 	. = ..()
@@ -176,7 +180,7 @@
 		sent_message = message_setting.get_value()
 	if(host_mob.stat == DEAD)
 		return
-	to_chat(host_mob, "<i>You hear a strange, robotic voice in your head...</i> \"<span class='robot'>[sent_message]</span>\"")
+	to_chat(host_mob, "<i>You hear a strange, robotic voice in your head...</i> \"<span class='robot'>[html_encode(sent_message)]</span>\"")
 
 /datum/nanite_program/comm/hallucination
 	name = "Hallucination"
@@ -278,6 +282,7 @@
 	desc = "The nanites synthesize serotonin inside the host's brain, creating an artificial sense of happiness."
 	use_rate = 0.1
 	rogue_types = list(/datum/nanite_program/brain_decay)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/good_mood/register_extra_settings()
 	. = ..()
@@ -296,6 +301,7 @@
 	desc = "The nanites suppress the production of serotonin inside the host's brain, creating an artificial state of depression."
 	use_rate = 0.1
 	rogue_types = list(/datum/nanite_program/brain_decay)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/bad_mood/register_extra_settings()
 	. = ..()

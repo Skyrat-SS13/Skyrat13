@@ -24,7 +24,7 @@
 				/datum/surgery_step/mechanic_close)
 
 /datum/surgery_step/robot_heal
-	name = "repair body (welder/cable)"
+	name = "Repair body (Welder/Cable)"
 	implements = list(TOOL_WELDER = 100, /obj/item/stack/cable_coil = 100)
 	repeatable = TRUE
 	time = 15
@@ -34,7 +34,7 @@
 	var/burnhealing = 0
 	var/missinghpbonus = 0 //heals an extra point of damager per X missing damage of type (burn damage for burn healing, brute for brute). Smaller Number = More Healing!
 
-/datum/surgery_step/robot_heal/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/robot_heal/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == TOOL_WELDER && !tool.tool_use_check(user, 1))
 		return FALSE
 	return TRUE
@@ -59,7 +59,7 @@
 
 /datum/surgery_step/robot_heal/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	if(..())
-		while((healsbrute && target.getBruteLoss() && tool.tool_use_check(user,1)) || (healsburn && target.getFireLoss() && tool))
+		while((healsbrute && tool.tool_use_check(user,1)) || (healsburn && tool))
 			if(!..())
 				break
 
@@ -123,7 +123,7 @@
 /***************************STEPS***************************/
 
 /datum/surgery_step/robot_heal/basic
-	name = "repair damage"
+	name = "Repair damage"
 	brutehealing = 10
 	burnhealing = 10
 	missinghpbonus = 15 

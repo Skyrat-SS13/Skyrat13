@@ -45,8 +45,8 @@
 	REMOVE_TRAIT(user, secondary_trait, GLOVE_TRAIT)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		H.dna.species.punchdamagehigh = initial(H.dna.species.punchdamagehigh)
-		H.dna.species.punchdamagelow = initial(H.dna.species.punchdamagelow)
+		H.dna.species.punchdamagehigh -= enhancement //skyrat edit
+		H.dna.species.punchdamagelow -= enhancement //skyrat edit
 	return ..()
 
 /obj/item/clothing/gloves/fingerless/pugilist/chaplain
@@ -73,7 +73,7 @@
 	icon_state = "narsiearmwraps"
 	item_state = "narsiearmwraps"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 35, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 35, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 10)
 	enhancement = 3
 	secondary_trait = TRAIT_KI_VAMPIRE
 
@@ -83,7 +83,7 @@
 	icon_state = "ratvararmwraps"
 	item_state = "ratvararmwraps"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list("melee" = 10, "bullet" = 0, "laser" = -10, "energy" = 0, "bomb" = 0, "bio" = 35, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 10, "bullet" = 0, "laser" = -10, "energy" = 0, "bomb" = 0, "bio" = 35, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 10)
 	enhancement = 4 //The artifice of Ratvar is unmatched except when it is.
 	secondary_trait = TRAIT_STRONG_GRABBER
 
@@ -150,7 +150,7 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 30)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 30, "wound" = 5)
 	strip_mod = 0.9
 
 /obj/item/clothing/gloves/combat
@@ -166,7 +166,7 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 50)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 50, "wound" = 25)
 	strip_mod = 1.5
 
 
@@ -183,7 +183,7 @@
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
-	armor = list("melee" = 15, "bullet" = 35, "laser" = 35, "energy" = 20, "bomb" = 35, "bio" = 35, "rad" = 35, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 15, "bullet" = 35, "laser" = 35, "energy" = 20, "bomb" = 35, "bio" = 35, "rad" = 35, "fire" = 0, "acid" = 0, "wound" = 10)
 
 /obj/item/clothing/gloves/thief
 	name = "black gloves"
@@ -199,3 +199,15 @@
 	transfer_prints = FALSE
 	strip_mod = 5
 	strip_silence = TRUE
+
+/obj/item/clothing/gloves/evening
+	name = "evening gloves"
+	desc = "Thin, pretty gloves intended for use in regal feminine attire, but knowing Space China these are just for some maid fetish."
+	icon_state = "evening"
+	item_state = "evening"
+	strip_delay = 40
+	equip_delay_other = 20
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	strip_mod = 0.9
+	custom_price = PRICE_ALMOST_CHEAP

@@ -101,7 +101,7 @@
 	. = ..()
 	if(istype(hit_atom))
 		playsound(src, attack_sound, 100, TRUE)
-		hit_atom.apply_damage(22 * size / 2) //It gets pretty hard to dodge the skulls when there are a lot of them. Scales down with size
+		hit_atom.apply_damage(22 * size / 2, BRUTE, null, null, null, null, CANT_WOUND) //It gets pretty hard to dodge the skulls when there are a lot of them. Scales down with size
 		hit_atom.safe_throw_at(get_step(src, get_dir(src, hit_atom)), 2) //Some knockback. Prevent the legion from melee directly after the throw.
 
 //TURRETS
@@ -163,7 +163,7 @@
 	if(last_legion)
 		loot = list(/obj/structure/closet/crate/necropolis/legion/hard)
 		elimination = FALSE
-	else if(prob(100)) //100% chance for sick lootz!
+	else if(prob(80)) //80% chance for sick lootz!
 		loot = list(/obj/structure/closet/crate/necropolis/tendril/legion_loot)
 		if(!true_spawn)
 			loot = null

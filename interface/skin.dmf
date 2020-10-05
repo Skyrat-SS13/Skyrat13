@@ -80,6 +80,7 @@ window "mainwindow"
 		anchor2 = none
 		background-color = #272727
 		is-visible = false
+		auto-format = false
 		saved-params = ""
 	elem "tooltip"
 		type = BROWSER
@@ -290,6 +291,19 @@ window "statwindow"
 		tab-background-color = #242424
 		prefix-color = #e0e0e0
 		suffix-color = #e0e0e0
+
+window "popupwindow"
+	elem "popupwindow"
+		type = MAIN
+		pos = 281,0
+		size = 120x120
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
+		can-resize = false
 
 window "preferences_window"
 	elem "preferences_window"

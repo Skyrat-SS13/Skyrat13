@@ -26,16 +26,17 @@ var/static/mutable_appearance/combat_indicator
 	if(state && stat != DEAD)
 		add_overlay(combat_indicator)
 		enabled_combat_indicator = TRUE
+		src.log_message("<font color='red'>has turned ON the combat indicator!</font>", INDIVIDUAL_ATTACK_LOG)
 	else
 		cut_overlay(combat_indicator)
 		enabled_combat_indicator = FALSE
+		src.log_message("<font color='blue'>has turned OFF the combat indicator!</font>", INDIVIDUAL_ATTACK_LOG)
 
 /mob/living/proc/change_combat_indicator(state)
 	if(state && !enabled_combat_indicator && world.time >= nextcombatpopup) //No cooldown
 		nextcombatpopup = world.time + 10 SECONDS
 		playsound(src, 'sound/machines/chime.ogg', 10)
 		flick_emote_popup_on_mob(src, "combat", 20)
-		src.log_message("<font color='red'>has used the combat indicator!</font>", INDIVIDUAL_ATTACK_LOG)
 	if(state && world.time >= combatmessagecooldown) //If combat mode didn't make a message
 		combatmessagecooldown = world.time + 10 SECONDS
 		visible_message("<span class='warning'>[src] gets ready for combat!</span>")

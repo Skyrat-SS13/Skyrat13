@@ -276,7 +276,7 @@ Burning extracts:
 
 /obj/item/slimecross/burning/adamantine/do_effect(mob/user)
 	user.visible_message("<span class='notice'>[src] crystallizes into a large shield!</span>")
-	new /obj/item/twohanded/required/adamantineshield(get_turf(user))
+	new /obj/item/shield/adamantineshield(get_turf(user))
 	..()
 
 /obj/item/slimecross/burning/rainbow
@@ -297,7 +297,7 @@ Burning extracts:
 	pictures_max = 1
 	can_customise = FALSE
 	default_picture_name = "A nostalgic picture"
-	var/used = FALSE
+	//var/used = FALSE [Skyrat modularization]
 
 /datum/saved_bodypart
 	var/obj/item/bodypart/old_part
@@ -340,6 +340,7 @@ Burning extracts:
 		ret[part.body_zone] = saved_part
 	return ret
 
+/* Skyrat modularization - check /modular_skyrat/code/.../burning.dm for new afterattack code
 /obj/item/camera/rewind/afterattack(atom/target, mob/user, flag)
 	if(!on || !pictures_left || !isturf(target.loc))
 		return
@@ -354,6 +355,7 @@ Burning extracts:
 		used = TRUE
 		target.AddComponent(/datum/component/dejavu, 2)
 	.=..()
+*/
 
 //Timefreeze camera - Old Burning Sepia result. Kept in case admins want to spawn it
 /obj/item/camera/timefreeze
@@ -440,7 +442,7 @@ Burning extracts:
 			attack_verb = list("irradiated","mutated","maligned")
 	return ..()
 
-/obj/item/twohanded/required/adamantineshield
+/obj/item/shield/adamantineshield
 	name = "adamantine shield"
 	desc = "A gigantic shield made of solid adamantium."
 	icon = 'icons/obj/slimecrossing.dmi'
@@ -450,12 +452,15 @@ Burning extracts:
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
 	slot_flags = ITEM_SLOT_BACK
 	block_chance = 75
+	force = 0
 	throw_range = 1 //How far do you think you're gonna throw a solid crystalline shield...?
 	throw_speed = 2
-	force = 15 //Heavy, but hard to wield.
 	attack_verb = list("bashed","pounded","slammed")
 	item_flags = SLOWS_WHILE_IN_HAND
 
+/obj/item/shield/adamantineshield/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, require_twohands=TRUE, force_wielded=15)
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/slimeform
 	name = "Slime Transformation"

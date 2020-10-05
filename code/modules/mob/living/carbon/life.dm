@@ -1,29 +1,24 @@
-/mob/living/carbon/Life()
-	set invisibility = 0
-
-	if(notransform)
-		return
-
-	if(damageoverlaytemp)
-		damageoverlaytemp = 0
-		update_damage_hud()
-
+/mob/living/carbon/BiologicalLife(seconds, times_fired)
 	//Reagent processing needs to come before breathing, to prevent edge cases.
 	handle_organs()
-
-	. = ..()
-
-	if (QDELETED(src))
+	handle_changeling()
+	. = ..()		// if . is false, we are dead.
+	if(stat == DEAD)
+		stop_sound_channel(CHANNEL_HEARTBEAT)
+		handle_death()
+		rot()
+		. = FALSE
+	if(!.)
 		return
-
-	if(.) //not dead
-		handle_blood()
-
+	handle_blood()
+	// handle_blood *could* kill us.
+	// we should probably have a better system for if we need to check for death or something in the future hmw
 	if(stat != DEAD)
 		var/bprv = handle_bodyparts()
 		if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
 			updatehealth()
 	update_stamina()
+	doSprintBufferRegen()
 
 	if(stat != DEAD)
 		handle_brain_damage()
@@ -31,16 +26,14 @@
 	if(stat != DEAD)
 		handle_liver()
 
-	if(stat == DEAD)
-		stop_sound_channel(CHANNEL_HEARTBEAT)
-		handle_death()
-		rot()
-
 	//Updates the number of stored chemicals for powers
-	handle_changeling()
 
-	if(stat != DEAD)
-		return 1
+/mob/living/carbon/PhysicalLife(seconds, times_fired)
+	if(!(. = ..()))
+		return
+	if(damageoverlaytemp)
+		damageoverlaytemp = 0
+		update_damage_hud()
 
 //Procs called while dead
 /mob/living/carbon/proc/handle_death()
@@ -403,7 +396,7 @@
 			if(O)
 				O.on_life()
 	else
-		if(reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/preservahyde, 1)) // No organ decay if the body contains formaldehyde. Or preservahyde.
+		if(reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/medicine/preservahyde, 1)) // No  organ decay if the body contains formaldehyde. Orpreservahyde. Skyrat Edit - repaths perservahyde
 			return
 		for(var/V in internal_organs)
 			var/obj/item/organ/O = V
@@ -526,7 +519,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 /mob/living/carbon/handle_status_effects()
 	..()
 	if(getStaminaLoss() && !SEND_SIGNAL(src, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))		//CIT CHANGE - prevents stamina regen while combat mode is active
-		adjustStaminaLoss(!CHECK_MOBILITY(src, MOBILITY_STAND) ? ((combat_flags & COMBAT_FLAG_HARD_STAMCRIT) ? -7.5 : -6) : -3)//CIT CHANGE - decreases adjuststaminaloss to stop stamina damage from being such a joke
+		adjustStaminaLoss(!CHECK_MOBILITY(src, MOBILITY_STAND) ? ((combat_flags & COMBAT_FLAG_HARD_STAMCRIT) ? STAM_RECOVERY_STAM_CRIT : STAM_RECOVERY_RESTING) : STAM_RECOVERY_NORMAL)
 
 	if(!(combat_flags & COMBAT_FLAG_HARD_STAMCRIT) && incomingstammult != 1)
 		incomingstammult = max(0.01, incomingstammult)
@@ -612,6 +605,16 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 
 	if(drunkenness)
 		drunkenness = max(drunkenness - (drunkenness * 0.01), 0) //skyrat-edit
+		//skyrat edit
+		if(drunkenness <= 121 && drunkenness >= 30)
+			throw_alert("drunk", /obj/screen/alert/drunk)
+		else if(drunkenness > 121)
+			throw_alert("drunk", /obj/screen/alert/drunk/drunker)
+			ADD_TRAIT(src, TRAIT_PAINKILLER, "drunk")
+		else if(drunkenness <= 20) //drunk goes away very slowly so we need to be nice here to the players and NOT pollute their screen
+			clear_alert("drunk")
+			REMOVE_TRAIT(src, TRAIT_PAINKILLER, "drunk")
+		//
 		if(drunkenness >= 40) //skyrat-edit
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "drunk", /datum/mood_event/drunk)
 			jitteriness = max(jitteriness - 3, 0)
@@ -678,6 +681,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			adjustToxLoss(4) //Let's be honest you shouldn't be alive by now
 		else
 			SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "drunk")
+	else
+		clear_alert("drunk")
 
 //used in human and monkey handle_environment()
 /mob/living/carbon/proc/natural_bodytemperature_stabilization()
@@ -760,3 +765,10 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		return
 
 	heart.beating = !status
+
+//skyrat edit
+/mob/living/carbon/handle_wounds()
+	for(var/thing in all_wounds)
+		var/datum/wound/W = thing
+		if(istype(W) && W.processes) // meh
+			W.handle_process()

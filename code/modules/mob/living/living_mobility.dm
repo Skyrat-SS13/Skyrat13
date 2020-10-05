@@ -59,7 +59,10 @@
 	var/conscious = !IsUnconscious() && stat_conscious && !HAS_TRAIT(src, TRAIT_DEATHCOMA)
 
 	var/has_arms = get_num_arms()
+	var/has_hands = get_num_hands()
 	var/has_legs = get_num_legs()
+	var/has_feet = get_num_feet()
+	var/ignore_feet = get_feet_ignore()
 	var/ignore_legs = get_leg_ignore()
 	var/stun = IsStun()
 	var/paralyze = IsParalyzed()
@@ -70,7 +73,7 @@
 	var/chokehold = pulledby && pulledby.grab_state >= GRAB_NECK
 	var/restrained = restrained()
 	var/pinned = resting && pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE // Cit change - adds pinning for aggressive-grabbing people on the ground
-	var/has_limbs = has_arms || ignore_legs || has_legs
+	var/has_limbs = has_hands || has_arms || ignore_legs || has_legs || ignore_feet || has_feet
 	var/canmove = !immobilize && !stun && conscious && !paralyze && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && has_limbs && !pinned && !(combat_flags & COMBAT_FLAG_HARD_STAMCRIT)
 	var/canresist = !stun && conscious && !stat_softcrit && !paralyze && has_limbs && !(combat_flags & COMBAT_FLAG_HARD_STAMCRIT)
 
@@ -84,7 +87,7 @@
 	else
 		mobility_flags &= ~MOBILITY_RESIST
 
-	var/canstand_involuntary = conscious && !stat_softcrit && !knockdown && !chokehold && !paralyze && (ignore_legs || has_legs) && !(buckled && buckled.buckle_lying) && !(combat_flags & COMBAT_FLAG_HARD_STAMCRIT)
+	var/canstand_involuntary = conscious && !stat_softcrit && !knockdown && !chokehold && !paralyze && (ignore_feet || has_feet) && (ignore_legs || has_legs) && !(buckled && buckled.buckle_lying) && !(combat_flags & COMBAT_FLAG_HARD_STAMCRIT)
 	var/canstand = canstand_involuntary && !resting
 
 	var/should_be_lying = !canstand
@@ -96,7 +99,13 @@
 		mobility_flags &= ~MOBILITY_STAND
 		setMovetype(movement_type | CRAWLING)
 		if(!lying) //force them on the ground
-			lying = pick(90, 270)
+			switch(dir)
+				if(NORTH, SOUTH)
+					lying = pick(90, 270)
+				if(EAST)
+					lying = 90
+				else //West
+					lying = 270
 			if(has_gravity() && !buckled)
 				playsound(src, "bodyfall", 20, 1)
 	else
@@ -108,7 +117,7 @@
 		mobility_flags &= ~(MOBILITY_UI|MOBILITY_PULL)
 	else
 		mobility_flags |= MOBILITY_UI|MOBILITY_PULL
-
+	
 	var/canitem_general = !paralyze && !stun && conscious && !(stat_softcrit) && !chokehold && !restrained && has_arms && !(combat_flags & COMBAT_FLAG_HARD_STAMCRIT)
 	if(canitem_general)
 		mobility_flags |= (MOBILITY_USE | MOBILITY_PICKUP | MOBILITY_STORAGE | MOBILITY_HOLD)
@@ -155,13 +164,24 @@
 		addtimer(CALLBACK(src, .proc/resist_a_rest, TRUE), 0) //CIT CHANGE - ditto
 
 	// Movespeed mods based on arms/legs quantity
+	if(!get_feet_ignore())
+		var/limbless_slowdown = 0
+		// These checks for <2 should be swapped out for something else if we ever end up with a species with more than 2
+		if(has_feet < 2)
+			limbless_slowdown += (6 - (has_feet * 3))/2
+			if(!has_feet && has_arms < 2)
+				limbless_slowdown += (6 - (has_arms * 3))/2
+		if(limbless_slowdown)
+			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/limbless, multiplicative_slowdown = limbless_slowdown)
+		else
+			remove_movespeed_modifier(/datum/movespeed_modifier/limbless)
 	if(!get_leg_ignore())
 		var/limbless_slowdown = 0
 		// These checks for <2 should be swapped out for something else if we ever end up with a species with more than 2
 		if(has_legs < 2)
-			limbless_slowdown += 6 - (has_legs * 3)
+			limbless_slowdown += (6 - (has_legs * 3))/2
 			if(!has_legs && has_arms < 2)
-				limbless_slowdown += 6 - (has_arms * 3)
+				limbless_slowdown += (6 - (has_arms * 3))/2
 		if(limbless_slowdown)
 			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/limbless, multiplicative_slowdown = limbless_slowdown)
 		else

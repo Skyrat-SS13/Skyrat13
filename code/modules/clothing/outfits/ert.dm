@@ -158,14 +158,15 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/ert/engi
 	glasses =  /obj/item/clothing/glasses/meson/engine
 	back = /obj/item/storage/backpack/industrial
-	belt = /obj/item/storage/belt/utility/full
+	belt = /obj/item/storage/belt/utility/full/power
 	l_pocket = /obj/item/rcd_ammo/large
 	r_hand = /obj/item/storage/firstaid/regular
 	backpack_contents = list(/obj/item/storage/box/engineer=1,\
 		/obj/item/melee/baton/loaded=1,\
 		/obj/item/clothing/mask/gas/sechailer=1,\
 		/obj/item/gun/energy/e_gun=1,\
-		/obj/item/construction/rcd/loaded=1)
+		/obj/item/pipe_dispenser/bluespace=1,\
+		/obj/item/construction/rcd/loaded/upgraded=1)
 
 /datum/outfit/ert/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
 	..()
@@ -185,6 +186,7 @@
 		/obj/item/melee/baton/loaded=1,\
 		/obj/item/clothing/mask/gas/sechailer/swat=1,\
 		/obj/item/gun/energy/e_gun=1,\
+		/obj/item/pipe_dispenser/bluespace=1,\
 		/obj/item/construction/rcd/combat=1)
 
 /datum/outfit/ert/engineer/alert/delta //Skyrat change
@@ -193,6 +195,7 @@
 		/obj/item/melee/baton/loaded=1,\
 		/obj/item/clothing/mask/gas/sechailer/swat=1,\
 		/obj/item/gun/energy/pulse/pistol/loyalpin=1,\
+		/obj/item/pipe_dispenser/bluespace=1, \
 		/obj/item/construction/rcd/combat=1)
 
 /datum/outfit/ert/greybois
@@ -247,6 +250,9 @@
 	pda.owner = H.real_name
 	pda.ownjob = "CentCom Official"
 	pda.update_label()
+
+	var/obj/item/implant/mindshield/L = new
+	L.implant(H, null, 1)
 
 	var/obj/item/card/id/W = H.wear_id
 	W.icon_state = "centcom"

@@ -3,7 +3,6 @@ import { decodeHtmlEntities } from 'common/string';
 import { Component, Fragment } from 'inferno';
 import { runCommand, winset } from './byond';
 import { Box, TitleBar } from './components';
-import { Toast } from './components/Toast';
 import { UI_DISABLED, UI_INTERACTIVE } from './constants';
 import { dragStartHandler, resizeStartHandler } from './drag';
 import { releaseHeldKeys } from './hotkeys';
@@ -28,7 +27,7 @@ export class Layout extends Component {
     }
     const RoutedComponent = route.component();
     const WrapperComponent = route.wrapper && route.wrapper();
-    const { scrollable, theme } = route;
+    const { scrollable, resizable, theme } = route;
     // Render content
     let contentElement = (
       <div
@@ -71,14 +70,13 @@ export class Layout extends Component {
               winset(config.window, 'is-visible', false);
               runCommand(`uiclose ${config.ref}`);
             }} />
-          {contentElement}
-          {showDimmer && (
-            <div className="Layout__dimmer" />
-          )}
-          {state.toastText && (
-            <Toast content={state.toastText} />
-          )}
-          {config.fancy && scrollable && (
+          <div className="Layout__rest">
+            {contentElement}
+            {showDimmer && (
+              <div className="Layout__dimmer" />
+            )}
+          </div>
+          {config.fancy && (scrollable || resizable) && (
             <Fragment>
               <div className="Layout__resizeHandle__e"
                 onMousedown={resizeStartHandler(1, 0)} />

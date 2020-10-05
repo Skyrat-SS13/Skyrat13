@@ -5,8 +5,8 @@
 	ask_verb = "queries"
 	exclaim_verb = "declares"
 	whisper_verb = "hushes"
+	key = "tr"
 	sing_verb = "sings"
-	key = "2"
 	space_chance = 70
 	default_priority = 98
 	flags = TONGUELESS_SPEECH

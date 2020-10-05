@@ -76,6 +76,7 @@
 	var/parrot_lastmove = null //Updates/Stores position of the parrot while it's moving
 	var/parrot_stuck = 0	//If parrot_lastmove hasnt changed, this will increment until it reaches parrot_stuck_threshold
 	var/parrot_stuck_threshold = 10 //if this == parrot_stuck, it'll force the parrot back to wandering
+	var/buckled_to_human = FALSE // Skyrat - if she's on someone's shoulder
 
 	var/list/speech_buffer = list()
 	var/speech_shuffle_rate = 20
@@ -150,6 +151,8 @@
 
 /mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode, atom/movable/source)
 	. = ..()
+	if(check_command(message, speaker)) // Skyrat edit: Poly checks commands. Squawk. The code for this is in modularskyrat.
+		return
 	if(speaker != src && prob(50)) //Dont imitate ourselves
 		if(!radio_freq || prob(10))
 			if(speech_buffer.len >= 500)
@@ -357,9 +360,9 @@
 /*
  * AI - Not really intelligent, but I'm calling it AI anyway.
  */
-/mob/living/simple_animal/parrot/Life()
-	..()
-
+/mob/living/simple_animal/parrot/BiologicalLife(seconds, times_fired)
+	if(!(. = ..()))
+		return
 	//Sprite update for when a parrot gets pulled
 	if(pulledby && !stat && parrot_state != PARROT_WANDER)
 		if(buckled)
@@ -369,8 +372,6 @@
 		parrot_state = PARROT_WANDER
 		pixel_x = initial(pixel_x)
 		pixel_y = initial(pixel_y)
-		return
-
 
 //-----SPEECH
 	/* Parrot speech mimickry!
@@ -851,6 +852,7 @@
 		pixel_x = pick(-8,8) //pick left or right shoulder
 		icon_state = icon_sit
 		parrot_state = PARROT_PERCH
+		buckled_to_human = TRUE // Skyrat edit
 		to_chat(src, "<span class='notice'>You sit on [H]'s shoulder.</span>")
 
 
@@ -911,11 +913,12 @@
 	if(. && !client && prob(1) && prob(1)) //Only the one true bird may speak across dimensions.
 		world.TgsTargetedChatBroadcast("A stray squawk is heard... \"[message]\"", FALSE)
 
-/mob/living/simple_animal/parrot/Poly/Life()
+/mob/living/simple_animal/parrot/Poly/BiologicalLife(seconds, times_fired)
+	if(!(. = ..()))
+		return
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
 		Write_Memory(FALSE)
 		memory_saved = TRUE
-	..()
 
 /mob/living/simple_animal/parrot/Poly/death(gibbed)
 	if(!memory_saved)

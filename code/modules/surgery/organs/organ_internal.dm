@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 /obj/item/organ
 	name = "organ"
 	icon = 'icons/obj/surgery.dmi'
@@ -8,7 +9,7 @@
 	var/zone = BODY_ZONE_CHEST
 	var/slot
 	// DO NOT add slots with matching names to different zones - it will break internal_organs_slot list!
-	var/organ_flags = NONE
+	var/organ_flags = ORGAN_EDIBLE
 	var/maxHealth = STANDARD_ORGAN_THRESHOLD
 	var/damage = 0		//total damage this organ has sustained
 	///Healing factor and decay factor function on % of maxhealth, and do not work by applying a static number per tick
@@ -25,7 +26,26 @@
 	var/now_fixed
 	var/high_threshold_cleared
 	var/low_threshold_cleared
-	rad_flags = RAD_NO_CONTAMINATE
+
+	///When you take a bite you cant jam it in for surgery anymore.
+	var/useable = TRUE
+	var/list/food_reagents = list(/datum/reagent/consumable/nutriment = 5)
+
+	//Bobmed variables
+	var/etching = ""
+
+/obj/item/organ/Initialize()
+	. = ..()
+	if(organ_flags & ORGAN_EDIBLE)
+		AddComponent(/datum/component/edible, food_reagents, null, RAW | MEAT | GROSS, null, 10, null, null, null, CALLBACK(src, .proc/OnEatFrom))
+	START_PROCESSING(SSobj, src)
+
+/obj/item/organ/Destroy()
+	if(owner)
+		// The special flag is important, because otherwise mobs can die
+		// while undergoing transformation into different mobs.
+		Remove(TRUE)
+	return ..()
 
 /obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
 	if(!iscarbon(M) || owner == M)
@@ -148,56 +168,40 @@
 
 /obj/item/organ/examine(mob/user)
 	. = ..()
+	. |= surgical_examine(user)
+
+/obj/item/organ/proc/surgical_examine(mob/user)
+	. = list()
+	var/failing = FALSE
+	var/damaged = FALSE
 	if(organ_flags & ORGAN_FAILING)
+		failing = TRUE
 		if(status == ORGAN_ROBOTIC)
-			. += "<span class='warning'>[src] seems to be broken!</span>"
-			return
-		. += "<span class='warning'>[src] has decayed for too long, and has turned a sickly color! It doesn't look like it will work anymore!</span>"
-		return
+			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : ""][src] seems to be broken!</span>"
+		else
+			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : ""][src] has decayed for too long, and has turned a sickly color! It doesn't look like it will work anymore!</span>"
 	if(damage > high_threshold)
-		. += "<span class='warning'>[src] is starting to look discolored.</span>"
+		if(!failing)
+			damaged = TRUE
+			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : ""][src] is starting to look discolored.</span>"
+	if(!failing && !damaged)
+		. += "<span class='notice'>[owner ? "[capitalize(owner.p_their())] " : ""][src] seems to be quite healthy.</span>"
+	if(etching)
+		. += "<span class='notice'>[owner ? "[capitalize(owner.p_their())] " : ""][src] has <b>\"[etching]\"</b> inscribed on it.</span>"
 
+/obj/item/organ/proc/OnEatFrom(eater, feeder)
+	useable = FALSE //You can't use it anymore after eating it you spaztic
 
-/obj/item/organ/proc/prepare_eat()
-	var/obj/item/reagent_containers/food/snacks/organ/S = new
-	S.name = name
-	S.desc = desc
-	S.icon = icon
-	S.icon_state = icon_state
-	S.w_class = w_class
-
-	return S
-
-/obj/item/reagent_containers/food/snacks/organ
-	name = "appendix"
-	icon_state = "appendix"
-	icon = 'icons/obj/surgery.dmi'
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	foodtype = RAW | MEAT | GROSS
-
-
-/obj/item/organ/Initialize()
+/obj/item/organ/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
-	START_PROCESSING(SSobj, src)
-
-/obj/item/organ/Destroy()
-	if(owner)
-		// The special flag is important, because otherwise mobs can die
-		// while undergoing transformation into different mobs.
-		Remove(TRUE)
-	return ..()
-
-/obj/item/organ/attack(mob/living/carbon/M, mob/user)
-	if(M == user && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(status == ORGAN_ORGANIC)
-			var/obj/item/reagent_containers/food/snacks/S = prepare_eat()
-			if(S)
-				qdel(src)
-				if(H.put_in_active_hand(S))
-					S.attack(H, H)
-	else
-		..()
+	if(istype(I, /obj/item/cautery) && user.a_intent == INTENT_HELP)
+		var/badboy = input(user, "What do you want to etch on [src]?", "Malpractice", "") as text
+		if(badboy)
+			badboy = strip_html_simple(badboy)
+			etching = "[badboy]"
+			user.visible_message("<span class='notice'>[user] etches something on \the [src] with \the [I].</span>, <span class='notice'>You etch <b>\"[badboy]\"</b> on [src] with \the [I]. Hehe.</span>")
+		else
+			return ..()
 
 /obj/item/organ/item_action_slot_check(slot,mob/user)
 	return //so we don't grant the organ's action to mobs who pick up the organ.
@@ -382,3 +386,4 @@
 	var/newtype = pick(list)
 	new newtype(loc)
 	return INITIALIZE_HINT_QDEL
+*/

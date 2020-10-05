@@ -157,7 +157,6 @@
 	secret_type = /obj/effect/spawner/lootdrop/prison_loot_toilet
 
 /obj/structure/toilet/greyscale
-
 	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	buildstacktype = null
 
@@ -415,6 +414,14 @@
 				H.update_inv_wear_suit()
 			else if(H.w_uniform && wash_obj(H.w_uniform))
 				H.update_inv_w_uniform()
+			//skyrat edit
+			else if(H.w_underwear && wash_obj(H.w_underwear))
+				H.update_inv_w_underwear()
+			else if(H.w_socks && wash_obj(H.w_socks))
+				H.update_inv_w_socks()
+			else if(H.w_underwear && wash_obj(H.w_shirt))
+				H.update_inv_w_shirt()
+			//
 			if(washgloves)
 				H.clean_blood()
 				SEND_SIGNAL(H, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
@@ -427,8 +434,11 @@
 				H.update_body()
 			if(H.glasses && washglasses && wash_obj(H.glasses))
 				H.update_inv_glasses()
-			if(H.ears && washears && wash_obj(H.ears))
+			if(H.ears && washears && wash_obj(H.ears) && wash_obj(H.ears_extra)) //skyrat edit
 				H.update_inv_ears()
+				//skyrat edit
+				H.update_inv_ears_extra()
+				//
 			if(H.belt && wash_obj(H.belt))
 				H.update_inv_belt()
 		else
@@ -582,6 +592,12 @@
 		G.use(1)
 		return
 
+	if(istype(O, /obj/item/stack/ore/glass))
+		new /obj/item/stack/sheet/sandblock(loc)
+		to_chat(user, "<span class='notice'>You wet the sand in the sink and form it into a block.</span>")
+		O.use(1)
+		return
+
 	if(!istype(O))
 		return
 	if(O.item_flags & ABSTRACT) //Abstract items like grabs won't wash. No-drop items will though because it's still technically an item in your hand.
@@ -673,7 +689,7 @@
 	if(steps == 4 && istype(S, /obj/item/stack/sheet/mineral/wood))
 		if(S.use(3))
 			steps = 5
-			desc = "A dug out well, A dug out well with out rope. Just add some cloth!"
+			desc = "A dug out well, A dug out well without rope. Just add some cloth!"
 			icon_state = "well_4"
 			return TRUE
 		else
@@ -702,11 +718,6 @@
 	icon_state = "puddle"
 	resistance_flags = UNACIDABLE
 
-/obj/structure/sink/greyscale
-	icon_state = "sink_greyscale"
-	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR
-	buildstacktype = null
-
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/sink/puddle/attack_hand(mob/M)
 	icon_state = "puddle-splash"
@@ -722,6 +733,7 @@
 	qdel(src)
 
 /obj/structure/sink/greyscale
+	icon_state = "sink_greyscale"
 	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	buildstacktype = null
 

@@ -141,7 +141,7 @@
 			to_chat(usr, "<span class='notice'>This unit already has an shrink module installed!</span>")
 			return FALSE
 
-		R.notransform = TRUE
+		R.mob_transforming = TRUE
 		var/prev_locked_down = R.locked_down
 		R.SetLockdown(1)
 		R.anchored = TRUE
@@ -155,10 +155,15 @@
 		if(!prev_locked_down)
 			R.SetLockdown(0)
 		R.anchored = FALSE
-		R.notransform = FALSE
-		R.resize = 2
+		R.mob_transforming = FALSE
+		R.transform = R.transform.Scale(1.25, 1.25)
 		R.hasExpanded = TRUE
-		R.update_transform()
+
+/obj/item/borg/upgrade/expand/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		R.transform = R.transform.Scale(0.8, 0.8)
+		R.hasExpanded = FALSE
 
 /obj/item/borg/upgrade/shrink
 	name = "borg shrinker"
@@ -178,7 +183,7 @@
 			return FALSE
 
 
-		R.notransform = TRUE
+		R.mob_transforming = TRUE
 		var/prev_locked_down = R.locked_down
 		R.SetLockdown(1)
 		R.anchored = TRUE
@@ -192,18 +197,15 @@
 		if(!prev_locked_down)
 			R.SetLockdown(0)
 		R.anchored = FALSE
-		R.notransform = FALSE
-		R.resize = 0.75
+		R.mob_transforming = FALSE
+		R.transform = R.transform.Scale(0.75, 0.75)
 		R.hasShrunk = TRUE
-		R.update_transform()
 
 /obj/item/borg/upgrade/shrink/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-	
-		R.resize = 1.25
+		R.transform = R.transform.Scale((4/3), (4/3))
 		R.hasShrunk = FALSE
-		R.update_transform()
 
 /obj/item/borg/upgrade/transform/syndicatejack
     name = "borg module picker (Syndicate)"

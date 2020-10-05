@@ -96,6 +96,8 @@
 
 #define STATUS_EFFECT_SPASMS /datum/status_effect/spasms //causes random muscle spasms
 
+#define STATUS_EFFECT_FAKE_VIRUS /datum/status_effect/fake_virus //gives you fluff messages for cough, sneeze, headache, etc but without an actual virus
+
 #define STATUS_EFFECT_BREASTS_ENLARGEMENT /datum/status_effect/chem/breast_enlarger //Applied slowdown due to the ominous bulk.
 
 #define STATUS_EFFECT_PENIS_ENLARGEMENT /datum/status_effect/chem/penis_enlarger //More applied slowdown, just like the above.
@@ -124,3 +126,8 @@
 #define STATUS_EFFECT_RAINBOWPROTECTION /datum/status_effect/rainbow_protection //Invulnerable and pacifistic
 #define STATUS_EFFECT_SLIMESKIN /datum/status_effect/slimeskin //Increased armor
 #define STATUS_EFFECT_DNA_MELT /datum/status_effect/dna_melt //usually does something horrible to you when you hit 100 genetic instability
+
+//skyrat status effects
+#define STATUS_EFFECT_DETERMINED /datum/status_effect/determined //currently in a combat high from being seriously wounded
+#define STATUS_EFFECT_LIMP /datum/status_effect/limp //For when you have a busted leg (or two!) and want additional slowdown when walking on that leg
+#define STATUS_EFFECT_CLONEILL /datum/status_effect/cloneill //Whenever you get cloned, you start out hungry and frail.

@@ -223,7 +223,7 @@
 /obj/item/reagent_containers/food/snacks/grown/cherry_bomb/ex_act(severity)
 	qdel(src) //Ensuring that it's deleted by its own explosion. Also prevents mass chain reaction with piles of cherry bombs
 
-/obj/item/reagent_containers/food/snacks/grown/cherry_bomb/proc/prime()
+/obj/item/reagent_containers/food/snacks/grown/cherry_bomb/proc/prime(mob/living/lanced_by)
 	icon_state = "cherry_bomb_lit"
 	playsound(src, 'sound/effects/fuse.ogg', seed.potency, 0)
 	addtimer(CALLBACK(src, /obj/item/reagent_containers/food/snacks/grown/cherry_bomb/proc/detonate), rand(50, 100))
@@ -507,3 +507,34 @@
 		prime()
 	if(!QDELETED(src))
 		qdel(src)
+
+/obj/item/seeds/aloe
+	name = "pack of aloe seeds"
+	desc = "These seeds grow into aloe."
+	icon_state = "seed-aloe"
+	species = "aloe"
+	plantname = "Aloe"
+	product = /obj/item/reagent_containers/food/snacks/grown/aloe
+	lifespan = 60
+	endurance = 25
+	maturation = 4
+	production = 4
+	yield = 6
+	growthstages = 5
+	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
+	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.05, /datum/reagent/consumable/nutriment = 0.05)
+
+/obj/item/reagent_containers/food/snacks/grown/aloe
+	seed = /obj/item/seeds/aloe
+	name = "aloe"
+	desc = "Cut leaves from the aloe plant."
+	icon_state = "aloe"
+	filling_color = "#90EE90"
+	bitesize_mod = 5
+	foodtype = VEGETABLES
+	juice_results = list(/datum/reagent/consumable/aloejuice = 0)
+	distill_reagent = /datum/reagent/consumable/ethanol/tequila
+
+/obj/item/reagent_containers/food/snacks/grown/aloe/microwave_act(obj/machinery/microwave/M)
+	new /obj/item/stack/medical/aloe(drop_location(), 2)
+	qdel(src)

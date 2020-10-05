@@ -10,11 +10,13 @@
 
 /obj/item/melee/transforming/energy/Initialize()
 	. = ..()
+	AddComponent(/datum/component/overlay_lighting, light_color, brightness_on, 1, FALSE) //Skyrat change
 	total_mass_on = (total_mass_on ? total_mass_on : (w_class_on * 0.75))
 	if(active)
 		if(sword_color)
 			icon_state = "sword[sword_color]"
-		set_light(brightness_on)
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.turn_on()
 		START_PROCESSING(SSobj, src)
 
 /obj/item/melee/transforming/energy/Destroy()
@@ -39,14 +41,15 @@
 /obj/item/melee/transforming/energy/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
 	if(.)
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 		if(active)
 			if(sword_color)
 				icon_state = "sword[sword_color]"
 			START_PROCESSING(SSobj, src)
-			set_light(brightness_on)
+			OL.turn_on()
 		else
 			STOP_PROCESSING(SSobj, src)
-			set_light(0)
+			OL.turn_off()
 
 /obj/item/melee/transforming/energy/get_temperature()
 	return active * heat
@@ -102,11 +105,32 @@
 	attack_verb_off = list("tapped", "poked")
 	throw_speed = 3
 	throw_range = 5
-	sharpness = IS_SHARP
-	embedding = list("embed_chance" = 75, "embedded_impact_pain_multiplier" = 10)
+	//skyrat edit
+	sharpness = SHARP_EDGED
+	embedding = list("embed_chance" = 75, "impact_pain_mult" = 10)
+	//
 	armour_penetration = 35
-	block_chance = 50
+	item_flags = NEEDS_PERMIT | ITEM_CAN_PARRY
+	block_parry_data = /datum/block_parry_data/energy_sword
 	var/list/possible_colors = list("red" = LIGHT_COLOR_RED, "blue" = LIGHT_COLOR_LIGHT_CYAN, "green" = LIGHT_COLOR_GREEN, "purple" = LIGHT_COLOR_LAVENDER)
+
+/datum/block_parry_data/energy_sword
+	parry_time_windup = 0
+	parry_time_active = 25
+	parry_time_spindown = 0
+	// we want to signal to players the most dangerous phase, the time when automatic counterattack is a thing.
+	parry_time_windup_visual_override = 1
+	parry_time_active_visual_override = 3
+	parry_time_spindown_visual_override = 12
+	parry_flags = PARRY_DEFAULT_HANDLE_FEEDBACK		// esword users can attack while
+	parry_time_perfect = 2.5		// first ds isn't perfect
+	parry_time_perfect_leeway = 1.5
+	parry_imperfect_falloff_percent = 5
+	parry_efficiency_to_counterattack = 100
+	parry_efficiency_considered_successful = 65		// VERY generous
+	parry_efficiency_perfect = 100
+	parry_failed_stagger_duration = 4 SECONDS
+	parry_cooldown = 0.5 SECONDS
 
 /obj/item/melee/transforming/energy/sword/Initialize(mapload)
 	. = ..()
@@ -115,6 +139,8 @@
 /obj/item/melee/transforming/energy/sword/proc/set_sword_color()
 	if(LAZYLEN(possible_colors))
 		light_color = possible_colors[pick(possible_colors)]
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.set_color(light_color)
 
 /obj/item/melee/transforming/energy/sword/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
@@ -155,7 +181,7 @@
 	sword_color = null //stops icon from breaking when turned on.
 	hitcost = 75 //Costs more than a standard cyborg esword
 	w_class = WEIGHT_CLASS_NORMAL
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	light_color = "#40ceff"
 	tool_behaviour = TOOL_SAW
 	toolspeed = 0.7
@@ -171,13 +197,16 @@
 	if(LAZYLEN(possible_colors))
 		sword_color = pick(possible_colors)
 		light_color = possible_colors[sword_color]
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.set_color(light_color)
 
 /obj/item/melee/transforming/energy/sword/saber/process()
 	. = ..()
 	if(hacked)
 		var/set_color = pick(possible_colors)
 		light_color = possible_colors[set_color]
-		update_light()
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.set_color(light_color)
 
 /obj/item/melee/transforming/energy/sword/saber/red
 	possible_colors = list("red" = LIGHT_COLOR_RED)
@@ -230,7 +259,7 @@
 	throw_range = 1
 	w_class = WEIGHT_CLASS_BULKY//So you can't hide it in your pocket or some such.
 	var/datum/effect_system/spark_spread/spark_system
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 
 //Most of the other special functions are handled in their own files. aka special snowflake code so kewl
 /obj/item/melee/transforming/energy/blade/Initialize()
@@ -266,7 +295,7 @@
 	attack_verb_off = list("tapped", "poked")
 	throw_speed = 3
 	throw_range = 5
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	embedding = list("embedded_pain_multiplier" = 6, "embed_chance" = 20, "embedded_fall_chance" = 60)
 	armour_penetration = 10
 	block_chance = 35
@@ -322,7 +351,8 @@
 		if(energy_color_input)
 			light_color = sanitize_hexcolor(energy_color_input, desired_format=6, include_crunch=1)
 		update_icon()
-		update_light()
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.set_color(light_color)
 	return TRUE
 
 /obj/item/melee/transforming/energy/sword/cx/examine(mob/user)
@@ -350,7 +380,7 @@
 			return
 		else
 			to_chat(user, "<span class='notice'>You combine the two light swords, making a single supermassive blade! You're cool.</span>")
-			new /obj/item/twohanded/dualsaber/hypereutactic(user.drop_location())
+			new /obj/item/dualsaber/hypereutactic(user.drop_location())
 			qdel(W)
 			qdel(src)
 	else

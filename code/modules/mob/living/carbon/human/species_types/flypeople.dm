@@ -2,7 +2,7 @@
 	name = "Anthromorphic Fly"
 	id = "fly"
 	say_mod = "buzzes"
-	species_traits = list(NOEYES)
+	species_traits = list(NOEYES,HAS_FLESH,HAS_BONE)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	mutanttongue = /obj/item/organ/tongue/fly
 	mutantliver = /obj/item/organ/liver/fly
@@ -15,6 +15,7 @@
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "BUG")
 	exotic_bloodtype = "BUG"
+	rainbowblood = TRUE
 	//
 
 /datum/species/fly/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)

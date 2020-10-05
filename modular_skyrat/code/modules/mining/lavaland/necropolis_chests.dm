@@ -45,8 +45,8 @@
 			qdel(src)
 
 /obj/vehicle/ridden/lavaboat/dragon/gladiator
-	name = "lava surfboard"
-	desc = "This thing can be used to cross lava rivers... I guess. Alt click to turn into a shield again."
+	name = "\proper Gladiator's surfboard"
+	desc = "This thing can be used to cross lava rivers... I guess. Alt click to turn into back into a shield."
 	icon = 'modular_skyrat/icons/obj/shields.dmi'
 	icon_state = "raft"
 
@@ -68,7 +68,6 @@
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
-	new /obj/item/borg/upgrade/modkit/shotgun(src)
 	new /obj/item/gun/magic/staff/spellblade(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
@@ -81,16 +80,15 @@
 	name = "enraged bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
-	new /obj/item/twohanded/crucible(src)
+	new /obj/item/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
 	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
-	new /obj/item/borg/upgrade/modkit/shotgun(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher
 	name = "enraged bloody bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher/PopulateContents()
-	new /obj/item/twohanded/crucible(src)
+	new /obj/item/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
 	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 	new /obj/item/crusher_trophy/demon_claws(src)
@@ -105,8 +103,10 @@
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_state = "heckgun"
-	sharpness = IS_SHARP
+	sharpness = SHARP_NONE
 	force = 15
+	inhand_x_dimension = 0
+	inhand_y_dimension = 0
 	var/recharge_rate = 4
 	var/charge_tick = 0
 	var/toggled = FALSE
@@ -200,7 +200,7 @@
 	burst_shot_delay = 1
 
 //crucible
-/obj/item/twohanded/crucible
+/obj/item/crucible
 	name = "Crucible Sword"
 	desc = "Made from pure argent energy, this sword can cut through flesh like butter."
 	icon = 'modular_skyrat/icons/obj/1x2.dmi'
@@ -209,17 +209,12 @@
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	item_state = "crucible0"
-	var/item_state_on = "crucible1"
 	force = 3
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	var/w_class_on = WEIGHT_CLASS_HUGE
-	force_unwielded = 5
-	force_wielded = 25
-	wieldsound = 'sound/weapons/saberon.ogg'
-	unwieldsound = 'sound/weapons/saberoff.ogg'
 	hitsound = "swing_hit"
 	var/hitsound_on = 'sound/weapons/bladeslice.ogg'
 	armour_penetration = 50
@@ -228,13 +223,24 @@
 	block_chance = 0
 	var/block_chance_on = 50
 	max_integrity = 400
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100, "wound" = 35)
 	resistance_flags = FIRE_PROOF
 	var/brightness_on = 6
 	total_mass = 1
 	var/total_mass_on = TOTAL_MASS_MEDIEVAL_WEAPON
+	var/wielded
+	var/item_state_on = "crucible1"
 
-/obj/item/twohanded/crucible/suicide_act(mob/living/carbon/user)
+/obj/item/crucible/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/wield)
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/unwield)
+
+/obj/item/crucible/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=25, icon_wielded="crucible1", wieldsound = 'sound/weapons/saberon.ogg', unwieldsound = 'sound/weapons/saberoff.ogg')
+
+/obj/item/crucible/suicide_act(mob/living/carbon/user)
 	if(wielded)
 		user.visible_message("<span class='suicide'>[user] DOOMs themselves with the [src]!</span>")
 
@@ -259,59 +265,59 @@
 		user.visible_message("<span class='suicide'>[user] begins beating [user.p_them()]self to death with \the [src]'s handle! It probably would've been cooler if [user.p_they()] turned it on first!</span>")
 	return BRUTELOSS
 
-/obj/item/twohanded/crucible/update_icon_state()
+/obj/item/crucible/update_icon_state()
 	if(wielded)
 		icon_state = "crucible[wielded]"
 	else
 		icon_state = "crucible0"
 	clean_blood()
 
-/obj/item/twohanded/crucible/attack(mob/target, mob/living/carbon/human/user)
+/obj/item/crucible/attack(mob/target, mob/living/carbon/human/user)
 	var/def_zone = user.zone_selected
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(H.getarmor(def_zone, "melee") < 35)
-			if((user.zone_selected != BODY_ZONE_CHEST) && (user.zone_selected != BODY_ZONE_HEAD))
+			if((user.zone_selected != BODY_ZONE_CHEST) && (user.zone_selected != BODY_ZONE_HEAD) && (user.zone_selected != BODY_ZONE_PRECISE_GROIN))
 				..()
 				var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
 				bodyp.dismember()
-			else
-				..()
-		else if(user.zone_selected == BODY_ZONE_CHEST && H.health <= 0)
-			..()
-			H.spill_organs()
-		else if(user.zone_selected == BODY_ZONE_HEAD && H.health <= 0)
+		else if(user.zone_selected == BODY_ZONE_PRECISE_GROIN && H.InFullCritical())
 			..()
 			var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
-			bodyp.drop_limb()
+			if(istype(bodyp))
+				bodyp.dismember()
+		else if(user.zone_selected == BODY_ZONE_HEAD && H.InFullCritical())
+			..()
+			var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
+			if(istype(bodyp))
+				bodyp.dismember()
 		else
 			..()
 	else
 		..()
 
-/obj/item/twohanded/crucible/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+/obj/item/crucible/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	if(!wielded)
 		return BLOCK_NONE
 	return ..()
 
-/obj/item/twohanded/crucible/wield(mob/living/carbon/M)
-	..()
-	if(wielded)
-		sharpness = IS_SHARP
-		w_class = w_class_on
-		total_mass = total_mass_on
-		hitsound = hitsound_on
-		item_state = item_state_on
-		block_chance = block_chance_on
-		START_PROCESSING(SSobj, src)
-		set_light(brightness_on)
-		AddElement(/datum/element/sword_point)
+/obj/item/crucible/proc/wield(mob/living/carbon/M)
+	wielded = TRUE
+	sharpness = SHARP_EDGED
+	w_class = w_class_on
+	total_mass = total_mass_on
+	hitsound = hitsound_on
+	item_state = item_state_on
+	block_chance = block_chance_on
+	START_PROCESSING(SSobj, src)
+	set_light(brightness_on)
+	AddElement(/datum/element/sword_point)
 
-/obj/item/twohanded/crucible/unwield()
+/obj/item/crucible/proc/unwield()
+	wielded = FALSE
 	sharpness = initial(sharpness)
 	w_class = initial(w_class)
 	total_mass = initial(total_mass)
-	..()
 	hitsound = "swing_hit"
 	block_chance = initial(block_chance)
 	item_state = initial(item_state)
@@ -319,18 +325,18 @@
 	set_light(0)
 	RemoveElement(/datum/element/sword_point)
 
-/obj/item/twohanded/crucible/process()
+/obj/item/crucible/process()
 	if(wielded)
 		open_flame()
 	else
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/twohanded/crucible/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+/obj/item/crucible/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	if(!wielded)
 		return BLOCK_NONE
 	return ..()
 
-/obj/item/twohanded/crucible/ignition_effect(atom/A, mob/user)
+/obj/item/crucible/ignition_effect(atom/A, mob/user)
 	if(!wielded)
 		return FALSE
 	var/in_mouth = ""
@@ -346,7 +352,7 @@
 /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit"
 	desc = "And those that tasted the bite of his sword named him... The Doom Slayer."
-	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 40)
 	strip_delay = 130
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	icon_state = "praetor"
@@ -357,11 +363,19 @@
 	slowdown = 0
 	mutantrace_variation = STYLE_DIGITIGRADE | STYLE_NO_ANTHRO_ICON
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	unique_reskin = list(
+		"Full-Body Slayer" = "praetor",
+		"Eternal Slayer" = "praetor_sleeveless",
+	)
+	unique_reskin = list(
+		"Full-Body Slayer" = "praetor",
+		"Eternal Slayer" = "praetor_sleeveless",
+	)
 
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit helmet"
 	desc = "That's one doomed space marine."
-	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 37)
 	strip_delay = 130
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "praetor"
@@ -436,9 +450,9 @@
 	force = clamp((ghost_counter * 2.5), 15, 25)
 	throwforce = clamp((ghost_counter * 2), 5, 18)
 	armour_penetration = clamp((ghost_counter * 3), 0, 35)
-	sharpness = IS_BLUNT
+	sharpness = SHARP_NONE
 	if(ghost_counter >= 4)
-		sharpness = IS_SHARP_ACCURATE
+		sharpness = SHARP_EDGED
 	user.visible_message("<span class='danger'>[user] strikes with the force of [ghost_counter] vengeful spirits!</span>")
 
 /obj/item/melee/ghost_sword/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
@@ -510,7 +524,7 @@
 
 //normal chests
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,34)
+	var/loot = rand(1,35)
 	new /obj/item/stock_parts/cell/high/plus/argent(src)
 	switch(loot)
 		if(1)
@@ -625,6 +639,9 @@
 		if(34)
 			new /obj/item/clothing/accessory/lavawalk(src)
 			return list(/obj/item/clothing/accessory/lavawalk)
+		if(35)
+			new /obj/item/gun/energy/kinetic_accelerator/premiumka/ashenka(src)
+			return list(/obj/item/gun/energy/kinetic_accelerator/premiumka/ashenka)
 
 /obj/item/gun/magic/staff/locker/trashy
 	max_charges = 1
@@ -763,7 +780,7 @@
 
 //legion
 /obj/structure/closet/crate/necropolis/tendril/legion_loot
-	name = "screeching crate"
+	name = "screeching legion crate"
 
 /obj/structure/closet/crate/necropolis/tendril/legion_loot/PopulateContents()
 	var/obj/structure/closet/crate/necropolis/tendril/N = new /obj/structure/closet/crate/necropolis/tendril()
@@ -807,7 +824,7 @@
 	item_state = "dagoth"
 	actions_types = list(/datum/action/item_action/ashstorm)
 	flash_protect = 2
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)//HOW CAN YOU KILL A GOD?
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 25) //HOW CAN YOU KILL A GOD?
 	var/static/list/excluded_areas = list(/area/reebe/city_of_cogs)
 	var/storm_type = /datum/weather/ash_storm
 	var/storm_cooldown = 0
@@ -926,7 +943,7 @@
 	armour_penetration = 200 //the armor penetration is really what makes this unique and actually worth it so boomp it
 	hitsound = 'modular_skyrat/sound/sif/sif_slash.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "gutted", "gored")
-	sharpness = IS_SHARP
+	sharpness = SHARP_POINTY
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 //Enables the sword to butcher bodies
@@ -959,11 +976,11 @@
 	icon_state = "necklace_forsaken_active"
 	actions_types = list(/datum/action/item_action/hands_free/necklace_of_the_forsaken)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	var/mob/living/carbon/human/active_owner
+	var/mob/living/carbon/active_owner
 	var/numUses = 1
 
 /obj/item/clothing/neck/necklace/necklace_of_the_forsaken/item_action_slot_check(slot)
-	return slot == ITEM_SLOT_NECK
+	return (..() && (slot == SLOT_NECK))
 
 /obj/item/clothing/neck/necklace/necklace_of_the_forsaken/dropped(mob/user)
 	..()
@@ -983,10 +1000,10 @@
 	icon_state = "necklace_forsaken_active"
 	if(!active_owner)
 		return
-	var/mob/living/carbon/human/H = active_owner
+	var/mob/living/carbon/C = active_owner
 	active_owner = null
-	to_chat(H, "<span class='userdanger'>You feel a scorching burn fill your body and limbs!</span>")
-	H.revive(TRUE, FALSE)
+	to_chat(C, "<span class='userdanger'>You feel a scorching burn fill your body and limbs!</span>")
+	C.revive(TRUE, FALSE)
 	remove_necklace() //remove buffs
 
 //Remove buffs
@@ -1006,19 +1023,20 @@
 //What happens when the user clicks on datum
 /datum/action/item_action/hands_free/necklace_of_the_forsaken/Trigger()
 	var/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/MM = target
-	if(MM.numUses == 0)//skip if it has already been used up
+	if(MM.numUses <= 0)//skip if it has already been used up
 		return
 	if(!MM.active_owner)//apply bind if there is no active owner
-		if(ishuman(owner))
+		if(iscarbon(owner))
 			MM.temp_buff(owner)
 		src.desc = "Revive or fully heal yourself, but you can only do this once! Can be used when knocked out or dead."
 		to_chat(MM.active_owner, "<span class='userdanger'>You have binded the ember to yourself! The next time you use the necklace it will heal you!</span>")
-	else if(MM.numUses == 1 && MM.active_owner)//revive / heal then remove usage
+	else if(MM.numUses >= 1 && MM.active_owner)//revive / heal then remove usage
 		MM.second_chance()
 		MM.numUses = 0
 		MM.icon_state = "necklace_forsaken"
 		MM.desc = "A rose gold necklace that used to have a bright burning ember inside of it."
 		src.desc = "The necklaces ember has already been used..."
+	
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=End of Necklace of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 
 
@@ -1038,3 +1056,96 @@
 	new /obj/item/melee/sword_of_the_forsaken(src)
 	new /obj/item/clothing/neck/necklace/necklace_of_the_forsaken(src)
 	new /obj/item/crusher_trophy/dark_energy(src)
+
+//Rogue process loot
+/obj/structure/closet/crate/necropolis/rogue
+	name = "Rogue's chest"
+
+/obj/structure/closet/crate/necropolis/rogue/PopulateContents()
+	new /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer(src)
+	new /obj/item/rogue(src)
+
+/obj/structure/closet/crate/necropolis/rogue/crusher
+	name = "Corrupted Rogue's chest"
+
+/obj/structure/closet/crate/necropolis/rogue/crusher/PopulateContents()
+	new /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer(src)
+	new /obj/item/crusher_trophy/brokentech(src)
+	new /obj/item/rogue(src)
+
+/obj/item/rogue
+	name = "\proper Rogue's Drill"
+	desc = "A drill coupled with an internal mechanism that produces shockwaves on demand. Serves as a very robust melee."
+	sharpness = SHARP_POINTY
+	icon = 'modular_skyrat/icons/obj/mining.dmi'
+	icon_state = "roguedrill"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/mining_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/mining_righthand.dmi'
+	item_state = "roguedrill"
+	w_class = WEIGHT_CLASS_BULKY
+	tool_behaviour = TOOL_MINING
+	toolspeed = 0.1
+	slot_flags = ITEM_SLOT_BELT
+	custom_materials = list(/datum/material/diamond=10000, /datum/material/titanium=20000, /datum/material/plasma=20000)
+	usesound = 'sound/weapons/drill.ogg'
+	hitsound = 'sound/weapons/drill.ogg'
+	attack_verb = list("drilled")
+	var/cooldowntime = 50
+	var/cooldown = 0
+	var/range = 7
+
+/obj/item/rogue/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=20)
+
+/obj/item/rogue/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	. = ..()
+	if(user.a_intent == INTENT_HARM)
+		var/datum/component/two_handed/TH = GetComponent(/datum/component/two_handed)
+		if(TH.wielded && isliving(target) && proximity_flag && cooldown <= world.time)
+			cooldown = world.time + (cooldowntime * 0.5)
+			playsound(src,'sound/misc/crunch.ogg', 200, 1)
+			var/mob/living/M = target
+			M.DefaultCombatKnockdown(40)
+			M.adjustStaminaLoss(20)
+		else if(TH.wielded)
+			if(cooldown < world.time)
+				cooldown = world.time + cooldowntime
+				playsound(src,'sound/misc/crunch.ogg', 200, 1)
+				var/list/hit_things = list()
+				var/turf/T = get_turf(get_step(user, user.dir))
+				var/ogdir = user.dir
+				var/turf/otherT = get_step(T, turn(ogdir, 90))
+				var/turf/otherT2 = get_step(T, turn(ogdir, -90))
+				for(var/i in 1 to range)
+					new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+					new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
+					new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)
+					for(var/mob/living/L in T.contents)
+						if(L != src && !(L in hit_things))
+							L.Stun(20)
+							L.adjustBruteLoss(10)
+							hit_things += L
+					for(var/mob/living/L in otherT.contents)
+						if(L != src && !(L in hit_things))
+							L.Stun(20)
+							L.adjustBruteLoss(10)
+							hit_things += L
+					for(var/mob/living/L in otherT2.contents)
+						if(L != src && !(L in hit_things))
+							L.Stun(20)
+							L.adjustBruteLoss(10)
+							hit_things += L
+					if(ismineralturf(T))
+						var/turf/closed/mineral/M = T
+						M.gets_drilled(user)
+					if(ismineralturf(otherT))
+						var/turf/closed/mineral/M = otherT
+						M.gets_drilled(user)
+					if(ismineralturf(otherT2))
+						var/turf/closed/mineral/M = otherT2
+						M.gets_drilled(user)
+					T = get_step(T, ogdir)
+					otherT = get_step(otherT, ogdir)
+					otherT2 = get_step(otherT2, ogdir)
+					sleep(2)

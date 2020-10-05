@@ -25,6 +25,7 @@
 	trigger_cost = 25
 	trigger_cooldown = 1200
 	rogue_types = list(/datum/nanite_program/toxic, /datum/nanite_program/nerve_decay)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/adrenaline/on_trigger()
 	host_mob.do_adrenaline(50, TRUE, TRUE, FALSE, TRUE, list(), "<span class='notice'>You feel a sudden surge of energy!</span>", 25)
@@ -34,6 +35,7 @@
 	desc = "The nanites form a mesh under the host's skin, protecting them from melee and bullet impacts."
 	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/skin_decay)
+	required_biotypes = MOB_ORGANIC
 
 //TODO on_hit effect that turns skin grey for a moment
 
@@ -56,6 +58,7 @@
 	desc = "The nanites form a membrane above the host's skin, reducing the effect of laser and energy impacts."
 	use_rate = 0.50
 	rogue_types = list(/datum/nanite_program/skin_decay)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/refractive/enable_passive_effect()
 	. = ..()
@@ -76,6 +79,7 @@
 	desc = "The nanites induce rapid coagulation when the host is wounded, dramatically reducing bleeding rate."
 	use_rate = 0.10
 	rogue_types = list(/datum/nanite_program/suffocating)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/coagulating/enable_passive_effect()
 	. = ..()

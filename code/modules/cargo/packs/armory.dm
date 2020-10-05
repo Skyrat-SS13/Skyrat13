@@ -37,15 +37,6 @@
 	contains = list(/obj/item/storage/box/chemimp)
 	crate_name = "chemical implant crate"
 
-/datum/supply_pack/security/armory/combatknives
-	name = "Combat Knives Crate"
-	desc = "Contains three sharpened combat knives. Each knife guaranteed to fit snugly inside any Nanotrasen-standard boot. Requires Armory access to open."
-	cost = 3200
-	contains = list(/obj/item/kitchen/knife/combat,
-					/obj/item/kitchen/knife/combat,
-					/obj/item/kitchen/knife/combat)
-	crate_name = "combat knife crate"
-
 /datum/supply_pack/security/armory/ballistic
 	name = "Combat Shotguns Crate"
 	desc = "For when the enemy absolutely needs to be replaced with lead. Contains three Aussec-designed Combat Shotguns, with three Shotgun Bandoliers, as well as seven buchshot and 12g shotgun slugs. Requires Armory access to open."
@@ -77,6 +68,16 @@
 					/obj/item/gun/energy/e_gun)
 	crate_name = "energy gun crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
+
+/*/datum/supply_pack/security/armory/energy_rifle
+	name = "Energy Rifles Crate"
+	desc = "Contains three Energy Rifles, capable of firing both nonlethal and lethal blasts of light. Requires Armory access to open."
+	cost = 5000
+	contains = list(/obj/item/gun/energy/e_gun/large,
+					/obj/item/gun/energy/e_gun/large,
+					/obj/item/gun/energy/e_gun/large)
+	crate_name = "energy rifle crate"
+	crate_type = /obj/structure/closet/crate/secure/plasma*/
 
 /datum/supply_pack/security/armory/exileimp // Theres boxes in 2 lockers as well as gateway never realy being used sad
 	name = "Exile Implants Crate"

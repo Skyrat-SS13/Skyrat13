@@ -35,6 +35,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 91-100: Dangerously toxic - swift death
 */
 
+/datum/reagent/consumable/ethanol/on_mob_add(mob/living/L, amount)
+	. = ..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(H.physiology?.allergies & ALCOHOL)
+			H.ForceContractDisease(new /datum/disease/anaphylactic_shock())
+			to_chat(H, "<span class='danger'><b>As you feel your muscles inflaming, you realize how much you fucked up.</b></span>")
+
 /datum/reagent/consumable/ethanol/on_mob_life(mob/living/carbon/C)
 	if(HAS_TRAIT(C, TRAIT_NO_ALCOHOL))
 		C.adjustToxLoss((boozepwr/25)*REM,forced = TRUE)
@@ -2293,7 +2301,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/oil_drum
 	name = "Oil Drum"
 	color = "#000000" //(0, 0, 0)
-	description = "Industeral grade oil mixed with some ethanol to make it a drink. Somehow not known to be toxic."
+	description = "Industrial grade oil mixed with some ethanol to make it a drink. Somehow not known to be toxic."
 	boozepwr = 45
 	taste_description = "oil spill"
 	glass_icon_state = "oil_drum"
@@ -2310,7 +2318,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/nord_king
 	name = "Nord King"
 	color = "#EB1010" //(235, 16, 16)
-	description = "Strong mead mixed with more honey and ethanol. Known to beloved by most palettes."
+	description = "Strong mead mixed with more honey and ethanol. Beloved by its human patrons."
 	boozepwr = 50 //strong!
 	taste_description = "honey and red wine"
 	glass_icon_state = "nord_king"
@@ -2349,7 +2357,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "grass and lime"
 	glass_icon_state = "abduction_fruit"
 	glass_name = "glass of Abduction Fruit"
-	glass_desc = "Mixed fruits that were never ment to be mixed..."
+	glass_desc = "Mixed fruits that were never meant to be mixed..."
 
 /datum/reagent/consumable/ethanol/abduction_fruit/on_mob_life(mob/living/carbon/M)
 	if(isabductor(M) || isxenoperson(M))
@@ -2361,7 +2369,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/bug_zapper
 	name = "Bug Zapper"
 	color = "#F5882A" //(222, 250, 205)
-	description = "Metals and lemon juice. Hardly even a drink."
+	description = "Copper and lemon juice. Hardly even a drink."
 	boozepwr = 5 //No booze really
 	taste_description = "copper and AC power"
 	glass_icon_state = "bug_zapper"
@@ -2383,7 +2391,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "dirt and iron"
 	glass_icon_state = "mush_crush"
 	glass_name = "glass of Mush Crush"
-	glass_desc = "Popular among people that want to grow their own food rather then drink the soil."
+	glass_desc = "Popular among people that want to grow their own food rather than drink the soil."
 
 /datum/reagent/consumable/ethanol/mush_crush/on_mob_life(mob/living/carbon/M)
 	if(ispodperson(M) || ismush(M))
@@ -2458,7 +2466,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		quality = RACE_DRINK
 	else
 		M.adjust_disgust(25)
-		M.adjustToxLoss(1, 0) //Low tox do to being carp + jell toxins.
+		M.adjustToxLoss(1, 0) //Low tox due to being carp + jell toxins.
 	return ..()
 
 /datum/reagent/consumable/ethanol/laval_spit //Yes Laval

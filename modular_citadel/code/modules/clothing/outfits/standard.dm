@@ -25,6 +25,7 @@
 	name = "Bluespace Tech hardsuit"
 	desc = "A specialised hardsuit for Bluespace agents."
 	armor = list("melee" = 98, "bullet" = 98, "laser" = 98, "energy" = 98, "bomb" = 98, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100) // Skyrat edit
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
 /obj/item/clothing/shoes/combat/debug
 	clothing_flags = NOSLIP

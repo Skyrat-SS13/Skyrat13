@@ -39,3 +39,14 @@
 	build_path = /obj/item/melee/transforming/armblade
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+//Black police baton
+/datum/design/blackbaton
+	name = "Black Police Baton"
+	desc = "A timeless classic of law enforcement."
+	id = "blackbaton"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/titanium = 5000, /datum/material/iron = 2000)
+	build_path = /obj/item/melee/classic_baton/black
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

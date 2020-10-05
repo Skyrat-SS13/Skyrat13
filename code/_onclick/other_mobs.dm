@@ -7,6 +7,12 @@
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
 
 	if(!has_active_hand()) //can't attack without a hand.
+		//skyrat edit
+		var/obj/item/bodypart/check_arm = get_active_hand()
+		if(check_arm && check_arm.is_disabled() == BODYPART_DISABLED_WOUND)
+			to_chat(src, "<span class='warning'>The damage in your [check_arm.name] is preventing you from using it! Get it fixed, or at least splinted!</span>")
+			return
+		//
 		to_chat(src, "<span class='notice'>You look at your arm and sigh.</span>")
 		return
 
@@ -108,7 +114,7 @@
 	A.attack_animal(src)
 
 /atom/proc/attack_animal(mob/user)
-	return
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_ANIMAL, user)
 
 /mob/living/RestrainedClickOn(atom/A)
 	return

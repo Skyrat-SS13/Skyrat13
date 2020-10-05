@@ -3,7 +3,7 @@
 	id = "insect"
 	say_mod = "chitters"
 	default_color = "00FF00"
-	species_traits = list(LIPS,EYECOLOR,HAIR,FACEHAIR,MUTCOLORS,HORNCOLOR,WINGCOLOR)
+	species_traits = list(LIPS,EYECOLOR,HAIR,FACEHAIR,MUTCOLORS,HORNCOLOR,WINGCOLOR,HAS_FLESH,HAS_BONE)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	mutant_bodyparts = list("mcolor" = "FFF","mcolor2" = "FFF","mcolor3" = "FFF", "mam_tail" = "None", "mam_ears" = "None",
 							"insect_wings" = "None", "insect_fluff" = "None", "mam_snouts" = "None", "taur" = "None", "insect_markings" = "None")
@@ -14,9 +14,11 @@
 	liked_food = MEAT | FRUIT
 	disliked_food = TOXIC
 	icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
+	//Skyrat Edit
 	exotic_bloodtype = "BUG"
 	exotic_blood_color = BLOOD_COLOR_BUG
-	languagewhitelist = list("Moffic", "Buggy") //Skyrat Edit
+	languagewhitelist = list("Moffic", "Buggy")
+	//
 
 /datum/species/insect/spec_death(gibbed, mob/living/carbon/human/H)
 	if(H)

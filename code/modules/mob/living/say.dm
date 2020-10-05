@@ -134,7 +134,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		// No, you cannot speak in xenocommon just because you know the key
 		if(can_speak_language(message_language))
 			language = message_language
-		message = copytext_char(message, 3)
+		var/datum/language/langguage = GLOB.language_datum_instances[message_language]
+		message = copytext_char(message, length(langguage.key) + 2) //skyrat edit
 
 		// Trim the space if they said ",0 I LOVE LANGUAGES"
 		message = trim_left(message)
@@ -347,11 +348,15 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 /mob/living/proc/get_message_language(message)
 	if(message[1] == ",")
-		var/key = message[1 + length(message[1])]
-		for(var/ld in GLOB.all_languages)
-			var/datum/language/LD = ld
-			if(initial(LD.key) == key)
-				return LD
+		//skyrat edit - fucking hate this i want to use multichar keys
+		var/list/bruh = splittext_char(message, " ", 2)
+		if(length(bruh))
+			var/key = bruh[1]
+		//
+			for(var/ld in GLOB.all_languages)
+				var/datum/language/LD = ld
+				if(initial(LD.key) == key)
+					return LD
 	return null
 
 /mob/living/proc/treat_message(message)

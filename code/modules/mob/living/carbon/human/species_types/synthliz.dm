@@ -4,7 +4,7 @@
 	icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
 	say_mod = "beeps"
 	default_color = "00FF00"
-	species_traits = list(MUTCOLORS,NOTRANSSTING,EYECOLOR,LIPS,HAIR)
+	species_traits = list(MUTCOLORS,NOTRANSSTING,EYECOLOR,LIPS,HAIR,HAS_SKIN,HAS_FLESH,HAS_BONE)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	mutant_bodyparts = list("ipc_antenna" = "Synthetic Lizard - Antennae","mam_tail" = "Synthetic Lizard", "mam_snouts" = "Synthetic Lizard - Snout", "legs" = "Digitigrade", "mam_body_markings" = "Synthetic Lizard - Plates", "taur" = "None")
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc
@@ -20,7 +20,10 @@
 	exotic_bloodtype = "S"
 	exotic_blood_color = BLOOD_COLOR_OIL
 	//Skyrat change - blood
-	bloodtypes = list("S", "SY", "HF")
+	languagewhitelist = list("Encoded Audio Language")
+	bloodtypes = list("HF", "SY", "S")
+	bloodreagents = list("Synthetic Blood", "Oil")
+	rainbowblood = TRUE
 	//
 
 /datum/species/synthliz/qualifies_for_rank(rank, list/features)

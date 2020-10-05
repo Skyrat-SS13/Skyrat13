@@ -2,6 +2,9 @@
 #define HANDS_SLOT_AMT		2
 #define BACKPACK_SLOT_AMT	4
 
+//skyrat edit - scars
+#define ASSOCIATED_SCARS list(BODY_ZONE_HEAD = list(), BODY_ZONE_CHEST = list(), BODY_ZONE_PRECISE_GROIN = list(), BODY_ZONE_R_ARM = list(), BODY_ZONE_PRECISE_R_HAND = list(), BODY_ZONE_L_ARM = list(), BODY_ZONE_PRECISE_L_HAND = list(), BODY_ZONE_R_LEG = list(), BODY_ZONE_PRECISE_R_FOOT = list(), BODY_ZONE_L_LEG = list(), BODY_ZONE_PRECISE_L_FOOT = list())
+
 GLOBAL_LIST_EMPTY(preferences_datums)
 GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		"Meat" = MEAT,
@@ -18,6 +21,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		"Toxic" = TOXIC,
 		"Pineapple" = PINEAPPLE,
 		"Breakfast" = BREAKFAST
+	))
+GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
+		"Hot Plates" = 'modular_skyrat/sound/music/hot_plates.ogg',
+		"Thunderdome" = 'modular_skyrat/sound/music/thunderdome.ogg',
+		"Death Squad" ='modular_skyrat/sound/music/deathsquads.ogg',
 	))
 
 /datum/preferences
@@ -93,6 +101,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/event_participation = FALSE
 	var/event_prefs = ""
 	var/appear_in_round_end_report = TRUE //whether the player of the character is listed on the round-end report
+	var/eorg_teleport = FALSE
 	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
@@ -107,6 +116,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/age = 30						//age of character
 	//SKYRAT CHANGES
 	var/bloodtype = ""
+	var/bloodreagent = ""
+	var/bloodcolor = ""
 	var/skyrat_ooc_notes = ""
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
@@ -120,16 +131,36 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/flavor_faction = null
 	var/character_skills = ""
 	var/exploitable_info = ""
-	var/language = ""
 	var/see_chat_emotes = TRUE
 	var/enable_personal_chat_color = FALSE
 	var/personal_chat_color = "#ffffff"
-	var/list/foodlikes = list() //Skyrat additions BEGIN
+
+	var/language = ""
+
+	var/list/foodlikes = list()
 	var/list/fooddislikes = list()
+	var/list/color_gear = list()
 	var/maxlikes = 3
-	var/maxdislikes = 3 //Skyrat additions END
+	var/maxdislikes = 3
+
+	var/list/body_descriptors = list()
 
 	var/list/alt_titles_preferences = list()
+
+	var/combat_music = "None"
+	
+	var/accept_ERG = FALSE
+	
+	/// If we have persistent scars enabled
+	var/persistent_scars = TRUE
+	/// We have 5 slots for persistent scars, if enabled we pick a random one to load (empty by default) and scars at the end of the shift if we survived as our original person
+	var/list/scars_list = list("1" = "", "2" = "", "3" = "", "4" = "", "5" = "")
+	/// Which of the 5 persistent scar slots we randomly roll to load for this round, if enabled. Actually rolled in [/datum/preferences/proc/load_character(slot)]
+	var/scars_index = 1
+	/// A list, associating a set of cosmetic scars to each limb. These are fluff and cannot be removed via medical means.
+	/// No scars are applied to limbs with empty lists.
+	var/list/cosmetic_scars = ASSOCIATED_SCARS
+	
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
@@ -212,6 +243,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		"ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)", //SKYRAT CHANGE
 		"body_size" = RESIZE_DEFAULT_SIZE
 		)
+	/*var/custom_speech_verb = "default" //if your say_mod is to be something other than your races SKYRAT EDIT
+	var/custom_tongue = "default"*/ //if your tongue is to be something other than your races
 
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
@@ -224,7 +257,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
 
-		// Want randomjob if preferences already filled - Donkie
+	// Want randomjob if preferences already filled - Donkie
 	var/joblessrole = BERANDOMJOB  //defaults to 1 for fewer assistants
 
 	// 0 = character settings, 1 = game preferences
@@ -361,12 +394,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<center><b>Current Quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
 			//Skyrat edit - food preferences
 			dat += "<center><h2>Food Setup</h2>"
-			dat += "<a href='?_src_=prefs;preference=food;task=menu'>Configure Foods</a></center><br>"
+			dat += "<a href='?_src_=prefs;preference=food;task=menu'>Configure Foods</a></center>"
 			dat += "<center><b>Current Likings:</b> [foodlikes.len ? foodlikes.Join(", ") : "None"]</center>"
 			dat += "<center><b>Current Dislikings:</b> [fooddislikes.len ? fooddislikes.Join(", ") : "None"]</center>"
 			//
-			dat += "<h2>Identity</h2>"
 			dat += "<table width='100%'><tr><td width='75%' valign='top'>"
+			dat += "<h2>Identity</h2>"
 			if(jobban_isbanned(user, "appearance"))
 				dat += "<b>You are banned from using custom names and appearances. You can continue to adjust your characters, but you will be randomised once you join the game.</b><br>"
 			dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=name;task=random'>Random Name</A> "
@@ -375,30 +408,40 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 //END OF SKYRAT EDIT
 
 			dat += "<b>[nameless ? "Default designation" : "Name"]:</b>"
-			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
+			dat += " <a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
 
 			dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
-			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
-			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a><BR>"
-
-			dat += "<b>Special Names:</b><BR>"
+			dat += "<b>Additional Language:</b> <a href='?_src_=prefs;preference=language;task=menu'><b>[language ? language : "None"]</b></a><BR>"
+			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a>"
+			//skyrat edit
+			dat += "<h2>Religion</h2>"
 			var/old_group
-			for(var/custom_name_id in GLOB.preferences_custom_names)
+			for(var/custom_name_id in list("religion", "deity"))
 				var/namedata = GLOB.preferences_custom_names[custom_name_id]
 				if(!old_group)
 					old_group = namedata["group"]
 				else if(old_group != namedata["group"])
 					old_group = namedata["group"]
 					dat += "<br>"
-				dat += "<a href ='?_src_=prefs;preference=[custom_name_id];task=input'><b>[namedata["pref_name"]]:</b> [custom_names[custom_name_id]]</a> "
-			dat += "<br><br>"
-			//SKYRAT EDIT - additional language
-			dat += "<b>Additional Language:</b><br>"
-			dat += "<a href='?_src_=prefs;preference=language;task=menu'>[language ? language : "None"]</a></center><br>"
+				dat += "<b>[capitalize(custom_name_id)]:</b> <a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a><br>"
+			dat += "<h2>Additional Preferences</h2>"
+			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a>"
+
+
+			dat += "<h2>Special Names:</h2>"
 			//
-			dat += "<b>Custom job preferences:</b><BR>"
-			dat += "<a href='?_src_=prefs;preference=ai_core_icon;task=input'><b>Preferred AI Core Display:</b> [preferred_ai_core_display]</a><br>"
-			dat += "<a href='?_src_=prefs;preference=sec_dept;task=input'><b>Preferred Security Department:</b> [prefered_security_department]</a><BR></td>"
+			old_group = null
+			for(var/custom_name_id in (GLOB.preferences_custom_names - list("religion", "deity"))) //skyrat edit
+				var/namedata = GLOB.preferences_custom_names[custom_name_id]
+				if(!old_group)
+					old_group = namedata["group"]
+				else if(old_group != namedata["group"])
+					old_group = namedata["group"]
+					dat += "<br>"
+				dat += "<b>[namedata["pref_name"]]:</b> <a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a> "
+			dat += "<h2>Job Preferences</h2>"
+			dat += "<b>Preferred AI Core Display:</b> <a href='?_src_=prefs;preference=ai_core_icon;task=input'>[preferred_ai_core_display]</a><br>"
+			dat += "<b>Preferred Security Department:</b> <a href='?_src_=prefs;preference=sec_dept;task=input'>[prefered_security_department]</a><BR></td>"
 			dat += "</tr></table>"
 
 		//Character Appearance
@@ -423,44 +466,98 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>Flavor Text</h2>"
-			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a>" //skyrat - <br> moved one line down
-			//SKYRAT EDIT
-			dat += 	"<a href='?_src_=prefs;preference=skyrat_ooc_notes;task=input'>Set OOC Notes</a><br>"
-			dat += 	"ERP : <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
-			dat += 	"Non-Con : <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
-			dat += 	"Vore : <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
-			//END OF SKYRAT EDIT
+			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a><br>" //skyrat - <br> moved one line down
 			if(length(features["flavor_text"]) <= 40)
 				if(!length(features["flavor_text"]))
-					dat += "\[...\]<BR>" //skyrat - adds <br> //come to brazil or brazil comes to you
+					dat += "\[...\]" //skyrat - adds <br> //come to brazil or brazil comes to you
 				else
-					dat += "[html_encode(features["flavor_text"])]<BR>" //skyrat - adds <br> and uses html_encode
+					dat += "[html_encode(features["flavor_text"])]" //skyrat - adds <br> and uses html_encode
 			else
-				dat += "[TextPreview(html_encode(features["flavor_text"]))]...<BR>" //skyrat edit, uses html_encode
+				dat += "[TextPreview(html_encode(features["flavor_text"]))]..." //skyrat edit, uses html_encode
 			//SKYRAT EDIT
-			dat += 	"Records :"
-			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'>General</a>"
-			dat += 	"<a href='?_src_=prefs;preference=security_records;task=input'>Security</a>"
-			dat += 	"<a href='?_src_=prefs;preference=medical_records;task=input'>Medical</a><br>"
-			dat += 	"Character :"
-			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a>"
-			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
-			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
-			if(pref_species.bloodtypes.len)
-				dat += "Blood type :"
-				dat += 	"<a href='?_src_=prefs;preference=bloodtype;task=input'>[bloodtype ? bloodtype : "Default"]</a><br>"
-			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
-			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
-			//END OF SKYRAT EDIT
 			dat += "<h2>Silicon Flavor Text</h2>"
-			dat += "<a href='?_src_=prefs;preference=silicon_flavor_text;task=input'><b>Set Silicon Examine Text</b></a><br>"
+			dat += "<a href='?_src_=prefs;preference=silicon_flavor_text;task=input'><b>Set Silicion Examine Text</b></a><br>"
 			if(length(features["silicon_flavor_text"]) <= 40)
 				if(!length(features["silicon_flavor_text"]))
 					dat += "\[...\]"
 				else
 					dat += "[features["silicon_flavor_text"]]"
 			else
-				dat += "[TextPreview(features["silicon_flavor_text"])]...<BR>"
+				dat += "[TextPreview(features["silicon_flavor_text"])]..."
+			dat +=  "<h2>OOC Notes</h2>"
+			dat += 	"<a href='?_src_=prefs;preference=skyrat_ooc_notes;task=input'><b>Set OOC Notes</b></a><br>"
+			if(length(skyrat_ooc_notes) <= 40)
+				if(!length(skyrat_ooc_notes))
+					dat += "\[...\]"
+				else
+					dat += "[skyrat_ooc_notes]"
+			else
+				dat += "[TextPreview(skyrat_ooc_notes)]..."
+			dat +=	"<h2>ERP Preferences</h2>"
+			dat += 	"<b>ERP :</b> <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a> "
+			dat += 	"<b>Non-Con :</b> <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a> "
+			dat += 	"<b>Vore :</b> <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
+			dat += 	"<h2>Records</h2>"
+			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'><b>General</b></a><br>"
+			if(length(general_records) <= 40)
+				if(!length(general_records))
+					dat += "\[...\]"
+				else
+					dat += "[general_records]"
+			else
+				dat += "[TextPreview(general_records)]..."
+			dat += "<BR>"
+			dat += 	"<a href='?_src_=prefs;preference=security_records;task=input'><b>Security</b></a><br>"
+			if(length(security_records) <= 40)
+				if(!length(security_records))
+					dat += "\[...\]"
+				else
+					dat += "[security_records]"
+			else
+				dat += "[TextPreview(security_records)]..."
+			dat += "<BR>"
+			dat += 	"<a href='?_src_=prefs;preference=medical_records;task=input'><b>Medical</b></a><br>"
+			if(length(medical_records) <= 40)
+				if(!length(medical_records))
+					dat += "\[...\]"
+				else
+					dat += "[medical_records]"
+			else
+				dat += "[TextPreview(medical_records)]..."
+			dat += 	"<h2>Character</h2>"
+			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'><b>Background</b></a><br>"
+			if(length(flavor_background) <= 40)
+				if(!length(flavor_background))
+					dat += "\[...\]"
+				else
+					dat += "[flavor_background]"
+			else
+				dat += "[TextPreview(flavor_background)]..."
+			dat += "<BR>"
+			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'><b>Skills</b></a><br>"
+			if(length(character_skills) <= 40)
+				if(!length(character_skills))
+					dat += "\[...\]"
+				else
+					dat += "[character_skills]"
+			else
+				dat += "[TextPreview(character_skills)]..."
+			dat += "<BR>"
+			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'><b>Exploitable Information</b></a><br>"
+			if(length(exploitable_info) <= 40)
+				if(!length(exploitable_info))
+					dat += "\[...\]"
+				else
+					dat += "[exploitable_info]"
+			else
+				dat += "[TextPreview(exploitable_info)]..."
+			dat += "<BR><BR>"
+			if(length(pref_species.bloodtypes))
+				dat += "<b>Blood type :</b>"
+				dat += 	" <a href='?_src_=prefs;preference=bloodtype;task=input'>[bloodtype ? bloodtype : "Default"]</a><br>"
+			dat += "<b>Faction/Employer :</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
+			dat += "<b>Custom runechat color :</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
+			//END OF SKYRAT EDIT
 			/*Skyrat edit - comments out Citadel's OOC notes in favor for our owns
 			dat += "<h2>OOC notes</h2>"
 			dat += "<a href='?_src_=prefs;preference=ooc_notes;task=input'><b>Set OOC notes</b></a><br>"
@@ -477,8 +574,16 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Gender:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
 			if(gender != NEUTER && pref_species.sexes)
 				dat += "<b>Body Model:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=body_model'>[features["body_model"] == MALE ? "Masculine" : "Feminine"]</a><BR>"
-			dat += "<b>Species:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><BR>"
+			dat += "<b>Species:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=species;task=menu'>[pref_species.name]</a><BR>"
 			dat += "<b>Custom Species Name:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=custom_species;task=input'>[custom_species ? custom_species : "None"]</a><BR>"
+			if(LAZYLEN(pref_species.descriptors) && LAZYLEN(body_descriptors))
+				dat += "<b>Descriptors:</b><BR>"
+				for(var/entry in pref_species.descriptors)
+					var/datum/mob_descriptor/descriptor = pref_species.descriptors[entry]
+					if(!descriptor)
+						continue
+					dat += "<b>[capitalize(descriptor.chargen_label)]:</b> [descriptor.get_standalone_value_descriptor(body_descriptors[entry]) ? descriptor.get_standalone_value_descriptor(body_descriptors[entry]) : "None"] <a href='?_src_=prefs;preference=descriptors;task=input;change_descriptor=[entry]'>Change</a><BR>"
+				dat += "<BR>"
 			dat += "<b>Random Body:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=all;task=random'>Randomize!</A><BR>"
 			dat += "<b>Always Random Body:</b><a href='?_src_=prefs;preference=all'>[be_random_body ? "Yes" : "No"]</A><BR>"
 			dat += "<br><b>Cycle background:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=cycle_bg;task=input'>[bgstate]</a><BR>"
@@ -524,6 +629,13 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			else if(use_skintones || mutant_colors)
 				dat += "</td>"
 
+			/*dat += APPEARANCE_CATEGORY_COLUMN SKYRAT EDIT
+			dat += "<h2>Speech preferences</h2>"
+			dat += "<b>Custom Speech Verb:</b><BR>"
+			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=speech_verb;task=input'>[custom_speech_verb]</a><BR>"
+			dat += "<b>Custom Tongue:</b><BR>"
+			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=tongue;task=input'>[custom_tongue]</a><BR>"*/
+
 			if(HAIR in pref_species.species_traits)
 
 				dat += APPEARANCE_CATEGORY_COLUMN
@@ -545,7 +657,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			var/mutant_category = 0
 
 			dat += APPEARANCE_CATEGORY_COLUMN
-			dat += "<h3>Show mismatched markings</h3>"
+			dat += "<h3>Mismatched Markings</h3>"
 			dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=mismatched_markings;task=input'>[show_mismatched_markings ? "Yes" : "No"]</a>"
 			mutant_category++
 			if(mutant_category >= MAX_MUTANT_ROWS) //just in case someone sets the max rows to 1 or something dumb like that
@@ -577,6 +689,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["tail_human"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -602,6 +715,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["snout"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -614,6 +728,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["horns"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -627,6 +742,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
+					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["frills"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -665,6 +782,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["mam_body_markings"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -676,6 +794,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
+					mutant_category = 0 //skyrat edit
 
 			if(pref_species.mutant_bodyparts["mam_ears"])
 				if(!mutant_category)
@@ -715,6 +834,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["legs"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -727,6 +847,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["deco_wings"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -736,6 +857,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=deco_wings;task=input'>[features["deco_wings"]]</a>"
 				dat += "<span style='border:1px solid #161616; background-color: #[features["wings_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=wings_color;task=input'>Change</a><BR>"
 
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["insect_wings"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -744,10 +869,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=insect_wings;task=input'>[features["insect_wings"]]</a>"
 				dat += "<span style='border:1px solid #161616; background-color: #[features["wings_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=wings_color;task=input'>Change</a><BR>"
+
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["insect_fluff"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -755,10 +882,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<h3>Insect Fluff</h3>"
 
 				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=insect_fluffs;task=input'>[features["insect_fluff"]]</a>"
+
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["taur"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -766,6 +895,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<h3>Tauric Body</h3>"
 
 				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=taur;task=input'>[features["taur"]]</a>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
 
 			if(pref_species.mutant_bodyparts["insect_markings"])
 				if(!mutant_category)
@@ -780,10 +914,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					dat += "</td>"
 					mutant_category = 0
 
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
 			if(pref_species.mutant_bodyparts["wings"] && GLOB.r_wings_list.len >1)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -796,6 +926,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["xenohead"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -808,6 +939,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["xenotail"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -820,6 +952,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["xenodorsal"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -832,6 +965,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["ipc_screen"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -844,6 +978,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["ipc_antenna"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -881,18 +1016,34 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 			dat += "</td>"
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
+			//skyrat edit
+			if((CAN_SCAR && (HAS_SKIN || HAS_FLESH || HAS_BONE)) in pref_species.species_traits)
+				dat += "<h2>Scar Options</h2>"
+				dat += "<b>Temporal Scarring:</b><BR><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</a> "
+				dat += "<a href='?_src_=prefs;preference=clear_scars'>Clear persistent scar slots</a><BR>"
+				dat += "<b>Cosmetic Scarring:</b><BR>"
+				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=menu'>Configure Scars</a><BR>"
+			//
 			dat += "<h2>Clothing & Equipment</h2>"
-			dat += "<b>Underwear:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=underwear;task=input'>[underwear]</a>"
+			/* skyrat change
+			dat += "<b>Underwear:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=underwear;task=input'>[underwear]</a><br>"
 			if(GLOB.underwear_list[underwear]?.has_color)
-				dat += "<b>Underwear Color:</b> <span style='border:1px solid #161616; background-color: #[undie_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=undie_color;task=input'>Change</a><BR>"
-			dat += "<b>Undershirt:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=undershirt;task=input'>[undershirt]</a>"
+				dat += "<b>Underwear Color:</b>"
+				dat += "<BR>"
+				dat += "<span style='border:1px solid #161616; background-color: #[undie_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=undie_color;task=input'>Change</a><BR>"
+			dat += "<b>Undershirt:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=undershirt;task=input'>[undershirt]</a><br>"
 			if(GLOB.undershirt_list[undershirt]?.has_color)
-				dat += "<b>Undershirt Color:</b> <span style='border:1px solid #161616; background-color: #[shirt_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=shirt_color;task=input'>Change</a><BR>"
-			dat += "<b>Socks:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=socks;task=input'>[socks]</a>"
+				dat += "<b>Undershirt Color:</b>"
+				dat += "<BR>"
+				dat += "<span style='border:1px solid #161616; background-color: #[shirt_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=shirt_color;task=input'>Change</a><BR>"
+			dat += "<b>Socks:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=socks;task=input'>[socks]</a><br>"
 			if(GLOB.socks_list[socks]?.has_color)
-				dat += "<b>Socks Color:</b> <span style='border:1px solid #161616; background-color: #[socks_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=socks_color;task=input'>Change</a><BR>"
-			dat += "<b>Backpack:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=bag;task=input'>[backbag]</a>"
-			dat += "<b>Jumpsuit:</b><BR><a href ='?_src_=prefs;preference=suit;task=input'>[jumpsuit_style]</a><BR>"
+				dat += "<b>Socks Color:</b>"
+				dat += "<BR>"
+				dat += "<span style='border:1px solid #161616; background-color: #[socks_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=socks_color;task=input'>Change</a><BR>"
+			*/
+			dat += "<b>Backpack:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=bag;task=input'>[backbag]</a><br>"
+			dat += "<b>Jumpsuit:</b><BR><a href ='?_src_=prefs;preference=suit;task=input'>[jumpsuit_style]</a><br>"
 			dat += "<b>Uplink Location:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a>"
 			dat += "</td>"
 
@@ -919,7 +1070,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							if(T.taur_mode & P.accepted_taurs)
 								tauric_shape = TRUE
 					dat += "<b>Penis Shape:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_shape;task=input'>[features["cock_shape"]][tauric_shape ? " (Taur)" : ""]</a>"
-					dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[features["cock_length"]] inch(es)</a>"
+					//Skyrat edit - Metric measurements
+					if(toggles & METRIC_OR_BUST)
+						dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[round(features["cock_length"] * 2.54, 1)] centimeter(s)</a>"
+					else
+						dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[features["cock_length"]] inch(es)</a>"
+					//Skyrat edit end
 					dat += "<b>Penis Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=cock_visibility;task=input'>[features["cock_visibility"]]</a>"
 					dat += "<b>Has Testicles:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=has_balls'>[features["has_balls"] == TRUE ? "Yes" : "No"]</a>"
 					if(features["has_balls"])
@@ -988,6 +1144,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Ghost PDA:</b> <a href='?_src_=prefs;preference=ghost_pda'>[(chat_toggles & CHAT_GHOSTPDA) ? "All Messages" : "Nearest Creatures"]</a><br>"
 			dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=winflash'>[(windowflashing) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<br>"
+			//SKYRAT CHANGES BEGIN
+			dat += "<b>Play Megafauna Music:</b> <a href='?_src_=prefs;preference=hear_megafauna'>[(toggles & SOUND_MEGAFAUNA) ? "Enabled":"Disabled"]</a><br>"
+			//SKYRAT CHANGES END
 			dat += "<b>Play Admin MIDIs:</b> <a href='?_src_=prefs;preference=hear_midis'>[(toggles & SOUND_MIDI) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>Play Lobby Music:</b> <a href='?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>See Pull Requests:</b> <a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "Enabled":"Disabled"]</a><br>"
@@ -1025,7 +1184,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				p_chaos = preferred_chaos
 			dat += "<b>Preferred Chaos Amount:</b> <a href='?_src_=prefs;preference=preferred_chaos;task=input'>[p_chaos]</a><br>"
 //SKYRAT CHANGES
+			dat += "<h2>Skyrat Preferences</h2>"
+			dat += "<b>Combat mode music:</b> <a href='?_src_=prefs;preference=combat_music'>[combat_music ? combat_music : "None"]</a><br>"
 			dat += "<b>Show name at round-end report:</b> <a href='?_src_=prefs;preference=appear_in_round_end_report'>[appear_in_round_end_report ? "Yes" : "No"]</a><br>"
+			dat += "<b>Measurements:</b> <a href='?_src_=prefs;preference=metric_or_bust'>[toggles & METRIC_OR_BUST ? "Metric" : "Imperial"]</a><br>"
+			dat += "<b>Opt-out of EORG and teleport to a safe zone:</b> <a href='?_src_=prefs;preference=eorg_teleport'>[eorg_teleport ? "Enabled" : "Disabled"]</a><br>"
 //END OF SKYRAT CHANGES
 			dat += "<br>"
 			dat += "</td>"
@@ -1057,6 +1220,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a><br>"
 
 			dat += "<b>Income Updates:</b> <a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Allowed" : "Muted"]</a><br>"
+			
+			dat += "<b>Combat Wound Messages (Other):</b> <a href='?_src_=prefs;preference=wounds_other'>[(chat_toggles & CHAT_WOUNDS_OTHER) ? "Allowed" : "Muted"]</a><br>"
+
+			dat += "<b>Combat Wound Messages (Self):</b> <a href='?_src_=prefs;preference=wounds_self'>[(chat_toggles & CHAT_WOUNDS_SELF) ? "Allowed" : "Muted"]</a><br>"
+			
 			dat += "<br>"
 
 			dat += "<b>Parallax (Fancy Space):</b> <a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
@@ -1161,7 +1329,13 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					class_link = "style='white-space:normal;background:#ebc42e;' href='?_src_=prefs;preference=gear;toggle_gear_path=[html_encode(j)];toggle_gear=1'"
 				else
 					class_link = "style='white-space:normal;' href='?_src_=prefs;preference=gear;toggle_gear_path=[html_encode(j)];toggle_gear=1'"
-				dat += "<tr style='vertical-align:top;'><td width=15%><a [class_link]>[j]</a></td>"
+				//skyrat edit
+				if(gear.has_colors && (gear.name in color_gear))
+					var/colore = "<a href='?_src_=prefs;preference=gear;toggle_gear_path=[html_encode(j)];toggle_gear=color'>Color</a><span style='border: 1px solid #161616; background-color: [color_gear[gear.name]];'>&nbsp;&nbsp;&nbsp;</span>"
+					dat += "<tr style='vertical-align:top;'><td width=15%><a [class_link]>[j]</a>[colore]</td>"
+				else
+					dat += "<tr style='vertical-align:top;'><td width=15%><a [class_link]>[j]</a></td>"
+				//
 				dat += "<td width = 5% style='vertical-align:top'>[gear.cost]</td><td>"
 				if(islist(gear.restricted_roles))
 					if(gear.restricted_roles.len)
@@ -1610,7 +1784,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			else
 				dat += "<b><font color='[font_color]'>[language_name]:</font></b> [initial(L.desc)]"
 				dat += "<a href='?_src_=prefs;preference=language;task=update;language=[has_language ? nullify : language_name]'>[has_language ? "Remove" : "Choose"]</a><br>"
-	else 
+	else
 		dat += "<center><b>The language subsystem hasn't fully loaded yet! Please wait a bit and try again.</b></center><br>"
 	dat += "<hr>"
 	dat += "<center><a href='?_src_=prefs;preference=language;task=close'>Done</a></center>"
@@ -1620,13 +1794,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	popup.set_content(dat.Join())
 	popup.open(FALSE)
 //
-
-/datum/preferences/Topic(href, href_list, hsrc)			//yeah, gotta do this I guess..
-	. = ..()
-	if(href_list["close"])
-		var/client/C = usr.client
-		if(C)
-			C.clear_character_previews()
 
 //Skyrat edit - food prefs
 /datum/preferences/proc/SetFood(mob/user)
@@ -1671,6 +1838,157 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	popup.open(FALSE)
 //
 
+//Skyrat edit - scar prefs
+/datum/preferences/proc/SetScars(mob/user)
+	if(!SSquirks || !SSquirks.associated_bodyparts.len)
+		to_chat(user, "<span class='warning'>The quirk subsystem hasn't initialized yet! Please wait a bit.</span>")
+		return
+	var/list/dat = list()
+	dat += "<center><b>Scars setup</b></center><BR>"
+	dat += "<div align='center'>"
+	dat += "Each bodypart has a list of specific locations to apply scars to.<BR>"
+	dat += "Simply select the severity of a scar, as well as a description.<BR>"
+	dat += "The description can be chosen from one of the default presets, or customized by choosing custom.<BR>"
+	dat += "For custom scars, limit the text to 256 characters and remember that they should be written as a description, so that they fit in this format:<BR>"
+	var/p_he = "they"
+	var/p_his = "their"
+	var/p_have = "have"
+	switch(gender)
+		if(MALE)
+			p_he = "he"
+			p_his = "his"
+			p_have = "has"
+		if(FEMALE)
+			p_he = "she"
+			p_his = "her"
+			p_have = "has"
+		if(NEUTER)
+			p_he = "it"
+			p_his = "it's"
+			p_have = "has"
+	dat += "<span style='padding-left: 10px;color: #a899ff;'>[capitalize(p_he)] [p_have] <b>(description)</b> on [p_his] <b>(specific location)</b>.</span><BR>"
+	dat += "</div>"
+	dat += "<center><a href='?_src_=prefs;preference=cosmetic_scars;task=close'>Done</a></center>"
+	dat += "<hr>"
+	var/list/current_scars = list()
+	if(!length(cosmetic_scars))
+		cosmetic_scars = ASSOCIATED_SCARS
+	for(var/BP in cosmetic_scars)
+		for(var/specific in cosmetic_scars[BP])
+			var/list/bruh = cosmetic_scars[BP][specific]
+			if(istype(bruh) && bruh.len)
+				if(cosmetic_scars[BP][specific]["desc"] && (cosmetic_scars[BP][specific]["desc"] != "None"))
+					current_scars |= "[specific]"
+	dat += "<div>"
+	dat += "<b>Currently scarred locations:</b> [current_scars.len ? capitalize(current_scars.Join(", ")) : "None"]"
+	dat += "</div>"
+	for(var/BP in cosmetic_scars)
+		var/obj/item/bodypart/ass_part
+		ass_part = SSquirks.associated_bodyparts[BP]
+		if(!ass_part)
+			continue
+		if(!length(cosmetic_scars[ass_part.body_zone]))
+			for(var/i in ass_part.specific_locations)
+				cosmetic_scars[ass_part.body_zone][i] = list("severity" = WOUND_SEVERITY_NONE, "desc" = "None")
+		var/font_color = "#99c5ff"
+		var/font_desc = "#a899ff"
+		var/font_severity = "#ff5757"
+		var/bg_remove = "#ff1a1a"
+		dat += "<hr>"
+		dat += "<span style='font-size: 125%;'><b>[capitalize(parse_zone(BP))]: </b></span>"
+		dat += "<hr>"
+		dat += "<div style='padding-left: 20px;'>"
+		for(var/specific in cosmetic_scars[BP])
+			dat += "<div style='color: [font_color];padding-top: 10px;'><b>[capitalize(specific)]</b></div>"
+			if(cosmetic_scars[BP][specific]["desc"] && (cosmetic_scars[BP][specific]["desc"] != "None"))
+				dat += "<div style='color: [font_desc];'><b>Description:</b> [cosmetic_scars[BP][specific]["desc"]]</div> "
+			else
+				dat += "<div style='color: [font_desc];'><b>Description:</b> No scars.</div> "
+			if(cosmetic_scars[BP][specific]["desc"] && (cosmetic_scars[BP][specific]["desc"] != "None"))
+				dat += " <a style='style='color:[bg_remove];' href='?_src_=prefs;preference=cosmetic_scars;task=update;new_scar=remove;body_zone=[BP];specific_location=[specific];'>Remove</a>"
+			else
+				dat += " <a href='?_src_=prefs;preference=cosmetic_scars;task=update;new_scar=remove;body_zone=[BP];specific_location=[specific];'>Remove</a>"
+			dat += "<BR>"
+			dat += "<b>Presets:</b><BR>"
+			dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;new_scar=moderate;body_zone=[BP];specific_location=[specific];'>Moderate</a>"
+			dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;new_scar=severe;body_zone=[BP];specific_location=[specific];'>Severe</a>"
+			dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;new_scar=critical;body_zone=[BP];specific_location=[specific];'>Critical</a>"
+			dat += " <a href='?_src_=prefs;preference=cosmetic_scars;task=update;new_scar=custom;body_zone=[BP];specific_location=[specific];'>Custom</a>"
+			dat += "<BR>"
+			dat += "<div style='color: [font_severity];'><b>Severity:</b> </div>"
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_NONE)
+				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=none;specific_location=[specific];'>None</a>"
+			else
+				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=none;specific_location=[specific];'>None</a>"
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_TRIVIAL)
+				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=trivial;specific_location=[specific];'>Trivial</a>"
+			else
+				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=trivial;specific_location=[specific];'>Trivial</a>"
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_MODERATE)
+				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=moderate;specific_location=[specific];'>Moderate</a>"
+			else
+				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=moderate;specific_location=[specific];'>Moderate</a>"
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_SEVERE)
+				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=severe;specific_location=[specific];'>Severe</a>"
+			else
+				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=critical;specific_location=[specific];'>Severe</a>"
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_CRITICAL)
+				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=critical;specific_location=[specific];'>Critical</a>"
+			else
+				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=critical;specific_location=[specific];'>Critical</a>"
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_PERMANENT)
+				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=permanent;specific_location=[specific];'>Permanent</a>"
+			else
+				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=permanent;specific_location=[specific];'>Permanent</a>"
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_LOSS)
+				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=loss;specific_location=[specific];'>Loss</a>"
+			else
+				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=loss;specific_location=[specific];'>Loss</a>"
+		dat += "</div>"
+	dat += "<BR><center><a href='?_src_=prefs;preference=cosmetic_scars;task=reset'>Reset Scar Preferences</a>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Scar Preferences</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+//
+
+//SKYRAT EDIT - species menu cool
+/datum/preferences/proc/SetSpecies(mob/user)
+	var/list/dat = list()
+	dat += "<center><h2>Choose a species</h2></center>"
+	dat += "<center><a href='?_src_=prefs;preference=language;task=close'>Done</a></center>"
+	dat += "<hr>"
+	for(var/name in GLOB.roundstart_race_names)
+		var/selected = FALSE
+		var/id = GLOB.roundstart_race_names[name]
+		var/datum/species/S = GLOB.roundstart_race_datums[id]
+		if(!S)
+			return
+		if(pref_species.type == S.type)
+			selected = TRUE
+		var/font_color = "#4682B4"
+		dat += "<div style='padding-top:5px;padding-bottom:5px;'>"
+		dat += "<b><font color='[font_color]'>[name]:</font></b>"
+		dat += "<br>"
+		dat += "[initial(S.fluff_desc)]"
+		dat += "<br>"
+		dat += "<a [selected ? "style='background-color: #32c232;'" : ""] href='?_src_=prefs;preference=species;task=update;species=[id]'>[selected ? "Chosen" : "Choose"]</a><br>"
+		dat += "</div>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Species Preference</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+//
+
+/datum/preferences/Topic(href, href_list, hsrc)			//yeah, gotta do this I guess..
+	. = ..()
+	if(href_list["close"])
+		var/client/C = usr.client
+		if(C)
+			C.clear_character_previews()
+
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(href_list["jobbancheck"])
 		var/job = sanitizeSQL(href_list["jobbancheck"])
@@ -1694,7 +2012,20 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		qdel(query_get_jobban)
 		return
 
-	if(href_list["preference"] == "job")
+	//skyrat edit
+	if(href_list["preference"] == "descriptors")
+		var/desc_id = href_list["change_descriptor"]
+		if(desc_id)
+			if(LAZYLEN(pref_species.descriptors) && pref_species.descriptors[desc_id])
+				var/datum/mob_descriptor/descriptor = pref_species.descriptors[desc_id]
+				var/choice = input("Please select a descriptor", "Descriptor") as null|anything in descriptor.chargen_value_descriptors
+				if(choice && pref_species.descriptors[desc_id]) // Check in case they sneakily changed species.
+					body_descriptors[descriptor.name] = descriptor.chargen_value_descriptors[choice]
+		ShowChoices(user)
+		return 1
+	//
+
+	else if(href_list["preference"] == "job")
 		switch(href_list["task"])
 			if("close")
 				user << browse(null, "window=mob_occupation")
@@ -1736,6 +2067,47 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			else
 				SetChoices(user)
 		return 1
+	//skyrat edit - made species have a proper menu because thats kinda epic
+	else if(href_list["preference"] == "species")
+		switch(href_list["task"])
+			if("close")
+				user << browse(null, "window=mob_occupation")
+				ShowChoices(user)
+			if("update")
+				var/id = href_list["species"]
+				if(id && (id != pref_species.id))
+					var/newtype = GLOB.species_list[id]
+					pref_species = new newtype()
+					//let's ensure that no weird shit happens on species swapping.
+					custom_species = null
+					if(!pref_species.mutant_bodyparts["body_markings"])
+						features["body_markings"] = "None"
+					if(!pref_species.mutant_bodyparts["mam_body_markings"])
+						features["mam_body_markings"] = "None"
+					if(pref_species.mutant_bodyparts["mam_body_markings"])
+						if(features["mam_body_markings"] == "None")
+							features["mam_body_markings"] = "Plain"
+					if(pref_species.mutant_bodyparts["tail_lizard"])
+						features["tail_lizard"] = "Smooth"
+					if(pref_species.id == "felinid")
+						features["mam_tail"] = "Cat"
+						features["mam_ears"] = "Cat"
+					//Now that we changed our species, we must verify that the mutant colour is still allowed.
+					var/temp_hsv = RGBtoHSV(features["mcolor"])
+					if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
+						features["mcolor"] = pref_species.default_color
+					if(features["mcolor2"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
+						features["mcolor2"] = pref_species.default_color
+					if(features["mcolor3"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
+						features["mcolor3"] = pref_species.default_color
+					//We reset the language if it's restricted
+					var/datum/language/L = SSlanguage.languages_by_name[language]
+					if(L && L.restricted)
+						language = ""
+				SetSpecies(user)
+			else
+				SetSpecies(user)
+		return TRUE
 
 	else if(href_list["preference"] == "trait")
 		switch(href_list["task"])
@@ -1828,6 +2200,66 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			else
 				SetLanguage(user)
 		return TRUE
+	else if(href_list["preference"] == "cosmetic_scars")
+		switch(href_list["task"])
+			if("close")
+				user << browse(null, "window=mob_occupation")
+				ShowChoices(user)
+			if("update")
+				var/body_zone = href_list["body_zone"]
+				var/specific_location = href_list["specific_location"]
+				if(href_list["new_scar"])
+					var/new_scar = href_list["new_scar"]
+					var/choice = "None"
+					if(new_scar == "remove")
+						cosmetic_scars[body_zone][specific_location] = null
+					else if(new_scar == "custom")
+						choice = input(user, "Type in the description of your scar. Leave blank or cancel to not change anything.", "Custom Scar", "None") as null|text
+					else if(new_scar in list("moderate", "severe", "critical"))
+						var/typepath = "/datum/wound"
+						choice = input(user, "What type of damage will you use?", "Preset Scar", "None") as null|anything in list("Blunt", "Slash", "Pierce", "Loss")
+						if(choice && (choice != "None"))
+							typepath += "/[lowertext(choice)]"
+						else
+							choice = "None"
+						if(choice && (choice != "None"))
+							var/list/presets = list()
+							typepath = text2path(typepath)
+							for(var/W in typesof(typepath))
+								var/datum/wound/w = new W()
+								if((body_zone in w.viable_zones) && (length(w.scarring_descriptions)))
+									presets |= w.scarring_descriptions
+							presets |= list("None")
+							choice = input(user, "What preset will you use?", "Preset Scar", "None") as null|anything in presets
+						
+					if(choice && (choice != "None"))
+						cosmetic_scars[body_zone][specific_location]["desc"] = strip_html_simple(choice, 256)
+					
+				else if(href_list["severity"])
+					var/sev = href_list["severity"]
+					switch(sev)
+						if("trivial")
+							sev = WOUND_SEVERITY_TRIVIAL
+						if("moderate")
+							sev = WOUND_SEVERITY_MODERATE
+						if("severe")
+							sev = WOUND_SEVERITY_SEVERE
+						if("critical")
+							sev = WOUND_SEVERITY_CRITICAL
+						if("permanent")
+							sev = WOUND_SEVERITY_PERMANENT
+						if("loss")
+							sev = WOUND_SEVERITY_LOSS
+						else
+							sev = WOUND_SEVERITY_NONE
+					cosmetic_scars[body_zone][specific_location]["severity"] = sev
+				SetScars(user)
+			if("reset")
+				cosmetic_scars = ASSOCIATED_SCARS
+				SetScars(user)
+			else
+				SetScars(user)
+		return TRUE
 	//
 	switch(href_list["task"])
 		if("random")
@@ -1844,6 +2276,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					facial_hair_color = random_short_color()
 				if("facial_hair_style")
 					facial_hair_style = random_facial_hair_style(gender)
+				/* skyrat edit
 				if("underwear")
 					underwear = random_underwear(gender)
 					undie_color = random_short_color()
@@ -1853,6 +2286,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("socks")
 					socks = random_socks()
 					socks_color = random_short_color()
+				*/
 				if(BODY_ZONE_PRECISE_EYES)
 					eye_color = random_eye_color()
 				if("s_tone")
@@ -1864,12 +2298,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					jumpsuit_style = pick(GLOB.jumpsuitlist)
 				if("all")
 					random_character()
-
+					scars_list = ASSOCIATED_SCARS
 		if("input")
 
 			if(href_list["preference"] in GLOB.preferences_custom_names)
 				ask_for_custom_name(user,href_list["preference"])
-
 
 			switch(href_list["preference"])
 				if("ghostform")
@@ -1932,7 +2365,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/msg = input(usr, "Set your OOC Notes", "OOC Notes", skyrat_ooc_notes) as message|null
 					if(msg)
 						skyrat_ooc_notes = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
-				
+
 				if("bloodtype")
 					var/msg = input(usr, "Choose your blood type", "Blood Type", "") as anything in (pref_species.bloodtypes + "Default")
 					if(msg)
@@ -1941,23 +2374,38 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						else
 							bloodtype = msg
 
+				if("bloodreagent")
+					var/msg = input(usr, "Choose your blood reagent", "Blood Reagent", "") as anything in (pref_species.bloodreagents + "Default")
+					if(msg)
+						if(msg == "Default")
+							bloodreagent = ""
+						else
+							bloodreagent = msg
+
+				if("bloodcolor")
+					var/msg = input(usr, "Choose your blood color", "Blood Color", "") as color|null
+					if(msg)
+						bloodcolor = msg
+					else
+						bloodcolor = ""
+
 				if("general_records")
-					var/msg = input(usr, "Set your general records", "General Records", general_records) as message|null 
+					var/msg = input(usr, "Set your general records", "General Records", general_records) as message|null
 					if(msg)
 						general_records = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("security_records")
-					var/msg = input(usr, "Set your security records", "Security Records", security_records) as message|null 
+					var/msg = input(usr, "Set your security records", "Security Records", security_records) as message|null
 					if(msg)
 						security_records = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("medical_records")
-					var/msg = input(usr, "Set your medical records", "Medical Records", medical_records) as message|null 
+					var/msg = input(usr, "Set your medical records", "Medical Records", medical_records) as message|null
 					if(msg)
 						medical_records = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("flavor_background")
-					var/msg = input(usr, "Set your background", "Character Background", flavor_background) as message|null 
+					var/msg = input(usr, "Set your background", "Character Background", flavor_background) as message|null
 					if(msg)
 						flavor_background = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
@@ -1967,17 +2415,17 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						if(new_faction == "Other")
 							var/custom_faction = input(user, "Set your custom faction/subfaction, if unique. Don't abuse this.", "Character Faction", flavor_faction) as null|text
 							if(custom_faction)
-								flavor_faction = strip_html_simple(custom_faction, 30, TRUE) 
+								flavor_faction = strip_html_simple(custom_faction, 30, TRUE)
 						else
 							flavor_faction = new_faction
 
 				if("character_skills")
-					var/msg = input(usr, "Set your skills or hobbies", "Character Skills", character_skills) as message|null 
+					var/msg = input(usr, "Set your skills or hobbies", "Character Skills", character_skills) as message|null
 					if(msg)
 						character_skills = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("exploitable_info")
-					var/msg = input(usr, "Set your exploitable information, this rarely will be showed to antagonists", "Exploitable Info", exploitable_info) as message|null 
+					var/msg = input(usr, "Set your exploitable information, this rarely will be showed to antagonists", "Exploitable Info", exploitable_info) as message|null
 					if(msg)
 						exploitable_info = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 				//END OF SKYRAT CHANGES
@@ -2023,7 +2471,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("cycle_bg")
 					bgstate = next_list_item(bgstate, bgstate_options)
-
+				/* skyrat edit
 				if("underwear")
 					var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference")  as null|anything in GLOB.underwear_list
 					if(new_underwear)
@@ -2053,7 +2501,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/n_socks_color = input(user, "Choose your socks' color.", "Character Preference", "#[socks_color]") as color|null
 					if(n_socks_color)
 						socks_color = sanitize_hexcolor(n_socks_color)
-
+				*/
 				if("eyes")
 					var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference","#"+eye_color) as color|null
 					if(new_eyes)
@@ -2087,6 +2535,15 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							features["mcolor2"] = pref_species.default_color
 						if(features["mcolor3"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
 							features["mcolor3"] = pref_species.default_color
+
+						//skyrat edit - avoids picking species restricted stuff
+						language = initial(language)
+						bloodtype = initial(bloodtype)
+						body_descriptors = list()
+						for(var/i in pref_species.descriptors)
+							var/datum/mob_descriptor/md = pref_species.descriptors[i]
+							body_descriptors[i] = md.current_value
+						//
 
 				if("custom_species")
 					var/new_species = reject_bad_name(input(user, "Choose your species subtype, if unique. This will show up on examinations and health scans. Do not abuse this:", "Character Preference", custom_species) as null|text)
@@ -2456,9 +2913,19 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("cock_length")
 					var/min_D = CONFIG_GET(number/penis_min_inches_prefs)
 					var/max_D = CONFIG_GET(number/penis_max_inches_prefs)
-					var/new_length = input(user, "Penis length in inches:\n([min_D]-[max_D])", "Character Preference") as num|null
-					if(new_length)
-						features["cock_length"] = clamp(round(new_length), min_D, max_D)
+					//Skyrat edit - Metric measurements
+					var/min_D_m = round(min_D * 2.54, 1)
+					var/max_D_m = round(max_D * 2.54, 1)
+					var/new_length
+					if(toggles & METRIC_OR_BUST)
+						new_length = input(user, "Penis length in centimeters:\n([min_D_m]-[max_D_m])", "Character Preference") as num|null
+						if(new_length)
+							features["cock_length"] = clamp(round(new_length/2.54, 0.1), min_D, max_D)
+					else
+						new_length = input(user, "Penis length in inches:\n([min_D]-[max_D])", "Character Preference") as num|null
+						if(new_length)
+							features["cock_length"] = clamp(round(new_length, 0.1), min_D, max_D)
+					//Skyrat edit end
 
 				if("cock_shape")
 					var/new_shape
@@ -2671,17 +3138,26 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/min = CONFIG_GET(number/body_size_min)
 					var/max = CONFIG_GET(number/body_size_max)
 					var/danger = CONFIG_GET(number/threshold_body_size_slowdown)
-					var/new_body_size = input(user, "Choose your desired sprite size:\n([min*100]%-[max*100]%), Warning: May make your character look distorted[danger > min ? ", and an exponential slowdown will occur for those smaller than [danger*100]%!" : "!"]", "Character Preference", features["body_size"]*100) as num|null
+					var/new_body_size = input(user, "Choose your desired sprite size: ([min*100]%-[max*100]%)\nWarning: This may make your character look distorted[danger > min ? "! Additionally, a proportional movement speed penalty will be applied to characters smaller than [danger*100]%." : "!"]", "Character Preference", features["body_size"]*100) as num|null
 					if (new_body_size)
 						new_body_size = clamp(new_body_size * 0.01, min, max)
 						var/dorfy
-						if(danger > new_body_size)
-							dorfy = alert(user, "The chosen size appears to be smaller than the threshold of [danger*100]%, which will lead to an added exponential slowdown. Are you sure about that?", "Dwarfism Alert", "Yes", "Move it to the threshold", "No")
-							if(!dorfy || dorfy == "Move it above the threshold")
+						if((new_body_size + 0.01) < danger) // Adding 0.01 as a dumb fix to prevent the warning message from appearing when exactly at threshold... Not sure why that happens in the first place.
+							dorfy = alert(user, "You have chosen a size below the slowdown threshold of [danger*100]%. For balancing purposes, the further you go below this percentage, the slower your character will be. Do you wish to keep this size?", "Speed Penalty Alert", "Yes", "Move it to the threshold", "No")
+							if(dorfy == "Move it to the threshold")
 								new_body_size = danger
+							if(!dorfy) //Aborts if this var is somehow empty
+								return
 						if(dorfy != "No")
 							features["body_size"] = new_body_size
-
+				/*if("tongue") SKYRAT EDIT
+					var/selected_custom_tongue = input(user, "Choose your desired tongue (none means your species tongue)", "Character Preference") as null|anything in GLOB.roundstart_tongues
+					if(selected_custom_tongue)
+						custom_tongue = selected_custom_tongue
+				if("speech_verb")
+					var/selected_custom_speech_verb = input(user, "Choose your desired speech verb (none means your species speech verb)", "Character Preference") as null|anything in GLOB.speech_verbs
+					if(selected_custom_speech_verb)
+						custom_speech_verb = selected_custom_speech_verb*/
 		else
 			switch(href_list["preference"])
 				//CITADEL PREFERENCES EDIT - I can't figure out how to modularize these, so they have to go here. :c -Pooj
@@ -2874,6 +3350,21 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("appear_in_round_end_report")
 					appear_in_round_end_report = !appear_in_round_end_report
 					user.mind?.appear_in_round_end_report = appear_in_round_end_report
+				if("combat_music")
+					combat_music = input(user, "What song do you want to use as combat music?", "Combat music") as null|anything in (GLOB.combat_music_options + "None")
+					if(!combat_music || (combat_music == "None"))
+						combat_music = null
+					else
+						combat_music = sanitize_inlist(combat_music, GLOB.combat_music_options)
+				if("persistent_scars")
+					persistent_scars = !persistent_scars
+				if("clear_scars")
+					to_chat(user, "<span class='notice'>All scar slots cleared. Please save character to confirm.</span>")
+					scars_list["1"] = ""
+					scars_list["2"] = ""
+					scars_list["3"] = ""
+					scars_list["4"] = ""
+					scars_list["5"] = ""
 				//End of skyrat changes
 				if("action_buttons")
 					buttons_locked = !buttons_locked
@@ -2887,6 +3378,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					toggles ^= SOUND_ADMINHELP
 				if("announce_login")
 					toggles ^= ANNOUNCE_LOGIN
+				// Skyrat Edit Start
+				if("metric_or_bust")
+					toggles ^= METRIC_OR_BUST
+				if("eorg_teleport")
+					eorg_teleport = !eorg_teleport
+				// Skyrat Edit End
 				if("combohud_lighting")
 					toggles ^= COMBOHUD_LIGHTING
 
@@ -2905,6 +3402,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("hear_midis")
 					toggles ^= SOUND_MIDI
+
+				//SKYRAT CHANGES BEGIN - Megafauna music
+				if("hear_megafauna")
+					toggles ^= SOUND_MEGAFAUNA
+				//SKYRAT CHANGES END
 
 				if("verb_consent") // Skyrat - ERP Mechanic Addition
 					toggles ^= VERB_CONSENT // Skyrat - ERP Mechanic Addition
@@ -2939,6 +3441,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("pull_requests")
 					chat_toggles ^= CHAT_PULLR
+				
+				if("wounds_other")
+					chat_toggles ^= CHAT_WOUNDS_OTHER
+				
+				if("wounds_self")
+					chat_toggles ^= CHAT_WOUNDS_SELF
 
 				if("allow_midround_antag")
 					toggles ^= MIDROUND_ANTAG
@@ -3040,20 +3548,32 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			var/datum/gear/G = GLOB.loadout_items[gear_tab][html_decode(href_list["toggle_gear_path"])]
 			if(!G)
 				return
-			var/toggle = text2num(href_list["toggle_gear"])
-			if(!toggle && (G.type in chosen_gear))//toggling off and the item effectively is in chosen gear)
-				chosen_gear -= G.type
-				gear_points += initial(G.cost)
-			else if(toggle && (!(is_type_in_ref_list(G, chosen_gear))))
-				if(!is_loadout_slot_available(G.category))
-					to_chat(user, "<span class='danger'>You cannot take this loadout, as you've already chosen too many of the same category!</span>")
-					return
-				if(G.donoritem && !G.donator_ckey_check(user.ckey))
-					to_chat(user, "<span class='danger'>This is an item intended for donator use only. You are not authorized to use this item.</span>")
-					return
-				if(gear_points >= initial(G.cost))
-					chosen_gear += G.type
-					gear_points -= initial(G.cost)
+			//skyrat edit
+			if(href_list["toggle_gear"] != "color")
+				var/toggle = text2num(href_list["toggle_gear"])
+				if(!toggle && (G.type in chosen_gear))//toggling off and the item effectively is in chosen gear)
+					chosen_gear -= G.type
+					gear_points += initial(G.cost)
+				else if(toggle && (!(is_type_in_ref_list(G, chosen_gear))))
+					if(!is_loadout_slot_available(G.category))
+						to_chat(user, "<span class='danger'>You cannot take this loadout, as you've already chosen too many of the same category!</span>")
+						return
+					if(G.donoritem && !G.donator_ckey_check(user.ckey))
+						to_chat(user, "<span class='danger'>This is an item intended for donator use only. You are not authorized to use this item.</span>")
+						return
+					if(gear_points >= initial(G.cost))
+						chosen_gear += G.type
+						if(!color_gear)
+							color_gear = list()
+						color_gear |= list(G.name = G.color)
+						gear_points -= initial(G.cost)
+			else
+				var/choice = input(user, "Select a color for [G.name].", "Gear Color") as color
+				if(choice)
+					if(!color_gear)
+						color_gear = list()
+					color_gear[G.name] = choice
+			//
 
 	ShowChoices(user)
 	return 1
@@ -3096,6 +3616,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	character.dna.skin_tone_override = use_custom_skin_tone ? skin_tone : null
 	character.hair_style = hair_style
 	character.facial_hair_style = facial_hair_style
+	/* skyrat edit
 	character.underwear = underwear
 
 	character.saved_underwear = underwear
@@ -3103,6 +3624,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	character.saved_undershirt = undershirt
 	character.socks = socks
 	character.saved_socks = socks
+	*/
 	character.undie_color = undie_color
 	character.shirt_color = shirt_color
 	character.socks_color = socks_color
@@ -3140,6 +3662,18 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 	character.dna.update_body_size(old_size)
 
+	/*//speech stuff SKYRAT EDIT
+	var/new_tongue = GLOB.roundstart_tongues[custom_tongue]
+	if(new_tongue)
+		var/obj/item/organ/tongue/T = character.getorganslot(ORGAN_SLOT_TONGUE)
+		if(T)
+			qdel(T)
+		var/obj/item/organ/tongue/new_custom_tongue = new new_tongue
+		new_custom_tongue.Insert(character)
+	if(custom_speech_verb != "default")
+		character.dna.species.say_mod = custom_speech_verb*/
+
+
 	SEND_SIGNAL(character, COMSIG_HUMAN_PREFS_COPIED_TO, src, icon_updates, roundstart_checks)
 
 	//let's be sure the character updates
@@ -3148,7 +3682,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		character.update_hair()
 	if(auto_hiss)
 		character.toggle_hiss()
-
 
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)

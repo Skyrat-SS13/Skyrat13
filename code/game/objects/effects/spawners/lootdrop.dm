@@ -453,7 +453,7 @@
 	lootcount = 1
 	spawn_on_turf = FALSE
 //Note this is out of a 100 - Meaning the number you see is also the percent its going to pick that
-//This is ment for "low" loot that anyone could fine in a toilet, for better gear use high loot toilet
+//This is meant for "low" loot that anyone could find in a toilet, for better gear use high loot toilet
 	loot = list("" = 30,
 		/obj/item/lighter = 2,
 		/obj/item/tape/random = 1,
@@ -478,7 +478,7 @@
 	lootcount = 1
 	spawn_on_turf = FALSE
 //Note this is out of a 100 - Meaning the number you see is also the percent its going to pick that
-//This is ment for "prison" loot that is rather rare and ment for "prisoners if they get a crowbar to fine, or sec.
+//This is meant for "prison" loot that is rather rare and meant for "prisoners if they get a crowbar to fine, or sec.
 	loot = list("" = 10,
 		/obj/item/lighter = 5,
 		/obj/item/poster/random_contraband = 5,
@@ -668,14 +668,11 @@
 	lootcount = 1
 	spawn_on_turf = FALSE
 	loot = list("" = 50,
-		/obj/item/weaponcrafting/improvised_parts/barrel_rifle = 10,
-		/obj/item/weaponcrafting/improvised_parts/barrel_shotgun = 5,
-		/obj/item/weaponcrafting/improvised_parts/barrel_pistol = 5,
 		/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 10,
-		/obj/item/weaponcrafting/improvised_parts/shotgun_receiver = 3,
-		/obj/item/weaponcrafting/improvised_parts/pistol_receiver = 3,
+		/obj/item/weaponcrafting/improvised_parts/shotgun_receiver = 8,
+		/obj/item/weaponcrafting/improvised_parts/pistol_receiver = 8,
 		/obj/item/weaponcrafting/improvised_parts/laser_receiver = 1,
-		/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 10,
+		/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 20,
 		/obj/item/weaponcrafting/improvised_parts/makeshift_lens = 3,
 		)
 
@@ -684,11 +681,9 @@
 	lootcount = 1
 	spawn_on_turf = FALSE
 	loot = list("" = 75,
-		/obj/item/weaponcrafting/improvised_parts/barrel_rifle = 5,
-		/obj/item/weaponcrafting/improvised_parts/barrel_pistol = 5,
-		/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 5,
+		/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 10,
 		/obj/item/weaponcrafting/improvised_parts/pistol_receiver = 2,
-		/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 5,
+		/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 10,
 		/obj/item/weaponcrafting/improvised_parts/makeshift_lens = 3,
 		)
 

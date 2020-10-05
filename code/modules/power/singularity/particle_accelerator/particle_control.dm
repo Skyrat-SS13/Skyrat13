@@ -1,7 +1,7 @@
 /obj/machinery/particle_accelerator/control_box
 	name = "Particle Accelerator Control Console"
 	desc = "This controls the density of the particles."
-	icon = 'icons/obj/machines/particle_accelerator.dmi'
+	icon = 'modular_skyrat/icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "control_box"
 	anchored = FALSE
 	density = TRUE
@@ -62,7 +62,7 @@
 
 /obj/machinery/particle_accelerator/control_box/update_icon_state()
 	if(active)
-		icon_state = "control_boxp1"
+		icon_state = "control_boxp[strength]"
 	else
 		if(use_power)
 			if(assembled)
@@ -113,6 +113,7 @@
 		var/obj/structure/particle_accelerator/part = CP
 		part.strength = strength
 		part.update_icon()
+		update_icon_state()
 
 /obj/machinery/particle_accelerator/control_box/proc/add_strength(s)
 	if(assembled && (strength < strength_upper_limit))
@@ -295,10 +296,15 @@
 					did_something = TRUE
 		if(PA_CONSTRUCTION_PANEL_OPEN)
 			if(istype(W, /obj/item/wirecutters))//TODO:Shock user if its on?
-				user.visible_message("[user.name] removes some wires from the [name].", \
-					"You remove some wires.")
-				construction_state = PA_CONSTRUCTION_UNWIRED
-				did_something = TRUE
+				var/confirm = alert(user, "Do you wish to access the wiring or remove it?", "Do what?", "Access", "Remove")
+				if(confirm == "Access")
+					wires.interact(user)
+					return
+				else
+					user.visible_message("[user.name] removes some wires from the [name].", \
+						"You remove some wires.")
+					construction_state = PA_CONSTRUCTION_UNWIRED
+					did_something = TRUE
 			else if(istype(W, /obj/item/screwdriver))
 				user.visible_message("[user.name] closes the [name]'s access panel.", \
 					"You close the access panel.")

@@ -412,6 +412,8 @@
 			give_guns(humanc)
 		if(GLOB.summon_magic_triggered)
 			give_magic(humanc)
+		if(GLOB.curse_of_madness_triggered)
+			give_madness(humanc, GLOB.curse_of_madness_triggered)
 
 	GLOB.joined_player_list += character.ckey
 	GLOB.latejoiners += character
@@ -571,7 +573,20 @@
 	if(frn)
 		client.prefs.random_character()
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
+	//skyrat edit
+	var/cur_scar_index = client.prefs.scars_index
+	if(client.prefs.persistent_scars && client.prefs.scars_list["[cur_scar_index]"])
+		var/scar_string = client.prefs.scars_list["[cur_scar_index]"]
+		var/valid_scars = ""
+		for(var/scar_line in splittext(scar_string, ";"))
+			if(H.load_scar(scar_line))
+				valid_scars += "[scar_line];"
+
+		client.prefs.scars_list["[cur_scar_index]"] = valid_scars
+		client.prefs.save_character()
+
 	client.prefs.copy_to(H)
+	//
 	H.dna.update_dna_identity()
 	if(mind)
 		if(transfer_after)

@@ -6,7 +6,7 @@
 	gamemode_blacklist = list("dynamic")
 	min_players = 25
 
-/datum/round_event/vent_clog
+/datum/round_event/vent_clog	//skyrats change begin
 	announceWhen	= 1
 	startWhen		= 5
 	endWhen			= 35
@@ -24,6 +24,9 @@
 		/datum/reagent/drug/mushroomhallucinogen,
 		/datum/reagent/lube,
 		/datum/reagent/glitter/pink,
+		/datum/reagent/toxin/pancuronium,
+		/datum/reagent/medicine/omnizine,
+		/datum/reagent/medicine/epinephrine,
 		/datum/reagent/cryptobiolin,
 		/datum/reagent/toxin/plantbgone,
 		/datum/reagent/blood,
@@ -35,30 +38,28 @@
 		/datum/reagent/consumable/hot_coco,
 		/datum/reagent/toxin/acid,
 		/datum/reagent/toxin/mindbreaker,
-		/datum/reagent/toxin/rotatium,
 		/datum/reagent/bluespace,
 		/datum/reagent/pax,
 		/datum/reagent/consumable/laughter,
-		/datum/reagent/concentrated_barbers_aid,
-		/datum/reagent/baldium,
 		/datum/reagent/colorful_reagent,
 		/datum/reagent/peaceborg_confuse,
 		/datum/reagent/peaceborg_tire,
 		/datum/reagent/consumable/sodiumchloride,
 		/datum/reagent/consumable/ethanol/beer,
-		/datum/reagent/hair_dye,
 		/datum/reagent/consumable/sugar,
 		/datum/reagent/glitter/white,
-		/datum/reagent/growthserum,
+		/datum/reagent/consumable/ethanol/vodka,
 		/datum/reagent/consumable/cornoil,
 		/datum/reagent/uranium,
 		/datum/reagent/carpet,
+		/datum/reagent/consumable/orangejuice,
 		/datum/reagent/firefighting_foam,
 		/datum/reagent/consumable/tearjuice,
 		/datum/reagent/medicine/strange_reagent
 
 	)
-	//needs to be chemid unit checked at some point
+	//needs to be chemid unit checked at some point	
+	//skyrats change end
 
 /datum/round_event/vent_clog/announce()
 	priority_announce("The scrubbers network is experiencing a backpressure surge. Some ejection of contents may occur.", "Atmospherics alert")

@@ -4,8 +4,8 @@
 	speech_verb = "growls"
 	ask_verb = "growls"
 	exclaim_verb = "roars"
+	key = "sdw"
 	sing_verb = "chants"
-	key = "x"
 	flags = TONGUELESS_SPEECH
 	space_chance = 50
 	syllables = list(

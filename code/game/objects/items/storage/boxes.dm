@@ -305,6 +305,16 @@
 	for(var/i in 1 to 7)
 		new /obj/item/grenade/flashbang(src)
 
+obj/item/storage/box/stingbangs
+	name = "box of stingbangs (WARNING)"
+	desc = "<B>WARNING: These devices are extremely dangerous and can cause severe injuries or death in repeated use.</B>"
+	icon_state = "secbox"
+	illustration = "flashbang"
+
+/obj/item/storage/box/stingbangs/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/grenade/stingbang(src)
+
 /obj/item/storage/box/flashes
 	name = "box of flashbulbs"
 	desc = "<B>WARNING: Flashes can cause serious eye damage, protective eyewear is required.</B>"
@@ -1420,7 +1430,7 @@
 		/obj/item/pda=1,\
 		/obj/item/geiger_counter=1,\
 		/obj/item/construction/rcd/combat/admin=1,\
-		/obj/item/pipe_dispenser=1,\
+		/obj/item/pipe_dispenser/bluespace=1,\
 		/obj/item/card/emag=1,\
 		/obj/item/healthanalyzer/advanced=1,\
 		/obj/item/disk/tech_disk/debug=1,\
@@ -1444,3 +1454,21 @@
 	new /obj/item/reagent_containers/glass/beaker/meta(src)
 	new /obj/item/reagent_containers/glass/beaker/noreact(src)
 	new /obj/item/reagent_containers/glass/beaker/bluespace(src)
+
+/obj/item/storage/box/strange_seeds_5pack
+
+/obj/item/storage/box/strange_seeds_5pack/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/seeds/random(src)
+
+//skyrat edit
+/obj/item/storage/box/stingbangs
+	name = "box of stingbangs (WARNING)"
+	desc = "<B>WARNING: These devices are extremely dangerous and can cause severe injuries or death in repeated use.</B>"
+	icon_state = "secbox"
+	illustration = "flashbang"
+
+/obj/item/storage/box/stingbangs/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/grenade/stingbang(src)
+//

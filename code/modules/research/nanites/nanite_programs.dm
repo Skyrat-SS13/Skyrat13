@@ -54,6 +54,9 @@
 	//Rules that automatically manage if the program's active without requiring separate sensor programs
 	var/list/datum/nanite_rule/rules = list()
 
+	//Mob biotypes this program can run on
+	var/required_biotypes = MOB_ORGANIC | MOB_ROBOTIC
+
 /datum/nanite_program/New()
 	. = ..()
 	register_extra_settings()
@@ -134,6 +137,8 @@
 
 /datum/nanite_program/proc/on_mob_add()
 	host_mob = nanites.host_mob
+	if(!(host_mob.mob_biotypes & required_biotypes))
+		return qdel(src)
 	if(activated) //apply activation effects depending on initial status; starts the restart and shutdown timers
 		activate()
 	else

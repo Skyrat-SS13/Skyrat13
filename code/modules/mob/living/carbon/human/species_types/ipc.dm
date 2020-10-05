@@ -6,7 +6,7 @@
 	icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
 	blacklisted = 0
 	sexes = 0
-	species_traits = list(MUTCOLORS,NOEYES,NOTRANSSTING)
+	species_traits = list(MUTCOLORS,NOEYES,NOTRANSSTING,HAS_SKIN,HAS_FLESH,HAS_BONE)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	mutant_bodyparts = list("ipc_screen" = "Blank", "ipc_antenna" = "None")
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc
@@ -23,7 +23,12 @@
 	exotic_blood_color = BLOOD_COLOR_OIL
 
 	var/datum/action/innate/monitor_change/screen
-	languagewhitelist = list("Encoded Audio Language") //Skyrat change - species language whitelist
+	//skyrat edit
+	languagewhitelist = list("Encoded Audio Language")
+	bloodtypes = list("HF", "SY")
+	bloodreagents = list("Synthetic Blood", "Oil")
+	rainbowblood = TRUE
+	//
 
 /datum/species/ipc/on_species_gain(mob/living/carbon/human/C)
 	if(isipcperson(C) && !screen)

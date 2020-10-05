@@ -11,7 +11,7 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 /mob/living/simple_animal/hostile/megafauna/bubblegum
 	death_sound = 'modular_skyrat/sound/misc/gorenest.ogg' //fuck it
 	var/movesound = 'sound/effects/meteorimpact.ogg'
-	songs = list("1860" = sound(file = 'modular_skyrat/sound/ambience/bfgdivision.ogg', repeat = 0, wait = 0, volume = 100, channel = CHANNEL_AMBIENCE), "2070" = sound(file = 'modular_skyrat/sound/ambience/theonlythingtheyfearisyou.ogg', repeat = 0, wait = 0, volume = 100, channel = CHANNEL_AMBIENCE)) //Thanks Mr. Infringio!
+	songs = list("1860" = sound(file = 'modular_skyrat/sound/ambience/bfgdivision.ogg', repeat = 0, wait = 0, volume = 70, channel = CHANNEL_JUKEBOX), "2070" = sound(file = 'modular_skyrat/sound/ambience/theonlythingtheyfearisyou.ogg', repeat = 0, wait = 0, volume = 70, channel = CHANNEL_JUKEBOX)) //Thanks Mr. Infringio!
 	glorymessageshand = list("grabs bubblegum by the leg, and pulls them down! While downed, they climb on their torso and punch through it, smashing their demonic heart!", "goes around bubblegum and climbs them by their back, once on top of their head they punch right through the demon's skull, ripping out brain matter and killing it as it limply falls on the ground!")
 	glorymessagescrusher = list("jumps and chops off both of bubblegum's legs in one swift move with their crusher! To finish off the now wheelchair-bound demon, they chop at the torso vertically, getting the crusher stuck in the process but killing the demonic fiend!", "goes around bubblegum and climbs them by their back, once on the top they chop their head off with the crusher!")
 	glorymessagespka = list("shoots the weakened demon in the chest, opening a hole and exposing their inner core! With another blast, the demon's heart explodes, and they fall dead and limp on the ground!", "shoots the weakened demon's head, stunning them and revealing their brain! Another PKA blast finishes off what little brainmatter they had!")
@@ -82,7 +82,7 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 			to_chat(L, "<span class='userdanger'>[src] rends you!</span>")
 			playsound(T, attack_sound, 100, TRUE, -1)
 			var/limb_to_hit = L.get_bodypart(pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
-			L.apply_damage(30, BRUTE, limb_to_hit, L.run_armor_check(limb_to_hit, "melee", null, null)) // You really, really, really better not stand in blood!
+			L.apply_damage(30, BRUTE, limb_to_hit, L.run_armor_check(limb_to_hit, "melee"), 0, 0, CANT_WOUND) // You really, really, really better not stand in blood!
 	sleep(3)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/blood_warp()

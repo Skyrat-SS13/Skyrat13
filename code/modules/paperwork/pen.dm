@@ -27,6 +27,7 @@
 	var/colour = "black"	//what colour the ink is!
 	var/degrees = 0
 	var/font = PEN_FONT
+	embedding = list()
 
 /obj/item/pen/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is scribbling numbers all over [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit sudoku...</span>")
@@ -41,6 +42,7 @@
 	desc = "It's a normal red ink pen."
 	icon_state = "pen_red"
 	colour = "red"
+	throw_speed = 4 // red ones go faster (in this case, fast enough to embed!)
 
 /obj/item/pen/invisible
 	desc = "It's an invisible pen marker."
@@ -56,8 +58,10 @@
 	switch(colour)
 		if("black")
 			colour = "red"
+			throw_speed++
 		if("red")
 			colour = "green"
+			throw_speed = initial(throw_speed)
 		if("green")
 			colour = "blue"
 		else
@@ -80,7 +84,7 @@
 	throw_speed = 4
 	colour = "crimson"
 	custom_materials = list(/datum/material/gold = 750)
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	resistance_flags = FIRE_PROOF
 	unique_reskin = list("Oak" = "pen-fountain-o",
 						"Gold" = "pen-fountain-g",
@@ -88,6 +92,9 @@
 						"Black and Silver" = "pen-fountain-b",
 						"Command Blue" = "pen-fountain-cb"
 						)
+	//skyrat edit
+	embedding = list("embed_chance" = 75)
+	//
 
 /obj/item/pen/fountain/captain/Initialize()
 	. = ..()
@@ -174,8 +181,9 @@
  */
 /obj/item/pen/edagger
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") //these wont show up if the pen is off
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	var/on = FALSE
+	embedding = list(embed_chance = EMBED_CHANCE)
 
 /obj/item/pen/edagger/ComponentInitialize()
 	. = ..()
@@ -192,7 +200,9 @@
 		w_class = initial(w_class)
 		name = initial(name)
 		hitsound = initial(hitsound)
-		embedding = null
+		//skyrat edit
+		embedding = list(embed_chance = EMBED_CHANCE)
+		//
 		throwforce = initial(throwforce)
 		playsound(user, 'sound/weapons/saberoff.ogg', 5, 1)
 		to_chat(user, "<span class='warning'>[src] can now be concealed.</span>")
@@ -202,10 +212,11 @@
 		w_class = WEIGHT_CLASS_NORMAL
 		name = "energy dagger"
 		hitsound = 'sound/weapons/blade1.ogg'
-		embedding = getEmbeddingBehavior(embed_chance = 100, embedded_fall_chance = 0) //rule of cool
+		embedding = list(embed_chance = 100, fall_chance = 0) //rule of cool
 		throwforce = 35
 		playsound(user, 'sound/weapons/saberon.ogg', 5, 1)
 		to_chat(user, "<span class='warning'>[src] is now active.</span>")
+	updateEmbedding()
 	update_icon()
 
 /obj/item/pen/edagger/update_icon_state()

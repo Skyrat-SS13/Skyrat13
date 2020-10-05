@@ -1,3 +1,4 @@
+/* Skyrat edit - redefined in modular code
 /turf/open/floor/light
 	name = "light floor"
 	desc = "A wired glass tile embedded into the floor."
@@ -102,3 +103,4 @@
 	name = "dancefloor"
 	desc = "Funky floor."
 	coloredlights = list("dancefloor_B")
+ */

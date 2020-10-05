@@ -940,6 +940,9 @@
 	return "[area.name] : [equipment]/[lighting]/[environ] ([lastused_equip+lastused_light+lastused_environ]) : [cell? cell.percent() : "N/C"] ([charging])"
 
 /obj/machinery/power/apc/proc/update()
+	var/old_light = area.power_light
+	var/old_equip = area.power_equip
+	var/old_environ = area.power_environ
 	if(operating && !shorted && !failure_timer)
 		area.power_light = (lighting > 1)
 		area.power_equip = (equipment > 1)
@@ -948,7 +951,8 @@
 		area.power_light = FALSE
 		area.power_equip = FALSE
 		area.power_environ = FALSE
-	area.power_change()
+	if(old_light != area.power_light || old_equip != area.power_equip || old_environ != area.power_environ)
+		area.power_change()
 
 /obj/machinery/power/apc/proc/can_use(mob/user, loud = 0) //used by attack_hand() and Topic()
 	if(IsAdminGhost(user))
@@ -1121,6 +1125,10 @@
 		return
 	if(malf.malfhacking)
 		to_chat(malf, "You are already hacking an APC.")
+		return
+	var/area/ourarea = get_area(src)
+	if(!ourarea.valid_malf_hack)
+		to_chat(malf, "This APC is not well connected enough to the Exonet to provide any useful processing capabilities.")
 		return
 	to_chat(malf, "Beginning override of APC systems. This takes some time, and you cannot perform other actions during the process.")
 	malf.malfhack = src

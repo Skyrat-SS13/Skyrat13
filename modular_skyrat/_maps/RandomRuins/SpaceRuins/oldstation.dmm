@@ -245,7 +245,7 @@
 /area/ruin/space/has_grav/ancientstation/betanorth)
 "ba" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-25"
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -2751,7 +2751,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/comm)
 "iB" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-25"
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -2760,7 +2760,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "iE" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-25"
 	},
 /obj/structure/cable{
@@ -6564,7 +6564,7 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "Hc" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-25"
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -7001,7 +7001,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/hivebot)
 "Lk" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-25"
 	},
 /obj/structure/cable{
@@ -7312,7 +7312,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/hivebot)
 "MO" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-25"
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -7826,7 +7826,7 @@
 /area/ruin/space/has_grav/ancientstation/sec)
 "PO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-25"
 	},
 /obj/machinery/light/small{
@@ -7866,7 +7866,7 @@
 	icon_state = "1-4"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-25"
 	},
 /obj/effect/decal/cleanable/dirt,

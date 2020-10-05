@@ -64,7 +64,7 @@
 			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
 		if(bloody)
 			var/file2use = style_flags & STYLE_DIGITIGRADE ? 'icons/mob/clothing/feet_digi.dmi' : 'icons/effects/blood.dmi'
-			. += mutable_appearance(file2use, "shoeblood", color = blood_DNA_to_color())
+			. += mutable_appearance(file2use, "shoeblood", color = last_blood_color)
 
 /obj/item/clothing/shoes/equipped(mob/user, slot)
 	. = ..()
@@ -85,7 +85,7 @@
 		restore_offsets(user)
 	. = ..()
 
-/obj/item/clothing/shoes/update_clothes_damaged_state(damaging = TRUE)
+/obj/item/clothing/shoes/update_clothes_damaged_state() //skyrat edit
 	..()
 	if(ismob(loc))
 		var/mob/M = loc

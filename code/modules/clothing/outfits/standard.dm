@@ -123,7 +123,7 @@
 	l_pocket = /obj/item/reagent_containers/food/snacks/grown/banana
 	r_pocket = /obj/item/bikehorn
 	id = /obj/item/card/id
-	r_hand = /obj/item/twohanded/fireaxe
+	r_hand = /obj/item/fireaxe
 
 /datum/outfit/tunnel_clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
 	if(visualsOnly)
@@ -148,7 +148,7 @@
 	suit = /obj/item/clothing/suit/apron
 	l_pocket = /obj/item/kitchen/knife
 	r_pocket = /obj/item/scalpel
-	r_hand = /obj/item/twohanded/fireaxe
+	r_hand = /obj/item/fireaxe
 
 /datum/outfit/psycho/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
 	for(var/obj/item/carried_item in H.get_equipped_items(TRUE))
@@ -415,7 +415,7 @@
 	name = "Death Commando Officer"
 	head = /obj/item/clothing/head/helmet/space/beret
 
-/datum/outfit/chrono_agent
+/* /datum/outfit/chrono_agent //SK13 CHANGES - GANDALF
 	name = "Timeline Eradication Agent"
 	uniform = /obj/item/clothing/under/color/white
 	suit = /obj/item/clothing/suit/space/chronos
@@ -423,7 +423,7 @@
 	head = /obj/item/clothing/head/helmet/space/chronos
 	mask = /obj/item/clothing/mask/breath
 	suit_store = /obj/item/tank/internals/oxygen
-
+*/
 /datum/outfit/debug //Debug objs plus hardsuit
 	name = "Debug outfit"
 	uniform = /obj/item/clothing/under/misc/patriotsuit

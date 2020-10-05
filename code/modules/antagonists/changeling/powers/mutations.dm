@@ -164,10 +164,14 @@
 	armour_penetration = 20
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	var/can_drop = FALSE
 	var/fake = FALSE
 	total_mass = TOTAL_MASS_HAND_REPLACEMENT
+	//skyrat edit
+	wound_bonus = -60
+	bare_wound_bonus = 20
+	//
 
 /obj/item/melee/arm_blade/Initialize(mapload,silent,synthetic)
 	. = ..()
@@ -200,7 +204,7 @@
 			return
 
 		if(A.hasPower())
-			user.visible_message("<span class='warning'>[user] jams [src] into the airlock and starts prying it open!</span>", "<span class='warning'>We start forcing [src] open.</span>", \
+			user.visible_message("<span class='warning'>[user] jams [src] into the airlock and starts prying it open!</span>", "<span class='warning'>We start forcing [A] open.</span>", \
 			"<span class='italics'>You hear a metal screeching sound.</span>")
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
 			if(!do_after(user, 100, target = A))
@@ -432,14 +436,17 @@
 /obj/item/shield/changeling
 	name = "shield-like mass"
 	desc = "A mass of tough, boney tissue. You can still see the fingers as a twisted pattern in the shield."
-	item_flags = ABSTRACT | DROPDEL
+	item_flags = ABSTRACT | DROPDEL | ITEM_CAN_BLOCK
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "ling_shield"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
-	block_chance = 50
+	block_parry_data = /datum/block_parry_data/shield/changeling
 
 	var/remaining_uses //Set by the changeling ability.
+
+/datum/block_parry_data/shield/changeling
+	block_slowdown = 0
 
 /obj/item/shield/changeling/Initialize(mapload)
 	. = ..()
@@ -451,7 +458,7 @@
 	block_return[BLOCK_RETURN_BLOCK_CAPACITY] = (block_return[BLOCK_RETURN_BLOCK_CAPACITY] || 0) + remaining_uses
 	return ..()
 
-/obj/item/shield/changeling/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+/obj/item/shield/changeling/active_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	. = ..()
 	if(--remaining_uses < 1)
 		if(ishuman(loc))
