@@ -626,7 +626,7 @@
 		if(heal_damage(stamina = (stam_heal_tick * (disabled ? 2 : 1) * pain_multiplier), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(pain_heal_tick && pain_dam > DAMAGE_PRECISION)
-		if(heal_damage(pain = (pain_heal_tick * (owner?.lying ? pain_heal_rest_multiplier : 1) * (owner?.mind ? GET_STAT(owner, end).get_shock_mult() : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
+		if(heal_damage(pain = (pain_heal_tick * (owner?.lying ? pain_heal_rest_multiplier : 1) * (owner?.mind ? (2 - GET_STAT(owner, end).get_shock_mult()) : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(tox_filter_per_tick && tox_dam > DAMAGE_PRECISION)
 		filter_toxins(toxins = tox_filter_per_tick, only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE)
@@ -1252,7 +1252,7 @@
 				var/obj/item/bodypart/parent = owner.get_bodypart(parent_bodyzone)
 				if(parent.is_disabled())
 					return parent.is_disabled()
-		if(get_damage(include_stamina = TRUE) >= ((max_damage * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1) * (owner?.mind ? GET_STAT(owner, end).get_shock_mult() : 1)))) //Easy limb disable disables the limb at 40% health instead of 0%
+		if(get_damage(include_stamina = TRUE) >= ((max_damage * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1) * (owner?.mind ? (2 - GET_STAT(owner, end).get_shock_mult()) : 1)))) //Easy limb disable disables the limb at 40% health instead of 0%
 			if(!last_maxed)
 				last_maxed = TRUE
 				owner?.emote("scream")
