@@ -116,11 +116,12 @@
 	stat_end = 13
 	stat_dex = 14
 	stat_int = 13
-	//Godlike melee, good ranged, firstaid and research
+	//Godlike melee, expert ranged and research, good first aid
 	//everything else the underlings will have to do
 	skill_melee = 18
 	skill_ranged = JOB_STATPOINTS_EXPERT
 	skill_research = JOB_STATPOINTS_EXPERT
+	skill_firstaid = JOB_STATPOINTS_TRAINED
 
 /datum/job/cargo_tech
 	//Better str and end, at the cost of int and dex
