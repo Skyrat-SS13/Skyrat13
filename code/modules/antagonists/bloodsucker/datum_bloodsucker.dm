@@ -179,6 +179,7 @@
 	BuyPower(new /datum/action/bloodsucker/feed)
 	BuyPower(new /datum/action/bloodsucker/masquerade)
 	BuyPower(new /datum/action/bloodsucker/veil)
+	BuyPower(new /datum/action/bloodsucker/levelup)//SKYRAT EDIT
 	// Traits
 	for(var/T in defaultTraits)
 		ADD_TRAIT(owner.current, T, BLOODSUCKER_TRAIT)
@@ -252,7 +253,7 @@
 		owner.hasSoul = TRUE
 //owner.current.hellbound = FALSE
 
-/datum/antagonist/bloodsucker/proc/ForcedRankUp()
+/datum/antagonist/bloodsucker/proc/ForcedRankUp() //Big ol SKYRAT EDIT
 	set waitfor = FALSE
 	if(!owner || !owner.current)
 		return
@@ -270,7 +271,7 @@
 	set waitfor = FALSE
 	if(!owner || !owner.current)
 		return
-	bloodsucker_level_unspent + 5 //5x the levels
+	bloodsucker_level_unspent += 5 //5x the levels
 	// Spend Rank Immediately?
 	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
 		SpendRank()
