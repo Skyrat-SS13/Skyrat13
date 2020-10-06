@@ -1,0 +1,6 @@
+author: "Useroth"
+delete-after: True
+changes: 
+  - tweak: "Quadrupled the length of the night portion of the bloodsucker day/night cycle"
+  - tweak: "Doubled the length of the day portion of the bloodsucker day/night cycle"
+  - tweak: "Bloodsucker passive blood depletion rate brought down to one third."
