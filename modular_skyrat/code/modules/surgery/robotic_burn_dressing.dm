@@ -10,6 +10,7 @@
 	possible_locs = ALL_BODYPARTS
 	requires_real_bodypart = TRUE
 	requires_bodypart_type = BODYPART_ROBOTIC
+	self_operable = TRUE
 	targetable_wound = /datum/wound/mechanical/burn
 
 /datum/surgery/debride/can_start(mob/living/user, mob/living/carbon/target)
