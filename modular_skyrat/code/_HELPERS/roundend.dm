@@ -7,6 +7,8 @@
 		m.client.verbs += /client/proc/eorg_teleport
 		if (m.client && m.client.prefs && m.client.prefs.eorg_teleport)
 			var/eorg_tele_loc = pick(GLOB.eorg_teleport.loc)
+			if (isobserver(m))
+				continue
 			m.forceMove(eorg_tele_loc)
 			to_chat(m, "<BR><span class='narsiesmall'>You have chosen not to EORG. Do not commit EORG or you will be banned!</span>")
 			to_chat(m, "<BR><BR><span class='notice'>You have been successfully recovered from SS13 and are on your way to the nearest transit interchange. There's some time before the next shuttle home comes though, time to relax.</span>")
