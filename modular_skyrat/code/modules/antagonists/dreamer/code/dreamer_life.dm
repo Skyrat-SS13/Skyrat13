@@ -13,6 +13,9 @@
 				handle_dreamer_screenshake()
 		spawn(0)
 			handle_dreamer_hallucinations()
+		if(hud_used.dreamer.waking_up)
+			spawn(0)
+				handle_dreamer_waking_up()
 
 /mob/living/carbon/proc/handle_dreamer_hallucinations()
 	if(dreamer_dreaming)
@@ -52,8 +55,22 @@
 							'modular_skyrat/code/modules/antagonists/dreamer/sound/comic4.ogg',
 							)
 		playsound_local(get_turf(src), comicsound, 100, 0)
+	//Crewmember radioing
+	else if(prob(1))
+		var/list/people = list()
+		for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+			people += H
+		if(length(people))
+			var/mob/living/carbon/human/person = pick(people)
+			var/speak = pick("We are DYING to see your WONDERS.",
+							"We will help you wake up.",
+							"You can kill us.",
+							"Let's wake up, together.",
+							)
+			var/message = compose_message(person, language_holder?.selected_language, speak,"[FREQ_COMMON]", list(person.speech_span), face_name = TRUE, source = (person.ears ? person.ears : person.ears_extra))
+			to_chat(src, message)
 	//VERY rare mom/mob hallucination
-	else if(prob(1) && prob(40))
+	else if(prob(1) && prob(50))
 		spawn(0)
 			handle_dreamer_mob_hallucination()
 	//Talking objects
@@ -123,7 +140,8 @@
 								'modular_skyrat/code/modules/antagonists/dreamer/sound/male_talk6.ogg',
 								)
 				playsound_local(get_turf(src), speak_sound, 50, 0)
-				to_chat(src, "<b>[capitalize(speaker.name)]</b> says, \"[message]\"")
+				var/new_message = compose_message(speaker, language_holder?.selected_language, message)
+				to_chat(src, new_message)
 				create_chat_message(speaker, null, message)
 	//Floors go crazy go stupid
 	var/list/turf/open/floor/floorlist = list()
@@ -146,10 +164,10 @@
 	dreamer_dreaming = FALSE
 
 /mob/living/carbon/proc/handle_dreamer_floor(turf/open/floor/T)
-	if(!T)
+	if(!T || !client)
 		return
 	var/image/I = image(T.icon, T, T.icon_state, T.layer+0.1, T.dir)
-	src.client.images += I
+	src.client?.images += I
 	var/offset = pick(-3,-2, -1, 1, 2, 3)
 	var/disappearfirst = (rand(10, 30) * abs(offset))
 	animate(I, pixel_y = (pixel_y + offset), time = disappearfirst)
@@ -157,15 +175,15 @@
 	var/disappearsecond = (rand(10, 30) * abs(offset))	
 	animate(I, pixel_y = (pixel_y - offset), time = disappearsecond)
 	sleep(disappearsecond)
-	src.client.images -= I
+	src.client?.images -= I
 	qdel(I)
 
 /mob/living/carbon/proc/handle_dreamer_wall(turf/closed/wall/W)
-	if(!W)
+	if(!W || !client)
 		return
 	var/image/I = image('icons/effects/blood.dmi', W, "floor[rand(1,7)]", W.layer+0.1)
 	I.color = BLOOD_COLOR_HUMAN
-	src.client.images += I
+	src.client?.images += I
 	var/offset = pick(-1, 1, 2)
 	var/disappearfirst = rand(20, 40)
 	animate(I, pixel_y = (pixel_y + offset), time = disappearfirst)
@@ -173,10 +191,12 @@
 	var/disappearsecond = rand(20, 40)	
 	animate(I, pixel_y = (pixel_y - offset), time = disappearsecond)
 	sleep(disappearsecond)
-	src.client.images -= I
+	src.client?.images -= I
 	qdel(I)
 
 /mob/living/carbon/proc/handle_dreamer_screenshake()
+	if(!client)
+		return
 	var/client/C = client
 	var/shakeit = 0
 	while(shakeit < 10)
@@ -188,6 +208,8 @@
 		sleep(intensity)
 
 /mob/living/carbon/proc/handle_dreamer_mob_hallucination()
+	if(!client)
+		return
 	var/mob_msg = pick("It's mom!", "I have to HURRY UP!", "They are CLOSE!","They are NEAR!")
 	var/turf/turfie
 	var/list/turf/turfies = list()
@@ -202,7 +224,7 @@
 		hall_type = "mom"
 	var/image/I = image('modular_skyrat/code/modules/antagonists/dreamer/icons/dreamer_mobs.dmi', turfie, hall_type, FLOAT_LAYER, get_dir(turfie, src))
 	I.plane = FLOAT_PLANE
-	src.client.images += I
+	src.client?.images += I
 	to_chat(src, "<span class='userdanger'>[mob_msg]</span>")
 	sleep(5)
 	var/hallsound = pick(
@@ -218,21 +240,47 @@
 	while(chase_tiles > 0)
 		turfie = get_step(turfie, get_dir(turfie, src))
 		if(turfie)
-			src.client.images -= I
+			src.client?.images -= I
 			qdel(I)
 			I = image('modular_skyrat/code/modules/antagonists/dreamer/icons/dreamer_mobs.dmi', turfie, hall_type, FLOAT_LAYER, get_dir(turfie, src))
 			I.plane = FLOAT_PLANE
-			src.client.images += I
+			src.client?.images += I
 			if(turfie == get_turf(src))
 				caught_dreamer = TRUE
 				sleep(chase_wait_per_tile)
 				break
 		chase_tiles--
 		sleep(chase_wait_per_tile)
-	src.client.images -= I
+	src.client?.images -= I
 	if(!QDELETED(I))
 		qdel(I)
 	if(caught_dreamer)
 		Paralyze(rand(3, 5) SECONDS)
 		var/pain_msg = pick("NO!", "THEY GOT ME!", "AGH!")
 		custom_pain("<span class='userdanger'>[pain_msg]</span>", 40, TRUE, (get_bodypart(BODY_ZONE_HEAD) ? get_bodypart(BODY_ZONE_HEAD) : bodyparts[1]))
+
+/mob/living/carbon/proc/handle_dreamer_waking_up()
+	if(!client)
+		return
+	var/list/turf/open/floor/floorlist = list()
+	for(var/turf/open/floor/F in view(src))
+		if(prob(15))
+			floorlist += F
+	for(var/F in floorlist)
+		spawn(0)
+			handle_waking_up_floor(F)
+
+/mob/living/carbon/proc/handle_waking_up_floor(turf/open/floor/T)
+	if(!T)
+		return
+	var/image/I = image('icons/turf/floors.dmi', T, pick("rcircuitanim", "gcircuitanim"), T.layer+0.1, T.dir)
+	src.client?.images += I
+	var/offset = pick(-1, 1)
+	var/disappearfirst = 30
+	animate(I, pixel_y = (pixel_y + offset), time = disappearfirst)
+	sleep(disappearfirst)
+	var/disappearsecond = 30
+	animate(I, pixel_y = (pixel_y - offset), time = disappearsecond)
+	sleep(disappearsecond)
+	src.client?.images -= I
+	qdel(I)

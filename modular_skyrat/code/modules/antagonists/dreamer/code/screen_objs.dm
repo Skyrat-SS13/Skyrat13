@@ -26,3 +26,10 @@
 	underlays -= black_underlay
 	if(black_underlay)
 		underlays += black_underlay
+
+/obj/screen/fullscreen/dreaming
+	icon = 'modular_skyrat/code/modules/antagonists/dreamer/icons/fullscreen_wakeup.dmi'
+	icon_state = "dream"
+
+/obj/screen/fullscreen/dreaming/waking_up
+	icon_state = "wake_up"

@@ -3808,6 +3808,7 @@
 #include "modular_skyrat\code\modules\antagonists\dreamer\code\moodlets.dm"
 #include "modular_skyrat\code\modules\antagonists\dreamer\code\objective.dm"
 #include "modular_skyrat\code\modules\antagonists\dreamer\code\screen_objs.dm"
+#include "modular_skyrat\code\modules\antagonists\dreamer\code\treyliam.dm"
 #include "modular_skyrat\code\modules\antagonists\dreamer\code\wonders.dm"
 #include "modular_skyrat\code\modules\antagonists\revenant\revenant.dm"
 #include "modular_skyrat\code\modules\antagonists\revenant\revenant_abilities.dm"
