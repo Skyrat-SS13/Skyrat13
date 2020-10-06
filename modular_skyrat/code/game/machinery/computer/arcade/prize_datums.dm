@@ -311,21 +311,21 @@ var/global/datum/prizes/global_prizes = new
 	desc = "For that COOL glittery look."
 	typepath = /obj/item/grenade/chem_grenade/glitter/pink
 	cost = 150
-	tier_unlocked = 1
+	tier_unlocked = 3
 
 /datum/prize_item/glitterblue
 	name = "Blue glitter bomb"
 	desc = "For that COOL glittery look."
 	typepath = /obj/item/grenade/chem_grenade/glitter/blue
 	cost = 150
-	tier_unlocked = 1
+	tier_unlocked = 3
 
 /datum/prize_item/glitterwhite
 	name = "White glitter bomb"
 	desc = "For that COOL glittery look."
 	typepath = /obj/item/grenade/chem_grenade/glitter/white
 	cost = 150
-	tier_unlocked = 1
+	tier_unlocked = 3
 
 /datum/prize_item/wheelys
 	name = "Wheely-Heels"
