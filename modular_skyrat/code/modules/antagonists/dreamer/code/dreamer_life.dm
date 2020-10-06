@@ -24,7 +24,7 @@
 		var/obj/screen/fullscreen/dreamer/dream = hud_used?.dreamer
 		if(dream)
 			dream.icon_state = "hall[rand(1,9)]"
-			var/kill_her = rand(3, 6)
+			var/kill_her = 2
 			animate(dream, alpha = 255, time = kill_her)
 			spawn(kill_her)
 				var/hallsound = pick(
