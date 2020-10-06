@@ -67,9 +67,8 @@
 
 /obj/structure/wonder/Initialize()
 	. = ..()
-	START_PROCESSING(SSfastprocess, src)
 	playsound(src, 'modular_skyrat/code/modules/antagonists/dreamer/sound/wonder.ogg', 100, 0)
-	for(var/mob/living/carbon/human/H in view(7, src))
+	for(var/mob/living/carbon/human/H in view(src))
 		if(is_dreamer(H))
 			for(var/datum/antagonist/dreamer/dreammy in H.mind.antag_datums)
 				dream_master = dreammy
@@ -91,32 +90,41 @@
 				if(length(dream_master.associated_keys) >= wonder_id)
 					key_text = dream_master.associated_keys[wonder_id]
 				if(wonder_id > 4)
-					to_chat(H, "<span class='userdanger'>I must NOTE the key.<br>I am WAKING up!</span>")
+					to_chat(H, "<span class='userdanger'>I must SUM the keys.<br>I am WAKING up!</span>")
 					for(var/datum/antagonist/dreamer/droomer in H.mind?.antag_datums)
 						droomer.agony(H)
 				break
 			break
+	START_PROCESSING(SSfastprocess, src)
 
 /obj/structure/wonder/process()
 	. = ..()
-	var/list/viewers = view(5, src)
-	for(var/mob/living/carbon/human/H in view(5, src))
+	if(gazed_at)
+		STOP_PROCESSING(SSfastprocess, src)
+		return
+	var/list/viewers = view(src)
+	for(var/mob/living/carbon/human/H in viewers)
 		if(is_dreamer(H))
 			if(H.stat == DEAD)
 				continue
+			if(gazed_at)
+				return
 			for(var/mob/living/carbon/human/Y in viewers - H)
 				H.blur_eyes(2)
-				if(!(world.time % 200))
+				if(prob(10))
 					to_chat(H, "<span class='userdanger'>It is WONDERFUL!</span>")
 				continue
 			continue
 		else
 			if(H.stat == DEAD)
 				continue
+			if(gazed_at)
+				return
 			var/obj/item/organ/heart/heart = H.getorganslot(ORGAN_SLOT_HEART)
 			if(dream_master && heart && (!heart.etching || !(heart.etching in dream_master.heart_keys)))
-				heart.etching = key_num
+				heart.etching = "<b>INRL</b> - [key_text] - [key_num]"
 				SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "wonder", /datum/mood_event/saw_wonder)
 				H.emote("scream")
 				H.playsound_local(get_turf(H), 'modular_skyrat/code/modules/antagonists/dreamer/sound/seen_wonder.ogg', 100, 0)
 				H.Paralyze(5 SECONDS)
+				gazed_at = TRUE

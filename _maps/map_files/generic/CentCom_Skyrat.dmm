@@ -1,4 +1,59 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/turf/closed/indestructible/syndicate,
+/area/centcom/vip)
+"aab" = (
+/turf/closed/indestructible/fakedoor{
+	name = "CentCom"
+	},
+/area/centcom/vip)
+"aac" = (
+/turf/open/floor/plasteel/stairs,
+/area/centcom/vip)
+"aad" = (
+/turf/open/floor/plasteel/dark,
+/area/centcom/vip)
+"aae" = (
+/obj/effect/spawner/lootdrop/stock_parts,
+/turf/open/floor/plasteel/dark,
+/area/centcom/vip)
+"aaf" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plasteel/dark,
+/area/centcom/vip)
+"aag" = (
+/obj/machinery/vr_sleeper,
+/obj/effect/landmark/treyliam,
+/turf/open/floor/plasteel/dark,
+/area/centcom/vip)
+"aah" = (
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/plasteel/dark,
+/area/centcom/vip)
+"aai" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel/dark,
+/area/centcom/vip)
+"aaj" = (
+/obj/structure/table/reinforced,
+/obj/item/documents/nanotrasen,
+/obj/item/gun/ballistic/revolver,
+/turf/open/floor/plasteel/dark,
+/area/centcom/vip)
+"aak" = (
+/obj/structure/tank_dispenser,
+/turf/open/floor/plasteel/dark,
+/area/centcom/vip)
+"aal" = (
+/obj/machinery/modular_computer/console{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/vip)
+"aam" = (
+/obj/structure/closet/crate/secure/weapon,
+/turf/open/floor/plasteel/dark,
+/area/centcom/vip)
 "aau" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -41152,14 +41207,14 @@ mlv
 mlv
 mlv
 mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 mlv
 "}
 (70,1,1) = {"
@@ -41409,14 +41464,14 @@ mlv
 mlv
 mlv
 mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
+aab
+aac
+aad
+aaf
+aaf
+aal
+aae
+aaa
 mlv
 "}
 (71,1,1) = {"
@@ -41666,14 +41721,14 @@ mlv
 mlv
 mlv
 mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
+aaa
+aad
+aae
+aad
+aai
+aad
+aae
+aaa
 mlv
 "}
 (72,1,1) = {"
@@ -41923,14 +41978,14 @@ mlv
 mlv
 mlv
 mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
+aaa
+aae
+aad
+aag
+aaj
+aai
+aad
+aaa
 mlv
 "}
 (73,1,1) = {"
@@ -42180,14 +42235,14 @@ mlv
 mlv
 mlv
 mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
+aaa
+aad
+aad
+aad
+aad
+aad
+aae
+aaa
 mlv
 "}
 (74,1,1) = {"
@@ -42437,14 +42492,14 @@ mlv
 mlv
 mlv
 mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
+aab
+aac
+aad
+aah
+aak
+aam
+aam
+aaa
 mlv
 "}
 (75,1,1) = {"
@@ -42694,14 +42749,14 @@ mlv
 mlv
 mlv
 mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
-mlv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 mlv
 "}
 (76,1,1) = {"
