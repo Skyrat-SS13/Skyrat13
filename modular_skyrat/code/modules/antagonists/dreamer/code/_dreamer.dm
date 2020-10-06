@@ -16,8 +16,8 @@
 /datum/antagonist/dreamer/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	. = ..()
 	if(new_body.hud_used)
-		new_body.hud_used.dreamer = new()
-		if(old_body.hud_used?.dreamer)
+		give_hallucination_object(new_body)
+		if(new_body.hud_used?.dreamer && old_body.hud_used?.dreamer)
 			new_body.hud_used.dreamer.waking_up = old_body.hud_used.dreamer.waking_up
 
 /datum/antagonist/dreamer/New()
