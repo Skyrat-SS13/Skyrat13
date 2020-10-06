@@ -61,6 +61,10 @@
 	density = TRUE
 	anchored = TRUE
 
+/obj/structure/wonder/examine(mob/user)
+	. = ..()
+	process()
+
 /obj/structure/wonder/Initialize()
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
