@@ -88,11 +88,11 @@
 	// If it's a generic arcade machine, pick a random arcade
 	// circuit board for it and make the new machine
 	if(!circuit)
-		var/list/gameodds = list(/obj/item/circuitboard/computer/arcade/battle = 32,
-								/obj/item/circuitboard/computer/arcade/orion_trail = 32,
+		var/list/gameodds = list(/obj/item/circuitboard/computer/arcade/battle = 33,
+								/obj/item/circuitboard/computer/arcade/orion_trail = 33,
 								/obj/item/circuitboard/computer/arcade/minesweeper = 0,
-								/obj/item/circuitboard/computer/arcade/tetris = 32, // Skyrat addition
-								/obj/item/circuitboard/computer/arcade/amputation = 4)
+								/obj/item/circuitboard/computer/arcade/tetris = 33, // Skyrat addition
+								/obj/item/circuitboard/computer/arcade/amputation = 1)
 		var/thegame = pickweight(gameodds)
 		var/obj/item/circuitboard/CB = new thegame()
 		var/obj/machinery/computer/arcade/A = new CB.build_path(loc, CB)
