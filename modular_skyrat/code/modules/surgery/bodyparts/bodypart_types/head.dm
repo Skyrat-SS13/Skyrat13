@@ -70,7 +70,7 @@
 		var/drop = min(teeth_object.amount, amount)
 		if(!drop)
 			return
-		var/obj/item/stack/teeth/dropped_teeth = new teeth_object.type(get_turf(src))
+		var/obj/item/stack/teeth/dropped_teeth = new teeth_object.type(get_turf(owner))
 		dropped_teeth.add_mob_blood(owner)
 		dropped_teeth.amount = drop
 		teeth_object.use(drop)
