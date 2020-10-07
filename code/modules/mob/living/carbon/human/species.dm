@@ -1672,8 +1672,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			if(CI_WEAK)
 				damage *= 0.4
 
-		var/puncherstam = user.getStaminaLoss()
-		var/puncherbrute = user.getBruteLoss()
 		var/punchedstam = target.getStaminaLoss()
 		var/punchedbrute = target.getBruteLoss()
 
@@ -1712,33 +1710,20 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		//Get the bodypart we actually affect
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected, ran_zone_prob))
 
-		var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases
-		if(user.dna.species.punchdamagelow)
-			if(atk_verb == ATTACK_EFFECT_KICK) //kicks never miss (provided your species deals more than 0 damage)
-				miss_chance = 0
-			else if(HAS_TRAIT(user, TRAIT_PUGILIST)) //pugilists have a flat 10% miss chance
-				miss_chance = 10
-			else
-				//Dexterity impacts our chance to miss, maximum dexterity means we never miss
-				var/miss_base = 10
-				var/brutestam_mod = 1
-				if(user.mind)
-					var/datum/stats/dex/dex = GET_STAT(user, dex)
-					miss_base = dex.get_base_miss_chance()
-					brutestam_mod = dex.get_miss_stamina_mult()
-				miss_chance = min(miss_base + (max(puncherstam * 0.5, puncherbrute * 0.5) * brutestam_mod), 100) //probability of miss has a base of 10, and modified based on half brute total. Capped at max 100 to prevent weirdness in prob()
-		
+		var/missed = FALSE //Dice roll to see if we fuck up
+		if(user.mind && user.mind.diceroll(STAT_DATUM(dex), SKILL_DATUM(melee)) <= DICE_FAILURE)
+			missed = TRUE
 		//Aimed combat intent means we never miss, at the cost of stamina
 		switch(c_intent)
 			if(CI_AIMED)
-				miss_chance = 0
+				missed = FALSE
 				var/endurance_mod = 1
 				if(user.mind)
 					var/datum/stats/end = GET_STAT(user, dex)
 					endurance_mod = round((MAX_STAT/2)/end.level, 0.1)
 				user.adjustStaminaLoss(5 * endurance_mod)
 
-		if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
+		if(!damage || !affecting || missed)//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 			playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)
 			target.visible_message("<span class='danger'>[user]'s [atk_verb] misses [target]!</span>", \
 							"<span class='danger'>You avoid [user]'s [atk_verb]!</span>", "<span class='hear'>You hear a swoosh!</span>", COMBAT_MESSAGE_RANGE, null, \

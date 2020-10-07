@@ -415,9 +415,10 @@
 
 
 /atom/movable/proc/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
+	/* Commented out because it looks fucking stupid.
 	if(!no_effect && (visual_effect_icon || used_item))
 		do_item_attack_animation(A, visual_effect_icon, used_item)
-
+	*/
 	if(A == src)
 		return //don't do an animation if attacking self
 	var/pixel_x_diff = 0

@@ -109,6 +109,10 @@
 		var/c_intent = CI_DEFAULT
 		if(iscarbon(user))
 			var/mob/living/carbon/carbon_mob = user
+			//Chance too miss the attack entirely, based on a diceroll
+			var/missed = FALSE
+			if(user.mind && user.mind.diceroll(STAT_DATUM(dex), SKILL_DATUM(melee)) <= DICE_FAILURE)
+				missed = TRUE
 			c_intent = carbon_mob.combat_intent
 			if(carbon_mob.mind)
 				var/datum/stats/dex/dex = GET_STAT(carbon_mob, dex)
@@ -119,6 +123,7 @@
 					if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
 						//Aimed attack - the attacker will RARELY miss
 						ran_zone_prob = 100
+						missed = FALSE
 						if(carbon_mob.mind)
 							var/datum/stats/dex/dex = GET_STAT(carbon_mob, dex)
 							if(dex)
@@ -132,7 +137,12 @@
 							if(melee)
 								multi = melee.level/(MAX_SKILL/2)
 						changeNext_move(CLICK_CD_MELEE * multi)
-		
+			if(missed)
+				visible_message("<span class='danger'>[user]'s misses [src] with [I]!</span>", \
+							"<span class='danger'>You avoid [user]'s attack with [I]!</span>", "<span class='hear'>You hear a swoosh!</span>", COMBAT_MESSAGE_RANGE, null, \
+							user, "<span class='warning'>You miss [src] with [I]!</span>")
+				playsound(get_turf(src), 'sound/weapons/punchmiss.ogg', 25, TRUE, -1) //sound is a placeholder
+				return 0
 		affecting = get_bodypart(ran_zone(user.zone_selected, ran_zone_prob))
 	var/target_area = parse_zone(check_zone(user.zone_selected)) //our intended target
 

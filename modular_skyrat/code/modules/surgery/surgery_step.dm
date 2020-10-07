@@ -54,7 +54,11 @@
 			target.add_splatter_floor(get_turf(target))
 			target.apply_damage(rand(3,6), damagetype = BRUTE, def_zone = target_zone, blocked = FALSE, forced = FALSE)
 
-		if((prob(prob_chance) || (iscyborg(user) && !silicons_obey_prob)) && chem_check(target) && !try_to_fail)
+		//Dice roll
+		var/didntfuckup = TRUE
+		if(user.mind && (user.mind.diceroll(STAT_DATUM(int), SKILL_DATUM(surgery), mod = -round((100 - prob_chance)/10)) <= DICE_FAILURE))
+			didntfuckup = FALSE
+		if(didntfuckup || (iscyborg(user) && !silicons_obey_prob && chem_check(target) && !try_to_fail))
 			if(success(user, target, target_zone, tool, surgery))
 				advance = TRUE
 		else

@@ -34,12 +34,12 @@
 	if(prob(probability))
 		zone = check_zone(zone)
 	else
-		zone = pickweight(list(BODY_ZONE_HEAD = 4, BODY_ZONE_CHEST = 4,
-							BODY_ZONE_PRECISE_GROIN = 4,
-							BODY_ZONE_L_ARM = 14, BODY_ZONE_R_ARM = 14,
-							BODY_ZONE_PRECISE_L_HAND = 8, BODY_ZONE_PRECISE_R_HAND = 8,
-							BODY_ZONE_L_LEG = 14, BODY_ZONE_R_LEG = 14,
-							BODY_ZONE_PRECISE_L_FOOT = 8, BODY_ZONE_PRECISE_R_FOOT = 8)) //skyrat edit
+		zone = pickweight(list(BODY_ZONE_HEAD = 7, BODY_ZONE_CHEST = 16,
+							BODY_ZONE_PRECISE_GROIN = 14,
+							BODY_ZONE_L_ARM = 8, BODY_ZONE_R_ARM = 8,
+							BODY_ZONE_PRECISE_L_HAND = 6, BODY_ZONE_PRECISE_R_HAND = 6,
+							BODY_ZONE_L_LEG = 8, BODY_ZONE_R_LEG = 8,
+							BODY_ZONE_PRECISE_L_FOOT = 6, BODY_ZONE_PRECISE_R_FOOT = 6)) //skyrat edit
 	return zone
 
 /proc/above_neck(zone)

@@ -53,8 +53,12 @@
 	var/modifier = mod + moodmod + fatiguemod
 
 	//Get the necessary number to pass the roll
-	var/sum = (stats + skills) * (2 + modifier)
+	var/sum = ((stats + skills) * 2) + modifier
 
+	//Excessive painkilling fucks up dicerolls
+	if(carbonmob?.chem_effects[CE_PAINKILLER] >= 50)
+		sum -= 5
+	
 	//Finally, return whether it was a failure or a success
 	if(dice <= sum)
 		if(dice <= sum - crit || dice <= 4)
