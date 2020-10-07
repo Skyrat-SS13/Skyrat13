@@ -1,0 +1,6 @@
+author: "Yawet330"
+delete-after: True
+changes: 
+  - rscadd: "Vampires can now forcefully level themselves up"
+  - tweak: "Vampires now level up five times per night."
+  - tweak: "Nights no longer get stackingly longer."
