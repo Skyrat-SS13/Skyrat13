@@ -189,9 +189,13 @@
 
 /mob/living/carbon/human/equipped_speed_mods()
 	. = ..()
-	for(var/sloties in get_all_slots() - list(l_store, r_store, s_store))
-		var/obj/item/thing = sloties
-		. += thing?.slowdown
+	var/str_mod = 1
+	var/datum/stats/str/str = GET_STAT(src, str)
+	if(str)
+		str_mod *= str.get_equip_slowdown_mult()
+	for(var/slotties in get_all_slots() - list(l_store, r_store, s_store))
+		var/obj/item/thing = slotties
+		. += (thing?.slowdown) * str_mod
 
 /mob/living/carbon/human/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE, ignore_strip_self = TRUE)
 	var/index = get_held_index_of_item(I)
