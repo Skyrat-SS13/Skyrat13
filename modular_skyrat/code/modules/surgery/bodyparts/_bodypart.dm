@@ -176,6 +176,10 @@
 	var/decay_factor = 0.01 //Multiplier of max_tox_damage applied when rotting
 	var/datum/dna/original_dna
 	var/datum/species/original_species
+	//Base prob of hitting this limb correctly in melee attacks
+	var/zone_prob = 50
+	//Extra prob, multiplied by dexterity/MAX_STAT
+	var/extra_zone_prob = 50
 
 /obj/item/bodypart/Initialize()
 	. = ..()

@@ -19,6 +19,8 @@
 	children_zones = list()
 	specific_locations = list("right palm", "right back palm")
 	max_cavity_size = WEIGHT_CLASS_TINY
+	zone_prob = 30
+	extra_zone_prob = 35
 
 /obj/item/bodypart/r_hand/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))

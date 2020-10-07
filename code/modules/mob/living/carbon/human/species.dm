@@ -1656,7 +1656,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			else
 				user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
 
-		var/damage = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
+		var/damage = (user.dna.species.punchdamagelow + user.dna.species.punchdamagehigh)/2
 
 		//Raw damage is affected by the user's strength
 		var/str_mod = 1
@@ -1668,7 +1668,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		var/c_intent = user.combat_intent
 		switch(c_intent)
 			if(CI_STRONG)
-				damage *= 2 //fuck it, it's a fist, doesnt do much damage so we use 2x instead of 1.5x
+				damage *= 1.75 //fuck it, it's a fist, doesnt do much damage so we use 1.75x instead of 1.5x
 			if(CI_WEAK)
 				damage *= 0.4
 
@@ -1678,20 +1678,26 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		var/punchedbrute = target.getBruteLoss()
 
 		//CITADEL CHANGES - makes resting and disabled combat mode reduce punch damage, makes being out of combat mode result in you taking more damage
-		if(!SEND_SIGNAL(target, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
-			damage *= 1.2
+		if(SEND_SIGNAL(target, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
+			damage *= 1.1
 		if(!CHECK_MOBILITY(user, MOBILITY_STAND))
-			damage *= 0.8
+			damage *= 0.75
 		if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
-			damage *= 0.8
+			damage *= 0.9
 		//END OF CITADEL CHANGES
 
 		//The probability of hitting the correct zone depends on dexterity
-		var/ran_zone_prob = 75
+		//and also on which limb we aim at
+		var/obj/item/bodypart/supposed_to_affect = target.get_bodypart(user.zone_selected)
+		var/ran_zone_prob = 50
+		var/extra_zone_prob = 50
+		if(supposed_to_affect)
+			ran_zone_prob = supposed_to_affect.zone_prob
+			extra_zone_prob = supposed_to_affect.extra_zone_prob
 		if(user.mind)
 			var/datum/stats/dex/dex = GET_STAT(user, dex)
 			if(dex)
-				ran_zone_prob = dex.get_ran_zone_prob()
+				ran_zone_prob = dex.get_ran_zone_prob(ran_zone_prob, extra_zone_prob)
 
 		//Aimed combat intent means we almost never miss, at the cost of stamina
 		//we deduct stamina later down, based on endurance
@@ -1703,6 +1709,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 					if(dex)
 						ran_zone_prob = 80 + dex.level
 		
+		//Get the bodypart we actually affect
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected, ran_zone_prob))
 
 		var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases

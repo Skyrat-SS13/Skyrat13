@@ -18,8 +18,10 @@
 	dismember_mod = 0.3
 	disembowel_mod = 0.6
 	encased = "ribs"
+	zone_prob = 80
+	extra_zone_prob = 10
 
-/obj/item/bodypart/chest/can_dismember(obj/item/I)
+/obj/item/bodypart/chest/can_disembowel(obj/item/I)
 	if(!((owner.stat == DEAD) || owner.InFullCritical()))
 		return FALSE
 	return ..()

@@ -43,6 +43,21 @@
 	dismember_mod = 0.7
 	disembowel_mod = 0.7
 	encased = "skull"
+	amputation_point = "neck" 
+	zone_prob = 50
+	extra_zone_prob = 25
+	//TEETH!
+	var/max_teeth = 32
+	var/datum/speech_mod/lisp/teeth_mod
+	var/list/obj/item/stack/teeth/teeth_objects = list()
+
+/obj/item/bodypart/head/Initialize()
+	. = ..()
+	//Add TEETH.
+	if(max_teeth)
+		var/obj/item/stack/teeth/teeth = new(src)
+		teeth.amount = max_teeth
+		teeth_objects |= teeth
 
 /obj/item/bodypart/head/update_limb(dropping_limb, mob/living/carbon/source)
 	var/mob/living/carbon/C

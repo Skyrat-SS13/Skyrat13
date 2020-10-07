@@ -22,6 +22,8 @@
 	max_cavity_size = WEIGHT_CLASS_SMALL
 	dismember_mod = 0.8
 	disembowel_mod = 0.8
+	zone_prob = 50
+	extra_zone_prob = 25
 
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
