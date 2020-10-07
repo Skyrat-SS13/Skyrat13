@@ -1,4 +1,4 @@
-/mob/living/carbon/
+/mob/living/carbon
 	var/list/speech_mods = list()
 
 /mob/living/carbon/proc/toggle_speech_mod(datumtype)
