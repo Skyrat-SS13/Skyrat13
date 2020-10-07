@@ -1,6 +1,5 @@
 //Lisp caused by lack of teeth
 /datum/speech_mod/lisp
-	soundtext = "Start speaking with a lisp."
 	var/lisp_force = 0
 
 /datum/speech_mod/lisp/add_speech_mod(mob/living/carbon/human/M)
