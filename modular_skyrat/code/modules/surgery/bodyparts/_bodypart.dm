@@ -697,6 +697,13 @@
 /obj/item/bodypart/proc/update_teeth()
 	return FALSE
 
+/obj/item/bodypart/proc/fill_teeth()
+	if(max_teeth)
+		if(!teeth_object)
+			teeth_object = new(src)
+		teeth_object.amount = max_teeth
+		return TRUE
+
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
@@ -850,7 +857,7 @@
 	//Blunt trauma will knock teeth out
 	if(!sharpness && wounding_type == WOUND_BLUNT)
 		if(max_teeth && owner && prob(brute * 1.5))
-			if(knock_out_teeth(rand(1,2) * max(round(brute/5), 1), pick(GLOB.alldirs)))
+			if(knock_out_teeth(rand(1,2) * max(round(brute/10), 1), pick(GLOB.alldirs)))
 				playsound(owner, 'modular_skyrat/sound/effects/crack1.ogg', rand(60, 100), 0, -4)
 				owner.visible_message("<span class='danger'>[owner]'s teeth sail off in an arc!</span>", \
 								"<span class='userdanger'>[owner]'s teeth sail off in an arc!</span>")

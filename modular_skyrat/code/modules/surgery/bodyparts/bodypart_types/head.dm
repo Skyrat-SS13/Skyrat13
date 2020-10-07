@@ -51,10 +51,7 @@
 /obj/item/bodypart/head/Initialize()
 	. = ..()
 	//Add TEETH.
-	if(max_teeth)
-		var/obj/item/stack/teeth/teeth = new(src)
-		teeth.amount = max_teeth
-		teeth_object = teeth
+	fill_teeth()
 
 /obj/item/bodypart/head/get_teeth_amount()
 	. = 0

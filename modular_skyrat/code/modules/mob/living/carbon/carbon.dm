@@ -69,6 +69,8 @@
 /mob/living/carbon/fully_heal(admin_revive)
 	. = ..()
 	remove_all_embedded_objects()
+	for(var/obj/item/bodypart/british in bodyparts)
+		british.fill_teeth()
 
 //TGUI info menu
 /mob/living/carbon/proc/item_info()
