@@ -761,4 +761,4 @@ GLOBAL_LIST_INIT(valid_plushie_paths, valid_plushie_paths())
 	desc = "An adorable stuffed toy that resembles a deer."
 	icon_state = "deer"
 	attack_verb = list("headbutt", "booped", "bapped", "bumped")
-	squeak_override = list('modular_skyrat/sound/voice/deertoy.ogg' = 1)
+	squeak_override = list('modular_skyrat/sound/voice/deerplush.ogg' = 1)
