@@ -250,7 +250,7 @@
 			if(!teeth_part.max_teeth)
 				continue
 			else if(teeth_part.get_teeth_amount() < teeth_part.max_teeth)
-				msg += "<B>[capitalize(t_his)] [teeth_part.name] is missing [teeth_part.get_teeth_amount()] [teeth_part.get_teeth_amount() == 1 ? "teeth" : "tooth"]!</B>\n"
+				msg += "<B>[capitalize(t_his)] [teeth_part.name] is missing [teeth_part.get_teeth_amount()] [teeth_part.get_teeth_amount() == 1 ? "tooth" : "teeth"]!</B>\n"
 
 	//stores missing limbs
 	var/l_limbs_missing = 0

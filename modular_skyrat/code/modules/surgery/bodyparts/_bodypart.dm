@@ -181,7 +181,7 @@
 	//Extra prob, multiplied by dexterity/MAX_STAT
 	var/extra_zone_prob = 50
 	//TEETH!
-	var/max_teeth = 32
+	var/max_teeth = 0
 	var/datum/speech_mod/lisp/teeth_mod
 	var/obj/item/stack/teeth/teeth_object = list()
 
