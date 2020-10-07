@@ -797,9 +797,9 @@
 		// If there is already a moderate or above cut, the target is just a wee bit softened up
 		if((mangled_state & BODYPART_MANGLED_SKIN) && sharpness)
 			wounding_dmg *= 1.1
-		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
-		// So a big sharp weapon is still all you need to destroy a limb
-		if(mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE))
+		// If we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
+		// So a big sharp weapon is still all you need to rip off a limb
+		if((mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE)) && sharpness && !(mangled_state & BODYPART_MANGLED_BOTH))
 			playsound(src, "modular_skyrat/sound/effects/crackandbleed.ogg", 100)
 			if(wounding_type == WOUND_SLASH && !easy_dismember)
 				wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
@@ -813,7 +813,7 @@
 				wounding_type = WOUND_SLASH
 		// A big blunt weapon too can dismember a limb
 		// If we already have a mangled bone, we start rolling (inefficiently) for slashes
-		if((mangled_state & BODYPART_MANGLED_BONE) && !sharpness)
+		if((mangled_state & BODYPART_MANGLED_BONE) && !sharpness && !(mangled_state & BODYPART_MANGLED_BOTH))
 			playsound(src, "modular_skyrat/sound/effects/crackandbleed.ogg", 100)
 			if(!easy_dismember)
 				wounding_dmg *= 0.5
@@ -1009,9 +1009,9 @@
 		// If there is already a moderate or above cut, the target is just a wee bit softened up
 		if((mangled_state & BODYPART_MANGLED_SKIN) && sharpness)
 			phantom_wounding_dmg *= 1.1
-		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
+		// If we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
 		// So a big sharp weapon is still all you need to destroy a limb
-		if((mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE)) && sharpness)
+		if((mangled_state & (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE)) && sharpness && !(mangled_state & BODYPART_MANGLED_BOTH))
 			playsound(src, "modular_skyrat/sound/effects/crackandbleed.ogg", 100)
 			if(wounding_type == WOUND_SLASH && !easy_dismember)
 				phantom_wounding_dmg *= 0.5 // edged weapons pass along 50% of their wounding damage to the bone since the power is spread out over a larger area
@@ -1025,7 +1025,7 @@
 				wounding_type = WOUND_SLASH
 		// A big blunt weapon too can dismember a limb
 		// If we already have a mangled bone, we start rolling (inefficiently) for slashes
-		if((mangled_state & BODYPART_MANGLED_BONE) && !sharpness)
+		if((mangled_state & BODYPART_MANGLED_BONE) && !sharpness && !(mangled_state & BODYPART_MANGLED_BOTH))
 			playsound(src, "modular_skyrat/sound/effects/crackandbleed.ogg", 100)
 			if(!easy_dismember)
 				phantom_wounding_dmg *= 0.5
@@ -1088,10 +1088,12 @@
 	organ_hit_chance = min(organ_hit_chance, 100)
 
 	if(prob(organ_hit_chance))
-		var/obj/item/organ/victim = pickweight(internal_organs)
-		damage_amt = max(0, damage_amt - victim.damage_reduction - (damage_amt * victim.damage_modifier))
-		if(damage_amt)
-			victim.applyOrganDamage(damage_amt)
+		for(var/obj/item/organ/victim in internal_organs)
+			damage_amt = max(0, damage_amt - victim.damage_reduction - (damage_amt * victim.damage_modifier))
+			if(damage_amt >= 1)
+				victim.applyOrganDamage(damage_amt)
+			else
+				break
 		return TRUE
 
 //Heals brute, burn, stamina, pain, toxin and clone damage for the organ. Returns 1 if the damage-icon states changed at all.

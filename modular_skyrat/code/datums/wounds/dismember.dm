@@ -42,25 +42,27 @@
 	occur_text = "is slashed through the last tissue holding it together, severing it completely"
 	switch(wounding_type)
 		if(WOUND_BLUNT)
-			occur_text = "is shattered through the last bone holding it together, severing it completely"
+			occur_text = "is shattered into a shower of gore"
 			if(L.is_robotic_limb())
-				occur_text = "is shattered through the last bit of endoskeleton holding it together, severing it completely"
+				occur_text = "is shattered into a shower of sparks"
 		if(WOUND_SLASH)
 			occur_text = "is slashed through the last bit of tissue holding it together, severing it completely"
 			if(L.is_robotic_limb())
 				occur_text = "is slashed through the last bit of exoskeleton layer holding it together, severing it completely"
 		if(WOUND_PIERCE)
-			occur_text = "is pierced through the last tissue holding it together, severing it completely"
+			occur_text = "is pierced through the last tissue holding it together, goring it into unrecognizable giblets"
 			if(L.is_robotic_limb())
-				occur_text = "is pierced through the last bit of exoskeleton holding it together, severing it completely"
+				occur_text = "is pierced through the last bit of exoskeleton holding it together, goring it into unrecognizable scrap metal"
 		if(WOUND_BURN)
 			occur_text = "is completely incinerated, falling to a pile of carbonized remains"
 			if(L.is_robotic_limb())
-				occur_text = "is completely melted, falling to a puddle of debris"
+				occur_text = "is completely incinerated, falling to a puddle of debris"
 
 	var/mob/living/carbon/victim = L.owner
 	if(prob(40))
 		victim.confused += 5
+	if(prob(50 - GET_STAT_LEVEL(victim, end)))
+		victim.emote("scream")
 
 	var/msg = "<b><span class='danger'>[victim]'s [L.name] [occur_text]!</span></b>"
 
@@ -90,7 +92,7 @@
 
 	second_wind()
 	log_wound(victim, src)
-	L.dismember(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE),silent = TRUE)
+	L.dismember(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE), silent = TRUE, destoy = (wounding_type in list(WOUND_BURN, WOUND_PIERCE, WOUND_BLUNT) ? TRUE : FALSE))
 	qdel(src)
 
 /datum/wound/slash/loss

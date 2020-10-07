@@ -28,15 +28,12 @@
 		C.emote("scream")
 	playsound(get_turf(C), 'modular_skyrat/sound/effects/dismember.ogg', 80, TRUE)
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
-	drop_limb(dismembered = TRUE, destroyed = (dam_type == BURN ? TRUE : destroy))
+	drop_limb(dismembered = TRUE, destroyed = destroy)
 	C.update_equipment_speed_mods() // Update in case speed affecting item unequipped by dismemberment
 
 	C.bleed(12)
 
 	if(QDELETED(src)) //Could have dropped into lava/explosion/chasm/whatever
-		return TRUE
-	if(dam_type == BURN)
-		burn()
 		return TRUE
 	add_mob_blood(C)
 	var/direction = pick(GLOB.cardinals)
@@ -184,10 +181,11 @@
 	if(destroyed)
 		for(var/obj/item/organ/O in src)
 			O.applyOrganDamage(O.maxHealth/10 * 9)
-			O.forceMove(get_turf(src))
+			O.forceMove(get_turf(C))
 	
 	//Start processing rotting
-	START_PROCESSING(SSobj, src)
+	if(!destroyed)
+		START_PROCESSING(SSobj, src)
 	
 	C.update_health_hud() //update the healthdoll
 	C.update_body()
