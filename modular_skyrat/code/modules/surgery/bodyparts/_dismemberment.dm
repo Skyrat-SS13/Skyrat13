@@ -96,7 +96,7 @@
 	
 	return FALSE
 
-/obj/item/bodypart/head/dismember(dam_type = BRUTE, silent = FALSE)
+/obj/item/bodypart/head/dismember(dam_type = BRUTE, silent = FALSE, destroy = FALSE)
 	. = ..()
 	if(owner && (HAS_TRAIT(owner, TRAIT_NODECAP) || HAS_TRAIT(owner, TRAIT_NODISMEMBER)))
 		return FALSE

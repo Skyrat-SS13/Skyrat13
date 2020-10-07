@@ -92,7 +92,10 @@
 
 	second_wind()
 	log_wound(victim, src)
-	L.dismember(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE), silent = TRUE, destoy = (wounding_type in list(WOUND_BURN, WOUND_PIERCE, WOUND_BLUNT) ? TRUE : FALSE))
+	var/should_kaplosh = FALSE
+	if(wounding_type in list(WOUND_BURN, WOUND_PIERCE, WOUND_BLUNT))
+		should_kaplosh = TRUE
+	L.dismember(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE), silent = TRUE, destroy = should_kaplosh)
 	qdel(src)
 
 /datum/wound/slash/loss

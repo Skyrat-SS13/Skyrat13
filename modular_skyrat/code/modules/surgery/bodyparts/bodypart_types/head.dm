@@ -46,10 +46,7 @@
 	amputation_point = "neck" 
 	zone_prob = 50
 	extra_zone_prob = 25
-	//TEETH!
-	var/max_teeth = 32
-	var/datum/speech_mod/lisp/teeth_mod
-	var/list/obj/item/stack/teeth/teeth_objects = list()
+	max_teeth = 32
 
 /obj/item/bodypart/head/Initialize()
 	. = ..()
@@ -57,7 +54,45 @@
 	if(max_teeth)
 		var/obj/item/stack/teeth/teeth = new(src)
 		teeth.amount = max_teeth
-		teeth_objects |= teeth
+		teeth_object = teeth
+
+/obj/item/bodypart/head/get_teeth_amount()
+	. = 0
+	if(teeth_object)
+		. += teeth_object.amount
+
+/obj/item/bodypart/head/knock_out_teeth(amount = 32, throw_dir = SOUTH)
+	amount = clamp(amount, 0, 32)
+	if(!amount)
+		return
+	if(teeth_object && teeth_object.amount)
+		//No point in making many stacks because they get merged on the ground
+		var/drop = min(teeth_object.amount, amount)
+		if(!drop)
+			return
+		var/obj/item/stack/teeth/dropped_teeth = new teeth_object.type(get_turf(src))
+		dropped_teeth.add_mob_blood(owner)
+		dropped_teeth.amount = drop
+		teeth_object.use(drop)
+		var/range = clamp(round(amount/5), 0, 3)
+		var/turf/target_turf = get_ranged_target_turf(dropped_teeth, throw_dir, range)
+		dropped_teeth.throw_at(target_turf, range, rand(1,3))
+		if(teeth_mod)
+			teeth_mod.update_lisp()
+		else
+			teeth_mod = new()
+			if(owner)
+				teeth_mod.add_speech_mod(owner)
+		return drop
+
+/obj/item/bodypart/head/update_teeth()
+	if(teeth_mod)
+		teeth_mod.update_lisp()
+	else
+		if(get_teeth_amount() < max_teeth)
+			teeth_mod = new()
+			teeth_mod.add_speech_mod(owner)
+	return TRUE
 
 /obj/item/bodypart/head/update_limb(dropping_limb, mob/living/carbon/source)
 	var/mob/living/carbon/C
@@ -244,12 +279,18 @@
 	. = ..()
 	if(. && tapered && owner)
 		ADD_TRAIT(owner, TRAIT_MUTE, "tape")
+	//Handle teeth stuff
+	if(teeth_mod)
+		teeth_mod.add_speech_mod(C)
 
 /obj/item/bodypart/head/drop_limb(special, ignore_children, dismembered, destroyed)
 	. = ..()
 	var/mob/living/og_owner = owner
 	if(.)
 		REMOVE_TRAIT(og_owner, TRAIT_MUTE, "tape")
+	//Handle teeth stuff
+	if(teeth_mod)
+		teeth_mod.remove_speech_mod()
 
 /obj/item/bodypart/head/replace_limb(mob/living/carbon/C, special)
 	if(!istype(C))

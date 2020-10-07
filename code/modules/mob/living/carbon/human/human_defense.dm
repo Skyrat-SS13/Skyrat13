@@ -100,9 +100,12 @@
 		affecting = get_bodypart(check_zone(user.zone_selected)) //stabbing yourself always hits the right target
 	else
 		//Hitting where the attacker aimed is dictated by a few things
-		var/obj/item/bodypart/supposed_to_affect = target.get_bodypart(user.zone_selected)
+		var/obj/item/bodypart/supposed_to_affect = get_bodypart(user.zone_selected)
 		var/ran_zone_prob = 50
 		var/extra_zone_prob = 50
+		if(supposed_to_affect)
+			ran_zone_prob = supposed_to_affect.zone_prob
+			extra_zone_prob = supposed_to_affect.extra_zone_prob
 		var/c_intent = CI_DEFAULT
 		if(iscarbon(user))
 			var/mob/living/carbon/carbon_mob = user

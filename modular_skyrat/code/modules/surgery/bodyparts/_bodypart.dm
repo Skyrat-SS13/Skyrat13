@@ -180,6 +180,10 @@
 	var/zone_prob = 50
 	//Extra prob, multiplied by dexterity/MAX_STAT
 	var/extra_zone_prob = 50
+	//TEETH!
+	var/max_teeth = 32
+	var/datum/speech_mod/lisp/teeth_mod
+	var/obj/item/stack/teeth/teeth_object = list()
 
 /obj/item/bodypart/Initialize()
 	. = ..()
@@ -683,6 +687,16 @@
 			germ_level += W.infection_rate
 			break	//Limit increase to a maximum of one wound infection per second
 
+//Teeth if applicable
+/obj/item/bodypart/proc/knock_out_teeth(amount = 32, throw_dir = SOUTH)
+	return
+
+/obj/item/bodypart/proc/get_teeth_amount()
+	return 0
+
+/obj/item/bodypart/proc/update_teeth()
+	return FALSE
+
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
@@ -829,9 +843,17 @@
 	// END WOUND HANDLING
 	*/
 
-	// now we have our wounding_type and are ready to carry on with wounds and dealing the actual damage
+	// Now we have our wounding_type and are ready to carry on with wounds and dealing the actual damage
 	if(owner && wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus > CANT_WOUND)
 		check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
+	
+	//Blunt trauma will knock teeth out
+	if(!sharpness && wounding_type == WOUND_BLUNT)
+		if(max_teeth && owner && prob(brute * 1.5))
+			if(knock_out_teeth(rand(1,2) * max(round(brute/5), 1), pick(GLOB.alldirs)))
+				playsound(owner, 'modular_skyrat/sound/effects/crack1.ogg', rand(60, 100), 0, -4)
+				owner.visible_message("<span class='danger'>[owner]'s teeth sail off in an arc!</span>", \
+								"<span class='userdanger'>[owner]'s teeth sail off in an arc!</span>")
 
 	//We add the pain values before we scale damage down
 	//Pain does not care about your feelings, nor if your limb was already damaged

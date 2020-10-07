@@ -243,6 +243,14 @@
 					damage_text = (BP.brute_dam >= BP.burn_dam) ? BP.heavy_brute_msg : BP.heavy_burn_msg
 				msg += "<B>[capitalize(t_his)] [BP.name] is [damage_text]!</B>\n"
 			//
+	
+	//Teeth
+	if(!screwy_self)
+		for(var/obj/item/bodypart/teeth_part in bodyparts)
+			if(!teeth_part.max_teeth)
+				continue
+			else if(teeth_part.get_teeth_amount() < teeth_part.max_teeth)
+				msg += "<B>[capitalize(t_his)] [teeth_part.name] is missing [teeth_part.get_teeth_amount()] [teeth_part.get_teeth_amount() == 1 ? "teeth" : "tooth"]!</B>\n"
 
 	//stores missing limbs
 	var/l_limbs_missing = 0
