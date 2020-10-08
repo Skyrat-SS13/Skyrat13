@@ -13,11 +13,20 @@
 
 /mob/living/Initialize()
 	. = ..()
+	RegisterSignal(src, COMSIG_LIVING_REVIVE, .proc/update_pain)
 	RegisterSignal(src, COMSIG_MOB_DEATH, .proc/update_pain)
 
 /mob/living/Destroy()
 	. = ..()
+	UnregisterSignal(src, COMSIG_LIVING_REVIVE)
 	UnregisterSignal(src, COMSIG_MOB_DEATH)
+
+/mob/proc/flash_pain(target_alpha = 175, settle_alpha = 0, time_in = 10, time_away = 10)
+	if(hud_used?.redpains)
+		var/obj/screen/fullscreen/pain/pain = hud_used.redpains
+		animate(pain, alpha = target_alpha, time = time_in, easing = ELASTIC_EASING)
+		animate(pain, alpha = settle_alpha, time = time_away)
+		return TRUE
 
 // Message is the custom message to be displayed
 // Power decides how much painkillers will stop the message
@@ -68,6 +77,8 @@
 			force_emote = "groan"
 		if(force_emote && prob(power))
 			emote(force_emote)
+	//Briefly flash the pain overlay
+	flash_pain(min(round(power/100) * 255, 255), 0, pick(5,10), pick(5,10))
 	next_pain_message_time = world.time + (rand(150, 250) - power)
 	next_pain_time = world.time + (rand(100, 200) - power)
 	return TRUE

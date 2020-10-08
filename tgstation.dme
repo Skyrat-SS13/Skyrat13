@@ -3537,6 +3537,7 @@
 #include "modular_skyrat\code\_onclick\hud\ghost.dm"
 #include "modular_skyrat\code\_onclick\hud\hud.dm"
 #include "modular_skyrat\code\_onclick\hud\iteminfo.dm"
+#include "modular_skyrat\code\_onclick\hud\pain.dm"
 #include "modular_skyrat\code\_onclick\hud\plane_master.dm"
 #include "modular_skyrat\code\_onclick\hud\screen_objects.dm"
 #include "modular_skyrat\code\_onclick\hud\wield.dm"

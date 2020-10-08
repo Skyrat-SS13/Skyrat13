@@ -858,7 +858,7 @@
 	if(!sharpness && wounding_type == WOUND_BLUNT)
 		if(max_teeth && owner && prob(brute * 1.5))
 			if(knock_out_teeth(rand(1,2) * max(round(brute/10), 1), pick(GLOB.alldirs)))
-				playsound(owner, 'modular_skyrat/sound/effects/crack1.ogg', rand(60, 100), 0, -4)
+				playsound(owner, 'modular_skyrat/sound/gore/bone_crack.ogg', rand(60, 100), 0, -4)
 				owner.visible_message("<span class='danger'>[owner]'s teeth sail off in an arc!</span>", \
 								"<span class='userdanger'>[owner]'s teeth sail off in an arc!</span>")
 

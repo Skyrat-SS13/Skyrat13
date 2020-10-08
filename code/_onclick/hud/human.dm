@@ -452,7 +452,13 @@
 	pains.screen_loc = ui_pain
 	pains.hud = src
 	infodisplay += pains
-	
+
+	redpains = new /obj/screen/fullscreen/pain()
+	redpains.hud = src
+	if(owner.client)
+		redpains.update_for_view(owner.client.view)
+	screenoverlays += redpains
+
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = ui_style_modular(ui_style) //SKYRAT EDIT
 	pull_icon.hud = src
