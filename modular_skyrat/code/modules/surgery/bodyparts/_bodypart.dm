@@ -183,7 +183,7 @@
 	//TEETH!
 	var/max_teeth = 0	
 	var/datum/speech_mod/lisp/teeth_mod
-	var/obj/item/stack/teeth/teeth_object = list()
+	var/obj/item/stack/teeth/teeth_object
 
 /obj/item/bodypart/Initialize()
 	. = ..()
