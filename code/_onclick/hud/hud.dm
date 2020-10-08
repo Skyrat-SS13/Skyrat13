@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(modular_ui_styles, list(
 	var/obj/screen/healthdoll
 	var/obj/screen/internals
 	var/obj/screen/pains
-	var/obj/screen/redpains
+	var/obj/screen/fullscreen/redpains
 
 	// subtypes can override this to force a specific UI style
 	var/ui_style
