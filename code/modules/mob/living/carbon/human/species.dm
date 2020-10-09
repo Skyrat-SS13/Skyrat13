@@ -1977,7 +1977,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	
 	apply_damage(totitemdamage * weakness, I.damtype, hit_area, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
 
+	//How the fuck does this work?
 	I.do_stagger_action(H, user, totitemdamage)
+
+	//Mine is fucking better idc
+	if(H.mind || user.mind)
+		I.do_stat_effects(H, user, totitemdamage)
 
 	if(!totitemdamage)
 		return 0 //item force is zero

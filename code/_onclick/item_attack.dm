@@ -396,6 +396,13 @@
 		target.AdjustStaggered(duration)
 	return TRUE
 
+//Do stuff depending on stats and skills etc
+/obj/item/proc/do_stat_effects(mob/living/carbon/victim, mob/living/carbon/user, item_force)
+	if(!item_force)
+		item_force = force
+	var/did_something = FALSE
+	return did_something
+
 /mob/proc/do_staggered_animation()
 	set waitfor = FALSE
 	animate(src, pixel_x = -2, pixel_y = -2, time = 1, flags = ANIMATION_RELATIVE | ANIMATION_PARALLEL)

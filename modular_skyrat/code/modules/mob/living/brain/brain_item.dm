@@ -11,6 +11,8 @@
 	var/damage_threshold_value = 0
 	var/healed_threshold = 1
 	var/oxygen_reserve = 5
+	var/last_wobble = 0
+	var/wobble_duration = 1070
 	relative_size = 70 //Cum is stored in the brain, and i have a headache
 	pain_multiplier = 0 //We don't count towards bodypart pain
 
@@ -23,6 +25,12 @@
 
 /obj/item/organ/brain/proc/past_damage_threshold(threshold)
 	return (get_current_damage_threshold() > threshold)
+
+/obj/item/organ/brain/onDamage(d, maximum)
+	. = ..()
+	if((damage >= high_threshold) && (world.time >= last_wobble) && owner)
+		last_wobble = world.time
+		owner.playsound_local(get_turf(owner), 'modular_skyrat/sound/effects/ear_ring.ogg', 75, 0)
 
 /obj/item/organ/brain/on_life()
 	. = ..()
