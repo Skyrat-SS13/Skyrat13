@@ -13,7 +13,7 @@
 		for(var/word in words)
 			if(findtext(word, config.ic_filter_regex))
 				warning_message = "[warning_message]<b>[word]</b> "
-				cringe += "/<b>[word]</b>"
+				cringe += "<b>[word]</b>"
 			else
 				warning_message = "[warning_message][word] "
 
