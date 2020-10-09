@@ -270,11 +270,6 @@ Works together with spawning an observer, noted above.
 	voluntary_ghosted = voluntary
 	if(!key || key[1] == "@" || (sig_flags & COMPONENT_BLOCK_GHOSTING))
 		return //mob has no key, is an aghost or some component hijacked.
-	if((stat == DEAD) && iscarbon(src))
-		var/mob/living/carbon/C = src
-		if(C.timeofdeath + 1.5 MINUTES <= world.time)
-			to_chat(C, "<span class='deadsay'>Your soul has yet to find peace.<br>Wait for [round((world.time - C.timeofdeath)/1 SECONDS)] more seconds.</span>")
-			return
 	stop_sound_channel(CHANNEL_HEARTBEAT) //Stop heartbeat sounds because You Are A Ghost Now
 	var/mob/dead/observer/ghost = new(get_turf(src), src)	// Transfer safety to observer spawning proc.
 	SStgui.on_transfer(src, ghost) // Transfer NanoUIs.
@@ -332,6 +327,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(stat != DEAD)
 		succumb()
 	if(stat == DEAD || sig_flags & COMPONENT_FREE_GHOSTING)
+		if(iscarbon(src))
+			var/mob/living/carbon/C = src
+			if(C.timeofdeath + 1.5 MINUTES <= world.time)
+				to_chat(C, "<span class='deadsay'>Your soul has yet to find peace.<br>Wait for [round((world.time - C.timeofdeath)/1 SECONDS)] more seconds.</span>")
+				return
 		ghostize(1)
 	else
 		var/response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost whilst alive you won't be able to re-enter this round [penalty ? "or play ghost roles [penalty == CANT_REENTER_ROUND ? "until the round is over" : "for the next [DisplayTimeText(penalty)]"]" : ""]! You can't change your mind so choose wisely!!)","Are you sure you want to ghost?","Ghost","Stay in body")
