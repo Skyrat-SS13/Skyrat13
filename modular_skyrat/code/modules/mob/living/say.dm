@@ -5,7 +5,7 @@
 
 /mob/living/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
 	. = ..()
-	if(findtext(message, config.ic_filter_regex))
+	if(config.ic_filter_regex && findtext(message, config.ic_filter_regex))
 		// let's try to be a bit more informative!
 		var/warning_message = "A splitting spike of headache prevents you from saying whatever vile words you planned to say! You think better of saying such nonsense again. The following terms repulse you: \""
 		var/list/words = splittext(message, " ")
