@@ -30,7 +30,7 @@
 		//You aren't even trying. Literally just kills you at this point.
 		if(cringecount >= 5)
 			visible_message("<span class='danger'>[src] violently bleeds from [p_their()] nostrils, and falls limp on the ground.</span>",
-						"<span class='userdanger'>I do not deserve the gift of life,</span>")
+						"<span class='userdanger'>I do not deserve the gift of life.</span>")
 			death()
 		return
 	else

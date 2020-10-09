@@ -455,9 +455,6 @@
 
 	redpains = new /obj/screen/fullscreen/pain()
 	redpains.hud = src
-	if(owner.client)
-		redpains.update_for_view(owner.client.view)
-		owner.client.screen += redpains
 	screenoverlays += redpains
 
 	pull_icon = new /obj/screen/pull()
