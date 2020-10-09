@@ -270,6 +270,11 @@ Works together with spawning an observer, noted above.
 	voluntary_ghosted = voluntary
 	if(!key || key[1] == "@" || (sig_flags & COMPONENT_BLOCK_GHOSTING))
 		return //mob has no key, is an aghost or some component hijacked.
+	if((stat == DEAD) && iscarbon(src))
+		var/mob/living/carbon/C = src
+		if(C.timeofdeath + 1.5 MINUTES <= world.time)
+			to_chat(C, "<span class='deadsay'>Your soul has yet to find peace.<br>Wait for [round((world.time - C.timeofdeath)/1 SECONDS)] more seconds.</span>")
+			return
 	stop_sound_channel(CHANNEL_HEARTBEAT) //Stop heartbeat sounds because You Are A Ghost Now
 	var/mob/dead/observer/ghost = new(get_turf(src), src)	// Transfer safety to observer spawning proc.
 	SStgui.on_transfer(src, ghost) // Transfer NanoUIs.
