@@ -67,13 +67,16 @@
 		var/drop = min(teeth_object.amount, amount)
 		if(!drop)
 			return
-		var/obj/item/stack/teeth/dropped_teeth = new teeth_object.type(get_turf(owner))
-		dropped_teeth.add_mob_blood(owner)
-		dropped_teeth.amount = drop
-		teeth_object.use(drop)
-		var/range = clamp(round(amount/5), 0, 3)
-		var/turf/target_turf = get_ranged_target_turf(dropped_teeth, throw_dir, range)
-		dropped_teeth.throw_at(target_turf, range, rand(1,3))
+		for(var/y in 1 to drop)
+			var/obj/item/stack/teeth/dropped_teeth = new teeth_object.type(get_turf(owner))
+			dropped_teeth.add_mob_blood(owner)
+			dropped_teeth.amount = 1
+			teeth_object.use(1)
+			var/range = clamp(round(amount/5), 0, 3)
+			var/turf/target_turf = get_ranged_target_turf(dropped_teeth, throw_dir, range)
+			dropped_teeth.throw_at(target_turf, range, rand(1,3))
+			spawn(0)
+				dropped_teeth.do_knock_out_animation()
 		if(teeth_mod)
 			teeth_mod.update_lisp()
 		else

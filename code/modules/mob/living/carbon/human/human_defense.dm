@@ -100,7 +100,7 @@
 		affecting = get_bodypart(check_zone(user.zone_selected)) //stabbing yourself always hits the right target
 	else
 		//Hitting where the attacker aimed is dictated by a few things
-		var/obj/item/bodypart/supposed_to_affect = get_bodypart(user.zone_selected)
+		var/obj/item/bodypart/supposed_to_affect = get_bodypart(check_zone(user.zone_selected))
 		var/ran_zone_prob = 50
 		var/extra_zone_prob = 50
 		if(supposed_to_affect)
@@ -128,22 +128,26 @@
 							var/datum/stats/dex/dex = GET_STAT(carbon_mob, dex)
 							if(dex)
 								ran_zone_prob = 80 + dex.level
-				if(CI_FEINT)
-					if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
-						//Successful feint attack - victim is unable to attack for a while
-						var/multi = 2
-						if(user.mind)
-							var/datum/skills/melee/melee = GET_SKILL(user, melee)
-							if(melee)
-								multi = melee.level/(MAX_SKILL/2)
-						changeNext_move(CLICK_CD_MELEE * multi)
 			if(missed)
 				visible_message("<span class='danger'>[user]'s misses [src] with [I]!</span>", \
 							"<span class='danger'>You avoid [user]'s attack with [I]!</span>", "<span class='hear'>You hear a swoosh!</span>", COMBAT_MESSAGE_RANGE, null, \
 							user, "<span class='warning'>You miss [src] with [I]!</span>")
-				playsound(get_turf(src), 'sound/weapons/punchmiss.ogg', 25, TRUE, -1) //sound is a placeholder
+				var/swing_sound = pick('modular_skyrat/sound/attack/swing_01.ogg',
+									'modular_skyrat/sound/attack/swing_02.ogg',
+									'modular_skyrat/sound/attack/swing_03.ogg',
+									)
+				playsound(get_turf(src), swing_sound, 50, TRUE, -1)
 				return 0
-		affecting = get_bodypart(ran_zone(user.zone_selected, ran_zone_prob))
+			else if(c_intent == CI_FEINT)
+				if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
+					//Successful feint attack - victim is unable to attack for a while
+					var/multi = 2
+					if(user.mind)
+						var/datum/skills/melee/melee = GET_SKILL(user, melee)
+						if(melee)
+							multi = melee.level/(MAX_SKILL/2)
+					changeNext_move(CLICK_CD_MELEE * multi)
+		affecting = get_bodypart(ran_zone(check_zone(user.zone_selected), ran_zone_prob))
 	var/target_area = parse_zone(check_zone(user.zone_selected)) //our intended target
 
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
@@ -225,7 +229,7 @@
 				"<span class='userdanger'>[M] has lunged at you!</span>", target = M, \
 				target_message = "<span class='danger'>You have lunged at [src]!</span>")
 			return 0
-		var/obj/item/bodypart/affecting = get_bodypart(ran_zone(M.zone_selected))
+		var/obj/item/bodypart/affecting = get_bodypart(ran_zone(check_zone(M.zone_selected)))
 		if(!affecting)
 			affecting = get_bodypart(BODY_ZONE_CHEST)
 		var/armor_block = run_armor_check(affecting, "melee", null, null,10)
@@ -261,7 +265,7 @@
 	var/damage = rand(1, 3)
 	if(stat != DEAD)
 		L.amount_grown = min(L.amount_grown + damage, L.max_grown)
-		var/obj/item/bodypart/affecting = get_bodypart(ran_zone(L.zone_selected))
+		var/obj/item/bodypart/affecting = get_bodypart(ran_zone(check_zone(L.zone_selected)))
 		if(!affecting)
 			affecting = get_bodypart(BODY_ZONE_CHEST)
 		var/armor_block = run_armor_check(affecting, "melee")

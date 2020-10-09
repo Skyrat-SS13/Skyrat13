@@ -2363,7 +2363,7 @@
 		for(var/thing in M.all_wounds)
 			var/datum/wound/W = thing
 			if(istype(W))
-				stam_crash += (W.severity + 1) * 3 // spike of 3 stam damage per wound severity (moderate = 6, severe = 9, critical = 12) when the determination wears off if it was a combat rush
+				stam_crash += (W.severity + 1) * 3 // Spike of 3 stam damage per wound severity (moderate = 6, severe = 9, critical = 12) when the determination wears off if it was a combat rush
 		M.adjustStaminaLoss(stam_crash)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
@@ -2374,7 +2374,7 @@
 /datum/reagent/determination/on_mob_life(mob/living/carbon/M)
 	if(!significant && volume >= WOUND_DETERMINATION_SEVERE)
 		significant = TRUE
-		M.apply_status_effect(STATUS_EFFECT_DETERMINED) // in addition to the slight healing, limping cooldowns are divided by 4 during the combat high
+		M.apply_status_effect(STATUS_EFFECT_DETERMINED) // In addition to the slight healing, limping cooldowns are divided by 4 during the combat high
 
 	volume = min(volume, WOUND_DETERMINATION_MAX)
 
@@ -2384,6 +2384,6 @@
 			var/obj/item/bodypart/wounded_part = W.limb
 			if(istype(wounded_part))
 				wounded_part.heal_damage(0.25, 0.25)
-			M.adjustStaminaLoss(-0.25*REM) // the more wounds, the more stamina regen
+			M.adjustStaminaLoss(-0.25*REM) // The more wounds, the more stamina regen
 			M.adjustPainLoss(-0.1*REM) //The more wounds, the more pain regen
 	..()

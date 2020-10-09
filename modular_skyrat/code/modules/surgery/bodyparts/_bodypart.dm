@@ -853,14 +853,6 @@
 	// Now we have our wounding_type and are ready to carry on with wounds and dealing the actual damage
 	if(owner && wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus > CANT_WOUND)
 		check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
-	
-	//Blunt trauma will knock teeth out
-	if(!sharpness && wounding_type == WOUND_BLUNT)
-		if(max_teeth && owner && prob(brute * 1.5))
-			if(knock_out_teeth(rand(1,2) * max(round(brute/10), 1), pick(GLOB.alldirs)))
-				playsound(owner, 'modular_skyrat/sound/gore/trauma[rand(1,3)].ogg', rand(60, 100), 0, -4)
-				owner.visible_message("<span class='danger'>[owner]'s teeth sail off in an arc!</span>", \
-								"<span class='userdanger'>[owner]'s teeth sail off in an arc!</span>")
 
 	//We add the pain values before we scale damage down
 	//Pain does not care about your feelings, nor if your limb was already damaged

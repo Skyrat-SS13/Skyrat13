@@ -100,6 +100,9 @@
 	/// It's less intensive to use a boolean rather than always getting the component when firing
 	var/is_wielded = FALSE
 
+	/// Safety first!
+	var/safety = TRUE
+
 /obj/item/gun/Initialize()
 	. = ..()
 	if(no_pin_required)
@@ -147,6 +150,27 @@
 		. += "It has \a [pin] installed."
 	else
 		. += "It doesn't have a firing pin installed, and won't fire."
+	. += "It's safety is [safety ? "enabled" : "disabled"]."
+
+/obj/item/gun/rightclick_attack_self(mob/user)
+	if(user.mind)
+		var/ranged_skill = GET_SKILL_LEVEL(user, ranged)
+		if(ranged_skill <= 8)
+			to_chat(user, "<span class='warning'>Hnngh... How do i use this thing?</span>")
+			if(!do_after(user, (20 - ranged_skill), TRUE, src))
+				to_chat(user, "<span class='warning'>You must stand still to disable/enable [src]'s safety!</span>")
+				return
+		if(user.mind.diceroll(STAT_DATUM(dex), SKILL_DATUM(ranged)) >= DICE_SUCCESS)
+			toggle_safety(user)
+		else
+			to_chat(user, "<span class='danger'>Damn it! I wasn't able to figure out how to toggle [src]'s safety features!</span>")
+	else
+		toggle_safety(user)
+
+/obj/item/gun/proc/toggle_safety(mob/user)
+	safety = !safety
+	if(user)
+		to_chat(user, "<span class='notice'>You [safety ? "enable" : "disable"] \the [src]'s safety.</span>")
 
 /obj/item/gun/equipped(mob/living/user, slot)
 	. = ..()
@@ -160,6 +184,9 @@
 //check if there's enough ammo/energy/whatever to shoot one time
 //i.e if clicking would make it shoot
 /obj/item/gun/proc/can_shoot()
+	//Safety is on, abort!
+	if(safety)
+		return FALSE
 	return TRUE
 
 /obj/item/gun/proc/shoot_with_empty_chamber(mob/living/user as mob|obj)

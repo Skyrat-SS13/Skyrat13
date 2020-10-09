@@ -13,6 +13,8 @@
 	switch(zone)
 		if(BODY_ZONE_PRECISE_EYES)
 			zone = BODY_ZONE_HEAD
+		if(BODY_ZONE_PRECISE_THROAT)
+			zone = BODY_ZONE_HEAD
 		if(BODY_ZONE_PRECISE_MOUTH)
 			zone = BODY_ZONE_HEAD
 		/* skyrat edit

@@ -6,7 +6,7 @@
 /obj/item/organ/vocal_cords //organs that are activated through speech with the :x/MODE_KEY_VOCALCORDS channel
 	name = "vocal cords"
 	icon_state = "appendix"
-	zone = BODY_ZONE_PRECISE_MOUTH
+	zone = BODY_ZONE_PRECISE_THROAT
 	slot = ORGAN_SLOT_VOICE
 	gender = PLURAL
 	var/list/spans = null

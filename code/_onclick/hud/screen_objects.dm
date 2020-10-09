@@ -482,7 +482,7 @@
 					return BODY_ZONE_PRECISE_GROIN
 				if(21 to 24)
 					return BODY_ZONE_PRECISE_L_HAND
-		if(14 to 22) //Chest and arms to shoulders
+		if(14 to 20) //Chest, arms or throat
 			switch(icon_x)
 				if(8 to 11)
 					return BODY_ZONE_R_ARM
@@ -490,11 +490,40 @@
 					return BODY_ZONE_CHEST
 				if(21 to 24)
 					return BODY_ZONE_L_ARM
-		if(23 to 30) //Head, but we need to check for eye or mouth
+		if(21)
+			switch(icon_x)
+				if(8 to 11)
+					return BODY_ZONE_R_ARM
+				if(12 to 14)
+					return BODY_ZONE_CHEST
+				if(15 to 17)
+					return BODY_ZONE_PRECISE_THROAT
+				if(18 to 20)
+					return BODY_ZONE_CHEST
+				if(21 to 24)
+					return BODY_ZONE_L_ARM
+		if(22) //Chest, arms or throat
+			switch(icon_x)
+				if(8 to 11)
+					return BODY_ZONE_R_ARM
+				if(12 to 13)
+					return BODY_ZONE_CHEST
+				if(14 to 18)
+					return BODY_ZONE_PRECISE_THROAT
+				if(19 to 20)
+					return BODY_ZONE_CHEST
+				if(21 to 24)
+					return BODY_ZONE_L_ARM
+		if(23 to 30) //Head, but we need to check for eye, mouth or throat
 			if(icon_x in 12 to 20)
 				switch(icon_y)
-					if(23 to 24)
+					if(23)
+						if(icon_x == 14 || icon_x == 18)
+							return BODY_ZONE_PRECISE_THROAT
 						if(icon_x in 15 to 17)
+							return BODY_ZONE_PRECISE_MOUTH
+					if(24)
+						if(icon_x in 14 to 18)
 							return BODY_ZONE_PRECISE_MOUTH
 					if(26) //Eyeline, eyes are on 15 and 17
 						if(icon_x in 14 to 18)

@@ -16,7 +16,7 @@
 	if(..())
 		var/obj/item/bodypart/targeted_bodypart = target.get_bodypart(user.zone_selected)
 		var/datum/wound/mechanical/burn/burn_wound = targeted_bodypart.get_wound_type(targetable_wound)
-		return(burn_wound && burn_wound.heat_warping > 0)
+		return (burn_wound && burn_wound.heat_warping > 0)
 
 //SURGERY STEPS
 

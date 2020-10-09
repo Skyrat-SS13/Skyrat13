@@ -180,8 +180,7 @@
 	update_icon_dropped()
 	if(destroyed)
 		for(var/obj/item/organ/O in src)
-			O.applyOrganDamage(O.maxHealth/10 * 9)
-			O.forceMove(get_turf(C))
+			qdel(O)
 	
 	//Start processing rotting
 	if(!destroyed)
