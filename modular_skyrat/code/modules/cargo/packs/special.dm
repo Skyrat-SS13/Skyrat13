@@ -10,7 +10,7 @@
 					/obj/item/ammo_box/magazine/usp,
 					/obj/item/ammo_box/magazine/usp)
 	crate_name = "USP pistols crate"
-
+/* No.
 /datum/supply_pack/security/armory/combine
 	name = "Civil Protection Crate"
 	desc = "With this crate, you'll be able to hunt down the Freeman." //I will beat the hell out of you Bob
@@ -24,7 +24,7 @@
 					/obj/item/ammo_box/magazine/usp,
 					/obj/item/melee/baton)
 	crate_name = "metrocop crate"
-
+*/
 /datum/supply_pack/security/armory/hev
 	name = "HEV Hardsuit Crate"
 	desc = "The HEV suit is a harder plated suit meant for on-planet use as well as space use. Has fire-proof and acid proof shields meant for Lavaland or other acid-infested worlds. \

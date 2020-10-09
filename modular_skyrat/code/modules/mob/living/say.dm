@@ -1,3 +1,42 @@
+//Cringe filter
+/mob/living
+	var/last_cringe = 0
+	var/cringecount = 0
+
+/mob/living/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
+	. = ..()
+	if(findtext(message, config.ic_filter_regex))
+		// let's try to be a bit more informative!
+		var/warning_message = "A splitting spike of headache prevents you from saying whatever vile words you planned to say! You think better of saying such nonsense again. The following terms break the atmosphere and are not allowed: \""
+		var/list/words = splittext(message, " ")
+		var/cringe = ""
+		for(var/word in words)
+			if(findtext(word, config.ic_filter_regex))
+				warning_message = "[warning_message]<b>[word]</b> "
+				cringe += "/<b>[word]</b>"
+			else
+				warning_message = "[warning_message][word] "
+
+		warning_message = trim(warning_message)
+		to_chat(src, "<span class='warning'>[warning_message]\".</span>")
+		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/cringe)
+		log_admin("[src] just tried to say cringe: [cringe]", src)
+		//Saying cringe 2 times or more in a span of 2 seconds will give you massive brain damage.
+		if(world.time <= last_cringe + 2 SECONDS)
+			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/ultracringe)
+			adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(25, 50))
+		last_cringe = world.time
+		cringecount++
+		//You aren't even trying. Literally just kills you at this point.
+		if(cringecount >= 5)
+			visible_message("<span class='danger'>[src] violently bleeds from [p_their()] nostrils, and falls limp on the ground.</span>",
+						"<span class='userdanger'>I do not deserve the gift of life,</span>")
+			death()
+		return
+	else
+		cringecount = max(0, cringecount - 1)
+
+//Stuff
 /mob/living/send_speech(message, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language=null, message_mode)
 	var/static/list/eavesdropping_modes = list(MODE_WHISPER = TRUE, MODE_WHISPER_CRIT = TRUE)
 	var/eavesdrop_range = 0

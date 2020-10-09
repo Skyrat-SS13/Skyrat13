@@ -36,12 +36,31 @@
 	if(prob(probability))
 		zone = check_zone(zone)
 	else
-		zone = pickweight(list(BODY_ZONE_HEAD = 7, BODY_ZONE_CHEST = 16,
-							BODY_ZONE_PRECISE_GROIN = 14,
-							BODY_ZONE_L_ARM = 8, BODY_ZONE_R_ARM = 8,
-							BODY_ZONE_PRECISE_L_HAND = 6, BODY_ZONE_PRECISE_R_HAND = 6,
-							BODY_ZONE_L_LEG = 8, BODY_ZONE_R_LEG = 8,
-							BODY_ZONE_PRECISE_L_FOOT = 6, BODY_ZONE_PRECISE_R_FOOT = 6)) //skyrat edit
+		switch(zone)
+			if(BODY_ZONE_HEAD)
+				zone = pick(BODY_ZONE_CHEST)
+			if(BODY_ZONE_CHEST)
+				zone = pick(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)
+			if(BODY_ZONE_PRECISE_GROIN)
+				zone = pick(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+			if(BODY_ZONE_R_ARM)
+				zone = pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_R_HAND)
+			if(BODY_ZONE_L_ARM)
+				zone = pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND)
+			if(BODY_ZONE_PRECISE_R_HAND)
+				zone = pick(BODY_ZONE_R_ARM)
+			if(BODY_ZONE_PRECISE_L_HAND)
+				zone = pick(BODY_ZONE_L_ARM)
+			if(BODY_ZONE_R_LEG)
+				zone = pick(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_R_FOOT)
+			if(BODY_ZONE_L_LEG)
+				zone = pick(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_L_FOOT)
+			if(BODY_ZONE_PRECISE_R_FOOT)
+				zone = pick(BODY_ZONE_R_LEG)
+			if(BODY_ZONE_PRECISE_L_FOOT)
+				zone = pick(BODY_ZONE_L_LEG)
+			else
+				zone = pick(ALL_BODYPARTS)
 	return zone
 
 /proc/above_neck(zone)

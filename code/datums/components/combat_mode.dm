@@ -43,7 +43,7 @@
 /datum/component/combat_mode/proc/on_mob_hud_created(mob/source)
 	hud_icon = new
 	hud_icon.hud = source.hud_used
-	hud_icon.icon = tg_ui_icon_to_cit_ui(source.hud_used.ui_style)
+	hud_icon.icon = 'modular_skyrat/icons/mob/combat_intents.dmi'
 	hud_icon.screen_loc = hud_loc
 	source.hud_used.static_inventory += hud_icon
 	hud_icon.update_icon()
@@ -90,8 +90,8 @@
 		if(playsound)
 			source.playsound_local(source, 'sound/misc/ui_toggle.ogg', 50, FALSE, pressure_affected = FALSE) //Sound from interbay!
 		source.stop_sound_channel(CHANNEL_COMBAT)
-		if(source.client?.prefs?.combat_music && GLOB.combat_music_options[source.client.prefs.combat_music])
-			var/sound/music = sound(get_sfx(GLOB.combat_music_options[source.client.prefs.combat_music]), TRUE)
+		if(source.client?.prefs?.combat_music)
+			var/sound/music = sound(get_sfx(source.client.prefs.combat_music), TRUE)
 			source.playsound_local(turf_source = source, S = music, vol = 75, vary = 0, channel = CHANNEL_COMBAT, pressure_affected = FALSE)
 	//RegisterSignal(source, COMSIG_MOB_CLIENT_MOUSEMOVE, .proc/onMouseMove) //Skyrat change
 	RegisterSignal(source, COMSIG_MOVABLE_MOVED, .proc/on_move)

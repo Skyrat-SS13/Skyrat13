@@ -9,3 +9,14 @@
 	description = "<span class='boldwarning'>Awake... but at what cost?</span>\n"
 	mood_change = -10
 	timeout = 15 MINUTES
+
+//Cringe filter
+/datum/mood_event/cringe
+	description = "<span class='boldwarning'>I tried to say something stupid.</span>\n"
+	mood_change = -5
+	timeout = 5 MINUTES
+
+/datum/mood_event/ultracringe
+	description = "<span class='boldwarning'>I am fucking retarded.</span>\n"
+	mood_change = -15
+	timeout = 15 MINUTES

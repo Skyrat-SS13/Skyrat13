@@ -39,7 +39,7 @@
 	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/heads/blueshield/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
-	backpack_contents = list(/obj/item/choice_beacon/blueshield = 1, /obj/item/melee/baton/blueshieldprod = 1)
+	backpack_contents = list(/obj/item/choice_beacon/blueshield = 1, /obj/item/melee/classic_baton/black = 1)
 	implants = list(/obj/item/implant/mindshield)
 	backpack = /obj/item/storage/backpack/blueshield
 	satchel = /obj/item/storage/backpack/satchel/blueshield
@@ -62,6 +62,6 @@
 	var/static/list/bshield
 	if(!bshield)
 		bshield = list()
-		bshield["Energy Revolver"] = /obj/item/gun/energy/e_gun/blueshield
-		bshield["PDW-9"] = /obj/item/gun/energy/e_gun/blueshield/pdw9
+		bshield["Mateba"] = /obj/item/gun/ballistic/revolver/mateba
+		bshield["M1911"] = /obj/item/gun/ballistic/automatic/pistol/m1911
 	return bshield

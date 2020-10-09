@@ -12,13 +12,13 @@
 	description = "Nanotrasen has determined walking to be wasteful. Ship a skateboard to CentCom to speed operations up."
 	reward = 800 // the tony hawk
 	wanted_types = list(/obj/vehicle/ridden/scooter/skateboard)
-
+/* No.
 /datum/bounty/item/assistant/stunprod
 	name = "Stunprod"
 	description = "CentCom demands a stunprod to use against dissidents. Craft one, then ship it."
 	reward = 950
 	wanted_types = list(/obj/item/melee/baton/cattleprod)
-
+*/
 /datum/bounty/item/assistant/soap
 	name = "Soap"
 	description = "Soap has gone missing from CentCom's bathrooms and nobody knows who took it. Replace it and be the hero CentCom needs."

@@ -32,11 +32,16 @@
 	excludefromjob = list("Captain")
 
 /datum/objective_item/steal/hoslaser
-	name = "the head of security's personal laser gun."
+	name = "the head of security's personal gun."
 	targetitem = /obj/item/gun/energy/e_gun/hos
 	difficulty = 10
 	excludefromjob = list("Head Of Security")
-	altitems = list(/obj/item/gun/ballistic/revolver/mws, /obj/item/choice_beacon/hosgun) //We now look for either the alt verson of the hos gun or the beacon picker.
+	altitems = list(/obj/item/choice_beacon/hosgun,
+					/obj/item/gun/ballistic/revolver/mateba,
+					/obj/item/gun/ballistic/automatic/pistol/m1911,
+					/obj/item/gun/ballistic/automatic/pistol/modular,
+					/obj/item/gun/ballistic/automatic/pistol/APS,
+					) //Funny gun
 
 /datum/objective_item/steal/handtele
 	name = "a hand teleporter."

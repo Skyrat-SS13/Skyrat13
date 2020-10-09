@@ -1186,8 +1186,6 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 			dat += "<b>Preferred Chaos Amount:</b> <a href='?_src_=prefs;preference=preferred_chaos;task=input'>[p_chaos]</a><br>"
 //SKYRAT CHANGES
 			dat += "<h2>Skyrat Preferences</h2>"
-			dat += "<b>Pain HUD style:</b> <a href='?_src_=prefs;preference=pain_style'>[pain_style]</a><br>"
-			dat += "<b>Combat mode music:</b> <a href='?_src_=prefs;preference=combat_music'>[combat_music ? combat_music : "None"]</a><br>"
 			dat += "<b>Show name at round-end report:</b> <a href='?_src_=prefs;preference=appear_in_round_end_report'>[appear_in_round_end_report ? "Yes" : "No"]</a><br>"
 			dat += "<b>Measurements:</b> <a href='?_src_=prefs;preference=metric_or_bust'>[toggles & METRIC_OR_BUST ? "Metric" : "Imperial"]</a><br>"
 			dat += "<b>Opt-out of EORG and teleport to a safe zone:</b> <a href='?_src_=prefs;preference=eorg_teleport'>[eorg_teleport ? "Enabled" : "Disabled"]</a><br>"

@@ -50,7 +50,7 @@
 	time = 40
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
-
+/* Fuck you.
 /datum/crafting_recipe/stunprod
 	name = "Stunprod"
 	result = /obj/item/melee/baton/cattleprod
@@ -71,7 +71,7 @@
 	time = 40
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
-
+*/
 /datum/crafting_recipe/bola
 	name = "Bola"
 	result = /obj/item/restraints/legcuffs/bola

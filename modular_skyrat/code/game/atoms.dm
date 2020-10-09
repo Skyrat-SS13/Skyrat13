@@ -1,4 +1,13 @@
-//Germ / infection stuff
+// Trash that should not exist
+/atom
+	var/abandoned_code = FALSE
+
+/atom/Initialize(mapload, ...)
+	..()
+	if(abandoned_code)
+		QDEL_IN(src, 1 SECONDS)
+
+// Germ / infection stuff
 /atom
 	var/germ_level = GERM_LEVEL_AMBIENT
 

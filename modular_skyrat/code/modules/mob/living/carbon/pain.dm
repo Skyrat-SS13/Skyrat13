@@ -87,17 +87,6 @@
 	if(shock_val >= 30 && HAS_TRAIT(src, TRAIT_PAINGOOD))
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "paingood", /datum/mood_event/paingood)
 	if(hud_used.pains)
-		switch(client.prefs?.pain_style)
-			if("Pain Guy")
-				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain.dmi'
-			if("Marine Guy")
-				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain_marine.dmi'
-			if("Clown Guy")
-				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain_clown.dmi'
-			if("Mood Guy")
-				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain_mood.dmi'
-			else
-				hud_used.pains.icon = 'modular_skyrat/icons/mob/screen_pain.dmi'
 		if(stat != DEAD)
 			. = 1
 			if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))

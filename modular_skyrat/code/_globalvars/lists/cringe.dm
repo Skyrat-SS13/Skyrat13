@@ -1,0 +1,1 @@
+GLOBAL_LIST_EMPTY(in_character_filter)

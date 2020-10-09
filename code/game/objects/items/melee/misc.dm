@@ -251,7 +251,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
-	force = 12 //9 hit crit
+	force = 18
 	w_class = WEIGHT_CLASS_NORMAL
 	var/stun_stam_cost_coeff = 1.25
 	var/hardstun_ds = TRUE
@@ -312,7 +312,7 @@
 // Are we applying any special effects when we stun to silicon
 /obj/item/melee/classic_baton/proc/additional_effects_silicon(mob/living/target, mob/living/user)
 	return
-
+/* Fuck stun combat.
 /obj/item/melee/classic_baton/attack(mob/living/target, mob/living/user)
 	if(!on)
 		return ..()
@@ -395,7 +395,7 @@
 			var/wait_desc = get_wait_description()
 			if(wait_desc)
 				to_chat(user, wait_desc)
-
+*/
 /obj/item/melee/classic_baton/telescopic
 	name = "telescopic baton"
 	desc = "A compact yet robust personal defense weapon. Can be concealed when folded."
@@ -407,13 +407,13 @@
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NONE
-	force = 0
+	force = 5
 	on = FALSE
 	on_sound = 'sound/weapons/batonextend.ogg'
 	on_icon_state = "telebaton_1"
 	off_icon_state = "telebaton_0"
 	on_item_state = "nullrod"
-	force_on = 10
+	force_on = 18
 	force_off = 0
 	weight_class_on = WEIGHT_CLASS_BULKY
 	total_mass = TOTAL_MASS_NORMAL_ITEM
@@ -480,7 +480,7 @@
 	on_icon_state = "contractor_baton_1"
 	off_icon_state = "contractor_baton_0"
 	on_item_state = "contractor_baton"
-	force_on = 16
+	force_on = 20
 	force_off = 5
 	weight_class_on = WEIGHT_CLASS_NORMAL
 

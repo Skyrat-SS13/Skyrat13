@@ -205,7 +205,7 @@
 //////////////////
 ///DUMB CRAFTING//
 //////////////////
-
+/* No.
 /datum/crafting_recipe/batonstaff
 	name = "Stun Baton Staff"
 	result = /obj/item/melee/baton/staff
@@ -218,7 +218,7 @@
 	time = 75
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
+*/
 /datum/crafting_recipe/lockermechdrill
 	name = "Makeshift exosuit drill"
 	result = /obj/item/mecha_parts/mecha_equipment/drill/makeshift
