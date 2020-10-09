@@ -20,7 +20,6 @@
 	postload_required = TRUE
 
 /datum/config_entry/cringe/OnPostload()
-	. = ..()
 	config_entry_value = LoadChatFilter()
 
 /datum/config_entry/cringe/proc/LoadChatFilter()
