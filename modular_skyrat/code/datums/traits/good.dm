@@ -7,7 +7,7 @@
 	gain_text = "<span class='notice'>The ground doesn't feel so rough on your feet anymore.</span>"
 	lose_text = "<span class='danger'>You start feeling the ridges and imperfections on the ground.</span>"
 	medical_record_text = "Patient's feet are more resilient against traction."
-
+/*
 //punch shit
 /datum/quirk/steel_fists
 	name = "Fists of steel"
@@ -23,7 +23,7 @@
 			H.dna.species.punchdamagehigh += 5
 			H.dna.species.punchdamagelow += 5
 			H.dna.species.punchstunthreshold += 5
-
+*/
 //pain man good
 //(turns masochist into a proper non-meme quirk)
 /datum/quirk/maso

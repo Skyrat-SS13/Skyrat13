@@ -4,11 +4,13 @@
 	return TRUE
 
 /mob/living/carbon/handle_pain()
-	if((stat >= UNCONSCIOUS) || !can_feel_pain())
+	if((stat >= UNCONSCIOUS) || !can_feel_pain() || (world.time < next_pain_time))
 		return
 	
-	if(world.time < next_pain_time)
-		return
+	//Great amounts of pain hinder your stamina
+	if(getPainLoss() >= 25)
+		var/max_payne = getPainLoss()
+		adjustStaminaLossBuffered(round(max_payne/10))
 	
 	var/maxdam = 0
 	var/obj/item/bodypart/damaged_bodypart = null
@@ -27,7 +29,7 @@
 			var/datum/status_effect/incapacitating/paralyzed/P = IsParalyzed(FALSE)
 			if(P)
 				P.duration -= round(maxdam/10)
-		if((damaged_bodypart.held_index) && maxdam > 50 && prob(maxdam/5))
+		if((damaged_bodypart.held_index) && maxdam > 50 && prob(maxdam * 1.5))
 			var/obj/item/droppy = get_item_for_held_index(damaged_bodypart.held_index)
 			if(droppy)
 				dropItemToGround(droppy)

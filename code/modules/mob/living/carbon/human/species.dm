@@ -1710,7 +1710,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		//Get the bodypart we actually affect
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected, ran_zone_prob))
 
-		var/missed = FALSE //Dice roll to see if we fuck up
+		var/missed = FALSE
+		//Dice roll to see if we fuck up
 		if(user.mind && user.mind.diceroll(STAT_DATUM(dex), SKILL_DATUM(melee)) <= DICE_FAILURE)
 			missed = TRUE
 		//Aimed combat intent means we never miss, at the cost of stamina
@@ -1736,9 +1737,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 		playsound(target.loc, user.dna.species.attack_sound, 25, 1, -1)
 
-		target.visible_message("<span class='danger'>[user] [atk_verb]s [target]!</span>", \
-					"<span class='userdanger'>[user] [atk_verb]s you!</span>", null, COMBAT_MESSAGE_RANGE, null, \
-					user, "<span class='danger'>You [atk_verb] [target]!</span>")
+		target.visible_message("<span class='danger'>[user] [atk_verb]s [target] on their [affecting.name]!</span>", \
+					"<span class='userdanger'>[user] [atk_verb]s you on your [affecting.name]!</span>", null, COMBAT_MESSAGE_RANGE, null, \
+					user, "<span class='danger'>You [atk_verb] [target] on their [affecting.name]!</span>")
 
 		target.lastattacker = user.real_name
 		target.lastattackerckey = user.ckey

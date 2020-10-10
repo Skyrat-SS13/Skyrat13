@@ -136,7 +136,7 @@
 									'modular_skyrat/sound/attack/swing_02.ogg',
 									'modular_skyrat/sound/attack/swing_03.ogg',
 									)
-				playsound(get_turf(src), swing_sound, 50, TRUE, -1)
+				playsound(get_turf(src), swing_sound, 50)
 				return 0
 			else if(c_intent == CI_FEINT)
 				if(attackchain_flags & ATTACKCHAIN_RIGHTCLICK)
@@ -155,7 +155,7 @@
 	SSblackbox.record_feedback("nested tally", "item_used_for_combat", 1, list("[I.force]", "[I.type]"))
 	SSblackbox.record_feedback("tally", "zone_targeted", 1, target_area)
 
-	// the attacked_by code varies among species
+	// The attacked_by code varies among species
 	return dna.species.spec_attacked_by(I, user, affecting, a_intent, src, attackchain_flags, damage_multiplier)
 
 /mob/living/carbon/human/attack_hulk(mob/living/carbon/human/user, does_attack_animation = FALSE)

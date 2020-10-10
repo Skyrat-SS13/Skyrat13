@@ -68,19 +68,13 @@
 		return
 	var/determined_mod = 1
 	if(owner.has_status_effect(STATUS_EFFECT_DETERMINED))
-		determined_mod = 0.25
-	if(next_leg == left_leg)
+		determined_mod = 0.65
+	if(next_leg == right_leg)
 		owner.client.move_delay += slowdown_left * determined_mod
-		next_leg = left_foot
-	else if(next_leg == left_foot)
+		next_leg = left_leg
+	else if(next_leg == left_leg)
 		owner.client.move_delay += slowdown_left * determined_mod
 		next_leg = right_leg
-	else if(next_leg == right_leg)
-		owner.client.move_delay += slowdown_left * determined_mod
-		next_leg = right_foot
-	else if(next_leg == right_foot)
-		owner.client.move_delay += slowdown_right * determined_mod
-		next_leg = left_leg
 
 /datum/status_effect/limp/proc/update_limp()
 	var/mob/living/carbon/C = owner

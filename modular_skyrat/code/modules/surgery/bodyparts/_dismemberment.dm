@@ -255,7 +255,7 @@
 		return
 	if(!can_dismember() || !dismemberable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE) || ((wounding_dmg + wound_bonus) < DISMEMBER_MINIMUM_DAMAGE) || wound_bonus <= CANT_WOUND)
 		return FALSE
-	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 45) // how much damage we dealt with this blow, + 40% of the damage percentage we already had on this bodypart
+	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 20) // how much damage we dealt with this blow, + 40% of the damage percentage we already had on this bodypart
 	var/bio_state = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
@@ -268,6 +268,8 @@
 		else if(((W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL,WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_FLESH)) // we only need a severe slash or pierce, but critical and we add 10%
 			base_chance += 10
 			break
+	
+	base_chance = round(base_chance/2)
 
 	// We multiply by our dismemberment mod (the leg is tougher than a foot, etc)
 	base_chance *= dismember_mod

@@ -28,6 +28,8 @@
 	set_resting(TRUE, TRUE, updating)
 	if(disarm_items)
 		drop_all_held_items()
+	var/fall_sound = pick('modular_skyrat/sound/effects/fall1.ogg', 'modular_skyrat/sound/effects/fall2.ogg')
+	playsound(src, fall_sound, 50)
 
 /mob/living/proc/lay_down()
 	set name = "Rest"
