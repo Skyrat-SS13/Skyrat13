@@ -77,6 +77,9 @@
 	var/datum/skills/surgery/surgery = GET_SKILL(M, surgery)
 	if(istype(surgery))
 		surgery.level = min(surgery.level + 20, MAX_SKILL)
+	var/datum/skills/melee/melee = GET_SKILL(M, melee)
+	if(istype(melee))
+		melee.level = min(melee.level + 20, MAX_SKILL)
 
 /datum/antagonist/dreamer/proc/grant_first_wonder_recipe(mob/living/carbon/M)
 	if(!istype(M))
