@@ -1117,8 +1117,6 @@
 		damage_amt = max(0, damage_amt - victim.damage_reduction - (damage_amt * victim.damage_modifier))
 		if(damage_amt >= 1)
 			victim.applyOrganDamage(damage_amt)
-		else
-			break
 		return TRUE
 
 //Heals brute, burn, stamina, pain, toxin and clone damage for the organ. Returns 1 if the damage-icon states changed at all.
