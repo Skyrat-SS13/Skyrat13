@@ -275,6 +275,9 @@
 		return
 	return throw_at(target, range, speed, thrower, spin, diagonals_first, callback, force, messy_throw)
 
+/atom/movable
+	var/datum/thrownthing/current_throw
+
 /atom/movable/proc/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, force = INFINITY, messy_throw = TRUE) //If this returns FALSE then callback will not be called.
 	. = FALSE
 	if (!target || speed <= 0)

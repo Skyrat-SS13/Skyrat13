@@ -1104,7 +1104,7 @@
 	if(!(cur_damage + damage_amt >= organ_damage_required) && !(damage_amt >= organ_damage_threshold))
 		return FALSE
 	
-	var/organ_hit_chance = (15 * damage_amt/organ_damage_threshold)
+	var/organ_hit_chance = (25 * damage_amt/organ_damage_threshold)
 
 	if(encased && !broken)
 		organ_hit_chance *= 0.6
@@ -1113,12 +1113,12 @@
 	organ_hit_chance = min(organ_hit_chance, 100)
 
 	if(prob(organ_hit_chance))
-		for(var/obj/item/organ/victim in internal_organs)
-			damage_amt = max(0, damage_amt - victim.damage_reduction - (damage_amt * victim.damage_modifier))
-			if(damage_amt >= 1)
-				victim.applyOrganDamage(damage_amt)
-			else
-				break
+		var/obj/item/organ/victim = pickweight(internal_organs)
+		damage_amt = max(0, damage_amt - victim.damage_reduction - (damage_amt * victim.damage_modifier))
+		if(damage_amt >= 1)
+			victim.applyOrganDamage(damage_amt)
+		else
+			break
 		return TRUE
 
 //Heals brute, burn, stamina, pain, toxin and clone damage for the organ. Returns 1 if the damage-icon states changed at all.

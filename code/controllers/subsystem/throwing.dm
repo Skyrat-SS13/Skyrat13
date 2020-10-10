@@ -62,6 +62,12 @@ SUBSYSTEM_DEF(throwing)
 	var/paused = FALSE
 	var/delayed_time = 0
 	var/last_move = 0
+	//Fucking stupid shit
+	var/knock_ass_down_on_hit_fucking_wall = FALSE
+
+/datum/thrownthing/proc/set_knock_ass_down_on_hit_fucking_wall(new_value)
+	knock_ass_down_on_hit_fucking_wall = new_value
+	return knock_ass_down_on_hit_fucking_wall
 
 /datum/thrownthing/Destroy()
 	SSthrowing.processing -= thrownthing

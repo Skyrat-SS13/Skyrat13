@@ -1,8 +1,9 @@
-// Running into walls at mach 7 speed knocks your ass down
+// Knockdown stuff i guess
 /turf/Bumped(atom/movable/AM)
 	. = ..()
 	if(density && iscarbon(AM))
 		var/mob/living/carbon/C = AM
+		//Ram into wall
 		if(C.combat_flags & COMBAT_FLAG_SPRINT_ACTIVE)
 			C.visible_message("<span class='warning'>[C] runs face-first into [src]! Ouch!</span>", \
 							"<span class='danger>You ram your head face-first into [src]! Ouch!</span>", \

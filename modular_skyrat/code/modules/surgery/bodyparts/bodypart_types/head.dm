@@ -58,7 +58,7 @@
 	if(teeth_object)
 		. += teeth_object.amount
 
-/obj/item/bodypart/head/knock_out_teeth(amount = 32, throw_dir = SOUTH)
+/obj/item/bodypart/head/knock_out_teeth(amount = 1, throw_dir = SOUTH)
 	amount = clamp(amount, 0, 32)
 	if(!amount)
 		return

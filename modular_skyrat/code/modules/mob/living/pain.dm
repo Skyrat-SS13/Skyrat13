@@ -78,7 +78,7 @@
 		if(force_emote && prob(power))
 			emote(force_emote)
 	//Briefly flash the pain overlay
-	flash_pain(min(round(power/100) * 255, 255), 0, pick(5,10), pick(5,10))
+	flash_pain(min(round(power/35) * 255, 255), 0, pick(5,10), pick(5,10))
 	next_pain_message_time = world.time + (rand(150, 250) - power)
 	next_pain_time = world.time + (rand(100, 200) - power)
 	return TRUE

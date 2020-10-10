@@ -1756,6 +1756,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			target.apply_damage(damage, BRUTE, affecting, armor_block)
 			target.apply_damage(damage*2, STAMINA, affecting, armor_block)
 			log_combat(user, target, "punched")
+		
+		//Knockdown and stuff
+		target.do_stat_effects(user, null, damage)
 
 		if((target.stat != DEAD) && damage >= user.dna.species.punchstunthreshold)
 			if((punchedstam > 50) && prob(punchedstam*0.5)) //If our punch victim has been hit above the threshold, and they have more than 50 stamina damage, roll for stun, probability of 1% per 2 stamina damage
@@ -1983,14 +1986,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 	//Mine is fucking better idc
 	if(H.mind || user.mind)
-		I.do_stat_effects(H, user, totitemdamage)
+		H.do_stat_effects(user, I, totitemdamage)
 
 	if(!totitemdamage)
 		return 0 //item force is zero
 	
 	var/bloody = 0
 	if(((I.damtype == BRUTE) && I.force && prob(25 + (I.force * 2))))
-		if(affecting.status == BODYPART_ORGANIC)
+		if(affecting.status & BODYPART_ORGANIC)
 			I.add_mob_blood(H)	//Make the weapon bloody, not the person.
 			if(prob(I.force * 2))	//blood spatter!
 				bloody = 1

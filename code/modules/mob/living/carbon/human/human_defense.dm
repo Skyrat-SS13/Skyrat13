@@ -109,7 +109,7 @@
 		var/c_intent = CI_DEFAULT
 		if(iscarbon(user))
 			var/mob/living/carbon/carbon_mob = user
-			//Chance too miss the attack entirely, based on a diceroll
+			//Chance to miss the attack entirely, based on a diceroll
 			var/missed = FALSE
 			if(user.mind && user.mind.diceroll(STAT_DATUM(dex), SKILL_DATUM(melee)) <= DICE_FAILURE)
 				missed = TRUE

@@ -80,6 +80,8 @@
 	var/datum/skills/melee/melee = GET_SKILL(M, melee)
 	if(istype(melee))
 		melee.level = min(melee.level + 20, MAX_SKILL)
+	ADD_TRAIT(M, TRAIT_NOPAIN, "dreamer")
+	ADD_TRAIT(M.mind, TRAIT_NOPAIN, "dreamer")
 
 /datum/antagonist/dreamer/proc/grant_first_wonder_recipe(mob/living/carbon/M)
 	if(!istype(M))

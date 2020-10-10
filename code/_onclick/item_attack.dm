@@ -396,15 +396,40 @@
 		target.AdjustStaggered(duration)
 	return TRUE
 
-//Do stuff depending on stats and skills etc
-/obj/item/proc/do_stat_effects(mob/living/carbon/victim, mob/living/carbon/user, item_force)
-	if(!item_force)
-		item_force = force
-	var/did_something = FALSE
-	return did_something
-
 /mob/proc/do_staggered_animation()
 	set waitfor = FALSE
 	animate(src, pixel_x = -2, pixel_y = -2, time = 1, flags = ANIMATION_RELATIVE | ANIMATION_PARALLEL)
 	animate(pixel_x = 4, pixel_y = 4, time = 1, flags = ANIMATION_RELATIVE)
 	animate(pixel_x = -2, pixel_y = -2, time = 0.5, flags = ANIMATION_RELATIVE)
+
+//Do stuff depending on stats and skills etc
+/mob/living/proc/do_stat_effects(mob/living/carbon/user, obj/item/weapon, force)
+	var/did_something = FALSE
+	var/victim_str = 10
+	if(GET_STAT_LEVEL(src, str))
+		victim_str = GET_STAT_LEVEL(src, str)
+	var/user_str = 10
+	if(GET_STAT_LEVEL(user, str))
+		user_str = GET_STAT_LEVEL(user, str)
+	var/force_mod = round(force/15, 0.1)
+	var/knockback_tiles = clamp(round((user_str - victim_str)/3 * force_mod * rand(1,2)), 0, 5)
+	//Slam time
+	if(knockback_tiles)
+		if(knockback_tiles > 1)
+			Stumble(knockback_tiles * 10)
+		var/turf/target_turf = get_ranged_target_turf(src, get_dir(user, src), knockback_tiles)
+		throw_at(target_turf, knockback_tiles, 1, user, spin = FALSE)
+		did_something = TRUE
+	//Knockout teeth
+	if(!weapon || !weapon.get_sharpness)
+		var/obj/item/bodypart/teeth_part = get_bodypart(user.zone_selected)
+		if(teeth_part && teeth_part.max_teeth && prob(force * 1.5))
+			if(teeth_part.knock_out_teeth(rand(1, 2) * max(round(force/10), 1), get_dir(user, src)))
+				var/tooth_sound = pick('modular_skyrat/sound/gore/trauma1.ogg',
+								'modular_skyrat/sound/gore/trauma2.ogg',
+								'modular_skyrat/sound/gore/trauma3.ogg')
+				playsound(src, tooth_sound, 60)
+				visible_message("<span class='danger'>[src]'s teeth sail off in an arc!</span>",
+								"<span class='userdanger'>Your teeth sail off in an arc!</span>")
+				did_something = TRUE
+	return did_something
