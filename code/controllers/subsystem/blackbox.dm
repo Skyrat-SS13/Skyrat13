@@ -284,7 +284,7 @@ Versioning
 			first_death["role"] = L.mind.assigned_role
 		first_death["area"] = "[AREACOORD(L)]"
 		first_death["damage"] = "<font color='#FF5555'>[L.getBruteLoss()]</font>/<font color='orange'>[L.getFireLoss()]</font>/<font color='lightgreen'>[L.getToxLoss()]</font>/<font color='lightblue'>[L.getOxyLoss()]</font>/<font color='pink'>[L.getCloneLoss()]</font>"
-		first_death["last_words"] = L.last_words
+		first_death["last_words"] = replacetext(L.last_words, "@", "") // replacetext removes @, no more discord pings :>
 	var/sqlname = L.real_name
 	var/sqlkey = L.ckey
 	var/sqljob = L.mind.assigned_role
