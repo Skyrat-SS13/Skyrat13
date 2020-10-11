@@ -755,3 +755,10 @@ GLOBAL_LIST_INIT(valid_plushie_paths, valid_plushie_paths())
 	attack_verb = list("headbutt", "scritched", "bit")
 	squeak_override = list('modular_citadel/sound/voice/nya.ogg' = 1)
 	can_random_spawn = FALSE
+
+/obj/item/toy/plush/deer
+	name = "deer plushie"
+	desc = "An adorable stuffed toy that resembles a deer."
+	icon_state = "deer"
+	attack_verb = list("headbutt", "booped", "bapped", "bumped")
+	squeak_override = list('modular_skyrat/sound/voice/deerplush.ogg' = 1)

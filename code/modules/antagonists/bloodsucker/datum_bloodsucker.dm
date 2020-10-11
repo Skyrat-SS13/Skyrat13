@@ -179,6 +179,7 @@
 	BuyPower(new /datum/action/bloodsucker/feed)
 	BuyPower(new /datum/action/bloodsucker/masquerade)
 	BuyPower(new /datum/action/bloodsucker/veil)
+	BuyPower(new /datum/action/bloodsucker/levelup)//SKYRAT EDIT
 	// Traits
 	for(var/T in defaultTraits)
 		ADD_TRAIT(owner.current, T, BLOODSUCKER_TRAIT)
@@ -252,11 +253,25 @@
 		owner.hasSoul = TRUE
 //owner.current.hellbound = FALSE
 
-/datum/antagonist/bloodsucker/proc/RankUp()
+/datum/antagonist/bloodsucker/proc/ForcedRankUp() //Big ol SKYRAT EDIT
 	set waitfor = FALSE
 	if(!owner || !owner.current)
 		return
 	bloodsucker_level_unspent ++
+	// Spend Rank Immediately?
+	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
+		SpendRank()
+	else
+		to_chat(owner, "<EM><span class='notice'>You have forced your powers to further through the power of blood; Sleep within your lair to claim your boon.</span></EM>")
+		if(bloodsucker_level_unspent >= 2)
+			to_chat(owner, "<span class='announce'>Bloodsucker Tip: If you cannot find or steal a coffin to use, you can build one from wooden planks.</span><br>")
+
+
+/datum/antagonist/bloodsucker/proc/RankUp() //Adjusted due to nighttime changes.
+	set waitfor = FALSE
+	if(!owner || !owner.current)
+		return
+	bloodsucker_level_unspent += 5 //5x the levels
 	// Spend Rank Immediately?
 	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
 		SpendRank()
