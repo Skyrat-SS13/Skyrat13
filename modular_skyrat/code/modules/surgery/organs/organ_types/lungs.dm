@@ -81,8 +81,8 @@
 	var/oxygen_deprivation = 0
 	var/last_int_pressure = ONE_ATMOSPHERE / (CELL_VOLUME/BREATH_VOLUME)
 	var/last_ext_pressure = ONE_ATMOSPHERE
-	var/max_ext_pressure_diff = (ONE_ATMOSPHERE/2)
-	var/max_int_pressure_diff = (ONE_ATMOSPHERE/2) / (CELL_VOLUME/BREATH_VOLUME)
+	var/max_ext_pressure_diff = ((ONE_ATMOSPHERE/100) * 60)
+	var/max_int_pressure_diff = ((ONE_ATMOSPHERE/100) * 60) / (CELL_VOLUME/BREATH_VOLUME)
 	relative_size = 30 //Chest has many organs, we need to cut some chances off to round up to 100
 
 /obj/item/organ/lungs/proc/remove_oxygen_deprivation(amount)
