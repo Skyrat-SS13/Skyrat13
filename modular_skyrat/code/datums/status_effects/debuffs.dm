@@ -145,6 +145,33 @@
 //Stumbling like a fucking idiot
 /datum/status_effect/incapacitating/dazed/stumble
 	id = "stumble"
+	var/didknockdown = FALSE
+
+/datum/status_effect/incapacitating/dazed/stumble/on_apply()
+	. = ..()
+	if(!didknockdown && iscarbon(owner))
+		var/mob/living/C = owner
+		if(C.mind)
+			switch(C.mind.diceroll(STAT_DATUM(end)))
+				if(DICE_FAILURE)
+					C.DefaultCombatKnockdown(150)
+				if(DICE_CRIT_FAILURE)
+					C.DefaultCombatKnockdown(300)
+		else
+			C.DefaultCombatKnockdown(200)
+
+/datum/status_effect/incapacitating/dazed/stumble/on_remove()
+	. = ..()
+	if(!didknockdown && iscarbon(owner))
+		var/mob/living/C = owner
+		if(C.mind)
+			switch(C.mind.diceroll(STAT_DATUM(end)))
+				if(DICE_FAILURE)
+					C.DefaultCombatKnockdown(150)
+				if(DICE_CRIT_FAILURE)
+					C.DefaultCombatKnockdown(300)
+		else
+			C.DefaultCombatKnockdown(200)
 
 /mob/living/proc/IsStumble() //If we're stumbling
 	return has_status_effect(STATUS_EFFECT_STUMBLE)

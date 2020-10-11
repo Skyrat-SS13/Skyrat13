@@ -4193,6 +4193,7 @@
 #include "modular_skyrat\code\modules\ruins\lavalandruin_code\kinggoat.dm"
 #include "modular_skyrat\code\modules\ruins\lavalandruin_code\misc.dm"
 #include "modular_skyrat\code\modules\ruins\spaceruin_code\oldstation.dm"
+#include "modular_skyrat\code\modules\sound_hints\_sound_hint.dm"
 #include "modular_skyrat\code\modules\spells\spell_types\shapeshift.dm"
 #include "modular_skyrat\code\modules\surgery\bone_mending.dm"
 #include "modular_skyrat\code\modules\surgery\debride.dm"

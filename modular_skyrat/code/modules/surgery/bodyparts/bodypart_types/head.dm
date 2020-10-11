@@ -83,6 +83,8 @@
 			teeth_mod = new()
 			if(owner)
 				teeth_mod.add_speech_mod(owner)
+		if(owner)
+			sound_hint(owner, owner)
 		return drop
 
 /obj/item/bodypart/head/update_teeth()

@@ -15,4 +15,7 @@
 			movement_dir &= ~(NORTH|SOUTH)
 		if((movement_dir & EAST) && (movement_dir & WEST))
 			movement_dir &= ~(EAST|WEST)
+		//Resting mobs can only move via clicking open turfs
+		if(user.mob.lying)
+			return FALSE
 		user.Move(get_step(src, movement_dir), movement_dir)

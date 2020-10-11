@@ -8,9 +8,9 @@
 		return
 	
 	//Great amounts of pain hinder your stamina
-	if(getPainLoss() >= 25)
+	if(getPainLoss() >= 25 && !lying)
 		var/max_payne = getPainLoss()
-		adjustStaminaLossBuffered(round(max_payne/10))
+		adjustStaminaLossBuffered(round(max_payne/5))
 	
 	var/maxdam = 0
 	var/obj/item/bodypart/damaged_bodypart = null

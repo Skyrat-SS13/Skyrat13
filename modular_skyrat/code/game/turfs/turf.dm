@@ -1,3 +1,9 @@
+// Crawling
+/turf/attack_hand(mob/user)
+	. = ..()
+	if(user.lying)
+		user.Move(get_step(user, src))
+
 // Knockdown stuff i guess
 /turf/Bumped(atom/movable/AM)
 	. = ..()

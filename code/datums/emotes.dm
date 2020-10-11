@@ -69,6 +69,8 @@
 			M.show_message(dchatmsg) //SKYRAT CHANGE
 
 	if(emote_type == EMOTE_AUDIBLE)
+		//Audible emotes do a sound hint
+		sound_hint(user, user)
 		user.audible_message(msg, user_msg = TRUE, runechat_popup = chat_popup) //SKYRAT CHANGE
 	else
 		user.visible_message(msg, user_msg = TRUE, runechat_popup = chat_popup) //SKYRAT CHANGE

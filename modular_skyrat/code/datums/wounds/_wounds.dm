@@ -138,6 +138,8 @@
 	var/sanitization = 0
 	/// Once we reach germ_level beyond WOUND_germ_level_SEPSIS, we get this many warnings before the limb is completely paralyzed (you'd have to ignore a really bad burn for a really long time for this to happen)
 	var/strikes_to_lose_limb = 3
+	/// Should we display a sound hint on being acquired?
+	var/do_sound_hint = TRUE
 
 /datum/wound/Topic(href, href_list)
 	if(!victim)
@@ -251,6 +253,8 @@
 		victim.visible_message(msg, (L.owner?.client?.prefs?.chat_toggles & CHAT_WOUNDS_SELF ? null : "<span class='userdanger'>Your [limb.name] [occur_text]!</span>"), vision_distance = vis_dist, ignored_mobs = ignore)
 		if(sound_effect)
 			playsound(L.owner, sound_effect, 60 + 20 * severity, TRUE)
+		if(do_sound_hint)
+			sound_hint(L.owner, L.owner)
 
 	if(!demoted)
 		wound_injury(old_wound)
@@ -261,7 +265,6 @@
 	if(severity == WOUND_SEVERITY_PERMANENT && !forced)
 		return FALSE
 	//TODO: have better way to tell if we're getting removed without replacement (full heal) scar stuff
-	wound_alert(TRUE)
 	if(limb && !already_scarred && !replaced)
 		already_scarred = TRUE
 		if(limb.is_organic_limb())

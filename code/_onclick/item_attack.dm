@@ -417,19 +417,26 @@
 	if(knockback_tiles)
 		if(knockback_tiles > 1)
 			Stumble(knockback_tiles * 10)
+			sound_hint(src, user)
 		var/turf/target_turf = get_ranged_target_turf(src, get_dir(user, src), knockback_tiles)
 		throw_at(target_turf, knockback_tiles, 1, user, spin = FALSE)
 		did_something = TRUE
-	//Knockout teeth
+	//Knock teeth out
 	if(!weapon || !weapon.get_sharpness())
 		var/obj/item/bodypart/teeth_part = get_bodypart(user.zone_selected)
-		if(teeth_part && teeth_part.max_teeth && prob(force * 1.5))
+		var/zone_mod = 1
+		if(user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
+			zone_mod *= 3
+		else if(user.zone_selected == BODY_ZONE_PRECISE_THROAT)
+			zone_mod *= 1.5
+		if(teeth_part && teeth_part.max_teeth && prob(force * zone_mod * 1.5))
 			if(teeth_part.knock_out_teeth(rand(1, 2) * max(round(force/10), 1), get_dir(user, src)))
 				var/tooth_sound = pick('modular_skyrat/sound/gore/trauma1.ogg',
 								'modular_skyrat/sound/gore/trauma2.ogg',
 								'modular_skyrat/sound/gore/trauma3.ogg')
 				playsound(src, tooth_sound, 60)
 				visible_message("<span class='danger'>[src]'s teeth sail off in an arc!</span>",
-								"<span class='userdanger'>Your teeth sail off in an arc!</span>")
+								"<span class='userdanger'>Your teeth sail off in an arc!</span>",
+								"<span class='danger'>You hear a nasty cracking sound!</span>")
 				did_something = TRUE
 	return did_something

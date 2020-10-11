@@ -49,3 +49,4 @@
 		if(head)
 			head.receive_damage(rand(2, 6))
 		idiot.DefaultCombatKnockdown(rand(100, 200))
+	sound_hint(src, idiot)
