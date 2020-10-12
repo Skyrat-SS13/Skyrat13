@@ -654,7 +654,7 @@
 /datum/component/storage/proc/signal_take_type(datum/source, type, atom/destination, amount = INFINITY, check_adjacent = FALSE, force = FALSE, mob/user, list/inserted)
 	if(!force)
 		if(check_adjacent)
-			if(!user || !user.CanReach(destination) || !user.CanReach(parent))
+			if(!user || !user.CanReach(destination) || !user.CanReach(parent) || !worn_check(parent, user))
 				return FALSE
 	var/list/taking = typecache_filter_list(contents(), typecacheof(type))
 	if(taking.len > amount)
