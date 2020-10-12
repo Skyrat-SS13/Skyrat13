@@ -9,9 +9,9 @@
 	max_ammo = 3
 	multiple_sprites = 2
 
-/obj/item/ammo_box/magazine/m10mm/makeshift/update_icon()
+/obj/item/ammo_box/magazine/m10mm/makeshift/update_icon_state()
 	..()
-	icon_state = icon_state = "9x19pms-[ammo_count() ? "3" : "0"]"
+	icon_state = "9x19pms-[ammo_count() ? "3" : "0"]"
 
 //USP-Match
 /obj/item/ammo_box/magazine/usp
@@ -31,3 +31,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = "9mm"
 	max_ammo = 8
+
+/obj/item/ammo_box/magazine/nangler/update_icon_state()
+	..()
+	icon_state = "nangler-[ammo_count() ? "8" : "0"]"
