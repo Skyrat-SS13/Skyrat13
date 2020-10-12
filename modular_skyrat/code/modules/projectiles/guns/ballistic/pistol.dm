@@ -66,3 +66,7 @@
 /obj/item/gun/ballistic/automatic/pistol/nangler/update_icon_state()
 	..()
 	icon_state = "[initial(icon_state)][chambered ? "" : "-e"][magazine ? "" : "-nomag"][safety ? "-safe" : ""]"
+
+/obj/item/gun/ballistic/automatic/pistol/nangler/toggle_safety(mob/user)
+	..()
+	update_icon_state()
