@@ -39,3 +39,27 @@
 	desc = "Contains one handheld mirror, for style changes on the go!"
 	cost = 40
 	contains = list(/obj/item/hhmirror)
+
+/datum/supply_pack/goody/nangler
+	name = "9mm Pistol"
+	desc = "Contains one ML Nangler pistol. Never know when you need it."
+	cost = 2000
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/nangler)
+
+/datum/supply_pack/goody/nangler_ammo
+	name = "9mm Magazine"
+	desc = "Contains 3 ML Nangler magazines. Never know when you need it."
+	cost = 1000
+	contains = list(/obj/item/ammo_box/magazine/nangler)
+
+/datum/supply_pack/goody/blackbaton
+	name = "Black Police Baton"
+	desc = "A sturdy police baton. Never know when you need it."
+	cost = 1500
+	contains = list(/obj/item/melee/classic_baton/black)
+
+/datum/supply_pack/goody/telescopic_baton
+	name = "Telescopic Baton"
+	desc = "A sturdy extendable baton. Never know when you need it."
+	cost = 5000
+	contains = list(/obj/item/melee/classic_baton/extendable)

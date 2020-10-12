@@ -1,15 +1,35 @@
 //i dont know what classifies a cargo thing as special.
-/datum/supply_pack/security/armory/usp
-	name = "USP Pistol Crate"
-	desc = "Contains 3 loaded USP pistols, extra mag included for each"
-	cost = 4500
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/uspm,
-					/obj/item/gun/ballistic/automatic/pistol/uspm,
-					/obj/item/gun/ballistic/automatic/pistol/uspm,
-					/obj/item/ammo_box/magazine/usp,
-					/obj/item/ammo_box/magazine/usp,
-					/obj/item/ammo_box/magazine/usp)
-	crate_name = "USP pistols crate"
+/datum/supply_pack/security/armory/nangler
+	name = "9mm Pistol Crate"
+	desc = "Contains 3 loaded ML Nangler pistols, extra mag included for each."
+	cost = 6000
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/nangler,
+					/obj/item/gun/ballistic/automatic/pistol/nangler,
+					/obj/item/gun/ballistic/automatic/pistol/nangler,
+					/obj/item/ammo_box/magazine/nangler,
+					/obj/item/ammo_box/magazine/nangler,
+					/obj/item/ammo_box/magazine/nangler)
+	crate_name = "9mm pistols crate"
+
+/datum/supply_pack/security/armory/nangler_ammo
+	name = "9mm Pistol Ammo Crate"
+	desc = "Contains 3 ML Nangler magazines."
+	cost = 2000
+	contains = list(/obj/item/ammo_box/magazine/nangler,
+					/obj/item/ammo_box/magazine/nangler,
+					/obj/item/ammo_box/magazine/nangler)
+	crate_name = "9mm pistol ammo crate"
+
+/datum/supply_pack/security/armory/blackbaton
+	name = "Black Baton Crate"
+	desc = "Contains 3 high quality police batons."
+	cost = 4000
+	contains = list(/obj/item/melee/classic_baton/black,
+					/obj/item/melee/classic_baton/black,
+					/obj/item/melee/classic_baton/black,
+					)
+	crate_name = "black baton crate"
+
 /* No.
 /datum/supply_pack/security/armory/combine
 	name = "Civil Protection Crate"
