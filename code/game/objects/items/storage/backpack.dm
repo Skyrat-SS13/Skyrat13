@@ -20,12 +20,18 @@
 	slot_flags = ITEM_SLOT_BACK	//ERROOOOO
 	resistance_flags = NONE
 	max_integrity = 300
+	var/worn_access = FALSE // If the object may be accessed while equipped in a storage slot.
+	var/equip_access = TRUE // If the object may be accessed while equipped anywhere on a character, including hands.
 
 /obj/item/storage/backpack/ComponentInitialize()
 	. = ..()
 	// SKYRAT EDIT: Remove Volumetric Storage
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.storage_flags = STORAGE_FLAGS_LEGACY_DEFAULT
+	if(!equip_access)
+		STR.storage_flags |= STORAGE_NO_EQUIPPED_ACCESS
+	if(!worn_access)
+		STR.storage_flags |= STORAGE_NO_WORN_ACCESS
 	//STR.max_volume = STORAGE_VOLUME_BACKPACK
 	STR.max_w_class = MAX_WEIGHT_CLASS_BACKPACK
 	STR.max_combined_w_class = 21

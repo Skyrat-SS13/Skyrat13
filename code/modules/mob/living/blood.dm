@@ -139,12 +139,6 @@
 		//skyrat edit
 			temp_bleed += BP.get_bleed_rate()
 			BP.generic_bleedstacks = max(0, BP.generic_bleedstacks - 1)
-		if(temp_bleed)
-			if(temp_bleed >= (WOUND_SLASH_MAX_BLOODFLOW/2))
-				throw_alert("bleeding", /obj/screen/alert/status_effect/wound/bleed)
-			bleed(temp_bleed)
-		else
-			clear_alert("bleeding")
 		//
 
 //Makes a blood drop, leaking amt units of blood from the mob
@@ -173,6 +167,15 @@
 			var/datum/reagent/R = GLOB.chemical_reagents_list[get_blood_id()]
 			if(istype(R) && isturf(loc))
 				R.reaction_turf(get_turf(src), amt * EXOTIC_BLEED_MULTIPLIER)
+				if(amt >= 1)
+					var/bloodsound = pick('modular_skyrat/sound/gore/blood1.ogg',
+									'modular_skyrat/sound/gore/blood2.ogg',
+									'modular_skyrat/sound/gore/blood3.ogg',
+									'modular_skyrat/sound/gore/blood4.ogg',
+									'modular_skyrat/sound/gore/blood5.ogg',
+									'modular_skyrat/sound/gore/blood6.ogg',
+									)
+					playsound(get_turf(src), bloodsound, 50)
 
 /mob/living/proc/restore_blood()
 	blood_volume = initial(blood_volume)

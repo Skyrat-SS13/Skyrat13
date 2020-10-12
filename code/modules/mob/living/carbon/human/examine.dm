@@ -546,6 +546,27 @@
 		for(var/datum/gunpoint/GP in gunpointed)
 			msg += "<b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b>\n"
 	
+	var/our_str = 10
+	if(mind)
+		our_str = GET_STAT_LEVEL(src, str)
+	
+	var/user_str = 10
+	if(user.mind)
+		user_str = GET_STAT_LEVEL(user, str)
+	
+	var/str_diff = user_str - our_str
+	switch(str_diff)
+		if(-INFINITY to -3)
+			msg += "[t_He] [t_is] much stronger than me."
+		if(-2 to -1)
+			msg += "[t_He] [t_is] stronger than me."
+		if(0)
+			msg += "[t_He] [t_is] about as strong as me."
+		if(1 to 2)
+			msg += "[t_He] [t_is] weaker than me."
+		if(3 to INFINITY)
+			msg += "[t_He] [t_is] much weaker than me."
+	
 	//Skyrat changes end
 
 	if(length(msg))

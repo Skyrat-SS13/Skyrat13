@@ -51,3 +51,18 @@
 	if(check_access(A))
 		if(magazine)
 			magazine.attackby(A, user)
+
+//Seccie pistol
+/obj/item/gun/ballistic/automatic/pistol/nangler
+	name = "9mm pistol"
+	desc = "ML Nangler - Standard issue security firearm, widely used by low tier corporate militias. \
+			Unreliable at best, this small sidearm is chambered in 9mm."
+	icon = 'modular_skyrat/icons/obj/bobstation/projectile.dmi'
+	icon_state = "smallpistol"
+	fire_sound = 'modular_skyrat/sound/guns/pistoln1.ogg'
+	mag_type = /obj/item/ammo_box/magazine/nangler
+	can_suppress = FALSE
+
+/obj/item/gun/ballistic/automatic/pistol/nangler/update_icon_state()
+	..()
+	icon_state = "[initial(icon_state)][chambered ? "" : "-e"][magazine ? "" : "-nomag"][safety ? "-safe" : ""]"

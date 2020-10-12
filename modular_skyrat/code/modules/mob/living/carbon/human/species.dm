@@ -13,16 +13,119 @@
 		/datum/mob_descriptor/build = "default",
 	)
 	var/static/list/pain_emote_by_power = list(
-	"100" = "scream",
+	"100" = "agonyscream",
 	"90" = "whimper",
 	"80" = "moan",
 	"70" = "cry",
-	"60" = "grunt",
-	"50" = "groan",
+	"60" = "gargle",
+	"50" = "moan",
 	"40" = "moan",
-	"30" = "grunt",
+	"30" = "groan",
 	"20" = "groan",
-	"10" = "groan", //Below 10 pain, we shouldn't emote.
+	"10" = "grunt", //Below 10 pain, we shouldn't emote.
+	)
+	var/static/list/cry_male = list(
+	'modular_skyrat/sound/gore/cry_male1.ogg',
+	'modular_skyrat/sound/gore/cry_male2.ogg',
+	'modular_skyrat/sound/gore/cry_male3.ogg',
+	'modular_skyrat/sound/gore/cry_male4.ogg',
+	)
+	var/static/list/cry_female = list(
+	'modular_skyrat/sound/gore/cry_female1.ogg',
+	'modular_skyrat/sound/gore/cry_female2.ogg',
+	'modular_skyrat/sound/gore/cry_female3.ogg',
+	'modular_skyrat/sound/gore/cry_female4.ogg',
+	'modular_skyrat/sound/gore/cry_female5.ogg',
+	'modular_skyrat/sound/gore/cry_female6.ogg',
+	)
+	var/static/list/coughs_male = list(
+	'modular_skyrat/sound/gore/cough_male1.ogg',
+	'modular_skyrat/sound/gore/cough_male2.ogg',
+	'modular_skyrat/sound/gore/cough_male3.ogg',
+	'modular_skyrat/sound/gore/cough_male4.ogg',
+	'modular_skyrat/sound/gore/cough_male5.ogg',
+	'modular_skyrat/sound/gore/cough_male6.ogg',
+	'modular_skyrat/sound/gore/cough_male7.ogg',
+	'modular_skyrat/sound/gore/cough_male8.ogg',
+	'modular_skyrat/sound/gore/cough_male9.ogg',
+	'modular_skyrat/sound/gore/cough_male10.ogg',
+	'modular_skyrat/sound/gore/cough_male11.ogg',
+	'modular_skyrat/sound/gore/cough_male12.ogg',
+	'modular_skyrat/sound/gore/cough_male13.ogg',
+	)
+	var/static/list/coughs_female = list(
+	'modular_skyrat/sound/gore/cough_female1.ogg',
+	'modular_skyrat/sound/gore/cough_female2.ogg',
+	'modular_skyrat/sound/gore/cough_female3.ogg',
+	'modular_skyrat/sound/gore/cough_female4.ogg',
+	'modular_skyrat/sound/gore/cough_female5.ogg',
+	'modular_skyrat/sound/gore/cough_female6.ogg',
+	)
+	var/static/list/agony_sounds_male = list(
+	'modular_skyrat/sound/gore/agony_male1.ogg',
+	'modular_skyrat/sound/gore/agony_male2.ogg',
+	'modular_skyrat/sound/gore/agony_male3.ogg',
+	'modular_skyrat/sound/gore/agony_male4.ogg',
+	'modular_skyrat/sound/gore/agony_male5.ogg',
+	'modular_skyrat/sound/gore/agony_male6.ogg',
+	'modular_skyrat/sound/gore/agony_male7.ogg',
+	'modular_skyrat/sound/gore/agony_male8.ogg',
+	'modular_skyrat/sound/gore/agony_male9.ogg',
+	'modular_skyrat/sound/gore/agony_male10.ogg',
+	'modular_skyrat/sound/gore/agony_male11.ogg',
+	'modular_skyrat/sound/gore/agony_male12.ogg',
+	'modular_skyrat/sound/gore/agony_male13.ogg',
+	)
+	var/static/list/agony_sounds_female = list(
+	'modular_skyrat/sound/gore/agony_female1.ogg',
+	'modular_skyrat/sound/gore/agony_female2.ogg',
+	'modular_skyrat/sound/gore/agony_female3.ogg',
+	'modular_skyrat/sound/gore/agony_female4.ogg',
+	'modular_skyrat/sound/gore/agony_female5.ogg',
+	'modular_skyrat/sound/gore/agony_female6.ogg',
+	'modular_skyrat/sound/gore/agony_female7.ogg',
+	'modular_skyrat/sound/gore/agony_female8.ogg',
+	)
+	var/static/list/agony_gasps_male = list(
+	'modular_skyrat/sound/gore/gasp_male1.ogg',
+	'modular_skyrat/sound/gore/gasp_male2.ogg',
+	'modular_skyrat/sound/gore/gasp_male3.ogg',
+	'modular_skyrat/sound/gore/gasp_male4.ogg',
+	'modular_skyrat/sound/gore/gasp_male5.ogg',
+	'modular_skyrat/sound/gore/gasp_male6.ogg',
+	'modular_skyrat/sound/gore/gasp_male7.ogg',
+	)
+	var/static/list/agony_gasps_female = list(
+	'modular_skyrat/sound/gore/gasp_female1.ogg',
+	'modular_skyrat/sound/gore/gasp_female2.ogg',
+	'modular_skyrat/sound/gore/gasp_female3.ogg',
+	'modular_skyrat/sound/gore/gasp_female4.ogg',
+	'modular_skyrat/sound/gore/gasp_female5.ogg',
+	'modular_skyrat/sound/gore/gasp_female6.ogg',
+	'modular_skyrat/sound/gore/gasp_female7.ogg',
+	)
+	var/static/list/agony_moans_male = list(
+	'modular_skyrat/sound/gore/male_moan1.ogg',
+	'modular_skyrat/sound/gore/male_moan2.ogg',
+	'modular_skyrat/sound/gore/male_moan3.ogg',
+	'modular_skyrat/sound/gore/male_moan4.ogg',
+	'modular_skyrat/sound/gore/male_moan5.ogg',
+	)
+	var/static/list/agony_moans_female = list(
+	'modular_skyrat/sound/gore/female_moan1.ogg',
+	'modular_skyrat/sound/gore/female_moan2.ogg',
+	'modular_skyrat/sound/gore/female_moan3.ogg',
+	'modular_skyrat/sound/gore/female_moan4.ogg',
+	'modular_skyrat/sound/gore/female_moan5.ogg',
+	'modular_skyrat/sound/gore/female_moan6.ogg',
+	'modular_skyrat/sound/gore/female_moan7.ogg',
+	'modular_skyrat/sound/gore/female_moan8.ogg',
+	)
+	var/static/list/death_rattles_male = list(
+	'modular_skyrat/sound/gore/deathgasp_male1.ogg',
+	)
+	var/static/list/death_rattles_female = list(
+	'modular_skyrat/sound/gore/deathgasp_male1.ogg',
 	)
 
 /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
@@ -120,3 +223,23 @@
 	if(power >= PAIN_EMOTE_MINIMUM)
 		emote_string = pain_emote_by_power["[power]"]
 	return emote_string
+
+/datum/species/proc/agony_scream(var/mob/living/carbon/human/H)
+	if(!istype(H))
+		return FALSE
+	H.emote("agonyscream")
+
+/datum/species/proc/agony_gargle(var/mob/living/carbon/human/H)
+	if(!istype(H))
+		return FALSE
+	H.emote("gargle")
+
+/datum/species/proc/agony_gasp(var/mob/living/carbon/human/H)
+	if(!istype(H))
+		return FALSE
+	H.emote("agonygasp")
+
+/datum/species/proc/death_rattle(var/mob/living/carbon/human/H)
+	if(!istype(H))
+		return FALSE
+	H.emote("deathrattle")

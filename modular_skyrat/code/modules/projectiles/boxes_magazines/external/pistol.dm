@@ -21,4 +21,13 @@
 	icon_state = "uspm-15"
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = "9mm"
+	max_ammo = 15
+
+/obj/item/ammo_box/magazine/nangler
+	name = "nangler magazine (9mm)"
+	desc = "A low capacity magazine for compact pistols."
+	icon = 'modular_skyrat/icons/obj/bobstation/ammo.dmi'
+	icon_state = "nangler"
+	ammo_type = /obj/item/ammo_casing/c9mm
+	caliber = "9mm"
 	max_ammo = 8

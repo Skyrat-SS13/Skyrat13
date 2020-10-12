@@ -195,9 +195,8 @@
 /// The screen button.
 /obj/screen/combattoggle
 	name = "toggle combat mode"
-	icon = 'modular_citadel/icons/ui/screen_midnight.dmi'
+	icon = 'modular_skyrat/icons/mob/combat_intents.dmi'
 	icon_state = "combat_off"
-	var/mutable_appearance/flashy
 	var/combat_on = FALSE ///Wheter combat mode is enabled or not, so we don't have to store a reference.
 
 /obj/screen/combattoggle/Click()
@@ -220,12 +219,6 @@
 	var/mob/living/carbon/user = hud?.mymob
 	if(!(user?.client))
 		return
-
-	if(combat_on)
-		if(!flashy)
-			flashy = mutable_appearance('icons/mob/screen_gen.dmi', "togglefull_flash")
-		flashy.color = user.client.prefs.hud_toggle_color
-		. += flashy //TODO - beg lummox jr for the ability to force mutable appearances or images to be created rendering from their first frame of animation rather than being based entirely around the client's frame count
 
 //Skyrat changes down here
 /datum/component/combat_mode/proc/onMouseUpDown(mob/living/source, object, location, control, params)

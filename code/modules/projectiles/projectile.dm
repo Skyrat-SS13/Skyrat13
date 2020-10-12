@@ -216,7 +216,7 @@
 		SEND_SIGNAL(fired_from, COMSIG_PROJECTILE_ON_HIT, firer, target, Angle)
 	// i know that this is probably more with wands and gun mods in mind, but it's a bit silly that the projectile on_hit signal doesn't ping the projectile itself.
 	// maybe we care what the projectile thinks! See about combining these via args some time when it's not 5AM
-	var/obj/item/bodypart/hit_limb
+	var/hit_limb
 	if(isliving(target))
 		var/mob/living/L = target
 		hit_limb = L.check_limb_hit(def_zone)
@@ -254,9 +254,10 @@
 			if(starting)
 				splatter_dir = get_dir(starting, target_loca)
 			var/obj/item/bodypart/B = L.get_bodypart(def_zone)
-			if(B)
-				B.receive_damage(pain = src.pain)
-			if(B && B.status == BODYPART_ROBOTIC) // So if you hit a robotic, it sparks instead of bloodspatters
+			if(B && src.pain)
+				B.receive_damage(pain = ((src.pain/100)*(100-blocked)))
+			// So if you hit a robotic, it sparks instead of bloodspatters
+			if(B && B.status == BODYPART_ROBOTIC)
 				do_sparks(2, FALSE, target.loc)
 				if(prob(25))
 					new /obj/effect/decal/cleanable/oil(target_loca)

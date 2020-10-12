@@ -43,12 +43,12 @@
 	category = list("other","emagged")
 
 //skyrat designs
-/datum/design/groin
-	name = "Groin"
-	id = "groin"
+/datum/design/teeth
+	name = "Teeth"
+	id = "teeth"
 	build_type = LIMBGROWER
-	reagents_list = list(/datum/reagent/medicine/synthflesh = 100)
-	build_path = /obj/item/bodypart/groin/children
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 2)
+	build_path = /obj/item/stack/teeth
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
 /datum/design/chest
@@ -57,6 +57,14 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 50)
 	build_path = /obj/item/bodypart/chest
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
+
+/datum/design/groin
+	name = "Groin"
+	id = "groin"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 100)
+	build_path = /obj/item/bodypart/groin/children
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
 /datum/design/head

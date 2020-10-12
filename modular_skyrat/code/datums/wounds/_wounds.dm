@@ -225,9 +225,6 @@
 	if(status_effect_type && victim)
 		linked_status_effect = victim.apply_status_effect(status_effect_type, src)
 	SEND_SIGNAL(victim, COMSIG_CARBON_GAIN_WOUND, src, limb)
-	if(!victim.alerts["wound"]) // one alert is shared between all of the wounds
-		victim.throw_alert("wound", /obj/screen/alert/status_effect/wound)
-
 	var/demoted
 	if(old_wound)
 		demoted = (severity <= old_wound.severity)
@@ -273,8 +270,6 @@
 				new_scar.generate(limb, src)
 	if(victim)
 		LAZYREMOVE(victim.all_wounds, src)
-		if(!victim.all_wounds)
-			victim.clear_alert("wound")
 		SEND_SIGNAL(victim, COMSIG_CARBON_LOSE_WOUND, src, limb)
 	if(limb && !ignore_limb)
 		LAZYREMOVE(limb.wounds, src)

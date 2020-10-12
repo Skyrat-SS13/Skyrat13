@@ -219,7 +219,7 @@
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
 	can_self_treat = TRUE
-	pain_amount = 3
+	pain_amount = 10
 	flat_damage_roll_increase = 5
 
 /datum/wound/mechanical/blunt/moderate/self_treat(mob/living/carbon/user, first_time = FALSE)
@@ -377,7 +377,7 @@
 	brain_trauma_group = BRAIN_TRAUMA_MILD
 	trauma_cycle_cooldown = 1.5 MINUTES
 	shock_chance = 30
-	pain_amount = 7
+	pain_amount = 20
 	flat_damage_roll_increase = 10
 
 /*
@@ -404,7 +404,7 @@
 	brain_trauma_group = BRAIN_TRAUMA_SEVERE
 	trauma_cycle_cooldown = 2.5 MINUTES
 	shock_chance = 45
-	pain_amount = 12
+	pain_amount = 30
 	flat_damage_roll_increase = 15
 	wound_flags = (MANGLES_BONE)
 

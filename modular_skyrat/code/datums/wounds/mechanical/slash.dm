@@ -214,6 +214,7 @@
 	threshold_penalty = 10
 	status_effect_type = /datum/status_effect/wound/slash/moderate
 	scarring_descriptions = list("light, faded lines", "minor cut marks", "a small faded slit", "a series of small scars")
+	pain_amount = 8
 
 /datum/wound/mechanical/slash/severe
 	name = "Jagged Tear"
@@ -233,7 +234,7 @@
 	demotes_to = /datum/wound/mechanical/slash/moderate
 	status_effect_type = /datum/status_effect/wound/slash/severe
 	scarring_descriptions = list("a twisted line of faded gashes", "a gnarled sickle-shaped slice scar", "a long-faded puncture wound")
-	pain_amount = 4
+	pain_amount = 15
 
 /datum/wound/mechanical/slash/critical
 	name = "Torn Cabling"
@@ -253,7 +254,7 @@
 	demotes_to = /datum/wound/mechanical/slash/severe
 	status_effect_type = /datum/status_effect/wound/slash/critical
 	scarring_descriptions = list("a winding path of very badly healed scar tissue", "a series of peaks and valleys along a gruesome line of cut scar tissue", "a grotesque snake of indentations and stitching scars")
-	pain_amount = 8
+	pain_amount = 20
 
 /datum/wound/mechanical/slash/critical/incision
 	name = "Open Hatch"

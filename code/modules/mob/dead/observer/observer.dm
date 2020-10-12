@@ -273,7 +273,7 @@ Works together with spawning an observer, noted above.
 	if((stat == DEAD) && iscarbon(src))
 		var/mob/living/carbon/C = src
 		if(world.time <= (C.timeofdeath + 1.5 MINUTES))
-			to_chat(C, "<span class='deadsay'>Your soul has yet to find peace.<br>Wait for <b>[round((world.time - C.timeofdeath)/1 SECONDS)]</b> more seconds.</span>")
+			to_chat(C, "<span class='deadsay'>Your soul has yet to find peace.<br>Wait for <b>[round(((C.timeofdeath + 1.5 MINUTES) - world.time)/(1 SECONDS))]</b> more seconds.</span>")
 			return
 	stop_sound_channel(CHANNEL_HEARTBEAT) //Stop heartbeat sounds because You Are A Ghost Now
 	var/mob/dead/observer/ghost = new(get_turf(src), src)	// Transfer safety to observer spawning proc.

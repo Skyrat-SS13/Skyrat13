@@ -261,7 +261,7 @@
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
 	can_self_treat = TRUE
-	pain_amount = 3
+	pain_amount = 10
 	flat_damage_roll_increase = 5
 
 /datum/wound/blunt/moderate/crush()
@@ -429,7 +429,7 @@
 	status_effect_type = /datum/status_effect/wound/blunt/moderate
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
-	pain_amount = 5 //Hurts a lot, almost a hairline fracture
+	pain_amount = 15 //Hurts a lot, almost a hairline fracture
 
 /datum/wound/blunt/moderate/ribcage/crush()
 	if(prob(33))
@@ -525,7 +525,7 @@
 	status_effect_type = /datum/status_effect/wound/blunt/moderate
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
-	pain_amount = 4 //Hurts more than your average dislocation
+	pain_amount = 15 //Hurts more than your average dislocation
 
 /datum/wound/blunt/moderate/hips/crush()
 	if(prob(33))
@@ -621,7 +621,7 @@
 	status_effect_type = /datum/status_effect/wound/blunt/moderate
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
-	pain_amount = 4 //Hurts a bit more
+	pain_amount = 15 //Hurts a bit more
 
 /datum/wound/blunt/moderate/jaw/crush()
 	if(prob(33))
@@ -722,7 +722,7 @@
 	brain_trauma_group = BRAIN_TRAUMA_MILD
 	trauma_cycle_cooldown = 1.5 MINUTES
 	internal_bleeding_chance = 40
-	pain_amount = 7
+	pain_amount = 20
 	flat_damage_roll_increase = 10
 	infection_chance = 7 //Very low, but possible
 
@@ -747,7 +747,7 @@
 	brain_trauma_group = BRAIN_TRAUMA_SEVERE
 	trauma_cycle_cooldown = 2.5 MINUTES
 	internal_bleeding_chance = 60
-	pain_amount = 12
+	pain_amount = 30
 	flat_damage_roll_increase = 15
 	infection_chance = 30 //Compound fractures always have some exposed flesh
 

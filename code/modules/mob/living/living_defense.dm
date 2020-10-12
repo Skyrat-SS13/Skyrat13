@@ -99,6 +99,32 @@
 		apply_damage(totaldamage, P.damage_type, def_zone, armor, wound_bonus=P.wound_bonus, bare_wound_bonus=P.bare_wound_bonus, sharpness=P.sharpness) //skyrat edit
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
+		if((P.damage_type == BRUTE) && iscarbon(src))
+			// Always stumble when shot
+			Stumble(P.damage)
+			// Do a diceroll to decide whether we get paralyzed/knocked down
+			if(mind)
+				switch(mind.diceroll(STAT_DATUM(end)))
+					if(DICE_CRIT_SUCCESS)
+						shake_camera(src, ((P.damage - 10) * 0.01 + 1), ((P.damage - 10) * 0.01)* 1.5)
+						Immobilize(P.damage*1.5)
+					if(DICE_SUCCESS)
+						shake_camera(src, ((P.damage - 10) * 0.01 + 1), ((P.damage - 10) * 0.01)* 2)
+						Immobilize(P.damage*1.5)
+						DefaultCombatKnockdown(P.damage*0.5)
+					if(DICE_FAILURE)
+						shake_camera(src, ((P.damage - 10) * 0.01 + 1) * 2, ((P.damage - 10) * 0.01) * 3)
+						drop_all_held_items()
+						DefaultCombatKnockdown(P.damage*2)
+					if(DICE_CRIT_FAILURE)
+						shake_camera(src, ((P.damage - 10) * 0.01 + 1) * 3, ((P.damage - 10) * 0.01) * 4)
+						drop_all_held_items()
+						DefaultCombatKnockdown(P.damage*4)
+						Paralyze(P.damage*4)
+			else
+				shake_camera(src, ((P.damage - 10) * 0.01 + 1) * 3, ((P.damage - 10) * 0.01) * 4)
+				DefaultCombatKnockdown(P.damage*2)
+				Immobilize(P.damage*4)
 	var/missing = 100 - final_percent
 	var/armor_ratio = armor * 0.01
 	if(missing > 0)

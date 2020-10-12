@@ -1,8 +1,8 @@
 // Crawling
-/turf/attack_hand(mob/user)
+/turf/open/attack_hand(mob/user)
 	. = ..()
 	if(user.lying)
-		user.Move(get_step(user, src))
+		user.Move(get_step(user, get_dir(user, src)))
 
 // Knockdown stuff i guess
 /turf/Bumped(atom/movable/AM)

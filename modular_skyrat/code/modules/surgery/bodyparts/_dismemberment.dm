@@ -26,7 +26,8 @@
 		C.visible_message("<span class='danger'><B>[C]'s [src.name] has been violently dismembered!</B></span>")
 	if(body_zone != BODY_ZONE_HEAD)
 		C.emote("scream")
-	playsound(get_turf(C), 'modular_skyrat/sound/effects/dismember.ogg', 80, TRUE)
+	if(!silent)
+		playsound(get_turf(C), 'modular_skyrat/sound/effects/dismember.ogg', 80, TRUE)
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	drop_limb(dismembered = TRUE, destroyed = destroy)
 	C.update_equipment_speed_mods() // Update in case speed affecting item unequipped by dismemberment
@@ -255,12 +256,12 @@
 		return
 	if(!can_dismember() || !dismemberable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE) || ((wounding_dmg + wound_bonus) < DISMEMBER_MINIMUM_DAMAGE) || wound_bonus <= CANT_WOUND)
 		return FALSE
-	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 20) // how much damage we dealt with this blow, + 40% of the damage percentage we already had on this bodypart
+	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 10) // how much damage we dealt with this blow, + 40% of the damage percentage we already had on this bodypart
 	var/bio_state = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
 		if((W.wound_type in list(WOUND_LIST_INCISION, WOUND_LIST_INCISION_MECHANICAL)) && (bio_state & BIO_FLESH)) // incisions make you very vulnerable to dismemberment
-			base_chance += 20
+			base_chance += 15
 			break
 		else if(((W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_BONE)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
 			base_chance += 10
@@ -268,11 +269,12 @@
 		else if(((W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL,WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_FLESH)) // we only need a severe slash or pierce, but critical and we add 10%
 			base_chance += 10
 			break
-	
-	base_chance = round(base_chance/2)
 
 	// We multiply by our dismemberment mod (the leg is tougher than a foot, etc)
 	base_chance *= dismember_mod
+
+	// Lower the chance a bit more
+	base_chance = round(base_chance/4)
 
 	if(!prob(base_chance))
 		return
@@ -290,7 +292,7 @@
 		return
 	if(!can_disembowel() || !disembowable || (wounding_dmg < DISEMBOWEL_MINIMUM_DAMAGE) || ((wounding_dmg + wound_bonus) < DISEMBOWEL_MINIMUM_DAMAGE) || (wound_bonus <= CANT_WOUND))
 		return FALSE
-	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 35) // how much damage we dealt with this blow, + 35% of the damage percentage we already had on this bodypart
+	var/base_chance = (wounding_dmg + ((get_damage() / max_damage) * 10)/4) // how much damage we dealt with this blow, + 35% of the damage percentage we already had on this bodypart
 	var/bio_state = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
@@ -306,6 +308,9 @@
 	
 	// We multiply by our disembowel mod (the chest is tougher than a groin, etc)
 	base_chance *= disembowel_mod
+
+	// Lower the chance a bit more
+	base_chance = round(base_chance/4)
 
 	if(!prob(base_chance))
 		return

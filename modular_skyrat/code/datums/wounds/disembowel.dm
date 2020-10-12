@@ -84,14 +84,27 @@
 	second_wind()
 	log_wound(victim, src)
 	qdel(src)
-	return L.disembowel(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE),silent = TRUE, wound = TRUE)
+	var/kaplosh_sound = pick(
+		'modular_skyrat/sound/gore/chop1.ogg',
+		'modular_skyrat/sound/gore/chop2.ogg',
+		'modular_skyrat/sound/gore/chop3.ogg',
+		'modular_skyrat/sound/gore/chop4.ogg',
+		'modular_skyrat/sound/gore/chop5.ogg',
+		'modular_skyrat/sound/gore/chop6.ogg',
+	)
+	if(length(L.dismember_sounds))
+		kaplosh_sound = pick(L.dismember_sounds)
+	if(L.is_robotic_limb())
+		kaplosh_sound = 'modular_skyrat/sound/effects/crowbarhit.ogg'
+	playsound(L.owner, kaplosh_sound, 80, 0)
+	L.disembowel(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE),silent = TRUE, wound = TRUE)
+	qdel(src)
 
 /datum/wound/slash/critical/incision/disembowel
 	name = "Disembowelment"
 	desc = "Patient's limb has been violently avulsioned, to the point of large chunks of flesh and organs getting lost."
 	treat_text = "Immediate surgical closure of the wound, as well as reimplantation of lost organs."
 	examine_desc = "has a wide and gaping wound, enough to see through the flesh"
-	sound_effect = 'modular_skyrat/sound/effects/dismember.ogg'
 	viable_zones = ALL_BODYPARTS
 	severity = WOUND_SEVERITY_CRITICAL
 	wound_type = WOUND_LIST_DISEMBOWEL
@@ -104,8 +117,7 @@
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
 	required_status = BODYPART_ORGANIC
 	biology_required = list()
-	sound_effect = 'sound/misc/splort.ogg'
-	pain_amount = 30 //Just absolutely unbearable. Will send you into shock most of the time.
+	pain_amount = 40 //Just absolutely unbearable. Will send you into shock most of the time.
 	infection_chance = 90
 	occur_text = null
 	initial_flow = 4.25
@@ -154,7 +166,6 @@
 	desc = "Patient's limb has been violently shredded, to the point of large chunks of metal and components getting lost."
 	treat_text = "Immediate welding of the wound, as well as reattachment of lost components."
 	examine_desc = "has a wide and gaping tear, enough to see through the exoskeleton"
-	sound_effect = 'modular_skyrat/sound/effects/dismember.ogg'
 	viable_zones = ALL_BODYPARTS
 	severity = WOUND_SEVERITY_CRITICAL
 	wound_type = WOUND_LIST_DISEMBOWEL
@@ -169,7 +180,7 @@
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
 	required_status = BODYPART_ROBOTIC
 	biology_required = list()
-	pain_amount = 30 //Just absolutely unbearable. Will send you into shock most of the time.
+	pain_amount = 40 //Just absolutely unbearable. Will send you into shock most of the time.
 	occur_text = null
 
 /datum/wound/mechanical/slash/critical/incision/disembowel/get_examine_description(mob/user)

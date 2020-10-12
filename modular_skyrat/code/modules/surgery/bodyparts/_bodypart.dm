@@ -184,6 +184,8 @@
 	var/max_teeth = 0	
 	var/datum/speech_mod/lisp/teeth_mod
 	var/obj/item/stack/teeth/teeth_object
+	//Specific dismemberment sounds
+	var/list/dismember_sounds
 
 /obj/item/bodypart/Initialize()
 	. = ..()
@@ -944,8 +946,11 @@
 	
 	pain_dam += (pain - (owner?.chem_effects[CE_PAINKILLER]/3))
 
-	if(pain && owner && (pain >= (max_pain_damage * 0.5)) && prob(10))
-		owner.emote("scream")
+	if(owner && pain && (pain >= (max_pain_damage * 0.5)) && prob(10))
+		owner.emote("agonyscream")
+	
+	if(owner && pain)
+		owner.flash_pain(min(round(pain/30) * 255, 255), 0, rand(1,4), pick(5,10))
 	
 	if((status & BODYPART_ROBOTIC) && owner)
 		if((brute+burn)>3 && prob((20+brute+burn)))

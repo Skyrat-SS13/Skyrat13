@@ -454,6 +454,8 @@
 	infodisplay += pains
 
 	redpains = new /obj/screen/fullscreen/pain()
+	redpains.icon = 'modular_skyrat/icons/mob/screen_full.dmi'
+	redpains.screen_loc = "CENTER-7,CENTER-7"
 	redpains.hud = src
 	screenoverlays += redpains
 

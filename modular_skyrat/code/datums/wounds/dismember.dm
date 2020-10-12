@@ -95,6 +95,19 @@
 	var/should_kaplosh = FALSE
 	if(wounding_type in list(WOUND_BURN, WOUND_PIERCE, WOUND_BLUNT))
 		should_kaplosh = TRUE
+	var/kaplosh_sound = pick(
+		'modular_skyrat/sound/gore/chop1.ogg',
+		'modular_skyrat/sound/gore/chop2.ogg',
+		'modular_skyrat/sound/gore/chop3.ogg',
+		'modular_skyrat/sound/gore/chop4.ogg',
+		'modular_skyrat/sound/gore/chop5.ogg',
+		'modular_skyrat/sound/gore/chop6.ogg',
+	)
+	if(length(L.dismember_sounds))
+		kaplosh_sound = pick(L.dismember_sounds)
+	if(L.is_robotic_limb())
+		kaplosh_sound = 'modular_skyrat/sound/effects/crowbarhit.ogg'
+	playsound(L.owner, kaplosh_sound, 80, 0)
 	L.dismember(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE), silent = TRUE, destroy = should_kaplosh)
 	qdel(src)
 
@@ -103,7 +116,6 @@
 	desc = "Patient's limb has been violently dismembered, leaving only a severely damaged stump in it's place."
 	treat_text = "Immediate surgical reattachment of the lost limb or suitable equivalent if possible. Suturization or cauterization of the stump otherwise."
 	examine_desc = "has been violently severed from their body"
-	sound_effect = 'modular_skyrat/sound/effects/dismember.ogg'
 	viable_zones = ALL_BODYPARTS
 	severity = WOUND_SEVERITY_LOSS
 	wound_type = WOUND_LIST_LOSS
@@ -116,7 +128,7 @@
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
 	required_status = BODYPART_ORGANIC
 	biology_required = list()
-	pain_amount = 24 //Horrible, but could be worse.
+	pain_amount = 40 //Horrible, will probably send you into shock.
 	infection_chance = 90
 	occur_text = null
 	initial_flow = 4.25
@@ -170,7 +182,6 @@
 	desc = "Patient's limb has been violently dismembered, leaving only a severely damaged stump in it's place."
 	treat_text = "Immediate surgical reattachment of the lost limb or suitable equivalent if possible. Welding and patching of the stump otherwise."
 	examine_desc = "has been violently severed from their body"
-	sound_effect = 'modular_skyrat/sound/effects/dismember.ogg'
 	viable_zones = ALL_BODYPARTS
 	severity = WOUND_SEVERITY_LOSS
 	wound_type = WOUND_LIST_LOSS
@@ -184,7 +195,7 @@
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
 	required_status = BODYPART_ROBOTIC
 	biology_required = list()
-	pain_amount = 24
+	pain_amount = 40
 	occur_text = null
 
 /datum/wound/mechanical/slash/loss/get_examine_description(mob/user)

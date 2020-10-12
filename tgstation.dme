@@ -3999,6 +3999,7 @@
 #include "modular_skyrat\code\modules\mob\living\carbon\human\auto_hiss.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\human.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\human_defense.dm"
+#include "modular_skyrat\code\modules\mob\living\carbon\human\pain.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\anthro\_anthro.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\anthro\aquatic.dm"

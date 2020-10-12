@@ -26,11 +26,55 @@
 /obj/item/organ/brain/proc/past_damage_threshold(threshold)
 	return (get_current_damage_threshold() > threshold)
 
+/obj/item/organ/brain/proc/handle_sudden_death(mob/living/carbon/victim, damage_suffered)
+	//Roll endurance to see if we die suddenly
+	var/sleep_duration = 3 SECONDS
+	if(victim.mind)
+		victim.Unconscious(500)
+		victim.death_rattle()
+		sleep(sleep_duration)
+		victim.death_rattle()
+		sleep(sleep_duration)
+		victim.death_rattle()
+		sleep(sleep_duration)
+		var/roll = victim.mind.diceroll(STAT_DATUM(end), mod = -(damage_suffered/2))
+		if(roll >= DICE_SUCCESS)
+			to_chat(victim, "<span class='userdanger'>You narrowly avoid death's grasp!</span>")
+			if(roll >= DICE_CRIT_SUCCESS)
+				victim.Unconscious(-200)
+		else
+			victim.death_rattle()
+			sleep(sleep_duration)
+			to_chat(victim, "<span class='userdanger'>You suddenly lose your grasp on life.</span>")
+			victim.death()
+	//Mindless mobs always receive a sudden death
+	else
+		victim.Unconscious(500)
+		victim.death_rattle()
+		sleep(sleep_duration)
+		victim.death_rattle()
+		sleep(sleep_duration)
+		victim.death_rattle()
+		sleep(sleep_duration)
+		victim.death_rattle()
+		sleep(sleep_duration)
+		to_chat(victim, "<span class='userdanger'>You suddenly lose your grasp on life.</span>")
+		victim.death()
+
 /obj/item/organ/brain/onDamage(d, maximum)
 	. = ..()
-	if((damage >= high_threshold) && (world.time >= last_wobble) && owner)
-		last_wobble = world.time
-		owner.playsound_local(get_turf(owner), 'modular_skyrat/sound/effects/ear_ring.ogg', 75, 0)
+	if(owner)
+		//Do the wobble sound
+		if((damage >= high_threshold) && (world.time >= last_wobble) && owner)
+			last_wobble = world.time
+			owner.playsound_local(get_turf(owner), 'modular_skyrat/sound/effects/ear_ring.ogg', 75, 0, channel = CHANNEL_EAR_RING)
+		//Or stop it, if we got healed
+		else if(damage <= high_threshold)
+			owner.stop_sound_channel(CHANNEL_EAR_RING)
+		//We received an amount of damage larger than 10 - The owner may suffer a sudden death
+		if(d > 10)
+			spawn(0)
+				handle_sudden_death(owner, d)
 
 /obj/item/organ/brain/on_life()
 	. = ..()

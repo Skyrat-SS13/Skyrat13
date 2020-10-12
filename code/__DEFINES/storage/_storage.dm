@@ -9,6 +9,10 @@
 #define STORAGE_LIMIT_VOLUME				(1<<2)
 /// Use max_w_class
 #define STORAGE_LIMIT_MAX_W_CLASS			(1<<3)
+/// Must be in the user's hands to be accessed
+#define STORAGE_NO_WORN_ACCESS				(1<<4)
+/// Must be out of the user to be accessed
+#define STORAGE_NO_EQUIPPED_ACCESS			(1<<5)
 
 #define STORAGE_FLAGS_LEGACY_DEFAULT		(STORAGE_LIMIT_MAX_ITEMS | STORAGE_LIMIT_COMBINED_W_CLASS | STORAGE_LIMIT_MAX_W_CLASS)
 #define STORAGE_FLAGS_VOLUME_DEFAULT		(STORAGE_LIMIT_VOLUME | STORAGE_LIMIT_MAX_W_CLASS)

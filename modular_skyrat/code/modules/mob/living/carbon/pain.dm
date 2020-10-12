@@ -282,6 +282,8 @@
 		if(prob(2))
 			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nopainloss = TRUE)
 			DefaultCombatKnockdown(400)
+		if(prob(4))
+			emote("gasp")
 
 	if(shock_stage >= SHOCK_STAGE_5)
 		if(prob(5))
@@ -308,17 +310,28 @@
 			visible_message("<b>[src]</b> can no longer stand, collapsing!")
 		DefaultCombatKnockdown(500)
 		Stun(500)
+		agony_gargle()
 
 	if(shock_stage >= SHOCK_STAGE_7)
 		DefaultCombatKnockdown(500)
 		Stun(500)
 		if(prob(4))
 			Unconscious(650)
+		//Gargle our throat
+		if(prob(10))
+			agony_gargle()
+	
+	if(shock_stage == SHOCK_STAGE_8)
+		//Death is near
+		death_rattle()
 	
 	if(shock_stage >= SHOCK_STAGE_8)
 		if(!IsUnconscious())
 			to_chat(src, "<span class='warning'>[dna.species.painloss_message_self]</span>")
 			visible_message("<span class='warning'>[dna.species.painloss_message]</span>", "<span class='danger'>[dna.species.painloss_message_self]</span>")
+		//We are fucking dying, do the rattle
+		if(prob(10))
+			death_rattle()
 		DefaultCombatKnockdown(800)
 		Stun(800)
 		Unconscious(800)

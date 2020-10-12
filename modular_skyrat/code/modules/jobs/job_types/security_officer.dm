@@ -4,4 +4,4 @@
 
 /datum/outfit/job/security
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
-	suit_store = /obj/item/gun/ballistic/automatic/pistol/uspm
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/nangler

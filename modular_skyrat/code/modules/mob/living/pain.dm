@@ -8,6 +8,12 @@
 /mob/living/proc/agony_scream()
 	return
 
+/mob/living/proc/agony_gargle()
+	return
+
+/mob/living/proc/death_rattle()
+	return
+
 //Called on Life()
 /mob/living/proc/handle_pain()
 	return
@@ -25,11 +31,12 @@
 	UnregisterSignal(src, COMSIG_LIVING_REVIVE)
 	UnregisterSignal(src, COMSIG_MOB_DEATH)
 
-/mob/proc/flash_pain(target_alpha = 175, settle_alpha = 0, time_in = 10, time_away = 10)
+/mob/proc/flash_pain(target_alpha = 175, settle_alpha = 0, time_in = 1, time_away = 5)
 	if(hud_used?.redpains)
 		var/obj/screen/fullscreen/pain/pain = hud_used.redpains
-		animate(pain, alpha = target_alpha, time = time_in, easing = ELASTIC_EASING)
-		animate(pain, alpha = settle_alpha, time = time_away)
+		animate(pain, alpha = target_alpha, time = time_in, easing = pick(ELASTIC_EASING, LINEAR_EASING))
+		spawn(time_in)
+			animate(pain, alpha = settle_alpha, time = time_away, easing = pick(ELASTIC_EASING, LINEAR_EASING))
 		return TRUE
 
 // Message is the custom message to be displayed
@@ -82,7 +89,7 @@
 		if(force_emote && prob(power))
 			emote(force_emote)
 	//Briefly flash the pain overlay
-	flash_pain(min(round(power/35) * 255, 255), 0, pick(5,10), pick(5,10))
+	flash_pain(min(round(power/30) * 255, 255), 0, rand(1,4), pick(5,10))
 	next_pain_message_time = world.time + (rand(150, 250) - power)
 	next_pain_time = world.time + (rand(100, 200) - power)
 	return TRUE

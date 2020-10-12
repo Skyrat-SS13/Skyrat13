@@ -163,6 +163,8 @@
 	if(!istype(I))
 		return FALSE
 	if(M)
+		if(!worn_check(I, M))
+			return FALSE
 		if(!M.temporarilyRemoveItemFromInventory(I))
 			return FALSE
 		else

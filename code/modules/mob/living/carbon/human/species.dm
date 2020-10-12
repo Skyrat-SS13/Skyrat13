@@ -91,8 +91,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 
 	var/attack_verb = "punch"	// punch-specific attack verb
-	var/sound/attack_sound = 'sound/weapons/punch1.ogg'
-	var/sound/miss_sound = 'sound/weapons/punchmiss.ogg'
+	var/sound/attack_sound = 'modular_skyrat/sound/gore/punch1.ogg'
+	var/sound/miss_sound = 'modular_skyrat/sound/gore/punchmiss.ogg'
 
 	var/list/mob/living/ignored_by = list()	// list of mobs that will ignore this species
 	//Breathing!

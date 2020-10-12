@@ -194,7 +194,7 @@
 	threshold_penalty = 20
 	status_effect_type = /datum/status_effect/wound/pierce/moderate
 	scarring_descriptions = list("a small, faded bruise", "a small twist of reformed skin", "a thumb-sized puncture scar")
-	pain_amount = 4
+	pain_amount = 8
 	infection_chance = 25
 
 /datum/wound/pierce/severe
@@ -214,7 +214,7 @@
 	threshold_penalty = 35
 	status_effect_type = /datum/status_effect/wound/pierce/severe
 	scarring_descriptions = list("an ink-splat shaped pocket of scar tissue", "a long-faded puncture wound", "a tumbling puncture hole with evidence of faded stitching")
-	pain_amount = 8
+	pain_amount = 15
 	infection_chance = 40
 
 /datum/wound/pierce/critical
@@ -234,5 +234,5 @@
 	threshold_penalty = 50
 	status_effect_type = /datum/status_effect/wound/pierce/critical
 	scarring_descriptions = list("a rippling shockwave of scar tissue", "a wide, scattered cloud of shrapnel marks", "a gruesome multi-pronged puncture scar")
-	pain_amount = 15
+	pain_amount = 20
 	infection_chance = 60

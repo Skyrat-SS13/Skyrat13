@@ -166,6 +166,7 @@
 			to_chat(user, "<span class='danger'>Damn it! I wasn't able to figure out how to toggle [src]'s safety features!</span>")
 	else
 		toggle_safety(user)
+	return TRUE
 
 /obj/item/gun/proc/toggle_safety(mob/user)
 	safety = !safety

@@ -3,5 +3,5 @@
 
 /datum/outfit/job/hos
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1,
-							/obj/item/gun/ballistic/automatic/pistol/uspm = 1,
-							/obj/item/ammo_box/magazine/usp = 1)
+							/obj/item/gun/ballistic/automatic/pistol/nangler=1,
+							/obj/item/ammo_box/magazine/nangler=1)

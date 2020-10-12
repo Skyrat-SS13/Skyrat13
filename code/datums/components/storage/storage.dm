@@ -140,6 +140,21 @@
 /datum/component/storage/PreTransfer()
 	update_actions()
 
+/datum/component/storage/proc/worn_check(obj/item/I, mob/M, no_message = FALSE)
+	. = TRUE
+	if(!istype(I) || !istype(M))
+		return TRUE
+
+	if(storage_flags & STORAGE_NO_EQUIPPED_ACCESS && (I.item_flags & IN_INVENTORY))
+		if(!no_message)
+			to_chat(M, "<span class='warning'>[I] is too bulky! I need to set it down before i can access it's contents!</span>")
+		return FALSE
+	
+	else if(storage_flags & STORAGE_NO_WORN_ACCESS && (I.item_flags & IN_INVENTORY) && !((M.get_active_held_item() == I) || (M.get_inactive_held_item() == I)))
+		if(!no_message)
+			to_chat(M, "<span class='warning'>My arms aren't long enough to reach into [I] while wearing it!</span>")
+		return FALSE
+
 /datum/component/storage/proc/update_actions()
 	QDEL_NULL(modeswitch_action)
 	if(!isitem(parent) || !allow_quick_gather)
@@ -198,6 +213,10 @@
 /datum/component/storage/proc/attack_self(datum/source, mob/M)
 	if(check_locked(source, M, TRUE))
 		return FALSE
+	if(isitem(parent))
+		var/obj/item/I = parent
+		if(!worn_check(I, M))
+			return FALSE
 	if((M.get_active_held_item() == parent) && allow_quick_empty)
 		quick_empty(M)
 
@@ -209,6 +228,10 @@
 		return FALSE
 	var/atom/A = parent
 	var/obj/item/I = O
+
+	if(!worn_check(A, M))
+		return
+	
 	if(collection_mode == COLLECT_ONE)
 		if(can_be_inserted(I, null, M))
 			handle_item_insertion(I, null, M)
@@ -278,6 +301,12 @@
 		return
 	if(check_locked(null, M, TRUE))
 		return FALSE
+	
+	if(isitem(A))
+		var/obj/item/I = parent
+		if(!worn_check(I, M))
+			return FALSE
+	
 	A.add_fingerprint(M)
 	to_chat(M, "<span class='notice'>You start dumping out [parent].</span>")
 	var/turf/T = get_turf(A)
@@ -332,7 +361,7 @@
 
 /datum/component/storage/proc/check_views()
 	for(var/mob/M in can_see_contents())
-		if(!isobserver(M) && !M.CanReach(parent, view_only = TRUE))
+		if(!isobserver(M) && (!M.CanReach(parent, view_only = TRUE) || !worn_check(parent, M, TRUE)))
 			close(M)
 
 /datum/component/storage/proc/emp_act(datum/source, severity)
@@ -392,6 +421,12 @@
 	if(A.Adjacent(M) && dump_destination && M.Adjacent(dump_destination))
 		if(check_locked(null, M, TRUE))
 			return FALSE
+		
+		if(isitem(A))
+			var/obj/item/I = parent
+			if(!worn_check(I, M))
+				return FALSE
+		
 		if(dump_destination.storage_contents_dump_act(src, M))
 			playsound(A, "rustle", 50, 1, -5)
 			A.do_squish(0.8, 1.2)
@@ -470,6 +505,12 @@
 	A.add_fingerprint(M)
 	if(!force && (check_locked(null, M) || !M.CanReach(parent, view_only = TRUE)))
 		return FALSE
+	
+	if(!force && isitem(parent))
+		var/obj/item/I = parent
+		if(!worn_check(I, M))
+			return FALSE
+	
 	ui_show(M, !ghost)
 
 /datum/component/storage/proc/mousedrop_receive(datum/source, atom/movable/O, mob/M)
@@ -497,6 +538,9 @@
 	if(check_locked(null, M, !stop_messages))
 		if(M && !stop_messages)
 			host.add_fingerprint(M)
+		return FALSE
+	if(!worn_check(parent, M))
+		host.add_fingerprint(M)
 		return FALSE
 	if(!length(can_hold_extra) || !is_type_in_typecache(I, can_hold_extra))
 		if(length(can_hold) && !is_type_in_typecache(I, can_hold))
@@ -564,6 +608,8 @@
 		prevent_warning = TRUE
 	if(M)
 		parent.add_fingerprint(M)
+		if(!worn_check(parent, M))
+			return FALSE
 	. = master.handle_item_insertion_from_slave(src, I, prevent_warning, M)
 
 /datum/component/storage/proc/mob_item_insertion_feedback(mob/user, mob/M, obj/item/I, override = FALSE)
@@ -647,7 +693,12 @@
 
 	if(rustle_sound)
 		playsound(A, "rustle", 50, 1, -5)
-
+	
+	if(isitem(A))
+		var/obj/item/I = A
+		if(!worn_check(I, user, TRUE))
+			return FALSE
+	
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == A && !H.get_active_held_item())	//Prevents opening if it's in a pocket.
@@ -692,6 +743,10 @@
 		return TRUE
 
 	var/atom/A = parent
+
+	if(!worn_check(A, user))
+		return FALSE
+	
 	if(!quickdraw)
 		A.add_fingerprint(user)
 		user_show_to_mob(user)
