@@ -4,10 +4,14 @@
 	singular_name = "tooth"
 	desc = "Something that british people don't have."
 	icon = 'modular_skyrat/icons/obj/surgery.dmi'
-	icon_state = "tooth"
+	icon_state = "tooth_4"
 	max_amount = 32
 	throwforce = 0
 	force = 0
+
+/obj/item/stack/teeth/Initialize(mapload, new_amount, merge)
+	. = ..()
+	icon_state = "tooth_[rand(1,4)]"
 
 /obj/item/stack/teeth/proc/do_knock_out_animation(shrink_time = 5)
 	transform = transform.Scale(2, 2)
