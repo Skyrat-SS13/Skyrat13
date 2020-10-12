@@ -2,7 +2,12 @@
 /turf/open/attack_hand(mob/user)
 	. = ..()
 	if(user.lying)
-		user.Move(get_step(user, get_dir(user, src)))
+		//do_after to prevent speedcrawling
+		if(INTERACTING_WITH(user, src))
+			to_chat(user, "<span class='warning'>I am already trying to crawl to [src]!</span>")
+			return
+		if(do_after(user, 1, TRUE, src))
+			user.Move(get_step(user, get_dir(user, src)), get_dir(user, src)))
 
 // Knockdown stuff i guess
 /turf/Bumped(atom/movable/AM)
