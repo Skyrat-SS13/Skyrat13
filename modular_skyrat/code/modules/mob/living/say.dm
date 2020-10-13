@@ -32,7 +32,7 @@
 			visible_message("<span class='danger'>[src] violently bleeds from [p_their()] nostrils, and falls limp on the ground.</span>",
 						"<span class='userdanger'>I do not deserve the gift of life.</span>")
 			death()
-		return
+		return FALSE
 	else
 		cringecount = max(0, cringecount - 1)
 
