@@ -165,3 +165,23 @@
 			sound = pick(H.dna.species.coughs_male)
 			if((H.gender == FEMALE) && length(H.dna.species.coughs_female))
 				sound = pick(H.dna.species.coughs_female)
+
+// Sagging
+/datum/emote/living/sag
+	key = "sag"
+	key_third_person = "sags"
+	message = "sags on the floor, he won't regain his conciousness soon."
+	emote_type = EMOTE_AUDIBLE
+	muzzle_ignore = TRUE
+	restraint_check = FALSE
+	stat_allowed = UNCONSCIOUS
+	mob_type_allowed_typecache = list(/mob/living/carbon/human)
+
+/datum/emote/living/sag/run_emote(mob/user, params)
+	. = ..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(length(H.dna?.species?.death_rattles_male))
+			sound = pick(H.dna.species.death_rattles_male)
+			if((H.gender == FEMALE) && length(H.dna.species.death_rattles_female))
+				sound = pick(H.dna.species.death_rattles_female)

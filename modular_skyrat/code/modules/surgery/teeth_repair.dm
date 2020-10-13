@@ -35,6 +35,7 @@
 	else
 		our_teeth.forceMove(teeth_part)
 		teeth_part.teeth_object = our_teeth
+	teeth_part.update_teeth()
 	display_results(user, target, "<span class='notice'>You succeed in fixing [target]'s teeth.</span>",
 		"[user] successfully fixes [target]'s teeth!",
 		"[user] completes the surgery on [target]'s mouth.")

@@ -30,8 +30,11 @@
 		//Deal with knockdown
 		switch(idiot.mind.diceroll(STAT_DATUM(dex)))
 			if(DICE_FAILURE)
-				idiot.DefaultCombatKnockdown(rand(100, 200))
+				idiot.Immobilize(200)
+				idiot.DefaultCombatKnockdown(rand(150, 300))
 			if(DICE_CRIT_FAILURE)
+				idiot.drop_all_held_items()
+				idiot.Immobilize(400)
 				idiot.DefaultCombatKnockdown(rand(200, 400))
 		//Deal with damage
 		switch(idiot.mind.diceroll(STAT_DATUM(end)))
@@ -49,4 +52,8 @@
 		if(head)
 			head.receive_damage(rand(2, 6))
 		idiot.DefaultCombatKnockdown(rand(100, 200))
+	var/smash_sound = pick('modular_skyrat/sound/gore/smash1.ogg',
+						'modular_skyrat/sound/gore/smash2.ogg',
+						'modular_skyrat/sound/gore/smash3.ogg')
+	playsound(src, smash_sound, 75)
 	sound_hint(src, idiot)

@@ -6,7 +6,7 @@
 		if(INTERACTING_WITH(user, src))
 			to_chat(user, "<span class='warning'>I am already trying to crawl to [src]!</span>")
 			return
-		if(do_after(user, 5, TRUE, src))
+		if(do_after(user, 7, TRUE, src))
 			user.Move(get_step(user, get_dir(user, src)), get_dir(user, src))
 
 // Knockdown stuff i guess
@@ -59,6 +59,10 @@
 					head.receive_damage(rand(3, 7))
 				else
 					C.adjustBruteLoss(rand(3, 7))
+			var/smash_sound = pick('modular_skyrat/sound/gore/smash1.ogg',
+						'modular_skyrat/sound/gore/smash2.ogg',
+						'modular_skyrat/sound/gore/smash3.ogg')
+			playsound(src, smash_sound, 75)
 			//0.25% chance to play the charger theme if you bonk into a wall
 			if(prob(1) && prob(25))
 				playsound(C, 'modular_skyrat/sound/music/mortification.ogg', 40, 0, -3)

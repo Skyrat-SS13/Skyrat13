@@ -6,7 +6,7 @@
 	var/hint_state = pick("sound1", "sound2")
 	if(override_icon_state)
 		hint_state = override_icon_state
-	var/image/I = image(hint_icon, target, hint_state, FLOAT_LAYER)
+	var/image/I = image(hint_icon, get_turf(target), hint_state, FLOAT_LAYER)
 	I.plane = FLOAT_PLANE
 	var/list/clients = list()
 	for(var/mob/M in get_hearers_in_view(world.view, target))

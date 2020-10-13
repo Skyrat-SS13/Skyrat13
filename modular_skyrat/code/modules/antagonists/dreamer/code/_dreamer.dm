@@ -114,6 +114,7 @@
 		return H
 
 /datum/antagonist/dreamer/proc/wake_up()
+	var/client/dreamer_client = owner // Trust me, we need it later
 	var/mob/living/carbon/dreamer = owner.current
 	dreamer.clear_fullscreen("dream")
 	dreamer.clear_fullscreen("wakeup")
@@ -138,7 +139,10 @@
 		if(brain)
 			qdel(brain)
 		H.SetSleeping(250)
-		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/woke_up)
+		dreamer_client.chatOutput?.loaded = FALSE
+		dreamer_client.chatOutput?.start()
+		dreamer_client.chatOutput?.load()
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "dreamer", /datum/mood_event/woke_up)
 		sleep(15)
 		to_chat(H, "<span class='big bold'><span class='deadsay'>... WHERE AM I? ...</span></span>")
 		sleep(30)

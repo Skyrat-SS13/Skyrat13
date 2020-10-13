@@ -1248,6 +1248,8 @@
 		extra_pain += W.pain_amount
 	for(var/obj/item/organ/O in get_organs())
 		extra_pain += O.get_pain()
+	for(var/obj/item/I in embedded_objects)
+		extra_pain += 7.5 * I.w_class
 	return clamp((pain_dam + extra_pain) * multiplier, 0, max_pain_damage)
 
 //Returns whether or not the bodypart can feel pain

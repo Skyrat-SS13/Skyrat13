@@ -63,6 +63,37 @@
 		to_chat(victim, "<span class='userdanger'>You suddenly lose your grasp on life.</span>")
 		victim.death()
 
+/obj/item/organ/brain/proc/handle_sagging(mob/living/carbon/victim, damage_suffered)
+	if(!victim)
+		return
+	//Always clear the chat. Sorry chief.
+	if(victim.client?.chatOutput)
+		victim.client.chatOutput.loaded = FALSE
+		victim.client.chatOutput.start()
+		victim.client.chatOutput.load()
+	//If we have a mind, we do an endurance roll to determine if we go unconscious
+	//otherwise assume that the mob is awful at everything
+	if(victim.mind)
+		switch(victim.mind.diceroll(STAT_DATUM(end), mod = -round(damage_suffered)))
+			//We succeeded perfectly - Immobilized, but no dropping items
+			if(DICE_CRIT_SUCCESS)
+				victim.Immobilize(200)
+			//We succeeded - Just get stunned
+			if(DICE_SUCCESS)
+				victim.Stun(400)
+			//We failed - Unconsciousness
+			if(DICE_FAILURE)
+				victim.Unconscious(600)
+			//We failed miserably - Gain a brain trauma along with unconsciousness
+			if(DICE_CRIT_FAILURE)
+				victim.Unconscious(600)
+				victim.gain_trauma_type(pick(BRAIN_TRAUMA_SEVERE, BRAIN_TRAUMA_MILD))
+	else
+		victim.Unconscious(600)
+	//Inform the victim
+	var/message = pick("... WHAT HAPPENED? ...", "... WHERE AM I? ...", "... WHO AM I? ...")
+	to_chat(victim, "<span class='deadsay'><span class='bigbold'>[message]</span></span>")
+
 /obj/item/organ/brain/onDamage(d, maximum)
 	. = ..()
 	if(owner)
@@ -73,10 +104,15 @@
 		//Or stop it, if we got healed
 		else if(damage <= high_threshold)
 			owner.stop_sound_channel(CHANNEL_EAR_RING)
-		//We received an amount of damage larger than 10 - The owner may suffer a sudden death
+		//We received an amount of damage larger than 10, let's do something fun
 		if(d > 10)
-			spawn(0)
-				handle_sudden_death(owner, d)
+			// Choose between sudden death and sagging
+			if(prob(50))
+				spawn(0)
+					handle_sudden_death(owner, d)
+			else
+				spawn(0)
+					handle_sagging(owner, d)
 
 /obj/item/organ/brain/on_life()
 	. = ..()

@@ -75,11 +75,12 @@
 			switch(victim.mind.diceroll(STAT_DATUM(end)))
 				//Paralyze a bit
 				if(DICE_FAILURE)
-					victim.Paralyze(200)
+					victim.DefaultCombatKnockdown(250)
 					victim.agony_scream()
-				//Knockdown
+				//Paralyze and knockdown
 				if(DICE_CRIT_FAILURE)
-					victim.DefaultCombatKnockdown(500)
+					victim.DefaultCombatKnockdown(400)
+					victim.Paralyze(350)
 					victim.agony_scream()
 		else
 			victim.DefaultCombatKnockdown(200)

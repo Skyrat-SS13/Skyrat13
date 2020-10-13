@@ -67,12 +67,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	QDEL_NULL(keyslot2)
 	return ..()
 
-/obj/item/radio/headset/talk_into(mob/living/M, message, channel, list/spans,datum/language/language, direct = TRUE) //Skyrat change
+/obj/item/radio/headset/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, atom/movable/source)
 	. = ..()
-	if (!listening)
-		return ITALICS | REDUCE_RANGE
-	if(. && ishuman(M) && radiosound)
-		playsound(M, radiosound, rand(20, 30), 0, 0, 0)
+	if(. && radiosound)
+		playsound(get_turf(src), radiosound, rand(20, 35), 0, rand(-4,-5))
 
 /obj/item/radio/headset/can_receive(freq, level, AIuser)
 	if(ishuman(src.loc))

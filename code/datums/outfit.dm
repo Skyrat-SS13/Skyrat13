@@ -114,7 +114,6 @@
 		if(backpack_contents)
 			var/obj/item/backpack = H.back
 			if(backpack && backpack.GetComponent(/datum/component/storage))
-				var/datum/component/storage/STR = backpack.GetComponent(/datum/component/storage)
 				for(var/path in backpack_contents)
 					var/number = backpack_contents[path]
 					if(!isnum(number))//Default to 1
