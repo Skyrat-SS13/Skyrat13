@@ -6,6 +6,11 @@ SUBSYSTEM_DEF(chat)
 	init_order = INIT_ORDER_CHAT
 	var/list/payload = list()
 
+/datum/controller/subsystem/chat/Initialize(start_timeofday)
+	. = ..()
+	var/datum/config_entry/cringe/cringe = config.entries_by_type[/datum/config_entry/cringe]
+	if(cringe)
+		cringe.OnPostload()
 
 /datum/controller/subsystem/chat/fire()
 	for(var/i in payload)
