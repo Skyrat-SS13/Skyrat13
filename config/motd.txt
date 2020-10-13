@@ -1,4 +1,4 @@
-<h1>Bem vindo ao Bob Station!</h1>
+<h1>Welcome to Bobstation!</h1>
 
-<i>Esse server é uma downstream do skyrat: https://github.com/Skyrat-SS13/Skyrat13</i><br>
-<i>Entre no discord para ver as regras! <a href='discord.gg/gdHmnrP'><b>Discord</b></a></i>
+<i>The oldest SS13 anarchy server.</i><br>
+<i>Join the discord to see our "rules". <a href='discord.gg/QrYCq9N'><b>discord.gg/QrYCq9N</b></a></i>
