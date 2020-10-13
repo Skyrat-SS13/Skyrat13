@@ -8,3 +8,7 @@
 #define CI_WEAK "weak"
 #define CI_FEINT "feint"
 #define CI_DEFAULT CI_FEINT
+
+//Dodge/parry
+#define DP_PARRY "parry"
+#define DP_DODGE "dodge"

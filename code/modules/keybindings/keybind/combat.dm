@@ -9,6 +9,7 @@
 	SEND_SIGNAL(user.mob, COMSIG_TOGGLE_COMBAT_MODE)
 	return TRUE
 
+/* Use our own parry system, this is crappey
 /datum/keybinding/living/active_block
 	hotkey_keys = list("Northwest", "F") // HOME
 	name = "active_block"
@@ -36,3 +37,4 @@
 	var/mob/living/L = user.mob
 	L.keybind_parry()
 	return TRUE
+*/

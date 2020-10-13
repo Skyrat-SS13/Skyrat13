@@ -1615,6 +1615,32 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		target.visible_message("<span class='warning'>[target] blocks [user]'s grab attempt!</span>", target = user, \
 			target_message = "<span class='warning'>[target] blocks your grab attempt!</span>")
 		return 0
+	
+	if(target.mind?.handle_parry(target, null, 0, user))
+		playsound(get_turf(target), 'modular_skyrat/sound/attack/parry.ogg', 70)
+		var/held_item
+		if(target.get_active_held_item())
+			held_item = " with [target.p_their()] [target.get_active_held_item()]"
+		else
+			held_item = " with [target.p_their()] bare hands"
+		target.visible_message("<span class='danger'>[target] blocks [user][held_item]!</span>")
+		return 0
+
+	if(target.mind?.handle_dodge(target, null, 0, user))
+		//Make the victim step to an adjacent tile because ooooooh dodge
+		var/list/turf/dodge_turfs = list()
+		for(var/turf/open/O in range(1,target))
+			if(target.CanReach(O))
+				dodge_turfs += O
+		//No available turfs == we can't actually dodge
+		if(length(dodge_turfs))
+			var/turf/yoink = pick(dodge_turfs)
+			//We moved to the tile, therefore we parried successfully
+			if(target.Move(yoink, get_dir(target, yoink)))
+				playsound(get_turf(target), miss_sound, 70)
+				target.visible_message("<span class='danger'>[target] dodges [user]!</span>")
+				return 0
+	
 	if(attacker_style && attacker_style.grab_act(user,target))
 		return 1
 	else
@@ -1632,6 +1658,31 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		target.visible_message("<span class='warning'>[target] blocks [user]'s attack!</span>", target = user, \
 			target_message = "<span class='warning'>[target] blocks your attack!</span>")
 		return FALSE
+
+	if(target.mind?.handle_parry(target, null, 0, user))
+		playsound(get_turf(target), 'modular_skyrat/sound/attack/parry.ogg', 70)
+		var/held_item
+		if(target.get_active_held_item())
+			held_item = " with [target.p_their()] [target.get_active_held_item()]"
+		else
+			held_item = " with [target.p_their()] bare hands"
+		target.visible_message("<span class='danger'>[target] blocks [user][held_item]!</span>")
+		return FALSE
+
+	if(target.mind?.handle_dodge(target, null, 0, user))
+		//Make the victim step to an adjacent tile because ooooooh dodge
+		var/list/turf/dodge_turfs = list()
+		for(var/turf/open/O in range(1,target))
+			if(target.CanReach(O))
+				dodge_turfs += O
+		//No available turfs == we can't actually dodge
+		if(length(dodge_turfs))
+			var/turf/yoink = pick(dodge_turfs)
+			//We moved to the tile, therefore we parried successfully
+			if(target.Move(yoink, get_dir(target, yoink)))
+				playsound(get_turf(target), miss_sound, 70)
+				target.visible_message("<span class='danger'>[target] dodges [user]!</span>")
+				return FALSE
 
 	if(HAS_TRAIT(user, TRAIT_PUGILIST))//CITADEL CHANGE - makes punching cause staminaloss but funny martial artist types get a discount
 		user.adjustStaminaLossBuffered(1.5)
@@ -1801,6 +1852,32 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		target.visible_message("<span class='warning'>[target] blocks [user]'s disarm attempt!</span>", target = user, \
 			target_message = "<span class='warning'>[target] blocks your disarm attempt!</span>")
 		return FALSE
+	
+	if(target.mind?.handle_parry(target, null, 0, user))
+		playsound(get_turf(target), 'modular_skyrat/sound/attack/parry.ogg', 70)
+		var/held_item
+		if(target.get_active_held_item())
+			held_item = " with [target.p_their()] [target.get_active_held_item()]"
+		else
+			held_item = " with [target.p_their()] bare hands"
+		target.visible_message("<span class='danger'>[target] blocks [user][held_item]!</span>")
+		return 0
+
+	if(target.mind?.handle_dodge(target, null, 0, user))
+		//Make the victim step to an adjacent tile because ooooooh dodge
+		var/list/turf/dodge_turfs = list()
+		for(var/turf/open/O in range(1,target))
+			if(target.CanReach(O))
+				dodge_turfs += O
+		//No available turfs == we can't actually dodge
+		if(length(dodge_turfs))
+			var/turf/yoink = pick(dodge_turfs)
+			//We moved to the tile, therefore we parried successfully
+			if(target.Move(yoink, get_dir(target, yoink)))
+				playsound(get_turf(target), miss_sound, 70)
+				target.visible_message("<span class='danger'>[target] dodges [user]!</span>")
+				return 0
+	
 	if(IS_STAMCRIT(user))
 		to_chat(user, "<span class='warning'>You're too exhausted!</span>")
 		return FALSE
@@ -1956,9 +2033,35 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		if(H.mob_run_block(I, totitemdamage, "the [I.name]", ((attackchain_flags & ATTACKCHAIN_PARRY_COUNTERATTACK)? ATTACK_TYPE_PARRY_COUNTERATTACK : NONE) | ATTACK_TYPE_MELEE, I.armour_penetration, user, affecting?.body_zone, block_return) & BLOCK_SUCCESS)
 			return 0
 		totitemdamage = block_calculate_resultant_damage(totitemdamage, block_return)
+	
 	if(H.check_martial_melee_block())
 		H.visible_message("<span class='warning'>[H] blocks [I]!</span>")
 		return 0
+	
+	if(H.mind?.handle_parry(H, I, totitemdamage, user))
+		playsound(get_turf(H), 'modular_skyrat/sound/attack/parry.ogg', 70)
+		var/held_item
+		if(H.get_active_held_item())
+			held_item = " with [H.p_their()] [H.get_active_held_item()]"
+		else
+			held_item = " with [H.p_their()] bare hands"
+		H.visible_message("<span class='warning'>[H] blocks [I][held_item]!</span>")
+		return 0
+
+	if(H.mind?.handle_dodge(H, I, totitemdamage, user))
+		//Make the victim step to an adjacent tile because ooooooh dodge
+		var/list/turf/dodge_turfs = list()
+		for(var/turf/open/O in range(1,H))
+			if(H.CanReach(O))
+				dodge_turfs += O
+		//No available turfs == we can't actually dodge
+		if(length(dodge_turfs))
+			var/turf/yoink = pick(dodge_turfs)
+			//We moved to the tile, therefore we parried successfully
+			if(H.Move(yoink, get_dir(H, yoink)))
+				playsound(get_turf(H), miss_sound, 70)
+				H.visible_message("<span class='warning'>[H] dodges [I]!</span>")
+				return 0
 
 	var/hit_area
 	if(!affecting) //Something went wrong. Maybe the limb is missing?
@@ -2142,6 +2245,32 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			"<span class='warning'>You block [user]'s shoving attempt!</span>", target = user, \
 			target_message = "<span class='warning'>[target] blocks your shoving attempt!</span>")
 		return FALSE
+	
+	if(target.mind?.handle_parry(target, null, 0, user))
+		playsound(get_turf(target), 'modular_skyrat/sound/attack/parry.ogg', 70)
+		var/held_item
+		if(target.get_active_held_item())
+			held_item = " with [target.p_their()] [target.get_active_held_item()]"
+		else
+			held_item = " with [target.p_their()] bare hands"
+		target.visible_message("<span class='danger'>[target] blocks [user][held_item]!</span>")
+		return 0
+
+	if(target.mind?.handle_dodge(target, null, 0, user))
+		//Make the victim step to an adjacent tile because ooooooh dodge
+		var/list/turf/dodge_turfs = list()
+		for(var/turf/open/O in range(1,target))
+			if(target.CanReach(O))
+				dodge_turfs += O
+		//No available turfs == we can't actually dodge
+		if(length(dodge_turfs))
+			var/turf/yoink = pick(dodge_turfs)
+			//We moved to the tile, therefore we parried successfully
+			if(target.Move(yoink, get_dir(target, yoink)))
+				playsound(get_turf(target), miss_sound, 70)
+				target.visible_message("<span class='danger'>[target] dodges [user]!</span>")
+				return 0
+	
 	if(attacker_style && attacker_style.disarm_act(user,target))
 		return TRUE
 	if(!CHECK_MOBILITY(user, MOBILITY_STAND))

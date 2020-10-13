@@ -104,9 +104,20 @@
 	handle_wounds()
 	//
 
+	//Handle our client's color
+	handle_client_color()
+
 	if(machine)
 		machine.check_eye(src)
 	return TRUE
+
+/mob/living/proc/handle_client_color()
+	if(!client)
+		return
+	if(stat >= DEAD && client.color != MATRIX_GREYSCALE)
+		animate(client, client.color = MATRIX_GREYSCALE, time = rand(1 SECONDS, 2 SECONDS))
+	else if(stat < DEAD && client.color == MATRIX_GREYSCALE)
+		animate(client, client.color = null, time = rand(1 SECONDS, 2 SECONDS))
 
 /mob/living/proc/handle_breathing(times_fired)
 	return

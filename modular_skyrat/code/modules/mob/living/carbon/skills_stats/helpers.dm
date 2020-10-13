@@ -71,6 +71,91 @@
 		else
 			return DICE_FAILURE
 
+//Handle parrying an attack
+/datum/mind/proc/handle_parry(mob/living/carbon/human/victim, obj/item/weapon, total_damage, mob/user)
+	. = FALSE
+	//Insufficient info, go back.
+	if(!victim || !user)
+		return
+	if(!total_damage && weapon)
+		total_damage = weapon.force
+	//We are on click cooldown, we can't parry
+	if(victim.next_move > world.time)
+		return
+	//We are dodging, we can't parry
+	if(victim.dodge_parry == DP_DODGE)
+		return
+	//Combat mode is inactive, we can't parry
+	if(!SEND_SIGNAL(victim, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))
+		return
+	//Attacker is behind us, we can't parry
+	if(get_dir(user, victim) & victim.dir)
+		return
+	//Do a dice roll based on melee skill and dexterity, modifier being half the total damage
+	switch(diceroll(GET_STAT_LEVEL(victim, dex)*0.25, GET_SKILL_LEVEL(victim, melee)*0.75, mod = -abs(round(total_damage/2))))
+		//Always go through, no questions asked on crit successes
+		if(DICE_CRIT_SUCCESS)
+			victim.changeNext_move(CLICK_CD_MELEE)
+			//We don't have an active hand item - just redirect damage to the active hand
+			if(!victim.get_active_held_item())
+				var/obj/item/bodypart/BP = victim.get_active_hand()
+				if(BP)
+					BP.receive_damage(total_damage)
+				else
+					return
+			return TRUE
+		//Normal successes will roll 50% * (level/MAX_SKILL) on melee
+		if(DICE_SUCCESS)
+			var/mod = GET_SKILL_LEVEL(victim, melee)/MAX_SKILL
+			var/base_chance = 85
+			if(!victim.get_active_held_item())
+				base_chance = 50
+			if(prob(base_chance * mod))
+				victim.changeNext_move(CLICK_CD_MELEE)
+				//We don't have an active hand item - just redirect damage to the active hand
+				if(!victim.get_active_held_item())
+					var/obj/item/bodypart/BP = victim.get_active_hand()
+					if(BP)
+						BP.receive_damage(total_damage)
+					else
+						return FALSE
+				return TRUE
+
+//Handle dodging an attack
+/datum/mind/proc/handle_dodge(mob/living/carbon/human/victim, obj/item/weapon, total_damage, mob/user)
+	. = FALSE
+	//Insufficient info, go back.
+	if(!victim || !user)
+		return
+	if(!total_damage && weapon)
+		total_damage = weapon.force
+	//We are on click cooldown, we can't parry
+	if(victim.next_move > world.time)
+		return
+	//We are parrying, we can't dodge
+	if(victim.dodge_parry == DP_PARRY)
+		return
+	//Combat mode is inactive, we can't dodge
+	if(!SEND_SIGNAL(victim, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))
+		return
+	//Attacker is behind us, we can't dodge
+	if(get_dir(user, victim) & victim.dir)
+		return
+	//Do a dice roll based on melee skill and dexterity, modifier being the total damage
+	//(thus parrying is almost always preferrable, unless you are unarmed)
+	switch(diceroll(GET_STAT_LEVEL(victim, dex)*0.25, GET_SKILL_LEVEL(victim, melee)*0.75, mod = -abs(round(total_damage))))
+		//Always go through, no questions asked on crit successes
+		if(DICE_CRIT_SUCCESS)
+			victim.changeNext_move(CLICK_CD_MELEE)
+			return TRUE
+		//Normal successes will roll 40% * (level/MAX_SKILL) on melee
+		if(DICE_SUCCESS)
+			var/mod = GET_SKILL_LEVEL(victim, melee)/MAX_SKILL
+			var/base_chance = 75
+			if(prob(base_chance * mod))
+				victim.changeNext_move(CLICK_CD_MELEE)
+				return TRUE
+
 ///Carbon dice roll modifiers
 //Converts mood level into a bonus or malus for a dice roll
 /mob/living/carbon/proc/mood_mod()
