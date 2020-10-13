@@ -3938,6 +3938,7 @@
 #include "modular_skyrat\code\modules\jobs\job_types\psychologist.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\roboticist.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\security_officer.dm"
+#include "modular_skyrat\code\modules\jobs\job_types\silicon_jobs.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\warden.dm"
 #include "modular_skyrat\code\modules\keybindings\bindings_mob.dm"
 #include "modular_skyrat\code\modules\keybindings\keybind\carbon.dm"
