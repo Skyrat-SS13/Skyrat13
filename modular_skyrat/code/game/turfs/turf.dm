@@ -7,7 +7,7 @@
 			to_chat(user, "<span class='warning'>I am already trying to crawl to [src]!</span>")
 			return
 		if(do_after(user, 1, TRUE, src))
-			user.Move(get_step(user, get_dir(user, src)), get_dir(user, src)))
+			user.Move(get_step(user, get_dir(user, src)), get_dir(user, src))
 
 // Knockdown stuff i guess
 /turf/Bumped(atom/movable/AM)
