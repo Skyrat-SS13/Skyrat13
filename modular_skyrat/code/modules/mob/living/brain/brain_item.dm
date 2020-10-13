@@ -30,7 +30,7 @@
 	//Roll endurance to see if we die suddenly
 	var/sleep_duration = 3 SECONDS
 	if(victim.mind)
-		victim.Unconscious(500)
+		victim.Unconscious(sleep_duration * 5)
 		victim.death_rattle()
 		sleep(sleep_duration)
 		victim.death_rattle()
@@ -39,9 +39,11 @@
 		sleep(sleep_duration)
 		var/roll = victim.mind.diceroll(STAT_DATUM(end), mod = -(damage_suffered/2))
 		if(roll >= DICE_SUCCESS)
+			victim.death_rattle()
+			sleep(sleep_duration)
 			to_chat(victim, "<span class='userdanger'>You narrowly avoid death's grasp!</span>")
 			if(roll >= DICE_CRIT_SUCCESS)
-				victim.Unconscious(-200)
+				victim.Unconscious(-sleep_duration * 2)
 		else
 			victim.death_rattle()
 			sleep(sleep_duration)
@@ -49,7 +51,7 @@
 			victim.death()
 	//Mindless mobs always receive a sudden death
 	else
-		victim.Unconscious(500)
+		victim.Unconscious(sleep_duration * 5)
 		victim.death_rattle()
 		sleep(sleep_duration)
 		victim.death_rattle()

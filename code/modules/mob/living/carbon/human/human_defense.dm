@@ -111,7 +111,7 @@
 			var/mob/living/carbon/carbon_mob = user
 			//Chance to miss the attack entirely, based on a diceroll
 			var/missed = FALSE
-			if(user.mind && user.mind.diceroll(STAT_DATUM(dex), SKILL_DATUM(melee)) <= DICE_FAILURE)
+			if(user.mind && user.mind.diceroll(GET_STAT_LEVEL(user, dex)/2, GET_SKILL_LEVEL(user, ranged)/2) <= DICE_FAILURE)
 				missed = TRUE
 			c_intent = carbon_mob.combat_intent
 			if(carbon_mob.mind)

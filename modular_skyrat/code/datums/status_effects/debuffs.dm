@@ -154,9 +154,9 @@
 		if(C.mind)
 			switch(C.mind.diceroll(STAT_DATUM(end)))
 				if(DICE_FAILURE)
-					C.DefaultCombatKnockdown(150)
+					C.DefaultCombatKnockdown(250)
 				if(DICE_CRIT_FAILURE)
-					C.DefaultCombatKnockdown(300)
+					C.DefaultCombatKnockdown(500)
 		else
 			C.DefaultCombatKnockdown(200)
 
@@ -167,9 +167,9 @@
 		if(C.mind)
 			switch(C.mind.diceroll(STAT_DATUM(end)))
 				if(DICE_FAILURE)
-					C.DefaultCombatKnockdown(150)
+					C.DefaultCombatKnockdown(250)
 				if(DICE_CRIT_FAILURE)
-					C.DefaultCombatKnockdown(300)
+					C.DefaultCombatKnockdown(500)
 		else
 			C.DefaultCombatKnockdown(200)
 

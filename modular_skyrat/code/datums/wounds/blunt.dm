@@ -76,11 +76,11 @@
 				//Paralyze a bit
 				if(DICE_FAILURE)
 					victim.Paralyze(200)
-					victim.agony_scream(limb.body_zone)
+					victim.agony_scream()
 				//Knockdown
 				if(DICE_CRIT_FAILURE)
 					victim.DefaultCombatKnockdown(500)
-					victim.agony_scream(limb.body_zone)
+					victim.agony_scream()
 		else
 			victim.DefaultCombatKnockdown(200)
 	
@@ -132,7 +132,7 @@
 		else
 			victim.visible_message("<span class='danger'>[victim] weakly strikes [target] with [victim.p_their()] broken [limb.name], recoiling from pain!</span>", \
 			"<span class='userdanger'>You fail to strike [target] as the fracture in your [limb.name] lights up in unbearable pain!</span>", vision_distance=COMBAT_MESSAGE_RANGE)
-			victim.agony_scream(limb.body_zone)
+			victim.agony_scream()
 			victim.Stun(0.5 SECONDS)
 			limb.receive_damage(brute=rand(2,7), wound_bonus = CANT_WOUND)
 			return COMPONENT_NO_ATTACK_HAND
@@ -153,7 +153,7 @@
 				victim?.dropItemToGround(oops)
 			to_chat(victim, "<span class='danger'>You drop [oops] in excruciating pain!</span>")
 		if(prob(max(1, severity - WOUND_SEVERITY_TRIVIAL) * 10))
-			victim?.agony_scream(limb.body_zone)
+			victim?.agony_scream()
 	
 	if(limb.body_zone == BODY_ZONE_PRECISE_GROIN && prob(25))
 		victim?.Paralyze(severity * 3)
@@ -299,7 +299,7 @@
 
 	if(prob(50 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps their own [custom_location ? custom_location : limb.name] back in place!</span>", "<span class='danger'>You snap your [custom_location ? custom_location : limb.name] back into place!</span>")
-		victim.agony_scream(limb.body_zone)
+		victim.agony_scream()
 		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
@@ -344,7 +344,7 @@
 	if(prob(50 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] back into place!</span>", "<span class='notice'>You snap [victim]'s dislocated [limb.name] back into place!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] back into place!</span>")
-		victim.agony_scream(limb.body_zone)
+		victim.agony_scream()
 		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
@@ -372,7 +372,7 @@
 	if(prob(50 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] with a sickening crack!</span>", "<span class='danger'>You snap [victim]'s dislocated [limb.name] with a sickening crack!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
-		victim.agony_scream(limb.body_zone)
+		victim.agony_scream()
 		limb.receive_damage(brute=25, wound_bonus=30 + prob_mod * 3, wound_bonus = CANT_WOUND)
 	else
 		user.visible_message("<span class='danger'>[user] wrenches [victim]'s dislocated [limb.name] around painfully!</span>", "<span class='danger'>You wrench [victim]'s dislocated [limb.name] around painfully!</span>", ignored_mobs=victim)
@@ -404,7 +404,7 @@
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s [limb.name]!</span>", "<span class='nicegreen'>You finish resetting [victim]'s [limb.name]!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your [limb.name]!</span>")
 
-	victim.agony_scream(limb.body_zone)
+	victim.agony_scream()
 	qdel(src)
 
 /*
@@ -469,7 +469,7 @@
 	if(prob(50 + prob_mod))
 		user.visible_message("<span class='notice'>[user] massages [victim]'s dislocated ribs back in place.</span>", "<span class='notice'>You massage [victim]'s dislocated ribs back into place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='notice'>[user] massages your dislocated ribs back into place.</span>")
-		victim.agony_scream(limb.body_zone)
+		victim.agony_scream()
 		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
@@ -502,7 +502,7 @@
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s ribs!</span>", "<span class='nicegreen'>You finish resetting [victim]'s ribs!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your ribs!</span>")
 
-	victim.agony_scream(limb.body_zone)
+	victim.agony_scream()
 	qdel(src)
 
 /*
@@ -565,7 +565,7 @@
 	if(prob(50 + prob_mod))
 		user.visible_message("<span class='danger'>[user] forces [victim]'s femoral bone back in place!</span>", "<span class='notice'>You force [victim]'s dislocated femoral bone back in place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] forces your femoral bone in place!</span>")
-		victim.agony_scream(limb.body_zone)
+		victim.agony_scream()
 		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
@@ -598,7 +598,7 @@
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s femur!</span>", "<span class='nicegreen'>You finish resetting [victim]'s femur!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your femur!</span>")
 
-	victim.agony_scream(limb.body_zone)
+	victim.agony_scream()
 	qdel(src)
 
 /*
@@ -661,7 +661,7 @@
 	if(prob(50 + prob_mod))
 		user.visible_message("<span class='notice'>[user] jams [victim]'s jaw back in place.</span>", "<span class='notice'>You jam [victim]'s dislocated jaaw back into place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='notice'>[user] jams your dislocated jaw back into place.</span>")
-		victim.agony_scream(limb.body_zone)
+		victim.agony_scream()
 		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		qdel(src)
 	else
@@ -694,7 +694,7 @@
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s jaw!</span>", "<span class='nicegreen'>You finish resetting [victim]'s jaw!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your jaw!</span>")
 
-	victim.agony_scream(limb.body_zone)
+	victim.agony_scream()
 	qdel(src)
 
 /*
@@ -784,7 +784,7 @@
 		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
 		return
 	
-	victim.agony_scream(limb.body_zone)
+	victim.agony_scream()
 	if(user != victim)
 		user.visible_message("<span class='notice'>[user] finishes applying [I] to [victim]'s [limb.name], emitting a fizzing noise!</span>", "<span class='notice'>You finish applying [I] to [victim]'s [limb.name]!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] finishes applying [I] to your [limb.name], and you can feel the bones exploding with pain as they begin melting and reforming!</span>")

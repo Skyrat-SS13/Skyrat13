@@ -160,7 +160,7 @@
 			if(!do_after(user, (20 - ranged_skill), TRUE, src))
 				to_chat(user, "<span class='warning'>You must stand still to disable/enable [src]'s safety!</span>")
 				return
-		if(user.mind.diceroll(STAT_DATUM(dex), SKILL_DATUM(ranged)) >= DICE_SUCCESS)
+		if(user.mind.diceroll(GET_STAT_LEVEL(user, dex)/2, GET_SKILL_LEVEL(user, ranged)/2) >= DICE_SUCCESS)
 			toggle_safety(user)
 		else
 			to_chat(user, "<span class='danger'>Damn it! I wasn't able to figure out how to toggle [src]'s safety features!</span>")
