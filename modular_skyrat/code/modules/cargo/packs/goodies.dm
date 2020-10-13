@@ -40,17 +40,44 @@
 	cost = 40
 	contains = list(/obj/item/hhmirror)
 
+/datum/supply_pack/goody/mosin
+	name = "Bolt Action Rifle"
+	desc = "Contains one bolt action rifle, chambered in 7.62. Never know when you need it."
+	cost = 8000
+	contains = list(/obj/item/gun/ballistic/shotgun/boltaction)
+
+/datum/supply_pack/goody/mosin_ammo
+	name = "7.62 Ammo"
+	desc = "Contains 2 7.62mm stripper clips. Dink."
+	cost = 3000
+	contains = list(/obj/item/ammo_box/a762,
+					/obj/item/ammo_box/a762)
+
+/datum/supply_pack/goody/m1911
+	name = ".45 Pistol"
+	desc = "Contains one M1911 pistol. Never know when you need it."
+	cost = 8000
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/m1911)
+
 /datum/supply_pack/goody/nangler
 	name = "9mm Pistol"
 	desc = "Contains one ML Nangler pistol. Never know when you need it."
-	cost = 2000
+	cost = 3000
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/nangler)
 
 /datum/supply_pack/goody/nangler_ammo
 	name = "9mm Magazine"
-	desc = "Contains 3 ML Nangler magazines. Never know when you need it."
-	cost = 1000
-	contains = list(/obj/item/ammo_box/magazine/nangler)
+	desc = "Contains 2 ML Nangler magazine. Never know when you need it."
+	cost = 1500
+	contains = list(/obj/item/ammo_box/magazine/nangler,
+					/obj/item/ammo_box/magazine/nangler)
+
+/datum/supply_pack/goody/M1911_ammo
+	name = ".45 Magazine"
+	desc = "Contains 2 M1911 Nangler magazines. Never know when you need it."
+	cost = 2500
+	contains = list(/obj/item/ammo_box/magazine/m45,
+					/obj/item/ammo_box/magazine/m45)
 
 /datum/supply_pack/goody/blackbaton
 	name = "Black Police Baton"
