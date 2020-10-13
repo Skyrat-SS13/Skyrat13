@@ -120,6 +120,10 @@
 		to_chat(usr, "<span class='warning'>You're unable to check [self ? "your" : "[src]'s"] pulse.</</span>")
 		return FALSE
 	
+	if((GET_SKILL_LEVEL(usr, firstaid) < 10) || (GET_STAT_LEVEL(usr, int) < 8))
+		to_chat(usr, "<span class='warning'>[pick("Uhh", "Ugh", "Hnngh", "Hmm")]... I don't know how to to that.</span>")
+		return FALSE
+	
 	if(!self)
 		usr.visible_message("<span class='notice'>[usr] puts \his hand on [src]'s wrist and begins counting their pulse.</span>",\
 		"<span class='notice'>You begin counting [src]'s pulse...</span>")
