@@ -89,4 +89,4 @@
 	name = "Telescopic Baton"
 	desc = "A sturdy extendable baton. Never know when you need it."
 	cost = 5000
-	contains = list(/obj/item/melee/classic_baton/extendable)
+	contains = list(/obj/item/melee/classic_baton/telescopic)
