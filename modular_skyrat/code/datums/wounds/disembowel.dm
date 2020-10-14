@@ -83,6 +83,7 @@
 
 	second_wind()
 	log_wound(victim, src)
+	L.disembowel(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE),silent = TRUE, wound = TRUE)
 	qdel(src)
 	var/kaplosh_sound = pick(
 		'modular_skyrat/sound/gore/chop1.ogg',
