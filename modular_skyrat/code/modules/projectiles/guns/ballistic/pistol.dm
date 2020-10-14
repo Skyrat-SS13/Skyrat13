@@ -69,4 +69,4 @@
 
 /obj/item/gun/ballistic/automatic/pistol/nangler/toggle_safety(mob/user)
 	..()
-	update_icon_state()
+	update_icon()
