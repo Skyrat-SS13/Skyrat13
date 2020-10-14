@@ -1635,7 +1635,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		//No available turfs == we can't actually dodge
 		if(length(dodge_turfs))
 			var/turf/yoink = pick(dodge_turfs)
-			//We moved to the tile, therefore we parried successfully
+			//We moved to the tile, therefore we dodged successfully
 			if(target.Move(yoink, get_dir(target, yoink)))
 				playsound(get_turf(target), miss_sound, 70)
 				target.visible_message("<span class='danger'>[target] dodges [user]!</span>")
