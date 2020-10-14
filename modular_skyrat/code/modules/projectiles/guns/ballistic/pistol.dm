@@ -63,7 +63,7 @@
 	mag_type = /obj/item/ammo_box/magazine/nangler
 	can_suppress = FALSE
 
-/obj/item/gun/ballistic/automatic/pistol/nangler/update_icon_state()
+/obj/item/gun/ballistic/automatic/pistol/nangler/update_icon()
 	..()
 	icon_state = "[initial(icon_state)][chambered ? "" : "-e"][magazine ? "" : "-nomag"][safety ? "-safe" : ""]"
 
