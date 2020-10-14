@@ -214,7 +214,10 @@
 			else
 				msg += "<span class='nicegreen'>All modules nominal.</span>\n"
 	else
-		msg += "<span class='deadsay'>All modules shut down.</span>\n"
+		if(!(ROBOTIC_LIMBS in dna?.species?.species_traits))
+			msg += "<span class='deadsay'>My whole body is lifeless!</span>\n"
+		else
+			msg += "<span class='deadsay'>All modules shut down.</span>\n"
 	to_chat(src, msg)
 
 //How much we are actually in shock
