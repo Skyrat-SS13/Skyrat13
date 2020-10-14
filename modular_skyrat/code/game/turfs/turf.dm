@@ -17,7 +17,7 @@
 		//Ram into wall
 		if(C.combat_flags & COMBAT_FLAG_SPRINT_ACTIVE)
 			C.visible_message("<span class='warning'>[C] runs face-first into [src]! Ouch!</span>", \
-							"<span class='danger>You ram your head face-first into [src]! Ouch!</span>", \
+							"<span class='danger'>You ram your head face-first into [src]! Ouch!</span>", \
 							"<span class='warning'>You hear a loud, meaty thud!</span>")
 			C.disable_sprint_mode()
 			if(C.mind)
