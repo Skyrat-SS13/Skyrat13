@@ -53,15 +53,15 @@
 		if(mind.handle_dodge(src, P, P.damage, P.firer))
 			//Make the victim step to an adjacent tile because ooooooh dodge
 			var/list/turf/dodge_turfs = list()
-			for(var/turf/open/O in range(1,target))
+			for(var/turf/open/O in range(1,src))
 				if(CanReach(O))
 					dodge_turfs += O
 			//No available turfs == we can't actually dodge
 			if(length(dodge_turfs))
 				var/turf/yoink = pick(dodge_turfs)
 				//We moved to the tile, therefore we dodged successfully
-				if(Move(yoink, get_dir(target, yoink)))
-					playsound(get_turf(target), miss_sound, 70)
+				if(Move(yoink, get_dir(src, yoink)))
+					playsound(get_turf(src), dna?.species?.miss_sound, 70)
 					visible_message("<span class='danger'>[target] dodges [P]!</span>")
 					return BULLET_ACT_FORCE_PIERCE
 	return ..()
