@@ -115,9 +115,9 @@
 	if(!client)
 		return
 	if(stat >= DEAD && client.color != MATRIX_GREYSCALE)
-		animate(client, client.color = MATRIX_GREYSCALE, time = rand(1 SECONDS, 2 SECONDS))
+		animate(client, color = MATRIX_GREYSCALE, time = rand(1 SECONDS, 2 SECONDS))
 	else if(stat < DEAD && client.color == MATRIX_GREYSCALE)
-		animate(client, client.color = null, time = rand(1 SECONDS, 2 SECONDS))
+		animate(client, color = null, time = rand(1 SECONDS, 2 SECONDS))
 
 /mob/living/proc/handle_breathing(times_fired)
 	return
