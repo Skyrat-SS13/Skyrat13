@@ -19,7 +19,6 @@
 			if(L.body_zone == BODY_ZONE_L_LEG || L.body_zone == BODY_ZONE_R_LEG)
 				affects_leg = TRUE
 
-
 			if(L.body_zone == BODY_ZONE_L_ARM || L.body_zone == BODY_ZONE_R_ARM)
 				dropItemToGround(get_item_for_held_index(L.held_index), 1)
 

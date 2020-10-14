@@ -50,6 +50,8 @@
 			var/martial_art_result = mind.martial_art.on_projectile_hit(src, P, def_zone)
 			if(!(martial_art_result == BULLET_ACT_HIT))
 				return martial_art_result
+		if(mind.handle_dodge(src, P, P.damage, P.firer))
+			return BULLET_ACT_FORCE_PIERCE
 	return ..()
 
 /mob/living/carbon/human/proc/check_martial_melee_block()

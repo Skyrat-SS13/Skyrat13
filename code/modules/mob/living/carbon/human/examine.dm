@@ -228,6 +228,8 @@
 						for(var/obj/item/organ/O in getorganszone(BP.body_zone))
 							for(var/i in O.surgical_examine(user))
 								msg += "<B>[icon2html(O.examine_icon ? O.examine_icon : O, user, O.examine_icon_state ? O.examine_icon_state : O.icon_state)] [i]</B>\n"
+					if((user != src) && W.severity >= WOUND_SEVERITY_CRITICAL)
+						SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/saw_injured)
 			//
 			missing -= BP.body_zone
 
@@ -539,13 +541,7 @@
 				msg += "<span class='notice'><b><i>[t_He] [t_has] significantly disfiguring scarring, you can look again to take a closer look...</i></b></span>\n"
 			if(WOUND_SEVERITY_LOSS to INFINITY)
 				msg += "<span class='notice'><b><i>[t_He] [t_is] just absolutely fucked up, you can look again to take a closer look...</i></b></span>\n"
-
-	if(gunpointing)
-		msg += "<b>[t_He] [t_is] holding [gunpointing.target.name] at gunpoint with [gunpointing.aimed_gun.name]!</b>\n"
-	if(gunpointed.len)
-		for(var/datum/gunpoint/GP in gunpointed)
-			msg += "<b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b>\n"
-	
+	//Strength message
 	var/our_str = 10
 	if(mind)
 		our_str = GET_STAT_LEVEL(src, str)
@@ -557,16 +553,21 @@
 	var/str_diff = user_str - our_str
 	switch(str_diff)
 		if(-INFINITY to -3)
-			msg += "[t_He] [t_is] much stronger than me."
+			msg += "<span class='notice'>[t_He] [t_is] much stronger than me.</span>"
 		if(-2 to -1)
-			msg += "[t_He] [t_is] stronger than me."
+			msg += "<span class='notice'>[t_He] [t_is] stronger than me.</span>"
 		if(0)
-			msg += "[t_He] [t_is] about as strong as me."
+			msg += "<span class='notice'>[t_He] [t_is] about as strong as me.</span>"
 		if(1 to 2)
-			msg += "[t_He] [t_is] weaker than me."
+			msg += "<span class='notice'>[t_He] [t_is] weaker than me.</span>"
 		if(3 to INFINITY)
-			msg += "[t_He] [t_is] much weaker than me."
+			msg += "<span class='notice'>[t_He] [t_is] much weaker than me.</span>"
 	
+	if(gunpointing)
+		msg += "<b>[t_He] [t_is] holding [gunpointing.target.name] at gunpoint with [gunpointing.aimed_gun.name]!</b>\n"
+	if(gunpointed.len)
+		for(var/datum/gunpoint/GP in gunpointed)
+			msg += "<b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b>\n"
 	//Skyrat changes end
 
 	if(length(msg))

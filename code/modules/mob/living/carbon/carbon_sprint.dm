@@ -32,3 +32,21 @@
 	//
 	if(updating)
 		update_hud_sprint_bar()
+
+/mob/living/carbon/enable_sprint_mode(update_icon)
+	. = ..()
+	var/leg_pain = 0
+	//First, let's check for missing feet/legs. Missing any at all, we can't sprint.
+	for(var/bodypart_check in list(BODY_ZONE_PRECISE_GROIN,
+								BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT,
+								BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_L_FOOT))
+		var/obj/item/bodypart/big_walka = get_bodypart(bodypart_check)
+		if(!big_walka)
+			to_chat(src, "<span class='danger'>I can't sprint without a [parse_zone(bodypart_check)]!</span>")
+			return FALSE
+		//If we are not under painkillers, add the pain
+		if(big_walka.get_pain() - chem_effects[CE_PAINKILLER] > 0)
+			leg_pain += (big_walka.get_pain() - chem_effects[CE_PAINKILLER])
+	if(leg_pain >= SHOCK_STAGE_2)
+		to_chat(src, "<span class'danger'>It hurts to walk, let alone sprint!</span>")
+		return FALSE

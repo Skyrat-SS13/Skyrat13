@@ -87,7 +87,9 @@
 		return
 	var/shock_val = get_shock()
 	if(shock_val >= 30 && HAS_TRAIT(src, TRAIT_PAINGOOD))
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "paingood", /datum/mood_event/paingood)
+		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "pain", /datum/mood_event/paingood)
+	else if(shock_val >= 30)
+		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "pain", /datum/mood_event/painbad)
 	if(hud_used.pains)
 		if(stat != DEAD)
 			. = 1
