@@ -62,7 +62,7 @@
 				//We moved to the tile, therefore we dodged successfully
 				if(Move(yoink, get_dir(src, yoink)))
 					playsound(get_turf(src), dna?.species?.miss_sound, 70)
-					visible_message("<span class='danger'>[target] dodges [P]!</span>")
+					visible_message("<span class='danger'>[src] dodges [P]!</span>")
 					return BULLET_ACT_FORCE_PIERCE
 	return ..()
 
