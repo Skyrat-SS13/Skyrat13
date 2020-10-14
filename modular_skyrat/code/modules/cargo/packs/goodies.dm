@@ -172,7 +172,7 @@
 /datum/supply_pack/goody/blackbaton
 	name = "Black Police Baton"
 	desc = "A sturdy police baton. Never know when you need it."
-	cost = 1500
+	cost = 800
 	contains = list(/obj/item/melee/classic_baton/black)
 
 /datum/supply_pack/goody/telescopic_baton

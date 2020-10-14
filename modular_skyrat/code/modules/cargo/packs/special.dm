@@ -23,7 +23,7 @@
 /datum/supply_pack/security/armory/blackbaton
 	name = "Black Baton Crate"
 	desc = "Contains 3 high quality police batons."
-	cost = 4000
+	cost = 2000
 	contains = list(/obj/item/melee/classic_baton/black,
 					/obj/item/melee/classic_baton/black,
 					/obj/item/melee/classic_baton/black,
