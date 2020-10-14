@@ -1,5 +1,0 @@
-author: "Floof Ball#0798"
-delete-after: True
-changes: 
-  - code_imp: "New and improved Tile Floofing with radial menus! Press Z with tile stacks in-hand."
-  - bugfix: "No more missing texture floor with tile floofing."
