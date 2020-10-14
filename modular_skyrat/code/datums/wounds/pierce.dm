@@ -195,7 +195,7 @@
 	status_effect_type = /datum/status_effect/wound/pierce/moderate
 	scarring_descriptions = list("a small, faded bruise", "a small twist of reformed skin", "a thumb-sized puncture scar")
 	pain_amount = 8
-	infection_chance = 25
+	infection_chance = 45
 
 /datum/wound/pierce/severe
 	name = "Open Puncture"
@@ -215,7 +215,7 @@
 	status_effect_type = /datum/status_effect/wound/pierce/severe
 	scarring_descriptions = list("an ink-splat shaped pocket of scar tissue", "a long-faded puncture wound", "a tumbling puncture hole with evidence of faded stitching")
 	pain_amount = 15
-	infection_chance = 40
+	infection_chance = 60
 
 /datum/wound/pierce/critical
 	name = "Ruptured Cavity"
@@ -235,4 +235,4 @@
 	status_effect_type = /datum/status_effect/wound/pierce/critical
 	scarring_descriptions = list("a rippling shockwave of scar tissue", "a wide, scattered cloud of shrapnel marks", "a gruesome multi-pronged puncture scar")
 	pain_amount = 20
-	infection_chance = 60
+	infection_chance = 80

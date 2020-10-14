@@ -132,7 +132,7 @@
 	flesh_damage = 5
 	scarring_descriptions = list("small amoeba-shaped skinmarks", "a faded streak of depressed skin")
 	pain_amount = 15 //Burns are awful
-	infection_chance = 30
+	infection_chance = 50
 	infection_rate = 1.5
 
 /datum/wound/burn/severe
@@ -151,7 +151,7 @@
 	flesh_damage = 12.5
 	scarring_descriptions = list("a large, jagged patch of faded skin", "random spots of shiny, smooth skin", "spots of taut, leathery skin")
 	pain_amount = 25 //Burns are awful
-	infection_chance = 60
+	infection_chance = 75
 	infection_rate = 2
 
 /datum/wound/burn/critical
@@ -171,5 +171,5 @@
 	flesh_damage = 20
 	scarring_descriptions = list("massive, disfiguring keloid scars", "several long streaks of badly discolored and malformed skin", "unmistakeable splotches of dead tissue from serious burns")
 	pain_amount = 35 //Burns are awful
-	infection_chance = 80
+	infection_chance = 90
 	infection_rate = 3
