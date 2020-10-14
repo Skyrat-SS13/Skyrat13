@@ -91,6 +91,9 @@
 	//Attacker is behind us, we can't parry
 	if(get_dir(user, victim) & victim.dir)
 		return
+	//Victim is dead, can't parry
+	if(victim.stat >= DEAD)
+		return
 	//Do a dice roll based on melee skill and dexterity, modifier being half the total damage
 	switch(diceroll(GET_STAT_LEVEL(victim, dex)*0.25, GET_SKILL_LEVEL(victim, melee)*0.75, mod = -abs(round(total_damage/2))))
 		//Always go through, no questions asked on crit successes
@@ -142,6 +145,9 @@
 		return
 	//Attacker is behind us, we can't dodge
 	if(get_dir(user, victim) & victim.dir)
+		return
+	//Victim is dead, can't dodge
+	if(victim.stat >= DEAD)
 		return
 	//Do a dice roll based on melee skill and dexterity, modifier being the total damage
 	//(thus parrying is almost always preferrable, unless you are unarmed)
