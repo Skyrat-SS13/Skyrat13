@@ -126,9 +126,9 @@
 	set name = "Toggle Safety"
 	set category = "Object"
 	set desc = "Toggle a firearm's safety mechanisms."
-	set usr in view(1, src)
 
-	rightclick_attack_self(usr)
+	if(usr.default_can_use_topic(src))
+		rightclick_attack_self(usr)
 
 /obj/item/gun/Destroy()
 	if(pin)
