@@ -64,6 +64,22 @@
 					playsound(get_turf(src), dna?.species?.miss_sound, 70)
 					visible_message("<span class='danger'>[src] dodges [P]!</span>")
 					return BULLET_ACT_FORCE_PIERCE
+	if(P.firer && ishuman(P.firer))
+		var/mob/living/carbon/human/fireboy = P.firer
+		if(fireboy.mind)
+			switch(fireboy.mind.diceroll(GET_STAT_LEVEL(fireboy, dex)*0.5, GET_SKILL_LEVEL(fireboy, ranged)*0.5))
+				//Critical hit, DICE_SUCCESS just means we hit the target normally
+				if(DICE_CRIT_SUCCESS)
+					if(P.wound_bonus)
+						P.wound_bonus *= 3
+						P.bare_wound_bonus *= 3
+					else
+						P.damage *= 1.5
+					visible_message("<span class='danger'>CRITICAL HIT!</span>")
+				//Missed shot
+				if(DICE_FAILURE, DICE_CRIT_FAILURE)
+					visible_message("<span class='danger'>FAILURE! [P] misses [src] entirely!</span>")
+					return BULLET_ACT_FORCE_PIERCE
 	return ..()
 
 /mob/living/carbon/human/proc/check_martial_melee_block()

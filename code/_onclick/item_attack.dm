@@ -439,4 +439,17 @@
 								"<span class='userdanger'>Your teeth sail off in an arc!</span>",
 								"<span class='danger'>You hear a nasty cracking sound!</span>")
 				did_something = TRUE
+	//Critical hits and critical failures
+	if(user.mind)
+		switch(user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.3, GET_SKILL_LEVEL(user, melee)*0.7, mod = -victim_str))
+			if(DICE_CRIT_SUCCESS)
+				visible_message("<span class='danger'>CRITICAL HIT! [src] is stunned!")
+				if(prob(50))
+					Stun(3 SECONDS)
+				else
+					Paralyze(3 SECONDS)
+			if(DICE_CRIT_FAILURE)
+				user.visible_message("<span class='danger'>CRITICAL FAILURE! [src] knocks themselves down!")
+				user.drop_all_held_items()
+				user.DefaultCombatKnockdown(3 SECONDS)
 	return did_something
