@@ -122,6 +122,14 @@
 /obj/item/gun/proc/on_unwield()
 	is_wielded = FALSE
 
+/obj/item/gun/verb/safety_toggle()
+	set name = "Toggle Safety"
+	set category = "Object"
+	set desc = "Toggle a firearm's safety mechanisms."
+	set usr in view(1, src)
+
+	rightclick_attack_self(usr)
+
 /obj/item/gun/Destroy()
 	if(pin)
 		QDEL_NULL(pin)
@@ -153,7 +161,7 @@
 	. += "It's safety is [safety ? "enabled" : "disabled"]."
 
 /obj/item/gun/rightclick_attack_self(mob/user)
-	if(user.mind)
+	if(iscarbon(user) && user.mind)
 		var/ranged_skill = GET_SKILL_LEVEL(user, ranged)
 		if(ranged_skill <= 8)
 			to_chat(user, "<span class='warning'>Hnngh... How do i use this thing?</span>")
