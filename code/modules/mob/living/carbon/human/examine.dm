@@ -229,7 +229,7 @@
 							for(var/i in O.surgical_examine(user))
 								msg += "<B>[icon2html(O.examine_icon ? O.examine_icon : O, user, O.examine_icon_state ? O.examine_icon_state : O.icon_state)] [i]</B>\n"
 					if((user != src) && W.severity >= WOUND_SEVERITY_CRITICAL)
-						SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/saw_injured)
+						SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "saw_wounded", /datum/mood_event/saw_injured)
 			//
 			missing -= BP.body_zone
 

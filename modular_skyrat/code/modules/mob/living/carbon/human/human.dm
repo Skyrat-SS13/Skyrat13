@@ -108,4 +108,4 @@
 /mob/living/carbon/human/death(gibbed)
 	. = ..()
 	for(var/mob/living/carbon/human/H in range(src))
-		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/saw_dead)
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "saw_dead", /datum/mood_event/saw_dead)

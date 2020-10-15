@@ -234,7 +234,7 @@
 	
 	//Send the bad mood event
 	if(severity >= WOUND_SEVERITY_SEVERE)
-		SEND_SIGNAL(victim, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/injured)
+		SEND_SIGNAL(victim, COMSIG_ADD_MOOD_EVENT, "wounded", /datum/mood_event/injured)
 
 	if(!(silent || demoted))
 		var/msg = "<span class='danger'>[victim]'s [limb.name] [occur_text]!</span>"
