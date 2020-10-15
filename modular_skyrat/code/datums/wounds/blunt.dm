@@ -295,10 +295,10 @@
 			time_mod *= firstaid.get_medicalstack_mod()
 			prob_mod *= firstaid.get_medicalstack_mod()
 	
-	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, time * time_mod, target = victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) >= DICE_SUCCESS)
 		user.visible_message("<span class='danger'>[user] snaps their own [custom_location ? custom_location : limb.name] back in place!</span>", "<span class='danger'>You snap your [custom_location ? custom_location : limb.name] back into place!</span>")
 		victim.agony_scream()
 		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
@@ -339,10 +339,10 @@
 			time_mod *= firstaid.get_medicalstack_mod()
 			prob_mod *= firstaid.get_medicalstack_mod()
 	
-	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, time * time_mod, target = victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) >= DICE_SUCCESS)
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] back into place!</span>", "<span class='notice'>You snap [victim]'s dislocated [limb.name] back into place!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] back into place!</span>")
 		victim.agony_scream()
@@ -367,10 +367,10 @@
 			time_mod *= (MAX_SKILL/2)/melee.level
 			prob_mod *= (MAX_SKILL/2)/melee.level
 	
-	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, time * time_mod, target = victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, melee) * 0.75) >= DICE_SUCCESS)
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] with a sickening crack!</span>", "<span class='danger'>You snap [victim]'s dislocated [limb.name] with a sickening crack!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
 		victim.agony_scream()
@@ -378,7 +378,7 @@
 	else
 		user.visible_message("<span class='danger'>[user] wrenches [victim]'s dislocated [limb.name] around painfully!</span>", "<span class='danger'>You wrench [victim]'s dislocated [limb.name] around painfully!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] wrenches your dislocated [limb.name] around painfully!</span>")
-		limb.receive_damage(brute=12.5, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute=12.5, wound_bonus = CANT_WOUND)
 		malpractice(user)
 
 
@@ -398,10 +398,12 @@
 		return
 
 	if(victim == user)
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) < DICE_SUCCESS)
+			limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		victim.visible_message("<span class='danger'>[user] finishes resetting [victim.p_their()] [limb.name]!</span>", "<span class='userdanger'>You reset your [limb.name]!</span>")
 	else
-		limb.receive_damage(brute=7, wound_bonus=CANT_WOUND)
+		if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) < DICE_SUCCESS)
+			limb.receive_damage(brute=7, wound_bonus=CANT_WOUND)
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s [limb.name]!</span>", "<span class='nicegreen'>You finish resetting [victim]'s [limb.name]!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your [limb.name]!</span>")
 
@@ -467,7 +469,7 @@
 	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) < DICE_SUCCESS)
 		user.visible_message("<span class='notice'>[user] massages [victim]'s dislocated ribs back in place.</span>", "<span class='notice'>You massage [victim]'s dislocated ribs back into place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='notice'>[user] massages your dislocated ribs back into place.</span>")
 		victim.agony_scream()
@@ -496,10 +498,12 @@
 		return
 
 	if(victim == user)
-		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
+		if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) < DICE_SUCCESS)
+			limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
 		victim.visible_message("<span class='danger'>[user] finishes resetting [victim.p_their()] ribs!</span>", "<span class='userdanger'>You reset your ribs!</span>")
 	else
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) < DICE_SUCCESS)
+			limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s ribs!</span>", "<span class='nicegreen'>You finish resetting [victim]'s ribs!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your ribs!</span>")
 
@@ -563,7 +567,7 @@
 	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) >= DICE_SUCCESS)
 		user.visible_message("<span class='danger'>[user] forces [victim]'s femoral bone back in place!</span>", "<span class='notice'>You force [victim]'s dislocated femoral bone back in place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] forces your femoral bone in place!</span>")
 		victim.agony_scream()
@@ -592,10 +596,12 @@
 		return
 
 	if(victim == user)
-		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
+		if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) < DICE_SUCCESS)
+			limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
 		victim.visible_message("<span class='danger'>[user] finishes resetting [victim.p_their()] femur!</span>", "<span class='userdanger'>You reset your femur!</span>")
 	else
-		limb.receive_damage(brute=7, wound_bonus=CANT_WOUND)
+		if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) < DICE_SUCCESS)
+			limb.receive_damage(brute=7, wound_bonus=CANT_WOUND)
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s femur!</span>", "<span class='nicegreen'>You finish resetting [victim]'s femur!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your femur!</span>")
 
@@ -659,7 +665,7 @@
 	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) >= DICE_SUCCESS)
 		user.visible_message("<span class='notice'>[user] jams [victim]'s jaw back in place.</span>", "<span class='notice'>You jam [victim]'s dislocated jaaw back into place.</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='notice'>[user] jams your dislocated jaw back into place.</span>")
 		victim.agony_scream()
@@ -688,10 +694,12 @@
 		return
 
 	if(victim == user)
-		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
+		if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) < DICE_SUCCESS)
+			limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
 		victim.visible_message("<span class='danger'>[user] finishes resetting [victim.p_their()] jaw!</span>", "<span class='userdanger'>You reset your jaw!</span>")
 	else
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) < DICE_SUCCESS)
+			limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s jaw!</span>", "<span class='nicegreen'>You finish resetting [victim]'s jaw!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your jaw!</span>")
 
@@ -807,7 +815,7 @@
 				if(firstaid)
 					base_prob *= firstaid.get_medicalstack_mod()
 
-			if(prob(base_prob + (20 * severity - 2) - painkiller_bonus)) // 25%/45% chance to fail self-applying with severe and critical wounds, modded by painkillers
+			if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75, mod = -((100 - base_prob)/4)) < DICE_SUCCESS) // 25%/45% chance to fail self-applying with severe and critical wounds, modded by painkillers
 				victim.visible_message("<span class='danger'>[victim] fails to finish applying [I] to [victim.p_their()] [limb.name], passing out from the pain!</span>", "<span class='notice'>You black out from the pain of applying [I] to your [limb.name] before you can finish!</span>")
 				victim.AdjustUnconscious(5 SECONDS)
 				return

@@ -146,7 +146,8 @@
 		return
 
 	user.visible_message("<span class='green'>[user] cauterizes some of the bleeding on [victim].</span>", "<span class='green'>You cauterize some of the bleeding on [victim].</span>")
-	limb.receive_damage(burn = min(1 + severity, 3), wound_bonus = CANT_WOUND)
+	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) < DICE_SUCCESS)
+		limb.receive_damage(burn = min(1 + severity, 3), wound_bonus = CANT_WOUND)
 	if(prob(30))
 		victim.emote("scream")
 	var/blood_cauterized = (0.6 / max(1, time_mod))

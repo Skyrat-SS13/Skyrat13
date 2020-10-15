@@ -650,7 +650,7 @@
 		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
-	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay) * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay) * time_mod, target = victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 	if(!I.use(1))
 		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")
@@ -674,7 +674,7 @@
 		var/datum/skills/firstaid/firstaid = GET_SKILL(user, firstaid)
 		if(firstaid)
 			time_mod *= firstaid.get_medicalstack_mod()
-	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay) * time_mod, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay) * time_mod, target = victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 	if(!I.use(1))
 		to_chat(user, "<span class='warning'>There aren't enough stacks of [I.name] to heal \the [src.name]!</span>")

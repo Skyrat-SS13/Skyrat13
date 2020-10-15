@@ -244,7 +244,7 @@
 	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, electronics) * 0.75) >= DICE_SUCCESS)
 		user.visible_message("<span class='danger'>[user] snaps their own [limb.name]'s rotors back in place!</span>", "<span class='danger'>You snap your own [limb.name]'s rotors back into place!</span>")
 		victim.emote("scream")
 		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
@@ -293,7 +293,7 @@
 	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, electronics) * 0.75) >= DICE_SUCCESS)
 		user.visible_message("<span class='danger'>[user] forcefully connects [victim]'s disconnected [limb.name] actuators!</span>", "<span class='notice'>You forcefully connect [victim]'s disconnected [limb.name] actuators!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your desynchronized [limb.name] actuators back into place!</span>")
 		victim.emote("scream")
@@ -321,7 +321,7 @@
 	if(!do_after(user, time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, electronics) * 0.75) >= DICE_SUCCESS)
 		user.visible_message("<span class='danger'>[user] torques [victim]'s disconnected [limb.name] actuators with a loud pop!</span>", "<span class='danger'>You torque [victim]'s disconnected [limb.name] actuators with a loud pop!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
 		victim.emote("scream")
@@ -343,10 +343,12 @@
 		return
 
 	if(victim == user)
-		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
+		if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, electronics) * 0.75) < DICE_SUCCESS)
+			limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
 		victim.visible_message("<span class='danger'>[user] finishes resetting [victim.p_their()] [limb.name]!</span>", "<span class='userdanger'>You reset your [limb.name]!</span>")
 	else
-		limb.receive_damage(brute=7, wound_bonus=CANT_WOUND)
+		if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, electronics) * 0.75) < DICE_SUCCESS)
+			limb.receive_damage(brute=7, wound_bonus=CANT_WOUND)
 		user.visible_message("<span class='danger'>[user] finishes resetting [victim]'s [limb.name]!</span>", "<span class='nicegreen'>You finish resetting [victim]'s [limb.name]!</span>", victim)
 		to_chat(victim, "<span class='userdanger'>[user] resets your [limb.name]!</span>")
 
