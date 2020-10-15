@@ -195,12 +195,13 @@
 /obj/item/gun/proc/can_shoot()
 	return TRUE
 
-/obj/item/gun/proc/shoot_with_empty_chamber(mob/living/user as mob|obj)
+/obj/item/gun/proc/shoot_with_empty_chamber(mob/living/user as mob|obj, no_message = FALSE)
 	//skyrat edit
 	if(on_cooldown())
 		return FALSE
 	//
-	to_chat(user, "<span class='danger'>*click*</span>")
+	if(!no_message)
+		to_chat(user, "<span class='danger'>*click*</span>")
 	last_fire = world.time
 	playsound(src, "gun_dry_fire", 30, 1)
 
@@ -270,14 +271,27 @@
 	//Exclude lasertag guns from the TRAIT_CLUMSY check.
 	if(clumsy_check)
 		if(istype(user))
-			if (HAS_TRAIT(user, TRAIT_CLUMSY) && prob(40))
+			if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(40))
 				to_chat(user, "<span class='userdanger'>You shoot yourself in the foot with [src]!</span>")
 				var/shot_leg = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 				process_fire(user, user, FALSE, params, shot_leg)
 				user.dropItemToGround(src, TRUE)
 				return
+	
+	//Critical failures and failures
+	if(user.mind)
+		switch(user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.4, GET_SKILL_LEVEL(user, ranged)*0.6))
+			if(DICE_FAILURE)
+				to_chat(user, "<span class='userdanger'>FAILURE! [src] makes a click but fails to fire!")
+				shoot_with_empty_chamber(user, TRUE)
+				return
+			if(DICE_CRIT_FAILURE)
+				to_chat(user, "<span class='userdanger'>CRITICAL FAILURE! You shoot yourself with [src]!</span>")
+				process_fire(user, user, FALSE, params, pick(ALL_BODYPARTS))
+				return
 
-	if((weapon_weight >= WEAPON_HEAVY) && !is_wielded)
+	var/ranged = GET_SKILL_LEVEL(user, ranged)
+	if((weapon_weight >= WEAPON_HEAVY) && !is_wielded && !(ranged >= 15))
 		to_chat(user, "<span class='userdanger'>You need to wield \the [src] to be able to fire it!</span>")
 		return
 
@@ -293,7 +307,6 @@
 	//
 	
 	//Wielding always makes you aim better, no matter the weapon size
-	var/ranged = GET_SKILL_LEVEL(user, ranged)
 	if(!is_wielded)
 		var/spread_penalty = 2.5
 		if(ranged)

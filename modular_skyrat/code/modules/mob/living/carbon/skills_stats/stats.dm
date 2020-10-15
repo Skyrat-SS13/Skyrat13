@@ -17,7 +17,11 @@
 	return 1
 
 /datum/stats/end/get_shock_mult()
-	return round(1.25 - (0.5 * level/MAX_STAT), 0.1) //Varies from 1.25 to 0.75 depending on how good/bad we are
+	switch(level)
+		if(1 to 10)
+			return (2 - (level/(MAX_STAT/2)))
+		if(11 to 20)
+			return (1.35 - (level/MAX_STAT))
 
 //Dexterity
 /datum/stats/dex
