@@ -743,6 +743,12 @@
 	item_state = "sabre_sheath"
 	starting_sword = /obj/item/melee/sabre/hos
 	content_overlays = FALSE
+	onmob_overlays = FALSE
+
+/obj/item/storage/belt/sabre/hos/ComponentInitialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_TRY_STORAGE_INSERT, .proc/update_icon)
+	RegisterSignal(src, COMSIG_TRY_STORAGE_TAKE, .proc/update_icon)
 
 /obj/item/storage/belt/sabre/hos/update_icon()
 	..()
@@ -750,7 +756,7 @@
 		icon_state = "[initial(icon_state)]-full"
 
 /obj/item/storage/belt/sabre/hos/get_worn_belt_overlay(icon_file)
-	return mutable_appearance('modular_skyrat/icons/obj/bobstation/melee/belt.dmi', "sabre_sheath[length(contents) ? "-full" : ""]")
+	return mutable_appearance(src.icon, "sabre_sheath[length(contents) ? "-full" : ""]")
 
 //Head of staff mace
 /obj/item/melee/mace
