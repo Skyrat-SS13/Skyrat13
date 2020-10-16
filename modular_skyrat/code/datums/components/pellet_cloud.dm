@@ -245,6 +245,15 @@
 			target = hit_part.owner
 			if(initial(P.damtype) != BURN)
 				hit_part.painless_wound_roll(initial(P.sharpness), damage_dealt, initial(P.wound_bonus), initial(P.bare_wound_bonus))
+		if((num_hits > 5)&&iscarbon(target))
+			target.visible_message("<span class='danger'>[target] takes a full load of [proj_name]s,causing them to get knocked back!</span>", null, null, COMBAT_MESSAGE_RANGE, target)
+			to_chat(target, "<span class='userdanger'>You take a full load of [proj_name]s , and get knocked away!</span>")
+			var/mob/living/carbon/C = target
+			var/atom/movable/D = target
+			var/atom/throw_target = get_edge_target_turf(D, get_dir(shooter, get_step_away(D, shooter)))
+			D.safe_throw_at(throw_target, 2, 2)
+			C.DefaultCombatKnockdown(15, 0)
+			C.adjustStaminaLoss(20)
 		if(num_hits > 1)
 			target.visible_message("<span class='danger'>[target] is hit by [num_hits] [proj_name]s[hit_part ? " in the [hit_part.name]" : ""]!</span>", null, null, COMBAT_MESSAGE_RANGE, target)
 			to_chat(target, "<span class='userdanger'>You're hit by [num_hits] [proj_name]s[hit_part ? " in the [hit_part.name]" : ""]!</span>")
