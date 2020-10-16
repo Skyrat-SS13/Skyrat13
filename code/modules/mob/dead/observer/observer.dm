@@ -54,6 +54,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	// of the mob
 	var/deadchat_name
 	var/datum/spawners_menu/spawners_menu
+	// copying the appearance of the human mob
+	var/mutable_appearance/human_appearance
 
 /mob/dead/observer/Initialize(mapload, mob/body)
 	set_invisibility(GLOB.observer_default_invisibility)
@@ -91,14 +93,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		suiciding = body.suiciding // Transfer whether they committed suicide.
 
 		if(ishuman(body))
+			//Human body! Let's copy their appearance.
+			icon_state = ""
 			var/mob/living/carbon/human/body_human = body
-			if(HAIR in body_human.dna.species.species_traits)
-				hair_style = body_human.hair_style
-				hair_color = brighten_color(body_human.hair_color)
-			if(FACEHAIR in body_human.dna.species.species_traits)
-				facial_hair_style = body_human.facial_hair_style
-				facial_hair_color = brighten_color(body_human.facial_hair_color)
-
+			human_appearance = copy_appearance(body_human.appearance)
+			appearance = human_appearance
+			add_filter("spooky", 2, list("type" = "blur","size" = 1))
+		
 	update_icon()
 
 	if(!isturf(loc))
@@ -137,6 +138,36 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	RegisterSignal(src, COMSIG_CLICK_CTRL_SHIFT, .proc/on_click_ctrl_shift)
 	RegisterSignal(src, COMSIG_CLICK_CTRL, .proc/on_click_ctrl)
 	// Skyrat change END
+
+// This seems stupid, but it's the easiest way to avoid absolutely ridiculous shit from happening
+// Copying an appearance directly from a mob includes it's verb list, it's invisibility, it's alpha, and it's density
+// You might recognize these things as "fucking ridiculous to put in an appearance"
+// You'd be right, but that's fucking BYOND for you.
+/mob/dead/observer/proc/copy_appearance(mutable_appearance/COPY)
+	var/mutable_appearance/MA = new(src)
+
+	MA.appearance_flags = COPY.appearance_flags
+	MA.blend_mode = COPY.blend_mode
+	MA.color = COPY.color
+	MA.dir = COPY.dir
+	MA.icon = COPY.icon
+	MA.icon_state = COPY.icon_state
+	MA.layer = COPY.layer
+	MA.maptext = COPY.maptext
+	MA.maptext_width = COPY.maptext_width
+	MA.maptext_height = COPY.maptext_height
+	MA.maptext_x = COPY.maptext_x
+	MA.maptext_y = COPY.maptext_y
+	MA.mouse_opacity = COPY.mouse_opacity
+	MA.overlays = COPY.overlays
+	if(!isicon(MA.icon) && !LAZYLEN(MA.overlays)) // Gibbing/dusting/melting removes the icon before ghostize()ing the mob, so we need to account for that
+		MA.icon = initial(icon)
+		MA.icon_state = initial(icon_state)
+	MA.underlays = COPY.underlays
+	MA.appearance_flags |= KEEP_TOGETHER
+	MA.alpha = 127
+
+	return MA
 
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
@@ -197,31 +228,37 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			ghostimage_default.icon_state = new_form + "_nodir" //if this icon has dirs, the default ghostimage must use its nodir version or clients with the preference set to default sprites only will see the dirs
 		else
 			ghostimage_default.icon_state = new_form
+	
+	if(!human_appearance)
+		if(ghost_accs >= GHOST_ACCS_DIR && (icon_state in GLOB.ghost_forms_with_directions_list)) //if this icon has dirs AND the client wants to show them, we make sure we update the dir on movement
+			updatedir = 1
+		else
+			updatedir = 0	//stop updating the dir in case we want to show accessories with dirs on a ghost sprite without dirs
+			setDir(2 		)//reset the dir to its default so the sprites all properly align up
 
-	if(ghost_accs >= GHOST_ACCS_DIR && (icon_state in GLOB.ghost_forms_with_directions_list)) //if this icon has dirs AND the client wants to show them, we make sure we update the dir on movement
-		updatedir = 1
+	if(!human_appearance)
+		if(ghost_accs == GHOST_ACCS_FULL && (icon_state in GLOB.ghost_forms_with_accessories_list)) //check if this form supports accessories and if the client wants to show them
+			var/datum/sprite_accessory/S
+			if(facial_hair_style)
+				S = GLOB.facial_hair_styles_list[facial_hair_style]
+				if(S)
+					facial_hair_overlay = mutable_appearance(S.icon, "[S.icon_state]", -HAIR_LAYER)
+					if(facial_hair_color)
+						facial_hair_overlay.color = "#" + facial_hair_color
+					facial_hair_overlay.alpha = 200
+					add_overlay(facial_hair_overlay)
+			if(hair_style)
+				S = GLOB.hair_styles_list[hair_style]
+				if(S)
+					hair_overlay = mutable_appearance(S.icon, "[S.icon_state]", -HAIR_LAYER)
+					if(hair_color)
+						hair_overlay.color = "#" + hair_color
+					hair_overlay.alpha = 200
+					add_overlay(hair_overlay)
 	else
-		updatedir = 0	//stop updating the dir in case we want to show accessories with dirs on a ghost sprite without dirs
-		setDir(2 		)//reset the dir to its default so the sprites all properly align up
-
-	if(ghost_accs == GHOST_ACCS_FULL && (icon_state in GLOB.ghost_forms_with_accessories_list)) //check if this form supports accessories and if the client wants to show them
-		var/datum/sprite_accessory/S
-		if(facial_hair_style)
-			S = GLOB.facial_hair_styles_list[facial_hair_style]
-			if(S)
-				facial_hair_overlay = mutable_appearance(S.icon, "[S.icon_state]", -HAIR_LAYER)
-				if(facial_hair_color)
-					facial_hair_overlay.color = "#" + facial_hair_color
-				facial_hair_overlay.alpha = 200
-				add_overlay(facial_hair_overlay)
-		if(hair_style)
-			S = GLOB.hair_styles_list[hair_style]
-			if(S)
-				hair_overlay = mutable_appearance(S.icon, "[S.icon_state]", -HAIR_LAYER)
-				if(hair_color)
-					hair_overlay.color = "#" + hair_color
-				hair_overlay.alpha = 200
-				add_overlay(hair_overlay)
+		appearance = human_appearance
+		icon_state = ""
+		updatedir = TRUE
 
 /*
  * Increase the brightness of a color by calculating the average distance between the R, G and B values,
