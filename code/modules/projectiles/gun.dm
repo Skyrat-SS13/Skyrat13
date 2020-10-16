@@ -165,10 +165,10 @@
 		var/ranged_skill = GET_SKILL_LEVEL(user, ranged)
 		if(ranged_skill <= 8)
 			to_chat(user, "<span class='warning'>Hnngh... How do i use this thing?</span>")
-			if(!do_after(user, (20 - ranged_skill), TRUE, src))
+			if(!do_after(user, (20 - ranged_skill) * 2, TRUE, src))
 				to_chat(user, "<span class='warning'>You must stand still to disable/enable [src]'s safety!</span>")
 				return
-		if(user.mind.diceroll(GET_STAT_LEVEL(user, dex)/2, GET_SKILL_LEVEL(user, ranged)/2) >= DICE_SUCCESS)
+		if(user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.5, GET_SKILL_LEVEL(user, ranged)*0.5) >= DICE_SUCCESS)
 			toggle_safety(user)
 		else
 			to_chat(user, "<span class='danger'>Damn it! I wasn't able to figure out how to toggle [src]'s safety features!</span>")
@@ -179,7 +179,7 @@
 /obj/item/gun/proc/toggle_safety(mob/user)
 	safety = !safety
 	if(user)
-		to_chat(user, "<span class='notice'>You [safety ? "enable" : "disable"] \the [src]'s safety.</span>")
+		to_chat(user, "<span class='notice'>I [safety ? "enable" : "disable"] \the [src]'s safety mechanism.</span>")
 
 /obj/item/gun/equipped(mob/living/user, slot)
 	. = ..()
