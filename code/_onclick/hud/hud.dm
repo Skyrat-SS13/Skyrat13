@@ -84,6 +84,7 @@ GLOBAL_LIST_INIT(modular_ui_styles, list(
 	var/obj/screen/internals
 	var/obj/screen/pains
 	var/obj/screen/fullscreen/redpains
+	var/obj/screen/fullscreen/noise_filter
 
 	// subtypes can override this to force a specific UI style
 	var/ui_style
@@ -133,6 +134,7 @@ GLOBAL_LIST_INIT(modular_ui_styles, list(
 	internals = null
 	pains = null
 	redpains = null
+	noise_filter = null
 	lingchemdisplay = null
 	devilsouldisplay = null
 	lingstingdisplay = null
@@ -184,6 +186,8 @@ GLOBAL_LIST_INIT(modular_ui_styles, list(
 			if(redpains)
 				redpains.update_for_view("21x15")
 				screenmob.client.screen += redpains
+			if(noise_filter)
+				screenmob.client.screen += noise_filter
 			//
 			if(hotkeybuttons.len && !hotkey_ui_hidden)
 				screenmob.client.screen += hotkeybuttons
@@ -230,6 +234,8 @@ GLOBAL_LIST_INIT(modular_ui_styles, list(
 				screenmob.client.screen -= extra_inventory
 			if(redpains)
 				screenmob.client.screen -= redpains
+			if(noise_filter)
+				screenmob.client.screen -= noise_filter
 			//
 			if(hotkeybuttons.len)
 				screenmob.client.screen -= hotkeybuttons

@@ -140,11 +140,21 @@
 /mob/living/carbon/get_leg_ignore()
 	if(movement_type & (FLYING|FLOATING))
 		return TRUE
+	if(get_num_feet() >= 1)
+		var/obj/item/held_active = get_active_held_item()
+		var/obj/item/held_inactive = get_inactive_held_item()
+		if(istype(held_active, /obj/item/cane) || istype(held_inactive, /obj/item/cane))
+			return TRUE
 	return FALSE
 
 /mob/living/carbon/get_feet_ignore()
 	if(movement_type & (FLYING|FLOATING))
 		return TRUE
+	if(get_num_feet() >= 1)
+		var/obj/item/held_active = get_active_held_item()
+		var/obj/item/held_inactive = get_inactive_held_item()
+		if(istype(held_active, /obj/item/cane) || istype(held_inactive, /obj/item/cane))
+			return TRUE
 	return FALSE
 
 /mob/living/carbon/alien/larva/get_leg_ignore()

@@ -89,7 +89,7 @@
 	else
 		mobility_flags &= ~MOBILITY_RESIST
 
-	var/canstand_involuntary = conscious && !stat_softcrit && !knockdown && !chokehold && !paralyze && (ignore_feet || has_feet) && (ignore_legs || has_legs) && !(buckled && buckled.buckle_lying) && !(combat_flags & COMBAT_FLAG_HARD_STAMCRIT)
+	var/canstand_involuntary = conscious && !stat_softcrit && !knockdown && !chokehold && !paralyze && (ignore_feet || has_feet >= 2) && (ignore_legs || has_legs >= 2) && !(buckled && buckled.buckle_lying) && !(combat_flags & COMBAT_FLAG_HARD_STAMCRIT)
 	var/canstand = canstand_involuntary && !resting
 
 	var/should_be_lying = !canstand
@@ -161,7 +161,7 @@
 	update_transform()
 	lying_prev = lying
 
-	//Handle citadel autoresist
+	// Handle citadel autoresist
 	if(CHECK_MOBILITY(src, MOBILITY_MOVE) && !(combat_flags & COMBAT_FLAG_INTENTIONALLY_RESTING) && canstand_involuntary && iscarbon(src) && client?.prefs?.autostand)//CIT CHANGE - adds autostanding as a preference
 		addtimer(CALLBACK(src, .proc/resist_a_rest, TRUE), 0) //CIT CHANGE - ditto
 

@@ -459,6 +459,12 @@
 	redpains.hud = src
 	screenoverlays += redpains
 
+	noise_filter = new /obj/screen/fullscreen/noise()
+	noise_filter.icon = 'modular_skyrat/icons/mob/noise.dmi'
+	noise_filter.screen_loc = "EAST+0,SOUTH+0"
+	noise_filter.hud = src
+	screenoverlays += noise_filter
+
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = ui_style_modular(ui_style) //SKYRAT EDIT
 	pull_icon.hud = src
