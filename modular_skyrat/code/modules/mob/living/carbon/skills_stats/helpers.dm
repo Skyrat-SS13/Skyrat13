@@ -88,6 +88,9 @@
 	//Combat mode is inactive, we can't parry
 	if(!SEND_SIGNAL(victim, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))
 		return
+	//We are hitting ourselves, can't parry
+	if(victim == user)
+		return
 	//Attacker is behind us, we can't parry
 	if(get_dir(user, victim) & victim.dir)
 		return
@@ -142,6 +145,9 @@
 		return
 	//Combat mode is inactive, we can't dodge
 	if(!SEND_SIGNAL(victim, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))
+		return
+	//We are hitting ourselves, can't dodge
+	if(victim == user)
 		return
 	//Attacker is behind us, we can't dodge
 	if(get_dir(user, victim) & victim.dir)

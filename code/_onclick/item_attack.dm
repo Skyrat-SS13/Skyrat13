@@ -465,13 +465,15 @@
 				var/crit = rand(1,2)
 				switch(crit)
 					if(1)
-						user.visible_message("<span class='danger'><b>CRITICAL FAILURE!</b> [user] knocks [p_themselves()] down!")
-						user.drop_all_held_items()
-						user.DefaultCombatKnockdown(3 SECONDS)
+						if(user != src)
+							user.visible_message("<span class='danger'><b>CRITICAL FAILURE!</b> [user] knocks [p_themselves()] down!")
+							user.drop_all_held_items()
+							user.DefaultCombatKnockdown(3 SECONDS)
 					if(2)
-						user.visible_message("<span class='danger'><b>CRITICAL FAILURE!</b> [user] hits [p_themselves()]!")
-						if(weapon)
-							weapon.melee_attack_chain(user, user, flags = ATTACKCHAIN_RIGHTCLICK)
-						else
-							user.UnarmedAttack(user, ATTACKCHAIN_RIGHTCLICK)
+						if(user != src)
+							user.visible_message("<span class='danger'><b>CRITICAL FAILURE!</b> [user] hits [p_themselves()]!")
+							if(weapon)
+								weapon.melee_attack_chain(user, user, flags = ATTACKCHAIN_RIGHTCLICK)
+							else
+								user.UnarmedAttack(user, ATTACKCHAIN_RIGHTCLICK)
 	return did_something

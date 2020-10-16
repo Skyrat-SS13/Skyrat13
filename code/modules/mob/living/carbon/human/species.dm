@@ -1763,7 +1763,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 		var/missed = FALSE
 		//Dice roll to see if we fuck up
-		if(user.mind && user.mind.diceroll(GET_STAT_LEVEL(user, dex)/2, GET_SKILL_LEVEL(user, melee)/2) <= DICE_FAILURE)
+		if(user.mind && user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.3, GET_SKILL_LEVEL(user, melee)*0.7) <= DICE_FAILURE)
 			missed = TRUE
 		//Aimed combat intent means we never miss, at the cost of stamina
 		switch(c_intent)
@@ -1775,7 +1775,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 					endurance_mod = round((MAX_STAT/2)/end.level, 0.1)
 				user.adjustStaminaLoss(5 * endurance_mod)
 
-		if(!damage || !affecting || missed)//future-proofing for species that have 0 damage/weird cases where no zone is targeted
+		if(!damage || !affecting || (missed && target != user))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 			playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)
 			target.visible_message("<span class='danger'>[user]'s [atk_verb] misses [target]!</span>", \
 							"<span class='danger'>You avoid [user]'s [atk_verb]!</span>", "<span class='hear'>You hear a swoosh!</span>", COMBAT_MESSAGE_RANGE, null, \

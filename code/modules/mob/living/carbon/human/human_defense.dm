@@ -67,15 +67,16 @@
 	if(P.firer && ishuman(P.firer))
 		var/mob/living/carbon/human/fireboy = P.firer
 		if(fireboy.mind)
-			switch(fireboy.mind.diceroll(GET_STAT_LEVEL(fireboy, dex)*0.5, GET_SKILL_LEVEL(fireboy, ranged)*0.5, mod = -GET_STAT_LEVEL(src, dex)))
+			switch(fireboy.mind.diceroll(GET_STAT_LEVEL(fireboy, dex)*0.3, GET_SKILL_LEVEL(fireboy, ranged)*0.7, mod = -GET_STAT_LEVEL(src, dex)))
 				//Critical hit, DICE_SUCCESS just means we hit the target normally
 				if(DICE_CRIT_SUCCESS)
 					P.damage *= 2
 					visible_message("<span class='danger'><b>CRITICAL HIT!</b> [src] is mauled by [P]!</span>")
 				//Missed shot
 				if(DICE_FAILURE, DICE_CRIT_FAILURE)
-					visible_message("<span class='danger'><b>FAILURE!</b> [P] misses [src] entirely!</span>")
-					return BULLET_ACT_FORCE_PIERCE
+					if(fireboy != src)
+						visible_message("<span class='danger'><b>FAILURE!</b> [P] misses [src] entirely!</span>")
+						return BULLET_ACT_FORCE_PIERCE
 	return ..()
 
 /mob/living/carbon/human/proc/check_martial_melee_block()
@@ -137,7 +138,7 @@
 			var/mob/living/carbon/carbon_mob = user
 			//Chance to miss the attack entirely, based on a diceroll
 			var/missed = FALSE
-			if(user.mind && user.mind.diceroll(GET_STAT_LEVEL(user, dex)/2, GET_SKILL_LEVEL(user, ranged)/2) <= DICE_FAILURE)
+			if(user.mind && user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.3, GET_SKILL_LEVEL(user, melee)*0.7) <= DICE_FAILURE)
 				missed = TRUE
 			c_intent = carbon_mob.combat_intent
 			if(carbon_mob.mind)
@@ -154,7 +155,7 @@
 							var/datum/stats/dex/dex = GET_STAT(carbon_mob, dex)
 							if(dex)
 								ran_zone_prob = 80 + dex.level
-			if(missed)
+			if(missed && (user != src))
 				visible_message("<span class='danger'>[user]'s misses [src] with [I]!</span>", \
 							"<span class='danger'>You avoid [user]'s attack with [I]!</span>", "<span class='hear'>You hear a swoosh!</span>", COMBAT_MESSAGE_RANGE, null, \
 							user, "<span class='warning'>You miss [src] with [I]!</span>")

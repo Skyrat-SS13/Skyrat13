@@ -67,11 +67,15 @@
 	icon_state = ""
 	layer = FLY_LAYER
 	bullet_bounce_sound = null
+	var/mutable_appearance/black_underlay
 
 /turf/closed/indestructible/splashscreen/New()
 	SStitle.splash_turf = src
 	if(SStitle.icon)
 		icon = SStitle.icon
+	black_underlay = mutable_appearance('modular_skyrat/icons/black.dmi', "black", src.layer-0.1, src.plane)
+	black_underlay.pixel_x = 240
+	underlays += black_underlay
 	..()
 
 /turf/closed/indestructible/splashscreen/vv_edit_var(var_name, var_value)

@@ -83,8 +83,8 @@ GLOBAL_LIST_INIT(modular_ui_styles, list(
 	var/obj/screen/healthdoll
 	var/obj/screen/internals
 	var/obj/screen/pains
-	var/obj/screen/fullscreen/redpains
-	var/obj/screen/fullscreen/noise_filter
+	var/obj/screen/fullscreen/pain/redpains
+	var/obj/screen/fullscreen/noise/noise_filter
 
 	// subtypes can override this to force a specific UI style
 	var/ui_style
@@ -184,9 +184,10 @@ GLOBAL_LIST_INIT(modular_ui_styles, list(
 			if(extra_inventory.len && screenmob.hud_used && screenmob.hud_used.extra_shown)
 				screenmob.client.screen += extra_inventory
 			if(redpains)
-				redpains.update_for_view("21x15")
+				redpains.update_for_view(screenmob.client.view)
 				screenmob.client.screen += redpains
 			if(noise_filter)
+				noise_filter.update_for_view(screenmob.client.view)
 				screenmob.client.screen += noise_filter
 			//
 			if(hotkeybuttons.len && !hotkey_ui_hidden)
