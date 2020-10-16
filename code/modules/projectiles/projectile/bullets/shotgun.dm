@@ -1,14 +1,15 @@
 /obj/item/projectile/bullet/shotgun_slug
 	name = "12g shotgun slug"
-	damage = 60
+	damage = 40
 	sharpness = SHARP_POINTY
+	armour_penetration = 20
 	bare_wound_bonus = 10
 
 /obj/item/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
-	stamina = 70
+	stamina = 55
 	//skyrat edit
-	damage = 10
+	damage = 5
 	bare_wound_bonus = 10
 	sharpness = SHARP_NONE
 	//
@@ -84,7 +85,8 @@
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
 	//skyrat edit
-	damage = 7.5
+	damage = 12.5
+	armour_penetration = -30
 	bare_wound_bonus = 10
 	wound_falloff_tile = -2.5 // TG does this; it makes sense to do.
 	//
