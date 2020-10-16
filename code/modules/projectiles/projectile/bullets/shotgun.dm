@@ -1,15 +1,15 @@
 /obj/item/projectile/bullet/shotgun_slug
 	name = "12g shotgun slug"
-	damage = 40
+	damage = 40 // Skyrat edit , changed from 60 to 40
 	sharpness = SHARP_POINTY
-	armour_penetration = 20
+	armour_penetration = 20 // Skyrat edit , changed from 0 to 20
 	bare_wound_bonus = 10
 
 /obj/item/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
-	stamina = 55
+	stamina = 55 // Skyrat edit , changed from 70 to 55
 	//skyrat edit
-	damage = 5
+	damage = 5 // Changed from 10 to 5
 	bare_wound_bonus = 10
 	sharpness = SHARP_NONE
 	//
