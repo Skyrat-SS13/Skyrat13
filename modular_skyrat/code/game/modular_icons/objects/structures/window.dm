@@ -29,10 +29,10 @@
 	..()
 	//this is fucking stupid but if we're not fulltile, we always use the no brim icon
 	if(fulltile)
-		if(locate(/obj/structure/table/low_wall) in get_turf(src))
+		for(var//obj/structure/table/low_wall/low_wall in get_turf(src))
 			icon = wall_icon
-		else
-			icon = nowall_icon
+			return
+		icon = nowall_icon
 	else
 		icon = wall_icon
 
