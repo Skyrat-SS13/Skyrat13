@@ -1,7 +1,7 @@
 //Noise holder
 /obj/screen/fullscreen/noise
 	icon = 'modular_skyrat/icons/mob/noise.dmi'
-	icon_state = "blank"
+	icon_state = "1h"
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = HUD_LAYER-1
@@ -11,4 +11,4 @@
 /obj/screen/fullscreen/noise/update_for_view(client_view)
 	. = ..()
 	var/noise = rand(1,9)
-	icon_state = "[noise]"
+	icon_state = "[noise]h"
