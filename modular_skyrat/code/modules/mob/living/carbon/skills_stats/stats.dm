@@ -18,10 +18,14 @@
 
 /datum/stats/end/get_shock_mult()
 	switch(level)
+		if(-INFINITY to 0)
+			return 2.5
 		if(1 to 10)
 			return (2 - (level/(MAX_STAT/2)))
 		if(11 to 20)
 			return (1.35 - (level/MAX_STAT))
+		if(21 to INFINITY)
+			return 0.1
 
 //Dexterity
 /datum/stats/dex
