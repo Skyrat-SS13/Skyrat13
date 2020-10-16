@@ -754,6 +754,7 @@
 	item_state = "mace"
 	lefthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/mace_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/mace_righthand.dmi'
+	attacksound = 'modular_skyrat/sound/weapons/club.ogg'
 	force = 18
 	wound_bonus = 5 //Great at breaking bones!
 	bare_wound_bonus = 5 //Very great in fact!
