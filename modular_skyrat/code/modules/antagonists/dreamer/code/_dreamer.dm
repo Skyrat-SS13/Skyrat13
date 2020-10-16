@@ -101,6 +101,7 @@
 	if(spawnturf)
 		var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawnturf)
 		H.fully_replace_character_name(H.name, "Trey Liam")
+		H.set_gender(MALE)
 		H.skin_tone = "caucasian1"
 		H.hair_color = "999"
 		H.hair_style = "Very Long Hair"
@@ -159,6 +160,7 @@
 		to_chat(H, "<span class='deadsay'>... What have i done!? ...</span>")
 		sleep(40)
 	SSticker.declare_completion()
+	SSticker.Reboot("The Dreamer has awakened.", "The Dreamer has awakened.", delay = 60 SECONDS)
 	to_chat(world, "<span class='deadsay'><span class='big bold'>The Dreamer has awakened!</span></span>")
 
 /datum/antagonist/dreamer/proc/cant_wake_up()
