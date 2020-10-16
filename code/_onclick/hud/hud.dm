@@ -182,8 +182,8 @@ GLOBAL_LIST_INIT(modular_ui_styles, list(
 			if(extra_inventory.len && screenmob.hud_used && screenmob.hud_used.extra_shown)
 				screenmob.client.screen += extra_inventory
 			if(redpains)
-				screenmob.client.screen += redpains
 				redpains.update_for_view(screenmob.client.view)
+				screenmob.client.screen += redpains
 			//
 			if(hotkeybuttons.len && !hotkey_ui_hidden)
 				screenmob.client.screen += hotkeybuttons
