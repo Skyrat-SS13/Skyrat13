@@ -178,5 +178,5 @@
 /datum/supply_pack/goody/telescopic_baton
 	name = "Telescopic Baton"
 	desc = "A sturdy extendable baton. Never know when you need it."
-	cost = 5000
+	cost = 1250
 	contains = list(/obj/item/melee/classic_baton/telescopic)
