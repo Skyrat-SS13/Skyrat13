@@ -2,7 +2,7 @@
 /obj/screen/fullscreen/noise
 	icon = 'modular_skyrat/icons/mob/noise.dmi'
 	icon_state = "blank"
-	screen_loc = "WEST, SOUTH to EAST, NORTH"
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = HUD_LAYER-1
 	plane = HUD_PLANE-1
