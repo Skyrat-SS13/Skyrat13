@@ -160,8 +160,8 @@
 		to_chat(H, "<span class='deadsay'>... What have i done!? ...</span>")
 		sleep(40)
 	SSticker.declare_completion()
-	SSticker.Reboot("The Dreamer has awakened.", "The Dreamer has awakened.", delay = 60 SECONDS)
 	to_chat(world, "<span class='deadsay'><span class='big bold'>The Dreamer has awakened!</span></span>")
+	SSticker.Reboot("The Dreamer has awakened.", "The Dreamer has awakened.", delay = 60 SECONDS)
 
 /datum/antagonist/dreamer/proc/cant_wake_up()
 	if(!iscarbon(owner.current))
