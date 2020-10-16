@@ -44,3 +44,9 @@
 	description = "<span class='deadsay'>I have seen someone die!</span>\n"
 	mood_change = -10
 	timeout = 15 MINUTES
+
+//Died
+/datum/mood_event/died
+	description = "<span class='deadsay'><b>I saw the afterlife, and i don't like it!</b></span>\n"
+	mood_change = -10
+	timeout = 15 MINUTES
