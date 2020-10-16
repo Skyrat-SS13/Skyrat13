@@ -461,7 +461,7 @@
 
 	noise_filter = new /obj/screen/fullscreen/noise()
 	noise_filter.icon = 'modular_skyrat/icons/mob/noise.dmi'
-	noise_filter.screen_loc = "EAST+0,SOUTH+0"
+	noise_filter.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	noise_filter.hud = src
 	screenoverlays += noise_filter
 
