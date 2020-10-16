@@ -147,18 +147,20 @@
 		C = what
 
 	if(istype(C)) 
-		if(AH_ticket)
+		if(AH_ticket && AH_ticket.state == AHELP_ACTIVE)
 			AH_ticket.AddInteraction(message, private) 
 		else if(C.tickets.len)
 			for(var/datum/admin_help/single_ticket in C.tickets)
-				single_ticket.AddInteraction(message, private)
+				if(single_ticket.state == AHELP_ACTIVE)
+					single_ticket.AddInteraction(message, private)
 			return C.tickets
 
 	var/list/ckey_tickets = GLOB.ahelp_tickets.CKey2ActiveTicket(what)
 	if(istext(what))	//ckey
-		if(AH_ticket)
+		if(AH_ticket && AH_ticket.state == AHELP_ACTIVE)
 			AH_ticket.AddInteraction(message, private)
 		else if(ckey_tickets.len)
 			for(var/datum/admin_help/single_ticket in ckey_tickets)
-				single_ticket.AddInteraction(message, private)
+				if(single_ticket.state == AHELP_ACTIVE)
+					single_ticket.AddInteraction(message, private)
 			return ckey_tickets
