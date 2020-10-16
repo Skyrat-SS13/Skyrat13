@@ -741,6 +741,7 @@
 	righthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/sabre_righthand.dmi'
 	icon_state = "sabre_sheath"
 	item_state = "sabre_sheath"
+	starting_sword = /obj/item/melee/sabre/hos
 
 /obj/item/storage/belt/sabre/hos/get_worn_belt_overlay(icon_file)
 	return mutable_appearance('modular_skyrat/icons/obj/bobstation/melee/belt.dmi', "sabre_sheath[length(contents) ? "-full" : ""]")
