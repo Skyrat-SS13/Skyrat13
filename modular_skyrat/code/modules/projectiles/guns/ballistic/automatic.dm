@@ -1,4 +1,4 @@
-//wt550 reskinning
+//WT550 reskinning
 /obj/item/gun/ballistic/automatic/wt550
 	name = "security semi-auto WT-550"
 	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds."
@@ -73,7 +73,15 @@
 	to_chat(M, "[src] is now skinned as '[choice]'.")
 	return TRUE
 
-
 /obj/item/gun/ballistic/automatic/wt550/update_icon()
 	..()
 	icon_state = "[skintype][magazine ? "-[CEILING((	(get_ammo(FALSE) / magazine.max_ammo) * 20) /4, 1)*4]" : "-0"]"	//Sprites only support up to 20.
+
+//AR-15
+/obj/item/gun/ballistic/automatic/ar
+	icon = 'modular_skyrat/icons/obj/bobstation/guns/rifle.dmi'
+	icon_state = "arg"
+
+/obj/item/gun/ballistic/automatic/ar/update_icon()
+	..()
+	icon_state = "[initial(icon_state)][chambered ? "" : "-e"][magazine ? "" : "-nomag"][safety ? "-safe" : ""]"

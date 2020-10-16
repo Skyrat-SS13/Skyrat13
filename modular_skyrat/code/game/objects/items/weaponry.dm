@@ -706,6 +706,60 @@
 	desc = "The safeword is police brutality."
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "blackbaton"
+	item_state = "blackbaton"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_righthand.dmi'
-	item_state = "blackbaton"
+
+//Butcher knife
+/obj/item/kitchen/knife/butcher
+	icon = 'modular_skyrat/icons/obj/bobstation/melee/cleaver.dmi'
+	icon_state = "cleaver"
+	item_state = "cleaver"
+	lefthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/cleaver_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/cleaver_righthand.dmi'
+
+//HoS sabre
+/obj/item/melee/sabre/hos
+	name = "soulbreaker sabre"
+	desc = "An elegant weapon, fit for the execution of those who break (sharia) law."
+	icon = 'modular_skyrat/icons/obj/bobstation/melee/sabre.dmi'
+	icon_state = "sabre"
+	item_state = "sabre"
+	lefthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/sabre_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/sabre_righthand.dmi'
+	attack_verb = list("slashed", "cut", "gutted")
+	force = 21
+	armour_penetration = 20 //Trade penetration for damage buff and weight loss
+	w_class = WEIGHT_CLASS_NORMAL
+	total_mass = 2.5
+
+/obj/item/storage/belt/sabre/hos
+	name = "sabre sheath"
+	desc = "An ornate sheath designed to hold an officer's sabre."
+	icon = 'modular_skyrat/icons/obj/bobstation/melee/sabre.dmi'
+	lefthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/sabre_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/sabre_righthand.dmi'
+	icon_state = "sabre_sheath"
+	item_state = "sabre_sheath"
+
+/obj/item/storage/belt/sabre/hos/get_worn_belt_overlay(icon_file)
+	return mutable_appearance('modular_skyrat/icons/obj/bobstation/melee/belt.dmi', "sabre_sheath[length(contents) ? "-full" : ""]")
+
+//Head of staff mace
+/obj/item/melee/mace
+	name = "steel mace"
+	desc = "The grandson of the club, yet the grandfather of the baseball bat. Used to subdue unruly employees."
+	icon = 'modular_skyrat/icons/obj/bobstation/melee/mace.dmi'
+	icon_state = "mace"
+	item_state = "mace"
+	lefthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/mace_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/mace_righthand.dmi'
+	force = 18
+	wound_bonus = 5 //Great at breaking bones!
+	bare_wound_bonus = 5 //Very great in fact!
+	w_class = WEIGHT_CLASS_NORMAL
+	total_mass = 3
+	slot_flags = ITEM_SLOT_BELT
+
+/obj/item/melee/mace/get_worn_belt_overlay(icon_file)
+	return mutable_appearance('modular_skyrat/icons/obj/bobstation/melee/belt.dmi', "mace")

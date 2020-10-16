@@ -1694,12 +1694,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	else
 
 		var/atk_verb = user.dna.species.attack_verb
-		if(!(target.mobility_flags & MOBILITY_STAND))
-			atk_verb = ATTACK_EFFECT_KICK
-
 		switch(atk_verb)
-			if(ATTACK_EFFECT_KICK)
-				user.do_attack_animation(target, ATTACK_EFFECT_KICK)
 			if(ATTACK_EFFECT_CLAW)
 				user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
 			if(ATTACK_EFFECT_SMASH)
@@ -1719,7 +1714,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		var/c_intent = user.combat_intent
 		switch(c_intent)
 			if(CI_STRONG)
-				damage *= 1.75 //fuck it, it's a fist, doesnt do much damage so we use 1.75x instead of 1.5x
+				damage *= 1.5 //fuck it
 			if(CI_WEAK)
 				damage *= 0.4
 
@@ -2013,16 +2008,22 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		if(attacker_style?.pacifism_check && HAS_TRAIT(M, TRAIT_PACIFISM)) // most martial arts are quite harmful, alas.
 			attacker_style = null
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			help(M, H, attacker_style)
 
-		if("grab")
+		if(INTENT_GRAB)
 			grab(M, H, attacker_style)
 
-		if("harm")
-			harm(M, H, attacker_style)
+		if(INTENT_HARM)
+			switch(M.special_attack)
+				if(SPECIAL_ATK_NONE)
+					harm(M, H, attacker_style)
+				if(SPECIAL_ATK_KICK)
+					kick(M, H, attacker_style)
+				if(SPECIAL_ATK_BITE)
+					bite(M, H, attacker_style)
 
-		if("disarm")
+		if(INTENT_DISARM)
 			disarm(M, H, attacker_style)
 
 /datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H, attackchain_flags = NONE, damage_multiplier = 1)

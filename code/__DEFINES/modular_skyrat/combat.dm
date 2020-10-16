@@ -9,6 +9,12 @@
 #define CI_FEINT "feint"
 #define CI_DEFAULT CI_FEINT
 
-//Dodge/parry
+//Dodge and parry
+#define DP_NONE	"none"
 #define DP_PARRY "parry"
 #define DP_DODGE "dodge"
+
+//Special attacks (kicking and biting)
+#define SPECIAL_ATK_NONE "none"
+#define SPECIAL_ATK_BITE "bite"
+#define SPECIAL_ATK_KICK "kick"
