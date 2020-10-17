@@ -67,7 +67,10 @@
 	if(P.firer && ishuman(P.firer))
 		var/mob/living/carbon/human/fireboy = P.firer
 		if(fireboy.mind)
-			switch(fireboy.mind.diceroll(GET_STAT_LEVEL(fireboy, dex)*0.3, GET_SKILL_LEVEL(fireboy, ranged)*0.7, mod = -GET_STAT_LEVEL(src, dex)))
+			var/victim_dex = 10
+			if(mind)
+				victim_dex = GET_STAT_LEVEL(src, dex)
+			switch(fireboy.mind.diceroll(GET_STAT_LEVEL(fireboy, dex)*0.3, GET_SKILL_LEVEL(fireboy, ranged)*0.7, mod = -victim_dex))
 				//Critical hit, DICE_SUCCESS just means we hit the target normally
 				if(DICE_CRIT_SUCCESS)
 					P.damage *= 2

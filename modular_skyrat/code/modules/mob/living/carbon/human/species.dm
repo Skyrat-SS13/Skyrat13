@@ -493,8 +493,9 @@
 
 		var/damage = (user.dna.species.punchdamagelow + user.dna.species.punchdamagehigh)/2
 
-		//Bites deal 2x the normal damage of punches assuming you're not british
-		damage *= 2
+		//Bites deal 0.5x the normal damage of punches assuming you're not british
+		//(but cause punctures)
+		damage *= 0.5
 		damage *= (teeth_part.get_teeth_amount()/teeth_part.max_teeth)
 
 		//Raw damage is affected by the user's strength
@@ -586,7 +587,7 @@
 			target.dismembering_strike(user, affecting.body_zone)
 
 		
-		target.apply_damage(damage, BRUTE, affecting, armor_block)
+		target.apply_damage(damage, BRUTE, affecting, armor_block, sharpness = SHARP_POINTY, wound_bonus = 5)
 		target.apply_damage(damage*2, STAMINA, affecting, armor_block)
 		log_combat(user, target, "bitten")
 		

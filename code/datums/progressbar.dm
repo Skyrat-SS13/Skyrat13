@@ -18,8 +18,6 @@
 	bar.plane = HUD_PLANE
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	bar.color = "#00FF7F"
-	bar.pixel_x = 16
-	bar.pixel_y = -25
 	user = User
 	if(user)
 		client = user.client
@@ -29,7 +27,8 @@
 	var/list/bars = user.progressbars[bar.loc]
 	bars.Add(src)
 	listindex = bars.len
-	bar.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
+	bar.pixel_y = 8 + (PROGRESSBAR_HEIGHT * (listindex - 1))
+	bar.pixel_x = 12
 
 /datum/progressbar/proc/update(progress)
 	if (!user || !user.client)

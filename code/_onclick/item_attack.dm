@@ -441,10 +441,12 @@
 				did_something = TRUE
 	//Critical hits and critical failures
 	if(user.mind)
-		var/victim_end = GET_STAT_LEVEL(src, end)
-		switch(user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.3, GET_SKILL_LEVEL(user, melee)*0.7, mod = -victim_end))
+		var/victim_end = 10
+		if(mind)
+			victim_end = GET_STAT_LEVEL(src, end)
+		switch(user.mind.diceroll(GET_STAT_LEVEL(user, str)*0.3, GET_SKILL_LEVEL(user, melee)*0.7, mod = -victim_end))
 			if(DICE_CRIT_SUCCESS)
-				var/crit = rand(1,4)
+				var/crit = rand(1,3)
 				switch(crit)
 					if(1)
 						visible_message("<span class='danger'><b>CRITICAL HIT!</b> [src] is stunned!")
@@ -455,12 +457,6 @@
 					if(3)
 						visible_message("<span class='danger'><b>CRITICAL HIT!</b> [src] is paralyzed!")
 						Paralyze(3 SECONDS)
-					if(4)
-						visible_message("<span class='danger'><b>CRITICAL HIT!</b> [src] is struck again by [user]!")
-						if(weapon)
-							weapon.attack(src, user)
-						else
-							user.UnarmedAttack(src)
 			if(DICE_CRIT_FAILURE)
 				var/crit = rand(1,2)
 				switch(crit)

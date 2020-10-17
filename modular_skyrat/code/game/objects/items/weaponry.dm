@@ -745,11 +745,6 @@
 	content_overlays = FALSE
 	onmob_overlays = FALSE
 
-/obj/item/storage/belt/sabre/hos/ComponentInitialize()
-	. = ..()
-	RegisterSignal(src, COMSIG_TRY_STORAGE_INSERT, .proc/update_icon)
-	RegisterSignal(src, COMSIG_TRY_STORAGE_TAKE, .proc/update_icon)
-
 /obj/item/storage/belt/sabre/hos/update_icon()
 	..()
 	if(length(contents))
