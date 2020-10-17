@@ -745,6 +745,10 @@
 	content_overlays = FALSE
 	onmob_overlays = FALSE
 
+/obj/item/storage/belt/sabre/hos/update_overlays()
+	. = ..()
+	update_icon()
+
 /obj/item/storage/belt/sabre/hos/update_icon()
 	..()
 	if(length(contents))
