@@ -73,8 +73,11 @@
 
 //stechkin v2
 /obj/item/gun/ballistic/automatic/pistol
+	name = "10mm pistol"
+	desc = "The stechkin 10mm pistol - A small, easily concealable 10mm handgun and timeless classic. Has a threaded barrel for suppressors."
 	icon = 'modular_skyrat/icons/obj/bobstation/guns/pistol.dmi'
 	icon_state = "stechkin"
+	fire_sound = 'modular_skyrat/sound/guns/pistoln1.ogg'
 
 /obj/item/gun/ballistic/automatic/pistol/update_icon()
 	..()

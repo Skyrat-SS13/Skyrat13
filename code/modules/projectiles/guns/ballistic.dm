@@ -93,7 +93,7 @@
 	// this proc assumes that the suppressor is already inside src
 	suppressed = S
 	S.oldsound = fire_sound
-	fire_sound = 'sound/weapons/gunshot_silenced.ogg'
+	fire_sound = sound_suppressed
 	w_class += S.w_class //so pistols do not fit in pockets when suppressed
 	update_icon()
 

@@ -104,6 +104,9 @@
 	var/safety = TRUE
 	var/safety_sound = 'modular_skyrat/sound/weapons/safety.ogg'
 
+	/// Suppressed sounds
+	var/sound_suppressed = 'modular_skyrat/sound/weapons/shot_silenced.ogg'
+
 /obj/item/gun/Initialize()
 	. = ..()
 	if(no_pin_required)
