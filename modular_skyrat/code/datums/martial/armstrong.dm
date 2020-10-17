@@ -465,18 +465,19 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 			head_slide.Grant(owner) */ //todo: make this a spell - action code is garbage.
 
 /datum/martial_art/armstrong/proc/add_exp(amt, mob/owner, mob/attacked)
-var/mob/living/carbon/C = attacked
-var/datum/dna/deeanda = C.dna
-if(!(deeanda?.monkey_aspect))
-	if(current_level == level_cap)
-		return
-	current_exp += amt
-	if(current_exp >= next_level_exp)
-		current_level++
-		var/next_level = current_level + 1
-		next_level_exp = next_level*35
-		do_level_up(owner)
-		to_chat(owner, "<span class = 'notice'><b>You level up! Your new level is [current_level].</b></span>")
+	var/mob/living/carbon/C = attacked
+	var/datum/dna/deeanda = C.dna
+	if(!(deeanda?.monkey_aspect))
+		if(current_level == level_cap)
+			return
+		current_exp += amt
+		if(current_exp >= next_level_exp)
+			current_level++
+			var/next_level = current_level + 1
+			next_level_exp = next_level*35
+			do_level_up(owner)
+			to_chat(owner, "<span class = 'notice'><b>You level up! Your new level is [current_level].</b></span>")
+	return
 
 /obj/item/clothing/mask/fakemoustache/italian/cursed //for those cheeky aliens who think they can circumvent hair
 	item_flags = DROPDEL
