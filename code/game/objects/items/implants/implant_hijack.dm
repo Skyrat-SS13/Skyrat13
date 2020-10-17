@@ -84,15 +84,21 @@
 		object.attack_ai(imp_in)
 	return TRUE
 
-/obj/item/implant/hijack/proc/hijack_remotely(obj/machinery/power/apc/apc)
-	if (apc.hijacker || hijacking)
+/obj/item/gps/internal/hax0r
+	gpstag = "Unauthorized acces"
+	desc = "You can hear the sound of angry calculators"
+
+/obj/item/implant/hijack/proc/hijack_remotely(obj/machinery/power/apc/apc, proximity_flag)
+	if(apc.hijacker || hijacking)
 		return FALSE //can't remotely hijack an already hijacked APC
 	hijacking = TRUE
 	to_chat(imp_in, "<span class='notice'>Establishing remote connection with APC.</span>")
-	if (!do_after(imp_in, 4 SECONDS,target=apc))
+	if(!do_after(imp_in, 4 SECONDS,target=apc))
 		to_chat(imp_in, "<span class='warning'>Aborting.</span>")
 		hijacking = FALSE
 		return TRUE
+	if(get_dist(imp_in,apc)>50)
+		to_chat(imp_in,"<span class ='warning'>Hacking APC's at such a distance might cause our position to be releaved! </span>")
 	if (LAZYLEN(imp_in.siliconaccessareas) >= HIJACK_APC_MAX_AMOUNT)
 		to_chat(src,"<span class='warning'>You are connected to too many APCs! Too many more will fry your brain.</span>")
 		hijacking = FALSE
@@ -103,7 +109,7 @@
 	imp_in.update_light()
 	imp_in.visible_message("<span class='warning'>[imp_in] starts glowing a with a hollow yellow light!</span>")
 	to_chat(imp_in, "<span class='notice'>Beginning hijack of APC.</span>")
-	if (do_after(imp_in, 21 SECONDS,target=apc))
+	if(do_after(imp_in, 21 SECONDS,target=apc))
 		apc.hijacker = imp_in
 		stealthmode = FALSE
 		apc.set_hijacked_lighting()
@@ -111,6 +117,13 @@
 		apc.update_icon()
 		stealthcooldown = world.time + 1 MINUTES + 30 SECONDS
 		toggle_eyes()
+		if(get_dist(imp_in,apc)>50)
+			var/obj/item/gps/gps = new/obj/item/gps/internal/hax0r(imp_in)
+			gps.tracking = TRUE
+			to_chat(imp_in,"<span class ='warning'>You feel like you are being watched </span>")
+			sleep(2400) // 4 Minutes worth of being chased for one APC , a small price to pay for no brain damage.
+			to_chat(imp_in,"<span class ='warning'>You no longer feel like you are being watched </span>")
+			gps.tracking = FALSE
 	else
 		to_chat(imp_in, "<span class='warning'>Aborting.</span>")
 	hijacking = FALSE
