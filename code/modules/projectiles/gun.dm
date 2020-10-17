@@ -102,6 +102,7 @@
 
 	/// Safety first!
 	var/safety = TRUE
+	var/safety_sound = 'modular_skyrat/sound/weapons/safety.ogg'
 
 /obj/item/gun/Initialize()
 	. = ..()
@@ -180,6 +181,7 @@
 	safety = !safety
 	if(user)
 		to_chat(user, "<span class='notice'>I [safety ? "enable" : "disable"] \the [src]'s safety mechanism.</span>")
+		playsound(get_turf(src), safety_sound, 50, 0)
 
 /obj/item/gun/equipped(mob/living/user, slot)
 	. = ..()

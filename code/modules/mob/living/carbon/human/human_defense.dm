@@ -64,22 +64,25 @@
 					playsound(get_turf(src), dna?.species?.miss_sound, 70)
 					visible_message("<span class='danger'>[src] dodges [P]!</span>")
 					return BULLET_ACT_FORCE_PIERCE
+	//Dice roll to handle missing
 	if(P.firer && ishuman(P.firer))
 		var/mob/living/carbon/human/fireboy = P.firer
 		if(fireboy.mind)
 			var/victim_dex = 10
 			if(mind)
 				victim_dex = GET_STAT_LEVEL(src, dex)
-			switch(fireboy.mind.diceroll(GET_STAT_LEVEL(fireboy, dex)*0.3, GET_SKILL_LEVEL(fireboy, ranged)*0.7, mod = -victim_dex))
-				//Critical hit, DICE_SUCCESS just means we hit the target normally
-				if(DICE_CRIT_SUCCESS)
-					P.damage *= 2
-					visible_message("<span class='danger'><b>CRITICAL HIT!</b> [src] is mauled by [P]!</span>")
+			switch(fireboy.mind.diceroll(GET_STAT_LEVEL(fireboy, dex)*0.5, GET_SKILL_LEVEL(fireboy, ranged)*0.5, mod = -victim_dex/2))
 				//Missed shot
 				if(DICE_FAILURE, DICE_CRIT_FAILURE)
 					if(fireboy != src)
 						visible_message("<span class='danger'><b>FAILURE!</b> [P] misses [src] entirely!</span>")
 						return BULLET_ACT_FORCE_PIERCE
+	//Dice roll to handle crits
+	if(mind)
+		switch(mind.diceroll)
+			if(DICE_CRIT_FAILURE)
+				visible_message("<span class='danger'><b>CRITICAL HIT!</b> [P] mauls [src]!")
+				P.damage *= 2
 	return ..()
 
 /mob/living/carbon/human/proc/check_martial_melee_block()

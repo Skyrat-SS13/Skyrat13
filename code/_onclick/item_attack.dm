@@ -438,13 +438,12 @@
 				visible_message("<span class='danger'>[src]'s teeth sail off in an arc!</span>",
 								"<span class='userdanger'>Your teeth sail off in an arc!</span>",
 								"<span class='danger'>You hear a nasty cracking sound!</span>")
+				Stun(2 SECONDS)
+				Stumble(4 SECONDS)
 				did_something = TRUE
 	//Critical hits and critical failures
 	if(user.mind)
-		var/victim_end = 10
-		if(mind)
-			victim_end = GET_STAT_LEVEL(src, end)
-		switch(user.mind.diceroll(GET_STAT_LEVEL(user, str)*0.3, GET_SKILL_LEVEL(user, melee)*0.7, mod = -victim_end))
+		switch(user.mind.diceroll())
 			if(DICE_CRIT_SUCCESS)
 				var/crit = rand(1,3)
 				switch(crit)
@@ -457,6 +456,7 @@
 					if(3)
 						visible_message("<span class='danger'><b>CRITICAL HIT!</b> [src] is paralyzed!")
 						Paralyze(3 SECONDS)
+				did_something = TRUE
 			if(DICE_CRIT_FAILURE)
 				var/crit = rand(1,2)
 				switch(crit)
@@ -472,4 +472,5 @@
 								weapon.melee_attack_chain(user, user, flags = ATTACKCHAIN_RIGHTCLICK)
 							else
 								user.UnarmedAttack(user, ATTACKCHAIN_RIGHTCLICK)
+				did_something = TRUE
 	return did_something

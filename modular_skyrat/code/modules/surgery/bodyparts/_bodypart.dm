@@ -1411,9 +1411,6 @@
 /obj/item/bodypart/proc/update_icon_dropped()
 	cut_overlays()
 	var/list/standing = get_limb_icon(1)
-	if(!standing.len)
-		icon_state = initial(icon_state)//no overlays found, we default back to initial icon.
-		return
 	for(var/image/I in standing)
 		I.pixel_x = px_x
 		I.pixel_y = px_y
@@ -1910,18 +1907,22 @@
 
 	if(is_organic_limb() || render_like_organic)
 		limb.icon = base_bp_icon || 'icons/mob/human_parts.dmi'
-		if(should_draw_gender)
-			limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
-		else if (use_digitigrade)
-			if(base_bp_icon == DEFAULT_BODYPART_ICON_ORGANIC) //Compatibility hack for the current iconset.
-				limb.icon_state = "[digitigrade_type]_[use_digitigrade]_[body_zone]"
-			else
-				limb.icon_state = "[species_id]_[digitigrade_type]_[use_digitigrade]_[body_zone]"
+		if(is_dead())
+			limb.icon = base_bp_icon
+			species_id = "skeleton"
 		else
-			limb.icon_state = "[species_id]_[body_zone]"
+			if(should_draw_gender)
+				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
+			else if(use_digitigrade)
+				if(base_bp_icon == DEFAULT_BODYPART_ICON_ORGANIC) //Compatibility hack for the current iconset.
+					limb.icon_state = "[digitigrade_type]_[use_digitigrade]_[body_zone]"
+				else
+					limb.icon_state = "[species_id]_[digitigrade_type]_[use_digitigrade]_[body_zone]"
+			else
+				limb.icon_state = "[species_id]_[body_zone]"
 
 		// Body markings
-		if(!isnull(body_markings))
+		if(!is_dead() && !isnull(body_markings))
 			if(species_id == "husk")
 				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[body_zone]", -MARKING_LAYER, image_dir)
 			else if(species_id == "husk" && use_digitigrade)

@@ -16,6 +16,11 @@
 	relative_size = 70 //Cum is stored in the brain, and i have a headache
 	pain_multiplier = 0 //We don't count towards bodypart pain
 
+/obj/item/organ/brain/Destroy()
+	. = ..()
+	if(brainmob)
+		brainmob.ghostize(FALSE)
+
 /obj/item/organ/brain/Initialize()
 	. = ..()
 	damage_threshold_value = round(maxHealth / damage_threshold_count)

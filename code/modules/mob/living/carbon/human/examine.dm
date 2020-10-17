@@ -338,6 +338,18 @@
 			msg += "[t_He] look[p_s()] really grossed out.\n"
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			msg += "[t_He] look[p_s()] extremely disgusted.\n"
+	var/datum/component/mood/moodie = GetComponent(/datum/component/mood)
+	if(moodie && !(user == src && HAS_TRAIT(user, TRAIT_SCREWY_MOOD)))
+		switch(moodie.sanity)
+			if(-INFINITY to SANITY_DISTURBED)
+				msg += "[t_He] look[p_s()] miserable.\n"
+			if(SANITY_DISTURBED to SANITY_NEUTRAL)
+				msg += "[t_He] look[p_s()] sad.\n"
+			if(SANITY_NEUTRAL to SANITY_GREAT)
+				msg += "[t_He] look[p_s()] happy.\n"
+			if(SANITY_GREAT to INFINITY)
+				msg += "[t_He] look[p_s()] very happy.\n"
+	
 	if(!screwy_self)
 		if(ShowAsPaleExamine())
 			var/apparent_blood_volume = blood_volume

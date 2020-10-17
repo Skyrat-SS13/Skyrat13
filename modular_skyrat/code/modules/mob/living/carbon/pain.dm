@@ -111,6 +111,9 @@
 						hud_used.pains.icon_state = "pain6"
 			else
 				hud_used.pains.icon_state = "pain0"
+			//modo waker
+			if(HAS_TRAIT(src, TRAIT_NOPAIN))
+				hud_used.pains.icon_state = "paind"
 		else
 			hud_used.pains.icon_state = "pain7"
 

@@ -45,3 +45,12 @@
 /obj/item/ammo_box/magazine/m45/update_icon()
 	..()
 	icon_state = "[initial(icon_state)]-[ammo_count()]"
+
+//Stechkin
+/obj/item/ammo_box/magazine/m10mm
+	icon = 'modular_skyrat/icons/obj/bobstation/ammo/pistol.dmi'
+	icon_state = "pistol10mm"
+
+/obj/item/ammo_box/magazine/m10mm/update_icon()
+	..()
+	icon_state = "[initial(icon_state)]-[ammo_count() ? "8" : "0"]"
