@@ -85,7 +85,7 @@
 	return TRUE
 
 /obj/item/gps/internal/hax0r
-	gpstag = "Unauthorized acces"
+	gpstag = "Unauthorized Access"
 	desc = "You can hear the sound of angry calculators"
 
 /obj/item/implant/hijack/proc/hijack_remotely(obj/machinery/power/apc/apc, proximity_flag)
@@ -98,7 +98,7 @@
 		hijacking = FALSE
 		return TRUE
 	if(get_dist(imp_in,apc)>50)
-		to_chat(imp_in,"<span class ='warning'>Hacking APC's at such a distance might cause our position to be releaved! </span>")
+		to_chat(imp_in,"<span class ='warning'>Hacking APC's at such a distance might cause our position to be revealed! </span>")
 	if (LAZYLEN(imp_in.siliconaccessareas) >= HIJACK_APC_MAX_AMOUNT)
 		to_chat(src,"<span class='warning'>You are connected to too many APCs! Too many more will fry your brain.</span>")
 		hijacking = FALSE
