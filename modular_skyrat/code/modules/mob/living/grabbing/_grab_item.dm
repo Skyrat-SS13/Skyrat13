@@ -29,13 +29,13 @@
 		if(grasped_mob)
 			playsound(get_turf(grasping_mob), 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			if(grasped_mob == grasping_mob)
-				grasped_mob.visible_message("<span class='warning'>[grasping_mob] stops grabbing [grasping_mob.p_themselves()][grasped_part ? " by [grasping_mob.p_their()] [grasped_part.name]" : ""]!",\
-											"<span class='userdanger'>You stop grabbing yourself[grasped_part ? " by your [grasped_part.name]" : ""]!")
+				grasped_mob.visible_message("<span class='warning'>[grasping_mob] stops grabbing [grasping_mob.p_themselves()][grasped_part ? " by [grasping_mob.p_their()] [grasped_part.name]" : ""]!</span>",\
+											"<span class='userdanger'>You stop grabbing yourself[grasped_part ? " by your [grasped_part.name]" : ""]!</span>")
 			else
 				grasped_mob.visible_message("<span class='danger'>[grasping_mob] stops grabbing [grasped_mob][grasped_part ? " by [grasped_mob.p_their()] [grasped_part.name]": ""]!</span>",\
-										"<span class='userdanger'>[grasping_mob] stops grabbing you[grasped_part ? " by your [grasped_part.name]" : ""]!",\
+										"<span class='userdanger'>[grasping_mob] stops grabbing you[grasped_part ? " by your [grasped_part.name]" : ""]!</span>",\
 										ignored_mobs = grasping_mob)
-				to_chat(grasping_mob, "<span class='danger'>You stop grabbing [grasped_mob][grasped_part ? " by [grasped_mob.p_their()] [grasped_part.name]" : ""]!")
+				to_chat(grasping_mob, "<span class='danger'>You stop grabbing [grasped_mob][grasped_part ? " by [grasped_mob.p_their()] [grasped_part.name]" : ""]!</span>")
 		if(grasping_mob.pulling == grasped_mob)
 			grasping_mob.stop_pulling()
 		grasping_mob.setGrabState(GRAB_NOTGRABBING)
