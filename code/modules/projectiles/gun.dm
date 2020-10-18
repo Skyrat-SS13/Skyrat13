@@ -286,7 +286,7 @@
 	
 	//Critical failures and failures
 	if(user.mind)
-		switch(user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.4, GET_SKILL_LEVEL(user, ranged)*0.6))
+		switch(user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.5, GET_SKILL_LEVEL(user, ranged)))
 			if(DICE_FAILURE)
 				to_chat(user, "<span class='userdanger'>FAILURE! [src] makes a click but fails to fire!")
 				shoot_with_empty_chamber(user, TRUE)
