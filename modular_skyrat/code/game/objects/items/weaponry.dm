@@ -746,9 +746,9 @@
 	item_state = "sabre_sheath"
 	starting_sword = /obj/item/melee/sabre/hos
 	content_overlays = TRUE
-	onmob_overlays = TRUE
+	onmob_overlays = FALSE
 
-/obj/item/storage/belt/sabre/hos/get_worn_belt_overlay(icon_file)
+/obj/item/storage/belt/sabre/hos/get_belt_overlay()
 	return mutable_appearance(src.icon, "sabre_sheath[length(contents) ? "-full" : ""]")
 
 //Head of staff mace
@@ -768,5 +768,5 @@
 	total_mass = 3
 	slot_flags = ITEM_SLOT_BELT
 
-/obj/item/melee/mace/get_worn_belt_overlay(icon_file)
+/obj/item/melee/mace/get_belt_overlay()
 	return mutable_appearance('modular_skyrat/icons/obj/bobstation/melee/belt.dmi', "mace")
