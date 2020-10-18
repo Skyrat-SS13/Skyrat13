@@ -4,7 +4,7 @@
 #define START_STAT 5 //Stat level you get by default
 
 //Skill defines
-#define MIN_SKILL 0 //Minimum level for a skill
+#define MIN_SKILL 1 //Minimum level for a skill
 #define MAX_SKILL 20 //Maximum level for a skill
 #define START_SKILL 1 //Skill level you get by default
 #define SKILL_LVL_REQUIREMENT 100 //XP required to level up skills
