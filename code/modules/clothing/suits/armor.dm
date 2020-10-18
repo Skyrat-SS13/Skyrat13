@@ -361,7 +361,7 @@
 	item_state = "hardsuit-secexo"
 	max_integrity = 250
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 55, "acid" = 70, "wound" = 15)
-	allowed = list(/obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/flashlight, /obj/item/gun/ballistic, /obj/item/gun/energy, /obj/item/kitchen/knife/combat, /obj/item/melee/baton, /obj/item/melee/classic_baton/telescopic, /obj/item/reagent_containers/spray/pepper, /obj/item/restraints/handcuffs, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/blunderbuss) //I had to do this all snowflake style because it just would not accept any sort of global list, fucking kill me
+	allowed = list(/obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/flashlight, /obj/item/gun/ballistic, /obj/item/gun/energy, /obj/item/kitchen/knife/combat, /obj/item/melee/baton, /obj/item/melee/classic_baton, /obj/item/melee/mace, /obj/item/melee/sabre/hos, /obj/item/reagent_containers/spray/pepper, /obj/item/restraints/handcuffs, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/blunderbuss) //I had to do this all snowflake style because it just would not accept any sort of global list, fucking kill me
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor
 	clothing_flags = THICKMATERIAL
 	mutantrace_variation = STYLE_DIGITIGRADE

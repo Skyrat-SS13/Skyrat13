@@ -462,7 +462,7 @@
 	//Critical hits and critical failures
 	if(user.mind)
 		switch(rand(1,100))
-			if(95 to 100)
+			if(97 to 100)
 				var/crit = rand(1,3)
 				switch(crit)
 					if(1)
@@ -475,7 +475,7 @@
 						visible_message("<span class='danger'><b>CRITICAL HIT!</b> [src] is paralyzed!")
 						Paralyze(3 SECONDS)
 				did_something = TRUE
-			if(0 to 5)
+			if(0 to 3)
 				var/crit = rand(1,2)
 				switch(crit)
 					if(1)
