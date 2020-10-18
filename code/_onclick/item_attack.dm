@@ -487,8 +487,8 @@
 						if(user != src)
 							user.visible_message("<span class='danger'><b>CRITICAL FAILURE!</b> [user] hits [p_themselves()]!")
 							if(weapon)
-								weapon.melee_attack_chain(user, user, flags = ATTACKCHAIN_RIGHTCLICK)
+								weapon.melee_attack_chain(user, user)
 							else
-								user.UnarmedAttack(user, ATTACKCHAIN_RIGHTCLICK)
+								user.UnarmedAttack(user)
 				did_something = TRUE
 	return did_something
