@@ -86,6 +86,7 @@
 		cut_overlays()
 		if(suppressed)
 			var/mutable_appearance/suppressor_appearance = mutable_appearance(src.icon, "[initial(icon_state)]-suppressor")
+			suppressor_appearance.pixel_x = 4
 			add_overlay(suppressor_appearance)
 
 //M1911
