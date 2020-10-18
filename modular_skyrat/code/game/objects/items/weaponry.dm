@@ -733,6 +733,9 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	total_mass = 2.5
 
+/obj/item/melee/sabre/hos/get_belt_overlay()
+	return mutable_appearance(src.icon, "sabre-overlay")
+
 /obj/item/storage/belt/sabre/hos
 	name = "sabre sheath"
 	desc = "An ornate sheath designed to hold an officer's sabre."
@@ -742,13 +745,8 @@
 	icon_state = "sabre_sheath"
 	item_state = "sabre_sheath"
 	starting_sword = /obj/item/melee/sabre/hos
-	content_overlays = FALSE
-	onmob_overlays = FALSE
-
-/obj/item/storage/belt/sabre/hos/update_icon()
-	..()
-	if(length(contents))
-		icon_state = "[initial(icon_state)]-full"
+	content_overlays = TRUE
+	onmob_overlays = TRUE
 
 /obj/item/storage/belt/sabre/hos/get_worn_belt_overlay(icon_file)
 	return mutable_appearance(src.icon, "sabre_sheath[length(contents) ? "-full" : ""]")
