@@ -88,7 +88,7 @@
 	gpstag = "Unauthorized Access"
 	desc = "You can hear the sound of angry calculators"
 
-/obj/item/implant/hijack/proc/hijack_remotely(obj/machinery/power/apc/apc, proximity_flag)
+/obj/item/implant/hijack/proc/hijack_remotely(obj/machinery/power/apc/apc)
 	if(apc.hijacker || hijacking)
 		return FALSE //can't remotely hijack an already hijacked APC
 	hijacking = TRUE
