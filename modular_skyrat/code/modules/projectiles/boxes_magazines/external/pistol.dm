@@ -11,7 +11,7 @@
 
 /obj/item/ammo_box/magazine/m10mm/makeshift/update_icon_state()
 	..()
-	icon_state = "9x19pms-[ammo_count() ? "3" : "0"]"
+	icon_state = "[initial(icon_state)]-[ammo_count() ? "3" : "0"]"
 
 //USP-Match
 /obj/item/ammo_box/magazine/usp
@@ -44,7 +44,7 @@
 
 /obj/item/ammo_box/magazine/m45/update_icon()
 	..()
-	icon_state = "pistol45-[ammo_count()]"
+	icon_state = "[initial(icon_state)]-[ammo_count()]"
 
 //Stechkin
 /obj/item/ammo_box/magazine/m10mm
@@ -53,4 +53,4 @@
 
 /obj/item/ammo_box/magazine/m10mm/update_icon()
 	..()
-	icon_state = "pistol10mm-[ammo_count() ? "8" : "0"]"
+	icon_state = "[initial(icon_state)]-[ammo_count() ? "8" : "0"]"

@@ -67,7 +67,7 @@
 	..()
 	icon_state = "[initial(icon_state)][chambered ? "" : "-e"][magazine ? "" : "-nomag"][safety ? "-safe" : ""]"
 
-//stechkin v2
+//Stechkin v2
 /obj/item/gun/ballistic/automatic/pistol
 	name = "10mm pistol"
 	desc = "The stechkin 10mm pistol - A small, easily concealable 10mm handgun and timeless classic. Has a threaded barrel for suppressors."
@@ -87,3 +87,19 @@
 		if(suppressed)
 			var/mutable_appearance/suppressor_appearance = mutable_appearance(src.icon, "[initial(icon_state)]-suppressor")
 			add_overlay(suppressor_appearance)
+
+//M1911
+/obj/item/gun/ballistic/automatic/pistol/m1911
+	icon = 'modular_skyrat/icons/obj/bobstation/guns/pistol.dmi'
+	icon_state = "pistol45"
+	item_state = "pistol45"
+	lefthand_file = 'modular_skyrat/icons/obj/bobstation/guns/inhands/pistol_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/obj/bobstation/guns/inhands/pistol_righthand.dmi'
+	fire_sound = 'modular_skyrat/sound/guns/pistoln1.ogg'
+
+/obj/item/gun/ballistic/automatic/pistol/m1911/update_icon()
+	..()
+	icon_state = "[initial(icon_state)][chambered ? "" : "-e"][magazine ? "" : "-nomag"][safety ? "-safe" : ""]"
+
+/obj/item/gun/ballistic/automatic/pistol/m1911/kitchengun
+	icon_state = "pistol45"

@@ -9,19 +9,19 @@
 	name = "First Aid"
 
 /datum/skills/firstaid/proc/get_medicalstack_mod()
-	return clamp((MAX_SKILL/2)/level, 0.5, 4)
+	return clamp((MAX_SKILL/2)/max(1, level), 0.5, 4)
 
 /datum/skills/surgery
 	name = "Surgery"
 
 /datum/skills/surgery/proc/no_anesthesia_punishment()
-	return (0.2 + round(0.6 * MAX_SKILL/level, 0.1))
+	return (0.2 + round(0.6 * MAX_SKILL/max(1, level), 0.1))
 
 /datum/skills/surgery/proc/get_speed_mod()
-	return clamp((MAX_SKILL/2)/level, 0.35, 2.5)
+	return clamp((MAX_SKILL/2)/max(1, level), 0.35, 2.5)
 
 /datum/skills/surgery/proc/get_probability_mod()
-	return clamp((MAX_SKILL/2)/level, 0.3, 2.5)
+	return clamp((MAX_SKILL/2)/max(1, level), 0.3, 2.5)
 
 /datum/skills/chemistry
 	name = "Chemistry"
