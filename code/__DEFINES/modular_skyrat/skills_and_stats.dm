@@ -1,7 +1,7 @@
 //Stat defines
 #define MIN_STAT 1 //Minimum level for a stat
 #define MAX_STAT 20 //Maximum level for a stat
-#define START_STAT 5 //Stat level you get by default
+#define START_STAT 10 //Stat level you get by default
 
 //Skill defines
 #define MIN_SKILL 1 //Minimum level for a skill
