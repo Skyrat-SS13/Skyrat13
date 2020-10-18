@@ -342,13 +342,13 @@
 	if(moodie && !(user == src && HAS_TRAIT(user, TRAIT_SCREWY_MOOD)))
 		switch(moodie.sanity)
 			if(-INFINITY to SANITY_DISTURBED)
-				msg += "[t_He] look[p_s()] miserable.\n"
+				msg += "<span class='notice'>[t_He] look[p_s()] miserable.</span>\n"
 			if(SANITY_DISTURBED to SANITY_NEUTRAL)
-				msg += "[t_He] look[p_s()] sad.\n"
+				msg += "<span class='notice'>[t_He] look[p_s()] sad.</span>\n"
 			if(SANITY_NEUTRAL to SANITY_GREAT)
-				msg += "[t_He] look[p_s()] happy.\n"
+				msg += "<span class='notice'>[t_He] look[p_s()] happy.</span>\n"
 			if(SANITY_GREAT to INFINITY)
-				msg += "[t_He] look[p_s()] very happy.\n"
+				msg += "<span class='notice'>[t_He] look[p_s()] very happy.</span>\n"
 	
 	if(!screwy_self)
 		if(ShowAsPaleExamine())
