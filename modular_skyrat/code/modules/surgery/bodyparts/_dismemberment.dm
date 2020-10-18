@@ -181,6 +181,8 @@
 	update_icon_dropped()
 	if(destroyed)
 		for(var/obj/item/organ/O in src)
+			if(istype(O, /obj/item/organ/brain))
+				C.ghostize(voluntary = FALSE)
 			qdel(O)
 	
 	//Start processing rotting

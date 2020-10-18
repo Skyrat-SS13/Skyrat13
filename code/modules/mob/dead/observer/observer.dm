@@ -307,7 +307,7 @@ Works together with spawning an observer, noted above.
 	voluntary_ghosted = voluntary
 	if(!key || key[1] == "@" || (sig_flags & COMPONENT_BLOCK_GHOSTING))
 		return //mob has no key, is an aghost or some component hijacked.
-	if((stat == DEAD) && iscarbon(src))
+	if((stat == DEAD) && iscarbon(src) && !(special || voluntary))
 		var/mob/living/carbon/C = src
 		if(world.time <= (C.timeofdeath + 1.5 MINUTES))
 			to_chat(C, "<span class='deadsay'>Your soul has yet to find peace.<br>Wait for <b>[round(((C.timeofdeath + 1.5 MINUTES) - world.time)/(1 SECONDS))]</b> more seconds.</span>")

@@ -19,7 +19,7 @@
 /obj/item/organ/brain/Destroy()
 	. = ..()
 	if(brainmob)
-		brainmob.ghostize(FALSE)
+		brainmob.ghostize(voluntary = FALSE)
 
 /obj/item/organ/brain/Initialize()
 	. = ..()
