@@ -296,9 +296,9 @@
 	if(user.mind && GET_STAT_LEVEL(user, str) < 10)
 		switch(user.mind.diceroll(STAT_DATUM(str)))
 			if(DICE_FAILURE)
-				totitemdamage *= 0.65
+				. *= 0.65
 			if(DICE_CRIT_FAILURE)
-				totitemdamage *= 0.25
+				. *= 0.25
 	
 	if(!user.mind || !I.used_skills)
 		return
