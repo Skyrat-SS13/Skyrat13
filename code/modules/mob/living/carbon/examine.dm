@@ -53,6 +53,8 @@
 				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
 		if(BP.etching)
 			msg += "<B>[t_His] [BP.name] has \"[BP.etching]\" etched on it!</B>\n"
+		if(BP.is_dead())
+			msg += "<span class='deadsay'><B>[t_His] [BP.name] is completely necrotic!</B></span>\n"
 		for(var/datum/wound/W in BP.wounds)
 			if(W.get_examine_description(user))
 				msg += "[W.get_examine_description(user)]\n"
