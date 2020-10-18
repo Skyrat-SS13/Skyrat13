@@ -79,7 +79,7 @@
 						return BULLET_ACT_FORCE_PIERCE
 	//Dice roll to handle crits
 	if(mind)
-		switch(mind.diceroll)
+		switch(mind.diceroll())
 			if(DICE_CRIT_FAILURE)
 				visible_message("<span class='danger'><b>CRITICAL HIT!</b> [P] mauls [src]!")
 				P.damage *= 2
