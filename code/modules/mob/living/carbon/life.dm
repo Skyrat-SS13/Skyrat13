@@ -95,10 +95,10 @@
 
 	var/datum/gas_mixture/breath
 
-	if(is_asystole() && !getorganslot(ORGAN_SLOT_BREATHING_TUBE) && !chem_effects[CE_STABLE])
-		if(nervous_system_failure() || (pulledby && pulledby.grab_state >= GRAB_KILL) || HAS_TRAIT(src, TRAIT_MAGIC_CHOKE) || (lungs && CHECK_BITFIELD(lungs.organ_flags, ORGAN_FAILING | ORGAN_DEAD)))
+	if(!getorganslot(ORGAN_SLOT_BREATHING_TUBE) && !chem_effects[CE_STABLE])
+		if(is_asystole() || nervous_system_failure() || (pulledby && pulledby.grab_state >= GRAB_KILL) || HAS_TRAIT(src, TRAIT_MAGIC_CHOKE) || (lungs && CHECK_BITFIELD(lungs.organ_flags, ORGAN_FAILING | ORGAN_DEAD)))
 			losebreath++  //You can't breath at all!
-		else
+		else if(InShock())
 			losebreath += 0.25 //You're having trouble breathing.
 
 	//Suffocate
