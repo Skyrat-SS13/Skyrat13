@@ -148,7 +148,7 @@
 				return TRUE
 			return FALSE
 	return ..()
-
+/* New grabbing system in modular_skyrat
 /atom/movable/proc/start_pulling(atom/movable/AM, state, force = move_force, supress_message = FALSE)
 	if(QDELETED(AM))
 		return FALSE
@@ -228,7 +228,7 @@
 			return
 	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)		//separated from our puller and not in the middle of a diagonal move.
 		pulledby.stop_pulling()
-
+*/
 /atom/movable/Destroy(force)
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
@@ -605,7 +605,7 @@
 //Returns an atom's power cell, if it has one. Overload for individual items.
 /atom/movable/proc/get_cell()
 	return
-
+/* New grabbing in modular_skyrat
 /atom/movable/proc/can_be_pulled(user, grab_state, force)
 	if(src == user || !isturf(loc))
 		return FALSE
@@ -619,7 +619,7 @@
 /// This exists to act as a hook for behaviour
 /atom/movable/proc/setGrabState(newstate)
 	grab_state = newstate
-
+*/
 /obj/item/proc/do_pickup_animation(atom/target)
 	set waitfor = FALSE
 	if(!istype(loc, /turf))

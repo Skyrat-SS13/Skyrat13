@@ -36,10 +36,7 @@
 		return TRUE
 	
 	if(victim && limb?.body_zone)
-		var/obj/screen/zone_sel/sel = victim.hud_used?.zone_select
-		if(istype(sel))
-			sel.set_selected_zone(limb?.body_zone)
-			victim.grabbedby(victim)
+		victim.attempt_self_grasp(victim, limb.body_zone)
 		return
 
 /datum/wound/mechanical/pierce/wound_injury(datum/wound/old_wound)

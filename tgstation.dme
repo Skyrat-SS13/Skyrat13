@@ -4035,6 +4035,8 @@
 #include "modular_skyrat\code\modules\mob\living\carbon\skills_stats\skills.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\skills_stats\stats.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\skills_stats\verbs.dm"
+#include "modular_skyrat\code\modules\mob\living\grabbing\_grab_item.dm"
+#include "modular_skyrat\code\modules\mob\living\grabbing\_grabbing.dm"
 #include "modular_skyrat\code\modules\mob\living\silicon\silicon.dm"
 #include "modular_skyrat\code\modules\mob\living\silicon\robot\robot.dm"
 #include "modular_skyrat\code\modules\mob\living\silicon\robot\robot_modules.dm"

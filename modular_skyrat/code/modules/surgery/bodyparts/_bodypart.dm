@@ -127,7 +127,7 @@
 	var/mob/living/brain/brainmob = null
 	var/obj/item/organ/brain/brain = null
 	/// If something is currently grasping this bodypart and trying to staunch bleeding (see [/obj/item/grasp_self])
-	var/obj/item/self_grasp/grasped_by
+	var/obj/item/grab/grasped_by
 
 	/// How much pain this limb is feeling
 	var/pain_dam = 0
@@ -1391,14 +1391,14 @@
 /obj/item/bodypart/proc/is_broken()
 	. = FALSE
 	for(var/datum/wound/W in wounds)
-		if(((W.wound_type == WOUND_LIST_BLUNT) || (W.wound_type == WOUND_LIST_BLUNT_MECHANICAL)) && (W.severity >= WOUND_SEVERITY_SEVERE)) //We have a fracture
-			. = TRUE
+		if((istype(W, /datum/wound/blunt) || istype(W, /datum/wound/mechanical/blunt)) && (W.severity >= WOUND_SEVERITY_SEVERE)) //We have a fracture
+			return TRUE
 
 /obj/item/bodypart/proc/is_dislocated()
 	. = FALSE
 	for(var/datum/wound/W in wounds)
-		if(((W.wound_type == WOUND_LIST_BLUNT) || (W.wound_type == WOUND_LIST_BLUNT_MECHANICAL)) && (W.severity >= WOUND_SEVERITY_MODERATE)) //We have a dislocation/fracture
-			. = TRUE
+		if(istype(W, /datum/wound/blunt) || istype(W, /datum/wound/mechanical/blunt)) //We have a dislocation/fracture
+			return TRUE
 
 /obj/item/bodypart/proc/kill_limb()
 	status |= BODYPART_DEAD
@@ -1689,9 +1689,6 @@
 
 	if(grasped_by)
 		bleed_rate *= 0.7
-	
-	if(!bleed_rate)
-		QDEL_NULL(grasped_by)
 
 	return bleed_rate
 
@@ -1756,7 +1753,7 @@
 		C = owner
 		no_update = FALSE
 
-	if(HAS_TRAIT(C, TRAIT_HUSK) && is_organic_limb())
+	if((HAS_TRAIT(C, TRAIT_HUSK) || germ_level >= INFECTION_LEVEL_TWO) && is_organic_limb())
 		species_id = "husk" //overrides species_id
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		should_draw_gender = FALSE
@@ -1996,7 +1993,7 @@
 		var/grayscale = FALSE
 		if(!draw_color)
 			draw_color = SKINTONE2HEX(skin_tone)
-			grayscale = color_src == CUSTOM_SKINTONE //Cause human limbs have a very pale pink hue by def.
+			grayscale = (color_src == CUSTOM_SKINTONE) //Cause human limbs have a very pale pink hue by def.
 		else
 			draw_color = "#[draw_color]"
 		if(draw_color)

@@ -203,6 +203,11 @@
 		if(holder.held_mob)
 			throwable_mob = holder.held_mob
 			holder.release()
+	
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/grabby = I
+		if(grabby.grasped_mob && (grabby.grasped_mob != src))
+			throwable_mob = grabby.grasped_mob
 
 	if(!I || throwable_mob)
 		if(!throwable_mob && pulling && isliving(pulling) && grab_state >= GRAB_AGGRESSIVE)

@@ -1,4 +1,6 @@
-// Unsorted, miscellaneous bodypart interactions - like trying to dislocate a limb
+// Unsorted, miscellaneous bodypart interactions
+
+// Wrenching a limb
 /obj/item/bodypart/proc/get_wrenched(mob/living/carbon/user, mob/living/carbon/victim, silent = FALSE)
 	. = FALSE
 	if(!owner || !user)
@@ -6,39 +8,29 @@
 	if(!victim)
 		victim = owner
 	
+	if(user.a_intent == INTENT_HARM)
+		if(get_ripped_off(user, victim, silent))
+			return TRUE
+	
 	var/bio_state = victim.get_biological_state()
 
 	if(!(bio_state & BIO_BONE) && !(bio_state & BIO_FLESH))
 		return
-	
-	for(var/datum/wound/W in wounds)
-		if(bio_state & BIO_BONE)
-			if(W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL))
-				return
-		else if(bio_state & BIO_FLESH)
-			if(W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL))
-				return
-	
-	var/time = 4 SECONDS
-	var/time_mod = 1
-	var/prob_mod = 20
-	if(time_mod)
-		time *= time_mod
 
 	if(INTERACTING_WITH(user, victim))
 		return
-	
-	if(!silent)
-		user.visible_message("<span class='danger'>[user] starts wrenching [victim]'s [name]!</span>", "<span class='danger'>You start wrenching [victim]'s [name]!</span>", ignored_mobs=victim)
-		to_chat(victim, "<span class='userdanger'>[user] starts wrenching your [name]!</span>")
-	
-	if(!do_after(user, time, target=victim))
-		return
 
-	if(prob(30 + prob_mod))
-		user.visible_message("<span class='danger'>[user] dislocates [victim]'s [name] with a sickening crack!</span>", "<span class='danger'>You dislocate [victim]'s [name] with a sickening crack!</span>", ignored_mobs=victim)
-		to_chat(victim, "<span class='userdanger'>[user] dislocates your [name] with a sickening crack!</span>")
-		victim.emote("scream")
+	var/dice = DICE_SUCCESS
+	if(user.mind)
+		dice = user.mind.diceroll(GET_STAT_LEVEL(user, str)*0.75, GET_SKILL_LEVEL(user, melee)*0.5)
+	
+	if(!is_dislocated() && dice >= DICE_SUCCESS)
+		if(user != victim)
+			user.visible_message("<span class='danger'>[user] dislocates [victim]'s [name] with a sickening crack!</span>", "<span class='danger'>You dislocate [victim]'s [name] with a sickening crack!</span>", ignored_mobs=victim)
+			to_chat(victim, "<span class='userdanger'>[user] dislocates your [name] with a sickening crack!</span>")
+		else
+			user.visible_message("<span class='danger'>[user] dislocates [user.p_their()] own [src.name] with a sickening crack!</span>",
+					"<span class='userdanger'>You dislocate your own [src.name]!</span>")
 		var/datum/wound/W
 		if(bio_state & BIO_BONE)
 			if(status & BODYPART_ORGANIC)
@@ -57,12 +49,96 @@
 				W = new /datum/wound/slash/moderate()
 			else
 				W = new /datum/wound/mechanical/slash/moderate()
+		//Critical success means we cause a hairline fracture, straight up
+		if(dice >= DICE_CRIT_SUCCESS)
+			if(bio_state & BIO_BONE)
+				if(status & BODYPART_ORGANIC)
+					W = new /datum/wound/blunt/severe
+				else
+					W = new /datum/wound/mechanical/blunt/severe
+			else
+				if(status & BODYPART_ORGANIC)
+					W = new /datum/wound/slash/critical()
+				else
+					W = new /datum/wound/mechanical/slash/critical()
 		if(istype(W))
 			W.apply_wound(src, FALSE)
-		receive_damage(brute=15)
+		var/str = GET_STAT_LEVEL(user, str)
+		if(str)
+			receive_damage(str*0.75, wound_bonus=CANT_WOUND)
+		user.changeNext_move(CLICK_CD_GRABBING)
 	else
-		user.visible_message("<span class='danger'>[user] wrenches [victim]'s [name] around painfully!</span>", "<span class='danger'>You wrench [victim]'s [name] around painfully!</span>", ignored_mobs=victim)
-		to_chat(victim, "<span class='userdanger'>[user] wrenches your [name] around painfully!</span>")
-		receive_damage(brute=7)
-		get_wrenched(user, victim, TRUE)
+		for(var/datum/wound/blunt/moderate/W in wounds)
+			return W.malpractice(user)
+		for(var/datum/wound/mechanical/blunt/moderate/W in wounds)
+			return W.malpractice(user)
+		if(user != victim)
+			user.visible_message("<span class='danger'>[user] wrenches [victim]'s [name] around painfully!</span>", "<span class='danger'>You wrench [victim]'s [name] around painfully!</span>", ignored_mobs=victim)
+			to_chat(victim, "<span class='userdanger'>[user] wrenches your [name] around painfully!</span>")
+		else
+			user.visible_message("<span class='danger'>[user] wrenches [user.p_their()] own [src.name] around painfully!</span>",
+								"<span class='userdanger'>You wrench your own [src.name] around painfully!</span>")
+		var/str = GET_STAT_LEVEL(user, str)
+		if(str)
+			receive_damage(str*0.5, wound_bonus=CANT_WOUND)
+		user.changeNext_move(CLICK_CD_GRABBING)
 	return TRUE
+
+// Trying to rip a limb off
+/obj/item/bodypart/proc/get_ripped_off(mob/living/carbon/user, mob/living/carbon/victim, silent = FALSE)
+	. = FALSE
+	if(!owner || !user)
+		return
+	if(!victim)
+		victim = owner
+	
+	var/bio_state = victim.get_biological_state()
+
+	if(!(bio_state & BIO_BONE) && !(bio_state & BIO_FLESH))
+		return
+	
+	var/melee_armor = victim.getarmor(body_zone, "melee")
+
+	if(melee_armor >= 30)
+		return
+	
+	if(INTERACTING_WITH(user, victim))
+		return
+
+	var/user_str = 10
+	if(user.mind)
+		user_str = GET_STAT_LEVEL(user, str)
+	var/victim_str = 10
+	if(victim.mind)
+		victim_str = GET_STAT_LEVEL(victim, str)
+	
+	var/str_diff = user_str - victim_str
+	if((str_diff >= 6) || ((user == victim) && (user_str >= 14)))
+		for(var/datum/wound/blunt/moderate/W in wounds)
+			return W.malpractice(user)
+		for(var/datum/wound/mechanical/blunt/moderate/W in wounds)
+			return W.malpractice(user)
+		if(user != victim)
+			user.visible_message("<span class='danger'>[user] rips [victim]'s [name] off!</span>", "<span class='danger'>You rip [victim]'s [name] off!</span>", ignored_mobs=victim)
+			to_chat(victim, "<span class='userdanger'>[user] rips your [name] off!</span>")
+		else
+			user.visible_message("<span class='danger'>[user] rips [user.p_their()] own [src.name] off!</span>",
+								"<span class='userdanger'>You rip your own [src.name] off!</span>")
+		var/str = GET_STAT_LEVEL(user, str)
+		if(str)
+			receive_damage(str*0.5, wound_bonus=CANT_WOUND)
+		var/kaplosh_sound = pick(
+				'modular_skyrat/sound/gore/chop1.ogg',
+				'modular_skyrat/sound/gore/chop2.ogg',
+				'modular_skyrat/sound/gore/chop3.ogg',
+				'modular_skyrat/sound/gore/chop4.ogg',
+				'modular_skyrat/sound/gore/chop5.ogg',
+				'modular_skyrat/sound/gore/chop6.ogg',
+			)
+		playsound(victim, kaplosh_sound, 75, 1)
+		drop_limb(dismembered = TRUE)
+		victim.bleed(12)
+		victim.agony_scream()
+		user.put_in_hands(src)
+		user.changeNext_move(CLICK_CD_GRABBING)
+		return TRUE

@@ -122,7 +122,6 @@
 		w_uniform.add_fingerprint(user)
 	..()
 
-
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
 	if(!I || !user)
 		return 0

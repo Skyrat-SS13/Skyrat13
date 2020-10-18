@@ -228,7 +228,7 @@
 /mob/living/fire_act()
 	adjust_fire_stacks(3)
 	IgniteMob()
-
+/* New grabbing system is in modular_skyrat
 /mob/living/proc/grabbedby(mob/living/carbon/user, supress_message = FALSE)
 	if(user == anchored || !isturf(user.loc))
 		return FALSE
@@ -314,7 +314,7 @@
 					Move(user.loc)
 		user.set_pull_offsets(src, grab_state)
 		return 1
-
+*/
 /mob/living/attack_hand(mob/user)
 	..() //Ignoring parent return value here.
 	SEND_SIGNAL(src, COMSIG_MOB_ATTACK_HAND, user)
@@ -454,7 +454,7 @@
 					"<span class='notice'>[M] caresses you with its scythe like arm.</span>", target = M,
 					target_message = "<span class='notice'>You caress [src] with your scythe like arm.</span>")
 			return FALSE
-		if (INTENT_GRAB)
+		if(INTENT_GRAB)
 			grabbedby(M)
 			return FALSE
 		if(INTENT_HARM)

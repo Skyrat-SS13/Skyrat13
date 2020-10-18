@@ -356,31 +356,28 @@
 
 /// If someone is snapping our dislocated joint into a fracture by hand with an aggro grab and harm or disarm intent
 /datum/wound/blunt/moderate/proc/malpractice(mob/living/carbon/human/user)
-	var/time = base_treat_time
-	var/prob_mod = 12.5
-
-	//Melee skill alters time and probability of success
-	var/time_mod = 1
-	if(user.mind)
-		var/datum/skills/melee/melee = GET_SKILL(user, melee)
-		if(melee)
-			time_mod *= (MAX_SKILL/2)/melee.level
-			prob_mod *= (MAX_SKILL/2)/melee.level
-	
-	if(!do_after(user, time * time_mod, target = victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	. = FALSE
+	if(user.next_move >= world.time)
 		return
+	var/dice = DICE_SUCCESS
+	if(user.mind)
+		dice = user.mind.diceroll(GET_STAT_LEVEL(user, str)*0.75, GET_SKILL_LEVEL(user, melee)*0.5)
 
-	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, melee) * 0.75) >= DICE_SUCCESS)
+	if(dice >= DICE_SUCCESS)
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] with a sickening crack!</span>", "<span class='danger'>You snap [victim]'s dislocated [limb.name] with a sickening crack!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
 		victim.agony_scream()
-		limb.receive_damage(brute=25, wound_bonus=30 + prob_mod * 3, wound_bonus = CANT_WOUND)
+		if(dice >= DICE_CRIT_SUCCESS)
+			replace_wound(/datum/wound/blunt/critical)
+		else
+			replace_wound(/datum/wound/blunt/severe)
+		limb.receive_damage(brute=GET_STAT_LEVEL(user, str)*0.75, wound_bonus = CANT_WOUND)
 	else
 		user.visible_message("<span class='danger'>[user] wrenches [victim]'s dislocated [limb.name] around painfully!</span>", "<span class='danger'>You wrench [victim]'s dislocated [limb.name] around painfully!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] wrenches your dislocated [limb.name] around painfully!</span>")
-		limb.receive_damage(brute=12.5, wound_bonus = CANT_WOUND)
-		malpractice(user)
-
+		limb.receive_damage(brute=GET_STAT_LEVEL(user, str)*0.5, wound_bonus = CANT_WOUND)
+	user.changeNext_move(CLICK_CD_GRABBING)
+	return TRUE
 
 /datum/wound/blunt/moderate/treat(obj/item/I, mob/user)
 	if(victim == user)

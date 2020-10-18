@@ -136,12 +136,9 @@
 /datum/job/chaplain
 	//Decent stats, god blessed them
 	stat_variance_negative = 1
-	stat_str = JOB_STATPOINTS_TRAINED
-	stat_dex = JOB_STATPOINTS_TRAINED
-	stat_end = JOB_STATPOINTS_TRAINED
-	stat_int = JOB_STATPOINTS_TRAINED
-	//Decent melee
-	skill_melee = JOB_SKILLPOINTS_TRAINED
+	//Decent first aid and cooking
+	skill_firstaid = JOB_SKILLPOINTS_TRAINED
+	skill_cooking = JOB_SKILLPOINTS_TRAINED
 
 /datum/job/chemist
 	//INTJ, physically incapable but smort

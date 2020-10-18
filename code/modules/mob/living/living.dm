@@ -273,6 +273,7 @@
 	now_pushing = FALSE
 
 /mob/living/start_pulling(atom/movable/AM, state, force = pull_force, supress_message = FALSE)
+	. = FALSE
 	if(!AM || !src)
 		return FALSE
 	if(!(AM.can_be_pulled(src, state, force)))
@@ -338,6 +339,7 @@
 			update_pull_movespeed()
 
 		set_pull_offsets(M, state)
+	return TRUE
 
 /mob/living/proc/set_pull_offsets(mob/living/M, grab_state = GRAB_PASSIVE)
 	if(M.buckled || SEND_SIGNAL(M, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))
@@ -393,6 +395,7 @@
 	..()
 	update_pull_movespeed()
 	update_pull_hud_icon()
+	SEND_SIGNAL(src, COMSIG_LIVING_STOP_PULLING)
 
 /mob/living/verb/stop_pulling1()
 	set name = "Stop Pulling"
@@ -790,6 +793,8 @@
  * Forced is if something other than the user mashing movement keys/pressing resist button did it, silent is if it makes messages (like "attempted to resist" and "broken free").
  * Forced does NOT force success!
  */
+
+/* we use a different grab system lole
 /mob/proc/do_resist_grab(moving_resist, forced, silent = FALSE)
 	return FALSE
 
@@ -810,6 +815,7 @@
 	else
 		pulledby.stop_pulling()
 		return TRUE
+*/
 
 /mob/living/proc/resist_buckle()
 	buckled?.user_unbuckle_mob(src,src)

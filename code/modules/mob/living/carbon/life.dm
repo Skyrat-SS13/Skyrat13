@@ -100,7 +100,11 @@
 			losebreath++  //You can't breath at all!
 		else if(InShock())
 			losebreath += 0.25 //You're having trouble breathing.
-
+	
+	if(pulledby && pulledby.grab_state >= GRAB_KILL)
+		visible_message("<span class='danger'>[pulledby] strangles [src]!</span>", "<span class='userdanger'>[pulledby] strangles you!</span>", ignored_mobs = pulledby)
+		to_chat(pulledby, "<span class='danger'>You strangle [src]!</span>")
+	
 	//Suffocate
 	if(losebreath >= 1) //You've missed a breath, take oxy damage
 		losebreath--
