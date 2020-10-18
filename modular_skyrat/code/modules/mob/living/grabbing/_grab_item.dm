@@ -90,7 +90,7 @@
 /// Performing a move
 /obj/item/grab/attack_self(mob/user)
 	..()
-	if(iscarbon(grasped_mob) && (grasped_mob.next_move < world.time))
+	if(iscarbon(grasped_mob) && (grasping_mob.next_move < world.time))
 		switch(grab_mode)
 			if(GM_WRENCH)
 				if(grasped_part)
