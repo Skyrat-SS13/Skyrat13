@@ -1,5 +1,5 @@
 //Do a little sound hint
-/proc/sound_hint(atom/target, mob/user, duration = 5, override_icon_state, override_icon)
+/proc/sound_hint(atom/target, atom/user, duration = 5, override_icon_state, override_icon)
 	var/hint_icon = 'modular_skyrat/icons/effects/sound/sound_1.dmi'
 	if(override_icon)
 		hint_icon = override_icon

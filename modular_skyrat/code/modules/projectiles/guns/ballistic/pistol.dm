@@ -67,10 +67,6 @@
 	..()
 	icon_state = "[initial(icon_state)][chambered ? "" : "-e"][magazine ? "" : "-nomag"][safety ? "-safe" : ""]"
 
-/obj/item/gun/ballistic/automatic/pistol/nangler/toggle_safety(mob/user)
-	..()
-	update_icon()
-
 //stechkin v2
 /obj/item/gun/ballistic/automatic/pistol
 	name = "10mm pistol"
@@ -81,12 +77,12 @@
 
 /obj/item/gun/ballistic/automatic/pistol/update_icon()
 	..()
-	if(type == /obj/item/gun/ballistic/automatic/pistol)
+	if(!(type in  subtypesof(/obj/item/gun/ballistic/automatic/pistol)))
 		icon_state = "[initial(icon_state)][chambered ? "" : "-e"][magazine ? "" : "-nomag"][safety ? "-safe" : ""]"
 
 /obj/item/gun/ballistic/automatic/pistol/update_overlays()
 	..()
-	if(type == /obj/item/gun/ballistic/automatic/pistol)
+	if(!(type in  subtypesof(/obj/item/gun/ballistic/automatic/pistol)))
 		cut_overlays()
 		if(suppressed)
 			var/mutable_appearance/suppressor_appearance = mutable_appearance(src.icon, "[initial(icon_state)]-suppressor")
