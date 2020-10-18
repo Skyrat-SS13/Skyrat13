@@ -82,7 +82,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		for(var/turf/T in range(1,A))
 			turfs.Add(T)
 		R.cast(turfs)
-		add_exp(4, A)
+		add_exp(4, A, D)
 		log_combat(A, D, "sloppily flailed around (Armstrong)")
 		return
 	else
@@ -107,7 +107,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	D.adjustBruteLoss(8) //Decentish damage. It racks up to 18 if the victim hits a wall.
 	D.Knockdown(15) //Minimal knockdown, but becomes a potential stunlock if they hit a wall.
-	add_exp(8, A)
+	add_exp(8, A, D)
 	var/atom/throw_target = get_edge_target_turf(D, get_dir(D, get_step_away(D, A)))
 	D.throw_at(throw_target, 1, 1)
 	return
@@ -122,7 +122,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	D.throw_at(throw_target, 2, 4,A)
 	D.adjust_fire_stacks(1)
 	D.IgniteMob()
-	add_exp(8, A)
+	add_exp(8, A, D)
 	log_combat(A, D, "fireball-one (Armstrong)")
 	return
 
@@ -133,7 +133,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	D.Knockdown(15)
 	D.adjustBruteLoss(12)
 	A.Knockdown(5)
-	add_exp(12, A)
+	add_exp(12, A, D)
 	var/atom/throw_target = get_edge_target_turf(D, get_dir(D, get_step_away(D, A)))
 	A.throw_at(throw_target, 1, 1)
 	D.visible_message("<span class='danger'>[A] dropkicks [D]!</span>", \
@@ -148,7 +148,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		D.Knockdown(50)
 		D.emote("scream")
 		D.adjustBruteLoss(5)
-		add_exp(8, A)
+		add_exp(8, A, D)
 		if(D.gender == FEMALE)
 			D.visible_message("<span class='notice'>[A] scares [D] and they sheepishly fall over.</span>", \
 									"<span class='userdanger'>[A] 'surprised' [D]!</span>") // we're not citadel
@@ -168,7 +168,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	D.adjustBruteLoss(18) //punch punch punch
 	SloppyAnimate(A)
 	D.Stun(10)
-	add_exp(12, A)
+	add_exp(12, A, D)
 	return
 
 /datum/martial_art/armstrong/proc/FireballTwo(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -185,7 +185,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	var/datum/effect_system/explosion/E = new
 	E.set_up(get_turf(D))
 	E.start()
-	add_exp(8, A)
+	add_exp(8, A, D)
 	log_combat(A, D, "fireball-two (Armstrong)")
 	return
 
@@ -198,7 +198,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	A.playsound_local(get_turf(A), 'modular_skyrat/sound/weapons/armstrong_success.ogg', 50, FALSE, pressure_affected = FALSE)
 	D.AdjustUnconscious(15)
 	D.adjustOrganLoss(ORGAN_SLOT_BRAIN,30)
-	add_exp(12, A)
+	add_exp(12, A, D)
 	var/datum/effect_system/explosion/E = new
 	E.set_up(get_turf(D))
 	E.start()
@@ -213,7 +213,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		D.Knockdown(80)
 		D.adjustBruteLoss(10)
 		A.Knockdown(5)
-		add_exp(12, A)
+		add_exp(12, A, D)
 		var/atom/throw_target = get_edge_target_turf(D, get_dir(D, get_step_away(D, A)))
 		A.throw_at(throw_target, 3, 3)
 		D.visible_message("<span class='danger'>[A] headslides underneath [D], tripping them!</span>", \
@@ -251,7 +251,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 						  "<span class='userdanger'>[A] [atk_verb_help] you!</span>")
 		D.apply_damage(rand(6,13), BRUTE) // lower base damage
 		D.adjustStaminaLoss(rand(6,10)) // but higher stamina damage
-		add_exp(rand(1,3), A)
+		add_exp(rand(1,3), A, D)
 		playsound(get_turf(D), 'modular_skyrat/sound/weapons/armstrong_punch.ogg', 75, 0, -1)
 		A.playsound_local(get_turf(A), 'modular_skyrat/sound/weapons/armstrong_combo.ogg', 25, FALSE, pressure_affected = FALSE)
 		if(prob(D.getBruteLoss()) && !D.lying)
@@ -277,7 +277,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 						  "<span class='userdanger'>[A] [atk_verb_harm] you!</span>")
 		D.apply_damage(rand(8,15), BRUTE) // higher base damage
 		D.adjustStaminaLoss(rand(4,8)) // but lower stamina damage
-		add_exp(rand(1,3), A)
+		add_exp(rand(1,3), A, D)
 		playsound(get_turf(D), 'modular_skyrat/sound/weapons/armstrong_punch.ogg', 50, 0, -1)
 		A.playsound_local(get_turf(A), 'modular_skyrat/sound/weapons/armstrong_combo.ogg', 25, FALSE, pressure_affected = FALSE)
 		if(prob(D.getBruteLoss()) && !D.lying)
@@ -305,7 +305,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		D.adjustStaminaLoss(rand(4,9)) // left hand stamina damage
 		D.apply_damage(rand(6,12), BRUTE) // right hand brute damage - weakened
 		D.adjustStaminaLoss(rand(3,8)) // right hand stamina damage
-		add_exp(rand(2,4), A)
+		add_exp(rand(2,4), A, D)
 		playsound(get_turf(D), 'modular_skyrat/sound/weapons/armstrong_zipper.ogg', 50, 0, -1)
 		A.playsound_local(get_turf(A), 'modular_skyrat/sound/weapons/armstrong_combo.ogg', 25, FALSE, pressure_affected = FALSE)
 		if(prob(D.getBruteLoss()) && !D.lying)
@@ -330,7 +330,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 						  "<span class='userdanger'>[A] [atk_verb_disarm] you!</span>")
 		D.apply_damage(rand(3,5), BRUTE) // weakest brute damage
 		D.adjustStaminaLoss(rand(10,20)) // strongest stamina damage
-		add_exp(rand(2,4), A)
+		add_exp(rand(2,4), A, D)
 		playsound(get_turf(D), 'modular_skyrat/sound/weapons/armstrong_palmthrust.ogg', 50, 0, -1)
 		A.playsound_local(get_turf(A), 'modular_skyrat/sound/weapons/armstrong_combo.ogg', 25, FALSE, pressure_affected = FALSE)
 		if(prob(D.getBruteLoss()) && !D.lying)
@@ -464,16 +464,20 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 			to_chat(owner, "<span class = 'notice'><b>You can now Headslide without needing to combo.</b></span>")
 			head_slide.Grant(owner) */ //todo: make this a spell - action code is garbage.
 
-/datum/martial_art/armstrong/proc/add_exp(amt, mob/owner)
-	if(current_level == level_cap)
-		return
-	current_exp += amt
-	if(current_exp >= next_level_exp)
-		current_level++
-		var/next_level = current_level + 1
-		next_level_exp = next_level*35
-		do_level_up(owner)
-		to_chat(owner, "<span class = 'notice'><b>You level up! Your new level is [current_level].</b></span>")
+/datum/martial_art/armstrong/proc/add_exp(amt, mob/owner, mob/attacked)
+	var/mob/living/carbon/C = attacked
+	var/datum/dna/deeanda = C.dna
+	if(!(deeanda?.monkey_aspect))
+		if(current_level == level_cap)
+			return
+		current_exp += amt
+		if(current_exp >= next_level_exp)
+			current_level++
+			var/next_level = current_level + 1
+			next_level_exp = next_level*35
+			do_level_up(owner)
+			to_chat(owner, "<span class = 'notice'><b>You level up! Your new level is [current_level].</b></span>")
+	return
 
 /obj/item/clothing/mask/fakemoustache/italian/cursed //for those cheeky aliens who think they can circumvent hair
 	item_flags = DROPDEL
