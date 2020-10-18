@@ -38,7 +38,6 @@
 	if(dna && dna.species)
 		dna.species.on_hit(P, src)
 
-
 /mob/living/carbon/human/bullet_act(obj/item/projectile/P, def_zone)
 	if(dna && dna.species)
 		var/spec_return = dna.species.bullet_act(P, src)

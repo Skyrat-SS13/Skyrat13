@@ -119,7 +119,8 @@
 #define FAST_CUFFBREAK 1
 #define INSTANT_CUFFBREAK 2
 
-//Grab levels
+//Grab levels (we only use passive and aggressive)
+#define GRAB_NOTGRABBING			0
 #define GRAB_PASSIVE				0
 #define GRAB_AGGRESSIVE				1
 #define GRAB_NECK					2

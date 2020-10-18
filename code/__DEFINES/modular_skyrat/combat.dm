@@ -18,3 +18,9 @@
 #define SPECIAL_ATK_NONE "none"
 #define SPECIAL_ATK_BITE "bite"
 #define SPECIAL_ATK_KICK "kick"
+
+//Grabbies
+#define GM_SELF "self"
+#define GM_WRENCH "wrench"
+#define GM_STRANGLE "strangle"
+#define GM_TAKEDOWN "takedown"

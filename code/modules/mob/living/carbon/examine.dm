@@ -177,7 +177,7 @@
 			bleed_text += "</B>\n"
 
 		for(var/obj/item/bodypart/grasped_part in grasped_limbs)
-			bleed_text += "[t_He] [t_is] holding [t_his] [grasped_part.name] to slow the bleeding!\n"
+			bleed_text += "[t_He] [t_is] holding [t_his] [grasped_part.name]!\n"
 		
 		msg += bleed_text
 	

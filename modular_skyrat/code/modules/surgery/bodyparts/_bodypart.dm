@@ -1394,6 +1394,12 @@
 		if(((W.wound_type == WOUND_LIST_BLUNT) || (W.wound_type == WOUND_LIST_BLUNT_MECHANICAL)) && (W.severity >= WOUND_SEVERITY_SEVERE)) //We have a fracture
 			. = TRUE
 
+/obj/item/bodypart/proc/is_dislocated()
+	. = FALSE
+	for(var/datum/wound/W in wounds)
+		if(((W.wound_type == WOUND_LIST_BLUNT) || (W.wound_type == WOUND_LIST_BLUNT_MECHANICAL)) && (W.severity >= WOUND_SEVERITY_MODERATE)) //We have a dislocation/fracture
+			. = TRUE
+
 /obj/item/bodypart/proc/kill_limb()
 	status |= BODYPART_DEAD
 

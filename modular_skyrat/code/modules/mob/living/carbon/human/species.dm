@@ -335,6 +335,16 @@
 			damage *= 0.9
 		//END OF CITADEL CHANGES
 
+		//If the user has bad st, sometimes... the attack gets really shit
+		var/pitiful = FALSE
+		if(user.mind && GET_STAT_LEVEL(user, str) < 10)
+			switch(user.mind.diceroll(STAT_DATUM(str)))
+				if(DICE_FAILURE)
+					daamge *= 0.65
+				if(DICE_CRIT_FAILURE)
+					damage *= 0.25
+					pitiful = TRUE
+		
 		//The probability of hitting the correct zone depends on dexterity
 		//and also on which limb we aim at
 		//since this is a kick, chance to miss is almost doubled
@@ -389,9 +399,9 @@
 
 		playsound(target.loc, user.dna.species.attack_sound, 25, 1, -1)
 
-		target.visible_message("<span class='danger'>[user] [atk_verb]s [target] on their [affecting.name]!</span>", \
-					"<span class='userdanger'>[user] [atk_verb]s you on your [affecting.name]!</span>", null, COMBAT_MESSAGE_RANGE, null, \
-					user, "<span class='danger'>You [atk_verb] [target] on their [affecting.name]!</span>")
+		target.visible_message("<span class='danger'>[user][pitiful ? " pitifully" : ""] [atk_verb]s [target] on their [affecting.name]!</span>", \
+					"<span class='userdanger'>[user][pitiful ? " pitifully" : ""] [atk_verb]s you on your [affecting.name]!</span>", null, COMBAT_MESSAGE_RANGE, null, \
+					user, "<span class='danger'>You[pitiful ? " pitifully" : ""] [atk_verb] [target] on their [affecting.name]!</span>")
 
 		target.lastattacker = user.real_name
 		target.lastattackerckey = user.ckey
@@ -521,6 +531,16 @@
 			damage *= 0.9
 		//END OF CITADEL CHANGES
 
+		//If the user has bad st, sometimes... the attack gets really shit
+		var/pitiful = FALSE
+		if(user.mind && GET_STAT_LEVEL(user, str) <= 10)
+			switch(user.mind.diceroll(STAT_DATUM(str)))
+				if(DICE_FAILURE)
+					daamge *= 0.65
+				if(DICE_CRIT_FAILURE)
+					damage *= 0.25
+					pitiful = TRUE
+		
 		//The probability of hitting the correct zone depends on dexterity
 		//and also on which limb we aim at
 		//since this is a bite, chance to miss is doubled
@@ -575,9 +595,9 @@
 
 		playsound(target.loc, 'sound/weapons/bite.ogg', 25, 1, -1)
 
-		target.visible_message("<span class='danger'>[user] [atk_verb]s [target] on their [affecting.name]!</span>", \
-					"<span class='userdanger'>[user] [atk_verb]s you on your [affecting.name]!</span>", null, COMBAT_MESSAGE_RANGE, null, \
-					user, "<span class='danger'>You [atk_verb] [target] on their [affecting.name]!</span>")
+		target.visible_message("<span class='danger'>[user][pitiful ? " pitifully" : ""] [atk_verb]s [target] on their [affecting.name]!</span>", \
+					"<span class='userdanger'>[user][pitiful ? " pitifully" : ""] [atk_verb]s you on your [affecting.name]!</span>", null, COMBAT_MESSAGE_RANGE, null, \
+					user, "<span class='danger'>You[pitiful ? " pitifully" : ""] [atk_verb] [target] on their [affecting.name]!</span>")
 
 		target.lastattacker = user.real_name
 		target.lastattackerckey = user.ckey

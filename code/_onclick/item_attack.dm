@@ -167,9 +167,19 @@
 	//If the user has a mind and the item uses a stat, we always try to get a damage multiplier based on the stat
 	if(user.mind && I.used_melee_stat)
 		totitemdamage *= user.mind.get_skillstat_damagemod(I.used_melee_stat)
-
+	
+	//If the user has bad st, sometimes... the attack gets really shit
+	var/pitiful = FALSE
+	if(user.mind && GET_STAT_LEVEL(user, str) < 10)
+		switch(user.mind.diceroll(STAT_DATUM(str)))
+			if(DICE_FAILURE)
+				totitemdamage *= 0.65
+				pitiful = TRUE
+			if(DICE_CRIT_FAILURE)
+				totitemdamage *= 0.25
+				pitiful = TRUE
 	if(totitemdamage)
-		visible_message("<span class='danger'>[user] has hit [src] with [I]!</span>", null, null, COMBAT_MESSAGE_RANGE)
+		visible_message("<span class='danger'>[user] has[pitiful ? " pitifully" : ""] hit [src] with [I]!</span>", null, null, COMBAT_MESSAGE_RANGE)
 		//only witnesses close by and the victim see a hit message.
 		log_combat(user, src, "attacked", I)
 	take_damage(totitemdamage, I.damtype, "melee", 1)
@@ -282,6 +292,14 @@
 	if(user.mind && I.used_melee_stat)
 		. *= user.mind.get_skillstat_damagemod(I.used_melee_stat)
 
+	//If the user has bad st, sometimes... the attack gets really shit
+	if(user.mind && GET_STAT_LEVEL(user, str) < 10)
+		switch(user.mind.diceroll(STAT_DATUM(str)))
+			if(DICE_FAILURE)
+				totitemdamage *= 0.65
+			if(DICE_CRIT_FAILURE)
+				totitemdamage *= 0.25
+	
 	if(!user.mind || !I.used_skills)
 		return
 	if(.)
