@@ -44,7 +44,7 @@
 
 /obj/item/ammo_box/magazine/m45/update_icon()
 	..()
-	icon_state = "[initial(icon_state)]-[ammo_count()]"
+	icon_state = "pistol45-[ammo_count()]"
 
 //Stechkin
 /obj/item/ammo_box/magazine/m10mm
