@@ -42,7 +42,7 @@
 		sleep(sleep_duration)
 		victim.death_rattle()
 		sleep(sleep_duration)
-		var/roll = victim.mind.diceroll(STAT_DATUM(end), mod = -(damage_suffered/2))
+		var/roll = victim.mind.diceroll(STAT_DATUM(end), mod = -damage_suffered)
 		if(roll >= DICE_SUCCESS)
 			victim.death_rattle()
 			sleep(sleep_duration)

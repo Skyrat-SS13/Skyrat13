@@ -56,7 +56,7 @@
 
 		//Dice roll
 		var/didntfuckup = TRUE
-		if(user.mind && (user.mind.diceroll(skills = SKILL_DATUM(surgery), mod = -round((100 - prob_chance)/2)) <= DICE_FAILURE))
+		if(user.mind && (user.mind.diceroll(STAT_DATUM(int), SKILL_DATUM(surgery), dicetype = "6d6", mod = -round(100 - prob_chance)) <= DICE_FAILURE))
 			didntfuckup = FALSE
 		if(didntfuckup || (iscyborg(user) && !silicons_obey_prob && chem_check(target) && !try_to_fail))
 			if(success(user, target, target_zone, tool, surgery))
@@ -108,7 +108,7 @@
 
 	//Germ level is increased/decreased depending on a diceroll
 	if(user.mind)
-		var/diceroll = user.mind.diceroll(skills = SKILL_DATUM(surgery))
+		var/diceroll = user.mind.diceroll(STAT_DATUM(int), SKILL_DATUM(surgery), "6d6")
 		switch(diceroll)
 			if(DICE_CRIT_SUCCESS)
 				our_germ_level *= 0.5

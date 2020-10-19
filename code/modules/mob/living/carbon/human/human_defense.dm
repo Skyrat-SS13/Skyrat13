@@ -70,7 +70,7 @@
 			var/victim_dex = 10
 			if(mind)
 				victim_dex = GET_STAT_LEVEL(src, dex)
-			switch(fireboy.mind.diceroll(GET_STAT_LEVEL(fireboy, dex)*0.5, GET_SKILL_LEVEL(fireboy, ranged)*0.5, mod = -victim_dex/2))
+			switch(fireboy.mind.diceroll(GET_STAT_LEVEL(fireboy, dex)*0.3, GET_SKILL_LEVEL(fireboy, ranged)*0.7, mod = -victim_dex))
 				//Missed shot
 				if(DICE_FAILURE, DICE_CRIT_FAILURE)
 					if(fireboy != src)

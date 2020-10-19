@@ -172,7 +172,7 @@
 			if(!do_after(user, (20 - ranged_skill) * 2, TRUE, src))
 				to_chat(user, "<span class='warning'>You must stand still to disable/enable [src]'s safety!</span>")
 				return
-		if(user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.5, GET_SKILL_LEVEL(user, ranged)*0.5) >= DICE_SUCCESS)
+		if(user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.25, GET_SKILL_LEVEL(user, ranged)*0.75) >= DICE_SUCCESS)
 			toggle_safety(user)
 		else
 			to_chat(user, "<span class='danger'>Damn it! I wasn't able to figure out how to toggle [src]'s safety features!</span>")
@@ -286,7 +286,7 @@
 	
 	//Critical failures and failures
 	if(user.mind)
-		switch(user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.5, GET_SKILL_LEVEL(user, ranged)))
+		switch(user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.25, GET_SKILL_LEVEL(user, ranged)*0.75))
 			if(DICE_FAILURE)
 				to_chat(user, "<span class='userdanger'>FAILURE! [src] makes a click but fails to fire!")
 				shoot_with_empty_chamber(user, TRUE)

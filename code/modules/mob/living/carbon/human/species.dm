@@ -1734,11 +1734,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		var/pitiful = FALSE
 		if(user.mind && GET_STAT_LEVEL(user, str) < 10)
 			switch(user.mind.diceroll(STAT_DATUM(str)))
-				if(DICE_FAILURE)
-					damage *= 0.65
-					pitiful = TRUE
 				if(DICE_CRIT_FAILURE)
-					damage *= 0.25
+					damage *= 0.4
 					pitiful = TRUE
 		
 		//The probability of hitting the correct zone depends on dexterity

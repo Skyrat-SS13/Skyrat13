@@ -298,7 +298,7 @@
 	if(!do_after(user, time * time_mod, target = victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) >= DICE_SUCCESS)
+	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid)*0.75) >= DICE_SUCCESS)
 		user.visible_message("<span class='danger'>[user] snaps their own [custom_location ? custom_location : limb.name] back in place!</span>", "<span class='danger'>You snap your [custom_location ? custom_location : limb.name] back into place!</span>")
 		victim.agony_scream()
 		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
@@ -342,7 +342,7 @@
 	if(!do_after(user, time * time_mod, target = victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid) * 0.75) >= DICE_SUCCESS)
+	if(user.mind?.diceroll(GET_STAT_LEVEL(user, int)*0.25, GET_SKILL_LEVEL(user, firstaid)*0.75) >= DICE_SUCCESS)
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] back into place!</span>", "<span class='notice'>You snap [victim]'s dislocated [limb.name] back into place!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] back into place!</span>")
 		victim.agony_scream()

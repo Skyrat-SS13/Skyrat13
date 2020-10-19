@@ -223,10 +223,13 @@
 	if(pulledby.grab_state > GRAB_PASSIVE)
 		if(next_move < world.time)
 			if(CHECK_MOBILITY(src, MOBILITY_RESIST))
-				var/grabbermod = 10
+				var/grabber_str = 10
 				if(ishuman(pulledby) && pulledby.mind)
 					grabbermod = GET_STAT_LEVEL(pulledby, str)
-				if(mind.diceroll(STAT_DATUM(str), mod = -grabbermod) >= DICE_SUCCESS)
+				var/grabbed_str = 10
+				if(mind)
+					grabbed_str = GET_STAT_LEVEL(src, str)
+				if(mind?.diceroll(GET_STAT_LEVEL(src, str)*0.5, GET_SKILL_LEVEL(src, melee), mod = 5*str_diff) >= DICE_CRIT_SUCCESS)
 					pulledby.visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>",
 						"<span class='danger'>[src] has broken free of your grip!</span>", target = src,
 						target_message = "<span class='danger'>You have broken free of [pulledby]'s grip!</span>")

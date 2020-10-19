@@ -185,7 +185,7 @@
 		victim_str = GET_STAT_LEVEL(grasped_mob, str)
 	var/str_diff = user_str - victim_str
 	if(!grasped_mob.lying)
-		if(grasping_mob.mind?.diceroll(GET_STAT_LEVEL(grasping_mob, str)*0.5, GET_SKILL_LEVEL(grasping_mob, melee)*0.75, mod = -victim_str) >= DICE_SUCCESS)
+		if(grasping_mob.mind?.diceroll(GET_STAT_LEVEL(grasping_mob, str)*0.75, GET_SKILL_LEVEL(grasping_mob, melee)*0.25, mod = 5*str_diff) >= DICE_SUCCESS)
 			grasped_mob.visible_message("<span class='danger'>[grasping_mob] takes [grasped_mob] down[grasped_part ? " by the [grasped_part.name]" : ""]!</span>",\
 										"<span class='userdanger'>[grasping_mob] takes you down[grasped_part ? " by the [grasped_part.name]" : ""]!</span>",\
 										ignored_mobs = grasping_mob)
@@ -198,7 +198,7 @@
 										ignored_mobs = grasping_mob)
 			to_chat(grasping_mob, "<span class='danger'>You fail to take [grasped_mob] down[grasped_part ? " by the [grasped_part.name]" : ""]!</span>")
 	else
-		if(grasping_mob.mind?.diceroll(GET_STAT_LEVEL(grasping_mob, str)*0.5, GET_SKILL_LEVEL(grasping_mob, melee)*0.75, mod = -victim_str) >= DICE_SUCCESS)
+		if(grasping_mob.mind?.diceroll(GET_STAT_LEVEL(grasping_mob, str)*0.25, GET_SKILL_LEVEL(grasping_mob, melee)*0.75, mod = 5*str_diff) >= DICE_SUCCESS)
 			grasped_mob.visible_message("<span class='danger'>[grasping_mob] pins [grasped_mob] down[grasped_part ? " by the [grasped_part.name]" : ""]!</span>",\
 										"<span class='userdanger'>[grasping_mob] pins you down[grasped_part ? " by the [grasped_part.name]" : ""]!</span>",\
 										ignored_mobs = grasping_mob)
