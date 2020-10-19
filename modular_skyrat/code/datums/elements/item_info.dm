@@ -29,8 +29,14 @@
 	data["force_wielded"] = 0
 	var/datum/component/two_handed/two_handed = item.GetComponent(/datum/component/two_handed)
 	if(two_handed)
-		data["force_wielded"] = two_handed.force_wielded
-		data["force_unwielded"] = two_handed.force_unwielded
+		if(two_handed.force_wielded)
+			data["force_wielded"] = two_handed.force_wielded
+		else if(two_handed.force_multiplier)
+			data["force_wielded"] = initial(item.force) * two_handed.force_multiplier
+		if(two_handed.force_unwielded)
+			data["force_unwielded"] = two_handed.force_unwielded
+		else
+			data["force_unwielded"] = initial(item.force)
 	data["sharpness"] = "Blunt"
 	switch(item.sharpness)
 		if(1)
