@@ -33,7 +33,7 @@
 						"<span class='userdanger'>I do not deserve the gift of life.</span>")
 			death()
 		//Nullify the message - thou shall not speak thy cringe
-		message = ""
+		message = null
 		return FALSE
 	else
 		cringecount = max(0, cringecount - 1)
