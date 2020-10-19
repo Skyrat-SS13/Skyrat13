@@ -72,14 +72,14 @@
 				victim_dex = GET_STAT_LEVEL(src, dex)
 			switch(fireboy.mind.diceroll(GET_STAT_LEVEL(fireboy, dex)*0.3, GET_SKILL_LEVEL(fireboy, ranged)*0.7, mod = -victim_dex))
 				//Missed shot
-				if(DICE_FAILURE, DICE_CRIT_FAILURE)
+				if(DICE_CRIT_FAILURE)
 					if(fireboy != src)
 						visible_message("<span class='danger'><b>FAILURE!</b> [P] misses [src] entirely!</span>")
 						return BULLET_ACT_FORCE_PIERCE
 	//Dice roll to handle crits
 	if(mind)
 		switch(rand(1,100))
-			if(0 to 5)
+			if(0 to 2)
 				visible_message("<span class='danger'><b>CRITICAL HIT!</b> [P] mauls [src]!")
 				P.damage *= 2
 	return ..()
