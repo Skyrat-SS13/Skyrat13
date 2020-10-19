@@ -113,7 +113,7 @@
 #define CLICK_CD_BREAKOUT 100
 #define CLICK_CD_HANDCUFFED 10
 #define CLICK_CD_RESIST 20
-#define CLICK_CD_GRABBING 25 //VERY long because we use a different grab system
+#define CLICK_CD_GRABBING 20 //VERY long because we use a different grab system
 
 //Cuff resist speeds
 #define FAST_CUFFBREAK 1
