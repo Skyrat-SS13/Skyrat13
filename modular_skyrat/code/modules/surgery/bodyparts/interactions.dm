@@ -98,9 +98,6 @@
 		return
 	
 	var/melee_armor = victim.getarmor(body_zone, "melee")
-
-	if(melee_armor >= 30)
-		return
 	
 	if(INTERACTING_WITH(user, victim))
 		return
@@ -113,32 +110,33 @@
 		victim_str = GET_STAT_LEVEL(victim, str)
 	
 	var/str_diff = user_str - victim_str
-	if((str_diff >= 6) || ((user == victim) && (user_str >= 14)))
-		for(var/datum/wound/blunt/moderate/W in wounds)
-			return W.malpractice(user)
-		for(var/datum/wound/mechanical/blunt/moderate/W in wounds)
-			return W.malpractice(user)
-		if(user != victim)
-			user.visible_message("<span class='danger'>[user] rips [victim]'s [name] off!</span>", "<span class='danger'>You rip [victim]'s [name] off!</span>", ignored_mobs=victim)
-			to_chat(victim, "<span class='userdanger'>[user] rips your [name] off!</span>")
-		else
-			user.visible_message("<span class='danger'>[user] rips [user.p_their()] own [src.name] off!</span>",
-								"<span class='userdanger'>You rip your own [src.name] off!</span>")
-		var/str = GET_STAT_LEVEL(user, str)
-		if(str)
-			receive_damage(str*0.5, wound_bonus=CANT_WOUND)
-		var/kaplosh_sound = pick(
-				'modular_skyrat/sound/gore/chop1.ogg',
-				'modular_skyrat/sound/gore/chop2.ogg',
-				'modular_skyrat/sound/gore/chop3.ogg',
-				'modular_skyrat/sound/gore/chop4.ogg',
-				'modular_skyrat/sound/gore/chop5.ogg',
-				'modular_skyrat/sound/gore/chop6.ogg',
-			)
-		playsound(victim, kaplosh_sound, 75, 1)
-		drop_limb(dismembered = TRUE)
-		victim.bleed(12)
-		victim.agony_scream()
-		user.put_in_hands(src)
-		user.changeNext_move(CLICK_CD_GRABBING)
-		return TRUE
+	if(user.mind.diceroll(STAT_DATUM(str), mod = -melee_armor/2) >= DICE_SUCCESS)
+		if((str_diff >= 6) || ((user == victim) && (user_str >= 14)))
+			for(var/datum/wound/blunt/moderate/W in wounds)
+				return W.malpractice(user)
+			for(var/datum/wound/mechanical/blunt/moderate/W in wounds)
+				return W.malpractice(user)
+			if(user != victim)
+				user.visible_message("<span class='danger'>[user] rips [victim]'s [name] off!</span>", "<span class='danger'>You rip [victim]'s [name] off!</span>", ignored_mobs=victim)
+				to_chat(victim, "<span class='userdanger'>[user] rips your [name] off!</span>")
+			else
+				user.visible_message("<span class='danger'>[user] rips [user.p_their()] own [src.name] off!</span>",
+									"<span class='userdanger'>You rip your own [src.name] off!</span>")
+			var/str = GET_STAT_LEVEL(user, str)
+			if(str)
+				receive_damage(str*0.5, wound_bonus=CANT_WOUND)
+			var/kaplosh_sound = pick(
+					'modular_skyrat/sound/gore/chop1.ogg',
+					'modular_skyrat/sound/gore/chop2.ogg',
+					'modular_skyrat/sound/gore/chop3.ogg',
+					'modular_skyrat/sound/gore/chop4.ogg',
+					'modular_skyrat/sound/gore/chop5.ogg',
+					'modular_skyrat/sound/gore/chop6.ogg',
+				)
+			playsound(victim, kaplosh_sound, 75, 1)
+			drop_limb(dismembered = TRUE)
+			victim.bleed(12)
+			victim.agony_scream()
+			user.put_in_hands(src)
+			user.changeNext_move(CLICK_CD_GRABBING)
+			return TRUE
