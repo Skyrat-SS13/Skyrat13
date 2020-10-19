@@ -537,3 +537,26 @@
 		to_chat(user, "<span class='notice'>You ready your slapping hand.</span>")
 	else
 		to_chat(user, "<span class='warning'>You're incapable of slapping in your current state.</span>")
+
+/datum/emote/living/fart
+	key = "fart"
+	key_third_person = "farts"
+	message = "farts."
+	message_param = "farts at %t."
+	emote_type = EMOTE_AUDIBLE
+	muzzle_ignore = TRUE
+	restraint_check = FALSE
+	mob_type_allowed_typecache = /mob/living/carbon/human
+
+/datum/emote/living/fart/run_emote(mob/living/user, params)
+	if(!(. = ..()))
+		return
+	user.adjust_nutrition(rand(-10, -2))
+
+	if(user.nextsoundemote >= world.time)
+		return
+
+	user.nextsoundemote = world.time + 20
+	playsound(user, pick('sound/voice/fart.ogg', 'sound/voice/fart2.ogg'), 50, FALSE)
+	var/brap = rand(1,5)
+	user.atmos_spawn_air("miasma=[brap];TEMP=310.15")
