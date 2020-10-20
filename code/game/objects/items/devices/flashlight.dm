@@ -16,11 +16,16 @@
 	var/brightness_on = 4 //range of light when on
 	var/flashlight_power = 0.8 //strength of the light when on
 	light_color = "#FFCC66"
+	//Flashlights use power cells
+	var/starting_cell = /obj/item/stock_parts/cell
+	var/obj/item/stock_parts/cell/powercell
 
 /obj/item/flashlight/Initialize()
 	. = ..()
 	if(icon_state == "[initial(icon_state)]-on")
 		on = TRUE
+	if(!powercell)
+		powercell = new starting_cell(src)
 	AddComponent(/datum/component/overlay_lighting, light_color, brightness_on, flashlight_power, FALSE) //Skyrat change
 	update_brightness()
 
@@ -37,10 +42,47 @@
 		icon_state = initial(icon_state)
 		OL.turn_off()
 
+/obj/item/flashlight/examine(mob/user)
+	. = ..()
+	if(powercell)
+		. += "<span class='info'>[src]'s [powercell] is <b>[powercell.percent()]</b> charged."
+	else
+		. += "<span class='warning'>[src] has no power cell installed.</span>"
+
+/obj/item/flashlight/AltClick(mob/user)
+	. = ..()
+	if(powercell)
+		to_chat(user, "<span class='notice'>You remove [src]'s power cell.</span>")
+		powercell.forceMove(get_turf(user))
+		user.put_in_active_hand(powercell)
+		powercell = null
+	else
+		to_chat(user, "<span class='warning'>There is no power cell to be removed from [src].</span>")
+
+/obj/item/flashlight/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/stock_parts/cell))
+		if(powercell)
+			to_chat(user, "<span class='warning'>[src] already has a power cell installed.</span>")
+		else
+			to_chat(user, "<span class='notice'>You install [I] on [src].</span>")
+			I.forceMove(src)
+			powercell = I
+
+/obj/item/flashlight/process()
+	. = ..()
+	if((on && powercell && !powercell.use(10)) || (on && !powercell))
+		attack_self()
+
 /obj/item/flashlight/attack_self(mob/user)
-	on = !on
+	if((!on && powercell && powercell.use(50)) || on)
+		on = !on
+	if(on)
+		START_PROCESSING(SSobj, src)
+	else
+		STOP_PROCESSING(SSobj, src)
 	update_brightness(user)
-	playsound(user, on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, 1)
+	playsound(get_turf(src), on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, 1)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
