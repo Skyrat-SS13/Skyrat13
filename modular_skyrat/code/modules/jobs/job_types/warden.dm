@@ -1,3 +1,7 @@
+/datum/job/warden
+	title = "Lieutenant"
+	supervisors = "the chief enforcer"
+
 /datum/outfit/job/warden
 	backpack_contents = list(/obj/item/melee/classic_baton/black=1,
 					/obj/item/gun/ballistic/automatic/pistol/nangler=1,
@@ -12,7 +16,7 @@
 	to_chat(M, "<span class='warning'>We may control the prison, however, you cannot do it alone. Security officers are there to help keep the prisoners in line. Use them to provide activities for the prisoners to keep them content.</span>")
 
 /obj/item/choice_beacon/warden
-	name = "warden's shotgun beacon"
+	name = "lieutenant's shotgun beacon"
 	desc = "A beacon, allowing the warden to select between two available models of personal shotguns."
 
 /obj/item/choice_beacon/warden/generate_display_names()

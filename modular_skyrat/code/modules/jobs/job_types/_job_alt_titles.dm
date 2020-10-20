@@ -6,7 +6,7 @@
 	alt_titles = list("Crew Supervisor")
 	
 /datum/job/hos
-	alt_titles = list("Security Commander", "Chief of Security")
+	alt_titles = list("Security Commander", "Chief of Security", "Head of Security")
 
 /datum/job/rd
 	alt_titles = list("Research Supervisor")
@@ -84,7 +84,10 @@
 
 //Security
 /datum/job/officer
-	alt_titles = list("Security Guard", "Junior Officer", "Prison Guard")
+	alt_titles = list("Security Officer", "Security Guard", "Junior Officer", "Prison Guard")
 
 /datum/job/detective
 	alt_titles = list("Forensics Technician", "Private Investigator", "Investigator", "Inspector", "Detective")
+
+/datum/job/warden
+	alt_titles = lit("Warden")
