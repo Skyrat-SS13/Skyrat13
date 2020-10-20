@@ -387,7 +387,8 @@ SUBSYSTEM_DEF(job)
 			return TRUE
 	var/list/blah = list()
 	for(var/i in required_jobs)
-		blah |= "[pick("kind", "just", "generous", "wise"] [i]"
+		var/datum/job/J = GetJob(i)
+		blah |= "[J.flatter_string ? "[J.flatter_string] " : ""][i]"
 	var/need_string = english_list(blah)
 	SSticker.mode.setup_error = "Required jobs not present. The station needs [need_string] for the shift to start."
 	return FALSE

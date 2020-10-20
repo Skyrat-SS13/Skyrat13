@@ -1,21 +1,27 @@
 //Command
 /datum/job/captain
 	alt_titles = list("Overlord", "King", "Dictator", "Overseer", "Station Manager")
+	flatter_string = "just"
 
 /datum/job/hop
 	alt_titles = list("Crew Supervisor", "Human Resources Director")
+	flatter_string = "resourceful"
 	
 /datum/job/hos
 	alt_titles = list("Chief Enforcer", "Security Commander", "Chief of Security", "Head of Security")
+	flatter_string = "brave"
 
 /datum/job/rd
 	alt_titles = list("Research Supervisor")
+	flatter_string = "intelligent"
 	
 /datum/job/cmo
 	alt_titles = list("Medical Director")
+	flatter_string = "altruistic"
 	
 /datum/job/qm
 	alt_titles = list("Supply Chief")
+	flatter_string = "generous"
 
 //Engineering
 /datum/job/engineer
