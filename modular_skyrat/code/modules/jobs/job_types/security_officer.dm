@@ -1,6 +1,6 @@
 /datum/job/officer
 	title = "Enforcer"
-	supervisors = "the chief enforcer, and the head of your assigned department (if applicable)"
+	supervisors = "the chancellor, and the head of your assigned department (if applicable)"
 
 /datum/outfit/job/security
 	backpack_contents = list(/obj/item/melee/classic_baton/black=1)

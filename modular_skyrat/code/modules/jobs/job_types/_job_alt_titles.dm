@@ -6,7 +6,7 @@
 	alt_titles = list("Crew Supervisor")
 	
 /datum/job/hos
-	alt_titles = list("Security Commander", "Chief of Security", "Head of Security")
+	alt_titles = list("Chief Enforcer", "Security Commander", "Chief of Security", "Head of Security")
 
 /datum/job/rd
 	alt_titles = list("Research Supervisor")
