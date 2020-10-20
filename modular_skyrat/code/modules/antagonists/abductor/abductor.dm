@@ -11,7 +11,6 @@
 	to_chat(owner.current, "<span class='notice'>[greet_text]</span>")
 	owner.announce_objectives()
 
-
 /datum/team/abductor_team/New()
 	..()
 	team_number = team_count++
