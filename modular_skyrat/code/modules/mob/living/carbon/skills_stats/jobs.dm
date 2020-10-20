@@ -282,6 +282,13 @@
 	skill_firstaid = JOB_SKILLPOINTS_EXPERT
 	skill_surgery = JOB_SKILLPOINTS_AVERAGE
 
+/datum/job/brig_physician
+	//Good endurance
+	stat_end = 12
+	//Average surgery and expert first aid
+	skill_firstaid = JOB_SKILLPOINTS_EXPERT
+	skill_surgery = JOB_SKILLPOINTS_AVERAGE
+
 /datum/job/qm
 	//Better str and end, no int or dex cost
 	stat_str = JOB_STATPOINTS_TRAINED

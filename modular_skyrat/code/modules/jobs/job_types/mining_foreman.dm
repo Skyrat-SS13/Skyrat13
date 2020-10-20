@@ -4,8 +4,8 @@
 	department_head = list("Quartermaster")
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "the quartermaster"
 	selection_color = "#ca8f55"
 	outfit = /datum/outfit/job/mining_foreman
@@ -54,8 +54,8 @@
 	department_head = list("Quartermaster")
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "the quartermaster and the mining foreman."
 	selection_color = "#ca8f55"
 	outfit = /datum/outfit/job/miner_engineer

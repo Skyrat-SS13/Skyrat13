@@ -13,54 +13,16 @@
 /obj/item/clothing/head/helmet
 	can_flashlight = 0 //for the sake of reskins
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30,"energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 15)
-	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/hats.dmi',
-	"Tactical" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
-	"Press" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
-	"HECU" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
-	"HECU Green" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Press" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"HECU" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"HECU Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Press" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"HECU" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"HECU Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	)
-	unique_reskin = list(
-	"Default" = "helmet",
-	"Tactical" = "epic_helmet",
-	"Press" = "press_helmet",
-	"HECU" = "hecu_helmet",
-	"HECU Green" = "hecu_helmet_green"
-	)
+	icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	icon_state = "epic_helmet"
 
 /obj/item/clothing/head/helmet/alt
 	can_flashlight = 1
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 15)
-	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/hats.dmi',
-	"Tactical" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
-	)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	)
-	unique_reskin = list(
-	"Default" = "helmetalt",
-	"Tactical" = "epic_bp_helmet"
-	)
+	icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	icon_state = "epic_bp_helmet"
 
 /obj/item/clothing/head/helmet/riot
 	armor = list("melee" = 55, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80, "wound" = 25)
@@ -68,23 +30,11 @@
 
 /obj/item/clothing/head/helmet/swat
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 40, "bomb" = 50, "bio" = 90, "rad" = 20, "fire" = 50, "acid" = 50, "wound" = 25)
-	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/hats.dmi',
-	"Skulldozer" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Skulldozer" = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Skulldozer" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
-	)
-	unique_reskin = list(
-	"Default" = "swat",
-	"Skulldozer" = "chonker_helmet"
-	)
-	mutantrace_variation = STYLE_NO_ANTHRO_ICON|STYLE_MUZZLE
+	icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	icon_state = "chonker_helmet"
+	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/head/helmet/thunderdome
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90, "wound" = 35)
@@ -135,24 +85,12 @@
 
 /obj/item/clothing/head/HoS
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 50, "acid" = 60, "wound" = 25)
-	unique_reskin = list(
-	"Default" = "hoscap",
-	"Helmet" = "helmet",
-	"Beret" = "hosberetblack",
-	"Centcom Beret" = "beret_centcom_officer"
-	)
 
 /obj/item/clothing/head/HoS/beret/syndicate
 	unique_reskin = null
 
 /obj/item/clothing/head/warden
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 60, "wound" = 20)
-	unique_reskin = list(
-	"Default" = "policehelm",
-	"Corporate Beret" = "beret_corporate_warden",
-	"Red Security Beret" = "beret_badge",
-	"Helmet" = "helmet"
-	)
 
 /obj/item/clothing/head/beret/sec
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 50, "wound" = 15)
@@ -177,7 +115,6 @@
 	"Green" = "green_beret",
 	"Bushfighter" = "rhodeboonie"
 	)
-
 
 /obj/item/clothing/head/beret/sec/navywarden
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 50, "wound" = 20)
