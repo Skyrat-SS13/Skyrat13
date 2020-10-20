@@ -319,7 +319,7 @@
 
 //New and improved Tech Armor
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor
-	name = "type I techhelmet"
+	name = "MK-I techhelmet"
 	desc = "A specialized exoskeleton armor helmet built into a suit of armor; offers decent protection, and comes with a flash-resistant HUD visor and headlamp."
 	icon_state = "hardsuit0-secexo"
 	item_state = "hardsuit0-secexo"
@@ -355,44 +355,20 @@
 	)
 
 /obj/item/clothing/suit/space/hardsuit/security_armor
-	name = "type I full-body techarmor"
+	name = "MK-I full-body techarmor"
 	desc = "A specialized exoskeleton armor suit, comprised of flexible protective shielding. Comes equipped with a retractable helmet which offers a flash-resistant HUD visor, along with a headlamp."
-	icon_state = "hardsuit-secexo"
-	item_state = "hardsuit-secexo"
+	icon = 'modular_skyrat/icons/obj/clothing/enforcer.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/enforcer.dmi'
+	icon_state = "techarmor"
+	item_state = "techarmor"
 	max_integrity = 250
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 55, "acid" = 70, "wound" = 15)
 	allowed = list(/obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/flashlight, /obj/item/gun/ballistic, /obj/item/gun/energy, /obj/item/kitchen/knife/combat, /obj/item/melee/baton, /obj/item/melee/classic_baton, /obj/item/melee/mace, /obj/item/melee/sabre/hos, /obj/item/reagent_containers/spray/pepper, /obj/item/restraints/handcuffs, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/blunderbuss) //I had to do this all snowflake style because it just would not accept any sort of global list, fucking kill me
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor
 	clothing_flags = THICKMATERIAL
-	mutantrace_variation = STYLE_DIGITIGRADE
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	slowdown = 0
-	anthro_mob_worn_overlay = 'icons/mob/clothing/suit_digi.dmi'
 	flags_inv = NONE
-	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/suits.dmi',
-	"ERT" = 'icons/obj/clothing/suits.dmi',
-	"Classic" = 'icons/obj/clothing/suits.dmi',
-	)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/suit.dmi',
-	"ERT" = 'icons/mob/clothing/suit.dmi',
-	"Classic" = 'icons/mob/clothing/suit.dmi',
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/suit_digi.dmi',
-	"ERT" = 'icons/mob/clothing/suit_digi.dmi',
-	"Classic" = 'icons/mob/clothing/suit_digi.dmi',
-	)
-	unique_reskin = list(
-	"Default" = "hardsuit-secexo",
-	"ERT" = "hardsuit-secexoX",
-	"Classic" = "hardsuit-secexoA",
-	)
-	unique_hardsuit_type = list(
-	"Default" = "secexo",
-	"ERT" = "secexoX",
-	"Classic" = "secexoA",
-	)
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/Initialize()
 	. = ..()
@@ -401,99 +377,47 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if (slot == SLOT_HEAD)
+	if(slot == SLOT_HEAD)
 		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		DHUD.add_hud_to(user)
 
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/dropped(mob/living/carbon/human/user)
 	..()
-	if (user.head == src)
+	if(user.head == src)
 		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		DHUD.remove_hud_from(user)
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/cloaker //YOU CALL THIS RESISTING ARREST?
-	name = "type II full-body techarmor"
+	name = "MK-II full-body techarmor"
 	desc = "An advanced version of the standard techarmor, sporting far better protection. It does lack the night vision of its non-tech counterpart, however."
-	icon_state = "hardsuit-cloaker" 
-	item_state = "hardsuit-cloaker"
 	armor = list("melee" = 40, "bullet" = 35, "laser" = 35, "energy" = 50, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100, "wound" = 25)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker
 
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/cloaker //I couldn't get the NV to work. If someone else figures out how, please feel free to implement it here.
-	name = "type II techhelmet"
+	name = "MK-II techhelmet"
 	desc = "An advanced version of the standard techhelmet, sporting far better protection. Unfortunately, it lacks the night vision of its non-tech counterpart."
-	icon_state = "hardsuit0-cloaker"
-	item_state = "hardsuit0-cloaker"
 	armor = list("melee" = 40, "bullet" = 35, "laser" = 35, "energy" = 50, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100, "wound" = 25)
-	hardsuit_type = "cloaker"
 	var/activated = FALSE
 	var/stored_nv = 0
 
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/hos
-	name = "head of security's techhelmet"
+	name = "MK-III techhelmet"
 	desc = "A specialized exoskeleton armor helmet built into a suit of armor; offers decent protection, and comes with a flash-resistant HUD visor and headlamp."
-	icon_state = "hardsuit0-hosexo"
-	item_state = "hardsuit0-hosexo"
-	hardsuit_type = "hosexo"
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 50, "acid" = 60, "wound" = 20)
 	mutantrace_variation = NONE
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT
-	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/hats.dmi',
-	"Old" = 'icons/obj/clothing/hats.dmi',
-	)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Old" = 'icons/mob/clothing/head.dmi',
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Old" = 'icons/mob/clothing/head.dmi',
-	)
-	unique_reskin = list(
-	"Default" = "hardsuit0-hosexo",
-	"Old" = "hardsuit0-hosexoX",
-	)
-	unique_hardsuit_type = list(
-	"Default" = "hosexo",
-	"Old" = "hosexoX",
-	)
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/hos
-	name = "head of security's techarmor"
+	name = "MK-III techarmor"
 	desc = "A specialized exoskeleton armor suit comprised of flexible protective shielding. This particular suit has been designed specifically for the station security commander."
-	icon_state = "hardsuit-hosexo"
-	item_state = "hardsuit-hosexo"
 	max_integrity = 300
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 70, "acid" = 90, "wound" = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor/hos
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAUR
-	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/suits.dmi',
-	"Old" = 'icons/obj/clothing/suits.dmi',
-	)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/suit.dmi',
-	"Old" = 'icons/mob/clothing/suit.dmi',
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/suit_digi.dmi',
-	"Old" = 'icons/mob/clothing/suit_digi.dmi',
-	)
-	unique_reskin = list(
-	"Default" = "hardsuit-hosexo",
-	"Old" = "hardsuit-hosexoX",
-	)
-	unique_hardsuit_type = list(
-	"Default" = "hosexo",
-	"Old" = "hosexoX",
-	)
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/blueshield
 	name = "blueshield techarmor"
 	desc = "The techarmor suit of Command's first line of defense."
-	icon_state = "hardsuit-blueexo"
-	item_state = "hardsuit-blueexo"
 	max_integrity = 300
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 75, "wound" = 25)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor/blueshield
@@ -501,27 +425,4 @@
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/blueshield
 	name = "blueshield techarmor"
 	desc = "The techarmor helmet of Command's first line of defense."
-	icon_state = "hardsuit0-blueexo"
-	item_state = "hardsuit0-blueexo"
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 20,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 75, "wound" = 20)
-	hardsuit_type = "blueexo"
-	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/suits.dmi',
-	"MKI" = 'icons/obj/clothing/suits.dmi',
-	)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/suit.dmi',
-	"MKI" = 'icons/mob/clothing/suit.dmi',
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/suit_digi.dmi',
-	"MKI" = 'icons/mob/clothing/suit_digi.dmi',
-	)
-	unique_reskin = list(
-	"Default" = "hardsuit-blueexo",
-	"MKI" = "hardsuit-blueexoX",
-	)
-	unique_hardsuit_type = list(
-	"Default" = "blueexo",
-	"MKI" = "blueexoX",
-	)
