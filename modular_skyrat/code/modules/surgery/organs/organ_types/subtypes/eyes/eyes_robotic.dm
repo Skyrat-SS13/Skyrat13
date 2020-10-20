@@ -244,11 +244,13 @@
 /obj/item/organ/eyes/robotic/glow/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
 	. = ..()
 	if(.)
+		RegisterSignal(M, COMSIG_MOB_DEATH, .proc/deactivate)
 		RegisterSignal(M, COMSIG_LIVING_GAIN_UNCONSCIOUS, .proc/deactivate)
 		RegisterSignal(M, COMSIG_LIVING_STOP_UNCONSCIOUS, .proc/active_block)
 
 /obj/item/organ/eyes/robotic/glow/Remove(special)
 	. = ..()
 	if(.)
+		UnregisterSignal(M, COMSIG_MOB_DEATH)
 		UnregisterSignal(M, COMSIG_LIVING_GAIN_UNCONSCIOUS)
 		UnregisterSignal(M, COMSIG_LIVING_STOP_UNCONSCIOUS)
