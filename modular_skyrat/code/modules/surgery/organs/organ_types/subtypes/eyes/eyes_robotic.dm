@@ -250,7 +250,6 @@
 
 /obj/item/organ/eyes/robotic/glow/Remove(special)
 	. = ..()
-	if(.)
-		UnregisterSignal(M, COMSIG_MOB_DEATH)
-		UnregisterSignal(M, COMSIG_LIVING_GAIN_UNCONSCIOUS)
-		UnregisterSignal(M, COMSIG_LIVING_STOP_UNCONSCIOUS)
+	UnregisterSignal(owner, COMSIG_MOB_DEATH)
+	UnregisterSignal(owner, COMSIG_LIVING_GAIN_UNCONSCIOUS)
+	UnregisterSignal(owner, COMSIG_LIVING_STOP_UNCONSCIOUS)
