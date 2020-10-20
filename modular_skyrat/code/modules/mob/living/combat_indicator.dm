@@ -2,17 +2,6 @@
 	var/enabled_combat_indicator = FALSE
 	var/nextcombatpopup = 0
 
-//this is not ideal but I really just want to catch up with everything
-/mob/living/Initialize()
-	RegisterSignal(src, COMSIG_LIVING_COMBAT_ENABLED, .proc/combat_mode_enabled_signal)
-	RegisterSignal(src, COMSIG_LIVING_COMBAT_DISABLED, .proc/combat_mode_disabled_signal)
-	. = ..()
-
-/mob/living/Destroy()
-	UnregisterSignal(src, COMSIG_LIVING_COMBAT_ENABLED)
-	UnregisterSignal(src, COMSIG_LIVING_COMBAT_DISABLED)
-	. = ..()
-
 var/static/mutable_appearance/combat_indicator
 
 /mob/living/proc/set_combat_indicator(state)

@@ -78,13 +78,19 @@
 		var/self_message = forced? "<span class='warning'>Your muscles reflexively tighten!</span>" : "<span class='warning'>You drop into a combative stance!</span>"
 		if(visible && (forced || world.time >= combatmessagecooldown))
 			combatmessagecooldown = world.time + 10 SECONDS
+			var/list/ignore_mobs = list()
+			//Only INTJ boys can notice someone going combat
+			for(var/mob/living/carbon/human/H in view(src))
+				if(H != source)
+					if(H.mind?.diceroll(STAT_DATUM(int)) <= DICE_FAILURE)
+						ignore_mobs |= H
 			if(!forced)
 				if(source.a_intent != INTENT_HELP)
-					source.visible_message("<span class='warning'>[source] [source.resting ? "tenses up" : "drops into a combative stance"].</span>", self_message)
+					source.visible_message("<span class='warning'>[source] [source.resting ? "tenses up" : "drops into a combative stance"].</span>", self_message, ignored_mobs = ignore_mobs)
 				else
-					source.visible_message("<span class='notice'>[source] [pick("looks","seems","goes")] [pick("alert","attentive","vigilant")].</span>")
+					source.visible_message("<span class='notice'>[source] [pick("looks","seems","goes")] [pick("alert","attentive","vigilant")].</span>", ignored_mobs = ignore_mobs)
 			else
-				source.visible_message("<span class='warning'>[source] drops into a combative stance!</span>", self_message)
+				source.visible_message("<span class='warning'>[source] drops into a combative stance!</span>", self_message, ignored_mobs = ignore_mobs)
 		else
 			to_chat(source, self_message)
 		if(playsound)
