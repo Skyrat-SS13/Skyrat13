@@ -74,7 +74,7 @@
 				//Missed shot
 				if(DICE_CRIT_FAILURE)
 					if(fireboy != src)
-						visible_message("<span class='danger'><b>FAILURE!</b> [P] misses [src] entirely!</span>")
+						visible_message("<span class='danger'><b>CRITICAL FAILURE!</b> [P] misses [src] entirely!</span>")
 						return BULLET_ACT_FORCE_PIERCE
 	//Dice roll to handle crits
 	if(mind)
