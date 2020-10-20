@@ -1,7 +1,7 @@
 GLOBAL_LIST_INIT(command_positions, list(
 	"Captain",
 	"Head of Personnel",
-	"Head of Security",
+	"Chief Enforcer",
 	"Chief Engineer",
 	"Research Director",
 	"Chief Medical Officer",
@@ -54,10 +54,10 @@ GLOBAL_LIST_INIT(civilian_positions, list(
 	"Assistant"))
 // Added Blueshield SKYRAT EDIT
 GLOBAL_LIST_INIT(security_positions, list(
-	"Head of Security",
-	"Warden",
-	"Detective",
-	"Security Officer",
+	"Chief Enforcer",
+	"Lieutenant",
+	"Deputy",
+	"Enforcer",
 	"Blueshield"))
 
 GLOBAL_LIST_INIT(nonhuman_positions, list(
@@ -120,12 +120,12 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = lowertext(job)
 	job = cap_expand.Replace(job, "captain")
 	job = cmo_expand.Replace(job, "chief medical officer")
-	job = hos_expand.Replace(job, "head of security")
+	job = hos_expand.Replace(job, "chief enforcer")
 	job = hop_expand.Replace(job, "head of personnel")
 	job = rd_expand.Replace(job, "research director")
 	job = ce_expand.Replace(job, "chief engineer")
 	job = qm_expand.Replace(job, "quartermaster")
-	job = sec_expand.Replace(job, "security officer")
+	job = sec_expand.Replace(job, "enforcer")
 	job = engi_expand.Replace(job, "station engineer")
 	job = atmos_expand.Replace(job, "atmospheric technician")
 	job = doc_expand.Replace(job, "medical doctor")
