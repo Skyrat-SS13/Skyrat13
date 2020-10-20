@@ -77,7 +77,7 @@
 	STR.max_w_class = MAX_WEIGHT_CLASS_BAG_OF_HOLDING
 	STR.storage_flags = STORAGE_FLAGS_LEGACY_DEFAULT
 	//STR.max_volume = STORAGE_VOLUME_BAG_OF_HOLDING
-	STR.max_combined_w_class = 35
+	STR.max_combined_w_class = 36
 	STR.allow_big_nesting = TRUE
 
 /obj/item/storage/backpack/holding/suicide_act(mob/living/user)
@@ -203,6 +203,12 @@
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
 	species_exception = list(/datum/species/angel) //satchels can be equipped since they are on the side, not back
+	worn_access = TRUE
+
+/obj/item/storage/backpack/satchel/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 12
 
 /obj/item/storage/backpack/satchel/leather
 	name = "leather satchel"
@@ -352,13 +358,14 @@
 	icon_state = "duffel"
 	item_state = "duffel"
 	slowdown = 1
+	equip_access = FALSE
 
 /obj/item/storage/backpack/duffelbag/ComponentInitialize()
 	. = ..()
 	// SKYRAT EDIT: Remove Volumetric Storage
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	//STR.max_volume = STORAGE_VOLUME_DUFFLEBAG
-	STR.max_combined_w_class = 30
+	STR.max_combined_w_class = 32
 
 /obj/item/storage/backpack/duffelbag/captain
 	name = "captain's duffel bag"
