@@ -836,19 +836,6 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 					dat += "</td>"
 					mutant_category = 0
 
-			if(pref_species.mutant_bodyparts["legs"])
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
-
-				dat += "<h3>Legs</h3>"
-
-				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=legs;task=input'>[features["legs"]]</a>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
-
 			if(pref_species.mutant_bodyparts["deco_wings"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -883,19 +870,6 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 				dat += "<h3>Insect Fluff</h3>"
 
 				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=insect_fluffs;task=input'>[features["insect_fluff"]]</a>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
-
-			if(pref_species.mutant_bodyparts["taur"])
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
-
-				dat += "<h3>Tauric Body</h3>"
-
-				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=taur;task=input'>[features["taur"]]</a>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)

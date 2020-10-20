@@ -208,6 +208,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		features["exploitable_info"]			= strip_html_simple(features["exploitable_info"], MAX_FLAVOR_LEN, TRUE)
 		//End of skyrat changes
 
+	//No more digi nor taurs fuck you
+	features["taur"] = "None"
+	features["legs"] = "Plantigrade"
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
