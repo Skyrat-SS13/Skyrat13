@@ -14,6 +14,7 @@
 		canSmoothWith |= typesof(/obj/structure/falsewall)
 		canSmoothWith |= typesof(/turf/closed/indestructible/riveted)
 		canSmoothWith |= typesof(/obj/structure/table/low_wall)
+	update_overlays()
 
 /obj/structure/window/setAnchored(anchorvalue)
 	..()
@@ -24,6 +25,7 @@
 	. = ..()
 	if(!anchored)
 		update_icon()
+		update_overlays()
 
 /obj/structure/window/update_icon()
 	..()
@@ -187,7 +189,7 @@
 	. = ..()
 	//this is stupid but oh well
 	if(fulltile)
-		icon = wall_icon
+		icon = nowall_icon
 
 /obj/structure/window/plastitanium/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/nobrim/plastitanium_window.dmi'
