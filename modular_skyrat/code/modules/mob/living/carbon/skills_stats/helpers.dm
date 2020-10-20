@@ -136,7 +136,7 @@
 						var/hamdarmor = victim.getarmor(BP.body_zone, "melee")
 						if(hamdarmor < 30)
 							total_damage *= clamp(1 - (hamdarmor/100), 0, 1)
-							BP.receive_damage(total_damage)c
+							BP.receive_damage(total_damage)
 					else
 						return FALSE
 				return TRUE
