@@ -117,3 +117,19 @@
 // REVOLVERS //
 ///////////////
 //
+
+/obj/item/gun/ballistic/revolver/dual_ammo
+	name = "\improper .38 revolver"
+	desc = "The NT Judge revolver - A classic law enforcement firearm, for a lawless land."
+	icon_state = "detective_panther"
+
+/obj/item/gun/ballistic/revolver/dual_ammo/AltClick(mob/user)
+	. = ..()
+	if(magazine)
+		switch(magazine.caliber)
+			if("38")
+				magazine.caliber = "357"
+				to_chat(user, "<span class='notice'>\The [src] will now chamber .357 rounds.</span>")
+			if("357")
+				magazine.caliber = "38"
+				to_chat(user, "<span class='notice'>\The [src] will now chamber .38 rounds.</span>")

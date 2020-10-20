@@ -100,7 +100,8 @@
 
 /obj/item/gun/ballistic/revolver/detective/Initialize()
 	. = ..()
-	safe_calibers = magazine.caliber
+	if(!safe_calibers)
+		safe_calibers = magazine.caliber
 
 /obj/item/gun/ballistic/revolver/detective/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, stam_cost = 0)
 	if(chambered && !(chambered.caliber in safe_calibers))
