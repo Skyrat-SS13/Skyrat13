@@ -112,7 +112,10 @@
 			if(!victim.get_active_held_item())
 				var/obj/item/bodypart/BP = victim.get_active_hand()
 				if(BP)
-					BP.receive_damage(total_damage)
+					var/hamdarmor = victim.getarmor(BP.body_zone, "melee")
+					if(hamdarmor < 30)
+						total_damage *= clamp(1 - (hamdarmor/100), 0, 1)
+						BP.receive_damage(total_damage)
 				else
 					return
 			return TRUE
