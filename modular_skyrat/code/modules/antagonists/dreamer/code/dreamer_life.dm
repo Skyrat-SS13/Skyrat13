@@ -73,6 +73,63 @@
 	else if(prob(1) && prob(50))
 		spawn(0)
 			handle_dreamer_mob_hallucination()
+	//Even rarer OOC hallucination
+	else if(prob(1) && prob(25))
+		var/clientkey = client.key
+		if(prob(50))
+			var/client/cliente = pick(GLOB.clients)
+			clientkey = cliente.key
+		var/message = pick("My ANUS is <span style='color: #DC143C'>BLEEDING!</span>",
+						"[src] is the dreamer!",
+						"I'm reporting [src] for murderbone.",
+						"Lmao [src] is such an awful [pick("antag","dreamer")].",
+						"I'm gonna frag [src]",
+						last_pain_message,
+						last_words,
+						)
+		to_chat(src, "<span class='ooc'><span class='prefix'>OOC:</span> <EM>[clientkey]:</EM> <span class='message linkify'>[message]</span></span>")
+	//Even rarer than that jannie hallucination - bwoink hallucination
+	else if(prob(1) && prob(10))
+		var/fakemin = "Trey Liam"
+		if(length(GLOB.admin_datums))
+			var/datum/admins/badmin = pick(GLOB.admin_datums)
+			if(badmin?.owner?.key)
+				fakemin = badmin.owner.key
+		var/message = pick("You need to wake up.",
+							"Are you scared of being banned?",
+							"What are you doing?",
+							"Have you read the rules?",
+							"You got a moment?",
+							last_pain_message,
+							last_words,
+							)
+		to_chat(src, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
+		to_chat(src, "<span class='danger'>Admin PM from-<b><a href='https://youtu.be/wJWksPWDKOc'>[fakemin]</a></b>: <span class='linkify'>[message]</span></span>")
+		to_chat(src, "<span class='danger'><i>Click on the administrator's name to reply, or see all of your tickets in the admin column.</i></span>")
+		SEND_SOUND(src, sound('sound/effects/adminhelp.ogg'))
+	//Ban hallucination
+	else if(prob(1) && prob(5))
+		var/fakemin = "Trey Liam"
+		if(length(GLOB.admin_datums))
+			var/datum/admins/badmin = pick(GLOB.admin_datums)
+			if(badmin?.owner?.key)
+				fakemin = badmin.owner.key
+		var/message = pick("I hate you.",
+						"You are not real.",
+						"None of this matters.",
+						"Do you even care?",
+						"Murderbone.",
+						"Bad roleplay.",
+						last_pain_message,
+						last_words,
+						)
+		to_chat(src, "<span class='boldannounce'><BIG>You have been banned by [fakemin].\nReason: [message]</BIG></span>")
+		to_chat(src, "<span class='danger'>This is a permanent ban. The round ID is [GLOB.round_id].</span>")
+		var/bran = CONFIG_GET(string/banappeals)
+		if(!bran)
+			bran = "your grave"
+		to_chat(src, "<span class='danger'>To try to resolve this matter head to <a href='https://www.sprc.org/'>[bran]</a>")
+		to_chat(src, "<div class='connectionClosed internal'>You are either AFK, experiencing lag or the connection has closed.</div>")
 	//Talking objects
 	if(prob(5))
 		var/list/objects = list()
