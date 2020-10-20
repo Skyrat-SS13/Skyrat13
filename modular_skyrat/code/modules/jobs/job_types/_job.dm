@@ -1,6 +1,7 @@
 //Alt titles
 /datum/job
 	var/list/alt_titles = list()
+	var/flatter_string = ""
 	var/music_file = 'modular_skyrat/sound/music/ritual.ogg'
 
 //Job music
