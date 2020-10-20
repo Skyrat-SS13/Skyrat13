@@ -423,7 +423,7 @@
 			else
 				E.enthrallTally += 20
 				to_chat(src, "<span class='notice'>You give into [E.master]'s influence.</span>")
-	if (InCritical())
+	if(InCritical())
 		log_message("Has succumbed to death while in [InFullCritical() ? "hard":"soft"] critical with [round(health, 0.1)] points of health!", LOG_ATTACK)
 		adjustOxyLoss(health - HEALTH_THRESHOLD_DEAD)
 		updatehealth()
@@ -439,6 +439,7 @@
 		return FALSE
 	return TRUE
 
+//These procs have been overhauled to comply with the shock system for carbon mobs
 /mob/living/proc/InCritical()
 	return (health <= crit_threshold && (stat == SOFT_CRIT || stat == UNCONSCIOUS))
 
@@ -545,6 +546,7 @@
 		return
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
 	staminaloss = getStaminaLoss()
+	painloss = getPainLoss()
 	update_stat()
 	med_hud_set_health()
 	med_hud_set_status()
@@ -1019,6 +1021,9 @@
 /mob/living/proc/update_stamina()
 	return
 
+/mob/living/proc/update_pain()
+	return
+
 /mob/living/carbon/alien/update_stamina()
 	return
 
@@ -1309,6 +1314,7 @@
 			CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>
 			BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[getOrganLoss(ORGAN_SLOT_BRAIN)]</a>
 			STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[getStaminaLoss()]</a>
+			PAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=pain' id='pain'>[getPainLoss()]</a>
 		</font>
 	"}
 
@@ -1316,3 +1322,15 @@
 /// Only defined for carbons who can wear masks and helmets, we just assume other mobs have visible faces
 /mob/living/proc/is_face_visible()
 	return TRUE
+
+//Missing a heartbeat, used by carbons to identify critical condition
+/mob/living/proc/is_asystole()
+	return FALSE
+
+//Brain is poopy
+/mob/living/proc/nervous_system_failure()
+	return FALSE
+
+//Get how damaged the mob is, regardless of how fucked the brain is.
+/mob/living/proc/get_physical_damage()
+	return round(maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - getBruteLoss() - getFireLoss(), DAMAGE_PRECISION)

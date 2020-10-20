@@ -9,6 +9,7 @@
 	stamina = 70
 	//skyrat edit
 	damage = 10
+	pain = 25 //hurts a lot
 	bare_wound_bonus = 10
 	sharpness = SHARP_NONE
 	//
@@ -96,6 +97,7 @@
 	bare_wound_bonus = 10
 	damage = 2
 	stamina = 15
+	pain = 7.5 //hurts a bit
 
 /obj/item/projectile/bullet/pellet/Range()
 	..()

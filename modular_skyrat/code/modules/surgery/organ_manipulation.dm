@@ -12,13 +12,14 @@
 					/obj/item/mmi = 100)
 	var/heal_amount = 40
 	var/disinfect_amount = 20
+	var/disinfect_germs = 100
 
 /datum/surgery_step/manipulate_organs/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/mmi/mmi = null
 	I = null
 	var/hasnecroticorgans = FALSE
 	for(var/obj/item/organ/O in target.getorganszone(target_zone))
-		if(O.damage >= (O.maxHealth - O.maxHealth/10)  && !(O.status == ORGAN_ROBOTIC))
+		if((O.germ_level) || (O.damage >= (O.maxHealth - O.maxHealth/10))  && !(O.status == ORGAN_ROBOTIC))
 			hasnecroticorgans = TRUE
 	if(istype(tool, /obj/item/organ_storage))
 		if(!tool.contents.len)
@@ -315,8 +316,9 @@
 	else if(current_type == "disinfect")
 		var/disinfectedatall = FALSE
 		for(var/obj/item/organ/O in target.getorganszone(target_zone))
-			if(O.damage >= (O.maxHealth - O.maxHealth/10) && !(O.status & ORGAN_ROBOTIC))
+			if(((O.germ_level) || (O.damage >= O.high_threshold)) && !(O.status & ORGAN_ROBOTIC))
 				O.applyOrganDamage(-disinfect_amount)
+				O.janitize(-disinfect_germs, 0, O.germ_level)
 				disinfectedatall = TRUE
 		if(disinfectedatall)
 			display_results(user, target, "<span class='notice'>You have succesfully disinfected [target]'s [parse_zone(target_zone)] organs.</span>",

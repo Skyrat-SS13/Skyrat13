@@ -1,0 +1,44 @@
+[2020-09-02 12:58:35.735] Starting up round ID .
+ - -------------------------
+[2020-09-02 12:58:35.810] ADMIN: Loading Banlist
+[2020-09-02 12:58:35.859] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-02 12:58:35.859] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-02 12:58:39.685] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-02 12:58:41.724] GAME: Saved mode is 'extended'
+[2020-09-02 12:58:55.635] GAME: Hierophant's Arena loaded at 176,46,6
+[2020-09-02 12:58:55.650] GAME: Blood-Drunk Miner (Guidance) loaded at 36,177,6
+[2020-09-02 12:58:55.666] GAME: Blood-Drunk Miner (Hunter) loaded at 186,76,6
+[2020-09-02 12:58:55.682] GAME: Blood-Drunk Miner loaded at 113,71,6
+[2020-09-02 12:58:55.699] GAME: King Goat Boss Ruin loaded at 23,200,6
+[2020-09-02 12:58:55.721] GAME: Rogue's Arena loaded at 53,60,6
+[2020-09-02 12:58:55.752] GAME: Sif's Sword loaded at 149,111,6
+[2020-09-02 12:58:55.759] GAME: Pulsating Tumor loaded at 118,97,6
+[2020-09-02 12:58:55.780] GAME: Free Golem Ship loaded at 85,109,6
+[2020-09-02 12:58:55.845] GAME: Ash Walker Nest loaded at 106,181,6
+[2020-09-02 12:58:55.851] GAME: Pulsating Tumor loaded at 40,159,6
+[2020-09-02 12:58:55.867] GAME: Survival Capsule Ruins loaded at 173,97,6
+[2020-09-02 12:58:55.897] GAME: Ruined Pizza Party loaded at 160,23,6
+[2020-09-02 12:58:58.903] GAME: Abandoned Teleporter loaded at 177,41,4
+[2020-09-02 12:58:58.926] GAME: Whiteship Dock loaded at 50,100,3
+[2020-09-02 12:58:58.950] GAME: Asteroid 1 loaded at 23,47,7
+[2020-09-02 12:58:58.993] GAME: Derelict 1 loaded at 53,101,4
+[2020-09-02 12:58:59.035] GAME: DJ Station loaded at 164,82,4
+[2020-09-02 12:58:59.123] GAME: A Giant Ball of Paper in Space loaded at 134,160,8
+[2020-09-02 12:58:59.222] GAME: Feline-Human Combination Den loaded at 180,83,8
+[2020-09-02 12:58:59.260] GAME: Disposal Facility 17 loaded at 105,25,4
+[2020-09-02 12:58:59.311] GAME: Asteroid 5 loaded at 46,105,7
+[2020-09-02 12:58:59.485] GAME: Space Hermit loaded at 108,146,4
+[2020-09-02 12:58:59.533] GAME: Waylaid Buses loaded at 32,196,8
+[2020-09-02 12:58:59.581] GAME: Unnamed Turreted Outpost loaded at 85,179,7
+[2020-09-02 12:58:59.614] GAME: Strange Ship loaded at 62,148,3
+[2020-09-02 12:58:59.651] GAME: Crashed Clown Ship loaded at 142,185,3
+[2020-09-02 12:58:59.699] ACCESS: Logout: Bob Joga/(Bob Joga)
+[2020-09-02 12:58:59.700] GAME: Bob Joga[DC]/(Bob Joga) Bob Joga[DC]/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-02 12:58:59.818] GAME: Derelict 4 loaded at 168,72,7
+[2020-09-02 12:58:59.871] GAME: Derelict 6 loaded at 160,132,8
+[2020-09-02 12:58:59.904] GAME: Mineable Asteroid 5 loaded at 207,186,2
+[2020-09-02 12:58:59.935] GAME: Monitoring Roid loaded at 27,210,2
+[2020-09-02 12:58:59.955] GAME: Dorm Roid loaded at 209,212,2
+[2020-09-02 12:58:59.970] GAME: Maze Roid loaded at 52,208,2
+[2020-09-02 12:58:59.986] GAME: Mineable Asteroid 4 loaded at 176,201,2
+[2020-09-02 12:59:00.007] GAME: Dead wizard Roid loaded at 30,40,2

@@ -1,0 +1,28 @@
+[2020-09-01 17:20:22.025] Starting up round ID .
+ - -------------------------
+[2020-09-01 17:21:38.634] Logs from logging subsystem:
+ - (2020-09-01 14:20:41) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=doneLoading
+ - (2020-09-01 14:20:41) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-09-01 14:20:41) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-09-01 14:20:41) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=analyzeClientData&param[cookie]={"connData":[{"ckey":"bobjoga","ip":null,"compid":"3000796718"},{"ckey":"bobjoga","ip":"177.191.16.185","compid":"3000796718"},{"ckey":"bobjoga","ip":"179.104.27.255","compid":"3000796718"},{"ckey":"bobjoga","ip":"127.0.0.1","compid":"3000796718"},{"ckey":"bobjoga","ip":"179.104.31.67","compid":"3000796718"}]}
+ - (2020-09-01 14:21:02) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_70];ready=1
+[2020-09-01 17:31:39.037] Logs from logging subsystem:
+ - (2020-09-01 14:24:12) HREF: Bob Joga (usr:Pedro Ilurdoz[(140,133,2)]) : bobjoga's admin datum (!localhost!) src=[0x21003d44];admin_token=1067301799675393431581942061028969;create_object=1
+ - (2020-09-01 14:24:32) HREF: Bob Joga (usr:Pedro Ilurdoz[(140,133,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x21003d44%5D%3Badmin_token%3D1067301799675393431581942061028969&admin_token=1067301799675393431581942061028969&filter=helmet&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fobj%2Fitem%2Fclothing%2Fhead%2Fhelmet%2Fjustice
+ - (2020-09-01 14:24:49) HREF: Bob Joga (usr:Pedro Ilurdoz[(138,132,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x21003d44%5D%3Badmin_token%3D1067301799675393431581942061028969&admin_token=1067301799675393431581942061028969&filter=hardsuit&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fobj%2Fitem%2Fclothing%2Fsuit%2Fspace%2Fhardsuit%2Fert%2Fparanormal%2Fbeserker
+ - (2020-09-01 14:31:28) HREF: Bob Joga (usr:Pedro Ilurdoz[(139,137,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x21003d44%5D%3Badmin_token%3D1067301799675393431581942061028969&admin_token=1067301799675393431581942061028969&filter=hardsuit&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fobj%2Fitem%2Fclothing%2Fsuit%2Fspace%2Fhardsuit%2Fsecurity_armor
+[2020-09-01 17:41:39.334] Logs from logging subsystem:
+ - (2020-09-01 14:37:20) HREF: Bob Joga (usr:Pedro Ilurdoz[(141,134,2)]) : _src_=vars;admin_token=1067301799675393431581942061028969;Vars=[0x2103c955]
+ - (2020-09-01 14:37:24) HREF: Bob Joga (usr:Pedro Ilurdoz[(141,134,2)]) : _src_=vars;admin_token=1067301799675393431581942061028969;Vars=[0x203edbb]
+ - (2020-09-01 14:37:29) HREF: Bob Joga (usr:Pedro Ilurdoz[(141,134,2)]) : _src_=vars;admin_token=1067301799675393431581942061028969;Vars=[0x203ede4]
+ - (2020-09-01 14:37:33) HREF: Bob Joga (usr:Pedro Ilurdoz[(141,134,2)]) : _src_=vars;admin_token=1067301799675393431581942061028969;Vars=[0x203ee0d]
+ - (2020-09-01 14:37:37) HREF: Bob Joga (usr:Pedro Ilurdoz[(141,134,2)]) : _src_=vars;admin_token=1067301799675393431581942061028969;Vars=[0x203ede6]
+[2020-09-01 17:51:39.633] Logs from logging subsystem:
+ - (2020-09-01 14:42:10) HREF: Bob Joga (usr:Pedro Ilurdoz[(141,137,2)]) : _src_=vars;admin_token=1067301799675393431581942061028969;Vars=[0x2103c955]
+ - (2020-09-01 14:42:12) HREF: Bob Joga (usr:Pedro Ilurdoz[(141,137,2)]) : _src_=vars;admin_token=1067301799675393431581942061028969;proc_call=TRUE;target=[0x2103c955]
+ - (2020-09-01 14:42:22) HREF: Bob Joga (usr:Pedro Ilurdoz[(141,137,2)]) : _src_=vars;admin_token=1067301799675393431581942061028969;proc_call=TRUE;target=[0x2103c955]
+ - (2020-09-01 14:42:33) HREF: Bob Joga (usr:Pedro Ilurdoz[(141,137,2)]) : _src_=vars;admin_token=1067301799675393431581942061028969;proc_call=TRUE;target=[0x2103c955]
+ - (2020-09-01 14:43:52) HREF: Bob Joga (usr:Pedro Ilurdoz[(141,137,2)]) : _src_=vars;admin_token=1067301799675393431581942061028969;proc_call=TRUE;target=[0x2103c955]
+ - (2020-09-01 14:44:07) HREF: Bob Joga (usr:Pedro Ilurdoz[(141,137,2)]) : _src_=vars;admin_token=1067301799675393431581942061028969;proc_call=TRUE;target=[0x2103c955]
+ - (2020-09-01 14:44:13) HREF: Bob Joga (usr:Pedro Ilurdoz[(141,137,2)]) : _src_=vars;admin_token=1067301799675393431581942061028969;proc_call=TRUE;target=[0x2103c955]
+ - (2020-09-01 14:47:23) HREF: Bob Joga (usr:Pedro Ilurdoz[(139,137,2)]) : _src_=holder;admin_token=1067301799675393431581942061028969;revive=[mob_247]

@@ -1,0 +1,53 @@
+[2020-09-11 22:36:14.664] Starting up round ID .
+ - -------------------------
+[2020-09-11 22:36:14.669] Running /tg/ revision: 2020-09-09
+ - origin/master: 5ede6de840835814d9a7b08a35f3d5389b1f7f7b
+ - HEAD: fa71e4fc1a1731489e6b261973da1a620b70dce0
+[2020-09-11 22:36:15.889] Loading Box Station...
+[2020-09-11 22:36:22.243] Loaded Station in 6.4s!
+[2020-09-11 22:36:24.537] Loaded Lavaland in 2.2s!
+[2020-09-11 22:36:26.002] Ruin loader finished with 0 left to spend.
+[2020-09-11 22:36:30.273] Ruin loader finished with 0 left to spend.
+[2020-09-11 22:36:30.463] Ruin loader finished with 0 left to spend.
+[2020-09-11 22:37:09.036] ## WARNING: HEY! LISTEN! 1.1 seconds were wasted processing 465 turf(s) (connected to 38559 other turfs) with atmos differences at round start.
+[2020-09-11 22:37:32.593] Initializations complete within 76.9 seconds!
+[2020-09-11 22:38:12.263] Game start took 0.5s
+[2020-09-11 22:42:09.086] runtime error: Cannot read null.name
+ - proc name: unwield (/datum/component/two_handed/proc/unwield)
+ -   source file: twohanded.dm,213
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: /datum/component/two_handed (/datum/component/two_handed)
+ -   usr.loc: the floor (130,136,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - /datum/component/two_handed (/datum/component/two_handed): unwield(Pedro Ilurdoz (/mob/living/carbon/human), 1)
+ - the fist (Wielded) (/obj/item/fist): wield act(Pedro Ilurdoz (/mob/living/carbon/human))
+ - Pedro Ilurdoz (/mob/living/carbon/human): wield active hand()
+ - the wield (/obj/screen/wield): Click(null, "mapwindow.map", "icon-x=20;icon-y=24;left=1;scr...", 0)
+ - Bob Joga (/client): Click(the wield (/obj/screen/wield), null, "mapwindow.map", "icon-x=20;icon-y=24;left=1;scr...", 0)
+ - 
+[2020-09-11 22:42:34.035] runtime error: Cannot read null.name
+ - proc name: unwield (/datum/component/two_handed/proc/unwield)
+ -   source file: twohanded.dm,213
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: /datum/component/two_handed (/datum/component/two_handed)
+ -   usr.loc: the floor (129,140,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - /datum/component/two_handed (/datum/component/two_handed): unwield(Pedro Ilurdoz (/mob/living/carbon/human), 1)
+ - the fist (Wielded) (/obj/item/fist): wield act(Pedro Ilurdoz (/mob/living/carbon/human))
+ - Pedro Ilurdoz (/mob/living/carbon/human): wield active hand()
+ - the wield (/obj/screen/wield): Click(null, "mapwindow.map", "icon-x=25;icon-y=29;left=1;scr...", 0)
+ - Bob Joga (/client): Click(the wield (/obj/screen/wield), null, "mapwindow.map", "icon-x=25;icon-y=29;left=1;scr...", 0)
+ - 
+[2020-09-11 22:42:53.165] runtime error: Cannot read "map".x
+ - proc name: face atom (/mob/proc/face_atom)
+ -   source file: click.dm,431
+ -   usr: (src)
+ -   src: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src.loc: the floor (129,140,2) (/turf/open/floor/plasteel)
+ -   call stack:
+ - Pedro Ilurdoz (/mob/living/carbon/human): face atom("map", 1)
+ - /datum/component/combat_mode (/datum/component/combat_mode): onMouseUpDown(Pedro Ilurdoz (/mob/living/carbon/human), null, "map", "mapwindow.map", "left=1;screen-loc=map:1:1,13:3...")
+ - CallAsync(/datum/component/combat_mode (/datum/component/combat_mode), /datum/component/combat_mode/p... (/datum/component/combat_mode/proc/onMouseUpDown), /list (/list))
+ - Pedro Ilurdoz (/mob/living/carbon/human):  SendSignal("mob_client_mouseup", /list (/list))
+ - Bob Joga (/client): MouseUp(null, "map", "mapwindow.map", "left=1;screen-loc=map:1:1,13:3...")
+ - 

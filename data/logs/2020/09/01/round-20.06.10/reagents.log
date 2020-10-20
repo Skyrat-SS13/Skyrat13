@@ -1,0 +1,54 @@
+[2020-09-01 23:06:10.074] Starting up round ID .
+ - -------------------------
+[2020-09-01 23:19:19.172] Logs from logging subsystem:
+ - (2020-09-01 20:10:49) REAGENT: MOB ADD: on_mob_add(): *no key*/(Redshirt McBeat) at Unexplored Location (135, 41, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:11:01) REAGENT: MOB ADD: on_mob_add(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (138, 40, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:12:23) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (135, 41, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:12:39) REAGENT: MOB ADD: on_mob_add(): *no key*/(Bohdan Sampson) at Small Freighter (44, 95, 7) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:12:45) REAGENT: MOB ADD: on_merge(): *no key*/(Bohdan Sampson) at Small Freighter (44, 95, 7) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:12:47) REAGENT: MOB ADD: on_merge(): *no key*/(Bohdan Sampson) at Small Freighter (44, 95, 7) - 9 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:12:59) REAGENT: MOB ADD: on_mob_add(): *no key*/(Brody Unal) at Small Freighter (51, 93, 7) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:13:17) REAGENT: MOB ADD: on_mob_add(): *no key*/(Pocket) at Unexplored Location (136, 43, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:13:29) REAGENT: MOB ADD: on_merge(): *no key*/(Pocket) at Unexplored Location (136, 43, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:13:35) REAGENT: MOB ADD: on_merge(): *no key*/(Brody Unal) at Small Freighter (51, 93, 7) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:13:35) REAGENT: MOB ADD: on_merge(): *no key*/(Pocket) at Unexplored Location (136, 43, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:13:39) REAGENT: MOB ADD: on_merge(): *no key*/(Pocket) at Unexplored Location (136, 43, 8) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:13:41) REAGENT: MOB ADD: on_merge(): *no key*/(Brody Unal) at Small Freighter (51, 93, 7) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:13:43) REAGENT: MOB ADD: on_merge(): *no key*/(Pocket) at Unexplored Location (136, 43, 8) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:13:47) REAGENT: MOB ADD: on_merge(): *no key*/(Bohdan Sampson) at Small Freighter (44, 95, 7) - 14 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:13:53) REAGENT: MOB ADD: on_merge(): *no key*/(Brody Unal) at Small Freighter (51, 93, 7) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:14:19) REAGENT: MOB ADD: on_merge(): *no key*/(Brody Unal) at Small Freighter (51, 93, 7) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:14:23) REAGENT: MOB ADD: on_merge(): *no key*/(Brody Unal) at Small Freighter (51, 93, 7) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:14:31) REAGENT: MOB ADD: on_merge(): *no key*/(Brody Unal) at Small Freighter (51, 93, 7) - 14 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:14:35) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (135, 41, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:14:47) REAGENT: MOB ADD: on_merge(): *no key*/(Brody Unal) at Small Freighter (51, 93, 7) - 16 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:14:47) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (135, 41, 8) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:14:53) REAGENT: MOB ADD: on_merge(): *no key*/(Bohdan Sampson) at Small Freighter (44, 95, 7) - 16 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:14:53) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (135, 41, 8) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:14:55) REAGENT: MOB ADD: on_merge(): *no key*/(Pocket) at Unexplored Location (136, 43, 8) - 18 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:14:57) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (138, 40, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:15:03) REAGENT: MOB ADD: on_merge(): *no key*/(Brody Unal) at Small Freighter (51, 93, 7) - 21 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:15:07) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (135, 41, 8) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:15:09) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (135, 41, 8) - 17 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:15:13) REAGENT: MOB ADD: on_merge(): *no key*/(Bohdan Sampson) at Small Freighter (44, 95, 7) - 18 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:15:47) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (135, 41, 8) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:15:49) REAGENT: MOB ADD: on_merge(): *no key*/(Brody Unal) at Small Freighter (51, 93, 7) - 23 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:15:51) REAGENT: MOB ADD: on_mob_add(): *no key*/(Margarida Marion) at Tiny Freighter (107, 92, 7) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:16:07) REAGENT: MOB ADD: on_merge(): *no key*/(Pocket) at Unexplored Location (136, 43, 8) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:16:13) REAGENT: MOB ADD: on_merge(): *no key*/(Brody Unal) at Small Freighter (51, 93, 7) - 28 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:16:17) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (135, 41, 8) - 24 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:16:35) REAGENT: MOB ADD: on_merge(): *no key*/(Pocket) at Unexplored Location (136, 43, 8) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:16:37) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (138, 40, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:16:43) REAGENT: MOB ADD: on_merge(): *no key*/(Pocket) at Unexplored Location (136, 43, 8) - 24 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:16:49) REAGENT: MOB ADD: on_merge(): *no key*/(Pocket) at Unexplored Location (136, 43, 8) - 29 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:17:03) REAGENT: MOB ADD: on_merge(): *no key*/(Pocket) at Unexplored Location (136, 43, 8) - 34 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:17:07) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (135, 41, 8) - 29 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:17:29) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (138, 40, 8) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:17:35) REAGENT: MOB ADD: on_merge(): *no key*/(Redshirt McBeat) at Unexplored Location (135, 41, 8) - 34 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:17:45) REAGENT: MOB ADD: on_merge(): *no key*/(Pocket) at Unexplored Location (136, 43, 8) - 41.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:17:49) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (138, 40, 8) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:17:49) REAGENT: MOB ADD: on_merge(): *no key*/(Margarida Marion) at Tiny Freighter (107, 92, 7) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:18:05) REAGENT: MOB ADD: on_merge(): *no key*/(Margarida Marion) at Tiny Freighter (107, 92, 7) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:18:41) REAGENT: MOB ADD: on_merge(): *no key*/(Margarida Marion) at Tiny Freighter (107, 92, 7) - 11 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:18:53) REAGENT: MOB ADD: on_merge(): *no key*/(Jo Jo Bobo Bo) at Unexplored Location (138, 40, 8) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-01 20:19:11) REAGENT: MOB ADD: on_merge(): *no key*/(Margarida Marion) at Tiny Freighter (107, 92, 7) - 16 of /datum/reagent/determination with 1 purity

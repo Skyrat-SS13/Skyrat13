@@ -1,0 +1,74 @@
+[2020-08-28 01:26:14.669] Starting up round ID .
+ - -------------------------
+[2020-08-28 01:26:14.729] ADMIN: Loading Banlist
+[2020-08-28 01:26:14.764] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-08-28 01:26:14.765] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-08-28 01:26:17.371] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-08-28 01:26:20.928] GAME: Saved mode is 'extended'
+[2020-08-28 01:26:33.979] GAME: Hierophant's Arena loaded at 158,188,6
+[2020-08-28 01:26:33.995] GAME: Blood-Drunk Miner (Guidance) loaded at 91,154,6
+[2020-08-28 01:26:34.010] GAME: Blood-Drunk Miner (Hunter) loaded at 202,113,6
+[2020-08-28 01:26:34.026] GAME: Blood-Drunk Miner loaded at 110,184,6
+[2020-08-28 01:26:34.042] GAME: King Goat Boss Ruin loaded at 56,143,6
+[2020-08-28 01:26:34.070] GAME: Rogue's Arena loaded at 91,115,6
+[2020-08-28 01:26:34.103] GAME: Sif's Sword loaded at 156,57,6
+[2020-08-28 01:26:34.110] GAME: Pulsating Tumor loaded at 139,107,6
+[2020-08-28 01:26:34.139] GAME: The Wishgranter Cube loaded at 155,115,6
+[2020-08-28 01:26:34.166] GAME: Ruin of Gluttony loaded at 95,77,6
+[2020-08-28 01:26:34.187] GAME: Makeshift Shelter loaded at 181,155,6
+[2020-08-28 01:26:34.564] GAME: Syndicate Lava Base loaded at 27,168,6
+[2020-08-28 01:26:34.616] GAME: Biodome Beach loaded at 62,63,6
+[2020-08-28 01:26:37.702] GAME: Abandoned Teleporter loaded at 105,210,4
+[2020-08-28 01:26:37.725] GAME: Whiteship Dock loaded at 146,102,7
+[2020-08-28 01:26:37.764] GAME: Space Arcade loaded at 139,132,3
+[2020-08-28 01:26:37.807] GAME: Derelict 3 loaded at 33,64,7
+[2020-08-28 01:26:37.845] GAME: Abductor Replication Lab loaded at 169,47,3
+[2020-08-28 01:26:37.889] GAME: Roboticst Augmentation Facility loaded at 126,203,7
+[2020-08-28 01:26:37.924] GAME: Asteroid 4 loaded at 33,134,8
+[2020-08-28 01:26:37.983] GAME: NT Medical Ship loaded at 146,121,8
+[2020-08-28 01:26:38.012] GAME: Empty Shell loaded at 26,160,4
+[2020-08-28 01:26:38.068] GAME: Asteroid 5 loaded at 33,150,3
+[2020-08-28 01:26:38.069] GAME: Detached Teleporter loaded at 161,184,4
+[2020-08-28 01:26:38.183] GAME: Syndicate Listening Station loaded at 69,182,8
+[2020-08-28 01:26:38.187] GAME: Ordinary Space Tile loaded at 197,173,7
+[2020-08-28 01:26:38.352] GAME: Abandoned Telecommunications Satellite loaded at 133,143,8
+[2020-08-28 01:26:38.393] GAME: Authorship loaded at 53,199,4
+[2020-08-28 01:26:38.497] GAME: Feline-Human Combination Den loaded at 99,33,8
+[2020-08-28 01:26:38.525] GAME: Mineable Asteroid 2 loaded at 31,38,2
+[2020-08-28 01:26:38.542] GAME: Mineable Asteroid 3 loaded at 219,52,2
+[2020-08-28 01:26:38.576] GAME: Mineable Asteroid 4 loaded at 72,23,2
+[2020-08-28 01:26:38.603] GAME: Dorm Roid loaded at 208,185,2
+[2020-08-28 01:26:38.649] GAME: Mineable Asteroid 5 loaded at 164,208,2
+[2020-08-28 01:26:38.668] GAME: Maze Roid loaded at 195,24,2
+[2020-08-28 01:26:38.701] GAME: Monitoring Roid loaded at 27,206,2
+[2020-08-28 01:26:38.722] GAME: Dead wizard Roid loaded at 142,209,2
+[2020-08-28 01:26:38.739] GAME: Mineable Asteroid 1 loaded at 96,23,2
+[2020-08-28 01:26:38.751] GAME: Mineable Asteroid 1 loaded at 186,220,2
+[2020-08-28 01:26:38.825] GAME: Box Singulo loaded at 96,49,2
+[2020-08-28 01:26:39.158] GAME: Public Mining Base loaded at 1,1,6
+[2020-08-28 01:26:55.160] GAME: *no key*/(Mary Rose Weatherford) Mary Rose Weatherford name changed from Mary Rose Weatherford to Jazzy Bella (Unexplored Location (44, 137, 8))
+[2020-08-28 01:27:08.785] ADMIN: Bob Joga has started the game.
+[2020-08-28 01:27:42.045] GAME: Backup Shuttle loaded at 84,206,1
+[2020-08-28 01:27:42.149] GAME: assault pod (Default) loaded at 85,207,1
+[2020-08-28 01:27:42.488] GAME: basic syndicate infiltrator loaded at 80,199,1
+[2020-08-28 01:27:42.774] GAME: fancy transport ferry loaded at 82,208,1
+[2020-08-28 01:27:42.942] GAME: Box Station Emergency Shuttle loaded at 83,199,1
+[2020-08-28 01:27:43.126] GAME: cargo ferry (Box) loaded at 85,204,1
+[2020-08-28 01:27:43.691] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 01:27:43.717] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 01:27:43.771] GAME: auxilliary base (Default) loaded at 84,206,1
+[2020-08-28 01:27:43.875] GAME: arrival shuttle (Box) loaded at 81,207,1
+[2020-08-28 01:27:43.970] GAME: mining shuttle (Box) loaded at 86,207,1
+[2020-08-28 01:27:44.023] GAME: labour shuttle (Box) loaded at 86,206,1
+[2020-08-28 01:27:44.068] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 01:27:44.095] GAME: escape pod (Default) loaded at 87,208,1
+[2020-08-28 01:27:44.123] GAME: lavaland Mining Elevator loaded at 86,208,1
+[2020-08-28 01:27:44.684] ADMIN: Bob Joga has started the game.
+[2020-08-28 01:27:45.182] GAME: Hospital Ship loaded at 73,202,1
+[2020-08-28 01:27:45.548] VOTE: Roundtype vote started by server.
+[2020-08-28 01:27:47.145] VOTE: <b>Roundtype Vote</b><b>Vote Result: Inconclusive - No Votes!</b>
+[2020-08-28 01:27:47.607] GAME: *no key*/(Bob Joga) *no key*/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-08-28 01:27:47.607] ACCESS: Mob Login: Bob Joga/(Cockmistress) was assigned to a /mob/living/carbon/human
+[2020-08-28 01:27:48.326] GAME: Bob Joga/(Cockmistress) Client Bob Joga/(Cockmistress) has taken ownership of mob (/mob/living/carbon/human) (Xenoarchaeology (65, 48, 5))
+[2020-08-28 01:28:19.751] ADMIN: Bob Joga/(Cockmistress) created a /mob/living/carbon/human/species/felinid
+[2020-08-28 01:29:15.813] ADMIN: Bob Joga/(Cockmistress) called Gustave Yagami's get_shock() with no arguments.

@@ -12,7 +12,7 @@
 	requires_bodypart_type = BODYPART_ROBOTIC
 	targetable_wound = /datum/wound/mechanical/burn
 
-/datum/surgery/debride/can_start(mob/living/user, mob/living/carbon/target)
+/datum/surgery/robot_debride/can_start(mob/living/user, mob/living/carbon/target)
 	if(..())
 		var/obj/item/bodypart/targeted_bodypart = target.get_bodypart(user.zone_selected)
 		var/datum/wound/mechanical/burn/burn_wound = targeted_bodypart.get_wound_type(targetable_wound)

@@ -17,6 +17,9 @@
 	var/icon_wielded = FALSE						/// The icon that will be used when wielded
 	var/obj/item/offhand/offhand_item = null		/// Reference to the offhand created for the item
 	var/sharpened_increase = 0						/// The amount of increase recived from sharpening the item
+	//SKYRAT CHANGES - Option to avoid attack self activation
+	var/ignore_attack_self = FALSE					/// We only register the attack self signal if this is true
+	//END OF SKYRAT CHANGES
 
 /**
  * Two Handed component
@@ -32,7 +35,7 @@
  * * icon_wielded (optional) The icon to be used when wielded
  */
 /datum/component/two_handed/Initialize(require_twohands=FALSE, wieldsound=FALSE, unwieldsound=FALSE, attacksound=FALSE, \
-										force_multiplier=0, force_wielded=0, force_unwielded=0, icon_wielded=FALSE)
+										force_multiplier=0, force_wielded=0, force_unwielded=0, icon_wielded=FALSE, ignore_attack_self=FALSE) //skyrat change - ignore_attack_self
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -44,10 +47,13 @@
 	src.force_wielded = force_wielded
 	src.force_unwielded = force_unwielded
 	src.icon_wielded = icon_wielded
+	//skyrat change
+	src.ignore_attack_self = ignore_attack_self
+	//skyrat changes end
 
 // Inherit the new values passed to the component
 /datum/component/two_handed/InheritComponent(datum/component/two_handed/new_comp, original, require_twohands, wieldsound, unwieldsound, \
-											force_multiplier, force_wielded, force_unwielded, icon_wielded)
+											force_multiplier, force_wielded, force_unwielded, icon_wielded, ignore_attack_self) //skyrat change - ignore_attack_self
 	if(!original)
 		return
 	if(require_twohands)
@@ -66,12 +72,17 @@
 		src.force_unwielded = force_unwielded
 	if(icon_wielded)
 		src.icon_wielded = icon_wielded
+	if(ignore_attack_self)
+		src.ignore_attack_self = ignore_attack_self
 
 // register signals withthe parent item
 /datum/component/two_handed/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/on_equip)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/on_drop)
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/on_attack_self)
+	//skyrat edit
+	if(!ignore_attack_self)
+		RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/on_attack_self)
+	//
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/on_attack)
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_ICON, .proc/on_update_icon)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/on_moved)
@@ -160,6 +171,10 @@
 	// Play sound if one is set
 	if(wieldsound)
 		playsound(parent_item.loc, wieldsound, 50, TRUE)
+	
+	//skyrat edit - update the wield ui button
+	user.wield_ui_on()
+	//
 
 	// Let's reserve the other hand
 	offhand_item = new(user)
@@ -231,6 +246,10 @@
 		qdel(offhand_item)
 	// Clear any old refrence to an item that should be gone now
 	offhand_item = null
+
+	//skyrat edit - update the wield ui button
+	user.wield_ui_off()
+	//
 
 /**
  * on_attack triggers on attack with the parent item

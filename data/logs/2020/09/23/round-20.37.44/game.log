@@ -1,0 +1,49 @@
+[2020-09-23 23:37:44.816] Starting up round ID .
+ - -------------------------
+[2020-09-23 23:37:44.933] ADMIN: Loading Banlist
+[2020-09-23 23:37:44.981] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-23 23:37:44.982] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-23 23:37:47.668] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-23 23:37:51.107] GAME: Saved mode is 'extended'
+[2020-09-23 23:37:54.484] ADMIN: Bob Joga has started the game.
+[2020-09-23 23:38:03.070] GAME: Hierophant's Arena loaded at 163,177,6
+[2020-09-23 23:38:03.087] GAME: Blood-Drunk Miner (Guidance) loaded at 183,30,6
+[2020-09-23 23:38:03.115] GAME: Blood-Drunk Miner (Hunter) loaded at 44,136,6
+[2020-09-23 23:38:03.140] GAME: Blood-Drunk Miner loaded at 83,192,6
+[2020-09-23 23:38:03.175] GAME: King Goat Boss Ruin loaded at 203,133,6
+[2020-09-23 23:38:03.214] GAME: Rogue's Arena loaded at 27,189,6
+[2020-09-23 23:38:03.250] GAME: Sif's Sword loaded at 72,95,6
+[2020-09-23 23:38:03.258] GAME: Pulsating Tumor loaded at 214,93,6
+[2020-09-23 23:38:03.295] GAME: Free Golem Ship loaded at 91,50,6
+[2020-09-23 23:38:03.329] GAME: Ruin of Greed loaded at 174,154,6
+[2020-09-23 23:38:03.390] GAME: Elephant Graveyard loaded at 140,55,6
+[2020-09-23 23:38:03.435] GAME: Biodome Beach loaded at 188,64,6
+[2020-09-23 23:38:03.468] GAME: The Wishgranter Cube loaded at 76,162,6
+[2020-09-23 23:38:07.282] GAME: Abandoned Teleporter loaded at 140,158,7
+[2020-09-23 23:38:07.305] GAME: Whiteship Dock loaded at 70,74,4
+[2020-09-23 23:38:07.343] GAME: Roboticst Augmentation Facility loaded at 52,81,7
+[2020-09-23 23:38:07.390] GAME: DJ Station loaded at 77,143,4
+[2020-09-23 23:38:07.486] GAME: Syndicate Listening Station loaded at 152,142,8
+[2020-09-23 23:38:07.533] GAME: Disposal Facility 17 loaded at 82,57,7
+[2020-09-23 23:38:07.610] GAME: Feline-Human Combination Den loaded at 31,90,8
+[2020-09-23 23:38:07.641] GAME: Salvation loaded at 193,104,4
+[2020-09-23 23:38:07.681] GAME: Waylaid Buses loaded at 93,121,8
+[2020-09-23 23:38:07.717] GAME: Abductor Replication Lab loaded at 40,167,4
+[2020-09-23 23:38:07.746] GAME: Empty Shell loaded at 128,50,8
+[2020-09-23 23:38:07.854] GAME: Space Hermit loaded at 161,135,4
+[2020-09-23 23:38:07.884] GAME: Asteroid 4 loaded at 127,32,8
+[2020-09-23 23:38:08.025] GAME: Derelict Tradepost loaded at 80,45,3
+[2020-09-23 23:38:08.084] GAME: Derelict 1 loaded at 25,40,4
+[2020-09-23 23:38:08.326] GAME: Survivalist Bunker loaded at 101,143,4
+[2020-09-23 23:38:08.369] GAME: Mineable Asteroid 4 loaded at 28,65,2
+[2020-09-23 23:38:08.397] GAME: Mineable Asteroid 2 loaded at 202,22,2
+[2020-09-23 23:38:08.428] GAME: Monitoring Roid loaded at 24,192,2
+[2020-09-23 23:38:08.450] GAME: Dorm Roid loaded at 46,27,2
+[2020-09-23 23:38:08.461] GAME: Mineable Asteroid 1 loaded at 135,218,2
+[2020-09-23 23:38:08.478] GAME: Crab Roid loaded at 175,197,2
+[2020-09-23 23:38:08.494] GAME: Mineable Asteroid 3 loaded at 161,215,2
+[2020-09-23 23:38:08.513] GAME: Dead wizard Roid loaded at 207,199,2
+[2020-09-23 23:38:08.529] GAME: Maze Roid loaded at 32,47,2
+[2020-09-23 23:38:08.564] GAME: Mineable Asteroid 5 loaded at 25,24,2
+[2020-09-23 23:38:08.640] GAME: Box Singulo loaded at 96,49,2
+[2020-09-23 23:38:08.914] GAME: Public Mining Base loaded at 1,1,6

@@ -1,0 +1,61 @@
+[2020-09-27 20:27:09.616] Starting up round ID .
+ - -------------------------
+[2020-09-27 20:27:09.670] ADMIN: Loading Banlist
+[2020-09-27 20:27:09.709] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-27 20:27:09.711] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-27 20:27:12.157] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-27 20:27:15.512] GAME: Saved mode is 'extended'
+[2020-09-27 20:27:27.623] GAME: Hierophant's Arena loaded at 58,101,6
+[2020-09-27 20:27:27.640] GAME: Blood-Drunk Miner (Guidance) loaded at 169,190,6
+[2020-09-27 20:27:27.655] GAME: Blood-Drunk Miner (Hunter) loaded at 184,67,6
+[2020-09-27 20:27:27.671] GAME: Blood-Drunk Miner loaded at 159,111,6
+[2020-09-27 20:27:27.687] GAME: King Goat Boss Ruin loaded at 135,81,6
+[2020-09-27 20:27:27.710] GAME: Rogue's Arena loaded at 211,78,6
+[2020-09-27 20:27:27.717] ADMIN: Bob Joga has started the game.
+[2020-09-27 20:27:27.763] GAME: Sif's Sword loaded at 141,45,6
+[2020-09-27 20:27:27.770] GAME: Pulsating Tumor loaded at 198,37,6
+[2020-09-27 20:27:27.770] GAME: Biodome Clown Planet loaded at 114,199,6
+[2020-09-27 20:27:27.802] GAME: Dead God loaded at 95,59,6
+[2020-09-27 20:27:27.822] GAME: UFO Crash loaded at 135,133,6
+[2020-09-27 20:27:27.839] GAME: UFO Crash loaded at 62,69,6
+[2020-09-27 20:27:27.862] GAME: Free Golem Ship loaded at 25,205,6
+[2020-09-27 20:27:27.890] GAME: Seed Vault loaded at 210,166,6
+[2020-09-27 20:27:27.905] GAME: Ruin of Envy loaded at 94,174,6
+[2020-09-27 20:27:31.212] GAME: Abandoned Teleporter loaded at 151,159,3
+[2020-09-27 20:27:31.235] GAME: Whiteship Dock loaded at 101,52,3
+[2020-09-27 20:27:31.294] GAME: Biological Storage Facility loaded at 41,108,7
+[2020-09-27 20:27:31.343] GAME: Derelict 4 loaded at 132,127,4
+[2020-09-27 20:27:31.384] GAME: Aesthetic Outpost loaded at 123,75,8
+[2020-09-27 20:27:31.424] GAME: Abductor Replication Lab loaded at 25,126,4
+[2020-09-27 20:27:31.474] GAME: Derelict 3 loaded at 197,145,7
+[2020-09-27 20:27:31.534] GAME: Gondoland loaded at 60,105,4
+[2020-09-27 20:27:31.629] GAME: A Giant Ball of Paper in Space loaded at 109,158,7
+[2020-09-27 20:27:32.241] GAME: Ancient Space Station loaded at 127,87,3
+[2020-09-27 20:27:32.287] GAME: Asteroid 4 loaded at 110,169,3
+[2020-09-27 20:27:32.319] GAME: Strange Ship loaded at 207,134,8
+[2020-09-27 20:27:32.362] GAME: Space Arcade loaded at 161,195,8
+[2020-09-27 20:27:32.387] GAME: Big Ape loaded at 108,188,4
+[2020-09-27 20:27:32.588] GAME: Crashed Ship loaded at 136,54,4
+[2020-09-27 20:27:32.618] GAME: Authorship loaded at 22,47,7
+[2020-09-27 20:27:32.636] GAME: Maze Roid loaded at 180,207,2
+[2020-09-27 20:27:32.653] GAME: Mineable Asteroid 4 loaded at 212,180,2
+[2020-09-27 20:27:32.673] GAME: Mineable Asteroid 2 loaded at 145,205,2
+[2020-09-27 20:27:32.702] GAME: Mineable Asteroid 5 loaded at 38,31,2
+[2020-09-27 20:27:32.718] GAME: Crab Roid loaded at 30,209,2
+[2020-09-27 20:27:32.740] GAME: Dorm Roid loaded at 211,202,2
+[2020-09-27 20:27:32.750] GAME: Mineable Asteroid 1 loaded at 32,57,2
+[2020-09-27 20:27:32.794] GAME: Monitoring Roid loaded at 180,22,2
+[2020-09-27 20:27:32.815] GAME: Dead wizard Roid loaded at 22,68,2
+[2020-09-27 20:27:32.832] GAME: Mineable Asteroid 3 loaded at 212,26,2
+[2020-09-27 20:27:32.904] GAME: Box Singulo loaded at 96,49,2
+[2020-09-27 20:27:33.179] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-27 20:27:38.601] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-27 20:27:38.602] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-27 20:27:38.603] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-27 20:27:38.604] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-27 20:27:38.607] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-27 20:27:38.619] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-27 20:27:38.629] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-27 20:27:38.634] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-27 20:27:51.017] GAME: *no key*/(Adela Childress) Adela Childress name changed from Adela Childress to Lala (Unexplored Location (121, 172, 3))
+[2020-09-27 20:28:00.267] ADMIN: Bob Joga has started the game.

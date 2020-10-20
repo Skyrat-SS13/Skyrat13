@@ -30,6 +30,7 @@
 	base_treat_time = 5 SECONDS
 	biology_required = list(HAS_BONE)
 	required_status = BODYPART_ROBOTIC
+	pain_amount = 3
 
 /*
 	Overwriting of base procs
@@ -218,6 +219,8 @@
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
 	can_self_treat = TRUE
+	pain_amount = 3
+	flat_damage_roll_increase = 5
 
 /datum/wound/mechanical/blunt/moderate/self_treat(mob/living/carbon/user, first_time = FALSE)
 	. = ..()
@@ -358,6 +361,8 @@
 	brain_trauma_group = BRAIN_TRAUMA_MILD
 	trauma_cycle_cooldown = 1.5 MINUTES
 	shock_chance = 30
+	pain_amount = 7
+	flat_damage_roll_increase = 10
 
 /*
 	Critical (Broken Actuators)
@@ -383,6 +388,9 @@
 	brain_trauma_group = BRAIN_TRAUMA_SEVERE
 	trauma_cycle_cooldown = 2.5 MINUTES
 	shock_chance = 45
+	pain_amount = 12
+	flat_damage_roll_increase = 15
+	wound_flags = (MANGLES_BONE)
 
 /// if someone is using a reagent container
 /datum/wound/mechanical/blunt/proc/wrench(obj/item/I, mob/user)

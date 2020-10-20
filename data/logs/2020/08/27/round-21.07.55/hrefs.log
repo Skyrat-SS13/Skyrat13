@@ -1,0 +1,23 @@
+[2020-08-28 00:07:55.462] Starting up round ID .
+ - -------------------------
+[2020-08-28 00:09:33.960] Logs from logging subsystem:
+ - (2020-08-27 21:08:20) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=doneLoading
+ - (2020-08-27 21:08:20) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-08-27 21:08:20) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-08-27 21:08:20) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=analyzeClientData&param[cookie]={"connData":[{"ckey":"bobjoga","ip":"179.104.18.114","compid":"3000796718"},{"ckey":"bobjoga","ip":"127.0.0.1","compid":"3000796718"},{"ckey":"bobjoga","ip":"177.106.255.43","compid":"3000796718"},{"ckey":"bobjoga","ip":"179.126.113.169","compid":"3000796718"},{"ckey":"bobjoga","ip":null,"compid":"3000796718"}]}
+ - (2020-08-27 21:08:33) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_197];ready=1
+ - (2020-08-27 21:09:25) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Vote src=[0x2100004e];vote=close
+[2020-08-28 00:19:35.101] Logs from logging subsystem:
+ - (2020-08-27 21:10:35) HREF: Bob Joga (usr:Cockmistress[(154,110,2)]) : /datum/tgui src=[0x2100c2cf]&action=tgui:initialize
+ - (2020-08-27 21:10:35) HREF: Bob Joga (usr:Cockmistress[(154,110,2)]) : 
+ - (2020-08-27 21:10:35) HREF: Bob Joga (usr:Cockmistress[(154,110,2)]) : 
+ - (2020-08-27 21:14:36) HREF: Bob Joga (usr:Cockmistress[(155,107,2)]) : _src_=holder;admin_token=60747694310049033068401271069041036;revive=[mob_323]
+ - (2020-08-27 21:14:53) HREF: Bob Joga (usr:Cockmistress[(159,109,2)]) : Open Laceration src=[0x2101243a];self_treat=1;
+ - (2020-08-27 21:15:06) HREF: Bob Joga (usr:Cockmistress[(160,107,2)]) : Open Laceration src=[0x2101243a];self_treat=1;
+ - (2020-08-27 21:15:18) HREF: Bob Joga (usr:Cockmistress[(160,107,2)]) : Open Laceration src=[0x2101243a];self_treat=1;
+ - (2020-08-27 21:15:20) HREF: Bob Joga (usr:Cockmistress[(160,107,2)]) : Open Laceration src=[0x2101243a];self_treat=1;
+ - (2020-08-27 21:15:21) HREF: Bob Joga (usr:Cockmistress[(160,107,2)]) : Open Laceration src=[0x2101243a];self_treat=1;
+ - (2020-08-27 21:15:22) HREF: Bob Joga (usr:Cockmistress[(160,107,2)]) : Open Laceration src=[0x2101243a];self_treat=1;
+ - (2020-08-27 21:15:22) HREF: Bob Joga (usr:Cockmistress[(160,107,2)]) : Open Laceration src=[0x2101243a];self_treat=1;
+ - (2020-08-27 21:15:24) HREF: Bob Joga (usr:Cockmistress[(160,107,2)]) : Open Laceration src=[0x2101243a];self_treat=1;
+ - (2020-08-27 21:15:27) HREF: Bob Joga (usr:Cockmistress[(160,107,2)]) : Open Laceration src=[0x2101243a];self_treat=1;

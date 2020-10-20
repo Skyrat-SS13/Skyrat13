@@ -1,0 +1,28 @@
+[2020-09-11 00:17:26.291] Starting up round ID .
+ - -------------------------
+[2020-09-11 00:17:26.308] Running /tg/ revision: 2020-09-11
+ - origin/master: 672ca377659a4ca73bdda9edaf8960e8e4f1b508
+ - HEAD: 46f92f91997eb4b4938c6838c9addc2d981b13b9
+[2020-09-11 00:17:27.670] Loading Box Station...
+[2020-09-11 00:17:36.421] Loaded Station in 8.8s!
+[2020-09-11 00:17:39.059] Loaded Lavaland in 2.6s!
+[2020-09-11 00:17:40.648] Ruin loader finished with 0 left to spend.
+[2020-09-11 00:17:45.263] Ruin loader finished with 0 left to spend.
+[2020-09-11 00:17:45.445] Ruin loader finished with 0 left to spend.
+[2020-09-11 00:18:30.658] ## WARNING: HEY! LISTEN! 0.9 seconds were wasted processing 423 turf(s) (connected to 34205 other turfs) with atmos differences at round start.
+[2020-09-11 00:18:33.029] ## WARNING: design /datum/design/ipc_kidneys with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'capcitor-ipc'
+[2020-09-11 00:18:55.033] Initializations complete within 87.7 seconds!
+[2020-09-11 00:20:12.954] Game start took 0s
+[2020-09-11 00:23:00.357] ### VarEdit by Bob Joga/(Pedro Ilurdoz): /obj/machinery/clonepod biomass=0 => 1200
+[2020-09-11 00:23:39.059] runtime error: Cannot read null.player_details
+ - proc name: Login (/mob/Login)
+ -   source file: login.dm,47
+ -   usr: (src)
+ -   src: Davina Agaogla (/mob/living/carbon/human)
+ -   src.loc: the cloning pod (/obj/machinery/clonepod)
+ -   call stack:
+ - Davina Agaogla (/mob/living/carbon/human): Login()
+ - Davina Agaogla (/mob/living/carbon/human): Login()
+ - Davina Agaogla (/mob/living/carbon/human): Login()
+ - 
+[2020-09-11 00:26:57.650] ### VarEdit by Bob Joga/(Pedro Ilurdoz): /mob/living/carbon/human cloneloss=150 => 0

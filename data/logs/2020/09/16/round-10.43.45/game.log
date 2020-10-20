@@ -1,0 +1,50 @@
+[2020-09-16 13:43:45.506] Starting up round ID .
+ - -------------------------
+[2020-09-16 13:43:45.551] ADMIN: Loading Banlist
+[2020-09-16 13:43:45.584] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-16 13:43:45.584] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-16 13:43:49.252] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-16 13:43:51.588] GAME: Saved mode is 'extended'
+[2020-09-16 13:44:03.365] GAME: Hierophant's Arena loaded at 175,192,6
+[2020-09-16 13:44:03.381] GAME: Blood-Drunk Miner (Guidance) loaded at 86,113,6
+[2020-09-16 13:44:03.397] GAME: Blood-Drunk Miner (Hunter) loaded at 139,189,6
+[2020-09-16 13:44:03.420] GAME: Blood-Drunk Miner loaded at 125,29,6
+[2020-09-16 13:44:03.436] GAME: King Goat Boss Ruin loaded at 48,167,6
+[2020-09-16 13:44:03.458] GAME: Rogue's Arena loaded at 177,125,6
+[2020-09-16 13:44:03.490] GAME: Sif's Sword loaded at 198,69,6
+[2020-09-16 13:44:03.497] GAME: Pulsating Tumor loaded at 44,211,6
+[2020-09-16 13:44:03.498] GAME: Biodome Winter loaded at 217,134,6
+[2020-09-16 13:44:03.498] GAME: Biodome Clown Planet loaded at 159,41,6
+[2020-09-16 13:44:03.514] GAME: Survival Capsule Ruins loaded at 67,182,6
+[2020-09-16 13:44:03.521] GAME: Pulsating Tumor loaded at 61,200,6
+[2020-09-16 13:44:03.541] GAME: Ruin of Wrath loaded at 52,133,6
+[2020-09-16 13:44:03.599] GAME: Ash Walker Nest loaded at 188,162,6
+[2020-09-16 13:44:03.608] GAME: Pulsating Tumor loaded at 165,38,6
+[2020-09-16 13:44:06.969] GAME: Abandoned Teleporter loaded at 187,106,4
+[2020-09-16 13:44:06.992] GAME: Whiteship Dock loaded at 80,156,3
+[2020-09-16 13:44:07.022] GAME: Asteroid 2 loaded at 82,29,4
+[2020-09-16 13:44:07.073] GAME: Hilbert Research Facility loaded at 149,189,3
+[2020-09-16 13:44:07.121] GAME: Derelict 6 loaded at 68,54,8
+[2020-09-16 13:44:07.149] GAME: Authorship loaded at 112,56,4
+[2020-09-16 13:44:07.306] GAME: Syndicate Ambush loaded at 70,80,4
+[2020-09-16 13:44:07.343] GAME: Abductor Replication Lab loaded at 106,102,3
+[2020-09-16 13:44:07.396] GAME: Derelict 5 loaded at 178,101,3
+[2020-09-16 13:44:07.546] GAME: Derelict Tradepost loaded at 73,155,7
+[2020-09-16 13:44:07.580] GAME: Salvation loaded at 101,112,8
+[2020-09-16 13:44:07.937] GAME: The Twin-Nexus Hotel loaded at 31,156,4
+[2020-09-16 13:44:07.978] GAME: Cleric's Den loaded at 67,58,3
+[2020-09-16 13:44:08.164] GAME: Crashed Ship loaded at 123,31,8
+[2020-09-16 13:44:08.262] GAME: Space Hermit loaded at 119,70,7
+[2020-09-16 13:44:08.323] GAME: NT Medical Ship loaded at 193,58,4
+[2020-09-16 13:44:08.343] GAME: Mineable Asteroid 4 loaded at 29,199,2
+[2020-09-16 13:44:08.352] GAME: Mineable Asteroid 1 loaded at 42,214,2
+[2020-09-16 13:44:08.368] GAME: Maze Roid loaded at 144,212,2
+[2020-09-16 13:44:08.376] GAME: Mineable Asteroid 1 loaded at 54,219,2
+[2020-09-16 13:44:08.394] GAME: Dead wizard Roid loaded at 30,33,2
+[2020-09-16 13:44:08.414] GAME: Dorm Roid loaded at 198,28,2
+[2020-09-16 13:44:08.435] GAME: Mineable Asteroid 2 loaded at 175,22,2
+[2020-09-16 13:44:08.459] GAME: Monitoring Roid loaded at 213,176,2
+[2020-09-16 13:44:08.485] GAME: Mineable Asteroid 5 loaded at 183,212,2
+[2020-09-16 13:44:08.497] GAME: Mineable Asteroid 3 loaded at 212,202,2
+[2020-09-16 13:44:08.573] GAME: Box Singulo loaded at 96,49,2
+[2020-09-16 13:44:08.838] GAME: Public Mining Base loaded at 1,1,6

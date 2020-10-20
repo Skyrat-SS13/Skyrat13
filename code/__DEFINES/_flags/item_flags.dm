@@ -43,17 +43,6 @@
 #define IGNORE_HAT_TOSS			(1<<9)	//Hats with negative effects when worn (i.e the tinfoil hat).
 #define SCAN_REAGENTS			(1<<10)	// Allows helmets and glasses to scan reagents.
 
-// Flags for the organ_flags var on /obj/item/organ
-
-#define ORGAN_SYNTHETIC			(1<<0)	//Synthetic organs, or cybernetic organs. Reacts to EMPs and don't deteriorate or heal
-#define ORGAN_FROZEN			(1<<1)	//Frozen organs, don't deteriorate
-#define ORGAN_FAILING			(1<<2)	//Failing organs perform damaging effects until replaced or fixed
-#define ORGAN_EXTERNAL			(1<<3)	//Was this organ implanted/inserted/etc, if true will not be removed during species change.
-#define ORGAN_VITAL				(1<<4)	//Currently only the brain
-#define ORGAN_NO_SPOIL			(1<<5)	//Do not spoil under any circumstances
-#define ORGAN_NO_DISMEMBERMENT	(1<<6)	//Immune to disembowelment.
-#define ORGAN_EDIBLE			(1<<7)	//is a snack? :D
-
 //skyrat flags
 /// Integrity defines for clothing (not flags but close enough)
 #define CLOTHING_PRISTINE	0 // We have no damage on the clothing

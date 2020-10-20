@@ -1,4 +1,4 @@
-#define LUNGS_MAX_HEALTH 300
+#define LUNGS_MAX_HEALTH 70
 
 /obj/item/organ/lungs
 	name = "lungs"
@@ -13,12 +13,12 @@
 	var/operated = FALSE	//whether we can still have our damages fixed through surgery
 
 	//health
-	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD
+	maxHealth = LUNGS_MAX_HEALTH
 
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
-	high_threshold = 0.6 * LUNGS_MAX_HEALTH	//threshold at 180
-	low_threshold = 0.3 * LUNGS_MAX_HEALTH	//threshold at 90
+	high_threshold = 0.45 * LUNGS_MAX_HEALTH	//threshold at 45
+	low_threshold = 0.25 * LUNGS_MAX_HEALTH	//threshold at 25
 
 	high_threshold_passed = "<span class='warning'>You feel some sort of constriction around your chest as your breathing becomes shallow and rapid.</span>"
 	now_fixed = "<span class='warning'>Your lungs seem to once again be able to hold air.</span>"
@@ -74,6 +74,92 @@
 
 	var/crit_stabilizing_reagent = /datum/reagent/medicine/epinephrine
 
+	var/active_breathing = 1
+	var/breathing = 0
+	var/breath_fail_ratio = 0 // How badly they failed a breath. Higher is worse.
+	var/last_successful_breath
+	var/oxygen_deprivation = 0
+	var/last_int_pressure = ONE_ATMOSPHERE / (CELL_VOLUME/BREATH_VOLUME)
+	var/last_ext_pressure = ONE_ATMOSPHERE
+	var/max_ext_pressure_diff = (ONE_ATMOSPHERE/2)
+	var/max_int_pressure_diff = (ONE_ATMOSPHERE/2) / (CELL_VOLUME/BREATH_VOLUME)
+	relative_size = 30 //Chest has many organs, we need to cut some chances off to round up to 100
+
+/obj/item/organ/lungs/proc/remove_oxygen_deprivation(amount)
+	var/last_suffocation = oxygen_deprivation
+	oxygen_deprivation = min(owner.maxHealth,max(0,oxygen_deprivation - amount))
+	return -(oxygen_deprivation - last_suffocation)
+
+/obj/item/organ/lungs/proc/add_oxygen_deprivation(amount)
+	var/last_suffocation = oxygen_deprivation
+	oxygen_deprivation = min(owner.maxHealth,max(0,oxygen_deprivation + amount))
+	return (oxygen_deprivation - last_suffocation)
+
+// Returns a percentage value for use by GetOxyloss().
+/obj/item/organ/lungs/proc/get_oxygen_deprivation()
+	if(!is_working())
+		return 100
+	return round((oxygen_deprivation/owner.maxHealth)*100)
+
+/obj/item/organ/lungs/on_life()
+	. = ..()
+	if(germ_level > INFECTION_LEVEL_ONE && active_breathing)
+		if(prob(5))
+			owner.emote("cough")		//respitory tract infection
+
+	if(is_bruised() && !owner.is_asystole())
+		if(prob(2))
+			if(active_breathing)
+				owner.visible_message(
+					"<B>\The [owner]</B> coughs up blood!",
+					"<span class='warning'>You cough up blood!</span>",
+					"You hear someone coughing!",
+				)
+			else
+				var/obj/item/bodypart/parent = owner.get_bodypart(zone)
+				owner.visible_message(
+					"blood drips from <B>\the [owner]'s</B> [parent.name]!",
+				)
+			owner.bleed(2)
+		if(prob(4))
+			if(active_breathing)
+				owner.visible_message(
+					"<B>\The [owner]</B> gasps for air!",
+					"<span class='danger'>You can't breathe!</span>",
+					"You hear someone gasp for air!",
+				)
+			else
+				to_chat(owner, "<span class='danger'>You're having trouble getting enough air!</span>")
+
+			owner.losebreath += round(damage/2)
+
+/obj/item/organ/lungs/proc/rupture()
+	if(!owner)
+		return FALSE
+	
+	var/obj/item/bodypart/parent = owner.get_bodypart(zone)
+	if(istype(parent))
+		owner.custom_pain("You feel a stabbing pain in your [parent.name]!", 50, TRUE, affecting = parent)
+	break_organ()
+
+//Exposure to extreme pressures can rupture lungs
+/obj/item/organ/lungs/proc/check_rupturing(breath_pressure, datum/gas_mixture/enviro)
+	//Get external pressure
+	var/ext_pressure = enviro?.return_pressure()
+
+	//Don't explode the lungs if we are in a space suit
+	ext_pressure = owner.calculate_affecting_pressure(ext_pressure)
+
+	//Get the diffs
+	var/int_pressure_diff = abs(last_int_pressure - breath_pressure)
+	var/ext_pressure_diff = abs(last_ext_pressure - ext_pressure)
+
+	//If the diffs are great enough, lung go boom
+	if(int_pressure_diff > max_int_pressure_diff && ext_pressure_diff > max_ext_pressure_diff)
+		var/lung_rupture_prob = (status & ORGAN_ROBOTIC ? 30 : 60) //Robotic lungs are less likely to rupture.
+		if(!is_broken() && prob(lung_rupture_prob)) //Only rupture if NOT already ruptured
+			rupture()
+
 //TODO: lung health affects lung function
 /obj/item/organ/lungs/onDamage(damage_mod) //damage might be too low atm.
 	var/cached_damage = damage
@@ -86,20 +172,24 @@
 	cached_damage += damage_mod
 	if ((cached_damage/ maxHealth) > 1)
 		to_chat(owner, "<span class='userdanger'>You feel your lungs collapse within your chest as you gasp for air, unable to inflate them anymore!</span>")
-		owner.emote("gasp")
+		if(!owner.nervous_system_failure())
+			owner.emote("gasp")
 		SSblackbox.record_feedback("tally", "fermi_chem", 1, "Lungs lost")
 		//qdel(src) - Handled elsewhere for now.
 	else if ((cached_damage / maxHealth) > 0.75)
 		to_chat(owner, "<span class='warning'>It's getting really hard to breathe!!</span>")
-		owner.emote("gasp")
+		if(!owner.nervous_system_failure())
+			owner.emote("gasp")
 		owner.Dizzy(3)
 	else if ((cached_damage / maxHealth) > 0.5)
 		owner.Dizzy(2)
 		to_chat(owner, "<span class='notice'>Your chest is really starting to hurt.</span>")
-		owner.emote("cough")
+		if(!owner.nervous_system_failure())
+			owner.emote("cough")
 	else if ((cached_damage / maxHealth) > 0.2)
 		to_chat(owner, "<span class='notice'>You feel an ache within your chest.</span>")
-		owner.emote("cough")
+		if(!owner.nervous_system_failure())
+			owner.emote("cough")
 		owner.Dizzy(1)
 
 /obj/item/organ/lungs/proc/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
@@ -112,16 +202,25 @@
 
 	if(!safe_oxygen_min && !safe_nitro_min && !safe_toxins_min && !safe_co2_min)
 		H.failed_last_breath = FALSE
-		if(H.health >= H.crit_threshold)
+		if(!H.InFullShock())
 			H.adjustOxyLoss(-breathModifier) //More damaged lungs = slower oxy rate up to a factor of half
 		H.clear_alert("not_enough_oxy")
 		return TRUE
 	
+	var/breath_pressure = breath?.return_pressure()
+
+	//Check for rupture before we update the last_int_pressure and last_ext_pressure variables
+	var/datum/gas_mixture/environment = owner.loc.return_air()
+	check_rupturing(breath_pressure, environment)
+
+	last_ext_pressure = environment?.return_pressure()
+	last_int_pressure = breath_pressure
+
 	if((!breath || (breath?.total_moles() == 0)) && (safe_co2_min || safe_nitro_min || safe_oxygen_min || safe_toxins_min))
 		if(H.reagents.has_reagent(crit_stabilizing_reagent))
 			return
 		
-		if(H.health >= H.crit_threshold)
+		if(!H.InFullShock())
 			H.adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 		else if(!HAS_TRAIT(H, TRAIT_NOCRITDAMAGE))
 			H.adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
@@ -184,7 +283,7 @@
 				H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
 			else
 				H.failed_last_breath = FALSE
-				if(H.health >= H.crit_threshold)
+				if(!H.InFullShock())
 					H.adjustOxyLoss(-breathModifier) //More damaged lungs = slower oxy rate up to a factor of half
 				gas_breathed = breath_gases[/datum/gas/oxygen]
 				H.clear_alert("not_enough_oxy")
@@ -213,7 +312,7 @@
 				H.throw_alert("nitro", /obj/screen/alert/not_enough_nitro)
 			else
 				H.failed_last_breath = FALSE
-				if(H.health >= H.crit_threshold)
+				if(!H.InFullShock())
 					H.adjustOxyLoss(-breathModifier)
 				gas_breathed = breath_gases[/datum/gas/nitrogen]
 				H.clear_alert("nitro")
@@ -250,7 +349,7 @@
 				H.throw_alert("not_enough_co2", /obj/screen/alert/not_enough_co2)
 			else
 				H.failed_last_breath = FALSE
-				if(H.health >= H.crit_threshold)
+				if(!H.InFullShock())
 					H.adjustOxyLoss(-breathModifier)
 				gas_breathed = breath_gases[/datum/gas/carbon_dioxide]
 				H.clear_alert("not_enough_co2")
@@ -280,7 +379,7 @@
 				H.throw_alert("not_enough_tox", /obj/screen/alert/not_enough_tox)
 			else
 				H.failed_last_breath = FALSE
-				if(H.health >= H.crit_threshold)
+				if(!H.InFullShock())
 					H.adjustOxyLoss(-breathModifier)
 				gas_breathed = breath_gases[/datum/gas/plasma]
 				H.clear_alert("not_enough_tox")
@@ -416,9 +515,14 @@
 	. = 0
 	if(!H || !safe_breath_min) //the other args are either: Ok being 0 or Specifically handled.
 		return FALSE
-
-	if(prob(20))
-		H.emote("gasp")
+	
+	if(prob(15) && !owner.nervous_system_failure())
+		if(!owner.is_asystole())
+			if(active_breathing)
+				owner.emote("gasp")
+		else
+			owner.emote(pick("shiver","twitch"))
+	
 	if(breath_pp > 0)
 		var/ratio = safe_breath_min/breath_pp
 		H.adjustOxyLoss(min(5*ratio, HUMAN_MAX_OXYLOSS)) // Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!
@@ -466,10 +570,10 @@
 	. = ..()
 	if(!.)
 		return
-	if(!failed && organ_flags & ORGAN_FAILING)
+	if(!failed && !is_working())
 		if(owner && owner.stat == CONSCIOUS)
 			owner.visible_message("<span class='danger'>[owner] grabs [owner.p_their()] throat, struggling for breath!</span>", \
 								"<span class='userdanger'>You suddenly feel like you can't breathe!</span>")
 		failed = TRUE
-	else if(!(organ_flags & ORGAN_FAILING))
+	else if(is_working())
 		failed = FALSE

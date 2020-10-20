@@ -1,0 +1,22 @@
+[2020-08-26 14:54:52.502] Starting up round ID .
+ - -------------------------
+[2020-08-26 15:07:49.708] Logs from logging subsystem:
+ - (2020-08-26 11:59:55) REAGENT: MOB ADD: on_mob_add(): *no key*/(Skarf Crivelli) at Small Freighter (117, 188, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:00:01) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Starboard Primary Hallway (138, 128, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:00:15) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Medbay Lobby (135, 126, 2) - /datum/reagent/determination
+ - (2020-08-26 12:00:17) REAGENT: MOB ADD: on_mob_add(): *no key*/(Deandre Rasulov) at Tiny Freighter (180, 185, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:00:33) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Medbay Lobby (135, 126, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:00:47) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Medbay Lobby (135, 127, 2) - /datum/reagent/determination
+ - (2020-08-26 12:01:15) REAGENT: MOB ADD: on_merge(): *no key*/(Deandre Rasulov) at Tiny Freighter (180, 185, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:01:17) REAGENT: MOB ADD: on_merge(): *no key*/(Deandre Rasulov) at Tiny Freighter (180, 185, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:01:19) REAGENT: MOB ADD: on_merge(): *no key*/(Deandre Rasulov) at Tiny Freighter (180, 185, 8) - 11 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:02:05) REAGENT: MOB ADD: on_merge(): *no key*/(Skarf Crivelli) at Small Freighter (117, 188, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:02:13) REAGENT: MOB ADD: on_merge(): *no key*/(Deandre Rasulov) at Tiny Freighter (180, 185, 8) - 16 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:02:53) REAGENT: MOB ADD: on_merge(): *no key*/(Deandre Rasulov) at Tiny Freighter (180, 185, 8) - 18 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:05:54) REAGENT: MOB ADD: on_merge(): *no key*/(Skarf Crivelli) at Small Freighter (117, 188, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:05:56) REAGENT: MOB ADD: on_merge(): *no key*/(Deandre Rasulov) at Tiny Freighter (180, 185, 8) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:06:13) REAGENT: MOB ADD: on_mob_add(): *no key*/(coder monkey (696)) at Unexplored Location (108, 115, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:06:26) REAGENT: MOB DELETE: on_mob_delete: *no key*/(coder monkey (696)) at Unexplored Location (108, 115, 8) - /datum/reagent/determination
+ - (2020-08-26 12:06:52) REAGENT: MOB ADD: on_merge(): *no key*/(Deandre Rasulov) at Tiny Freighter (180, 185, 8) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:06:52) REAGENT: MOB ADD: on_merge(): *no key*/(Deandre Rasulov) at Tiny Freighter (180, 185, 8) - 27 of /datum/reagent/determination with 1 purity
+ - (2020-08-26 12:07:40) REAGENT: MOB ADD: on_merge(): *no key*/(Deandre Rasulov) at Tiny Freighter (180, 185, 8) - 32 of /datum/reagent/determination with 1 purity

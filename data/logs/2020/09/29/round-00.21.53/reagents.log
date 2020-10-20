@@ -1,0 +1,41 @@
+[2020-09-29 03:21:53.844] Starting up round ID .
+ - -------------------------
+[2020-09-29 03:34:31.406] Logs from logging subsystem:
+ - (2020-09-29 00:25:58) REAGENT: MOB ADD: on_mob_add(): *no key*/(Antsy) at Unexplored Location (215, 72, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:26:14) REAGENT: MOB ADD: on_mob_add(): *no key*/(Ingolf Matei) at Space (39, 63, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:27:16) REAGENT: MOB ADD: on_mob_add(): *no key*/(Bo Bo Sassy) at Unexplored Location (216, 74, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:27:16) REAGENT: MOB ADD: on_merge(): *no key*/(Bo Bo Sassy) at Unexplored Location (216, 74, 4) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:27:28) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (215, 72, 4) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:27:28) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (215, 72, 4) - 9 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:27:44) REAGENT: MOB ADD: on_merge(): *no key*/(Ingolf Matei) at Space (39, 63, 4) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:27:44) REAGENT: MOB ADD: on_mob_add(): *no key*/(Flop O'Honker) at Unexplored Location (218, 71, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:27:48) REAGENT: MOB ADD: on_merge(): *no key*/(Ingolf Matei) at Space (39, 63, 4) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:27:50) REAGENT: MOB ADD: on_merge(): *no key*/(Ingolf Matei) at Space (39, 63, 4) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:27:50) REAGENT: MOB ADD: on_merge(): *no key*/(Bo Bo Sassy) at Unexplored Location (216, 74, 4) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:27:52) REAGENT: MOB ADD: on_merge(): *no key*/(Flop O'Honker) at Unexplored Location (218, 71, 4) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:28:00) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (215, 72, 4) - 16.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:28:04) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (215, 72, 4) - 18.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:28:06) REAGENT: MOB ADD: on_merge(): *no key*/(Bo Bo Sassy) at Unexplored Location (216, 74, 4) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:28:08) REAGENT: MOB ADD: on_merge(): *no key*/(Ingolf Matei) at Space (39, 63, 4) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:28:08) REAGENT: MOB ADD: on_merge(): *no key*/(Flop O'Honker) at Unexplored Location (218, 71, 4) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:28:08) REAGENT: MOB ADD: on_merge(): *no key*/(Flop O'Honker) at Unexplored Location (218, 71, 4) - 11 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:28:10) REAGENT: MOB ADD: on_merge(): *no key*/(Ingolf Matei) at Space (39, 63, 4) - 20.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:28:30) REAGENT: MOB ADD: on_merge(): *no key*/(Bo Bo Sassy) at Unexplored Location (216, 74, 4) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:28:32) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (215, 72, 4) - 20.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:28:38) REAGENT: MOB ADD: on_merge(): *no key*/(Bo Bo Sassy) at Unexplored Location (216, 74, 4) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:28:42) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (215, 72, 4) - 25.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:28:50) REAGENT: MOB ADD: on_merge(): *no key*/(Bo Bo Sassy) at Unexplored Location (216, 74, 4) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:29:20) REAGENT: MOB ADD: on_merge(): *no key*/(Bo Bo Sassy) at Unexplored Location (216, 74, 4) - 27.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:29:22) REAGENT: MOB ADD: on_merge(): *no key*/(Flop O'Honker) at Unexplored Location (218, 71, 4) - 16 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:29:36) REAGENT: MOB ADD: on_merge(): *no key*/(Bo Bo Sassy) at Unexplored Location (216, 74, 4) - 32.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:29:41) REAGENT: MOB ADD: on_mob_add(): *no key*/(coder monkey (803)) at Space (113, 61, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:29:44) REAGENT: MOB ADD: on_merge(): *no key*/(Flop O'Honker) at Unexplored Location (218, 71, 4) - 21 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:29:50) REAGENT: MOB ADD: on_merge(): *no key*/(Ingolf Matei) at Space (39, 63, 4) - 22.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:29:50) REAGENT: MOB ADD: on_merge(): *no key*/(Ingolf Matei) at Space (39, 63, 4) - 27.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:29:52) REAGENT: MOB ADD: on_merge(): *no key*/(Flop O'Honker) at Unexplored Location (218, 71, 4) - 28.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:29:54) REAGENT: MOB DELETE: on_mob_delete: *no key*/(coder monkey (803)) at Space (113, 61, 4) - /datum/reagent/determination
+ - (2020-09-29 00:30:14) REAGENT: MOB ADD: on_merge(): *no key*/(Ingolf Matei) at Space (39, 63, 4) - 35 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:30:14) REAGENT: MOB ADD: on_merge(): *no key*/(Antsy) at Unexplored Location (215, 72, 4) - 33 of /datum/reagent/determination with 1 purity
+[2020-09-29 03:44:31.641] Logs from logging subsystem:
+ - (2020-09-29 00:38:20) REAGENT: MOB ADD: on_mob_add(): *no key*/(coder monkey (650)) at Space (68, 59, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-29 00:38:32) REAGENT: MOB DELETE: on_mob_delete: *no key*/(coder monkey (650)) at Space (68, 59, 4) - /datum/reagent/determination

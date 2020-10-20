@@ -567,7 +567,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(AmBloodsucker(C))
 		disgust_bloodsucker(FALSE, 1) //Bloodsuckers get SOME blood from it, for style reasons.
 	if(C.blood_volume < (BLOOD_VOLUME_NORMAL*C.blood_ratio))
-		C.blood_volume = min((BLOOD_VOLUME_NORMAL*C.blood_ratio), C.blood_volume + 3) //Bloody Mary quickly restores blood loss.
+		var/obj/item/organ/spleen/spleen = C.getorganslot(ORGAN_SLOT_SPLEEN)
+		if(spleen)
+			C.blood_volume = min((BLOOD_VOLUME_NORMAL*C.blood_ratio), C.blood_volume + (6 * spleen.get_blood())) //Bloody Mary quickly restores blood loss.
 	..()
 
 /datum/reagent/consumable/ethanol/brave_bull
@@ -1573,6 +1575,18 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "painkiller"
 	glass_name = "Painkiller"
 	glass_desc = "A combination of tropical juices and rum. Surely this will make you feel better."
+
+/datum/reagent/consumable/ethanol/painkiller/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.add_chem_effect(CE_PAINKILLER, 15)
+
+/datum/reagent/consumable/ethanol/painkiller/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.remove_chem_effect(CE_PAINKILLER, 15)
 
 /datum/reagent/consumable/ethanol/pina_colada
 	name = "Pina Colada"

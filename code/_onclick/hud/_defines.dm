@@ -76,6 +76,9 @@
 #define ui_drone_head "CENTER-3:14,SOUTH:5"     //maintenance drones
 
 //Lower right, persistent menu
+//SKYRAT CHANGE - wield button
+#define ui_wield "EAST-3:24,SOUTH+1:7"
+//END OF SKYRAT CHANGES
 #define ui_drop_throw "EAST-1:28,SOUTH+1:7"
 #define ui_pull_resist "EAST-2:26,SOUTH+1:7"
 #define ui_movi "EAST-2:26,SOUTH:5"
@@ -105,7 +108,8 @@
 #define ui_healthdoll "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"
 #define ui_internal "EAST-1:28,CENTER+1:19"//CIT CHANGE - moves internal icon up a little bit to accommodate for the stamina meter
-#define ui_mood "EAST-1:28,CENTER-3:10"
+#define ui_mood "EAST-1:28,CENTER-4:10"
+#define ui_pain	"EAST-1:28,CENTER-3:10"
 
 //living
 #define ui_living_pull "EAST-1:28,CENTER-2:15"

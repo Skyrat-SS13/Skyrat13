@@ -1,0 +1,81 @@
+[2020-08-31 22:20:54.563] Starting up round ID .
+ - -------------------------
+[2020-08-31 22:20:54.612] ADMIN: Loading Banlist
+[2020-08-31 22:20:54.653] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-08-31 22:20:54.654] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-08-31 22:20:57.449] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-08-31 22:21:00.955] GAME: Saved mode is 'extended'
+[2020-08-31 22:21:13.715] GAME: Hierophant's Arena loaded at 147,56,6
+[2020-08-31 22:21:13.732] GAME: Blood-Drunk Miner (Guidance) loaded at 139,187,6
+[2020-08-31 22:21:13.747] GAME: Blood-Drunk Miner (Hunter) loaded at 173,60,6
+[2020-08-31 22:21:13.765] GAME: Blood-Drunk Miner loaded at 189,89,6
+[2020-08-31 22:21:13.781] GAME: King Goat Boss Ruin loaded at 84,158,6
+[2020-08-31 22:21:13.803] GAME: Rogue's Arena loaded at 147,115,6
+[2020-08-31 22:21:13.836] GAME: Sif's Sword loaded at 108,90,6
+[2020-08-31 22:21:13.844] GAME: Pulsating Tumor loaded at 25,205,6
+[2020-08-31 22:21:13.867] GAME: Ruin of Envy loaded at 176,174,6
+[2020-08-31 22:21:13.902] GAME: Dead God loaded at 31,149,6
+[2020-08-31 22:21:13.924] GAME: Ruin of Gluttony loaded at 140,82,6
+[2020-08-31 22:21:13.925] GAME: Biodome Winter loaded at 199,218,6
+[2020-08-31 22:21:13.950] GAME: Dark Wizard Altar loaded at 115,42,6
+[2020-08-31 22:21:13.956] GAME: Pulsating Tumor loaded at 84,183,6
+[2020-08-31 22:21:13.976] GAME: Makeshift Shelter loaded at 191,120,6
+[2020-08-31 22:21:13.976] GAME: E1M1 loaded at 144,63,6
+[2020-08-31 22:21:13.991] GAME: Summoning Ritual loaded at 56,116,6
+[2020-08-31 22:21:13.998] GAME: Pulsating Tumor loaded at 153,201,6
+[2020-08-31 22:21:16.723] GAME: Abandoned Teleporter loaded at 100,47,7
+[2020-08-31 22:21:16.743] GAME: Whiteship Dock loaded at 141,61,4
+[2020-08-31 22:21:16.793] GAME: Hilbert Research Facility loaded at 201,170,8
+[2020-08-31 22:21:16.830] GAME: Space Arcade loaded at 71,128,3
+[2020-08-31 22:21:16.904] GAME: Feline-Human Combination Den loaded at 129,98,8
+[2020-08-31 22:21:16.931] GAME: Empty Shell loaded at 81,39,4
+[2020-08-31 22:21:16.974] GAME: Disposal Facility 17 loaded at 113,153,3
+[2020-08-31 22:21:17.068] GAME: Space Hermit loaded at 139,153,4
+[2020-08-31 22:21:17.104] GAME: Abductor Replication Lab loaded at 30,105,7
+[2020-08-31 22:21:17.142] GAME: Derelict 3 loaded at 52,87,7
+[2020-08-31 22:21:17.584] GAME: Kosmicheskaya Stantsiya 13 loaded at 114,56,7
+[2020-08-31 22:21:17.592] GAME: Ordinary Space Tile loaded at 104,190,4
+[2020-08-31 22:21:17.694] GAME: Abandoned Telecommunications Satellite loaded at 143,169,3
+[2020-08-31 22:21:18.040] GAME: The Twin-Nexus Hotel loaded at 29,161,7
+[2020-08-31 22:21:18.104] GAME: Biological Storage Facility loaded at 106,33,4
+[2020-08-31 22:21:18.146] GAME: Derelict 1 loaded at 96,104,8
+[2020-08-31 22:21:18.164] GAME: Maze Roid loaded at 197,217,2
+[2020-08-31 22:21:18.180] GAME: Dead wizard Roid loaded at 22,190,2
+[2020-08-31 22:21:18.196] GAME: Mineable Asteroid 4 loaded at 45,206,2
+[2020-08-31 22:21:18.203] GAME: Mineable Asteroid 1 loaded at 178,30,2
+[2020-08-31 22:21:18.229] GAME: Mineable Asteroid 5 loaded at 23,28,2
+[2020-08-31 22:21:18.242] GAME: Crab Roid loaded at 210,189,2
+[2020-08-31 22:21:18.268] GAME: Monitoring Roid loaded at 158,212,2
+[2020-08-31 22:21:18.287] GAME: Dorm Roid loaded at 23,51,2
+[2020-08-31 22:21:18.295] GAME: Mineable Asteroid 1 loaded at 220,206,2
+[2020-08-31 22:21:18.313] GAME: Mineable Asteroid 3 loaded at 23,73,2
+[2020-08-31 22:21:18.380] GAME: Box Singulo loaded at 96,49,2
+[2020-08-31 22:21:18.634] GAME: Public Mining Base loaded at 1,1,6
+[2020-08-31 22:21:23.092] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-08-31 22:21:23.093] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-08-31 22:21:23.093] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-08-31 22:21:23.094] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-08-31 22:21:23.095] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-08-31 22:21:23.102] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-08-31 22:21:23.107] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-08-31 22:21:23.110] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-08-31 22:21:31.013] GAME: *no key*/(Farha Garman) Farha Garman name changed from Farha Garman to Joy (Unexplored Location (158, 178, 4))
+[2020-08-31 22:22:18.293] GAME: Backup Shuttle loaded at 143,212,1
+[2020-08-31 22:22:18.395] GAME: assault pod (Default) loaded at 144,213,1
+[2020-08-31 22:22:18.734] GAME: basic syndicate infiltrator loaded at 139,205,1
+[2020-08-31 22:22:19.033] GAME: fancy transport ferry loaded at 141,214,1
+[2020-08-31 22:22:19.206] GAME: Box Station Emergency Shuttle loaded at 142,205,1
+[2020-08-31 22:22:19.407] GAME: cargo ferry (Box) loaded at 144,210,1
+[2020-08-31 22:22:20.036] GAME: escape pod (Default) loaded at 146,214,1
+[2020-08-31 22:22:20.063] GAME: escape pod (Default) loaded at 146,214,1
+[2020-08-31 22:22:20.120] GAME: auxilliary base (Default) loaded at 143,212,1
+[2020-08-31 22:22:20.229] GAME: arrival shuttle (Box) loaded at 140,213,1
+[2020-08-31 22:22:20.341] GAME: mining shuttle (Box) loaded at 145,213,1
+[2020-08-31 22:22:20.400] GAME: labour shuttle (Box) loaded at 145,212,1
+[2020-08-31 22:22:20.448] GAME: escape pod (Default) loaded at 146,214,1
+[2020-08-31 22:22:20.478] GAME: escape pod (Default) loaded at 146,214,1
+[2020-08-31 22:22:20.507] GAME: lavaland Mining Elevator loaded at 145,214,1
+[2020-08-31 22:22:21.659] GAME: Hospital Ship loaded at 132,208,1
+[2020-08-31 22:22:22.031] VOTE: Roundtype vote started by server.
+[2020-08-31 22:22:31.516] ACCESS: Logout: Bob Joga/(Bob Joga)
+[2020-08-31 22:22:31.517] GAME: Bob Joga[DC]/(Bob Joga) Bob Joga[DC]/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))

@@ -1,0 +1,16 @@
+[2020-09-10 14:18:36.781] Starting up round ID .
+ - -------------------------
+[2020-09-10 14:18:36.787] Running /tg/ revision: 2020-09-10
+ - origin/master: 79974a492819da3a629b706ad438e16605ee1f20
+ - HEAD: d2f161a826465cf8de513fdc185d75bb6cb1022e
+[2020-09-10 14:18:42.629] Loading Box Station...
+[2020-09-10 14:18:50.224] Loaded Station in 7.6s!
+[2020-09-10 14:18:52.986] Loaded Lavaland in 2.6s!
+[2020-09-10 14:18:54.682] Ruin loader finished with 0 left to spend.
+[2020-09-10 14:18:59.341] Ruin loader finished with 0 left to spend.
+[2020-09-10 14:18:59.525] Ruin loader finished with 0 left to spend.
+[2020-09-10 14:19:42.314] ## WARNING: HEY! LISTEN! 0.6 seconds were wasted processing 503 turf(s) (connected to 25652 other turfs) with atmos differences at round start.
+[2020-09-10 14:19:44.296] ## WARNING: design /datum/design/ipc_stomach with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'microcell'
+[2020-09-10 14:19:44.302] ## WARNING: design /datum/design/ipc_kidneys with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'kidneys-ipc'
+[2020-09-10 14:20:04.612] Initializations complete within 82.3 seconds!
+[2020-09-10 14:21:10.080] Game start took 0.5s

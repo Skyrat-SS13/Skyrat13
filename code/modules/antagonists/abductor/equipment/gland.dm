@@ -4,7 +4,6 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "gland"
 	status = ORGAN_ROBOTIC
-	beating = TRUE
 	organ_flags = ORGAN_NO_SPOIL
 	no_pump = TRUE
 	var/true_name = "baseline placebo referencer"
@@ -94,9 +93,9 @@
 
 /obj/item/organ/heart/gland/on_life()
 	. = ..()
-	if(!beating)
+	if(!pulse)
 		// alien glands are immune to stopping.
-		beating = TRUE
+		pulse = TRUE
 	if(!active)
 		return
 	if(!ownerCheck())

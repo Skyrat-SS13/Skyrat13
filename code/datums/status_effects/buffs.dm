@@ -282,6 +282,7 @@
 	var/last_oxyloss = 0
 	var/last_cloneloss = 0
 	var/last_staminaloss = 0
+	var/last_painloss = 0
 
 /obj/screen/alert/status_effect/blooddrunk
 	name = "Blood-Drunk"
@@ -301,9 +302,18 @@
 				BP.max_damage *= 10
 				BP.brute_dam *= 10
 				BP.burn_dam *= 10
+				BP.clone_dam *= 10
+				BP.max_clone_damage *= 10
+				BP.tox_dam *= 10
+				BP.max_tox_damage *= 10
+				BP.pain_dam *= 10
+				BP.max_pain_damage *= 10
+				BP.pain_disability_threshold *= 10
+				BP.pain_damage_coeff *= 0.1
 		owner.toxloss *= 10
 		owner.oxyloss *= 10
 		owner.cloneloss *= 10
+		owner.painloss *= 10
 		owner.staminaloss += -10 // CIT CHANGE - makes blooddrunk status effect not exhaust you
 		owner.updatehealth()
 		last_health = owner.health
@@ -313,6 +323,7 @@
 		last_oxyloss = owner.getOxyLoss()
 		last_cloneloss = owner.getCloneLoss()
 		last_staminaloss = owner.getStaminaLoss()
+		last_painloss = owner.getPainLoss()
 		owner.log_message("gained blood-drunk stun immunity", LOG_ATTACK)
 		owner.add_stun_absorption("blooddrunk", INFINITY, 4)
 		owner.playsound_local(get_turf(owner), 'sound/effects/singlebeat.ogg', 40, 1)
@@ -368,6 +379,14 @@
 			needs_health_update = TRUE
 		last_staminaloss = new_staminaloss
 
+		var/new_painloss = owner.getPainLoss()
+		if(new_painloss < last_painloss)
+			var/heal_amount = (new_painloss - last_painloss) * 10
+			owner.adjustPainLoss(heal_amount, FALSE)
+			new_painloss = owner.getPainLoss()
+			needs_health_update = TRUE
+		last_painloss = new_painloss
+
 		if(needs_health_update)
 			owner.updatehealth()
 			owner.playsound_local(get_turf(owner), 'sound/effects/singlebeat.ogg', 40, 1)
@@ -385,10 +404,19 @@
 			var/obj/item/bodypart/BP = X
 			BP.brute_dam *= 0.1
 			BP.burn_dam *= 0.1
-			BP.max_damage /= 10
+			BP.max_damage *= 0.1
+			BP.clone_dam *= 0.1
+			BP.max_clone_damage *= 0.1
+			BP.tox_dam *= 0.1
+			BP.max_tox_damage *= 0.1
+			BP.pain_dam *= 0.1
+			BP.max_pain_damage *= 0.1
+			BP.pain_disability_threshold *= 0.1
+			BP.pain_damage_coeff *= 10
 	owner.toxloss *= 0.1
 	owner.oxyloss *= 0.1
 	owner.cloneloss *= 0.1
+	owner.painloss *= 0.1
 	owner.staminaloss *= 0.1
 	owner.updatehealth()
 	owner.log_message("lost blood-drunk stun immunity", LOG_ATTACK)
@@ -400,7 +428,6 @@
 	duration = 50
 	tick_interval = 8
 	alert_type = null
-
 
 /datum/status_effect/sword_spin/on_apply()
 	owner.visible_message("<span class='danger'>[owner] begins swinging the sword with inhuman strength!</span>")

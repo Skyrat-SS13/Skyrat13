@@ -1,0 +1,25 @@
+[2020-09-05 11:30:22.023] Logs from logging subsystem:
+ - (2020-09-05 08:28:51) ASSET: Sending asset common.css to client Bob Joga
+ - (2020-09-05 08:28:51) ASSET: Sending asset jquery.min.js to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset json2.min.js to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset browserOutput.js to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset browserOutput.css to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset browserOutput_dark.css to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset browserOutput_light.css to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset spritesheet_chat.css to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset chat_16x16.png to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset fa-regular-400.eot to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset fa-regular-400.woff to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset fa-solid-900.eot to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset fa-solid-900.woff to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset font-awesome.css to client Bob Joga
+ - (2020-09-05 08:28:52) ASSET: Sending asset v4shim.css to client Bob Joga
+ - (2020-09-05 08:30:20) ASSET: Sending asset spritesheet_paper.css to client Bob Joga
+ - (2020-09-05 08:30:21) ASSET: Sending asset paper_121x54.png to client Bob Joga
+ - (2020-09-05 08:30:21) ASSET: Sending asset spritesheet_pills.css to client Bob Joga
+ - (2020-09-05 08:30:21) ASSET: Sending asset pills_22x10.png to client Bob Joga
+ - (2020-09-05 08:30:21) ASSET: Sending asset pills_14x14.png to client Bob Joga
+ - (2020-09-05 08:30:21) ASSET: Sending asset minimap-e79f76bdab999707c1e01c4dd5c42975.png to client Bob Joga
+ - (2020-09-05 08:30:21) ASSET: Sending asset minimap-e79f76bdab999707c1e01c4dd5c42975-meta.png to client Bob Joga
+ - (2020-09-05 08:30:21) ASSET: Sending asset tgui.css to client Bob Joga
+ - (2020-09-05 08:30:21) ASSET: Sending asset tgui.js to client Bob Joga

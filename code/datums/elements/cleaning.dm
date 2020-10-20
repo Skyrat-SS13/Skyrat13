@@ -13,6 +13,9 @@
 	var/turf/T = AM.loc
 	SEND_SIGNAL(T, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
 	for(var/A in T)
+		if(isatom(A))
+			var/atom/B = A
+			B.janitize(-(WOUND_SANITIZATION_STERILIZER))
 		if(is_cleanable(A))
 			qdel(A)
 		else if(isitem(A))

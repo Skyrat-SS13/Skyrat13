@@ -1,0 +1,13 @@
+[2020-08-28 04:02:40.778] Starting up round ID .
+ - -------------------------
+[2020-08-28 04:04:12.561] Logs from logging subsystem:
+ - (2020-08-28 01:03:23) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=doneLoading
+ - (2020-08-28 01:03:23) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-08-28 01:03:23) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : 
+ - (2020-08-28 01:03:24) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : _src_=chat&proc=analyzeClientData&param[cookie]={"connData":[{"ckey":"bobjoga","ip":"179.104.18.114","compid":"3000796718"},{"ckey":"bobjoga","ip":"127.0.0.1","compid":"3000796718"},{"ckey":"bobjoga","ip":"177.106.255.43","compid":"3000796718"},{"ckey":"bobjoga","ip":"179.126.113.169","compid":"3000796718"},{"ckey":"bobjoga","ip":null,"compid":"3000796718"}]}
+ - (2020-08-28 01:04:01) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Vote src=[0x2100004e];vote=close
+ - (2020-08-28 01:04:05) HREF: Bob Joga (usr:Bob Joga[(11,174,1)]) : Bob Joga src=[mob_183];ready=1
+[2020-08-28 04:14:13.442] Logs from logging subsystem:
+ - (2020-08-28 01:04:30) HREF: Bob Joga (usr:Cockmistress[(114,171,2)]) : bobjoga's admin datum (!localhost!) src=[0x2101f4ba];admin_token=101103942449304341080568330358105421;create_object=1
+ - (2020-08-28 01:04:36) HREF: Bob Joga (usr:Cockmistress[(114,171,2)]) : bobjoga's admin datum (!localhost!) src=%5B0x2101f4ba%5D%3Badmin_token%3D101103942449304341080568330358105421&admin_token=101103942449304341080568330358105421&filter=butcher&offset=x%2Cy%2Cz&offset_type=relative&object_count=1&object_dir=&object_name=&object_where=onfloor&object_list=%2Fobj%2Fitem%2Fkitchen%2Fknife%2Fbutcher
+ - (2020-08-28 01:07:29) HREF: Bob Joga (usr:Cockmistress[(110,170,2)]) : _src_=holder;admin_token=101103942449304341080568330358105421;revive=[mob_273]

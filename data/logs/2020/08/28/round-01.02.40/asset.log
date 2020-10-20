@@ -1,0 +1,666 @@
+[2020-08-28 04:04:12.563] Logs from logging subsystem:
+ - (2020-08-28 01:03:18) ASSET: Sending asset common.css to client Bob Joga
+ - (2020-08-28 01:03:18) ASSET: Sending asset jquery.min.js to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset json2.min.js to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset browserOutput.js to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset browserOutput.css to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset browserOutput_dark.css to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset browserOutput_light.css to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset spritesheet_chat.css to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset chat_16x16.png to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset fa-regular-400.eot to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset fa-regular-400.woff to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset fa-solid-900.eot to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset fa-solid-900.woff to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset font-awesome.css to client Bob Joga
+ - (2020-08-28 01:03:19) ASSET: Sending asset v4shim.css to client Bob Joga
+ - (2020-08-28 01:03:59) ASSET: Sending asset spritesheet_paper.css to client Bob Joga
+ - (2020-08-28 01:03:59) ASSET: Sending asset paper_121x54.png to client Bob Joga
+ - (2020-08-28 01:03:59) ASSET: Sending asset spritesheet_pills.css to client Bob Joga
+ - (2020-08-28 01:04:00) ASSET: Sending asset pills_22x10.png to client Bob Joga
+ - (2020-08-28 01:04:00) ASSET: Sending asset pills_14x14.png to client Bob Joga
+ - (2020-08-28 01:04:00) ASSET: Sending asset minimap-5b8a08a12b694e4ac965a56b176ecfc5.png to client Bob Joga
+ - (2020-08-28 01:04:00) ASSET: Sending asset minimap-5b8a08a12b694e4ac965a56b176ecfc5-meta.png to client Bob Joga
+ - (2020-08-28 01:04:00) ASSET: Sending asset tgui.css to client Bob Joga
+ - (2020-08-28 01:04:00) ASSET: Sending asset tgui.js to client Bob Joga
+ - (2020-08-28 01:04:00) ASSET: Sending asset tgui-main.html to client Bob Joga
+ - (2020-08-28 01:04:00) ASSET: Sending asset tgui.bundle.js to client Bob Joga
+ - (2020-08-28 01:04:00) ASSET: Sending asset tgui.bundle.css to client Bob Joga
+ - (2020-08-28 01:04:00) ASSET: Sending asset tgui-fallback.html to client Bob Joga
+ - (2020-08-28 01:04:00) ASSET: Sending asset shim-html5shiv.js to client Bob Joga
+ - (2020-08-28 01:04:00) ASSET: Sending asset shim-ie8.js to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset shim-dom4.js to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset shim-css-om.js to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset alarm_green.gif to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset alarm_red.gif to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset batt_5.gif to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset batt_20.gif to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset batt_40.gif to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset batt_60.gif to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset batt_80.gif to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset batt_100.gif to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset charging.gif to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset downloader_finished.gif to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset downloader_running.gif to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset ntnrc_idle.gif to client Bob Joga
+ - (2020-08-28 01:04:01) ASSET: Sending asset ntnrc_new.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset power_norm.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset power_warn.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset sig_high.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset sig_low.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset sig_lan.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset sig_none.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset smmon_0.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset smmon_1.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset smmon_2.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset smmon_3.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset smmon_4.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset smmon_5.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset smmon_6.gif to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset jquery-ui.custom-core-widgit-mouse-sortable-min.js to client Bob Joga
+ - (2020-08-28 01:04:02) ASSET: Sending asset 88x31.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset bug-minus.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset cross-circle.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset hard-hat-exclamation.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset image-minus.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset image-plus.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset music-minus.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset music-plus.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset tick-circle.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset wrench-screwdriver.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset spell-check.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset burn-exclamation.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset chevron.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset chevron-expand.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset scales.png to client Bob Joga
+ - (2020-08-28 01:04:03) ASSET: Sending asset coding.png to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset ban.png to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset chrome-wrench.png to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset changelog.css to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset padlock.png to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset high_button.png to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset medium_button.png to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset minor_button.png to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset none_button.png to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset dna_discovered.gif to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset dna_undiscovered.gif to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset dna_extra.gif to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset view_variables.css to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset sui-nano-common.js to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset sui-nano-common.css to client Bob Joga
+ - (2020-08-28 01:04:04) ASSET: Sending asset tetris_0.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetris_1.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetris_2.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetris_3.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetris_4.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetris_5.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetris_6.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetris_7.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetrisp0.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetrisp1.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetrisp2.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetrisp3.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetrisp4.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetrisp5.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetrisp6.gif to client Bob Joga
+ - (2020-08-28 01:04:05) ASSET: Sending asset tetrisp7.gif to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset tetris.js to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset tetris2.js to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset spritesheet_pda.css to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset pda_16x16.png to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset spritesheet_minesweeper.css to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset minesweeper_16x16.png to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset spritesheet_pipes.css to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset pipes_32x32.png to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset spritesheet_design.css to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset design_32x32.png to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset design_32x64.png to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset design_64x32.png to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset spritesheet_vending.css to client Bob Joga
+ - (2020-08-28 01:04:06) ASSET: Sending asset vending_32x32.png to client Bob Joga
+[2020-08-28 04:14:13.446] Logs from logging subsystem:
+ - (2020-08-28 01:04:13) ASSET: Sending asset asset.676ecb861f1f1a89d6b76887eb22ca0f.png to client Bob Joga
+ - (2020-08-28 01:05:19) ASSET: Sending asset asset.e4afd239e34bb9e436a707413c4f61db.png to client Bob Joga
+ - (2020-08-28 01:05:19) ASSET: Sending asset asset.57a274103342c30246291d43720ca9df.png to client Bob Joga
+ - (2020-08-28 01:05:19) ASSET: Sending asset asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png to client Bob Joga
+ - (2020-08-28 01:05:19) ASSET: Sending asset asset.0968b77855f1c6f0a8f05db3f887e1fd.png to client Bob Joga
+ - (2020-08-28 01:05:19) ASSET: Sending asset asset.fc34614e0d20fa7f2887319c1e7df4fc.png to client Bob Joga
+ - (2020-08-28 01:05:19) ASSET: Sending asset asset.0737594b2526699bf0808cf91870316c.png to client Bob Joga
+ - (2020-08-28 01:05:19) ASSET: Sending asset asset.e97f304c80562ffa178171ec4f17a52c.png to client Bob Joga
+ - (2020-08-28 01:05:19) ASSET: Sending asset asset.82f69b02e172912330a228c7cf164c2a.png to client Bob Joga
+ - (2020-08-28 01:05:19) ASSET: Sending asset asset.d1240ca3dcbaeaa82544e25798c1609a.png to client Bob Joga
+ - (2020-08-28 01:05:19) ASSET: Sending asset asset.abd3a52fbadbde51da64ea02ab6a570b.png to client Bob Joga
+ - (2020-08-28 01:05:19) ASSET: Sending asset asset.de18126d4455972f9336b66bc86314e7.png to client Bob Joga
+ - (2020-08-28 01:05:31) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - gib stack trace()
+ - register asset("asset.e4afd239e34bb9e436a70741...", /icon (/icon))
+ - icon2html(the brig physician\'s uniform (/obj/item/clothing/under/rank/brig_phys), Cockmistress (/mob/living/carbon/human), "brig_phys", 2, 1, 0)
+ - the brig physician\'s uniform (/obj/item/clothing/under/rank/brig_phys): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=18;vis-x=19;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - 
+ - (2020-08-28 01:05:31) ASSET: WARNING: dupe asset added to the asset cache: asset.57a274103342c30246291d43720ca9df.png existing asset md5: 57a274103342c30246291d43720ca9df new asset md5:57a274103342c30246291d43720ca9df
+ - gib stack trace()
+ - register asset("asset.57a274103342c30246291d43...", /icon (/icon))
+ - icon2html(the security medic cap (/obj/item/clothing/head/soft/sec/brig_phys), Cockmistress (/mob/living/carbon/human), "secmedsoft", 2, 1, 0)
+ - the security medic cap (/obj/item/clothing/head/soft/sec/brig_phys): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=18;vis-x=19;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - 
+ - (2020-08-28 01:05:31) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - gib stack trace()
+ - register asset("asset.8b2de4dc0d2134d7aa4ef4a2...", /icon (/icon))
+ - icon2html(the brig physician\'s vest (/obj/item/clothing/suit/hazardvest/brig_phys), Cockmistress (/mob/living/carbon/human), "brig_phys_vest", 2, 1, 0)
+ - the brig physician\'s vest (/obj/item/clothing/suit/hazardvest/brig_phys): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=18;vis-x=19;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - 
+ - (2020-08-28 01:05:31) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - gib stack trace()
+ - register asset("asset.0968b77855f1c6f0a8f05db3...", /icon (/icon))
+ - icon2html(the seclite (/obj/item/flashlight/seclite), Cockmistress (/mob/living/carbon/human), "seclite", 2, 1, 0)
+ - the seclite (/obj/item/flashlight/seclite): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=18;vis-x=19;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - 
+ - (2020-08-28 01:05:31) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - gib stack trace()
+ - register asset("asset.fc34614e0d20fa7f2887319c...", /icon (/icon))
+ - icon2html(the backpack (/obj/item/storage/backpack), Cockmistress (/mob/living/carbon/human), "backpack", 2, 1, 0)
+ - the backpack (/obj/item/storage/backpack): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=18;vis-x=19;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - 
+ - (2020-08-28 01:05:31) ASSET: WARNING: dupe asset added to the asset cache: asset.e97f304c80562ffa178171ec4f17a52c.png existing asset md5: e97f304c80562ffa178171ec4f17a52c new asset md5:e97f304c80562ffa178171ec4f17a52c
+ - gib stack trace()
+ - register asset("asset.e97f304c80562ffa178171ec...", /icon (/icon))
+ - icon2html(the health analyzer (/obj/item/healthanalyzer), Cockmistress (/mob/living/carbon/human), "health", 2, 1, 0)
+ - the health analyzer (/obj/item/healthanalyzer): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=18;vis-x=19;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - 
+ - (2020-08-28 01:05:31) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - gib stack trace()
+ - register asset("asset.82f69b02e172912330a228c7...", /icon (/icon))
+ - icon2html(the white shoes (/obj/item/clothing/shoes/sneakers/white), Cockmistress (/mob/living/carbon/human), "white", 2, 1, 0)
+ - the white shoes (/obj/item/clothing/shoes/sneakers/white): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=18;vis-x=19;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - 
+ - (2020-08-28 01:05:31) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - gib stack trace()
+ - register asset("asset.d1240ca3dcbaeaa82544e257...", /icon (/icon))
+ - icon2html(the medical HUDSunglasses (/obj/item/clothing/glasses/hud/health/sunglasses), Cockmistress (/mob/living/carbon/human), "sunhudmed", 2, 1, 0)
+ - the medical HUDSunglasses (/obj/item/clothing/glasses/hud/health/sunglasses): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=18;vis-x=19;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - 
+ - (2020-08-28 01:05:31) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - gib stack trace()
+ - register asset("asset.abd3a52fbadbde51da64ea02...", /icon (/icon))
+ - icon2html(the medical-security radio hea... (/obj/item/radio/headset/headset_medsec), Cockmistress (/mob/living/carbon/human), "medsec_headset", 2, 1, 0)
+ - the medical-security radio hea... (/obj/item/radio/headset/headset_medsec): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=18;vis-x=19;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - 
+ - (2020-08-28 01:05:31) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - gib stack trace()
+ - register asset("asset.de18126d4455972f9336b66b...", /icon (/icon))
+ - icon2html(PDA-Cockmistress (Brig Physici... (/obj/item/pda/security), Cockmistress (/mob/living/carbon/human), "pda-security", 2, 1, 0)
+ - PDA-Cockmistress (Brig Physici... (/obj/item/pda/security): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=18;icon-y=18;vis-x=19;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,170,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=18;icon-y=18;vis-x=19;v...", 0)
+ - 
+ - (2020-08-28 01:05:43) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - gib stack trace()
+ - register asset("asset.e4afd239e34bb9e436a70741...", /icon (/icon))
+ - icon2html(the brig physician\'s uniform (/obj/item/clothing/under/rank/brig_phys), Cockmistress (/mob/living/carbon/human), "brig_phys", 2, 1, 0)
+ - the brig physician\'s uniform (/obj/item/clothing/under/rank/brig_phys): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=21;vis-x=22;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - 
+ - (2020-08-28 01:05:43) ASSET: WARNING: dupe asset added to the asset cache: asset.57a274103342c30246291d43720ca9df.png existing asset md5: 57a274103342c30246291d43720ca9df new asset md5:57a274103342c30246291d43720ca9df
+ - gib stack trace()
+ - register asset("asset.57a274103342c30246291d43...", /icon (/icon))
+ - icon2html(the security medic cap (/obj/item/clothing/head/soft/sec/brig_phys), Cockmistress (/mob/living/carbon/human), "secmedsoft", 2, 1, 0)
+ - the security medic cap (/obj/item/clothing/head/soft/sec/brig_phys): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=21;vis-x=22;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - 
+ - (2020-08-28 01:05:43) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - gib stack trace()
+ - register asset("asset.8b2de4dc0d2134d7aa4ef4a2...", /icon (/icon))
+ - icon2html(the brig physician\'s vest (/obj/item/clothing/suit/hazardvest/brig_phys), Cockmistress (/mob/living/carbon/human), "brig_phys_vest", 2, 1, 0)
+ - the brig physician\'s vest (/obj/item/clothing/suit/hazardvest/brig_phys): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=21;vis-x=22;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - 
+ - (2020-08-28 01:05:43) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - gib stack trace()
+ - register asset("asset.0968b77855f1c6f0a8f05db3...", /icon (/icon))
+ - icon2html(the seclite (/obj/item/flashlight/seclite), Cockmistress (/mob/living/carbon/human), "seclite", 2, 1, 0)
+ - the seclite (/obj/item/flashlight/seclite): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=21;vis-x=22;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - 
+ - (2020-08-28 01:05:43) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - gib stack trace()
+ - register asset("asset.fc34614e0d20fa7f2887319c...", /icon (/icon))
+ - icon2html(the backpack (/obj/item/storage/backpack), Cockmistress (/mob/living/carbon/human), "backpack", 2, 1, 0)
+ - the backpack (/obj/item/storage/backpack): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=21;vis-x=22;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - 
+ - (2020-08-28 01:05:43) ASSET: WARNING: dupe asset added to the asset cache: asset.e97f304c80562ffa178171ec4f17a52c.png existing asset md5: e97f304c80562ffa178171ec4f17a52c new asset md5:e97f304c80562ffa178171ec4f17a52c
+ - gib stack trace()
+ - register asset("asset.e97f304c80562ffa178171ec...", /icon (/icon))
+ - icon2html(the health analyzer (/obj/item/healthanalyzer), Cockmistress (/mob/living/carbon/human), "health", 2, 1, 0)
+ - the health analyzer (/obj/item/healthanalyzer): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=21;vis-x=22;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - 
+ - (2020-08-28 01:05:43) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - gib stack trace()
+ - register asset("asset.82f69b02e172912330a228c7...", /icon (/icon))
+ - icon2html(the white shoes (/obj/item/clothing/shoes/sneakers/white), Cockmistress (/mob/living/carbon/human), "white", 2, 1, 0)
+ - the white shoes (/obj/item/clothing/shoes/sneakers/white): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=21;vis-x=22;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - 
+ - (2020-08-28 01:05:43) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - gib stack trace()
+ - register asset("asset.d1240ca3dcbaeaa82544e257...", /icon (/icon))
+ - icon2html(the medical HUDSunglasses (/obj/item/clothing/glasses/hud/health/sunglasses), Cockmistress (/mob/living/carbon/human), "sunhudmed", 2, 1, 0)
+ - the medical HUDSunglasses (/obj/item/clothing/glasses/hud/health/sunglasses): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=21;vis-x=22;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - 
+ - (2020-08-28 01:05:43) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - gib stack trace()
+ - register asset("asset.abd3a52fbadbde51da64ea02...", /icon (/icon))
+ - icon2html(the medical-security radio hea... (/obj/item/radio/headset/headset_medsec), Cockmistress (/mob/living/carbon/human), "medsec_headset", 2, 1, 0)
+ - the medical-security radio hea... (/obj/item/radio/headset/headset_medsec): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=21;vis-x=22;v...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (111,171,2) (/turf/open/floor/plasteel), "mapwindow.map", "icon-x=16;icon-y=21;vis-x=22;v...", 0)
+ - 
+ - (2020-08-28 01:05:43) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:06:09) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:06:09) ASSET: WARNING: dupe asset added to the asset cache: asset.57a274103342c30246291d43720ca9df.png existing asset md5: 57a274103342c30246291d43720ca9df new asset md5:57a274103342c30246291d43720ca9df
+ - 
+ - (2020-08-28 01:06:09) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:06:09) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:06:09) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:06:09) ASSET: WARNING: dupe asset added to the asset cache: asset.e97f304c80562ffa178171ec4f17a52c.png existing asset md5: e97f304c80562ffa178171ec4f17a52c new asset md5:e97f304c80562ffa178171ec4f17a52c
+ - 
+ - (2020-08-28 01:06:09) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:06:09) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:06:09) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:06:09) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:06:17) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:06:17) ASSET: WARNING: dupe asset added to the asset cache: asset.57a274103342c30246291d43720ca9df.png existing asset md5: 57a274103342c30246291d43720ca9df new asset md5:57a274103342c30246291d43720ca9df
+ - 
+ - (2020-08-28 01:06:17) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:06:17) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:06:17) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:06:17) ASSET: WARNING: dupe asset added to the asset cache: asset.e97f304c80562ffa178171ec4f17a52c.png existing asset md5: e97f304c80562ffa178171ec4f17a52c new asset md5:e97f304c80562ffa178171ec4f17a52c
+ - 
+ - (2020-08-28 01:06:17) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:06:17) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:06:17) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:06:17) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:06:28) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:06:28) ASSET: WARNING: dupe asset added to the asset cache: asset.57a274103342c30246291d43720ca9df.png existing asset md5: 57a274103342c30246291d43720ca9df new asset md5:57a274103342c30246291d43720ca9df
+ - 
+ - (2020-08-28 01:06:28) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:06:28) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:06:28) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:06:28) ASSET: WARNING: dupe asset added to the asset cache: asset.e97f304c80562ffa178171ec4f17a52c.png existing asset md5: e97f304c80562ffa178171ec4f17a52c new asset md5:e97f304c80562ffa178171ec4f17a52c
+ - 
+ - (2020-08-28 01:06:28) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:06:28) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:06:28) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:06:28) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:06:35) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:06:35) ASSET: WARNING: dupe asset added to the asset cache: asset.57a274103342c30246291d43720ca9df.png existing asset md5: 57a274103342c30246291d43720ca9df new asset md5:57a274103342c30246291d43720ca9df
+ - 
+ - (2020-08-28 01:06:35) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:06:35) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:06:35) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:06:35) ASSET: WARNING: dupe asset added to the asset cache: asset.e97f304c80562ffa178171ec4f17a52c.png existing asset md5: e97f304c80562ffa178171ec4f17a52c new asset md5:e97f304c80562ffa178171ec4f17a52c
+ - 
+ - (2020-08-28 01:06:35) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:06:35) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:06:35) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:06:35) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:07:13) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:07:13) ASSET: WARNING: dupe asset added to the asset cache: asset.57a274103342c30246291d43720ca9df.png existing asset md5: 57a274103342c30246291d43720ca9df new asset md5:57a274103342c30246291d43720ca9df
+ - 
+ - (2020-08-28 01:07:13) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:07:13) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:07:13) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:07:13) ASSET: WARNING: dupe asset added to the asset cache: asset.e97f304c80562ffa178171ec4f17a52c.png existing asset md5: e97f304c80562ffa178171ec4f17a52c new asset md5:e97f304c80562ffa178171ec4f17a52c
+ - 
+ - (2020-08-28 01:07:13) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:07:13) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:07:13) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:07:13) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:09:13) ASSET: WARNING: dupe asset added to the asset cache: asset.676ecb861f1f1a89d6b76887eb22ca0f.png existing asset md5: 676ecb861f1f1a89d6b76887eb22ca0f new asset md5:676ecb861f1f1a89d6b76887eb22ca0f
+ - 
+ - (2020-08-28 01:09:29) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:09:29) ASSET: WARNING: dupe asset added to the asset cache: asset.57a274103342c30246291d43720ca9df.png existing asset md5: 57a274103342c30246291d43720ca9df new asset md5:57a274103342c30246291d43720ca9df
+ - 
+ - (2020-08-28 01:09:29) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:09:29) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:09:29) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:09:29) ASSET: WARNING: dupe asset added to the asset cache: asset.e97f304c80562ffa178171ec4f17a52c.png existing asset md5: e97f304c80562ffa178171ec4f17a52c new asset md5:e97f304c80562ffa178171ec4f17a52c
+ - 
+ - (2020-08-28 01:09:29) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:09:29) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:09:29) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:09:29) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:09:35) ASSET: WARNING: dupe asset added to the asset cache: asset.0737594b2526699bf0808cf91870316c.png existing asset md5: 0737594b2526699bf0808cf91870316c new asset md5:0737594b2526699bf0808cf91870316c
+ - 
+ - (2020-08-28 01:10:26) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:10:26) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:10:26) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:10:26) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:10:26) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:10:26) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:10:26) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:10:26) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:10:48) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:10:48) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:10:48) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:10:48) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:10:48) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:10:48) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:10:48) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:10:48) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:10:56) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:10:56) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:10:56) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:10:56) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:10:56) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:10:56) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:10:56) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:10:56) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:11:01) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:11:01) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:11:01) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:11:01) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:11:01) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:11:01) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:11:01) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:11:01) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:11:08) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:11:08) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:11:08) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:11:08) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:11:08) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:11:08) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:11:08) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:11:08) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:11:19) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:11:19) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:11:19) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:11:19) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:11:19) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:11:19) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:11:19) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:11:19) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:11:30) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:11:30) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:11:30) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:11:30) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:11:30) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:11:30) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:11:30) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:11:30) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:11:38) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:11:38) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:11:38) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:11:38) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:11:38) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:11:38) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:11:38) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:11:38) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:11:42) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:11:42) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:11:42) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:11:42) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:11:42) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:11:42) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:11:42) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:11:42) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 
+ - (2020-08-28 01:11:51) ASSET: WARNING: dupe asset added to the asset cache: asset.e4afd239e34bb9e436a707413c4f61db.png existing asset md5: e4afd239e34bb9e436a707413c4f61db new asset md5:e4afd239e34bb9e436a707413c4f61db
+ - 
+ - (2020-08-28 01:11:51) ASSET: WARNING: dupe asset added to the asset cache: asset.8b2de4dc0d2134d7aa4ef4a2dd293558.png existing asset md5: 8b2de4dc0d2134d7aa4ef4a2dd293558 new asset md5:8b2de4dc0d2134d7aa4ef4a2dd293558
+ - 
+ - (2020-08-28 01:11:51) ASSET: WARNING: dupe asset added to the asset cache: asset.0968b77855f1c6f0a8f05db3f887e1fd.png existing asset md5: 0968b77855f1c6f0a8f05db3f887e1fd new asset md5:0968b77855f1c6f0a8f05db3f887e1fd
+ - 
+ - (2020-08-28 01:11:51) ASSET: WARNING: dupe asset added to the asset cache: asset.fc34614e0d20fa7f2887319c1e7df4fc.png existing asset md5: fc34614e0d20fa7f2887319c1e7df4fc new asset md5:fc34614e0d20fa7f2887319c1e7df4fc
+ - 
+ - (2020-08-28 01:11:51) ASSET: WARNING: dupe asset added to the asset cache: asset.82f69b02e172912330a228c7cf164c2a.png existing asset md5: 82f69b02e172912330a228c7cf164c2a new asset md5:82f69b02e172912330a228c7cf164c2a
+ - 
+ - (2020-08-28 01:11:51) ASSET: WARNING: dupe asset added to the asset cache: asset.d1240ca3dcbaeaa82544e25798c1609a.png existing asset md5: d1240ca3dcbaeaa82544e25798c1609a new asset md5:d1240ca3dcbaeaa82544e25798c1609a
+ - 
+ - (2020-08-28 01:11:51) ASSET: WARNING: dupe asset added to the asset cache: asset.abd3a52fbadbde51da64ea02ab6a570b.png existing asset md5: abd3a52fbadbde51da64ea02ab6a570b new asset md5:abd3a52fbadbde51da64ea02ab6a570b
+ - 
+ - (2020-08-28 01:11:51) ASSET: WARNING: dupe asset added to the asset cache: asset.de18126d4455972f9336b66bc86314e7.png existing asset md5: de18126d4455972f9336b66bc86314e7 new asset md5:de18126d4455972f9336b66bc86314e7
+ - 

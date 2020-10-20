@@ -15,7 +15,7 @@
 	biology_required = list()
 	required_status = null
 
-/datum/wound/loss/proc/apply_dismember(obj/item/bodypart/L, wounding_type=WOUND_SLASH)
+/datum/wound/loss/proc/apply_dismember(obj/item/bodypart/L, wounding_type = WOUND_SLASH)
 	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.can_dismember())
 		qdel(src)
 		return
@@ -103,9 +103,6 @@
 	severity = WOUND_SEVERITY_LOSS
 	wound_type = WOUND_LIST_LOSS
 	ignore_preexisting = TRUE
-	initial_flow = 2
-	minimum_flow = 0.5
-	clot_rate = 0
 	max_per_type = 4
 	threshold_penalty = 80
 	demotes_to = null
@@ -114,7 +111,12 @@
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
 	required_status = BODYPART_ORGANIC
 	biology_required = list()
+	pain_amount = 24 //Horrible, but could be worse.
+	infection_chance = 90
 	occur_text = null
+	initial_flow = 4.25
+	minimum_flow = 4
+	clot_rate = 0
 
 /datum/wound/slash/loss/get_examine_description(mob/user)
 	. = ..()
@@ -125,38 +127,38 @@
 	. = ..()
 	switch(L.body_zone)
 		if(BODY_ZONE_HEAD)
-			initial_flow = 3
-			minimum_flow = 0
+			initial_flow *= 1
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_CHEST)
-			initial_flow = 4
-			minimum_flow = 0
+			initial_flow *= (5/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_PRECISE_GROIN)
-			initial_flow = 4
-			minimum_flow = 0.2
+			initial_flow *= (5/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_L_ARM)
-			initial_flow = 2.5
-			minimum_flow = 0.5
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_R_ARM)
-			initial_flow = 2.5
-			minimum_flow = 0.5
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_PRECISE_L_HAND)
-			initial_flow = 1.5
-			minimum_flow = 0.75
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 		if(BODY_ZONE_PRECISE_R_HAND)
-			initial_flow = 1.5
-			minimum_flow = 0.75
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 		if(BODY_ZONE_L_LEG)
-			initial_flow = 3
-			minimum_flow = 0.3
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_R_LEG)
-			initial_flow = 3
-			minimum_flow = 0.3
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_PRECISE_L_FOOT)
-			initial_flow = 2
-			minimum_flow = 0.5
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 		if(BODY_ZONE_PRECISE_R_FOOT)
-			initial_flow = 2
-			minimum_flow = 0.5
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 
 /datum/wound/mechanical/slash/loss
 	name = "Dismembered stump"
@@ -168,8 +170,6 @@
 	severity = WOUND_SEVERITY_LOSS
 	wound_type = WOUND_LIST_LOSS
 	ignore_preexisting = TRUE
-	initial_flow = 2
-	minimum_flow = 0.5
 	clot_rate = 0
 	max_per_type = 4
 	threshold_penalty = 80
@@ -179,6 +179,7 @@
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
 	required_status = BODYPART_ROBOTIC
 	biology_required = list()
+	pain_amount = 24
 	occur_text = null
 
 /datum/wound/mechanical/slash/loss/get_examine_description(mob/user)
@@ -190,35 +191,35 @@
 	. = ..()
 	switch(L.body_zone)
 		if(BODY_ZONE_HEAD)
-			initial_flow = 3
-			minimum_flow = 0
+			initial_flow *= 1
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_CHEST)
-			initial_flow = 4
-			minimum_flow = 0
+			initial_flow *= (5/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_PRECISE_GROIN)
-			initial_flow = 4
-			minimum_flow = 0.2
+			initial_flow *= (5/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_L_ARM)
-			initial_flow = 2.5
-			minimum_flow = 0.5
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_R_ARM)
-			initial_flow = 2.5
-			minimum_flow = 0.5
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_PRECISE_L_HAND)
-			initial_flow = 1.5
-			minimum_flow = 0.75
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 		if(BODY_ZONE_PRECISE_R_HAND)
-			initial_flow = 1.5
-			minimum_flow = 0.75
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 		if(BODY_ZONE_L_LEG)
-			initial_flow = 3
-			minimum_flow = 0.3
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_R_LEG)
-			initial_flow = 3
-			minimum_flow = 0.3
+			initial_flow *= (3/4)
+			minimum_flow *= (1/4)
 		if(BODY_ZONE_PRECISE_L_FOOT)
-			initial_flow = 2
-			minimum_flow = 0.5
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)
 		if(BODY_ZONE_PRECISE_R_FOOT)
-			initial_flow = 2
-			minimum_flow = 0.5
+			initial_flow *= (1/2)
+			minimum_flow *= (1/3)

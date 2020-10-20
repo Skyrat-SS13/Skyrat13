@@ -66,9 +66,12 @@ h1.alert, h2.alert		{color: #000000;}
 .passive				{color: #660000;}
 
 .userdanger				{color: #ff0000;	font-weight: bold; font-size: 3;}
+.bigdanger				{color: #ff0000;	font-size: 3;}
+.mediumdanger			{color: #ff0000;	font-size: 2;}
+.bolddanger				{color: #ff0000;	font-weight: bold}
 .danger					{color: #ff0000;}
-.tinydanger				{color: #ff0000; font-size: 85%;}
 .smalldanger			{color: #ff0000; font-size: 90%;}
+.tinydanger				{color: #ff0000; font-size: 85%;}
 .warning				{color: #ff0000;	font-style: italic;}
 .boldwarning			{color: #ff0000;	font-style: italic;	font-weight: bold}
 .announce 				{color: #228b22;	font-weight: bold;}

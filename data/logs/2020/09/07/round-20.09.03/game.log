@@ -1,0 +1,53 @@
+[2020-09-07 23:09:03.157] Starting up round ID .
+ - -------------------------
+[2020-09-07 23:09:03.264] ADMIN: Loading Banlist
+[2020-09-07 23:09:03.338] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-07 23:09:03.339] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-07 23:09:08.122] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-07 23:09:12.501] GAME: Saved mode is 'extended'
+[2020-09-07 23:09:28.254] GAME: Hierophant's Arena loaded at 150,46,6
+[2020-09-07 23:09:28.280] GAME: Blood-Drunk Miner (Guidance) loaded at 124,86,6
+[2020-09-07 23:09:28.312] GAME: Blood-Drunk Miner (Hunter) loaded at 105,189,6
+[2020-09-07 23:09:28.343] GAME: Blood-Drunk Miner loaded at 219,177,6
+[2020-09-07 23:09:28.376] GAME: King Goat Boss Ruin loaded at 61,56,6
+[2020-09-07 23:09:28.411] GAME: Rogue's Arena loaded at 62,120,6
+[2020-09-07 23:09:28.469] GAME: Sif's Sword loaded at 182,180,6
+[2020-09-07 23:09:28.477] GAME: Pulsating Tumor loaded at 54,109,6
+[2020-09-07 23:09:28.494] GAME: Survival Capsule Ruins loaded at 188,109,6
+[2020-09-07 23:09:28.931] GAME: Syndicate Lava Base loaded at 22,154,6
+[2020-09-07 23:09:29.011] GAME: Ruin of Sloth loaded at 122,70,6
+[2020-09-07 23:09:29.012] GAME: E1M1 loaded at 176,222,6
+[2020-09-07 23:09:29.063] GAME: Fountain Hall loaded at 85,207,6
+[2020-09-07 23:09:29.145] GAME: Survival Capsule Ruins loaded at 83,67,6
+[2020-09-07 23:09:29.206] GAME: UFO Crash loaded at 117,122,6
+[2020-09-07 23:09:29.410] GAME: Alien Nest loaded at 183,130,6
+[2020-09-07 23:09:29.439] GAME: UFO Crash loaded at 77,79,6
+[2020-09-07 23:09:32.773] GAME: Abandoned Teleporter loaded at 199,37,3
+[2020-09-07 23:09:32.800] GAME: Whiteship Dock loaded at 84,161,8
+[2020-09-07 23:09:32.843] GAME: Crashed Clown Ship loaded at 181,75,7
+[2020-09-07 23:09:32.883] GAME: CF Corsair loaded at 193,185,3
+[2020-09-07 23:09:32.922] GAME: Ancient Cloning Lab loaded at 55,161,8
+[2020-09-07 23:09:33.061] GAME: Abandoned Telecommunications Satellite loaded at 138,108,7
+[2020-09-07 23:09:33.095] GAME: Asteroid 3 loaded at 48,149,3
+[2020-09-07 23:09:33.129] GAME: Empty Shell loaded at 52,194,3
+[2020-09-07 23:09:33.172] GAME: Abductor Replication Lab loaded at 33,167,4
+[2020-09-07 23:09:33.173] GAME: Detached Teleporter loaded at 193,169,3
+[2020-09-07 23:09:33.238] GAME: NT Medical Ship loaded at 66,151,7
+[2020-09-07 23:09:33.471] GAME: Crashed Ship loaded at 152,33,8
+[2020-09-07 23:09:33.537] GAME: Derelict 4 loaded at 113,137,3
+[2020-09-07 23:09:33.578] GAME: Strange Ship loaded at 35,131,7
+[2020-09-07 23:09:33.657] GAME: Derelict 5 loaded at 58,72,4
+[2020-09-07 23:09:34.225] GAME: Kosmicheskaya Stantsiya 13 loaded at 101,92,4
+[2020-09-07 23:09:34.251] GAME: Mineable Asteroid 3 loaded at 141,216,2
+[2020-09-07 23:09:34.275] GAME: Dorm Roid loaded at 213,196,2
+[2020-09-07 23:09:34.305] GAME: Mineable Asteroid 5 loaded at 50,211,2
+[2020-09-07 23:09:34.340] GAME: Monitoring Roid loaded at 197,23,2
+[2020-09-07 23:09:34.351] GAME: Mineable Asteroid 1 loaded at 152,203,2
+[2020-09-07 23:09:34.375] GAME: Mineable Asteroid 2 loaded at 195,206,2
+[2020-09-07 23:09:34.400] GAME: Dead wizard Roid loaded at 167,198,2
+[2020-09-07 23:09:34.421] GAME: Mineable Asteroid 4 loaded at 33,45,2
+[2020-09-07 23:09:34.440] GAME: Crab Roid loaded at 170,26,2
+[2020-09-07 23:09:34.451] GAME: Mineable Asteroid 1 loaded at 217,160,2
+[2020-09-07 23:09:34.589] GAME: Box TEG loaded at 96,49,2
+[2020-09-07 23:09:34.642] ACCESS: Logout: Bob Joga/(Bob Joga)
+[2020-09-07 23:09:34.643] GAME: Bob Joga[DC]/(Bob Joga) Bob Joga[DC]/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))

@@ -62,6 +62,7 @@
 	base_treat_time = 3 SECONDS
 	biology_required = list(HAS_FLESH)
 	required_status = BODYPART_ROBOTIC
+	pain_amount = 5 //Burns are awful
 
 /datum/wound/mechanical/burn/remove_wound(ignore_limb, replaced, forced)
 	. = ..()
@@ -334,6 +335,7 @@
 	promote_threshold = 18
 	malf_possible = list("disable" = 1,"intent" = 7, "damage" = 2)
 	scarring_descriptions = list("small amoeba-shaped skinmarks", "a faded streak of depressed skin")
+	pain_amount = 7 //Burns are awful
 
 /datum/wound/mechanical/burn/severe
 	name = "Burnt Transistors"
@@ -356,6 +358,7 @@
 	promote_threshold = 20
 	malf_possible = list("disable" = 3,"intent" = 4, "damage" = 3)
 	scarring_descriptions = list("a large, jagged patch of faded skin", "random spots of shiny, smooth skin", "spots of taut, leathery skin")
+	pain_amount = 10 //Burns are awful
 
 /datum/wound/mechanical/burn/critical
 	name = "Catastrophic Melting"
@@ -378,3 +381,4 @@
 	heat_warping_rate = 0.15 // although it cannot progress, it will get increasingly harder to fully treat until it reaches heat_roof
 	malf_possible = list("disable" = 5, "intent" = 2, "damage" = 3)
 	scarring_descriptions = list("massive, disfiguring keloid scars", "several long streaks of badly discolored and malformed skin", "unmistakeable splotches of dead tissue from serious burns")
+	pain_amount = 16 //Burns are awful

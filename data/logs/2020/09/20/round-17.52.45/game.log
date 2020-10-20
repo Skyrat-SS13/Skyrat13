@@ -1,0 +1,57 @@
+[2020-09-20 20:52:45.421] Starting up round ID .
+ - -------------------------
+[2020-09-20 20:52:45.504] ADMIN: Loading Banlist
+[2020-09-20 20:52:45.558] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-20 20:52:45.558] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-20 20:52:48.231] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-20 20:52:51.595] GAME: Saved mode is 'extended'
+[2020-09-20 20:53:06.015] GAME: Hierophant's Arena loaded at 68,200,6
+[2020-09-20 20:53:06.033] GAME: Blood-Drunk Miner (Guidance) loaded at 60,101,6
+[2020-09-20 20:53:06.051] GAME: Blood-Drunk Miner (Hunter) loaded at 188,82,6
+[2020-09-20 20:53:06.068] GAME: Blood-Drunk Miner loaded at 178,196,6
+[2020-09-20 20:53:06.087] GAME: King Goat Boss Ruin loaded at 180,28,6
+[2020-09-20 20:53:06.111] GAME: Rogue's Arena loaded at 114,24,6
+[2020-09-20 20:53:06.148] GAME: Sif's Sword loaded at 199,59,6
+[2020-09-20 20:53:06.156] GAME: Pulsating Tumor loaded at 146,57,6
+[2020-09-20 20:53:06.198] GAME: Dead God loaded at 35,146,6
+[2020-09-20 20:53:06.229] GAME: Seed Vault loaded at 73,61,6
+[2020-09-20 20:53:06.243] GAME: Fountain Hall loaded at 82,89,6
+[2020-09-20 20:53:06.271] GAME: Free Golem Ship loaded at 143,74,6
+[2020-09-20 20:53:06.338] GAME: Ash Walker Nest loaded at 94,123,6
+[2020-09-20 20:53:09.661] GAME: Abandoned Teleporter loaded at 78,62,3
+[2020-09-20 20:53:09.682] GAME: Whiteship Dock loaded at 83,149,3
+[2020-09-20 20:53:09.719] GAME: Cleric's Den loaded at 168,61,4
+[2020-09-20 20:53:09.766] GAME: Derelict 1 loaded at 46,66,4
+[2020-09-20 20:53:09.826] GAME: Gondoland loaded at 63,24,3
+[2020-09-20 20:53:09.830] GAME: Ordinary Space Tile loaded at 56,119,7
+[2020-09-20 20:53:09.991] GAME: Syndicate Ambush loaded at 87,75,8
+[2020-09-20 20:53:10.038] GAME: Unnamed Turreted Outpost loaded at 125,210,7
+[2020-09-20 20:53:10.256] GAME: Survivalist Bunker loaded at 44,100,4
+[2020-09-20 20:53:10.406] GAME: Derelict Tradepost loaded at 172,130,4
+[2020-09-20 20:53:10.465] GAME: Hilbert Research Facility loaded at 52,151,8
+[2020-09-20 20:53:10.492] GAME: Authorship loaded at 92,101,7
+[2020-09-20 20:53:10.539] GAME: NT Medical Ship loaded at 54,207,4
+[2020-09-20 20:53:10.619] GAME: Feline-Human Combination Den loaded at 155,79,7
+[2020-09-20 20:53:10.668] GAME: Derelict 4 loaded at 141,140,8
+[2020-09-20 20:53:10.774] GAME: Space Hermit loaded at 165,61,3
+[2020-09-20 20:53:10.795] GAME: Mineable Asteroid 4 loaded at 217,34,2
+[2020-09-20 20:53:10.812] GAME: Dead wizard Roid loaded at 51,212,2
+[2020-09-20 20:53:10.828] GAME: Maze Roid loaded at 152,217,2
+[2020-09-20 20:53:10.859] GAME: Mineable Asteroid 5 loaded at 172,213,2
+[2020-09-20 20:53:10.868] GAME: Mineable Asteroid 1 loaded at 41,210,2
+[2020-09-20 20:53:10.896] GAME: Monitoring Roid loaded at 35,22,2
+[2020-09-20 20:53:10.910] GAME: Crab Roid loaded at 200,180,2
+[2020-09-20 20:53:10.931] GAME: Mineable Asteroid 2 loaded at 24,55,2
+[2020-09-20 20:53:10.959] GAME: Dorm Roid loaded at 214,172,2
+[2020-09-20 20:53:10.968] GAME: Mineable Asteroid 1 loaded at 25,84,2
+[2020-09-20 20:53:11.040] GAME: Box Tesla loaded at 96,49,2
+[2020-09-20 20:53:11.327] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-20 20:53:16.661] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-20 20:53:16.662] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-20 20:53:16.663] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-20 20:53:16.664] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-20 20:53:16.666] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-20 20:53:16.674] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-20 20:53:16.682] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-20 20:53:16.686] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-20 20:53:27.707] GAME: *no key*/(Tomoko Hammonds) Tomoko Hammonds name changed from Tomoko Hammonds to Knicknack (Unexplored Location (184, 86, 3))

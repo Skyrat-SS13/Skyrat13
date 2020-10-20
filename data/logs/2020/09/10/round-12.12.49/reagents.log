@@ -1,0 +1,170 @@
+[2020-09-10 15:12:49.197] Starting up round ID .
+ - -------------------------
+[2020-09-10 15:25:00.433] Logs from logging subsystem:
+ - (2020-09-10 12:15:32) REAGENT: MOB ADD: on_mob_add(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 141, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:15:34) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 141, 2) - 3.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:15:35) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 141, 2) - 5.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:15:36) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 141, 2) - 10.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:15:40) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 141, 2) - 11.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:15:43) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 141, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:15:43) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 141, 2) - 13.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:15:45) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 141, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:15:46) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 141, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:15:47) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 141, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:16:14) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Pedro Ilurdoz) at Arrival Shuttle Hallway (49, 137, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:16:18) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Pedro Ilurdoz) at Arrival Shuttle Hallway (49, 137, 2) - /datum/reagent/determination
+ - (2020-09-10 12:16:23) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (50, 136, 2) - /datum/reagent/determination
+ - (2020-09-10 12:16:29) REAGENT: MOB ADD: on_mob_add(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (50, 136, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:16:31) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (50, 136, 2) - 3.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:16:31) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (50, 136, 2) - 5.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:16:32) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (50, 136, 2) - 7.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:16:33) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (50, 136, 2) - 9.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:16:33) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (50, 136, 2) - 11.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:16:34) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (50, 136, 2) - 16.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:16:36) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (50, 136, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:16:49) REAGENT: MOB ADD: on_mob_add(): *no key*/(Pepinpop) at Unexplored Location (121, 84, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:16:53) REAGENT: MOB ADD: on_mob_add(): *no key*/(Clueless) at Unexplored Location (119, 87, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:17:22) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - /datum/reagent/determination
+ - (2020-09-10 12:17:28) REAGENT: MOB ADD: on_mob_add(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:17:29) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - 7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:17:30) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:17:31) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - 16.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:17:32) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:17:34) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:17:35) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - 16.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:17:36) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:17:39) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - 14.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:17:39) REAGENT: MOB ADD: on_mob_add(): *no key*/(Candy) at Unexplored Location (118, 85, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:17:42) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - 11.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:17:47) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - 11.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:18:06) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (49, 134, 2) - /datum/reagent/determination
+ - (2020-09-10 12:18:15) REAGENT: MOB ADD: on_merge(): *no key*/(Pepinpop) at Unexplored Location (121, 84, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:18:28) REAGENT: MOB ADD: on_mob_add(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:18:29) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:18:30) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 8.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:18:39) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 12.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:19:12) REAGENT: MOB ADD: on_merge(): *no key*/(Pepinpop) at Unexplored Location (121, 84, 8) - 9 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:19:16) REAGENT: MOB ADD: on_merge(): *no key*/(Pepinpop) at Unexplored Location (121, 84, 8) - 16.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:19:46) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - /datum/reagent/determination
+ - (2020-09-10 12:19:50) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (119, 87, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:20:30) REAGENT: MOB ADD: on_merge(): *no key*/(Candy) at Unexplored Location (118, 85, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:20:30) REAGENT: MOB ADD: on_merge(): *no key*/(Candy) at Unexplored Location (118, 85, 8) - 9 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:20:41) REAGENT: MOB ADD: on_mob_add(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:20:44) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 3.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:20:45) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 8.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:20:45) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 10.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:20:46) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:20:48) REAGENT: MOB ADD: on_merge(): *no key*/(Candy) at Unexplored Location (118, 85, 8) - 14 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:20:48) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:20:52) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 11.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:20:58) REAGENT: MOB ADD: on_merge(): *no key*/(Candy) at Unexplored Location (118, 85, 8) - 17.948 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:20:58) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 14.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:00) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:01) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 13.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:01) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 15.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:02) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:05) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:05) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 13.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:08) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:12) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (44, 129, 2) - 19.1 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:36) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (42, 129, 2) - 11.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:37) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (42, 129, 2) - 16.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:37) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (42, 129, 2) - 18.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:38) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (42, 129, 2) - 17.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:50) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (42, 129, 2) - 10.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:21:53) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (42, 129, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:22:02) REAGENT: MOB ADD: on_merge(): *no key*/(Lakech Savchuk) at Arrival Shuttle Hallway (42, 129, 2) - 13.8 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:22:04) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (119, 87, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:24:44) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (119, 87, 8) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:24:54) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (119, 87, 8) - 10 of /datum/reagent/determination with 1 purity
+[2020-09-10 15:35:01.498] Logs from logging subsystem:
+ - (2020-09-10 12:25:14) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (119, 87, 8) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:25:18) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (119, 87, 8) - 22.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:27:38) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (119, 87, 8) - 24.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:28:12) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (119, 87, 8) - 26.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:29:55) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (119, 87, 8) - 28.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:29:59) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (119, 87, 8) - 30.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:30:21) REAGENT: MOB ADD: on_merge(): *no key*/(Clueless) at Unexplored Location (119, 87, 8) - 35.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:32:12) REAGENT: MOB ADD: on_mob_add(): *no key*/(Jaime Priest) at Arrival Shuttle Hallway (42, 127, 2) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:32:17) REAGENT: MOB ADD: on_merge(): *no key*/(Jaime Priest) at Arrival Shuttle Hallway (42, 127, 2) - 11.9 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:32:18) REAGENT: MOB ADD: on_merge(): *no key*/(Jaime Priest) at Arrival Shuttle Hallway (42, 127, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:32:19) REAGENT: MOB ADD: on_merge(): *no key*/(Jaime Priest) at Arrival Shuttle Hallway (42, 127, 2) - 17.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:32:21) REAGENT: MOB ADD: on_merge(): *no key*/(Jaime Priest) at Arrival Shuttle Hallway (42, 127, 2) - 19.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:32:21) REAGENT: MOB ADD: on_merge(): *no key*/(Jaime Priest) at Arrival Shuttle Hallway (42, 127, 2) - 21.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:32:21) REAGENT: MOB ADD: on_merge(): *no key*/(Jaime Priest) at Arrival Shuttle Hallway (42, 127, 2) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:32:24) REAGENT: MOB ADD: on_merge(): *no key*/(Jaime Priest) at Arrival Shuttle Hallway (42, 127, 2) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:32:24) REAGENT: MOB ADD: on_merge(): *no key*/(Jaime Priest) at Arrival Shuttle Hallway (42, 127, 2) - 17 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:32:26) REAGENT: MOB ADD: on_merge(): *no key*/(Jaime Priest) at Arrival Shuttle Hallway (42, 127, 2) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:32:41) REAGENT: MOB ADD: on_merge(): *no key*/(Jaime Priest) at Arrival Shuttle Hallway (42, 127, 2) - 17.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:33:17) REAGENT: MOB ADD: on_mob_add(): *no key*/(coder monkey (273)) at Unexplored Location (96, 150, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:33:29) REAGENT: MOB DELETE: on_mob_delete: *no key*/(coder monkey (273)) at Unexplored Location (96, 150, 4) - /datum/reagent/determination
+ - (2020-09-10 12:34:06) REAGENT: MOB ADD: on_mob_add(): *no key*/(Elif Akbulut) at Arrival Shuttle Hallway (61, 140, 2) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:34:07) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Arrival Shuttle Hallway (61, 140, 2) - 10 of /datum/reagent/determination with 1 purity
+[2020-09-10 15:45:01.922] Logs from logging subsystem:
+ - (2020-09-10 12:35:59) REAGENT: MOB ADD: on_mob_add(): *no key*/(Wood Whiting) at Port Primary Hallway (69, 141, 2) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:36:01) REAGENT: MOB ADD: on_merge(): *no key*/(Wood Whiting) at Port Primary Hallway (69, 141, 2) - 12.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:36:04) REAGENT: MOB ADD: on_merge(): *no key*/(Wood Whiting) at Port Primary Hallway (69, 141, 2) - 14.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:37:23) REAGENT: MOB ADD: on_mob_add(): *no key*/(Yuzuki Gamarra) at Port Primary Hallway (73, 141, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:37:31) REAGENT: MOB ADD: on_merge(): *no key*/(Yuzuki Gamarra) at Port Primary Hallway (73, 141, 2) - 8.3 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:37:32) REAGENT: MOB ADD: on_merge(): *no key*/(Yuzuki Gamarra) at Port Primary Hallway (73, 141, 2) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:07) REAGENT: MOB ADD: on_mob_add(): *no key*/(Christoforos Sewell) at Port Primary Hallway (79, 141, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:08) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Port Primary Hallway (78, 141, 2) - 3.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:12) REAGENT: MOB ADD: on_merge(): *no key*/(Yuzuki Gamarra) at Port Primary Hallway (73, 141, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:17) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Port Primary Hallway (70, 141, 2) - 4.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:17) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Port Primary Hallway (70, 141, 2) - 6.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:18) REAGENT: MOB ADD: on_merge(): *no key*/(Wood Whiting) at Port Primary Hallway (69, 141, 2) - 19.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:26) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Port Primary Hallway (67, 141, 2) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:26) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Port Primary Hallway (67, 141, 2) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:30) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Port Primary Hallway (66, 141, 2) - 11.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:30) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Port Primary Hallway (66, 141, 2) - 16.4 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:33) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Port Primary Hallway (63, 141, 2) - 12.095 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:38) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Arrival Shuttle Hallway (59, 141, 2) - 11.729 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:39) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Arrival Shuttle Hallway (59, 142, 2) - 14.058 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:42) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Arrival Shuttle Hallway (56, 144, 2) - 17.551 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:47) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Arrival Shuttle Hallway (52, 144, 2) - 18.482 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:38:49) REAGENT: MOB ADD: on_merge(): *no key*/(Christoforos Sewell) at Arrival Shuttle Hallway (50, 144, 2) - 19.413 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:43:51) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Port Primary Hallway (67, 140, 2) - 11.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:44:04) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Port Primary Hallway (73, 140, 2) - 19.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:44:08) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Port Primary Hallway (75, 140, 2) - 29.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:44:14) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Port Primary Hallway (79, 140, 2) - 36.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:44:15) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Port Primary Hallway (81, 140, 2) - 44.2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:44:16) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Port Primary Hallway (83, 140, 2) - 51.7 of /datum/reagent/determination with 1 purity
+[2020-09-10 15:55:02.255] Logs from logging subsystem:
+ - (2020-09-10 12:45:20) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Elif Akbulut) at Central Primary Hallway (97, 140, 2) - /datum/reagent/determination
+ - (2020-09-10 12:45:27) REAGENT: MOB ADD: on_mob_add(): *no key*/(Elif Akbulut) at Central Primary Hallway (97, 131, 2) - 7.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:45:30) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (97, 133, 2) - 17.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:45:39) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (97, 134, 2) - 22.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:45:40) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (97, 136, 2) - 24.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:45:42) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (97, 139, 2) - 29.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:45:44) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (97, 141, 2) - 39.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:45:50) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Elif Akbulut) at Central Primary Hallway (97, 142, 2) - /datum/reagent/determination
+ - (2020-09-10 12:46:45) REAGENT: MOB ADD: on_mob_add(): *no key*/(Elif Akbulut) at Central Primary Hallway (107, 141, 2) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:46:47) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (108, 141, 2) - 7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:46:49) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (109, 141, 2) - 14.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:46:50) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (111, 141, 2) - 19.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:46:52) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (112, 141, 2) - 24.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:46:53) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (113, 141, 2) - 29.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:46:54) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (114, 141, 2) - 34.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:46:55) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (115, 141, 2) - 39.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:46:56) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (116, 141, 2) - 47 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:46:59) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (118, 141, 2) - 49 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:47:01) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (120, 141, 2) - 51 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:47:02) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (122, 141, 2) - 56 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:47:03) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (123, 141, 2) - 61 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:47:03) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (123, 141, 2) - 63 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:47:05) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Central Primary Hallway (125, 141, 2) - 68 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:49:35) REAGENT: MOB DELETE: on_mob_delete: *no key*/(Elif Akbulut) at Starboard Primary Hallway (136, 129, 2) - /datum/reagent/determination
+ - (2020-09-10 12:49:36) REAGENT: MOB ADD: on_mob_add(): *no key*/(Elif Akbulut) at Starboard Primary Hallway (136, 129, 2) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:49:37) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Starboard Primary Hallway (137, 129, 2) - 12.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:49:38) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Starboard Primary Hallway (138, 129, 2) - 14.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:49:39) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Starboard Primary Hallway (140, 129, 2) - 16.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:49:42) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Starboard Primary Hallway (143, 129, 2) - 21.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:49:43) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Starboard Primary Hallway (144, 129, 2) - 26.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:49:43) REAGENT: MOB ADD: on_merge(): *no key*/(Elif Akbulut) at Starboard Primary Hallway (144, 129, 2) - 28.5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:53:35) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Pedro Ilurdoz) at Starboard Primary Hallway (147, 128, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:53:41) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Pedro Ilurdoz) at Starboard Primary Hallway (144, 128, 2) - /datum/reagent/determination
+ - (2020-09-10 12:53:47) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Pedro Ilurdoz) at Medbay Central (144, 126, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:53:55) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Pedro Ilurdoz) at Medbay Central (143, 122, 2) - /datum/reagent/determination
+ - (2020-09-10 12:54:07) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Pedro Ilurdoz) at Medbay Central (146, 123, 2) - 5 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:54:08) REAGENT: MOB ADD: on_merge(): Bob Joga/(Pedro Ilurdoz) at Medbay Central (146, 124, 2) - 6.7 of /datum/reagent/determination with 1 purity
+ - (2020-09-10 12:54:09) REAGENT: MOB ADD: on_merge(): Bob Joga/(Pedro Ilurdoz) at Medbay Central (146, 124, 2) - 8.7 of /datum/reagent/determination with 1 purity

@@ -1,0 +1,157 @@
+[2020-09-10 00:35:29.510] Starting up round ID .
+ - -------------------------
+[2020-09-10 00:35:29.516] Running /tg/ revision: 2020-09-09
+ - origin/master: c74efc94618dedf73b26cfe54cc793c8d4ca4380
+ - HEAD: 2b694876dd2f0bed35ed0fd72a476909b0901346
+[2020-09-10 00:35:30.756] Loading Box Station...
+[2020-09-10 00:35:37.336] Loaded Station in 6.6s!
+[2020-09-10 00:35:39.750] Loaded Lavaland in 2.3s!
+[2020-09-10 00:35:41.326] Ruin loader finished with 0 left to spend.
+[2020-09-10 00:35:44.854] Ruin loader finished with 0 left to spend.
+[2020-09-10 00:35:45.004] Ruin loader finished with 0 left to spend.
+[2020-09-10 00:36:24.676] ## WARNING: HEY! LISTEN! 0.4 seconds were wasted processing 421 turf(s) (connected to 21637 other turfs) with atmos differences at round start.
+[2020-09-10 00:36:26.710] ## WARNING: design /datum/design/ipc_stomach with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'microcell'
+[2020-09-10 00:36:26.712] ## WARNING: design /datum/design/ipc_kidneys with icon 'modular_skyrat/icons/obj/surgery.dmi' missing state 'kidneys-ipc'
+[2020-09-10 00:36:45.777] Initializations complete within 75.3 seconds!
+[2020-09-10 00:36:47.869] Game start took 0.5s
+[2020-09-10 00:41:42.694] runtime error: Cannot execute null.visible message().
+ - proc name: afterattack (/obj/item/kitchen/knife/combat/mehrunes/afterattack)
+ -   source file: weaponry.dm,542
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes)
+ -   usr.loc: the floor (146,118,2) (/turf/open/floor/plasteel/white)
+ -   src.loc: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   call stack:
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): afterattack(Unknown (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 1, "icon-x=14;icon-y=15;vis-x=16;v...")
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Unknown (/mob/living/carbon/human/species/felinid), "icon-x=14;icon-y=15;vis-x=16;v...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Unknown (/mob/living/carbon/human/species/felinid), "icon-x=14;icon-y=15;vis-x=16;v...")
+ - Unknown (/mob/living/carbon/human/species/felinid): Click(the floor (145,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=14;icon-y=15;vis-x=16;v...", 0)
+ - Bob Joga (/client): Click(Unknown (/mob/living/carbon/human/species/felinid), the floor (145,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=14;icon-y=15;vis-x=16;v...", 0)
+ - 
+[2020-09-10 00:42:12.343] runtime error: Cannot execute null.visible message().
+ - proc name: afterattack (/obj/item/kitchen/knife/combat/mehrunes/afterattack)
+ -   source file: weaponry.dm,542
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes)
+ -   usr.loc: the floor (146,118,2) (/turf/open/floor/plasteel/white)
+ -   src.loc: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   call stack:
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): afterattack(Indranil Julius (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 1, "icon-x=18;icon-y=15;vis-x=-13;...")
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=18;icon-y=15;vis-x=-13;...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=18;icon-y=15;vis-x=-13;...")
+ - Indranil Julius (/mob/living/carbon/human/species/felinid): Click(the floor (145,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=18;icon-y=15;vis-x=-13;...", 0)
+ - Bob Joga (/client): Click(Indranil Julius (/mob/living/carbon/human/species/felinid), the floor (145,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=18;icon-y=15;vis-x=-13;...", 0)
+ - 
+[2020-09-10 00:42:14.612] runtime error: Cannot execute null.visible message().
+ - proc name: afterattack (/obj/item/kitchen/knife/combat/mehrunes/afterattack)
+ -   source file: weaponry.dm,542
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes)
+ -   usr.loc: the floor (146,118,2) (/turf/open/floor/plasteel/white)
+ -   src.loc: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   call stack:
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): afterattack(Indranil Julius (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 1, "icon-x=18;icon-y=15;vis-x=-13;...")
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=18;icon-y=15;vis-x=-13;...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=18;icon-y=15;vis-x=-13;...")
+ - Indranil Julius (/mob/living/carbon/human/species/felinid): Click(the floor (145,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=18;icon-y=15;vis-x=-13;...", 0)
+ - Bob Joga (/client): Click(Indranil Julius (/mob/living/carbon/human/species/felinid), the floor (145,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=18;icon-y=15;vis-x=-13;...", 0)
+ - 
+[2020-09-10 00:42:34.924] runtime error: Cannot execute null.visible message().
+ - proc name: afterattack (/obj/item/kitchen/knife/combat/mehrunes/afterattack)
+ -   source file: weaponry.dm,542
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes)
+ -   usr.loc: the floor (138,118,2) (/turf/open/floor/plasteel/white)
+ -   src.loc: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   call stack:
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): afterattack(Indranil Julius (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 1, "icon-x=17;icon-y=14;vis-x=-12;...")
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=14;vis-x=-12;...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=14;vis-x=-12;...")
+ - Indranil Julius (/mob/living/carbon/human/species/felinid): Click(the floor (139,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=14;vis-x=-12;...", 0)
+ - Bob Joga (/client): Click(Indranil Julius (/mob/living/carbon/human/species/felinid), the floor (139,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=14;vis-x=-12;...", 0)
+ - 
+[2020-09-10 00:42:35.797] runtime error: Cannot execute null.visible message().
+ - proc name: afterattack (/obj/item/kitchen/knife/combat/mehrunes/afterattack)
+ -   source file: weaponry.dm,542
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes)
+ -   usr.loc: the floor (135,118,2) (/turf/open/floor/plasteel/white)
+ -   src.loc: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   call stack:
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): afterattack(Indranil Julius (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 1, "icon-x=17;icon-y=14;vis-x=-12;...")
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=14;vis-x=-12;...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=14;vis-x=-12;...")
+ - Indranil Julius (/mob/living/carbon/human/species/felinid): Click(the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=14;vis-x=-12;...", 0)
+ - Bob Joga (/client): Click(Indranil Julius (/mob/living/carbon/human/species/felinid), the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=14;vis-x=-12;...", 0)
+ - 
+[2020-09-10 00:42:37.533] runtime error: Cannot execute null.visible message().
+ - proc name: afterattack (/obj/item/kitchen/knife/combat/mehrunes/afterattack)
+ -   source file: weaponry.dm,542
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes)
+ -   usr.loc: the floor (135,118,2) (/turf/open/floor/plasteel/white)
+ -   src.loc: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   call stack:
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): afterattack(Indranil Julius (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 1, "icon-x=17;icon-y=14;vis-x=-12;...")
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=14;vis-x=-12;...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=14;vis-x=-12;...")
+ - Indranil Julius (/mob/living/carbon/human/species/felinid): Click(the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=14;vis-x=-12;...", 0)
+ - Bob Joga (/client): Click(Indranil Julius (/mob/living/carbon/human/species/felinid), the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=14;vis-x=-12;...", 0)
+ - 
+[2020-09-10 00:42:43.244] runtime error: Cannot execute null.visible message().
+ - proc name: afterattack (/obj/item/kitchen/knife/combat/mehrunes/afterattack)
+ -   source file: weaponry.dm,542
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes)
+ -   usr.loc: the floor (135,118,2) (/turf/open/floor/plasteel/white)
+ -   src.loc: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   call stack:
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): afterattack(Indranil Julius (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 1, "icon-x=17;icon-y=14;vis-x=-12;...")
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=14;vis-x=-12;...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=17;icon-y=14;vis-x=-12;...")
+ - Indranil Julius (/mob/living/carbon/human/species/felinid): Click(the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=14;vis-x=-12;...", 0)
+ - Bob Joga (/client): Click(Indranil Julius (/mob/living/carbon/human/species/felinid), the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=17;icon-y=14;vis-x=-12;...", 0)
+ - 
+[2020-09-10 00:42:48.149] runtime error: Cannot execute null.visible message().
+ - proc name: afterattack (/obj/item/kitchen/knife/combat/mehrunes/afterattack)
+ -   source file: weaponry.dm,542
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes)
+ -   usr.loc: the floor (135,118,2) (/turf/open/floor/plasteel/white)
+ -   src.loc: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   call stack:
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): afterattack(Indranil Julius (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 1, "icon-x=16;icon-y=16;vis-x=-14;...")
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=16;vis-x=-14;...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=16;vis-x=-14;...")
+ - Indranil Julius (/mob/living/carbon/human/species/felinid): Click(the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=16;icon-y=16;vis-x=-14;...", 0)
+ - Bob Joga (/client): Click(Indranil Julius (/mob/living/carbon/human/species/felinid), the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=16;icon-y=16;vis-x=-14;...", 0)
+ - 
+[2020-09-10 00:42:48.592] runtime error: Cannot execute null.visible message().
+ - proc name: afterattack (/obj/item/kitchen/knife/combat/mehrunes/afterattack)
+ -   source file: weaponry.dm,542
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes)
+ -   usr.loc: the floor (135,118,2) (/turf/open/floor/plasteel/white)
+ -   src.loc: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   call stack:
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): afterattack(Indranil Julius (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 1, "icon-x=16;icon-y=16;vis-x=-14;...")
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=16;vis-x=-14;...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=16;icon-y=16;vis-x=-14;...")
+ - Indranil Julius (/mob/living/carbon/human/species/felinid): Click(the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=16;icon-y=16;vis-x=-14;...", 0)
+ - Bob Joga (/client): Click(Indranil Julius (/mob/living/carbon/human/species/felinid), the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=16;icon-y=16;vis-x=-14;...", 0)
+ - 
+[2020-09-10 00:42:58.495] runtime error: Cannot execute null.visible message().
+ - proc name: afterattack (/obj/item/kitchen/knife/combat/mehrunes/afterattack)
+ -   source file: weaponry.dm,542
+ -   usr: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   src: Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes)
+ -   usr.loc: the floor (135,118,2) (/turf/open/floor/plasteel/white)
+ -   src.loc: Pedro Ilurdoz (/mob/living/carbon/human)
+ -   call stack:
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): afterattack(Indranil Julius (/mob/living/carbon/human/species/felinid), Pedro Ilurdoz (/mob/living/carbon/human), 1, "icon-x=19;icon-y=17;vis-x=-15;...")
+ - Serrated Blade (/obj/item/kitchen/knife/combat/mehrunes): melee attack chain(Pedro Ilurdoz (/mob/living/carbon/human), Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=19;icon-y=17;vis-x=-15;...", null, 1)
+ - Pedro Ilurdoz (/mob/living/carbon/human): ClickOn(Indranil Julius (/mob/living/carbon/human/species/felinid), "icon-x=19;icon-y=17;vis-x=-15;...")
+ - Indranil Julius (/mob/living/carbon/human/species/felinid): Click(the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=19;icon-y=17;vis-x=-15;...", 0)
+ - Bob Joga (/client): Click(Indranil Julius (/mob/living/carbon/human/species/felinid), the floor (136,118,2) (/turf/open/floor/plasteel/white), "mapwindow.map", "icon-x=19;icon-y=17;vis-x=-15;...", 0)
+ - 
+[2020-09-10 01:06:57.194] ### VarEdit by Bob Joga/(Pedro Ilurdoz): /obj/item/energy_katana force=40 => 300

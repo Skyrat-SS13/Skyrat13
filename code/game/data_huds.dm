@@ -102,10 +102,11 @@
 /proc/RoundHealth(mob/living/M)
 	if(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_FAKEDEATH)))
 		return "health-100" //what's our health? it doesn't matter, we're dead, or faking
-	var/maxi_health = M.maxHealth
-	if(iscarbon(M) && M.health < 0)
+	var/maxi_health = M.getMaxHealth()
+	var/cur_health = M.get_physical_damage()
+	if(iscarbon(M) && cur_health < 0)
 		maxi_health = 100 //so crit shows up right for aliens and other high-health carbon mobs; noncarbons don't have crit.
-	var/resulthealth = (M.health / maxi_health) * 100
+	var/resulthealth = (cur_health / maxi_health) * 100
 	switch(resulthealth)
 		if(100 to INFINITY)
 			return "health100"
@@ -146,7 +147,10 @@
 		if(-99 to -85)
 			return "health-85"
 		else
-			return "health-100"
+			if(M.stat != DEAD)
+				return "health-85"
+			else
+				return "health-100"
 
 //HOOKS
 

@@ -1,0 +1,63 @@
+[2020-09-04 14:35:31.598] Starting up round ID .
+ - -------------------------
+[2020-09-04 14:35:31.647] ADMIN: Loading Banlist
+[2020-09-04 14:35:31.690] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-04 14:35:31.690] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-04 14:35:34.126] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-04 14:35:37.457] GAME: Saved mode is 'extended'
+[2020-09-04 14:35:42.183] ADMIN: Bob Joga has started the game.
+[2020-09-04 14:35:49.863] GAME: Hierophant's Arena loaded at 156,199,6
+[2020-09-04 14:35:49.879] GAME: Blood-Drunk Miner (Guidance) loaded at 212,193,6
+[2020-09-04 14:35:49.897] GAME: Blood-Drunk Miner (Hunter) loaded at 54,144,6
+[2020-09-04 14:35:49.913] GAME: Blood-Drunk Miner loaded at 42,166,6
+[2020-09-04 14:35:49.931] GAME: King Goat Boss Ruin loaded at 67,162,6
+[2020-09-04 14:35:49.953] GAME: Rogue's Arena loaded at 106,106,6
+[2020-09-04 14:35:49.986] GAME: Sif's Sword loaded at 82,165,6
+[2020-09-04 14:35:49.999] GAME: Pulsating Tumor loaded at 62,89,6
+[2020-09-04 14:35:50.005] GAME: Pulsating Tumor loaded at 180,84,6
+[2020-09-04 14:35:50.022] GAME: Fountain Hall loaded at 54,82,6
+[2020-09-04 14:35:50.028] GAME: Pulsating Tumor loaded at 200,208,6
+[2020-09-04 14:35:50.083] GAME: Elephant Graveyard loaded at 117,55,6
+[2020-09-04 14:35:50.104] GAME: Ruin of Pride loaded at 90,117,6
+[2020-09-04 14:35:50.127] GAME: Dark Wizard Altar loaded at 208,138,6
+[2020-09-04 14:35:50.194] GAME: Alien Nest loaded at 150,101,6
+[2020-09-04 14:35:50.226] GAME: Dead God loaded at 146,28,6
+[2020-09-04 14:35:50.293] GAME: Animal Hospital loaded at 206,75,6
+[2020-09-04 14:35:53.034] GAME: Abandoned Teleporter loaded at 122,123,7
+[2020-09-04 14:35:53.054] GAME: Whiteship Dock loaded at 108,74,7
+[2020-09-04 14:35:53.077] GAME: Asteroid 1 loaded at 78,54,8
+[2020-09-04 14:35:53.263] GAME: Survivalist Bunker loaded at 182,64,4
+[2020-09-04 14:35:53.317] GAME: Hilbert Research Facility loaded at 23,101,7
+[2020-09-04 14:35:53.344] GAME: Empty Shell loaded at 173,37,4
+[2020-09-04 14:35:53.378] GAME: Space Arcade loaded at 184,145,3
+[2020-09-04 14:35:53.431] GAME: Biological Storage Facility loaded at 136,110,8
+[2020-09-04 14:35:53.435] GAME: Ordinary Space Tile loaded at 136,63,8
+[2020-09-04 14:35:53.465] GAME: Salvation loaded at 183,96,8
+[2020-09-04 14:35:53.519] GAME: Asteroid 5 loaded at 139,95,3
+[2020-09-04 14:35:53.557] GAME: Asteroid 4 loaded at 45,198,4
+[2020-09-04 14:35:53.600] GAME: DJ Station loaded at 137,142,3
+[2020-09-04 14:35:53.628] GAME: CF Corsair loaded at 69,208,8
+[2020-09-04 14:35:53.653] GAME: Authorship loaded at 23,153,7
+[2020-09-04 14:35:53.782] GAME: Derelict Tradepost loaded at 37,43,3
+[2020-09-04 14:35:53.809] GAME: Dead wizard Roid loaded at 22,211,2
+[2020-09-04 14:35:53.836] GAME: Mineable Asteroid 5 loaded at 137,213,2
+[2020-09-04 14:35:53.855] GAME: Mineable Asteroid 2 loaded at 209,206,2
+[2020-09-04 14:35:53.878] GAME: Dorm Roid loaded at 22,27,2
+[2020-09-04 14:35:53.894] GAME: Maze Roid loaded at 22,50,2
+[2020-09-04 14:35:53.907] GAME: Mineable Asteroid 3 loaded at 174,202,2
+[2020-09-04 14:35:53.915] GAME: Mineable Asteroid 1 loaded at 120,22,2
+[2020-09-04 14:35:53.931] GAME: Mineable Asteroid 4 loaded at 181,23,2
+[2020-09-04 14:35:53.944] GAME: Crab Roid loaded at 51,28,2
+[2020-09-04 14:35:53.974] GAME: Monitoring Roid loaded at 211,185,2
+[2020-09-04 14:35:54.021] GAME: Box Antimatter loaded at 96,49,2
+[2020-09-04 14:35:54.275] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-04 14:35:59.160] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-04 14:35:59.161] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-04 14:35:59.161] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-04 14:35:59.162] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-04 14:35:59.163] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-04 14:35:59.169] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-04 14:35:59.174] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-04 14:35:59.178] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-04 14:36:08.310] GAME: *no key*/(Boris Upreti) Boris Upreti name changed from Boris Upreti to Bonbon (Unexplored Location (56, 201, 4))
+[2020-09-04 14:36:08.364] GAME: [�APLU "Ripley"] �APLU "Ripley" created. (Mech Transport (76, 217, 8))

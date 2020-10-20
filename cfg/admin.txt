@@ -1,0 +1,2 @@
+yourckeygoeshere role=admin
+bobjoga role=admin

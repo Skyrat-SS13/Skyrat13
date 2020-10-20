@@ -1,0 +1,75 @@
+[2020-08-28 01:39:44.450] Starting up round ID .
+ - -------------------------
+[2020-08-28 01:51:05.466] Logs from logging subsystem:
+ - (2020-08-27 22:41:36) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Port Primary Hallway (89, 141, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:41:49) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Locker Room (72, 137, 2) - /datum/reagent/determination
+ - (2020-08-27 22:43:05) REAGENT: MOB ADD: on_mob_add(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:43:11) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:43:17) REAGENT: MOB ADD: on_mob_add(): *no key*/(Scootaloo) at Unexplored Location (121, 107, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:43:19) REAGENT: MOB ADD: on_mob_add(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:43:43) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:43:49) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 9 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:43:57) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 11 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:44:03) REAGENT: MOB ADD: on_merge(): *no key*/(Scootaloo) at Unexplored Location (121, 107, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:44:07) REAGENT: MOB ADD: on_mob_add(): *no key*/(Karima Venter) at Space (137, 115, 7) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:44:13) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:44:27) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:44:35) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:45:03) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:45:13) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:45:23) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:45:33) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:45:41) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:45:43) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 17 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:45:45) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Port Primary Hallway (70, 142, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:45:47) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:45:49) REAGENT: MOB ADD: on_merge(): Bob Joga/(Cockmistress) at Port Primary Hallway (70, 142, 2) - 3.4 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:45:57) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:45:59) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:46:03) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:46:03) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:46:11) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Port Primary Hallway (72, 142, 2) - /datum/reagent/determination
+ - (2020-08-27 22:46:41) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 24 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:46:59) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 29 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:47:05) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 31 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:47:07) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 18 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:47:13) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 36 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:47:27) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 24 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:47:55) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:48:06) REAGENT: MOB ADD: on_mob_add(): Bob Joga/(Cockmistress) at Port Primary Hallway (78, 142, 2) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:48:17) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 26 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:48:19) REAGENT: MOB DELETE: on_mob_delete: Bob Joga/(Cockmistress) at Port Primary Hallway (84, 140, 2) - /datum/reagent/determination
+ - (2020-08-27 22:48:21) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 28 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:48:21) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 33 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:48:29) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:48:31) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 24 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:48:49) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 29 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:49:01) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 38 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:49:21) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 38 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:49:33) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 45.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:50:07) REAGENT: MOB ADD: on_merge(): *no key*/(Scootaloo) at Unexplored Location (121, 107, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:50:35) REAGENT: MOB ADD: on_merge(): *no key*/(Scootaloo) at Unexplored Location (121, 107, 8) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:50:35) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 47.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:50:41) REAGENT: MOB ADD: on_merge(): *no key*/(Scootaloo) at Unexplored Location (121, 107, 8) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:50:43) REAGENT: MOB ADD: on_merge(): *no key*/(Scootaloo) at Unexplored Location (121, 107, 8) - 18 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:51:04) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 55 of /datum/reagent/determination with 1 purity
+[2020-08-28 02:01:05.895] Logs from logging subsystem:
+ - (2020-08-27 22:51:27) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 62.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:51:31) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 34 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:52:06) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 40 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:52:28) REAGENT: MOB ADD: on_merge(): *no key*/(Scootaloo) at Unexplored Location (121, 107, 8) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:55:36) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 36 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:55:40) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 42 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:55:42) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 38 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:57:38) REAGENT: MOB ADD: on_merge(): *no key*/(Dazzle) at Unexplored Location (119, 110, 8) - 64.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:57:40) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 44 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:57:54) REAGENT: MOB ADD: on_merge(): *no key*/(Scootaloo) at Unexplored Location (121, 107, 8) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 22:59:26) REAGENT: MOB ADD: on_merge(): *no key*/(Scootaloo) at Unexplored Location (121, 107, 8) - 24 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 23:00:02) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 40 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 23:00:22) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 51.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 23:00:26) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 59 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 23:00:34) REAGENT: MOB ADD: on_merge(): *no key*/(Freckle) at Unexplored Location (118, 108, 8) - 66.5 of /datum/reagent/determination with 1 purity
+[2020-08-28 02:11:06.149] Logs from logging subsystem:
+ - (2020-08-27 23:01:28) REAGENT: MOB ADD: on_merge(): *no key*/(Scootaloo) at Unexplored Location (121, 107, 8) - 26 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 23:02:52) REAGENT: MOB ADD: on_merge(): *no key*/(Karima Venter) at Space (137, 115, 7) - 42 of /datum/reagent/determination with 1 purity
+ - (2020-08-27 23:08:38) REAGENT: MOB ADD: on_merge(): *no key*/(Scootaloo) at Unexplored Location (121, 107, 8) - 28 of /datum/reagent/determination with 1 purity

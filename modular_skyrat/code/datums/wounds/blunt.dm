@@ -35,6 +35,8 @@
 	base_treat_time = 4 SECONDS
 	biology_required = list(HAS_BONE)
 	required_status = BODYPART_ORGANIC
+	pain_amount = 3
+	wound_flags = (MANGLES_BONE)
 
 /*
 	Overwriting of base procs
@@ -59,7 +61,7 @@
 		active_trauma = victim.gain_trauma_type(brain_trauma_group, TRAUMA_RESILIENCE_WOUND)
 		next_trauma_cycle = world.time + (rand(100-WOUND_BONE_HEAD_TIME_VARIANCE, 100+WOUND_BONE_HEAD_TIME_VARIANCE) * 0.01 * trauma_cycle_cooldown)
 
-	//RegisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/attack_with_hurt_hand)
+	RegisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/attack_with_hurt_hand)
 	if(limb.held_index && victim.get_item_for_held_index(limb.held_index) && (disabling || prob(30 * severity)))
 		var/obj/item/I = victim.get_item_for_held_index(limb.held_index)
 		if(istype(I, /obj/item/offhand))
@@ -73,10 +75,8 @@
 /datum/wound/blunt/remove_wound(ignore_limb, replaced)
 	limp_slowdown = 0
 	QDEL_NULL(active_trauma)
-	/*
 	if(victim)
 		UnregisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
-	*/
 	return ..()
 
 /datum/wound/blunt/handle_process()
@@ -247,6 +247,8 @@
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
 	can_self_treat = TRUE
+	pain_amount = 3
+	flat_damage_roll_increase = 5
 
 /datum/wound/blunt/moderate/crush()
 	if(prob(33))
@@ -391,6 +393,7 @@
 	status_effect_type = /datum/status_effect/wound/blunt/moderate
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
+	pain_amount = 5 //Hurts a lot, almost a hairline fracture
 
 /datum/wound/blunt/moderate/ribcage/crush()
 	if(prob(33))
@@ -474,6 +477,7 @@
 	status_effect_type = /datum/status_effect/wound/blunt/moderate
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
+	pain_amount = 4 //Hurts more than your average dislocation
 
 /datum/wound/blunt/moderate/hips/crush()
 	if(prob(33))
@@ -557,6 +561,7 @@
 	status_effect_type = /datum/status_effect/wound/blunt/moderate
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
+	pain_amount = 4 //Hurts a bit more
 
 /datum/wound/blunt/moderate/jaw/crush()
 	if(prob(33))
@@ -645,6 +650,9 @@
 	brain_trauma_group = BRAIN_TRAUMA_MILD
 	trauma_cycle_cooldown = 1.5 MINUTES
 	internal_bleeding_chance = 40
+	pain_amount = 7
+	flat_damage_roll_increase = 10
+	infection_chance = 7 //Very low, but possible
 
 /datum/wound/blunt/critical
 	name = "Compound Fracture"
@@ -667,6 +675,9 @@
 	brain_trauma_group = BRAIN_TRAUMA_SEVERE
 	trauma_cycle_cooldown = 2.5 MINUTES
 	internal_bleeding_chance = 60
+	pain_amount = 12
+	flat_damage_roll_increase = 15
+	infection_chance = 30 //Compound fractures always have some exposed flesh
 
 // doesn't make much sense for "a" bone to stick out of your head
 /datum/wound/blunt/critical/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)
@@ -705,7 +716,7 @@
 			if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/medicine/morphine))
 				painkiller_bonus += 10
 			if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/determination))
-				painkiller_bonus += 5		
+				painkiller_bonus += 5
 
 			if(prob(25 + (20 * severity - 2) - painkiller_bonus)) // 25%/45% chance to fail self-applying with severe and critical wounds, modded by painkillers
 				victim.visible_message("<span class='danger'>[victim] fails to finish applying [I] to [victim.p_their()] [limb.name], passing out from the pain!</span>", "<span class='notice'>You black out from the pain of applying [I] to your [limb.name] before you can finish!</span>")

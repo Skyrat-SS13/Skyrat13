@@ -1,0 +1,80 @@
+[2020-09-03 13:52:58.696] Starting up round ID .
+ - -------------------------
+[2020-09-03 13:52:58.736] ADMIN: Loading Banlist
+[2020-09-03 13:52:58.774] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-03 13:52:58.774] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-03 13:53:01.431] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-03 13:53:04.720] GAME: Saved mode is 'extended'
+[2020-09-03 13:53:16.711] GAME: Hierophant's Arena loaded at 29,175,6
+[2020-09-03 13:53:16.728] GAME: Blood-Drunk Miner (Guidance) loaded at 77,140,6
+[2020-09-03 13:53:16.744] GAME: Blood-Drunk Miner (Hunter) loaded at 189,186,6
+[2020-09-03 13:53:16.762] GAME: Blood-Drunk Miner loaded at 49,139,6
+[2020-09-03 13:53:16.779] GAME: King Goat Boss Ruin loaded at 95,112,6
+[2020-09-03 13:53:16.807] GAME: Rogue's Arena loaded at 92,78,6
+[2020-09-03 13:53:16.843] GAME: Sif's Sword loaded at 144,59,6
+[2020-09-03 13:53:16.850] GAME: Pulsating Tumor loaded at 76,195,6
+[2020-09-03 13:53:16.872] GAME: Ruin of Sloth loaded at 169,131,6
+[2020-09-03 13:53:17.278] GAME: Syndicate Lava Base loaded at 179,40,6
+[2020-09-03 13:53:17.282] GAME: E1M1 loaded at 54,161,6
+[2020-09-03 13:53:17.309] GAME: Ruin of Wrath loaded at 150,32,6
+[2020-09-03 13:53:17.333] GAME: Free Golem Ship loaded at 151,169,6
+[2020-09-03 13:53:17.340] GAME: Pulsating Tumor loaded at 161,116,6
+[2020-09-03 13:53:20.518] GAME: Abandoned Teleporter loaded at 92,79,8
+[2020-09-03 13:53:20.539] GAME: Whiteship Dock loaded at 26,67,8
+[2020-09-03 13:53:20.584] GAME: NT Medical Ship loaded at 93,139,4
+[2020-09-03 13:53:20.688] GAME: Abandoned Telecommunications Satellite loaded at 38,155,4
+[2020-09-03 13:53:20.742] GAME: DJ Station loaded at 154,97,8
+[2020-09-03 13:53:20.790] GAME: Disposal Facility 17 loaded at 116,102,8
+[2020-09-03 13:53:20.839] GAME: Derelict 6 loaded at 41,111,3
+[2020-09-03 13:53:20.868] GAME: CF Corsair loaded at 189,147,7
+[2020-09-03 13:53:21.475] GAME: Ancient Space Station loaded at 111,159,8
+[2020-09-03 13:53:21.559] GAME: Feline-Human Combination Den loaded at 25,166,8
+[2020-09-03 13:53:21.583] GAME: Asteroid 1 loaded at 111,134,7
+[2020-09-03 13:53:21.638] GAME: Biological Storage Facility loaded at 56,35,4
+[2020-09-03 13:53:21.695] GAME: Derelict 5 loaded at 175,61,7
+[2020-09-03 13:53:22.179] GAME: Kosmicheskaya Stantsiya 13 loaded at 24,58,7
+[2020-09-03 13:53:22.248] GAME: Asteroid 5 loaded at 69,142,8
+[2020-09-03 13:53:22.286] GAME: Waylaid Buses loaded at 135,170,7
+[2020-09-03 13:53:22.308] GAME: Dorm Roid loaded at 37,39,2
+[2020-09-03 13:53:22.328] GAME: Crab Roid loaded at 201,186,2
+[2020-09-03 13:53:22.344] GAME: Maze Roid loaded at 194,22,2
+[2020-09-03 13:53:22.351] GAME: Mineable Asteroid 1 loaded at 201,206,2
+[2020-09-03 13:53:22.376] GAME: Monitoring Roid loaded at 157,213,2
+[2020-09-03 13:53:22.394] GAME: Dead wizard Roid loaded at 39,201,2
+[2020-09-03 13:53:22.416] GAME: Mineable Asteroid 4 loaded at 216,26,2
+[2020-09-03 13:53:22.438] GAME: Mineable Asteroid 2 loaded at 211,213,2
+[2020-09-03 13:53:22.479] GAME: Mineable Asteroid 5 loaded at 177,213,2
+[2020-09-03 13:53:22.495] GAME: Mineable Asteroid 3 loaded at 61,212,2
+[2020-09-03 13:53:22.567] GAME: Box Singulo loaded at 96,49,2
+[2020-09-03 13:53:22.838] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-03 13:53:28.129] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-03 13:53:28.130] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-03 13:53:28.130] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-03 13:53:28.131] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-03 13:53:28.132] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-03 13:53:28.140] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-03 13:53:28.146] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-03 13:53:28.150] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-03 13:53:35.873] ADMIN: Bob Joga has started the game.
+[2020-09-03 13:53:38.117] GAME: [�APLU "Ripley"] �APLU "Ripley" created. (Mech Transport (196, 156, 7))
+[2020-09-03 13:54:28.945] GAME: Backup Shuttle loaded at 143,212,1
+[2020-09-03 13:54:29.024] GAME: assault pod (Default) loaded at 144,213,1
+[2020-09-03 13:54:29.360] GAME: basic syndicate infiltrator loaded at 139,205,1
+[2020-09-03 13:54:29.649] GAME: fancy transport ferry loaded at 141,214,1
+[2020-09-03 13:54:29.803] GAME: Box Station Emergency Shuttle loaded at 142,205,1
+[2020-09-03 13:54:30.007] GAME: cargo ferry (Box) loaded at 144,210,1
+[2020-09-03 13:54:30.623] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-03 13:54:30.648] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-03 13:54:30.702] GAME: auxilliary base (Default) loaded at 143,212,1
+[2020-09-03 13:54:30.804] GAME: arrival shuttle (Box) loaded at 140,213,1
+[2020-09-03 13:54:30.907] GAME: mining shuttle (Box) loaded at 145,213,1
+[2020-09-03 13:54:30.960] GAME: labour shuttle (Box) loaded at 145,212,1
+[2020-09-03 13:54:31.003] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-03 13:54:31.030] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-03 13:54:31.057] GAME: lavaland Mining Elevator loaded at 145,214,1
+[2020-09-03 13:54:32.253] GAME: Hospital Ship loaded at 132,208,1
+[2020-09-03 13:54:32.642] VOTE: Roundtype vote started by server.
+[2020-09-03 13:54:34.134] VOTE: <b>Roundtype Vote</b><b>Vote Result: Inconclusive - No Votes!</b>
+[2020-09-03 13:54:34.738] GAME: *no key*/(Bob Joga) *no key*/(Bob Joga) is no longer owning mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-03 13:54:34.739] ACCESS: Mob Login: Bob Joga/(Pedro Ilurdoz) was assigned to a /mob/living/carbon/human
+[2020-09-03 13:54:35.305] GAME: Bob Joga/(Pedro Ilurdoz) Client Bob Joga/(Pedro Ilurdoz) has taken ownership of mob (/mob/living/carbon/human) (Library (176, 136, 2))

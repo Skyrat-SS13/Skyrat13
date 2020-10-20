@@ -1,0 +1,409 @@
+[2020-08-26 14:57:48.833] Logs from logging subsystem:
+ - (2020-08-26 11:57:32) ASSET: Sending asset spritesheet_paper.css to client Bob Joga
+ - (2020-08-26 11:57:32) ASSET: Sending asset paper_121x54.png to client Bob Joga
+ - (2020-08-26 11:57:32) ASSET: Sending asset spritesheet_pills.css to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset common.css to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset jquery.min.js to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset json2.min.js to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset browserOutput.js to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset browserOutput.css to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset browserOutput_dark.css to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset browserOutput_light.css to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset spritesheet_chat.css to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset chat_16x16.png to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset fa-regular-400.eot to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset fa-regular-400.woff to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset fa-solid-900.eot to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset fa-solid-900.woff to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset font-awesome.css to client Bob Joga
+ - (2020-08-26 11:57:34) ASSET: Sending asset v4shim.css to client Bob Joga
+ - (2020-08-26 11:57:35) ASSET: Sending asset pills_22x10.png to client Bob Joga
+ - (2020-08-26 11:57:35) ASSET: Sending asset pills_14x14.png to client Bob Joga
+ - (2020-08-26 11:57:35) ASSET: Sending asset minimap-8c9bc6030f958b3fc0dc845a3dfa0c42.png to client Bob Joga
+ - (2020-08-26 11:57:37) ASSET: Sending asset minimap-8c9bc6030f958b3fc0dc845a3dfa0c42-meta.png to client Bob Joga
+ - (2020-08-26 11:57:37) ASSET: Sending asset tgui.css to client Bob Joga
+ - (2020-08-26 11:57:37) ASSET: Sending asset tgui.js to client Bob Joga
+ - (2020-08-26 11:57:39) ASSET: Sending asset tgui-main.html to client Bob Joga
+ - (2020-08-26 11:57:39) ASSET: Sending asset tgui.bundle.js to client Bob Joga
+ - (2020-08-26 11:57:39) ASSET: Sending asset tgui.bundle.css to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset tgui-fallback.html to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset shim-html5shiv.js to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset shim-ie8.js to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset shim-dom4.js to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset shim-css-om.js to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset alarm_green.gif to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset alarm_red.gif to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset batt_5.gif to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset batt_20.gif to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset batt_40.gif to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset batt_60.gif to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset batt_80.gif to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset batt_100.gif to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset charging.gif to client Bob Joga
+ - (2020-08-26 11:57:40) ASSET: Sending asset downloader_finished.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset downloader_running.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset ntnrc_idle.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset ntnrc_new.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset power_norm.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset power_warn.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset sig_high.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset sig_low.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset sig_lan.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset sig_none.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset smmon_0.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset smmon_1.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset smmon_2.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset smmon_3.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset smmon_4.gif to client Bob Joga
+ - (2020-08-26 11:57:41) ASSET: Sending asset smmon_5.gif to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset smmon_6.gif to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset jquery-ui.custom-core-widgit-mouse-sortable-min.js to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset 88x31.png to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset bug-minus.png to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset cross-circle.png to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset hard-hat-exclamation.png to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset image-minus.png to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset image-plus.png to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset music-minus.png to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset music-plus.png to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset tick-circle.png to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset wrench-screwdriver.png to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset spell-check.png to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset burn-exclamation.png to client Bob Joga
+ - (2020-08-26 11:57:42) ASSET: Sending asset chevron.png to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset chevron-expand.png to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset scales.png to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset coding.png to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset ban.png to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset chrome-wrench.png to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset changelog.css to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset padlock.png to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset high_button.png to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset medium_button.png to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset minor_button.png to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset none_button.png to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset dna_discovered.gif to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset dna_undiscovered.gif to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset dna_extra.gif to client Bob Joga
+ - (2020-08-26 11:57:43) ASSET: Sending asset view_variables.css to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset sui-nano-common.js to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset sui-nano-common.css to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetris_0.gif to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetris_1.gif to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetris_2.gif to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetris_3.gif to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetris_4.gif to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetris_5.gif to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetris_6.gif to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetris_7.gif to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetrisp0.gif to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetrisp1.gif to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetrisp2.gif to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetrisp3.gif to client Bob Joga
+ - (2020-08-26 11:57:44) ASSET: Sending asset tetrisp4.gif to client Bob Joga
+ - (2020-08-26 11:57:45) ASSET: Sending asset tetrisp5.gif to client Bob Joga
+ - (2020-08-26 11:57:45) ASSET: Sending asset tetrisp6.gif to client Bob Joga
+ - (2020-08-26 11:57:45) ASSET: Sending asset tetrisp7.gif to client Bob Joga
+ - (2020-08-26 11:57:45) ASSET: Sending asset tetris.js to client Bob Joga
+ - (2020-08-26 11:57:45) ASSET: Sending asset tetris2.js to client Bob Joga
+ - (2020-08-26 11:57:45) ASSET: Sending asset spritesheet_pda.css to client Bob Joga
+ - (2020-08-26 11:57:45) ASSET: Sending asset pda_16x16.png to client Bob Joga
+ - (2020-08-26 11:57:45) ASSET: Sending asset spritesheet_minesweeper.css to client Bob Joga
+ - (2020-08-26 11:57:46) ASSET: Sending asset minesweeper_16x16.png to client Bob Joga
+ - (2020-08-26 11:57:46) ASSET: Sending asset spritesheet_pipes.css to client Bob Joga
+ - (2020-08-26 11:57:46) ASSET: Sending asset pipes_32x32.png to client Bob Joga
+ - (2020-08-26 11:57:46) ASSET: Sending asset spritesheet_design.css to client Bob Joga
+ - (2020-08-26 11:57:46) ASSET: Sending asset design_32x32.png to client Bob Joga
+ - (2020-08-26 11:57:46) ASSET: Sending asset design_32x64.png to client Bob Joga
+ - (2020-08-26 11:57:46) ASSET: Sending asset design_64x32.png to client Bob Joga
+ - (2020-08-26 11:57:46) ASSET: Sending asset spritesheet_vending.css to client Bob Joga
+ - (2020-08-26 11:57:46) ASSET: Sending asset vending_32x32.png to client Bob Joga
+[2020-08-26 15:07:49.706] Logs from logging subsystem:
+ - (2020-08-26 12:00:50) ASSET: Sending asset asset.0d297f8f352fb52f7d897b1de8d76dc5.png to client Bob Joga
+ - (2020-08-26 12:00:50) ASSET: Sending asset asset.e9566a5780970a0099b88c88a2f734e8.png to client Bob Joga
+ - (2020-08-26 12:00:50) ASSET: Sending asset asset.c45fbc6a6a510bf15b68f73082af04ed.png to client Bob Joga
+ - (2020-08-26 12:00:50) ASSET: Sending asset asset.0ccf3b2135d9e6b57afcc2ffb46cde5b.png to client Bob Joga
+ - (2020-08-26 12:00:50) ASSET: Sending asset asset.47d2b15a88764277b261532fec9ff440.png to client Bob Joga
+ - (2020-08-26 12:00:50) ASSET: Sending asset asset.397aa86b5c3d5d62c37651497040ade1.png to client Bob Joga
+ - (2020-08-26 12:00:50) ASSET: Sending asset asset.5d58a0711f6c12cc6fbb6e4861d538ef.png to client Bob Joga
+ - (2020-08-26 12:00:50) ASSET: Sending asset asset.8004571c8533910ae861af8dfdf06aed.png to client Bob Joga
+ - (2020-08-26 12:00:50) ASSET: Sending asset asset.446fe3d860138c2606ff48237ccf7924.png to client Bob Joga
+ - (2020-08-26 12:00:50) ASSET: Sending asset asset.7bdcf62d9b949e8a7ad9308e73ae93fc.png to client Bob Joga
+ - (2020-08-26 12:00:50) ASSET: Sending asset asset.7996a593191253cf3e065e6167833614.png to client Bob Joga
+ - (2020-08-26 12:01:30) ASSET: WARNING: dupe asset added to the asset cache: asset.0d297f8f352fb52f7d897b1de8d76dc5.png existing asset md5: 0d297f8f352fb52f7d897b1de8d76dc5 new asset md5:0d297f8f352fb52f7d897b1de8d76dc5
+ - gib stack trace()
+ - register asset("asset.0d297f8f352fb52f7d897b1d...", /icon (/icon))
+ - icon2html(the medal of captaincy (/obj/item/clothing/accessory/medal/gold/captain), Cockmistress (/mob/living/carbon/human), "gold", 2, 1, 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=17;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:01:30) ASSET: WARNING: dupe asset added to the asset cache: asset.e9566a5780970a0099b88c88a2f734e8.png existing asset md5: e9566a5780970a0099b88c88a2f734e8 new asset md5:e9566a5780970a0099b88c88a2f734e8
+ - gib stack trace()
+ - register asset("asset.e9566a5780970a0099b88c88...", /icon (/icon))
+ - icon2html(the captain\'s jumpsuit (/obj/item/clothing/under/rank/captain), Cockmistress (/mob/living/carbon/human), "captain", 2, 1, 0)
+ - the captain\'s jumpsuit (/obj/item/clothing/under/rank/captain): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=17;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:01:30) ASSET: WARNING: dupe asset added to the asset cache: asset.c45fbc6a6a510bf15b68f73082af04ed.png existing asset md5: c45fbc6a6a510bf15b68f73082af04ed new asset md5:c45fbc6a6a510bf15b68f73082af04ed
+ - gib stack trace()
+ - register asset("asset.c45fbc6a6a510bf15b68f730...", /icon (/icon))
+ - icon2html(the captain\'s hat (/obj/item/clothing/head/caphat), Cockmistress (/mob/living/carbon/human), "captain", 2, 1, 0)
+ - the captain\'s hat (/obj/item/clothing/head/caphat): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=17;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:01:30) ASSET: WARNING: dupe asset added to the asset cache: asset.0ccf3b2135d9e6b57afcc2ffb46cde5b.png existing asset md5: 0ccf3b2135d9e6b57afcc2ffb46cde5b new asset md5:0ccf3b2135d9e6b57afcc2ffb46cde5b
+ - gib stack trace()
+ - register asset("asset.0ccf3b2135d9e6b57afcc2ff...", /icon (/icon))
+ - icon2html(the captain\'s carapace (/obj/item/clothing/suit/armor/vest/capcarapace), Cockmistress (/mob/living/carbon/human), "capcarapace", 2, 1, 0)
+ - the captain\'s carapace (/obj/item/clothing/suit/armor/vest/capcarapace): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=17;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:01:30) ASSET: WARNING: dupe asset added to the asset cache: asset.47d2b15a88764277b261532fec9ff440.png existing asset md5: 47d2b15a88764277b261532fec9ff440 new asset md5:47d2b15a88764277b261532fec9ff440
+ - gib stack trace()
+ - register asset("asset.47d2b15a88764277b261532f...", /icon (/icon))
+ - icon2html(the captain\'s backpack (/obj/item/storage/backpack/captain), Cockmistress (/mob/living/carbon/human), "captainpack", 2, 1, 0)
+ - the captain\'s backpack (/obj/item/storage/backpack/captain): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=17;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:01:30) ASSET: Sending asset asset.659729db002d2e1f009c6aed6c82eacc.png to client Bob Joga
+ - (2020-08-26 12:01:30) ASSET: WARNING: dupe asset added to the asset cache: asset.397aa86b5c3d5d62c37651497040ade1.png existing asset md5: 397aa86b5c3d5d62c37651497040ade1 new asset md5:397aa86b5c3d5d62c37651497040ade1
+ - gib stack trace()
+ - register asset("asset.397aa86b5c3d5d62c3765149...", /icon (/icon))
+ - icon2html(the captain\'s gloves (/obj/item/clothing/gloves/color/captain), Cockmistress (/mob/living/carbon/human), "captain", 2, 1, 0)
+ - the captain\'s gloves (/obj/item/clothing/gloves/color/captain): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=17;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:01:30) ASSET: WARNING: dupe asset added to the asset cache: asset.5d58a0711f6c12cc6fbb6e4861d538ef.png existing asset md5: 5d58a0711f6c12cc6fbb6e4861d538ef new asset md5:5d58a0711f6c12cc6fbb6e4861d538ef
+ - gib stack trace()
+ - register asset("asset.5d58a0711f6c12cc6fbb6e48...", /icon (/icon))
+ - icon2html(the telescopic baton (/obj/item/melee/classic_baton/telescopic), Cockmistress (/mob/living/carbon/human), "telebaton_0", 2, 1, 0)
+ - the telescopic baton (/obj/item/melee/classic_baton/telescopic): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=17;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:01:30) ASSET: WARNING: dupe asset added to the asset cache: asset.8004571c8533910ae861af8dfdf06aed.png existing asset md5: 8004571c8533910ae861af8dfdf06aed new asset md5:8004571c8533910ae861af8dfdf06aed
+ - gib stack trace()
+ - register asset("asset.8004571c8533910ae861af8d...", /icon (/icon))
+ - icon2html(the brown shoes (/obj/item/clothing/shoes/sneakers/brown), Cockmistress (/mob/living/carbon/human), "brown", 2, 1, 0)
+ - the brown shoes (/obj/item/clothing/shoes/sneakers/brown): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=17;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:01:30) ASSET: WARNING: dupe asset added to the asset cache: asset.446fe3d860138c2606ff48237ccf7924.png existing asset md5: 446fe3d860138c2606ff48237ccf7924 new asset md5:446fe3d860138c2606ff48237ccf7924
+ - gib stack trace()
+ - register asset("asset.446fe3d860138c2606ff4823...", /icon (/icon))
+ - icon2html(the sunglasses (/obj/item/clothing/glasses/sunglasses), Cockmistress (/mob/living/carbon/human), "sun", 2, 1, 0)
+ - the sunglasses (/obj/item/clothing/glasses/sunglasses): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=17;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:01:30) ASSET: WARNING: dupe asset added to the asset cache: asset.7bdcf62d9b949e8a7ad9308e73ae93fc.png existing asset md5: 7bdcf62d9b949e8a7ad9308e73ae93fc new asset md5:7bdcf62d9b949e8a7ad9308e73ae93fc
+ - gib stack trace()
+ - register asset("asset.7bdcf62d9b949e8a7ad9308e...", /icon (/icon))
+ - icon2html(the captain\'s bowman headset (/obj/item/radio/headset/heads/captain/alt), Cockmistress (/mob/living/carbon/human), "com_headset_alt", 2, 1, 0)
+ - the captain\'s bowman headset (/obj/item/radio/headset/heads/captain/alt): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=17;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:01:30) ASSET: WARNING: dupe asset added to the asset cache: asset.7996a593191253cf3e065e6167833614.png existing asset md5: 7996a593191253cf3e065e6167833614 new asset md5:7996a593191253cf3e065e6167833614
+ - gib stack trace()
+ - register asset("asset.7996a593191253cf3e065e61...", /icon (/icon))
+ - icon2html(PDA-Cockmistress (Captain) (/obj/item/pda/captain), Cockmistress (/mob/living/carbon/human), "pda-captain", 2, 1, 0)
+ - PDA-Cockmistress (Captain) (/obj/item/pda/captain): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=17;icon-y=16;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (133,125,2) (/turf/open/floor/plasteel/cafeteria), "mapwindow.map", "icon-x=17;icon-y=16;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:02:30) ASSET: Sending asset asset.acd9d1b641e363ce36ad5e7157a97f4d.png to client Bob Joga
+ - (2020-08-26 12:02:30) ASSET: WARNING: dupe asset added to the asset cache: asset.0d297f8f352fb52f7d897b1de8d76dc5.png existing asset md5: 0d297f8f352fb52f7d897b1de8d76dc5 new asset md5:0d297f8f352fb52f7d897b1de8d76dc5
+ - gib stack trace()
+ - register asset("asset.0d297f8f352fb52f7d897b1d...", /icon (/icon))
+ - icon2html(the medal of captaincy (/obj/item/clothing/accessory/medal/gold/captain), Cockmistress (/mob/living/carbon/human), "gold", 2, 1, 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=12;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:02:30) ASSET: WARNING: dupe asset added to the asset cache: asset.e9566a5780970a0099b88c88a2f734e8.png existing asset md5: e9566a5780970a0099b88c88a2f734e8 new asset md5:e9566a5780970a0099b88c88a2f734e8
+ - gib stack trace()
+ - register asset("asset.e9566a5780970a0099b88c88...", /icon (/icon))
+ - icon2html(the captain\'s jumpsuit (/obj/item/clothing/under/rank/captain), Cockmistress (/mob/living/carbon/human), "captain", 2, 1, 0)
+ - the captain\'s jumpsuit (/obj/item/clothing/under/rank/captain): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=12;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:02:30) ASSET: WARNING: dupe asset added to the asset cache: asset.c45fbc6a6a510bf15b68f73082af04ed.png existing asset md5: c45fbc6a6a510bf15b68f73082af04ed new asset md5:c45fbc6a6a510bf15b68f73082af04ed
+ - gib stack trace()
+ - register asset("asset.c45fbc6a6a510bf15b68f730...", /icon (/icon))
+ - icon2html(the captain\'s hat (/obj/item/clothing/head/caphat), Cockmistress (/mob/living/carbon/human), "captain", 2, 1, 0)
+ - the captain\'s hat (/obj/item/clothing/head/caphat): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=12;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:02:30) ASSET: WARNING: dupe asset added to the asset cache: asset.0ccf3b2135d9e6b57afcc2ffb46cde5b.png existing asset md5: 0ccf3b2135d9e6b57afcc2ffb46cde5b new asset md5:0ccf3b2135d9e6b57afcc2ffb46cde5b
+ - gib stack trace()
+ - register asset("asset.0ccf3b2135d9e6b57afcc2ff...", /icon (/icon))
+ - icon2html(the captain\'s carapace (/obj/item/clothing/suit/armor/vest/capcarapace), Cockmistress (/mob/living/carbon/human), "capcarapace", 2, 1, 0)
+ - the captain\'s carapace (/obj/item/clothing/suit/armor/vest/capcarapace): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=12;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:02:30) ASSET: WARNING: dupe asset added to the asset cache: asset.47d2b15a88764277b261532fec9ff440.png existing asset md5: 47d2b15a88764277b261532fec9ff440 new asset md5:47d2b15a88764277b261532fec9ff440
+ - gib stack trace()
+ - register asset("asset.47d2b15a88764277b261532f...", /icon (/icon))
+ - icon2html(the captain\'s backpack (/obj/item/storage/backpack/captain), Cockmistress (/mob/living/carbon/human), "captainpack", 2, 1, 0)
+ - the captain\'s backpack (/obj/item/storage/backpack/captain): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=12;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:02:30) ASSET: WARNING: dupe asset added to the asset cache: asset.397aa86b5c3d5d62c37651497040ade1.png existing asset md5: 397aa86b5c3d5d62c37651497040ade1 new asset md5:397aa86b5c3d5d62c37651497040ade1
+ - gib stack trace()
+ - register asset("asset.397aa86b5c3d5d62c3765149...", /icon (/icon))
+ - icon2html(the captain\'s gloves (/obj/item/clothing/gloves/color/captain), Cockmistress (/mob/living/carbon/human), "captain", 2, 1, 0)
+ - the captain\'s gloves (/obj/item/clothing/gloves/color/captain): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=12;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:02:30) ASSET: WARNING: dupe asset added to the asset cache: asset.5d58a0711f6c12cc6fbb6e4861d538ef.png existing asset md5: 5d58a0711f6c12cc6fbb6e4861d538ef new asset md5:5d58a0711f6c12cc6fbb6e4861d538ef
+ - gib stack trace()
+ - register asset("asset.5d58a0711f6c12cc6fbb6e48...", /icon (/icon))
+ - icon2html(the telescopic baton (/obj/item/melee/classic_baton/telescopic), Cockmistress (/mob/living/carbon/human), "telebaton_0", 2, 1, 0)
+ - the telescopic baton (/obj/item/melee/classic_baton/telescopic): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=12;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:02:30) ASSET: WARNING: dupe asset added to the asset cache: asset.8004571c8533910ae861af8dfdf06aed.png existing asset md5: 8004571c8533910ae861af8dfdf06aed new asset md5:8004571c8533910ae861af8dfdf06aed
+ - gib stack trace()
+ - register asset("asset.8004571c8533910ae861af8d...", /icon (/icon))
+ - icon2html(the brown shoes (/obj/item/clothing/shoes/sneakers/brown), Cockmistress (/mob/living/carbon/human), "brown", 2, 1, 0)
+ - the brown shoes (/obj/item/clothing/shoes/sneakers/brown): get examine string(Cockmistress (/mob/living/carbon/human), 0)
+ - Cockmistress (/mob/living/carbon/human): examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): Examine(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClick(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ShiftClickOn(Cockmistress (/mob/living/carbon/human))
+ - Cockmistress (/mob/living/carbon/human): ClickOn(Cockmistress (/mob/living/carbon/human), "icon-x=16;icon-y=12;left=1;shi...")
+ - Cockmistress (/mob/living/carbon/human): Click(the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - Bob Joga (/client): Click(Cockmistress (/mob/living/carbon/human), the floor (136,131,2) (/turf/open/floor/plasteel/dark), "mapwindow.map", "icon-x=16;icon-y=12;left=1;shi...", 0)
+ - 
+ - (2020-08-26 12:02:30) ASSET: WARNING: dupe asset added to the asset cache: asset.446fe3d860138c2606ff48237ccf7924.png existing asset md5: 446fe3d860138c2606ff48237ccf7924 new asset md5:446fe3d860138c2606ff48237ccf7924
+ - 
+ - (2020-08-26 12:02:30) ASSET: WARNING: dupe asset added to the asset cache: asset.7bdcf62d9b949e8a7ad9308e73ae93fc.png existing asset md5: 7bdcf62d9b949e8a7ad9308e73ae93fc new asset md5:7bdcf62d9b949e8a7ad9308e73ae93fc
+ - 
+ - (2020-08-26 12:02:30) ASSET: WARNING: dupe asset added to the asset cache: asset.7996a593191253cf3e065e6167833614.png existing asset md5: 7996a593191253cf3e065e6167833614 new asset md5:7996a593191253cf3e065e6167833614
+ - 
+ - (2020-08-26 12:07:19) ASSET: WARNING: dupe asset added to the asset cache: asset.0d297f8f352fb52f7d897b1de8d76dc5.png existing asset md5: 0d297f8f352fb52f7d897b1de8d76dc5 new asset md5:0d297f8f352fb52f7d897b1de8d76dc5
+ - 
+ - (2020-08-26 12:07:19) ASSET: WARNING: dupe asset added to the asset cache: asset.e9566a5780970a0099b88c88a2f734e8.png existing asset md5: e9566a5780970a0099b88c88a2f734e8 new asset md5:e9566a5780970a0099b88c88a2f734e8
+ - 
+ - (2020-08-26 12:07:19) ASSET: WARNING: dupe asset added to the asset cache: asset.c45fbc6a6a510bf15b68f73082af04ed.png existing asset md5: c45fbc6a6a510bf15b68f73082af04ed new asset md5:c45fbc6a6a510bf15b68f73082af04ed
+ - 
+ - (2020-08-26 12:07:19) ASSET: WARNING: dupe asset added to the asset cache: asset.0ccf3b2135d9e6b57afcc2ffb46cde5b.png existing asset md5: 0ccf3b2135d9e6b57afcc2ffb46cde5b new asset md5:0ccf3b2135d9e6b57afcc2ffb46cde5b
+ - 
+ - (2020-08-26 12:07:19) ASSET: WARNING: dupe asset added to the asset cache: asset.47d2b15a88764277b261532fec9ff440.png existing asset md5: 47d2b15a88764277b261532fec9ff440 new asset md5:47d2b15a88764277b261532fec9ff440
+ - 
+ - (2020-08-26 12:07:19) ASSET: WARNING: dupe asset added to the asset cache: asset.659729db002d2e1f009c6aed6c82eacc.png existing asset md5: 659729db002d2e1f009c6aed6c82eacc new asset md5:659729db002d2e1f009c6aed6c82eacc
+ - 
+ - (2020-08-26 12:07:19) ASSET: WARNING: dupe asset added to the asset cache: asset.397aa86b5c3d5d62c37651497040ade1.png existing asset md5: 397aa86b5c3d5d62c37651497040ade1 new asset md5:397aa86b5c3d5d62c37651497040ade1
+ - 
+ - (2020-08-26 12:07:19) ASSET: WARNING: dupe asset added to the asset cache: asset.5d58a0711f6c12cc6fbb6e4861d538ef.png existing asset md5: 5d58a0711f6c12cc6fbb6e4861d538ef new asset md5:5d58a0711f6c12cc6fbb6e4861d538ef
+ - 
+ - (2020-08-26 12:07:19) ASSET: WARNING: dupe asset added to the asset cache: asset.8004571c8533910ae861af8dfdf06aed.png existing asset md5: 8004571c8533910ae861af8dfdf06aed new asset md5:8004571c8533910ae861af8dfdf06aed
+ - 
+ - (2020-08-26 12:07:19) ASSET: WARNING: dupe asset added to the asset cache: asset.446fe3d860138c2606ff48237ccf7924.png existing asset md5: 446fe3d860138c2606ff48237ccf7924 new asset md5:446fe3d860138c2606ff48237ccf7924
+ - 
+ - (2020-08-26 12:07:19) ASSET: WARNING: dupe asset added to the asset cache: asset.7bdcf62d9b949e8a7ad9308e73ae93fc.png existing asset md5: 7bdcf62d9b949e8a7ad9308e73ae93fc new asset md5:7bdcf62d9b949e8a7ad9308e73ae93fc
+ - 
+ - (2020-08-26 12:07:19) ASSET: WARNING: dupe asset added to the asset cache: asset.7996a593191253cf3e065e6167833614.png existing asset md5: 7996a593191253cf3e065e6167833614 new asset md5:7996a593191253cf3e065e6167833614
+ - 

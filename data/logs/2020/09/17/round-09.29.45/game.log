@@ -1,0 +1,81 @@
+[2020-09-17 12:29:45.309] Starting up round ID .
+ - -------------------------
+[2020-09-17 12:29:45.416] ADMIN: Loading Banlist
+[2020-09-17 12:29:45.464] ACCESS: Login: Guest-3000796718 from localhost-3000796718 || BYOND v513.1528
+[2020-09-17 12:29:45.465] ACCESS: Mob Login: Guest-3000796718/(Guest-3000796718) was assigned to a /mob/dead/new_player
+[2020-09-17 12:29:48.277] GAME: Guest-3000796718/(Guest-3000796718) Client Guest-3000796718/(Guest-3000796718) has taken ownership of mob Guest-3000796718(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-17 12:29:51.840] GAME: Saved mode is 'extended'
+[2020-09-17 12:29:56.878] ADMIN: Guest-3000796718 has started the game.
+[2020-09-17 12:30:06.105] GAME: Hierophant's Arena loaded at 74,64,6
+[2020-09-17 12:30:06.124] GAME: Blood-Drunk Miner (Guidance) loaded at 221,160,6
+[2020-09-17 12:30:06.142] GAME: Blood-Drunk Miner (Hunter) loaded at 163,78,6
+[2020-09-17 12:30:06.159] GAME: Blood-Drunk Miner loaded at 38,139,6
+[2020-09-17 12:30:06.178] GAME: King Goat Boss Ruin loaded at 108,178,6
+[2020-09-17 12:30:06.202] GAME: Rogue's Arena loaded at 209,72,6
+[2020-09-17 12:30:06.241] GAME: Sif's Sword loaded at 118,33,6
+[2020-09-17 12:30:06.249] GAME: Pulsating Tumor loaded at 52,123,6
+[2020-09-17 12:30:06.272] GAME: Ruin of Pride loaded at 221,24,6
+[2020-09-17 12:30:06.302] GAME: UFO Crash loaded at 27,206,6
+[2020-09-17 12:30:06.326] GAME: Ruin of Wrath loaded at 179,202,6
+[2020-09-17 12:30:06.358] GAME: The Wishgranter Cube loaded at 177,63,6
+[2020-09-17 12:30:06.419] GAME: Elephant Graveyard loaded at 130,71,6
+[2020-09-17 12:30:06.435] GAME: Ruin of Envy loaded at 175,181,6
+[2020-09-17 12:30:09.359] GAME: Abandoned Teleporter loaded at 85,89,3
+[2020-09-17 12:30:09.381] GAME: Whiteship Dock loaded at 93,173,7
+[2020-09-17 12:30:09.410] GAME: Authorship loaded at 49,113,7
+[2020-09-17 12:30:09.449] GAME: Roboticst Augmentation Facility loaded at 30,76,8
+[2020-09-17 12:30:09.490] GAME: Space Arcade loaded at 156,78,3
+[2020-09-17 12:30:09.545] GAME: Asteroid 5 loaded at 81,31,3
+[2020-09-17 12:30:09.576] GAME: Asteroid 2 loaded at 42,80,7
+[2020-09-17 12:30:09.694] GAME: A Giant Ball of Paper in Space loaded at 37,158,8
+[2020-09-17 12:30:09.763] GAME: Derelict 6 loaded at 22,211,3
+[2020-09-17 12:30:09.813] GAME: DJ Station loaded at 119,163,8
+[2020-09-17 12:30:09.863] GAME: Aesthetic Outpost loaded at 80,136,8
+[2020-09-17 12:30:09.934] GAME: Biological Storage Facility loaded at 193,131,3
+[2020-09-17 12:30:10.111] GAME: Crashed Ship loaded at 84,123,4
+[2020-09-17 12:30:10.143] GAME: Asteroid 4 loaded at 60,194,4
+[2020-09-17 12:30:10.180] GAME: Asteroid 3 loaded at 131,48,3
+[2020-09-17 12:30:10.277] GAME: Syndicate Listening Station loaded at 166,176,7
+[2020-09-17 12:30:10.296] GAME: Maze Roid loaded at 58,25,2
+[2020-09-17 12:30:10.309] GAME: Mineable Asteroid 3 loaded at 34,24,2
+[2020-09-17 12:30:10.328] GAME: Mineable Asteroid 2 loaded at 215,188,2
+[2020-09-17 12:30:10.356] GAME: Mineable Asteroid 5 loaded at 32,201,2
+[2020-09-17 12:30:10.373] GAME: Dead wizard Roid loaded at 161,211,2
+[2020-09-17 12:30:10.391] GAME: Crab Roid loaded at 200,182,2
+[2020-09-17 12:30:10.399] GAME: Mineable Asteroid 1 loaded at 215,178,2
+[2020-09-17 12:30:10.434] GAME: Monitoring Roid loaded at 184,204,2
+[2020-09-17 12:30:10.452] GAME: Mineable Asteroid 4 loaded at 214,34,2
+[2020-09-17 12:30:10.473] GAME: Dorm Roid loaded at 25,71,2
+[2020-09-17 12:30:10.542] GAME: Box P.A.C.M.A.N loaded at 96,49,2
+[2020-09-17 12:30:10.834] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-17 12:30:16.040] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-17 12:30:16.041] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-17 12:30:16.041] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-17 12:30:16.042] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-17 12:30:16.043] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-17 12:30:16.049] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-17 12:30:16.054] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-17 12:30:16.058] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-17 12:30:24.865] GAME: *no key*/(Entekele McKillip) Entekele McKillip name changed from Entekele McKillip to Doodles (Unexplored Location (71, 197, 4))
+[2020-09-17 12:30:42.600] ADMIN: Guest-3000796718 has started the game.
+[2020-09-17 12:31:09.908] GAME: Backup Shuttle loaded at 143,212,1
+[2020-09-17 12:31:10.003] GAME: assault pod (Default) loaded at 144,213,1
+[2020-09-17 12:31:10.340] GAME: basic syndicate infiltrator loaded at 139,205,1
+[2020-09-17 12:31:10.612] GAME: fancy transport ferry loaded at 141,214,1
+[2020-09-17 12:31:10.918] GAME: Box Station Emergency Shuttle loaded at 142,205,1
+[2020-09-17 12:31:11.151] GAME: cargo ferry (Box) loaded at 144,210,1
+[2020-09-17 12:31:11.839] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-17 12:31:11.871] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-17 12:31:11.958] GAME: auxilliary base (Default) loaded at 143,212,1
+[2020-09-17 12:31:12.091] GAME: arrival shuttle (Box) loaded at 140,213,1
+[2020-09-17 12:31:12.174] GAME: mining shuttle (Box) loaded at 145,213,1
+[2020-09-17 12:31:12.224] GAME: labour shuttle (Box) loaded at 145,212,1
+[2020-09-17 12:31:12.268] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-17 12:31:12.295] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-17 12:31:12.321] GAME: lavaland Mining Elevator loaded at 145,214,1
+[2020-09-17 12:31:13.385] GAME: Hospital Ship loaded at 132,208,1
+[2020-09-17 12:31:13.846] VOTE: Roundtype vote started by server.
+[2020-09-17 12:31:15.379] VOTE: <b>Roundtype Vote</b><b>Vote Result: Inconclusive - No Votes!</b>
+[2020-09-17 12:31:15.909] GAME: *no key*/(Guest-3000796718) *no key*/(Guest-3000796718) is no longer owning mob Guest-3000796718(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-17 12:31:15.909] ACCESS: Mob Login: Guest-3000796718/(Kirsten Qian) was assigned to a /mob/living/carbon/human
+[2020-09-17 12:31:16.470] GAME: Guest-3000796718/(Kirsten Qian) Client Guest-3000796718/(Kirsten Qian) has taken ownership of mob (/mob/living/carbon/human) (Prison Wing (113, 208, 2))

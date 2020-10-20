@@ -65,7 +65,7 @@
 			if(!(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_FAKEDEATH)) || (HAS_TRAIT(M, TRAIT_NOPULSE))))
 				if(heart && istype(heart))
 					heart_strength = "<span class='danger'>an unstable</span>"
-					if(heart.beating)
+					if(heart.pulse)
 						heart_strength = "a healthy"
 				if(lungs && istype(lungs))
 					lung_strength = "<span class='danger'>strained</span>"

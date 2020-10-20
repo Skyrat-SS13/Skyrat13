@@ -1,0 +1,44 @@
+[2020-08-29 21:57:04.223] Starting up round ID .
+ - -------------------------
+[2020-08-29 22:08:37.663] Logs from logging subsystem:
+ - (2020-08-29 18:59:45) REAGENT: MOB ADD: on_mob_add(): *no key*/(Chao Kotb) at Small Freighter (120, 200, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:00:19) REAGENT: MOB ADD: on_mob_add(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:00:34) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:00:36) REAGENT: MOB ADD: on_merge(): *no key*/(Chao Kotb) at Small Freighter (120, 200, 4) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:01:02) REAGENT: MOB ADD: on_merge(): *no key*/(Chao Kotb) at Small Freighter (120, 200, 4) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:01:38) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:01:42) REAGENT: MOB ADD: on_merge(): *no key*/(Chao Kotb) at Small Freighter (120, 200, 4) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:01:46) REAGENT: MOB ADD: on_mob_add(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 2 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:01:52) REAGENT: MOB ADD: on_merge(): *no key*/(Chao Kotb) at Small Freighter (120, 200, 4) - 13 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:02:06) REAGENT: MOB ADD: on_merge(): *no key*/(Chao Kotb) at Small Freighter (120, 200, 4) - 18 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:02:30) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:02:34) REAGENT: MOB ADD: on_merge(): *no key*/(Chao Kotb) at Small Freighter (120, 200, 4) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:02:52) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:03:12) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 4 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:04:08) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 12 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:04:20) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 14 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:04:22) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 16 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:04:30) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 6 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:04:34) REAGENT: MOB ADD: on_merge(): *no key*/(Chao Kotb) at Small Freighter (120, 200, 4) - 22 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:04:38) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 8 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:04:42) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 10 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:04:50) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 15 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:04:54) REAGENT: MOB ADD: on_merge(): *no key*/(Chao Kotb) at Small Freighter (120, 200, 4) - 27 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:04:56) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 20 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:05:06) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 27.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:05:08) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 29.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:05:10) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 18 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:05:22) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 23 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:05:32) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 28 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:05:36) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 31.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:05:47) REAGENT: MOB ADD: on_merge(): *no key*/(Chao Kotb) at Small Freighter (120, 200, 4) - 27.975 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:05:55) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 39 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:05:55) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 46.5 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:06:11) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 54 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:06:43) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 33 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:07:51) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 33.813 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:08:15) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 56 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:08:19) REAGENT: MOB ADD: on_merge(): *no key*/(Abdel-Rahman Callahan) at Tiny Freighter (183, 197, 4) - 34.626 of /datum/reagent/determination with 1 purity
+[2020-08-29 22:18:40.792] Logs from logging subsystem:
+ - (2020-08-29 19:13:10) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 58 of /datum/reagent/determination with 1 purity
+ - (2020-08-29 19:16:38) REAGENT: MOB ADD: on_merge(): *no key*/(Jeanna Cypret) at Space (100, 67, 8) - 60 of /datum/reagent/determination with 1 purity

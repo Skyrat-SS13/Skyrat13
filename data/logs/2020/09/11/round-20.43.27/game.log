@@ -1,0 +1,83 @@
+[2020-09-11 23:43:27.684] Starting up round ID .
+ - -------------------------
+[2020-09-11 23:43:27.730] ADMIN: Loading Banlist
+[2020-09-11 23:43:27.767] ACCESS: Login: Bob Joga from localhost-3000796718 || BYOND v513.1528
+[2020-09-11 23:43:27.768] ACCESS: Mob Login: Bob Joga/(Bob Joga) was assigned to a /mob/dead/new_player
+[2020-09-11 23:43:30.211] GAME: Bob Joga/(Bob Joga) Client Bob Joga/(Bob Joga) has taken ownership of mob Bob Joga(/mob/dead/new_player) (start area (11, 174, 1))
+[2020-09-11 23:43:33.353] GAME: Saved mode is 'extended'
+[2020-09-11 23:43:44.940] GAME: Hierophant's Arena loaded at 138,57,6
+[2020-09-11 23:43:44.955] GAME: Blood-Drunk Miner (Guidance) loaded at 81,122,6
+[2020-09-11 23:43:44.971] GAME: Blood-Drunk Miner (Hunter) loaded at 130,101,6
+[2020-09-11 23:43:44.989] GAME: Blood-Drunk Miner loaded at 74,161,6
+[2020-09-11 23:43:45.007] GAME: King Goat Boss Ruin loaded at 67,75,6
+[2020-09-11 23:43:45.037] GAME: Rogue's Arena loaded at 158,131,6
+[2020-09-11 23:43:45.073] GAME: Sif's Sword loaded at 150,182,6
+[2020-09-11 23:43:45.080] GAME: Pulsating Tumor loaded at 210,87,6
+[2020-09-11 23:43:45.081] GAME: E1M1 loaded at 217,174,6
+[2020-09-11 23:43:45.151] GAME: Alien Nest loaded at 84,59,6
+[2020-09-11 23:43:45.158] GAME: Pulsating Tumor loaded at 187,145,6
+[2020-09-11 23:43:45.164] GAME: Pulsating Tumor loaded at 193,167,6
+[2020-09-11 23:43:45.176] GAME: Fountain Hall loaded at 52,185,6
+[2020-09-11 23:43:45.182] GAME: Pulsating Tumor loaded at 143,144,6
+[2020-09-11 23:43:45.692] GAME: Syndicate Lava Base loaded at 172,26,6
+[2020-09-11 23:43:45.702] GAME: Ancient Puzzle loaded at 69,137,6
+[2020-09-11 23:43:48.610] GAME: Abandoned Teleporter loaded at 109,71,3
+[2020-09-11 23:43:48.630] GAME: Whiteship Dock loaded at 123,197,7
+[2020-09-11 23:43:48.659] GAME: Empty Shell loaded at 192,61,4
+[2020-09-11 23:43:48.754] GAME: Space Hermit loaded at 46,120,3
+[2020-09-11 23:43:48.784] GAME: Dinner for Two loaded at 131,141,3
+[2020-09-11 23:43:48.828] GAME: DJ Station loaded at 63,127,7
+[2020-09-11 23:43:48.886] GAME: Asteroid 5 loaded at 98,53,4
+[2020-09-11 23:43:48.924] GAME: Aesthetic Outpost loaded at 64,88,4
+[2020-09-11 23:43:49.071] GAME: Syndicate Ambush loaded at 59,170,3
+[2020-09-11 23:43:49.187] GAME: Abandoned Telecommunications Satellite loaded at 52,149,4
+[2020-09-11 23:43:49.232] GAME: Derelict 6 loaded at 117,84,8
+[2020-09-11 23:43:49.236] GAME: Ordinary Space Tile loaded at 83,198,8
+[2020-09-11 23:43:49.262] GAME: CF Corsair loaded at 136,167,8
+[2020-09-11 23:43:49.290] GAME: Asteroid 4 loaded at 164,150,7
+[2020-09-11 23:43:49.626] GAME: The Twin-Nexus Hotel loaded at 108,163,4
+[2020-09-11 23:43:49.667] GAME: Asteroid 3 loaded at 68,36,3
+[2020-09-11 23:43:49.711] GAME: Mineable Asteroid 2 loaded at 161,208,2
+[2020-09-11 23:43:49.726] GAME: Crab Roid loaded at 188,23,2
+[2020-09-11 23:43:49.734] GAME: Mineable Asteroid 1 loaded at 220,38,2
+[2020-09-11 23:43:49.747] GAME: Mineable Asteroid 3 loaded at 50,210,2
+[2020-09-11 23:43:49.769] GAME: Dorm Roid loaded at 206,211,2
+[2020-09-11 23:43:49.779] GAME: Mineable Asteroid 1 loaded at 25,82,2
+[2020-09-11 23:43:49.799] GAME: Dead wizard Roid loaded at 212,186,2
+[2020-09-11 23:43:49.817] GAME: Mineable Asteroid 4 loaded at 24,43,2
+[2020-09-11 23:43:49.855] GAME: Mineable Asteroid 5 loaded at 25,193,2
+[2020-09-11 23:43:49.865] GAME: Mineable Asteroid 1 loaded at 26,59,2
+[2020-09-11 23:43:49.986] GAME: Box SM loaded at 96,49,2
+[2020-09-11 23:43:50.253] GAME: Public Mining Base loaded at 1,1,6
+[2020-09-11 23:43:54.917] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (3, 210, 1))
+[2020-09-11 23:43:54.918] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (4, 210, 1))
+[2020-09-11 23:43:54.919] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (5, 210, 1))
+[2020-09-11 23:43:54.920] GAME: [�Gygax] �Gygax created. (Ghost Cafe Outdoors (6, 210, 1))
+[2020-09-11 23:43:54.921] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 210, 1))
+[2020-09-11 23:43:54.929] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 211, 1))
+[2020-09-11 23:43:54.936] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 212, 1))
+[2020-09-11 23:43:54.940] GAME: [�Durand] �Durand created. (Ghost Cafe Outdoors (8, 213, 1))
+[2020-09-11 23:44:04.683] GAME: *no key*/(Baffin Ibragimov) Baffin Ibragimov name changed from Baffin Ibragimov to Bo Bo Sassy (Unexplored Location (65, 145, 3))
+[2020-09-11 23:44:05.051] GAME: [�APLU "Ripley"] �APLU "Ripley" created. (Mech Transport (143, 176, 8))
+[2020-09-11 23:44:05.091] GAME: *no key*/(Jocelyn Kralj) Jocelyn Kralj name changed from Jocelyn Kralj to Goose McSunny (Unexplored Location (175, 153, 7))
+[2020-09-11 23:44:52.266] GAME: Backup Shuttle loaded at 143,212,1
+[2020-09-11 23:44:52.365] GAME: assault pod (Default) loaded at 144,213,1
+[2020-09-11 23:44:52.697] GAME: basic syndicate infiltrator loaded at 139,205,1
+[2020-09-11 23:44:52.964] GAME: fancy transport ferry loaded at 141,214,1
+[2020-09-11 23:44:53.132] GAME: Box Station Emergency Shuttle loaded at 142,205,1
+[2020-09-11 23:44:53.316] GAME: cargo ferry (Box) loaded at 144,210,1
+[2020-09-11 23:44:53.884] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-11 23:44:53.911] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-11 23:44:53.961] GAME: auxilliary base (Default) loaded at 143,212,1
+[2020-09-11 23:44:54.077] GAME: arrival shuttle (Box) loaded at 140,213,1
+[2020-09-11 23:44:54.170] GAME: mining shuttle (Box) loaded at 145,213,1
+[2020-09-11 23:44:54.221] GAME: labour shuttle (Box) loaded at 145,212,1
+[2020-09-11 23:44:54.264] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-11 23:44:54.291] GAME: escape pod (Default) loaded at 146,214,1
+[2020-09-11 23:44:54.316] GAME: lavaland Mining Elevator loaded at 145,214,1
+[2020-09-11 23:44:55.337] GAME: Hospital Ship loaded at 132,208,1
+[2020-09-11 23:44:55.639] GAME: Syndicate Fighter loaded at 145,212,1
+[2020-09-11 23:44:55.890] GAME: Small Freighter loaded at 137,211,1
+[2020-09-11 23:44:56.236] GAME: Pirate Cutter loaded at 136,210,1
+[2020-09-11 23:44:56.510] GAME: Syndicate Dropship loaded at 140,213,1
+[2020-09-11 23:44:56.725] VOTE: Roundtype vote started by server.
