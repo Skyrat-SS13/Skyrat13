@@ -674,7 +674,7 @@
 	round_credits += "<br>"
 
 	// SECURITY
-	round_credits += "<center><h1>The Brave Security Officers:</h1>"
+	round_credits += "<center><h1>The Brave Enforcers:</h1>"
 	len_before_addition = round_credits.len
 	for(var/datum/mind/current in SSticker.mode.get_all_by_department(GLOB.security_positions))
 		round_credits += "<center><h2>[current.name] as the [current.assigned_role]</h2>"

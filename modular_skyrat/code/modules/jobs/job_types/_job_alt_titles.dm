@@ -1,9 +1,9 @@
 //Command
 /datum/job/captain
-	alt_titles = list("Overseer", "Station Manager")
+	alt_titles = list("Overlord", "King", "Dictator", "Overseer", "Station Manager")
 
 /datum/job/hop
-	alt_titles = list("Crew Supervisor")
+	alt_titles = list("Crew Supervisor", "Human Resources Director")
 	
 /datum/job/hos
 	alt_titles = list("Chief Enforcer", "Security Commander", "Chief of Security", "Head of Security")

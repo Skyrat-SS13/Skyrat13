@@ -1,6 +1,6 @@
 /datum/job/warden
 	title = "Lieutenant"
-	supervisors = "the chancellor"
+	supervisors = "the oberfuhrer"
 
 /datum/outfit/job/warden
 	backpack_contents = list(/obj/item/melee/classic_baton/black=1,
