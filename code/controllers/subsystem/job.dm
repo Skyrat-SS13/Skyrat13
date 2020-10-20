@@ -385,7 +385,11 @@ SUBSYSTEM_DEF(job)
 				break
 		if(group_ok)
 			return TRUE
-	SSticker.mode.setup_error = "Required jobs not present."
+	var/list/blah = list()
+	for(var/i in required_jobs)
+		blah |= "[pick("kind", "just", "generous", "wise"] [i]"
+	var/need_string = english_list(blah)
+	SSticker.mode.setup_error = "Required jobs not present. The station needs [need_string] for the shift to start."
 	return FALSE
 
 //We couldn't find a job from prefs for this guy.
