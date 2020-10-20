@@ -17,7 +17,7 @@
 
 /obj/item/choice_beacon/warden
 	name = "lieutenant's shotgun beacon"
-	desc = "A beacon, allowing the warden to select between two available models of personal shotguns."
+	desc = "A beacon, allowing the lieutenant to select between two available models of personal shotguns."
 
 /obj/item/choice_beacon/warden/generate_display_names()
 	var/static/list/shotties
