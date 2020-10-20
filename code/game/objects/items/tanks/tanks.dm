@@ -85,9 +85,9 @@
 	. = ..()
 	if(istype(src.loc, /obj/item/assembly))
 		icon = src.loc
-	if(!in_range(src, user) && !isobserver(user))
+	if(!(user.get_active_held_item() == src) && !isobserver(user))
 		if (icon == src)
-			. += "<span class='notice'>If you want any more information you'll need to get closer.</span>"
+			. += "<span class='notice'>If you want any more information you'll need to hold it.</span>"
 		return
 
 	. += "<span class='notice'>The pressure gauge reads [round(src.air_contents.return_pressure(),0.01)] kPa.</span>"
