@@ -1,9 +1,6 @@
 /datum/job/hos
 	title = "Chief Enforcer"
 
-/datum/job/hos/radio_help_message(mob/M)
-	to_chat(M, "<span class='warning'>Do not forget the prisoners. Interact with them occasionally.</span>")
-
 /datum/outfit/job/hos
 	backpack_contents = list(/obj/item/pda/heads/hos=1,
 							/obj/item/melee/mace=1,

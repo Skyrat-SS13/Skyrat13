@@ -4,8 +4,8 @@
 	department_head = list("The Security Team")
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 8
-	spawn_positions = 8
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "the security team"
 	exp_requirements = 1200
 	exp_type = EXP_TYPE_CREW
