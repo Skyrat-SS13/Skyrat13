@@ -1637,6 +1637,8 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		if(ADMIN_PUNISHMENT_FRAGBAN)
 			to_chat(target, "<span class ='narsie'>big chungus mode activated!</span>")
 			target.fraggot = TRUE
+			if(target.client?.ckey)
+				GLOB.fraggots |= target.client.ckey
 		//
 
 	punish_log(target, punishment)
