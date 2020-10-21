@@ -34,7 +34,7 @@ GLOBAL_LIST_INIT(fraggots, world.file2list('config/fraggots.txt'))
 		if(prob(10))
 			agony_scream()
 		//One man one jar lol
-		if(prob(1))
+		if(prob(5))
 			src << link("https://cdn.discordapp.com/attachments/757793833605136396/768548480485818408/1man1jar.mp4")
 
 //Killing fraggots gives you bobux
