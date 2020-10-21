@@ -40,15 +40,15 @@ SUBSYSTEM_DEF(neetbux)
 /datum/controller/subsystem/neetbux/proc/GetDat(client/neet)
 	var/list/dat = list()
 	var/datum/preferences/pref_source = neet.prefs
-	dat += "<center><b>COMICAO DANDO O CU 24/7</b></center><br>"
-	dat += "<center><b>[pref_source.neetbux_amount]</b> DINHEIROS!</center><br>"
+	dat += "<center><b>Neetbux Menu</b></center><br>"
+	dat += "<center><b>You currently have [pref_source.neetbux_amount]</b> neetbux.</center><br>"
 	dat += "<center><a href='?src=\ref[src];task=close'>Done</a></center>"
 	dat += "<hr>"
 	for(var/aaa in neetbux_rewards_buyable)
 		var/datum/neetbux_reward/comicao = aaa
 		dat += "<span class='neetbux'><b>[comicao.name]</b></span><br>"
 		dat += "<span class='neetbux'>[comicao.desc]</span><br>"
-		dat += "<a href='?src=\ref[src];task=buy;id=[comicao.id]'>BUY ([comicao.cost] bobux)</a>"
+		dat += "<a href='?src=\ref[src];task=buy;id=[comicao.id]'>Buy ([comicao.cost] bux)</a>"
 		dat += "<hr>"
 	return dat
 
