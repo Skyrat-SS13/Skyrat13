@@ -62,7 +62,7 @@
 	var/sum = stats + skills + modifier
 
 	//Excessive painkilling fucks up dicerolls
-	if(carbonmob?.chem_effects[CE_PAINKILLER] >= 50)
+	if(carbonmob?.chem_effects[CE_PAINKILLER] >= 75)
 		sum -= 5
 	
 	//Fraggots always have a 50% chance to fail at a diceroll miserably
