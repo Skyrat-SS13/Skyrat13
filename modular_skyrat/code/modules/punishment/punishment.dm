@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(fraggots, world.file2list('config/fraggots.txt'))
 		if(prob(25))
 			to_chat(src, "<span class='userdanger'>BIG CHUNGUS LOLOLOLOLLLLOLOLOLO!!!!</span>")
 		//Screaming
-		if(prob(10))
+		if(prob(25))
 			agony_scream()
 		//One man one jar lol
 		if(prob(5))
