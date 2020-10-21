@@ -7,16 +7,16 @@
 	id = "thuxtk"
 	cost = 10
 
-/datum/bobux_reward/thuxtk/can_buy(client/neet, silent = FALSE, fail_message = "You don't have enough bobux to buy NAME!")
+/datum/bobux_reward/thuxtk/can_buy(client/noob, silent = FALSE, fail_message = "You don't have enough bobux to buy NAME!")
 	. = ..()
 	if(.)
-		if(!ishuman(neet.mob))
-			to_chat(neet, "<span class='bobux'>You need to be controlling a human mob to ATIVAR MODO THUXTK!</span>")
+		if(!ishuman(noob.mob))
+			to_chat(noob, "<span class='bobux'>You need to be controlling a human mob to ATIVAR MODO THUXTK!</span>")
 			return FALSE
 
-/datum/bobux_reward/thuxtk/on_buy(client/neet)
+/datum/bobux_reward/thuxtk/on_buy(client/noob)
 	. = ..()
-	var/mob/living/carbon/human/H = neet.mob
+	var/mob/living/carbon/human/H = noob.mob
 	H.set_gender(FEMALE)
 	var/obj/item/organ/genital/vagina/vagina = H.getorganslot(ORGAN_SLOT_VAGINA)
 	if(vagina)
@@ -40,7 +40,7 @@
 	id = "mayersummercar"
 	cost = 10
 
-/datum/bobux_reward/mayer_summer_car/on_buy(client/neet)
+/datum/bobux_reward/mayer_summer_car/on_buy(client/noob)
 	. = ..()
-	new /obj/vehicle/ridden/scooter(get_turf(neet.mob))
+	new /obj/vehicle/ridden/scooter(get_turf(noob.mob))
 */
