@@ -56,7 +56,7 @@
 
 		//Dice roll
 		var/didntfuckup = TRUE
-		if(user.mind && (user.mind.diceroll(STAT_DATUM(int), SKILL_DATUM(surgery), dicetype = "6d6", mod = -round(100 - prob_chance)) <= DICE_FAILURE))
+		if(user.mind && (user.mind.diceroll(STAT_DATUM(int), SKILL_DATUM(surgery), dicetype = "6d6", mod = -(round(100 - prob_chance)/2)) <= DICE_FAILURE))
 			didntfuckup = FALSE
 		if(didntfuckup || (iscyborg(user) && !silicons_obey_prob && chem_check(target) && !try_to_fail))
 			if(success(user, target, target_zone, tool, surgery))
