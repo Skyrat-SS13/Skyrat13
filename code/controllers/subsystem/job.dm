@@ -520,15 +520,15 @@ SUBSYSTEM_DEF(job)
 		return C.holder.auto_deadmin()*/
 
 /datum/controller/subsystem/job/proc/setup_officer_positions()
-	var/datum/job/J = SSjob.GetJob("Security Officer")
+	var/datum/job/J = SSjob.GetJob("Enforcer")
 	if(!J)
-		CRASH("setup_officer_positions(): Security officer job is missing")
+		CRASH("setup_officer_positions(): Enforcer job is missing")
 
 	var/ssc = CONFIG_GET(number/security_scaling_coeff)
 	if(ssc > 0)
 		if(J.spawn_positions > 0)
 			var/officer_positions = min(12, max(J.spawn_positions, round(unassigned.len / ssc))) //Scale between configured minimum and 12 officers
-			JobDebug("Setting open security officer positions to [officer_positions]")
+			JobDebug("Setting open enforcer positions to [officer_positions]")
 			J.total_positions = officer_positions
 			J.spawn_positions = officer_positions
 
