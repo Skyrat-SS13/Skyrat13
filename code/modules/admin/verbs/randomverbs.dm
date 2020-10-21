@@ -1271,6 +1271,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 								ADMIN_PUNISHMENT_PAPAJOHNS,
 								ADMIN_PUNISHMENT_PHANTOM_PAIN,
 								ADMIN_PUNISHMENT_SHARETHEPAIN,
+								ADMIN_PUNISHMENT_FRAGGOT,
 								)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
@@ -1633,6 +1634,9 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			C.say("I regret nothing.")
 			for(var/obj/item/bodypart/BP in C.bodyparts)
 				BP.receive_damage(pain = BP.max_pain_damage)
+		if(ADMIN_PUNISHMENT_FRAGBAN)
+			to_chat(target, "<span class ='narsie'>big chungus mode activated!</span>")
+			target.fraggot = TRUE
 		//
 
 	punish_log(target, punishment)
