@@ -321,38 +321,15 @@
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor
 	name = "MK-I techhelmet"
 	desc = "A specialized exoskeleton armor helmet built into a suit of armor; offers decent protection, and comes with a flash-resistant HUD visor and headlamp."
-	icon_state = "hardsuit0-secexo"
-	item_state = "hardsuit0-secexo"
-	hardsuit_type = "secexo"
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 55, "acid" = 70, "wound" = 15)
 	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | ALLOWINTERNALS
 	flags_inv = HIDEMASK|HIDEEARS|HIDEFACE|HIDEHAIR
 	mutantrace_variation = STYLE_MUZZLE
-	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/hats.dmi',
-	"ERT" = 'icons/obj/clothing/hats.dmi',
-	"Classic" = 'icons/obj/clothing/hats.dmi',
-	)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"ERT" = 'icons/mob/clothing/head.dmi',
-	"Classic" = 'icons/mob/clothing/head.dmi',
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
-	"ERT" = 'icons/mob/clothing/head_muzzled.dmi',
-	"Classic" = 'icons/mob/clothing/head_muzzled.dmi',
-	)
-	unique_reskin = list(
-	"Default" = "hardsuit0-secexo",
-	"ERT" = "hardsuit0-secexoX",
-	"Classic" = "hardsuit0-secexoA",
-	)
-	unique_hardsuit_type = list(
-	"Default" = "secexo",
-	"ERT" = "secexoX",
-	"Classic" = "secexoA",
-	)
+	icon = 'modular_skyrat/icons/obj/clothing/enforcer.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/enforcer.dmi'
+	icon_state = "hardsuit0-techhelmet"
+	item_state = "hardsuit0-techhelmet"
+	hardsuit_type = "techhelmet"
 
 /obj/item/clothing/suit/space/hardsuit/security_armor
 	name = "MK-I full-body techarmor"
