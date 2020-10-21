@@ -382,6 +382,10 @@
 	var/jobName = I.assignment
 	if(jobName in get_all_job_icons()) //Check if the job has a hud icon
 		return jobName
+	if(jobName == "Enforcer")
+		return "securityofficer"
+	if(jobName == "Oberfuhrer")
+		return "headofsecurity"
 	if(jobName in get_all_centcom_jobs()) //Return with the NT logo if it is a CentCom job
 		return "CentCom"
 	return "Unknown" //Return unknown if none of the above apply
