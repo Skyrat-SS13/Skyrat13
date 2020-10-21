@@ -327,6 +327,7 @@
 	mutantrace_variation = STYLE_MUZZLE
 	icon = 'modular_skyrat/icons/obj/clothing/enforcer.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/enforcer.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/enforcer_muzzled.dmi'
 	icon_state = "hardsuit0-techhelmet"
 	item_state = "hardsuit0-techhelmet"
 	hardsuit_type = "techhelmet"
@@ -382,7 +383,6 @@
 	desc = "A specialized exoskeleton armor helmet built into a suit of armor; offers decent protection, and comes with a flash-resistant HUD visor and headlamp."
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 50, "acid" = 60, "wound" = 20)
 	mutantrace_variation = NONE
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/hos
 	name = "MK-III techarmor"
@@ -390,7 +390,6 @@
 	max_integrity = 300
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 70, "acid" = 90, "wound" = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor/hos
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAUR
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/blueshield
 	name = "blueshield techarmor"
