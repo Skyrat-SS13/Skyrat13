@@ -9,9 +9,9 @@ GLOBAL_LIST_INIT(fraggots, world.file2list('config/fraggots.txt'))
 	if(ckey in GLOB.fraggots)
 		fraggot = TRUE
 		new_mob.fraggot = TRUE
-	//Announce to every player but the fraggot
-	for(var/client/C in (GLOB.clients - client))
-		to_chat(C, "<span class='warning'><span class='bigbold'>[emoji_parse(":killher:")][new_mob] IS A FRAGGOT! KILL HER! KILL HER![emoji_parse(":killher:")]</span>")
+		//Announce to every player but the fraggot
+		for(var/client/C in (GLOB.clients - client))
+			to_chat(C, "<span class='warning'><span class='bigbold'>[emoji_parse(":killher:")][new_mob] IS A FRAGGOT! KILL HER! KILL HER![emoji_parse(":killher:")]</span>")
 
 /mob/living/Life(seconds, times_fired)
 	. = ..()
