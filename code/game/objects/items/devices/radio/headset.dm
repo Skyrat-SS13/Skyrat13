@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, atom/movable/source)
 	. = ..()
-	if(radiosound)
+	if(radio_freq && radiosound)
 		playsound(get_turf(src), radiosound, rand(15, 30), 0, rand(-4,-5))
 
 /obj/item/radio/headset/can_receive(freq, level, AIuser)
