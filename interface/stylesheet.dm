@@ -157,6 +157,7 @@ h1.alert, h2.alert		{color: #000000;}
 .reallybig				{font-size: 4;}
 .extremelybig			{font-size: 5;}
 .greentext				{color: #00FF00;	font-size: 3;}
+.neetbux				{color: #DA70D6;	font-size: 5;}
 .redtext				{color: #FF0000;	font-size: 3;}
 .yellowtext				{color: #FFCC00;	font-size: 3;}
 .clown					{color: #FF69Bf;	font-size: 3; font-family: "Comic Sans MS", cursive, sans-serif; font-weight: bold;}
