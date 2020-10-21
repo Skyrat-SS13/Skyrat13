@@ -639,7 +639,7 @@
 /obj/item/clothing/under/rank/cargo/qm
 	icon = 'modular_skyrat/icons/obj/clothing/cargoutilit.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/cargoutil.dmi'
-	icon_state = "qm"
+	icon_state = "turtleneck_qm"
 
 /obj/item/clothing/under/rank/cargo/tech
 	icon = 'modular_skyrat/icons/obj/clothing/cargoutilit.dmi'
