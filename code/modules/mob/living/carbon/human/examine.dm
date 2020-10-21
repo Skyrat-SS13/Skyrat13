@@ -340,15 +340,21 @@
 			msg += "[t_He] look[p_s()] extremely disgusted.\n"
 	var/datum/component/mood/moodie = GetComponent(/datum/component/mood)
 	if(moodie && !(user == src && HAS_TRAIT(user, TRAIT_SCREWY_MOOD)))
-		switch(moodie.sanity)
-			if(-INFINITY to SANITY_DISTURBED)
-				msg += "<span class='notice'>[t_He] look[p_s()] miserable.</span>\n"
-			if(SANITY_DISTURBED to SANITY_NEUTRAL)
-				msg += "<span class='notice'>[t_He] look[p_s()] sad.</span>\n"
-			if(SANITY_NEUTRAL to SANITY_GREAT)
-				msg += "<span class='notice'>[t_He] look[p_s()] happy.</span>\n"
-			if(SANITY_GREAT to INFINITY)
-				msg += "<span class='notice'>[t_He] look[p_s()] very happy.</span>\n"
+		switch(moodie.shown_mood)
+			if(-INFINITY to MOOD_LEVEL_SAD4)
+				. += "[t_He] look[p_s()] depressed."
+			if(MOOD_LEVEL_SAD4 to MOOD_LEVEL_SAD3)
+				. += "[t_He] look[p_s()] very sad."
+			if(MOOD_LEVEL_SAD3 to MOOD_LEVEL_SAD1)
+				. += "[t_He] look[p_s()] a bit down."
+			if(MOOD_LEVEL_SAD1 to MOOD_LEVEL_HAPPY1)
+				. += "[t_He] look[p_s()] about fine."
+			if(MOOD_LEVEL_HAPPY1 to MOOD_LEVEL_HAPPY3)
+				. += "[t_He] look[p_s()] quite happy."
+			if(MOOD_LEVEL_HAPPY3 to MOOD_LEVEL_HAPPY4)
+				. += "[t_He] look[p_s()] very happy."
+			if(MOOD_LEVEL_HAPPY4 to INFINITY)
+				. += "[t_He] look[p_s()] ecstatic."
 	
 	if(!screwy_self)
 		if(ShowAsPaleExamine())
