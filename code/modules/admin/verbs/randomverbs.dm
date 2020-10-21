@@ -1634,7 +1634,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			C.say("I regret nothing.")
 			for(var/obj/item/bodypart/BP in C.bodyparts)
 				BP.receive_damage(pain = BP.max_pain_damage)
-		if(ADMIN_PUNISHMENT_FRAGBAN)
+		if(ADMIN_PUNISHMENT_FRAGGOT)
 			to_chat(target, "<span class ='narsie'>big chungus mode activated!</span>")
 			target.fraggot = TRUE
 			if(target.client?.ckey)
