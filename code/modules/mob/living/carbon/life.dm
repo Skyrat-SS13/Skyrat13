@@ -134,7 +134,10 @@
 				var/obj/loc_as_obj = loc
 				loc_as_obj.handle_internal_lifeform(src,0)
 			//Do annoying breathing sounds
-			playsound(get_turf(src), 'modular_skyrat/sound/misc/tank_breathe.ogg', 60, 1, -6)
+			spawn(0)
+				playsound(get_turf(src), 'modular_skyrat/sound/misc/tank_breathe.ogg', 40, 1, -6)
+			spawn(10)
+				playsound(get_turf(src), 'modular_skyrat/sound/misc/tank_breathe.ogg', 40, 1, -6)
 	check_breath(breath)
 
 	if(breath)
