@@ -252,13 +252,13 @@ CHECK_RANDOMIZER
 # SERVER ss13.example.com:2506
 
 ## forum address
-FORUMURL https://discord.gg/QrYCq9N
+FORUMURL discord.gg/B4zvEP8
 
 ## Wiki address
-WIKIURL https://discord.gg/QrYCq9N
+WIKIURL discord.gg/B4zvEP8
 
 ## Rules address
-RULESURL https://discord.gg/QrYCq9N
+RULESURL discord.gg/B4zvEP8
 
 ## Github address
 GITHUBURL https://github.com/BobJoga/Skyrat13/tree/bobstation-branch
@@ -280,7 +280,7 @@ GITHUBURL https://github.com/BobJoga/Skyrat13/tree/bobstation-branch
 # GITHUBREPOID 62485194
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-BANAPPEALS https://discord.gg/QrYCq9N
+BANAPPEALS discord.gg/B4zvEP8
 
 ## System command that invokes youtube-dl, used by Play Internet Sound.
 ## You can install youtube-dl with
