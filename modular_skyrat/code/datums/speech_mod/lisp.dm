@@ -24,6 +24,6 @@
 		lisp_force = (1 - head.get_teeth_amount()/head.max_teeth) * 100
 	else
 		lisp_force = 100
-	//Remove if we have teeth.
-	if(!lisp_force)
+	//Remove if we have teeth (aka stopped being british)
+	if(!lisp_force || (head.get_teeth_amount() >= head.max_teeth))
 		remove_speech_mod()

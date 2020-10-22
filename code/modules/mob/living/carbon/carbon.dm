@@ -409,6 +409,15 @@
 		return
 	I.item_flags |= BEING_REMOVED
 	breakouttime = I.breakouttime
+	//breaking out of cuffs depends on dexterity
+	if(mind)
+		breakouttime *= (GET_STAT_LEVEL(src, dex)/(MAX_STAT/2))
+		//strong man brek cuffe
+		if(GET_STAT_LEVEL(src, str) >= 18)
+			visible_message("<span class='userdanger'>[src] breaks \the [I] with a loud noise!</span>",
+							"<span class='userdanger'>You break \the [I]!</span>")
+			clear_cuffs(I, INSTANT_CUFFBREAK)
+			return TRUE
 	if(!cuff_break)
 		visible_message("<span class='warning'>[src] attempts to remove [I]!</span>")
 		to_chat(src, "<span class='notice'>You attempt to remove [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)</span>")

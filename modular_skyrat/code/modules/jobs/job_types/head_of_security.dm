@@ -1,5 +1,5 @@
 /datum/job/hos
-	title = "Oberfuhrer"
+	title = "Chief Enforcer"
 
 /datum/outfit/job/hos
 	backpack_contents = list(/obj/item/pda/heads/hos=1,

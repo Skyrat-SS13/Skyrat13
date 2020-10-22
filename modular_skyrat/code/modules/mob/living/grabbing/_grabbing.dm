@@ -113,10 +113,12 @@
 
 	grippedby(user)
 
-//proc to upgrade a simple pull into a more aggressive grab.
+//proc to upgrade a simple pull into a more aggressive grab, or just grabbing really
 /mob/living/proc/grippedby(mob/living/carbon/user, instant = FALSE)
+	//Self-grabbing uses snowflake cringe code
 	if(user == src)
 		return user.attempt_self_grasp(user)
+	//Need to be pulling to grip someone
 	if((user.pulling != src) || (pulledby != user))
 		if(!user.start_pulling(src, GRAB_PASSIVE, supress_message = TRUE))
 			return FALSE

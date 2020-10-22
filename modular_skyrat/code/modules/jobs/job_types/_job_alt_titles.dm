@@ -8,7 +8,7 @@
 	flatter_string = "resourceful"
 	
 /datum/job/hos
-	alt_titles = list("Chief Enforcer", "Security Commander", "Chief of Security", "Head of Security")
+	alt_titles = list("Security Commander", "Chief of Security", "Head of Security")
 	flatter_string = "brave"
 
 /datum/job/rd

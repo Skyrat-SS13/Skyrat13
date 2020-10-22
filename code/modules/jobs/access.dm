@@ -384,7 +384,7 @@
 		return jobName
 	if(jobName == "Enforcer")
 		return "securityofficer"
-	if(jobName == "Oberfuhrer")
+	if(jobName == "Chief Enforcer")
 		return "headofsecurity"
 	if(jobName in get_all_centcom_jobs()) //Return with the NT logo if it is a CentCom job
 		return "CentCom"

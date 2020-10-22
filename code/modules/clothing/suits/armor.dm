@@ -385,7 +385,7 @@
 	mutantrace_variation = NONE
 	icon_state = "hardsuit0-obentechhelmet"
 	item_state = "hardsuit0-obentechhelmet"
-	hardsuit_type = "obentechhelmet"
+	hardsuit_type = "obertechhelmet"
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/hos
 	name = "MK-III full-body techarmor"
@@ -393,8 +393,8 @@
 	max_integrity = 300
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 70, "acid" = 90, "wound" = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor/hos
-	icon_state = "obentecharmor"
-	item_state = "obentecharmor"
+	icon_state = "obertecharmor"
+	item_state = "obertecharmor"
 
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/blueshield
 	name = "blueshield techarmor"
@@ -402,7 +402,7 @@
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 20,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 75, "wound" = 20)
 	icon_state = "hardsuit0-obentechhelmet"
 	item_state = "hardsuit0-obentechhelmet"
-	hardsuit_type = "obentechhelmet"
+	hardsuit_type = "obertechhelmet"
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/blueshield
 	name = "blueshield techarmor"
@@ -410,5 +410,5 @@
 	max_integrity = 300
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 75, "wound" = 25)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor/blueshield
-	icon_state = "obentecharmor"
-	item_state = "obentecharmor"
+	icon_state = "obertecharmor"
+	item_state = "obertecharmor"
