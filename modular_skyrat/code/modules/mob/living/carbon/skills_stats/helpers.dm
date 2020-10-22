@@ -21,7 +21,7 @@
 //DICE ROLL
 //Add this to the action and specify what will happen in each outcome.
 //Important! you should not use more than one stat in proc but if you really want to, you should multiply amount of dices and crit according to how much of them you added to the formula.
-//For example: two stats will need 6d6 dicetype and also 20 crit instead of 1.
+//For example: two stats will need 6d6 dicetype and also 20 crit instead of 10.
 //REMEMBER THIS: when adding proc to action you BOUND to specify SUCCESS and CRIT_FAILURE in it! FAILURE may do nothing and CRIT_SUCCESS may be same as SUCCESS though.
 /datum/mind/proc/diceroll(stats = 0, skills = 0, dicetype = "3d6", crit = 10, mod = 0)
 	//We need numbers, not paths nor datums
