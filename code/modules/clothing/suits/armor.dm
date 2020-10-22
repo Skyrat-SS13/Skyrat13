@@ -381,15 +381,28 @@
 /obj/item/clothing/head/helmet/space/hardsuit/security_armor/hos
 	name = "MK-III techhelmet"
 	desc = "A specialized exoskeleton armor helmet built into a suit of armor; offers decent protection, and comes with a flash-resistant HUD visor and headlamp."
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 50, "acid" = 60, "wound" = 20)
+	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 70, "acid" = 90, "wound" = 20)
 	mutantrace_variation = NONE
+	icon_state = "hardsuit0-obentechhelmet"
+	item_state = "hardsuit0-obentechhelmet"
+	hardsuit_type = "obentechhelmet"
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/hos
-	name = "MK-III techarmor"
+	name = "MK-III full-body techarmor"
 	desc = "A specialized exoskeleton armor suit comprised of flexible protective shielding. This particular suit has been designed specifically for the station security commander."
 	max_integrity = 300
-	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 70, "acid" = 90, "wound" = 20)
+	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 50, "rad" = 0, "fire" = 70, "acid" = 90, "wound" = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor/hos
+	icon_state = "obentecharmor"
+	item_state = "obentecharmor"
+
+/obj/item/clothing/head/helmet/space/hardsuit/security_armor/blueshield
+	name = "blueshield techarmor"
+	desc = "The techarmor helmet of Command's first line of defense."
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 75, "wound" = 20)
+	icon_state = "hardsuit0-obentechhelmet"
+	item_state = "hardsuit0-obentechhelmet"
+	hardsuit_type = "obentechhelmet"
 
 /obj/item/clothing/suit/space/hardsuit/security_armor/blueshield
 	name = "blueshield techarmor"
@@ -397,8 +410,5 @@
 	max_integrity = 300
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 75, "wound" = 25)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security_armor/blueshield
-
-/obj/item/clothing/head/helmet/space/hardsuit/security_armor/blueshield
-	name = "blueshield techarmor"
-	desc = "The techarmor helmet of Command's first line of defense."
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 75, "wound" = 20)
+	icon_state = "obentecharmor"
+	item_state = "obentecharmor"
