@@ -230,7 +230,7 @@
 				if(mind)
 					grabbed_str = GET_STAT_LEVEL(src, str)
 				var/str_diff = grabbed_str - grabber_str
-				if(mind?.diceroll(GET_STAT_LEVEL(grasping_mob, str)*0.75, GET_SKILL_LEVEL(grasping_mob, melee)*0.25, mod = 5*str_diff) >= DICE_CRIT_SUCCESS)
+				if(mind?.diceroll(GET_STAT_LEVEL(src, str)*0.75, GET_SKILL_LEVEL(src, melee)*0.25, mod = 5*str_diff) >= DICE_CRIT_SUCCESS)
 					changeNext_move(CLICK_CD_RESIST)
 					pulledby.visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>",
 						"<span class='danger'>[src] has broken free of your grip!</span>", target = src,
