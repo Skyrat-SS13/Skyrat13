@@ -160,7 +160,7 @@
 		grasped_mob.visible_message("<span class='danger'>[attempted_grasper] grasps [grasped_mob][grasped_part ? " by [grasped_mob.p_their()] [grasped_part.name]" : ""]!</span>",\
 								"<span class='userdanger'>You are grasped [grasped_part ? "on your [grasped_part.name] " : ""]by [attempted_grasper]!</span>", "<span class='warning'>You hear a shuffling sound.</span>",\
 								ignored_mobs = grasping_mob)
-		to_chat(grasping_mob, "<span class='danger'>You grab [grasped_mob][grasped_part ? "by their [grasped_part.name]" : ""]!</span>")
+		to_chat(grasping_mob, "<span class='danger'>You grab [grasped_mob][grasped_part ? "by [grasped_mob.p_their()] [grasped_part.name]" : ""]!</span>")
 	if(grasping_mob != grasped_mob)
 		grasping_mob.setGrabState(GRAB_AGGRESSIVE)
 		grasping_mob.set_pull_offsets(grasped_mob, grasping_mob.grab_state)

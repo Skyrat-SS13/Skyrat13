@@ -229,7 +229,7 @@
 				var/grabbed_str = 10
 				if(mind)
 					grabbed_str = GET_STAT_LEVEL(src, str)
-				var/str_diff = grabber_str - grabbed_str
+				var/str_diff = grabbed_str - grabber_str
 				if(mind?.diceroll(GET_STAT_LEVEL(src, str), mod = 5*str_diff) >= DICE_CRIT_SUCCESS)
 					changeNext_move(CLICK_CD_RESIST)
 					pulledby.visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>",
@@ -237,10 +237,10 @@
 						target_message = "<span class='danger'>You have broken free of [pulledby]'s grip!</span>")
 					pulledby.stop_pulling()
 					return TRUE
-			changeNext_move(CLICK_CD_RESIST)
-			pulledby.visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>",
-				"<span class='danger'>[src] resists against your grip!</span>", target = src,
-				target_message = "<span class='danger'>You resist against [pulledby]'s grip!</span>")
+				changeNext_move(CLICK_CD_RESIST)
+				pulledby.visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>",
+					"<span class='danger'>[src] resists against your grip!</span>", target = src,
+					target_message = "<span class='danger'>You resist against [pulledby]'s grip!</span>")
 	else
 		pulledby.stop_pulling()
 		return TRUE
