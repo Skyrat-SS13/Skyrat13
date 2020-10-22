@@ -178,6 +178,7 @@
 								"Show them your powers.",
 								"One, two, three, four...",
 								"Wake up.",
+								"Hangars are just parking lots.",
 								)
 			else
 				message = last_words
