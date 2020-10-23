@@ -14,7 +14,7 @@
 	biology_required = list()
 	required_status = null
 
-/datum/wound/disembowel/proc/apply_disembowel(obj/item/bodypart/L, wounding_type  =WOUND_SLASH)
+/datum/wound/disembowel/proc/apply_disembowel(obj/item/bodypart/L, wounding_type = WOUND_SLASH, silent = FALSE)
 	var/list/organs = L?.owner?.getorganszone(L.body_zone)
 	for(var/obj/item/organ/genital/G in organs)
 		organs -= G
@@ -62,7 +62,8 @@
 
 	var/msg = "<b><span class='danger'>[victim]'s [L.name] [occur_text]!</span></b>"
 
-	victim.visible_message(msg, "<span class='userdanger'>Your [L.name] [occur_text]!</span>")
+	if(!silent)
+		victim.visible_message(msg, "<span class='userdanger'>Your [L.name] [occur_text]!</span>")
 
 	//apply the blood gush effect
 	if(wounding_type != WOUND_BURN && L.owner)

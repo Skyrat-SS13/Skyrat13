@@ -611,3 +611,6 @@
 		target.visible_message("<span class='danger'>[user][pitiful ? " pitifully" : ""] [atk_verb]s [target] on their [affecting.name]![target.wound_message]</span>", \
 					"<span class='userdanger'>[user][pitiful ? " pitifully" : ""] [atk_verb]s you on your [affecting.name]![target.wound_message]</span>", null, COMBAT_MESSAGE_RANGE, null, \
 					user, "<span class='danger'>You[pitiful ? " pitifully" : ""] [atk_verb] [target] on their [affecting.name]![target.wound_message]</span>")
+
+		//Clean the descriptive string
+		target.wound_message = ""

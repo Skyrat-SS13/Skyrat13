@@ -29,9 +29,20 @@
 	max_ammo = 12
 	multiple_sprites = TRUE
 	start_empty = TRUE
+	multiload = FALSE
+
+/obj/item/ammo_box/magazine/ammo_stack/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	..()
+	while(length(stored_ammo))
+		var/obj/item/I = get_round()
+		I.forceMove(loc)
+		I.throw_at(loc)
+	qdel(src)
 
 /obj/item/ammo_box/magazine/ammo_stack/get_round(keep)
 	..()
+	if(ammo_count() <= 0)
+		qdel(src)
 	update_icon()
 
 /obj/item/ammo_box/magazine/ammo_stack/give_round(obj/item/ammo_casing/R, replace_spent)

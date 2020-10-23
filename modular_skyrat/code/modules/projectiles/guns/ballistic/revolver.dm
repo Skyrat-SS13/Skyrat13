@@ -13,11 +13,16 @@
 	else
 		return ..()
 
+/obj/item/gun/ballistic/revolver/chamber_round(spin)
+	..()
+	update_icon()
+
 /obj/item/gun/ballistic/revolver/attack_hand(mob/user)
-	if(chamber_open)
+	if(chamber_open && (src in list(user.get_active_held_item(), user.get_inactive_held_item())))
 		var/obj/item/ammo_casing/CB
 		CB = magazine.get_round(0)
 		user.put_in_hands(CB)
+		update_icon()
 		to_chat(user, "<span class='notice'>I unload [CB] from [src].</span>")
 	else
 		return ..()
@@ -33,6 +38,7 @@
 				CB.forceMove(drop_location())
 				CB.bounce_away(FALSE, NONE)
 				num_unloaded++
+		update_icon()
 		if(num_unloaded)
 			to_chat(user, "<span class='notice'>I unload [num_unloaded] shell\s from [src].</span>")
 		else
@@ -41,8 +47,10 @@
 		to_chat(user, "<span class='warning'>I must open [src]'s chamber to unload it.")
 
 /obj/item/gun/ballistic/revolver/round_check(mob/user)
+	. = ""
 	if((user.mind && GET_SKILL_LEVEL(user, ranged) >= 8) || chamber_open || isobserver(user))
 		. += "It has [get_ammo()] round\s remaining."
+		. += "[get_ammo(0,0)] of those are live rounds."
 	else
 		. += "I'm not sure how many rounds are loaded on [src]."
 

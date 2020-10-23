@@ -282,13 +282,13 @@
 	if(!prob(base_chance))
 		return
 
-	dismember_wound(wounding_type)
+	dismember_wound(wounding_type, TRUE)
 
 	return TRUE
 
-/obj/item/bodypart/proc/dismember_wound(wounding_type)
+/obj/item/bodypart/proc/dismember_wound(wounding_type, silent = FALSE)
 	var/datum/wound/loss/dismembering = new()
-	dismembering.apply_dismember(src, wounding_type)
+	dismembering.apply_dismember(src, wounding_type, silent)
 
 /obj/item/bodypart/proc/try_disembowel(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
 	if(!owner)
@@ -318,11 +318,12 @@
 	if(!prob(base_chance))
 		return
 
-	return disembowel_wound(wounding_type)
+	disembowel_wound(wounding_type, TRUE)
+	return TRUE
 
-/obj/item/bodypart/proc/disembowel_wound(wounding_type)
+/obj/item/bodypart/proc/disembowel_wound(wounding_type, silent = FALSE)
 	var/datum/wound/disembowel/disemboweled = new()
-	return disemboweled.apply_disembowel(src, wounding_type)
+	return disemboweled.apply_disembowel(src, wounding_type, silent)
 
 //when a limb is dropped, the internal organs are removed from the mob and put into the limb
 /obj/item/organ/proc/transfer_to_limb(obj/item/bodypart/LB, mob/living/carbon/C)

@@ -286,8 +286,14 @@
 		else if(impact_effect_type && !hitscan)
 			new impact_effect_type(target_loca, hitx, hity)
 
+		L.on_hit(src)
+
 		var/organ_hit_text = ""
 		var/limb_hit = hit_limb
+		var/wound_message = ""
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			wound_message = C.wound_message
 		if(limb_hit)
 			organ_hit_text = " in \the [parse_zone(limb_hit)]"
 
@@ -295,16 +301,20 @@
 			playsound(loc, hitsound, 5, TRUE, -1)
 		else if(suppressed)
 			playsound(loc, hitsound, 5, 1, -1)
-			to_chat(L, "<span class='userdanger'>You're shot by \a [src][organ_hit_text]!</span>")
+			to_chat(L, "<span class='userdanger'>You're shot by \a [src][organ_hit_text]![wound_message]</span>")
 		else
 			if(hitsound)
 				var/volume = vol_by_damage()
 				playsound(loc, hitsound, volume, 1, -1)
-			L.visible_message("<span class='danger'>[L] is hit by \a [src][organ_hit_text]!</span>", \
-					"<span class='userdanger'>[L] is hit by \a [src][organ_hit_text]!</span>", null, COMBAT_MESSAGE_RANGE)
+			L.visible_message("<span class='danger'>[L] is hit by \a [src][organ_hit_text]![wound_message]</span>", \
+					"<span class='userdanger'>[L] is hit by \a [src][organ_hit_text]![wound_message]</span>", null, COMBAT_MESSAGE_RANGE)
+		
 		if(candink && def_zone == BODY_ZONE_HEAD)
 			playsound(src, 'sound/weapons/dink.ogg', 30, 1)
-		L.on_hit(src)
+		
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			C.wound_message = ""
 
 	var/reagent_note
 	if(reagents)

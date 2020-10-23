@@ -133,7 +133,7 @@
 	. = ..()
 	if(isliving(usr) && istype(over, /obj/screen/inventory/hand))
 		var/mob/living/user = usr
-		if(magazine)
+		if(magazine && !istype(magazine, /obj/item/ammo_box/magazine/internal))
 			magazine.forceMove(drop_location())
 			user.put_in_hands(magazine)
 			magazine.update_icon()
@@ -149,6 +149,7 @@
 	. += round_check(user)
 
 /obj/item/gun/ballistic/proc/round_check(mob/user)
+	. = ""
 	if((user.mind && GET_SKILL_LEVEL(user, ranged) >= 8) || isobserver(user))
 		. += "It has [get_ammo()] round\s remaining."
 	else

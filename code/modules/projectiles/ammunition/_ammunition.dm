@@ -49,7 +49,7 @@
 		BB = new projectile_type(src, src)
 
 /obj/item/ammo_casing/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/ammo_box))
+	if(istype(I, /obj/item/ammo_box) && !istype(I, /obj/item/ammo_box/magazine/ammo_stack))
 		var/obj/item/ammo_box/box = I
 		if(isturf(loc))
 			var/boolets = 0
@@ -66,6 +66,12 @@
 				to_chat(user, "<span class='notice'>You collect [boolets] shell\s. [box] now contains [box.stored_ammo.len] shell\s.</span>")
 			else
 				to_chat(user, "<span class='warning'>You fail to collect anything!</span>")
+	else if(istype(I, /obj/item/ammo_box/magazine/ammo_stack))
+		var/obj/item/ammo_box/stack = I
+		if(stack.give_round(src))
+			to_chat(user, "<span class='notice'>I collect [src] with [stack].</span>")
+		else
+			to_chat(user, "<span class='warning'>I fail to collect [src] with [stack].</span>")
 	else
 		return ..()
 

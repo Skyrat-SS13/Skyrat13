@@ -30,7 +30,6 @@
 		var/loadsound = pick('modular_skyrat/sound/weapons/revolver_load1.ogg', 'modular_skyrat/sound/weapons/revolver_load2.ogg')
 		playsound(src, loadsound, 60, 1)
 		A.update_icon()
-		update_icon()
 		chamber_round(0)
 
 /obj/item/gun/ballistic/revolver/attack_self(mob/living/user)
@@ -43,7 +42,8 @@
 			CB.forceMove(drop_location())
 			CB.bounce_away(FALSE, NONE)
 			num_unloaded++
-	if (num_unloaded)
+	update_icon()
+	if(num_unloaded)
 		to_chat(user, "<span class='notice'>You unload [num_unloaded] shell\s from [src].</span>")
 	else
 		to_chat(user, "<span class='warning'>[src] is empty!</span>")
@@ -81,10 +81,6 @@
 	if (magazine)
 		boolets += magazine.ammo_count(countempties)
 	return boolets
-
-/obj/item/gun/ballistic/revolver/examine(mob/user)
-	. = ..()
-	. += "[get_ammo(0,0)] of those are live rounds."
 
 /obj/item/gun/ballistic/revolver/detective
 	name = "\improper .38 Mars Special"
