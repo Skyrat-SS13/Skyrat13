@@ -30,10 +30,15 @@
 	multiple_sprites = TRUE
 	start_empty = TRUE
 
+/obj/item/ammo_box/magazine/ammo_stack/get_round(keep)
+	..()
+	update_icon()
+
 /obj/item/ammo_box/magazine/ammo_stack/give_round(obj/item/ammo_casing/R, replace_spent)
 	..()
 	if(ammo_count() <= 0)
 		qdel(src)
+	update_icon()
 
 //fuck idk what to do with this
 /obj/item/ammo_box/magazine/ammo_stack/shotgun
