@@ -263,8 +263,9 @@
 		wound_injury(old_wound)
 		second_wind()
 	
-	//Update the descriptive string for combat
-	victim.wound_message += " [descriptive]"
+	//Update the descriptive string for combat, if we were silent
+	if(silent)
+		victim.wound_message += " [descriptive]"
 
 /// Remove the wound from whatever it's afflicting, and cleans up whateverstatus effects it had or modifiers it had on interaction times. ignore_limb is used for detachments where we only want to forget the victim
 /datum/wound/proc/remove_wound(ignore_limb, replaced = FALSE, forced = FALSE)
