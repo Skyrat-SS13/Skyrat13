@@ -1,7 +1,7 @@
 //Revolver mechanics epic
 /obj/item/gun/ballistic/revolver
 	icon = 'modular_skyrat/icons/obj/bobstation/guns/revolver.dmi'
-	icon_state = "classic"
+	icon_state = "cheapo"
 	fire_sound = 'modular_skyrat/sound/weapons/revolver1.ogg'
 	safety_sound = 'modular_skyrat/sound/weapons/safety2.ogg'
 	safety = FALSE
@@ -13,6 +13,15 @@
 	else
 		return ..()
 
+/obj/item/gun/ballistic/revolver/attack_hand(mob/user)
+	if(chamber_open)
+		var/obj/item/ammo_casing/CB
+		CB = magazine.get_round(0)
+		user.put_in_hands(CB)
+		to_chat(user, "<span class='notice'>I unload [CB] from [src].</span>")
+	else
+		return ..()
+	
 /obj/item/gun/ballistic/revolver/attack_self(mob/living/user)
 	if(chamber_open)
 		var/num_unloaded = 0

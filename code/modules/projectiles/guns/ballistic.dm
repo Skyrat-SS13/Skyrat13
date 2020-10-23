@@ -129,10 +129,10 @@
 	update_icon()
 	return TRUE
 
-/obj/item/gun/ballistic/onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
+/obj/item/gun/ballistic/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	. = ..()
-	if(isliving(mob) && istype(over_object, /obj/screen/inventory/hand))
-		var/mob/living/user = mob
+	if(isliving(usr) && istype(over, /obj/screen/inventory/hand))
+		var/mob/living/user = usr
 		if(magazine)
 			magazine.forceMove(drop_location())
 			user.put_in_hands(magazine)
@@ -142,7 +142,7 @@
 			else
 				playsound(src, "gun_remove_empty_magazine", 70, 1)
 			magazine = null
-			to_chat(user, "<span class='notice'>You pull the magazine out of \the [src].</span>")
+			to_chat(user, "<span class='notice'>I pull the magazine out of \the [src].</span>")
 
 /obj/item/gun/ballistic/examine(mob/user)
 	. = ..()
