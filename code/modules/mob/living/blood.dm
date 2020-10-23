@@ -101,7 +101,7 @@
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")
-		switch(blood_volume)
+		switch(get_blood_oxygenation())
 			if(BLOOD_VOLUME_EXCESS to BLOOD_VOLUME_MAX_LETHAL)
 				if(prob(15))
 					to_chat(src, "<span class='userdanger'>Blood starts to tear your skin apart. You're going to burst!</span>")
