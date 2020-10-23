@@ -276,16 +276,19 @@
 	return
 
 /datum/job/paramedic
-	//Good endurance
+	//Good endurance and str
+	stat_str = 12
 	stat_end = 12
-	//Average surgery and expert first aid
+	//Expert surgery and expert first aid
 	skill_firstaid = JOB_SKILLPOINTS_EXPERT
-	skill_surgery = JOB_SKILLPOINTS_AVERAGE
+	skill_surgery = JOB_SKILLPOINTS_EXPERT
 
 /datum/job/brig_physician
 	//Good endurance
 	stat_end = 12
-	//Average surgery and expert first aid
+	//Average ranged, surgery and expert first aid
+	skill_melee = JOB_SKILLPOINTS_NOVICE
+	skill_ranged = JOB_SKILLPOINTS_AVERAGE
 	skill_firstaid = JOB_SKILLPOINTS_EXPERT
 	skill_surgery = JOB_SKILLPOINTS_AVERAGE
 
@@ -313,8 +316,9 @@
 	stat_end = 8
 	stat_dex = JOB_STATPOINTS_TRAINED
 	stat_int = JOB_STATPOINTS_EXPERT
-	//Godlike electronics, expert research
+	//Godlike electronics, expert research, trained surgery
 	skill_research = JOB_SKILLPOINTS_EXPERT
+	skill_surgery = JOB_SKILLPOINTS_TRAINED
 	skill_electronics = 18
 
 /datum/job/scientist
