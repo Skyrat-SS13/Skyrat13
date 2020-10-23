@@ -14,7 +14,7 @@
 		return ..()
 
 /obj/item/gun/ballistic/revolver/attack_self(mob/living/user)
-	if(!chamber_open)
+	if(chamber_open)
 		var/num_unloaded = 0
 		chambered = null
 		while(get_ammo() > 0)
