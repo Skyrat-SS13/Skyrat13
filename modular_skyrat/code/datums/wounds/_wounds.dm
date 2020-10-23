@@ -140,6 +140,8 @@
 	var/strikes_to_lose_limb = 3
 	/// Should we display a sound hint on being acquired?
 	var/do_sound_hint = TRUE
+	/// What we add to the carbon mob's descriptive wound string once acquired
+	var/descriptive = ""
 
 /datum/wound/Topic(href, href_list)
 	if(!victim)
@@ -260,6 +262,9 @@
 	if(!demoted)
 		wound_injury(old_wound)
 		second_wind()
+	
+	//Update the descriptive string for combat
+	victim.wound_message += " [descriptive]"
 
 /// Remove the wound from whatever it's afflicting, and cleans up whateverstatus effects it had or modifiers it had on interaction times. ignore_limb is used for detachments where we only want to forget the victim
 /datum/wound/proc/remove_wound(ignore_limb, replaced = FALSE, forced = FALSE)
@@ -289,13 +294,13 @@
   * * smited- If this is a smite, we don't care about this wound for stat tracking purposes (not yet implemented)
   * * transfer_vars - Whether or not we should transfer our germ_level and sanitization
   */
-/datum/wound/proc/replace_wound(new_type, smited = FALSE, transfer_vars = FALSE)
+/datum/wound/proc/replace_wound(new_type, smited = FALSE, transfer_vars = FALSE, silent = FALSE)
 	var/datum/wound/new_wound = new new_type
 	already_scarred = TRUE
 	var/infected = germ_level
 	var/disinfected = sanitization
 	remove_wound(replaced=TRUE)
-	new_wound.apply_wound(limb, old_wound = src, smited = smited)
+	new_wound.apply_wound(limb, old_wound = src, smited = smited, silent = silent)
 	if(transfer_vars)
 		new_wound.germ_level = infected
 		new_wound.sanitization = disinfected

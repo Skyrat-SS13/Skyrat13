@@ -27,7 +27,8 @@
 	var/num_loaded = magazine.attackby(A, user, params, 1)
 	if(num_loaded)
 		to_chat(user, "<span class='notice'>You load [num_loaded] shell\s into \the [src].</span>")
-		playsound(user, 'sound/weapons/bulletinsert.ogg', 60, 1)
+		var/loadsound = pick('modular_skyrat/sound/weapons/revolver_load1.ogg', 'modular_skyrat/sound/weapons/revolver_load2.ogg')
+		playsound(src, loadsound, 60, 1)
 		A.update_icon()
 		update_icon()
 		chamber_round(0)
@@ -67,6 +68,7 @@
 	. = istype(C)
 	if(.)
 		C.spin()
+		playsound(src, 'modular_skyrat/sound/weapons/revolver_spin.ogg', 50)
 		chamber_round(0)
 
 /obj/item/gun/ballistic/revolver/can_shoot()
@@ -143,7 +145,6 @@
 			desc = initial(desc)
 			to_chat(user, "<span class='notice'>You remove the modifications on [src]. Now it will fire .38 rounds.</span>")
 	return TRUE
-
 
 /obj/item/gun/ballistic/revolver/mateba
 	name = "\improper Unica 6 auto-revolver"

@@ -1,12 +1,70 @@
-//detective revomlver changes
+//Revolver mechanics epic
+/obj/item/gun/ballistic/revolver
+	icon = 'modular_skyrat/icons/obj/bobstation/guns/revolver.dmi'
+	icon_state = "classic"
+	fire_sound = 'modular_skyrat/sound/weapons/revolver1.ogg'
+	safety_sound = 'modular_skyrat/sound/weapons/safety2.ogg'
+	safety = FALSE
+	var/chamber_open = FALSE
+
+/obj/item/gun/ballistic/revolver/do_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread, stam_cost)
+	if(chamber_open)
+		return shoot_with_empty_chamber(user)
+	else
+		return ..()
+
+/obj/item/gun/ballistic/revolver/attack_self(mob/living/user)
+	if(!chamber_open)
+		var/num_unloaded = 0
+		chambered = null
+		while(get_ammo() > 0)
+			var/obj/item/ammo_casing/CB
+			CB = magazine.get_round(0)
+			if(CB)
+				CB.forceMove(drop_location())
+				CB.bounce_away(FALSE, NONE)
+				num_unloaded++
+		if(num_unloaded)
+			to_chat(user, "<span class='notice'>I unload [num_unloaded] shell\s from [src].</span>")
+		else
+			to_chat(user, "<span class='warning'>[src] is empty!</span>")
+	else
+		to_chat(user, "<span class='warning'>I must open [src]'s chamber to unload it.")
+
+/obj/item/gun/ballistic/revolver/round_check(mob/user)
+	if((user.mind && GET_SKILL_LEVEL(user, ranged) >= 8) || chamber_open || isobserver(user))
+		. += "It has [get_ammo()] round\s remaining."
+	else
+		. += "I'm not sure how many rounds are loaded on [src]."
+
+/obj/item/gun/ballistic/revolver/rightclick_attack_self(mob/user)
+	return toggle_chamber(user)
+
+/obj/item/gun/ballistic/revolver/proc/toggle_chamber(mob/user, silent = FALSE)
+	chamber_open = !chamber_open
+	if(!silent)
+		if(chamber_open)
+			playsound(src, 'modular_skyrat/sound/weapons/revolver_open.ogg', 50)
+		else
+			playsound(src, 'modular_skyrat/sound/weapons/revolver_close.ogg', 50)
+	update_icon()
+	if(user)
+		to_chat(user, "<span class='notice'>I [chamber_open ? "open" : "close"] [src]'s chamber.</span>")
+	return TRUE
+
+/obj/item/gun/ballistic/revolver/update_icon()
+	..()
+	icon_state = "[initial(icon_state)][chamber_open ? "-open-[min(6, get_ammo())]" : ""]"
+
+//Detective revomlver changes
 /obj/item/gun/ballistic/revolver/detective
 	desc = "Although far surpassed by newer firearms, this revolver is still quite effective and popular as a self defense weapon, and as an oldschool styled sidearm for military contractors. Chambering .357 in it however, is not recommended."
 
 //Contender, made by ArcLumin. Ported from hippie.
 /obj/item/gun/ballistic/revolver/doublebarrel/contender
+	name = "Contender"
 	desc = "The Contender G13, a favorite amongst space hunters. An easily modified bluespace barrel and break action loading means it can use any ammo available.\
 	The side has an engraving which reads 'Made by ArcWorks'."
-	name = "Contender"
 	icon = 'modular_skyrat/icons/obj/guns/projectile.dmi'
 	icon_state = "contender-s"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/contender
@@ -60,8 +118,6 @@
 	caliber = "all"
 	ammo_type = /obj/item/ammo_casing
 	max_ammo = 1
-
-
 
 //
 ///////////////
@@ -120,8 +176,9 @@
 
 /obj/item/gun/ballistic/revolver/dual_ammo
 	name = "\improper .38 revolver"
-	desc = "The NT Judge revolver - A classic law enforcement firearm, for a lawless land."
-	icon_state = "detective_panther"
+	desc = "The NT Lady Luck revolver - A classic law enforcement firearm, for a lawless land."
+	icon_state = "ladyluck"
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38
 
 /obj/item/gun/ballistic/revolver/dual_ammo/AltClick(mob/user)
 	. = ..()
@@ -133,3 +190,9 @@
 			if("357")
 				magazine.caliber = "38"
 				to_chat(user, "<span class='notice'>\The [src] will now chamber .38 rounds.</span>")
+
+/obj/item/gun/ballistic/revolver/mateba/bladerunner
+	name = "\improper .357 NT Sheriff"
+	desc = "The NT Sheriff - A high quality revolver chambered in .357 rounds."
+	icon_state = "bladerunner"
+	fire_sound = 'modular_skyrat/sound/weapons/revolver2.ogg'

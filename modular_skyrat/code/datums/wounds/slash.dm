@@ -274,6 +274,7 @@
 	scarring_descriptions = list("light, faded lines", "minor cut marks", "a small faded slit", "a series of small scars")
 	pain_amount = 8
 	infection_chance = 45
+	descriptive = " The skin is slashed!"
 
 /datum/wound/slash/severe
 	name = "Open Laceration"
@@ -295,6 +296,7 @@
 	scarring_descriptions = list("a twisted line of faded gashes", "a gnarled sickle-shaped slice scar", "a long-faded puncture wound")
 	pain_amount = 15
 	infection_chance = 60
+	descriptive = " The flesh is torn!"
 
 /datum/wound/slash/critical
 	name = "Weeping Avulsion"
@@ -316,6 +318,7 @@
 	scarring_descriptions = list("a winding path of very badly healed scar tissue", "a series of peaks and valleys along a gruesome line of cut scar tissue", "a grotesque snake of indentations and stitching scars")
 	pain_amount = 20
 	infection_chance = 80
+	descriptive = " The flesh is lacerated!"
 
 /datum/wound/slash/critical/incision
 	name = "Incision"
@@ -335,3 +338,4 @@
 	scarring_descriptions = list("a precise line of scarred tissue", "a long line of slightly darker tissue")
 	pain_amount = 15
 	infection_chance = 90
+	descriptive = " The flesh is incised!"

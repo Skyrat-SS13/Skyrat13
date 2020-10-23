@@ -254,8 +254,20 @@
 			if(starting)
 				splatter_dir = get_dir(starting, target_loca)
 			var/obj/item/bodypart/B = L.get_bodypart(def_zone)
+			// Bullets cause a lot of havoc on organs, ON TOP of what we cause by damage alone
+			if((damage_type == BRUTE) && B)
+				var/wounding = WOUND_PIERCE
+				switch(get_sharpness())
+					if(SHARP_NONE)
+						wounding = WOUND_BLUNT
+					if(SHARP_EDGED)
+						wounding = WOUND_SLASH
+					if(SHARP_POINTY)
+						wounding = WOUND_PIERCE
+				B.damage_organs(damage*2, wounding_type = wounding)
+			// Cause pain damage
 			if(B && src.pain)
-				B.receive_damage(pain = ((src.pain/100)*(100-blocked)))
+				B.receive_damage(pain = (src.pain*((100-blocked)/100)))
 			// So if you hit a robotic, it sparks instead of bloodspatters
 			if(B && B.status == BODYPART_ROBOTIC)
 				do_sparks(2, FALSE, target.loc)
@@ -670,6 +682,10 @@
 		else
 			pixel_x = traj_px
 			pixel_y = traj_py
+	//Boobstation projectiles work different
+	if(loc == get_turf(original))
+		qdel(src)
+		return
 
 /obj/item/projectile/proc/set_homing_target(atom/A)
 	if(!A || (!isturf(A) && !isturf(A.loc)))

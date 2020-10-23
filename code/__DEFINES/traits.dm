@@ -221,6 +221,7 @@
 #define TRAIT_SYNTH				"synthetic"	//robotic boy
 #define TRAIT_TOXIMMUNE			"toxin_immune"
 #define TRAIT_CLONEIMMUNE		"clone_immune" //This is for clone damage
+#define TRAIT_BLOODLOSSIMMUNE	"blood_immune"
 #define TRAIT_DNC		"cant_clone"
 #define TRAIT_DNR		"cant_revive" //You just can't be revived without supernatural means
 #define TRAIT_NODETERMINATION	"no_determination" //tfw no undertales

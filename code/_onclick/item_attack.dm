@@ -191,10 +191,10 @@
 	if((user != src) && mob_run_block(I, totitemdamage, "the [I.name]", ((attackchain_flags & ATTACKCHAIN_PARRY_COUNTERATTACK)? ATTACK_TYPE_PARRY_COUNTERATTACK : NONE) | ATTACK_TYPE_MELEE, I.armour_penetration, user, null, block_return) & BLOCK_SUCCESS)
 		return FALSE
 	totitemdamage = block_calculate_resultant_damage(totitemdamage, block_return)
-	send_item_attack_message(I, user, null, totitemdamage)
 	I.do_stagger_action(src, user, totitemdamage)
 	if(I.force)
 		apply_damage(totitemdamage, I.damtype)
+		send_item_attack_message(I, user, null, totitemdamage)
 		if(I.damtype == BRUTE)
 			if(prob(33))
 				I.add_mob_blood(src)
@@ -421,7 +421,7 @@
 	animate(pixel_x = -2, pixel_y = -2, time = 0.5, flags = ANIMATION_RELATIVE)
 
 //Do stuff depending on stats and skills etc
-/mob/living/proc/do_stat_effects(mob/living/carbon/user, obj/item/weapon, force)
+/mob/living/carbon/proc/do_stat_effects(mob/living/carbon/user, obj/item/weapon, force)
 	var/did_something = FALSE
 	var/victim_str = 10
 	if(GET_STAT_LEVEL(src, str))
@@ -453,9 +453,7 @@
 								'modular_skyrat/sound/gore/trauma2.ogg',
 								'modular_skyrat/sound/gore/trauma3.ogg')
 				playsound(src, tooth_sound, 60)
-				visible_message("<span class='danger'>[src]'s teeth sail off in an arc!</span>",
-								"<span class='userdanger'>Your teeth sail off in an arc!</span>",
-								"<span class='danger'>You hear a nasty cracking sound!</span>")
+				wound_message += " <span class='danger'>[src]'s teeth sail off in an arc!</span>"
 				Stun(2 SECONDS)
 				Stumble(4 SECONDS)
 				did_something = TRUE
@@ -466,13 +464,13 @@
 				var/crit = rand(1,3)
 				switch(crit)
 					if(1)
-						visible_message("<span class='danger'><b>CRITICAL HIT!</b> [src] is stunned!")
+						wound_message += " <b>CRITICAL HIT!</b> [src] is stunned!"
 						Stun(3 SECONDS)
 					if(2)
-						visible_message("<span class='danger'><b>CRITICAL HIT!</b> [src] is knocked down!")
+						wound_message += " <b>CRITICAL HIT!</b> [src] is knocked down!"
 						DefaultCombatKnockdown(3 SECONDS)
 					if(3)
-						visible_message("<span class='danger'><b>CRITICAL HIT!</b> [src] is paralyzed!")
+						wound_message += " <b>CRITICAL HIT!</b> [src] is paralyzed!"
 						Paralyze(3 SECONDS)
 				did_something = TRUE
 			if(0 to 1)
@@ -480,12 +478,12 @@
 				switch(crit)
 					if(1)
 						if(user != src)
-							user.visible_message("<span class='danger'><b>CRITICAL FAILURE!</b> [user] knocks [p_themselves()] down!")
+							wound_message += " <b>CRITICAL FAILURE!</b> [user] knock[user.p_s()] [p_themselves()] down!"
 							user.drop_all_held_items()
 							user.DefaultCombatKnockdown(3 SECONDS)
 					if(2)
 						if(user != src)
-							user.visible_message("<span class='danger'><b>CRITICAL FAILURE!</b> [user] hits [p_themselves()]!")
+							wound_message += " <b>CRITICAL FAILURE!</b> [user] hit[user.p_s()] [p_themselves()]!"
 							if(weapon)
 								weapon.melee_attack_chain(user, user)
 							else

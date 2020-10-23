@@ -315,7 +315,7 @@
 	if(caught_dreamer)
 		Paralyze(rand(3, 5) SECONDS)
 		var/pain_msg = pick("NO!", "THEY GOT ME!", "AGH!")
-		custom_pain("<span class='userdanger'>[pain_msg]</span>", 40, TRUE, (get_bodypart(BODY_ZONE_HEAD) ? get_bodypart(BODY_ZONE_HEAD) : bodyparts[1]))
+		to_chat(src, "<span class='bigdanger'>[pain_msg]</span>")
 
 /mob/living/carbon/proc/handle_dreamer_waking_up()
 	if(!client)

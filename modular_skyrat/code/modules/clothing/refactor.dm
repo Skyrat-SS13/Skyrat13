@@ -350,6 +350,9 @@
 	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/blueshirt
+	icon = 'icons/obj/clothing/suits.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/suit.dmi'
+	anthro_mob_worn_overlay = 'icons/mob/clothing/suit_digi.dmi'
 	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/infiltrator

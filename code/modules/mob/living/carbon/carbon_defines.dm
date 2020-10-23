@@ -73,3 +73,5 @@
 	var/list/all_scars = list()
 	/// Shock (new critical)
 	var/shock_stage = 0
+	/// Descriptive string used in combat messages
+	var/wound_message = ""

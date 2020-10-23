@@ -4121,6 +4121,7 @@
 #include "modular_skyrat\code\modules\paperwork\paper.dm"
 #include "modular_skyrat\code\modules\paperwork\photocopier.dm"
 #include "modular_skyrat\code\modules\procedural_mapping\mapGenerators\lavaland.dm"
+#include "modular_skyrat\code\modules\projectiles\ammunition\ammo_stacks.dm"
 #include "modular_skyrat\code\modules\projectiles\ammunition\ballistic\pistol.dm"
 #include "modular_skyrat\code\modules\projectiles\ammunition\ballistic\shotgun.dm"
 #include "modular_skyrat\code\modules\projectiles\ammunition\ballistic\special.dm"

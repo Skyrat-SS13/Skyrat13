@@ -309,7 +309,7 @@
 		//Warn the user that they're a bit fucked
 		if(prob(4) && germ_level < INFECTION_LEVEL_ONE)
 			if(owner.stat != DEAD)
-				owner.custom_pain("<span class='warning'>Your [src.name] feels a bit warm and swollen...</span>", 8, FALSE, src)
+				owner.custom_pain("Your [src.name] feels a bit warm and swollen...", 8, FALSE, src)
 		//Aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes, when immunity is full.
 		if(antibiotics < 5 && prob(round(germ_level/6 * owner.immunity_weakness() * 0.01)))
 			if(virus_immunity > 0)
@@ -320,7 +320,7 @@
 	if(germ_level >= INFECTION_LEVEL_ONE)
 		if(prob(6) && germ_level < INFECTION_LEVEL_TWO)
 			if(owner.stat != DEAD)
-				owner.custom_pain("<span class='warning'>Your [src.name] feels hotter than normal...</span>", 12, FALSE, src)
+				owner.custom_pain("Your [src.name] feels hotter than normal...", 12, FALSE, src)
 		var/fever_temperature = (BODYTEMP_HEAT_DAMAGE_LIMIT - BODYTEMP_NORMAL - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + BODYTEMP_NORMAL
 		owner.bodytemperature += clamp((fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, 0, fever_temperature - owner.bodytemperature)
 	
@@ -332,7 +332,7 @@
 		//Chance to cause pain, while also informign the owner
 		if(prob(8))
 			if(owner.stat != DEAD)
-				owner.custom_pain("<span class='danger'>Your [src.name] starts leaking some pus...</span>", 18, FALSE, src)
+				owner.custom_pain("Your [src.name] starts leaking some pus...", 18, FALSE, src)
 		
 		//Make internal organs become infected one at a time instead of all at once
 		var/obj/item/organ/target_organ
@@ -363,7 +363,7 @@
 		if(!is_dead())
 			status |= BODYPART_DEAD
 			if(owner.stat != DEAD)
-				owner.custom_pain("<span class='danger'>You can't feel your [name] anymore...</span>", 21,  TRUE, src, FALSE)
+				owner.custom_pain("You can't feel your [name] anymore...", 21,  TRUE, src, FALSE)
 			update_disabled()
 		
 		germ_level++
@@ -1122,6 +1122,11 @@
 		damage_amt = max(0, damage_amt - victim.damage_reduction - (damage_amt * victim.damage_modifier))
 		if(damage_amt >= 1)
 			victim.applyOrganDamage(damage_amt)
+		if(owner && (damage_amt >= 10))
+			var/msg = pick("WHAT A PAIN!", "MY [uppertext(src.name)] HURTS!", \
+						"MY [uppertext(victim.name)] HURTS!", \
+						"IT IS UNBEARABLE!")
+			owner.custom_pain("[msg]", 20, affecting = src)
 		return TRUE
 
 //Heals brute, burn, stamina, pain, toxin and clone damage for the organ. Returns 1 if the damage-icon states changed at all.
@@ -1552,12 +1557,12 @@
 		if(possible_wound.threshold_minimum * CONFIG_GET(number/wound_threshold_multiplier) < injury_roll)
 			var/datum/wound/new_wound
 			if(replaced_wound)
-				new_wound = replaced_wound.replace_wound(possible_wound.type, FALSE, TRUE)
+				new_wound = replaced_wound.replace_wound(possible_wound.type, FALSE, TRUE, TRUE)
 				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll)
 				qdel(possible_wound)
 			else
 				new_wound = new possible_wound.type
-				new_wound.apply_wound(src)
+				new_wound.apply_wound(src, TRUE)
 				if(new_wound.wound_type == (WOUND_LIST_BURN || WOUND_LIST_BURN_MECHANICAL))
 					for(var/datum/wound/slash/critical/incision/inch in wounds) //yes, getting a burn wound cauterizes open incisions
 						inch.remove_wound()

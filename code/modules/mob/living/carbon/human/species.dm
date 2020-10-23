@@ -1791,10 +1791,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 		playsound(target.loc, user.dna.species.attack_sound, 25, 1, -1)
 
-		target.visible_message("<span class='danger'>[user][pitiful ? " pitifully" : ""] [atk_verb]s [target] on their [affecting.name]!</span>", \
-					"<span class='userdanger'>[user][pitiful ? " pitifully" : ""] [atk_verb]s you on your [affecting.name]!</span>", null, COMBAT_MESSAGE_RANGE, null, \
-					user, "<span class='danger'>You[pitiful ? " pitifully" : ""] [atk_verb] [target] on their [affecting.name]!</span>")
-
 		target.lastattacker = user.real_name
 		target.lastattackerckey = user.ckey
 		user.dna.species.spec_unarmedattacked(user, target)
@@ -1814,9 +1810,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		//Knockdown and stuff
 		target.do_stat_effects(user, null, damage)
 
+		//Attack message
+		target.visible_message("<span class='danger'>[user][pitiful ? " pitifully" : ""] [atk_verb]s [target] on their [affecting.name]![target.wound_message]</span>", \
+					"<span class='userdanger'>[user][pitiful ? " pitifully" : ""] [atk_verb]s you on your [affecting.name]![target.wound_message]</span>", null, COMBAT_MESSAGE_RANGE, null, \
+					user, "<span class='danger'>You[pitiful ? " pitifully" : ""] [atk_verb] [target] on their [affecting.name]![target.wound_message]</span>")
+
 		if((target.stat != DEAD) && damage >= user.dna.species.punchstunthreshold)
 			if((punchedstam > 50) && prob(punchedstam*0.5)) //If our punch victim has been hit above the threshold, and they have more than 50 stamina damage, roll for stun, probability of 1% per 2 stamina damage
-
 				target.visible_message("<span class='danger'>[user] knocks [target] down!</span>", \
 								"<span class='userdanger'>You're knocked down by [user]!</span>",
 								"<span class='hear'>You hear aggressive shuffling followed by a loud thud!</span>", COMBAT_MESSAGE_RANGE, null,
@@ -2088,9 +2088,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		Iwound_bonus = CANT_WOUND
 	//
 	var/weakness = H.check_weakness(I, user)
-
-	H.send_item_attack_message(I, user, hit_area, totitemdamage, affecting)
 	
+	//Damage moment
 	apply_damage(totitemdamage * weakness, I.damtype, hit_area, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
 
 	//How the fuck does this work?
@@ -2100,6 +2099,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	if(H.mind || user.mind)
 		H.do_stat_effects(user, I, totitemdamage)
 
+	//Send item attack message
+	H.send_item_attack_message(I, user, hit_area, totitemdamage * weakness, affecting)
+	
+	//Clean the descriptive string
+	H.wound_message = ""
+
+	//fuck piss
 	if(!totitemdamage)
 		return 0 //item force is zero
 	

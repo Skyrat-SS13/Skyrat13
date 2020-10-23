@@ -134,6 +134,7 @@
 	pain_amount = 15 //Burns are awful
 	infection_chance = 50
 	infection_rate = 1.5
+	descriptive = "The skin is seared!"
 
 /datum/wound/burn/severe
 	name = "Third Degree Burns"
@@ -153,6 +154,7 @@
 	pain_amount = 25 //Burns are awful
 	infection_chance = 75
 	infection_rate = 2
+	descriptive = "The flesh is seared!"
 
 /datum/wound/burn/critical
 	name = "Catastrophic Burns"
@@ -173,3 +175,4 @@
 	pain_amount = 35 //Burns are awful
 	infection_chance = 90
 	infection_rate = 3
+	descriptive = "The flesh is charred!"

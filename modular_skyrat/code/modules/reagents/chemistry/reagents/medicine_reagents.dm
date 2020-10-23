@@ -282,7 +282,7 @@
 	. = ..()
 	if(iscarbon(M) && prob(15))
 		var/mob/living/carbon/C = M
-		C.custom_pain("<span class='danger'>Your head feels like it's going to explode!</span>", 20, FALSE, C.get_bodypart(BODY_ZONE_HEAD))
+		C.custom_pain("Your head feels like it's going to explode!", 20, FALSE, C.get_bodypart(BODY_ZONE_HEAD))
 
 /datum/reagent/medicine/tramadol
 	name = "Tramadol"

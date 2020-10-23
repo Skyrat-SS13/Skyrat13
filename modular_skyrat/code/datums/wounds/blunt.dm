@@ -264,6 +264,7 @@
 	can_self_treat = TRUE
 	pain_amount = 10
 	flat_damage_roll_increase = 5
+	descriptive = "A bone is dislocated!"
 
 /datum/wound/blunt/moderate/crush()
 	if(prob(33))
@@ -626,6 +627,7 @@
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
 	pain_amount = 15 //Hurts a bit more
+	descriptive = "The jaw is dislocated!"
 
 /datum/wound/blunt/moderate/jaw/crush()
 	if(prob(33))
@@ -732,6 +734,7 @@
 	pain_amount = 20
 	flat_damage_roll_increase = 10
 	infection_chance = 15 //Very low, but possible
+	descriptive = "A bone is fractured!"
 
 /datum/wound/blunt/critical
 	name = "Compound Fracture"
@@ -757,6 +760,7 @@
 	pain_amount = 30
 	flat_damage_roll_increase = 15
 	infection_chance = 55 //Compound fractures always have some exposed flesh
+	descriptive = "A bone is shattered!"
 
 // doesn't make much sense for "a" bone to stick out of your head
 /datum/wound/blunt/critical/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)

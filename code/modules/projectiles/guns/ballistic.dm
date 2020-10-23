@@ -8,13 +8,15 @@
 	var/obj/item/ammo_box/magazine/magazine
 	var/casing_ejector = TRUE //whether the gun ejects the chambered casing
 	var/magazine_wording = "magazine"
+	//Do we automatically chamber when a magazine is inserted?
+	var/autochamber = FALSE
 
 /obj/item/gun/ballistic/Initialize()
 	. = ..()
 	if(!spawnwithmagazine)
 		update_icon()
 		return
-	if (!magazine)
+	if(!magazine)
 		magazine = new mag_type(src)
 	chamber_round()
 	update_icon()
@@ -59,7 +61,7 @@
 				to_chat(user, "<span class='notice'>You load a new [magazine_wording] into \the [src].</span>")
 				if(magazine.ammo_count())
 					playsound(src, "gun_insert_full_magazine", 70, 1)
-					if(!chambered)
+					if(!chambered && autochamber)
 						chamber_round()
 						addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, src, 'sound/weapons/gun_chamber_round.ogg', 100, 1), 3)
 				else
@@ -114,32 +116,43 @@
 	return ..()
 
 /obj/item/gun/ballistic/attack_self(mob/living/user)
-	var/obj/item/ammo_casing/AC = chambered //Find chambered round
-	if(magazine)
-		magazine.forceMove(drop_location())
-		user.put_in_hands(magazine)
-		magazine.update_icon()
-		if(magazine.ammo_count())
-			playsound(src, 'sound/weapons/gun_magazine_remove_full.ogg', 70, 1)
-		else
-			playsound(src, "gun_remove_empty_magazine", 70, 1)
-		magazine = null
-		to_chat(user, "<span class='notice'>You pull the magazine out of \the [src].</span>")
-	else if(chambered)
-		AC.forceMove(drop_location())
-		AC.bounce_away()
+	if(chambered)
+		chambered.forceMove(drop_location())
+		chambered.bounce_away()
 		chambered = null
 		to_chat(user, "<span class='notice'>You unload the round from \the [src]'s chamber.</span>")
 		playsound(src, "gun_slide_lock", 70, 1)
 	else
-		to_chat(user, "<span class='notice'>There's no magazine in \the [src].</span>")
+		chamber_round()
+		to_chat(user, "<span class='notice'>You cock \the [src].</span>")
+		playsound(src, "gun_slide_lock", 70, 1)
 	update_icon()
-	return
+	return TRUE
 
+/obj/item/gun/ballistic/onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
+	. = ..()
+	if(isliving(mob) && istype(over_object, /obj/screen/inventory/hand))
+		var/mob/living/user = mob
+		if(magazine)
+			magazine.forceMove(drop_location())
+			user.put_in_hands(magazine)
+			magazine.update_icon()
+			if(magazine.ammo_count())
+				playsound(src, 'sound/weapons/gun_magazine_remove_full.ogg', 70, 1)
+			else
+				playsound(src, "gun_remove_empty_magazine", 70, 1)
+			magazine = null
+			to_chat(user, "<span class='notice'>You pull the magazine out of \the [src].</span>")
 
 /obj/item/gun/ballistic/examine(mob/user)
 	. = ..()
-	. += "It has [get_ammo()] round\s remaining."
+	. += round_check(user)
+
+/obj/item/gun/ballistic/proc/round_check(mob/user)
+	if((user.mind && GET_SKILL_LEVEL(user, ranged) >= 8) || isobserver(user))
+		. += "It has [get_ammo()] round\s remaining."
+	else
+		. += "I'm not sure how many rounds are loaded on [src]."
 
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = 1)
 	var/boolets = 0 //mature var names for mature people
@@ -153,7 +166,7 @@
 #define BRAINS_BLOWN_THROW_SPEED 1
 /obj/item/gun/ballistic/suicide_act(mob/living/user)
 	var/obj/item/organ/brain/B = user.getorganslot(ORGAN_SLOT_BRAIN)
-	if (B && chambered && chambered.BB && can_trigger_gun(user) && !chambered.BB.nodamage)
+	if(B && chambered && chambered.BB && can_trigger_gun(user) && !chambered.BB.nodamage)
 		user.visible_message("<span class='suicide'>[user] is putting the barrel of [src] in [user.p_their()] mouth.  It looks like [user.p_theyre()] trying to commit suicide!</span>")
 		sleep(25)
 		if(user.is_holding(src))
@@ -179,8 +192,6 @@
 		return (OXYLOSS)
 #undef BRAINS_BLOWN_THROW_SPEED
 #undef BRAINS_BLOWN_THROW_RANGE
-
-
 
 /obj/item/gun/ballistic/proc/sawoff(mob/user)
 	if(sawn_off)
@@ -216,7 +227,6 @@
 			process_fire(user, user, FALSE)
 			. = 1
 
-
 /obj/item/suppressor
 	name = "suppressor"
 	desc = "A syndicate small-arms suppressor for maximum espionage."
@@ -224,7 +234,6 @@
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_TINY
 	var/oldsound = null
-
 
 /obj/item/suppressor/specialoffer
 	name = "cheap suppressor"

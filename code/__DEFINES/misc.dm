@@ -154,7 +154,7 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 //Bloody shoe blood states
 #define BLOOD_STATE_BLOOD			"blood"
 #define BLOOD_STATE_OIL				"oil"
-#define BLOOD_STATE_NOT_BLOODY		"no blood whatsoever"
+#define BLOOD_STATE_NOT_BLOODY		"nothing"
 #define BLOOD_AMOUNT_PER_DECAL		20
 
 //Blood Decal Colors

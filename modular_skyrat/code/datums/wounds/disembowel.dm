@@ -124,6 +124,7 @@
 	initial_flow = 4.25
 	minimum_flow = 4
 	clot_rate = 0
+	descriptive = " The limb is disemboweled!"
 
 /datum/wound/slash/critical/incision/disembowel/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)
 	. = ..()
@@ -183,6 +184,7 @@
 	biology_required = list()
 	pain_amount = 40 //Just absolutely unbearable. Will send you into shock most of the time.
 	occur_text = null
+	descriptive = " The limb is disemboweled!"
 
 /datum/wound/mechanical/slash/critical/incision/disembowel/get_examine_description(mob/user)
 	. = ..()

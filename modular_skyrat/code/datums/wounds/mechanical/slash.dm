@@ -212,6 +212,7 @@
 	status_effect_type = /datum/status_effect/wound/slash/moderate
 	scarring_descriptions = list("light, faded lines", "minor cut marks", "a small faded slit", "a series of small scars")
 	pain_amount = 8
+	descriptive = " The exoskeleton is torn!"
 
 /datum/wound/mechanical/slash/severe
 	name = "Jagged Tear"
@@ -232,6 +233,7 @@
 	status_effect_type = /datum/status_effect/wound/slash/severe
 	scarring_descriptions = list("a twisted line of faded gashes", "a gnarled sickle-shaped slice scar", "a long-faded puncture wound")
 	pain_amount = 15
+	descriptive = " The exoskeleton is ripped!"
 
 /datum/wound/mechanical/slash/critical
 	name = "Torn Cabling"
@@ -252,6 +254,7 @@
 	status_effect_type = /datum/status_effect/wound/slash/critical
 	scarring_descriptions = list("a winding path of very badly healed scar tissue", "a series of peaks and valleys along a gruesome line of cut scar tissue", "a grotesque snake of indentations and stitching scars")
 	pain_amount = 20
+	descriptive = " The hydraulics are slashed!"
 
 /datum/wound/mechanical/slash/critical/incision
 	name = "Open Hatch"
@@ -270,3 +273,4 @@
 	demotes_to = null
 	scarring_descriptions = list("a precise line of scarred tissue", "a long line of slightly darker tissue")
 	pain_amount = 15
+	descriptive = " The hatch is opened!"

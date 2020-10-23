@@ -97,7 +97,8 @@
 
 /obj/effect/decal/cleanable/trail_holder //not a child of blood on purpose
 	name = "blood"
-	icon_state = "ltrails_1"
+	icon = 'modular_skyrat/icons/effects/blood_fuck.dmi'
+	icon_state = "nothing"
 	desc = "Your instincts say you shouldn't be following these."
 	random_icon_states = null
 	beauty = -50
@@ -155,8 +156,8 @@
 //BLOODY FOOTPRINTS
 /obj/effect/decal/cleanable/blood/footprints
 	name = "footprints"
-	icon = 'icons/effects/footprints.dmi'
-	icon_state = "nothingwhatsoever"
+	icon = 'modular_skyrat/icons/effects/blood_footprints.dmi'
+	icon_state = "nothing"
 	desc = "WHOSE FOOTPRINTS ARE THESE?"
 	random_icon_states = null
 	var/entered_dirs = 0

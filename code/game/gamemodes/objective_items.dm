@@ -35,12 +35,9 @@
 	name = "the head of security's personal gun."
 	targetitem = /obj/item/gun/energy/e_gun/hos
 	difficulty = 10
-	excludefromjob = list("Head Of Security")
+	excludefromjob = list("Head Of Security", "Chief Enforcer")
 	altitems = list(/obj/item/choice_beacon/hosgun,
-					/obj/item/gun/ballistic/revolver/mateba,
-					/obj/item/gun/ballistic/automatic/pistol/m1911,
-					/obj/item/gun/ballistic/automatic/pistol/modular,
-					/obj/item/gun/ballistic/automatic/pistol/APS,
+					/obj/item/gun/ballistic/revolver/mateba/bladerunner,
 					) //Funny gun
 
 /datum/objective_item/steal/handtele

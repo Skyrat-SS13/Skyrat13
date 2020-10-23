@@ -1328,6 +1328,9 @@
 /mob/living/carbon/proc/get_blood_circulation()
 	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
 	var/apparent_blood_volume = blood_volume
+	// The dreamer does not give a fuck about blood loss
+	if(HAS_TRAIT(src, TRAIT_BLOODLOSSIMMUNE))
+		return BLOOD_VOLUME_NORMAL
 	if(HAS_TRAIT(src, TRAIT_STABLEHEART))
 		return blood_volume
 	if(!heart && needs_heart())
@@ -1366,6 +1369,9 @@
 //Blood volume, affected by the condition of circulation organs, affected by the oxygen loss. What ultimately matters for brain.
 /mob/living/carbon/proc/get_blood_oxygenation()
 	var/apparent_blood_volume = get_blood_circulation()
+	// The dreamer does not give a fuck about blood loss
+	if(HAS_TRAIT(src, TRAIT_BLOODLOSSIMMUNE))
+		return BLOOD_VOLUME_NORMAL
 	if(blood_carries_oxygen())
 		if(is_asystole()) // Heart is missing or isn't beating and we're not breathing (hardcrit)
 			return min(apparent_blood_volume, BLOOD_VOLUME_SURVIVE)

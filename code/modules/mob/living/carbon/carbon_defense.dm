@@ -75,11 +75,13 @@
 	var/obj/item/bodypart/affecting = get_bodypart(impacting_zone)
 	if(!affecting) //missing limb? we select the first bodypart (you can never have zero, because of chest)
 		affecting = bodyparts[1]
-	send_item_attack_message(I, user, affecting.body_zone, totitemdamage, affecting)
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 	I.do_stagger_action(src, user, totitemdamage)
 	if(I.force)
 		apply_damage(totitemdamage, I.damtype, affecting, wound_bonus = I.wound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
+		send_item_attack_message(I, user, affecting.body_zone, totitemdamage, affecting)
+		//clean the wound string
+		wound_message = ""
 		if(I.damtype == BRUTE && affecting.status == BODYPART_ORGANIC)
 			var/basebloodychance = affecting.brute_dam + totitemdamage
 			if(prob(basebloodychance))
@@ -142,13 +144,13 @@
 	var/message_hit_area = ""
 	if(hit_area)
 		message_hit_area = " in the [parse_zone(hit_area)]"
-	var/attack_message = "[src] is [message_verb][message_hit_area] with [I][extra_wound_details]!"
-	var/attack_message_local = "You're [message_verb][message_hit_area] with [I][extra_wound_details]!"
+	var/attack_message = "[src] is [message_verb][message_hit_area] with [I][extra_wound_details]![wound_message]"
+	var/attack_message_local = "You're [message_verb][message_hit_area] with [I][extra_wound_details]![wound_message]"
 	if(user in viewers(src, null))
-		attack_message = "[user] [message_verb] [src][message_hit_area] with [I][extra_wound_details]!"
-		attack_message_local = "[user] [message_verb] you[message_hit_area] with [I][extra_wound_details]!"
+		attack_message = "[user] [message_verb] [src][message_hit_area] with [I][extra_wound_details]![wound_message]"
+		attack_message_local = "[user] [message_verb] you[message_hit_area] with [I][extra_wound_details]![wound_message]"
 	if(user == src)
-		attack_message_local = "You [message_verb] yourself[message_hit_area] with [I][extra_wound_details]!"
+		attack_message_local = "You [message_verb] yourself[message_hit_area] with [I][extra_wound_details]![wound_message]"
 	visible_message("<span class='danger'>[attack_message]</span>",\
 		"<span class='userdanger'>[attack_message_local]</span>", null, COMBAT_MESSAGE_RANGE)
 	return TRUE

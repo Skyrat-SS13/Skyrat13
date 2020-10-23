@@ -84,7 +84,7 @@
 	var/knife_y_offset = 0
 
 	//Zooming
-	var/zoomable = FALSE //whether the gun generates a Zoom action on creation
+	var/zoomable = TRUE //whether the gun generates a Zoom action on creation
 	var/zoomed = FALSE //Zoom toggle
 	var/zoom_amt = 3 //Distance in TURFs to move the user's screen forward (the "zoom" effect)
 	var/zoom_out_amt = 0
@@ -102,7 +102,7 @@
 
 	/// Safety first!
 	var/safety = TRUE
-	var/safety_sound = 'modular_skyrat/sound/weapons/safety.ogg'
+	var/safety_sound = 'modular_skyrat/sound/weapons/safety1.ogg'
 
 	/// Suppressed sounds
 	var/sound_suppressed = 'modular_skyrat/sound/weapons/shot_silenced.ogg'
@@ -132,7 +132,7 @@
 	set desc = "Toggle a firearm's safety mechanisms."
 
 	if(usr.default_can_use_topic(src))
-		rightclick_attack_self(usr)
+		perform_safety(usr)
 
 /obj/item/gun/Destroy()
 	if(pin)
@@ -165,9 +165,12 @@
 	. += "It's safety is [safety ? "enabled" : "disabled"]."
 
 /obj/item/gun/rightclick_attack_self(mob/user)
+	return perform_safety(user)
+
+/obj/item/gun/proc/perform_safety(mob/user)
 	if(iscarbon(user) && user.mind)
 		var/ranged_skill = GET_SKILL_LEVEL(user, ranged)
-		if(ranged_skill <= 8)
+		if(ranged_skill <= JOB_SKILLPOINTS_NOVICE)
 			to_chat(user, "<span class='warning'>Hnngh... How do i use this thing?</span>")
 			if(!do_after(user, (20 - ranged_skill) * 2, TRUE, src))
 				to_chat(user, "<span class='warning'>You must stand still to disable/enable [src]'s safety!</span>")
@@ -249,8 +252,7 @@
 		var/penalty = (stamloss - STAMINA_NEAR_SOFTCRIT)/(STAMINA_NEAR_CRIT - STAMINA_NEAR_SOFTCRIT)*STAM_CRIT_GUN_DELAY
 		//low dexterity = higher penalty
 		var/dexterity = GET_STAT_LEVEL(user, dex)
-		if(dexterity <= 10)
-			penalty += (11 - dexterity)
+		penalty = max(0, penalty + (10-dexterity)/10)
 		user.changeNext_move(CLICK_CD_RANGE+(CLICK_CD_RANGE*penalty))
 	if(flag) //It's adjacent, is the user, or is on the user's person
 		if(target in user.contents) //can't shoot stuff inside us.
@@ -284,20 +286,16 @@
 				user.dropItemToGround(src, TRUE)
 				return
 	
-	//Critical failures and failures
+	//Critical failures
 	if(user.mind)
 		switch(user.mind.diceroll(GET_STAT_LEVEL(user, dex)*0.5, GET_SKILL_LEVEL(user, ranged)))
-			if(DICE_FAILURE)
-				to_chat(user, "<span class='userdanger'>FAILURE! [src] makes a click but fails to fire!")
-				shoot_with_empty_chamber(user, TRUE)
-				return
 			if(DICE_CRIT_FAILURE)
 				to_chat(user, "<span class='userdanger'>CRITICAL FAILURE! You shoot yourself with [src]!</span>")
 				process_fire(user, user, FALSE, params, pick(ALL_BODYPARTS))
 				return
 
 	var/ranged = GET_SKILL_LEVEL(user, ranged)
-	if((weapon_weight >= WEAPON_HEAVY) && !is_wielded && !(ranged >= 15))
+	if((weapon_weight >= WEAPON_HEAVY) && !is_wielded && !(ranged >= JOB_SKILLPOINTS_EXPERT))
 		to_chat(user, "<span class='userdanger'>You need to wield \the [src] to be able to fire it!</span>")
 		return
 
@@ -316,7 +314,7 @@
 	if(!is_wielded)
 		var/spread_penalty = 2.5
 		if(ranged)
-			spread_penalty = (50/ranged)
+			spread_penalty = (50/(ranged*2))
 		bonus_spread += (spread_penalty * weapon_weight)
 
 	if(ishuman(user) && user.a_intent == INTENT_HARM && weapon_weight <= WEAPON_LIGHT)
@@ -325,7 +323,7 @@
 			if(G == src || G.weapon_weight >= WEAPON_MEDIUM)
 				continue
 			else if(G.can_trigger_gun(user))
-				bonus_spread += (24 * G.weapon_weight * G.dualwield_spread_mult * (ranged ? ranged/(MAX_SKILL/2) : 1))
+				bonus_spread += (24 * G.weapon_weight * G.dualwield_spread_mult * (ranged ? ((MAX_SKILL/2)/ranged) : 1))
 				loop_counter++
 				var/stam_cost = G.getstamcost(user)
 				addtimer(CALLBACK(G, /obj/item/gun.proc/process_fire, target, user, TRUE, params, null, bonus_spread, stam_cost), loop_counter)
@@ -391,8 +389,8 @@
 		randomized_gun_spread = rand(0, burst_spread)
 	if(HAS_TRAIT(user, TRAIT_POOR_AIM)) //nice shootin' tex
 		bonus_spread += 25
+	
 	var/randomized_bonus_spread = rand(0, bonus_spread)
-
 	if(burst_size > 1)
 		do_burst_shot(user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, 1)
 		for(var/i in 2 to burst_size)
@@ -651,7 +649,18 @@
 /obj/item/gun/proc/zoom(mob/living/user, forced_zoom)
 	if(!(user?.client))
 		return
+	
+	//Maximum zoom is based on ranged skill
+	if(!user.mind)
+		to_chat(user, "<span class='warning'>My mindless form cannot aim with [src].</span>")
+		return FALSE
 
+	var/ranged_skill = GET_SKILL_LEVEL(user, ranged)
+	if(ranged_skill <= JOB_SKILLPOINTS_NOVICE)
+		to_chat(user, "<span class='warning'>I am far too incompetent to aim with [src].</span>")
+		return FALSE
+	
+	var/zoomies = round(zoom_amt * ranged_skill/(MAX_SKILL/2))
 	if(!isnull(forced_zoom))
 		if(zoomed == forced_zoom)
 			return
@@ -664,19 +673,21 @@
 		var/_y = 0
 		switch(user.dir)
 			if(NORTH)
-				_y = zoom_amt
+				_y = zoomies
 			if(EAST)
-				_x = zoom_amt
+				_x = zoomies
 			if(SOUTH)
-				_y = -zoom_amt
+				_y = -zoomies
 			if(WEST)
-				_x = -zoom_amt
-
-		user.client.change_view(zoom_out_amt)
+				_x = -zoomies
+		
+		if(zoom_out_amt)
+			user.client.change_view(zoom_out_amt)
 		user.client.pixel_x = world.icon_size*_x
 		user.client.pixel_y = world.icon_size*_y
 	else
-		user.client.change_view(CONFIG_GET(string/default_view))
+		if(zoom_out_amt)
+			user.client.change_view(CONFIG_GET(string/default_view))
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
 
@@ -694,7 +705,7 @@
 		var/penalty = (last_fire + GUN_AIMING_TIME + fire_delay) - world.time
 		var/ranged = GET_SKILL_LEVEL(user, ranged)
 		//High ranged skill means we ignore accuracy penalties for burst firing
-		if(ranged <= 15)
+		if(ranged <= JOB_SKILLPOINTS_EXPERT)
 			if(penalty > 0) //Yet we only penalize users firing it multiple times in a haste. fire_delay isn't necessarily cumbersomeness.
 				aiming_delay = penalty
 	if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE)) //To be removed in favor of something less tactless later.
@@ -703,6 +714,9 @@
 		base_inaccuracy *= 1 + (stamloss - STAMINA_NEAR_SOFTCRIT)/(STAMINA_NEAR_CRIT - STAMINA_NEAR_SOFTCRIT)*0.5
 	var/ranged = GET_SKILL_LEVEL(user, ranged)
 	if(ranged)
+		//damn we suck huh
+		if(ranged <= JOB_SKILLPOINTS_NOVICE)
+			base_inaccuracy += (MAX_SKILL - ranged)
 		base_inaccuracy *= (ranged/(MAX_SKILL/2))
 	var/mult = max((GUN_AIMING_TIME + aiming_delay + user.last_click_move - world.time)/GUN_AIMING_TIME, -0.5) //Yes, there is a bonus for taking time aiming.
 	if(mult < 0) //accurate weapons should provide a proper bonus with negative inaccuracy. the opposite is true too.

@@ -69,15 +69,7 @@
 	if(force || (message != last_pain_message) || (world.time >= next_pain_time))
 		last_pain_message = message
 		if(world.time >= next_pain_message_time)
-			switch(power)
-				if(PAIN_LEVEL_4 to INFINITY)
-					to_chat(src, "<span class='bigdanger'>[message]</span>")
-				if(PAIN_LEVEL_3 to PAIN_LEVEL_4)
-					to_chat(src, "<span class='mediumdanger'>[message]</span>")
-				if(PAIN_LEVEL_2 to PAIN_LEVEL_3)
-					to_chat(src, "<span class='danger'>[message]</span>")
-				if(PAIN_LEVEL_1 to PAIN_LEVEL_2)
-					to_chat(src, "<span class='warning'>[message]</span>")
+			to_chat(src, "<span class='userdanger'>[message]</span>")
 
 		var/force_emote
 		if(ishuman(src))
