@@ -291,7 +291,7 @@
 	if(teeth_mod)
 		teeth_mod.add_speech_mod(C)
 
-/obj/item/bodypart/head/drop_limb(special, ignore_children, dismembered, destroyed)
+/obj/item/bodypart/head/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE, wounding_type = WOUND_SLASH)
 	. = ..()
 	var/mob/living/og_owner = owner
 	if(.)
