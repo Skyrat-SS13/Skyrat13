@@ -109,5 +109,5 @@
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "died", /datum/mood_event/died)
 	for(var/mob/living/carbon/human/H in range(src))
-		if(H != src)
+		if(H != src && (src in view(H)))
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "saw_dead", /datum/mood_event/saw_dead)
