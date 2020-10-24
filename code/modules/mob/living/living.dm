@@ -680,10 +680,13 @@
 	..()
 
 /mob/living/proc/getTrail()
-	if(getBruteLoss() < 300)
-		return pick("tracks_1", "tracks_2")
-	else
-		return "tracks_3"
+	switch(getBruteLoss())
+		if(-INFINITY to 50)
+			return "tracks_1"
+		if(50 to 150)
+			return "tracks_2"
+		else
+			return "tracks_3"
 
 /mob/living/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)
 	if(buckled)
