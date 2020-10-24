@@ -45,7 +45,7 @@
 /obj/item/flashlight/examine(mob/user)
 	. = ..()
 	if(powercell)
-		. += "<span class='info'>[src]'s [powercell] is <b>[powercell.percent()]</b> charged."
+		. += "<span class='info'>[src]'s [powercell] is <b>[powercell.percent()]%</b> charged."
 	else
 		. += "<span class='warning'>[src] has no power cell installed.</span>"
 

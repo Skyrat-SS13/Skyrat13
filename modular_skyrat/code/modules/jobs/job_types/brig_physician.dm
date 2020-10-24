@@ -36,7 +36,3 @@
 	l_hand = /obj/item/storage/firstaid/regular
 	head = /obj/item/clothing/head/soft/sec/brig_phys
 	implants = list(/obj/item/implant/mindshield)
-
-/datum/job/brig_physician/radio_help_message(mob/M)
-	to_chat(M, "<span class='userdanger'>You are a medical doctor stationed in Security. You are not to arm yourself or use weapons as it would break your medical oath.</span>")
-	to_chat(M, "<span class='userdanger'>Your main priority is to heal the injured Security members and prisoners.</span>")
