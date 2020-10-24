@@ -82,7 +82,8 @@
 
 	if(heal(M, user))
 		log_combat(user, M, "healed", src.name)
-		if(repeating && amount > 0)
+		var/obj/item/bodypart/BP = M.get_bodypart(user.zone_selected)
+		if(repeating && (amount > 0) && (!BP || (BP.brute_dam && heal_brute) || (BP.burn_dam && heal_burn) || (BP.stamina_dam && heal_stamina)))
 			try_heal(M, user, TRUE)
 
 /obj/item/stack/medical/proc/heal(mob/living/M, mob/user, silent = FALSE, obj/item/bodypart/specific_part)
@@ -234,7 +235,7 @@
 		var/childcount = 0
 		for(var/bodypart in limb.heal_zones)
 			var/obj/item/bodypart/child = M.get_bodypart(bodypart)
-			if(!child)
+			if(!child || !length(child.wounds))
 				continue
 			try_heal(M, user, silent, child, TRUE)
 			childcount++
