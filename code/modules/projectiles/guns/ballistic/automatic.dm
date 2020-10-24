@@ -43,7 +43,7 @@
 			if(user.transferItemToLoc(AM, src))
 				magazine = AM
 				if(oldmag)
-					if(user.mind && (GET_SKILL_LEVEL(user, ranged) <= JOB_SKILLPOINTS_AVERAGE))
+					if(user.mind && (GET_SKILL_LEVEL(user, ranged) < JOB_SKILLPOINTS_AVERAGE))
 						to_chat(user, "<span class='warning'>I'm too incompetent to perform a tactical reload.</span>")
 						return FALSE
 					to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src], replacing the magazine.</span>")
