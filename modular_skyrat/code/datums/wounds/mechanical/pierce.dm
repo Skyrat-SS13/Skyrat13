@@ -188,7 +188,7 @@
 	status_effect_type = /datum/status_effect/wound/pierce/moderate
 	scarring_descriptions = list("a small, faded bruise", "a small twist of reformed skin", "a thumb-sized puncture scar")
 	pain_amount = 8
-	descriptive = " The exoskeleton is penetrated!"
+	descriptive = "The exoskeleton is penetrated!"
 
 /datum/wound/mechanical/pierce/severe
 	name = "Open Dent"
@@ -209,7 +209,7 @@
 	status_effect_type = /datum/status_effect/wound/pierce/severe
 	scarring_descriptions = list("an ink-splat shaped pocket of scar tissue", "a long-faded puncture wound", "a tumbling puncture hole with evidence of faded stitching")
 	pain_amount = 15
-	descriptive = " The exoskeleton is punctured!"
+	descriptive = "The exoskeleton is punctured!"
 
 /datum/wound/mechanical/pierce/critical
 	name = "Ruptured Hydraulics"
@@ -230,4 +230,4 @@
 	status_effect_type = /datum/status_effect/wound/pierce/critical
 	scarring_descriptions = list("a rippling shockwave of scar tissue", "a wide, scattered cloud of shrapnel marks", "a gruesome multi-pronged puncture scar")
 	pain_amount = 20
-	descriptive = " The hydraulics are ruptured!"
+	descriptive = "The hydraulics are ruptured!"

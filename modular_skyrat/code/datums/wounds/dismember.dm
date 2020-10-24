@@ -110,7 +110,7 @@
 	if(L.is_robotic_limb())
 		kaplosh_sound = 'modular_skyrat/sound/effects/crowbarhit.ogg'
 	playsound(L.owner, kaplosh_sound, 80, 0)
-	L.dismember(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE), silent = TRUE, destroy = should_kaplosh)
+	L.dismember(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE), silent = TRUE, destroy = should_kaplosh, wounding_type = wounding_type)
 	qdel(src)
 
 /datum/wound/slash/loss
@@ -136,7 +136,7 @@
 	initial_flow = 4.25
 	minimum_flow = 4
 	clot_rate = 0
-	descriptive = " The limb is dismembered!"
+	descriptive = "The limb is dismembered!"
 
 /datum/wound/slash/loss/get_examine_description(mob/user)
 	. = ..()
@@ -200,7 +200,7 @@
 	biology_required = list()
 	pain_amount = 40
 	occur_text = null
-	descriptive = " The limb is dismembered!"
+	descriptive = "The limb is dismembered!"
 
 /datum/wound/mechanical/slash/loss/get_examine_description(mob/user)
 	. = ..()

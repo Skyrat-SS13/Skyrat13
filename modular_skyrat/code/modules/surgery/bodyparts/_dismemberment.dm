@@ -9,7 +9,7 @@
 		return TRUE
 
 //Dismember a limb
-/obj/item/bodypart/proc/dismember(dam_type = BRUTE, silent = FALSE, destroy = FALSE)
+/obj/item/bodypart/proc/dismember(dam_type = BRUTE, silent = FALSE, destroy = FALSE, wounding_type = WOUND_SLASH)
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner
@@ -51,7 +51,7 @@
 	return TRUE
 
 //Disembowel a limb
-/obj/item/bodypart/proc/disembowel(dam_type = BRUTE, silent = FALSE, wound = FALSE)
+/obj/item/bodypart/proc/disembowel(dam_type = BRUTE, silent = FALSE, wound = FALSE, wounding_type = WOUND_SLASH)
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner
@@ -141,6 +141,16 @@
 			lost.fake_body_zone = body_zone
 			lost.desc = "Patient's [lowertext(name)] has been violently dismembered from [owner.p_their(FALSE)] [parse_zone(dismember_bodyzone)], leaving only a severely damaged stump in it's place."
 			lost.examine_desc = "has been violently severed from [owner.p_their(FALSE)] [parse_zone(dismember_bodyzone)]"
+			lost.descriptive = "The limb is violently dismembered!"
+			switch(wounding_type)
+				if(WOUND_BLUNT)
+					lost.descriptive = "The limb is shattered into gore!"
+				if(WOUND_BURN)
+					lost.descriptive = "The limb is incinerated into dust!"
+				if(WOUND_SLASH)
+					lost.descriptive = "The limb is violently dismembered!"
+				if(WOUND_PIERCE)
+					lost.descriptive = "The limb is punctured into gore!"
 			lost.apply_wound(BP, TRUE)
 	owner = null
 	if(!ignore_children)

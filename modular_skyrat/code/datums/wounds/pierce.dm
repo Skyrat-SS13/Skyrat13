@@ -194,7 +194,7 @@
 	scarring_descriptions = list("a small, faded bruise", "a small twist of reformed skin", "a thumb-sized puncture scar")
 	pain_amount = 8
 	infection_chance = 45
-	descriptive = " The skin is penetrated!"
+	descriptive = "The skin is penetrated!"
 
 /datum/wound/pierce/severe
 	name = "Open Puncture"
@@ -215,7 +215,7 @@
 	scarring_descriptions = list("an ink-splat shaped pocket of scar tissue", "a long-faded puncture wound", "a tumbling puncture hole with evidence of faded stitching")
 	pain_amount = 15
 	infection_chance = 60
-	descriptive = " The flesh is penetrated!"
+	descriptive = "The flesh is penetrated!"
 
 /datum/wound/pierce/critical
 	name = "Ruptured Cavity"
@@ -236,4 +236,4 @@
 	scarring_descriptions = list("a rippling shockwave of scar tissue", "a wide, scattered cloud of shrapnel marks", "a gruesome multi-pronged puncture scar")
 	pain_amount = 20
 	infection_chance = 80
-	descriptive = " The flesh is ruptured!"
+	descriptive = "The flesh is ruptured!"

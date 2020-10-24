@@ -221,7 +221,7 @@
 	can_self_treat = TRUE
 	pain_amount = 10
 	flat_damage_roll_increase = 5
-	descriptive = " A joint is snapped!"
+	descriptive = "A joint is snapped!"
 
 /datum/wound/mechanical/blunt/moderate/self_treat(mob/living/carbon/user, first_time = FALSE)
 	. = ..()
@@ -379,7 +379,7 @@
 	shock_chance = 30
 	pain_amount = 20
 	flat_damage_roll_increase = 10
-	descriptive = " A joint is fractured!"
+	descriptive = "A joint is fractured!"
 
 /*
 	Critical (Broken Actuators)
@@ -408,7 +408,7 @@
 	pain_amount = 30
 	flat_damage_roll_increase = 15
 	wound_flags = (MANGLES_BONE)
-	descriptive = " A joint is shattered!"
+	descriptive = "A joint is shattered!"
 
 /// if someone is using a reagent container
 /datum/wound/mechanical/blunt/proc/wrench(obj/item/I, mob/user)

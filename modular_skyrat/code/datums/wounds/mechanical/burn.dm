@@ -336,7 +336,7 @@
 	malf_possible = list("disable" = 1,"intent" = 7, "damage" = 2)
 	scarring_descriptions = list("small amoeba-shaped skinmarks", "a faded streak of depressed skin")
 	pain_amount = 15 //Burns are awful
-	descriptive = " The wires are molten!"
+	descriptive = "The wires are molten!"
 
 /datum/wound/mechanical/burn/severe
 	name = "Burnt Transistors"
@@ -360,7 +360,7 @@
 	malf_possible = list("disable" = 3,"intent" = 4, "damage" = 3)
 	scarring_descriptions = list("a large, jagged patch of faded skin", "random spots of shiny, smooth skin", "spots of taut, leathery skin")
 	pain_amount = 25 //Burns are awful
-	descriptive = " The metal is warped!"
+	descriptive = "The metal is warped!"
 
 /datum/wound/mechanical/burn/critical
 	name = "Catastrophic Melting"
@@ -384,4 +384,4 @@
 	malf_possible = list("disable" = 5, "intent" = 2, "damage" = 3)
 	scarring_descriptions = list("massive, disfiguring keloid scars", "several long streaks of badly discolored and malformed skin", "unmistakeable splotches of dead tissue from serious burns")
 	pain_amount = 35 //Burns are awful
-	descriptive = " The metal is molten!"
+	descriptive = "The metal is molten!"
