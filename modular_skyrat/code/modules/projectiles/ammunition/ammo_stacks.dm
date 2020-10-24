@@ -40,16 +40,18 @@
 	qdel(src)
 
 /obj/item/ammo_box/magazine/ammo_stack/get_round(keep)
-	..()
+	var/i = ..()
+	update_icon()
 	if(ammo_count() <= 0)
 		qdel(src)
-	update_icon()
-
+	return i
+	
 /obj/item/ammo_box/magazine/ammo_stack/give_round(obj/item/ammo_casing/R, replace_spent)
-	..()
+	var/i = ..()
+	update_icon()
 	if(ammo_count() <= 0)
 		qdel(src)
-	update_icon()
+	return i
 
 //fuck idk what to do with this
 /obj/item/ammo_box/magazine/ammo_stack/shotgun
