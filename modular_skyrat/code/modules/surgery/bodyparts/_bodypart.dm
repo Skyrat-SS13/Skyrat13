@@ -1918,6 +1918,7 @@
 		if(is_dead())
 			limb.icon = base_bp_icon
 			species_id = "skeleton"
+			limb.icon_state = "[species_id]_[body_zone]"
 		else
 			if(should_draw_gender)
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
