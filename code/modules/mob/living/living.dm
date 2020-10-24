@@ -410,6 +410,9 @@
 		return FALSE
 	if(!..())
 		return FALSE
+	if(istype(get_active_held_item(), /obj/item/gun))
+		DoGunpoint(A, get_active_held_item())
+		return TRUE
 	visible_message("<b>[src]</b> points at [A].", "<span class='notice'>You point at [A].</span>")
 	return TRUE
 

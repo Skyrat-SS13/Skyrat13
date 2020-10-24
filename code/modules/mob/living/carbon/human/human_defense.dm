@@ -70,6 +70,9 @@
 			var/victim_dex = 10
 			if(mind)
 				victim_dex = GET_STAT_LEVEL(src, dex)
+			//Victims being held at gunpoint are less likely to have the shots miss them
+			if(length(gunpointed))
+				victim_dex -= GET_SKILL_LEVEL(fireboy, ranged)
 			switch(fireboy.mind.diceroll(GET_STAT_LEVEL(fireboy, dex)*0.5, GET_SKILL_LEVEL(fireboy, ranged), mod = -victim_dex/2))
 				//Missed shot
 				if(DICE_CRIT_FAILURE)
