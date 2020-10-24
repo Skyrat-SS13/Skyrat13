@@ -4,7 +4,6 @@
 	var/cringecount = 0
 
 /mob/living/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
-	. = ..()
 	if(config.ic_filter_regex && findtext(message, config.ic_filter_regex))
 		// let's try to be a bit more informative!
 		var/warning_message = "A splitting spike of headache prevents you from saying whatever vile words you planned to say! You think better of saying such nonsense again. The following terms repulse you: \""
@@ -33,10 +32,11 @@
 						"<span class='userdanger'>I do not deserve the gift of life.</span>")
 			death()
 		//Nullify the message - thou shall not speak thy cringe
-		message = null
+		message = ""
 		return FALSE
 	else
 		cringecount = max(0, cringecount - 1)
+		return ..()
 
 //Stuff
 /mob/living/send_speech(message, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language=null, message_mode)
