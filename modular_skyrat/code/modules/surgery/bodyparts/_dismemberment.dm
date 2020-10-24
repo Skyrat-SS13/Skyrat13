@@ -415,7 +415,7 @@
 			owner.dropItemToGround(owner.shoes, TRUE)
 	..()
 
-/obj/item/bodypart/head/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE)
+/obj/item/bodypart/head/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE, wounding_type = WOUND_SLASH)
 	if(!special)
 		//Drop all worn head items
 		for(var/X in list(owner.glasses, owner.ears, owner.wear_mask, owner.head))
