@@ -5,4 +5,4 @@
 	max_ammo = 7
 
 /obj/item/ammo_box/magazine/m10mm/rifle/update_icon()
-	icon_state = "[initial(icon_state)]-[get_ammo() ? 7 : 0]"
+	icon_state = "[initial(icon_state)]-[ammo_count() ? 7 : 0]"
