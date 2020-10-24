@@ -1,5 +1,4 @@
 /mob/living/ShiftMiddleClickOn(atom/A)
-	var/obj/item/gun/G = get_active_held_item()
 	src.pointed(A)
 	return
 
