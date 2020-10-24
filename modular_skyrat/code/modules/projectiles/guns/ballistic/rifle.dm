@@ -4,6 +4,7 @@
 	icon_state = "surplus"
 	fire_delay = 5
 	w_class = WEIGHT_CLASS_BULKY
+	safety_sound = 'modular_skyrat/sound/weapons/safety2.ogg'
 
 /obj/item/gun/ballistic/automatic/surplus/update_icon()
 	..()

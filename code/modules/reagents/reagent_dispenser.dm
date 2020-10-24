@@ -151,8 +151,8 @@
 			W.update_icon()
 		else
 			//You need to be a dentbrain to do fuel tank explodie funny
-			if(user.mind && (GET_STAT_LEVEL(user, int) > 5))
-				to_chat(user, "<span class='warning'>That would be stupid. Why would i do that?</span>")
+			if(user.mind && (user.mind.diceroll(STAT_DATUM(int)) > DICE_CRIT_FAILURE))
+				to_chat(user, "<span class='warning'>That would be stupid. Why would i ever do that?</span>")
 				return FALSE
 			
 			var/turf/T = get_turf(src)
