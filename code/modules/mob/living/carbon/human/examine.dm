@@ -571,15 +571,15 @@
 	var/str_diff = user_str - our_str
 	switch(str_diff)
 		if(-INFINITY to -3)
-			msg += "<span class='notice'>[t_He] [t_is] much stronger than me.</span>"
+			msg += "[t_He] [t_is] much stronger than me."
 		if(-2 to -1)
-			msg += "<span class='notice'>[t_He] [t_is] stronger than me.</span>"
+			msg += "[t_He] [t_is] stronger than me."
 		if(0)
-			msg += "<span class='notice'>[t_He] [t_is] about as strong as me.</span>"
+			msg += "[t_He] [t_is] about as strong as me."
 		if(1 to 2)
-			msg += "<span class='notice'>[t_He] [t_is] weaker than me.</span>"
+			msg += "[t_He] [t_is] weaker than me."
 		if(3 to INFINITY)
-			msg += "<span class='notice'>[t_He] [t_is] much weaker than me.</span>"
+			msg += "[t_He] [t_is] much weaker than me."
 	
 	if(gunpointing)
 		msg += "<b>[t_He] [t_is] holding [gunpointing.target.name] at gunpoint with [gunpointing.aimed_gun.name]!</b>\n"
