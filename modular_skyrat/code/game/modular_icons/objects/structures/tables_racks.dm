@@ -96,18 +96,9 @@
 	if(adjacencies & N_NORTH)
 		if(adjacencies & N_WEST)
 			AM = find_type_in_direction(A, NORTHWEST, /turf/closed/wall)
-			if(AM == NULLTURF_BORDER)
-				if((A.smooth & SMOOTH_BORDER))
-					adjacencies |= N_NORTHWEST
-			else if( (AM && !istype(AM)) || (istype(AM) && AM.anchored) )
-				adjacencies |= N_NORTHWEST
+			adjacencies |= N_NORTHWEST
 		if(adjacencies & N_EAST)
-			AM = find_type_in_direction(A, NORTHEAST)
-			if(AM == NULLTURF_BORDER)
-				if((A.smooth & SMOOTH_BORDER))
-					adjacencies |= N_NORTHEAST
-			else if( (AM && !istype(AM)) || (istype(AM) && AM.anchored) )
-				adjacencies |= N_NORTHEAST
+			adjacencies |= N_NORTHEAST
 
 	if(adjacencies & N_SOUTH)
 		if(adjacencies & N_WEST)
