@@ -98,7 +98,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			var/mob/living/carbon/human/body_human = body
 			human_appearance = copy_appearance(body_human.appearance)
 			appearance = human_appearance
-			add_filter("spooky", 2, EYE_BLUR(3))
+			add_filter("spooky", 1, EYE_BLUR(2))
 		
 	update_icon()
 
