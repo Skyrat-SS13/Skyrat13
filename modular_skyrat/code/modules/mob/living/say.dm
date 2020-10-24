@@ -17,7 +17,7 @@
 				warning_message = "[warning_message][word] "
 
 		warning_message = trim(warning_message)
-		to_chat(src, "<span class='warning'>[warning_message]\".</span>")
+		to_chat(src, "<span class='warning'>[capitalize(warning_message)]\".</span>")
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "cringe", /datum/mood_event/cringe)
 		log_admin("[src] just tried to say cringe: [cringe]", src)
 		//Saying cringe 2 times or more in a span of 2 seconds will give you massive brain damage.
