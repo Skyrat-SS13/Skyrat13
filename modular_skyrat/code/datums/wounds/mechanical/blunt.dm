@@ -316,8 +316,8 @@
 		dice = user.mind.diceroll(GET_STAT_LEVEL(user, str)*0.75, GET_SKILL_LEVEL(user, melee)*0.5)
 
 	if(dice >= DICE_SUCCESS)
-		user.visible_message("<span class='danger'>[user] torques [victim]'s disconnected [limb.name] actuators with a loud pop!</span>", "<span class='danger'>You torque [victim]'s disconnected [limb.name] actuators with a loud pop!</span>", ignored_mobs=victim)
-		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
+		user.visible_message("<span class='danger'>[user] torques [victim]'s disconnected [limb.name] actuators with a loud pop![victim.wound_message]</span>", "<span class='danger'>You torque [victim]'s disconnected [limb.name] actuators with a loud pop![victim.wound_message]</span>", ignored_mobs=victim)
+		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack![victim.wound_message]</span>")
 		victim.agony_scream()
 		if(dice >= DICE_CRIT_SUCCESS)
 			replace_wound(/datum/wound/blunt/critical)
@@ -325,9 +325,11 @@
 			replace_wound(/datum/wound/blunt/severe)
 		limb.receive_damage(brute=GET_STAT_LEVEL(user, str)*0.75, wound_bonus = CANT_WOUND)
 	else
-		user.visible_message("<span class='danger'>[user] grinds [victim]'s disconnected [limb.name] actuators around!</span>", "<span class='danger'>You grind [victim]'s disconnected [limb.name] actuators around painfully!</span>", ignored_mobs=victim)
-		to_chat(victim, "<span class='userdanger'>[user] grinds your dislocated [limb.name] actuators around!</span>")
+		user.visible_message("<span class='danger'>[user] grinds [victim]'s disconnected [limb.name] actuators around![victim.wound_message]</span>", "<span class='danger'>You grind [victim]'s disconnected [limb.name] actuators around painfully![victim.wound_message]</span>", ignored_mobs=victim)
+		to_chat(victim, "<span class='userdanger'>[user] grinds your dislocated [limb.name] actuators around![victim.wound_message]</span>")
 		limb.receive_damage(brute=GET_STAT_LEVEL(user, str)*0.5, wound_bonus = CANT_WOUND)
+	//Clean the wound string either way
+	victim.wound_message = ""
 	user.changeNext_move(CLICK_CD_GRABBING)
 	return TRUE
 

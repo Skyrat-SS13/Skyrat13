@@ -365,18 +365,20 @@
 		dice = user.mind.diceroll(GET_STAT_LEVEL(user, str)*0.75, GET_SKILL_LEVEL(user, melee)*0.5)
 
 	if(dice >= DICE_SUCCESS)
-		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] with a sickening crack!</span>", "<span class='danger'>You snap [victim]'s dislocated [limb.name] with a sickening crack!</span>", ignored_mobs=victim)
-		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
 		victim.agony_scream()
 		if(dice >= DICE_CRIT_SUCCESS)
 			replace_wound(/datum/wound/blunt/critical)
 		else
 			replace_wound(/datum/wound/blunt/severe)
 		limb.receive_damage(brute=GET_STAT_LEVEL(user, str)*0.75, wound_bonus = CANT_WOUND)
+		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] with a sickening crack![victim.wound_message]</span>", "<span class='danger'>You snap [victim]'s dislocated [limb.name] with a sickening crack![victim.wound_message]</span>", ignored_mobs=victim)
+		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack![victim.wound_message]</span>")
 	else
-		user.visible_message("<span class='danger'>[user] wrenches [victim]'s dislocated [limb.name] around painfully!</span>", "<span class='danger'>You wrench [victim]'s dislocated [limb.name] around painfully!</span>", ignored_mobs=victim)
-		to_chat(victim, "<span class='userdanger'>[user] wrenches your dislocated [limb.name] around painfully!</span>")
+		user.visible_message("<span class='danger'>[user] wrenches [victim]'s dislocated [limb.name] around painfully![victim.wound_message]</span>", "<span class='danger'>You wrench [victim]'s dislocated [limb.name] around painfully![victim.wound_message]</span>", ignored_mobs=victim)
+		to_chat(victim, "<span class='userdanger'>[user] wrenches your dislocated [limb.name] around painfully![victim.wound_message]</span>")
 		limb.receive_damage(brute=GET_STAT_LEVEL(user, str)*0.5, wound_bonus = CANT_WOUND)
+	//Clean the wound string either way
+	victim.wound_message = ""
 	user.changeNext_move(CLICK_CD_GRABBING)
 	return TRUE
 
