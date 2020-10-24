@@ -29,7 +29,7 @@
 	if(!silent)
 		playsound(get_turf(C), 'modular_skyrat/sound/effects/dismember.ogg', 80, TRUE)
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
-	drop_limb(dismembered = TRUE, destroyed = destroy)
+	drop_limb(dismembered = TRUE, destroyed = destroy, wounding_type = wounding_type)
 	C.update_equipment_speed_mods() // Update in case speed affecting item unequipped by dismemberment
 
 	C.bleed(12)
@@ -104,7 +104,7 @@
 
 //Limb removal. The "special" argument is used for swapping a limb with a new one without the effects of losing a limb kicking in.
 //Destroyed just qdels the limb.
-/obj/item/bodypart/proc/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE)
+/obj/item/bodypart/proc/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE, wounding_type = WOUND_SLASH)
 	if(!owner)
 		return
 	var/atom/Tsec = owner.drop_location()
