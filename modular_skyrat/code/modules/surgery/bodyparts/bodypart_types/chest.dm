@@ -20,8 +20,3 @@
 	encased = "ribs"
 	zone_prob = 80
 	extra_zone_prob = 10
-
-/obj/item/bodypart/chest/can_disembowel(obj/item/I)
-	if(!((owner.stat == DEAD) || owner.InFullCritical()))
-		return FALSE
-	return ..()
