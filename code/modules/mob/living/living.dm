@@ -653,7 +653,7 @@
 		return
 	var/bleed_amt = get_bleed_amount(brute_ratio)
 	blood_volume = max(blood_volume - bleed_amt, 0) 					//that depends on our brute damage.
-	var/newdir = get_dir(target_turf, start)
+	var/newdir = get_dir(start, target_turf)
 	if(newdir != direction)
 		newdir = newdir | direction
 		if(newdir == 3) //N + S
