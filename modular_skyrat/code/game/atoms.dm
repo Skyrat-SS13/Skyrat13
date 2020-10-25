@@ -7,6 +7,10 @@
 	if(abandoned_code)
 		QDEL_IN(src, 1 SECONDS)
 
+// Override this to impede examine messages etc
+/atom/proc/on_examined_check()
+	return TRUE
+
 // Germ / infection stuff
 /atom
 	var/germ_level = GERM_LEVEL_AMBIENT

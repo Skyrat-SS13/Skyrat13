@@ -24,6 +24,9 @@
 	/// Boolean sed for strangling
 	var/strangling = FALSE
 
+/obj/item/grab/on_examine_check()
+	return FALSE //nope
+
 /obj/item/grab/Destroy()
 	if(grasping_mob)
 		if(grasped_mob)

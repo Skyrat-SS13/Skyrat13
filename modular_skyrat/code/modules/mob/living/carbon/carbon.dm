@@ -201,7 +201,7 @@
 	to_chat(src, "<span class='notice'>I [zoomed ? "look" : "stop looking"] at the distance.</span>")
 
 /mob/living/carbon/on_examine_atom(atom/examined)
-	if(!istype(examined) || !client)
+	if(!istype(examined) || !client || !examined.on_examined_check())
 		return
 
 	if(get_dist(src, examined) > EYE_CONTACT_RANGE)
