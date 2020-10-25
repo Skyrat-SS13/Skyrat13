@@ -3,6 +3,7 @@
 /datum/game_mode/dreamer
 	name = "dreamer"
 	config_tag = "dreamer"
+	antag_flag = ROLE_DREAMER
 	enemy_minimum_age = 0
 	announce_text = "A psychopathic killer is among the crew. He speaks of another world, of bizarre visions - What could it mean?"
 	false_report_weight = 0 //You can't really report a dreamer
@@ -11,12 +12,26 @@
 	required_enemies = 1 //One dreamer only
 	recommended_enemies = 1 //One dreamer only
 
+/datum/game_mode/dreamer/get_players_for_role(role)
+	//We give 0 shits about preferences lmao
+	//eat pen
+	var/list/players = list()
+	var/list/candidates = list()
+
+	for(var/mob/dead/new_player/player in GLOB.player_list)
+		if(player.client && player.ready == PLAYER_READY_TO_PLAY && player.check_preferences())
+			players += player
+
+	players = shuffle(players)
+
+	for(var/mob/dead/new_player/player in players)
+		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
+			candidates += player.mind
+
+	return candidates
+
 /datum/game_mode/dreamer/post_setup(report)
-	. = ..()
-	var/list/possible_dreamers = list()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(H.mind && H.client)
-			possible_dreamers += H.mind
-	if(length(possible_dreamers))
-		var/datum/mind/dreamer = pick(possible_dreamers)
-		dreamer.add_antag_datum(/datum/antagonist/dreamer)
+	..()
+	for(var/datum/mind/dreamer in antag_candidates)
+		var/datum/antagonist/dreamer/new_antag = new()
+		addtimer(CALLBACK(dreamer, /datum/mind.proc/add_antag_datum, new_antag), rand(100,200))

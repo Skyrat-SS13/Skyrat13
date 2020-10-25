@@ -559,6 +559,17 @@
 				msg += "<span class='notice'><b><i>[t_He] [t_has] significantly disfiguring scarring, you can look again to take a closer look...</i></b></span>\n"
 			if(WOUND_SEVERITY_LOSS to INFINITY)
 				msg += "<span class='notice'><b><i>[t_He] [t_is] just absolutely fucked up, you can look again to take a closer look...</i></b></span>\n"
+	
+	if(gunpointing)
+		msg += "<b>[t_He] [t_is] holding [gunpointing.target.name] at gunpoint with [gunpointing.aimed_gun.name]!</b>\n"
+	if(gunpointed.len)
+		for(var/datum/gunpoint/GP in gunpointed)
+			msg += "<b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b>\n"
+	//Skyrat changes end
+
+	if(length(msg))
+		. += "<span class='warning'>[msg.Join("")]</span>"
+
 	//Strength message
 	var/our_str = 10
 	if(mind)
@@ -571,26 +582,16 @@
 	var/str_diff = user_str - our_str
 	switch(str_diff)
 		if(-INFINITY to -3)
-			msg += "[t_He] [t_is] much stronger than me."
+			. += "[t_He] [t_is] much stronger than me."
 		if(-2 to -1)
-			msg += "[t_He] [t_is] stronger than me."
+			. += "[t_He] [t_is] stronger than me."
 		if(0)
-			msg += "[t_He] [t_is] about as strong as me."
+			. += "[t_He] [t_is] about as strong as me."
 		if(1 to 2)
-			msg += "[t_He] [t_is] weaker than me."
+			. += "[t_He] [t_is] weaker than me."
 		if(3 to INFINITY)
-			msg += "[t_He] [t_is] much weaker than me."
+			. += "[t_He] [t_is] much weaker than me."
 	
-	if(gunpointing)
-		msg += "<b>[t_He] [t_is] holding [gunpointing.target.name] at gunpoint with [gunpointing.aimed_gun.name]!</b>\n"
-	if(gunpointed.len)
-		for(var/datum/gunpoint/GP in gunpointed)
-			msg += "<b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b>\n"
-	//Skyrat changes end
-
-	if(length(msg))
-		. += "<span class='warning'>[msg.Join("")]</span>"
-
 	var/trait_exam = common_trait_examine()
 	if(!screwy_self)
 		if(!isnull(trait_exam))
