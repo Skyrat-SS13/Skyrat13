@@ -675,7 +675,7 @@
 	if(prob(4) && lying && bleed_amt && iscarbon(src))
 		var/mob/living/C = src
 		var/extra_message = (C.has_gauze() ? " and tearing into their gauze" : "")
-		C.visible_message("<span class='danger'>\The [C]'s wounds scrape against \the [target_turf], worsening their situation[extra_message]!</span>", "<span class='bolddanger'><b>Your wounds scrape against \the [target_turf], worsening their situation[extra_message]!<b></span>")
+		C.visible_message("<span class='danger'>\The [C]'s wounds scrape against \the [start], worsening their situation[extra_message]!</span>", "<span class='userdanger'><b>Your wounds scrape against \the [start], worsening their situation[extra_message]!<b></span>")
 
 /mob/living/carbon/human/makeTrail(turf/target_turf, turf/start, direction)
 	if((NOBLOOD in dna.species.species_traits) || !is_bleeding()) //skyrat edit
