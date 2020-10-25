@@ -36,7 +36,7 @@
 	if(!config.ic_filter_regex && length(GLOB.in_character_filter))
 		config.ic_filter_regex = regex("\\b([jointext(GLOB.in_character_filter, "|")])\\b", "i")
 	
-	if(!punctuation_filter)
+	if(!config.punctuation_filter)
 		var/list/punctuation = list(".", ",", "!", ";", "?")
 		config.punctuation_filter = regex("\\b([jointext(punctuation, "|")])\\b", "i")
 

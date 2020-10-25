@@ -37,7 +37,7 @@
 	name = "double-barrel shotgun internal magazine"
 	max_ammo = 2
 
-/obj/item/ammo_box/magazine/internal/shot/dual
+/obj/item/ammo_box/magazine/internal/shot/dual/triple
 	name = "triple-barrel shotgun internal magazine"
 	max_ammo = 3
 

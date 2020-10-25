@@ -170,7 +170,7 @@
 	//Certain guns change our zoomies abilities
 	var/obj/item/gun/G = get_active_held_item()
 	if(istype(G))
-		zoomies = mind(dist, round(G.zoom_amt * ranged_skill/(MAX_SKILL/2)))
+		zoomies = min(dist, round(G.zoom_amt * ranged_skill/(MAX_SKILL/2)))
 		zoomout = round(G.zoom_out_amt * ranged_skill/(MAX_SKILL/2))
 	
 	//Big chungus
