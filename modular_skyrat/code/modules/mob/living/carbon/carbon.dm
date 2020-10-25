@@ -199,3 +199,15 @@
 		client.pixel_x = 0
 		client.pixel_y = 0
 	to_chat(src, "<span class='notice'>I [zoomed ? "look" : "stop looking"] at the distance.</span>")
+
+/mob/living/carbon/on_examine_atom(atom/examined)
+	if(!istype(examined) || !client)
+		return
+
+	if(get_dist(src, examined) > EYE_CONTACT_RANGE)
+		return
+	
+	if(!((wear_mask && wear_mask.flags_inv & (wear_mask.flags_inv & HIDEFACE || wear_mask.flags_inv & HIDEEYES)) || (head && (head.flags_inv & HIDEFACE || head.flags_inv & HIDEEYES)) || (glasses && (glasses.flags_inv & HIDEFACE || glasses.flags_inv & HIDEEYES))))
+		return
+	
+	visible_message(message = "<span class='notice'>\The [src] examines [examined].</span>", vision_distance = 2)
