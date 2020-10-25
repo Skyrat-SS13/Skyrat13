@@ -8,7 +8,7 @@
 	slot = ORGAN_SLOT_HEART
 
 	healing_factor = STANDARD_ORGAN_HEALING
-	decay_factor = 2 * STANDARD_ORGAN_DECAY
+	decay_factor = STANDARD_ORGAN_DECAY
 
 	low_threshold_passed = "<span class='info'>Prickles of pain appear then die out from within your chest...</span>"
 	high_threshold_passed = "<span class='warning'>Something inside your chest hurts, and the pain isn't subsiding. You notice yourself breathing far faster than before.</span>"
@@ -95,9 +95,9 @@
 	if(pulse)
 		handle_heartbeat()
 		if(pulse == PULSE_2FAST && prob(1))
-			applyOrganDamage(1)
+			applyOrganDamage(0.5)
 		if(pulse == PULSE_THREADY && prob(5))
-			applyOrganDamage(1)
+			applyOrganDamage(0.5)
 
 /obj/item/organ/heart/proc/can_stop() //Can the heart stop beating? Used to prevent bloodsucker hearts from failing under normal circumstances
 	return TRUE
@@ -111,7 +111,7 @@
 	if(pulse_mod > 2 && !is_stable)
 		var/damage_chance = (pulse_mod - 2) ** 2
 		if(prob(damage_chance))
-			applyOrganDamage(1)
+			applyOrganDamage(0.5)
 	
 	// Now pulse mod is impacted by shock stage and other things too
 	if(owner.shock_stage > SHOCK_STAGE_2)

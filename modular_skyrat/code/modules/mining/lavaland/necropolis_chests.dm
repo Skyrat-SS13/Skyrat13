@@ -68,13 +68,13 @@
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
-	new /obj/item/gun/magic/staff/spellblade(src)
+	new /obj/item/crucible(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
 	new /obj/item/crusher_trophy/demon_claws(src)
-	new /obj/item/gun/magic/staff/spellblade(src)
+	new /obj/item/crucible(src)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard
 	name = "enraged bubblegum chest"
