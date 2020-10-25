@@ -124,9 +124,9 @@
 		var/obj/item/bodypart/r_arm = user.get_bodypart(BODY_ZONE_R_ARM)
 		user.visible_message("<span class='warning'>\The [src] explodes in [user]'s hand!</span>", "<span class='warning'>\The [src] explodes in your hand!</span>")
 		explosion(user, 0, 0, 0, 1)
-		if(prob(50) && (l_arm != null ))
+		if(prob(50) && (l_arm != null))
 			l_arm.dismember()
-		else
+		else if(r_arm)
 			r_arm.dismember()
 		qdel(src)
 
@@ -213,3 +213,16 @@
 	desc = "The NT Sheriff - A high quality revolver chambered in .357 rounds."
 	icon_state = "bladerunner"
 	fire_sound = 'modular_skyrat/sound/weapons/revolver2.ogg'
+
+/obj/item/gun/ballistic/revolver/doublebarrel
+	name = "\improper triple-barreled revolving shotgun"
+	desc = "Not the classic but, fuck man that's pretty cool."
+	icon = 'modular_skyrat/icons/obj/bobstation/guns/revolver.dmi'
+	icon_state = "dshotgun"
+	fire_sound = 'modular_skyrat/sound/weapons/shotgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual/triple
+	unique_reskin = null
+
+/obj/item/gun/ballistic/revolver/doublebarrel/update_icon()
+	..()
+	icon_state = "[initial(icon_state)][sawn_off ? "_sawn" : ""][chamber_open ? "-open-[min(6, get_ammo())]" : ""]"

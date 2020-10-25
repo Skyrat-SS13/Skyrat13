@@ -47,8 +47,8 @@
 	contains = list(/obj/item/gun/ballistic/shotgun/lethal)
 
 /datum/supply_pack/goody/double_barreled_shotgun
-	name = "12g Double-Bareeled Shotgun"
-	desc = "Contains one double barreled shotgun. Never know when you need it."
+	name = "12g Revolving Shotgun"
+	desc = "Contains one revolving shotgun. Never know when you need it."
 	cost = 1500
 	contains = list(/obj/item/gun/ballistic/revolver/doublebarrel)
 
