@@ -14,6 +14,7 @@
 
 /datum/controller/configuration
 	var/static/regex/ic_filter_regex //For the cringe filter.
+	var/static/regex/punctuation_filter //For the punctuation forcing
 
 /datum/config_entry/cringe
 	config_entry_value = list()
@@ -34,5 +35,9 @@
 
 	if(!config.ic_filter_regex && length(GLOB.in_character_filter))
 		config.ic_filter_regex = regex("\\b([jointext(GLOB.in_character_filter, "|")])\\b", "i")
+	
+	if(!punctuation_filter)
+		var/list/punctuation = list(".", ",", "!", ";", "?")
+		config.punctuation_filter = regex("\\b([jointext(punctuation, "|")])\\b", "i")
 
 	return GLOB.in_character_filter

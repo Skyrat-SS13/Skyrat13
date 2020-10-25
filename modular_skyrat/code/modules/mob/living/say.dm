@@ -5,9 +5,8 @@
 
 /mob/living/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
 	//force punctuation bich
-	var/list/punctuation = list(".", ",", "!", ";", "?")
-	if(!findtext(message, regex("\\b([jointext(punctuation, "|")])\\b", "i"), length(message)))
-		message += punctuation[1]
+	if(config.punctuation_filter && !findtext(message, config.punctuation_filter, length(message)))
+		message += "."
 	if(config.ic_filter_regex && findtext(message, config.ic_filter_regex))
 		// let's try to be a bit more informative!
 		var/warning_message = "A splitting spike of headache prevents you from saying whatever vile words you planned to say! You think better of saying such nonsense again. The following terms repulse you: \""
