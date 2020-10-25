@@ -121,8 +121,8 @@
 			else
 				shake_camera(src, ((P.damage - 10) * 0.01 + 1) * 5, ((P.damage - 10) * 0.01) * 5)
 				drop_all_held_items()
-				Paralyze(P.damage*3)
-				DefaultCombatKnockdown(P.damage*5)
+				Paralyze(P.damage)
+				DefaultCombatKnockdown(P.damage*2)
 	var/missing = 100 - final_percent
 	var/armor_ratio = armor * 0.01
 	if(missing > 0)
