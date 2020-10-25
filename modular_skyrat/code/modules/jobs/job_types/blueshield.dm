@@ -4,8 +4,8 @@
 	department_head = list("Chief Enforcer")
 	department_flag = ENGSEC
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "the Chief Enforcer"
 	selection_color = "#ddddff"
 	minimal_player_age = 7
