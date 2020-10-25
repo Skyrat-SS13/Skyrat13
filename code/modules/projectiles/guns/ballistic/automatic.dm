@@ -420,7 +420,7 @@
 	can_suppress = TRUE
 	w_class = WEIGHT_CLASS_NORMAL
 	inaccuracy_modifier = 0.5
-	zoomable = TRUE
+	zoomable = FALSE
 	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
 	zoom_out_amt = 13
 	slot_flags = ITEM_SLOT_BACK

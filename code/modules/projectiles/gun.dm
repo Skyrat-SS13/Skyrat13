@@ -84,7 +84,7 @@
 	var/knife_y_offset = 0
 
 	//Zooming
-	var/zoomable = TRUE //whether the gun generates a Zoom action on creation
+	var/zoomable = FALSE //whether the gun generates a Zoom action on creation
 	var/zoomed = FALSE //Zoom toggle
 	var/zoom_amt = 3 //Distance in TURFs to move the user's screen forward (the "zoom" effect)
 	var/zoom_out_amt = 0

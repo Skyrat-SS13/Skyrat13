@@ -145,3 +145,56 @@
 		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is approximately <b>[src.get_pulse(GETPULSE_BASIC)] BPM</b>.</span>")
 	else
 		to_chat(usr, "<span class='warning'>You failed to check [self ? "your" : "[src]'s"] pulse.</span>")
+
+/mob/living/carbon
+	var/default_zoomies = 4
+	var/default_zoomout = 0
+	var/zoomed = FALSE
+
+/mob/living/carbon/CtrlShiftClickOn(atom/A)
+	perform_zoom(A)
+	return
+
+/mob/living/carbon/proc/perform_zoom(atom/A)
+	//Maximum zoom is based on ranged skill
+	//also we need a client fuck
+	if(!mind || !client)
+		to_chat(src, "<span class='warning'>My mindless form cannot look at the distance.</span>")
+		return FALSE
+
+	var/ranged_skill = GET_SKILL_LEVEL(src, ranged)
+	var/zoomies = round(default_zoomies * ranged_skill/(MAX_SKILL/2))
+	var/zoomout = default_zoomout
+
+	//Certain guns change our zoomies abilities
+	var/obj/item/gun/G = get_active_held_item()
+	if(istype(G))
+		zoomies = round(G.zoom_amt * ranged_skill/(MAX_SKILL/2))
+		zoomout = round(G.zoom_out_amt * ranged_skill/(MAX_SKILL/2))
+	
+	//Big chungus
+	zoomed = !zoomed
+	if(zoomed)
+		var/_x = 0
+		var/_y = 0
+		var/direction = get_dir(src, A)
+		if(direction & NORTH)
+			_y += zoomies
+		if(direction & EAST)
+			_x += zoomies
+		if(direction & SOUTH)
+			_y += -zoomies
+		if(direction & WEST)
+			_x += -zoomies
+		
+		if(zoomout)
+			client.change_view(zoomout)
+		
+		client.pixel_x = world.icon_size*_x
+		client.pixel_y = world.icon_size*_y
+	else
+		client.change_view(CONFIG_GET(string/default_view))
+		
+		client.pixel_x = 0
+		client.pixel_y = 0
+	to_chat(src, "<span class='notice'>I [zoomed ? "look" : "stop looking"] at the distance.</span>")
