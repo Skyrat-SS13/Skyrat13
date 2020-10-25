@@ -6,7 +6,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of security and chief medical officer"
+	supervisors = "the chief enforcer and chief medical officer"
 	selection_color = "#c02f2f"
 	minimal_player_age = 7
 	exp_requirements = 120 //SKYRAT CHANGE - lowers medical exp requirement

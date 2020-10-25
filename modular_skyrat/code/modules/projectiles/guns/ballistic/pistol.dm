@@ -104,3 +104,20 @@
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/kitchengun
 	icon_state = "pistol45"
+
+//Glock 17
+/obj/item/gun/ballistic/automatic/pistol/APS/glock
+	name = "burstfire 9mm pistol"
+	desc = "The NT Lawman 17 - A decent and lightweight polymer firearm for general law enforcement use."
+	icon = 'modular_skyrat/icons/obj/bobstation/guns/pistol.dmi'
+	icon_state = "glock"
+	w_class = WEIGHT_CLASS_SMALL
+	mag_type = /obj/item/ammo_box/magazine/pistolm9mm
+	can_suppress = FALSE
+	burst_size = 2
+	fire_delay = 2
+	actions_types = list(/datum/action/item_action/toggle_firemode)
+
+/obj/item/gun/ballistic/automatic/pistol/APS/glock/update_icon()
+	..()
+	icon_state = "[initial(icon_state)][chambered ? "" : "-e"][magazine ? "" : "-nomag"][safety ? "-safe" : ""]"

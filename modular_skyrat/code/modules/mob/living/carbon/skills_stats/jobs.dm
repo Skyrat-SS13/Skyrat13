@@ -395,6 +395,6 @@
 	stat_str = JOB_STATPOINTS_TRAINED
 	stat_end = JOB_STATPOINTS_TRAINED
 	stat_int = 8
-	//Great melee, trained ranged
-	skill_melee = JOB_SKILLPOINTS_EXPERT
+	//Decent melee and ranged
+	skill_melee = JOB_SKILLPOINTS_TRAINED
 	skill_ranged = JOB_SKILLPOINTS_TRAINED

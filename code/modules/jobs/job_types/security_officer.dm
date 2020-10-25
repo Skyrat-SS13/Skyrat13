@@ -32,7 +32,7 @@
 	L |= ..() | check_config_for_sec_maint()
 	return L
 
-GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
+GLOBAL_LIST_INIT(available_depts, list("elite", SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
 
 /datum/job/officer/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
@@ -40,7 +40,10 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 	var/department
 	if(M && M.client && M.client.prefs)
 		department = M.client.prefs.prefered_security_department
-		if(!LAZYLEN(GLOB.available_depts) || department == "None")
+		if(current_positions <= 1)
+			department = "elite"
+			GLOB.available_depts -= "elite"
+		else if(!LAZYLEN(GLOB.available_depts) || department == "None")
 			return
 		else if(department in GLOB.available_depts)
 			LAZYREMOVE(GLOB.available_depts, department)
@@ -52,6 +55,14 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 	var/destination = null
 	var/spawn_point = null
 	switch(department)
+		if("elite")
+			for(var/obj/item/I in H.get_equipped_items(TRUE))
+				qdel(I)
+			var/datum/outfit/job/warden/J = new()
+			H.equipOutfit(J)
+			var/datum/job/warden/W = new()
+			W.assign_skills_stats(H)
+			W.special_assign_skills_stats(H)
 		if(SEC_DEPT_SUPPLY)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/supply
 			dep_access = list(ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_CARGO)
@@ -106,12 +117,12 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 					continue
 				else
 					break
-	if(department)
+	if(department && !(department == "elite"))
 		to_chat(M, "<b>You have been assigned to [department]!</b>")
+	else if(department == "elite")
+		to_chat(M, "<b>You are the Lieutenant, an elite Enforcer. You have better gear than your coworkers, and have better training, but your dutiees remain the same.</span>")
 	else
 		to_chat(M, "<b>You have not been assigned to any department. Patrol the halls and help where needed.</b>")
-
-
 
 /datum/outfit/job/security
 	name = "Security Officer"
@@ -138,7 +149,6 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 
 	chameleon_extras = list(/obj/item/gun/energy/disabler, /obj/item/clothing/glasses/hud/security/sunglasses, /obj/item/clothing/head/helmet)
 	//The helmet is necessary because /obj/item/clothing/head/helmet/sec is overwritten in the chameleon list by the standard helmet, which has the same name and icon state
-
 
 /obj/item/radio/headset/headset_sec/alt/department/Initialize()
 	. = ..()

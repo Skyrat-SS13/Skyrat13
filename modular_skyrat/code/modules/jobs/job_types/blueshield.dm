@@ -1,12 +1,12 @@
 /datum/job/blueshield
-	title = "Blueshield"
+	title = "Defender"
 	flag = OFFICER
-	department_head = list("Captain")
+	department_head = list("Chief Enforcer")
 	department_flag = ENGSEC
 	faction = "Station"
-	total_positions = 0
-	spawn_positions = 0
-	supervisors = "the Captain"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Chief Enforcer"
 	selection_color = "#ddddff"
 	minimal_player_age = 7
 	exp_requirements = 2400
@@ -27,26 +27,30 @@
 	display_order = JOB_DISPLAY_ORDER_BLUESHIELD
 	outfit = /datum/outfit/job/blueshield
 	blacklisted_quirks = list(/datum/quirk/mute, /datum/quirk/nonviolent, /datum/quirk/paraplegic)
-	custom_spawn_text = "Remember, you are NOT security. Your only duty is to protect heads. Do not go around arresting criminals or doing justice, the only security matters in which you may be involved are those related to the heads you protect."
+	custom_spawn_text = "Your priority is to protect the heads of staff - Although you do have the power to arrest criminals, do not resort to such unless no one else is capable."
 
 /datum/outfit/job/blueshield
 	name = "Blueshield"
 	jobtype = /datum/job/blueshield
-	uniform = /obj/item/clothing/under/rank/security/blueshield
-	id = /obj/item/card/id/silver
-	suit = /obj/item/clothing/suit/armor/vest/blueshield
-	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
-	shoes = /obj/item/clothing/shoes/combat
-	ears = /obj/item/radio/headset/heads/blueshield/alt
+	belt = /obj/item/pda/security
+	ears = /obj/item/radio/headset/heads/blueshield
+	uniform = /obj/item/clothing/under/rank/security/officer
+	gloves = /obj/item/clothing/gloves/combat
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
-	backpack_contents = list(/obj/item/choice_beacon/blueshield = 1, /obj/item/melee/classic_baton/black = 1)
-	implants = list(/obj/item/implant/mindshield)
+	suit = /obj/item/clothing/suit/space/hardsuit/security_armor
+	shoes = /obj/item/clothing/shoes/combat
+	l_pocket = /obj/item/restraints/handcuffs
+	r_pocket = /obj/item/assembly/flash/handheld
+	backpack_contents = list(/obj/item/melee/classic_baton/black=1)
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/nangler
 	backpack = /obj/item/storage/backpack/blueshield
 	satchel = /obj/item/storage/backpack/satchel/blueshield
-	duffelbag = /obj/item/storage/backpack/duffel/blueshield
-	head = /obj/item/clothing/head/beret/blueshield
+	duffelbag = /obj/item/storage/backpack/duffelbag/sec
 	box = /obj/item/storage/box/security
-	belt = /obj/item/pda/security
+
+	implants = list(/obj/item/implant/mindshield)
+
+	chameleon_extras = list(/obj/item/gun/energy/disabler, /obj/item/clothing/glasses/hud/security/sunglasses, /obj/item/clothing/head/helmet)
 
 /datum/outfit/plasmaman/blueshield
 	name = "Blueshield Plasmaman"
@@ -55,13 +59,12 @@
 	uniform = /obj/item/clothing/under/plasmaman/blueshield
 
 /obj/item/choice_beacon/blueshield
-	name = "blueshield's weapon beacon"
-	desc = "A beacon, allowing the blueshield to select their preferred firearm."
+	name = "defender's weapon beacon"
+	desc = "A beacon, allowing the defender to select their preferred firearm."
 
 /obj/item/choice_beacon/blueshield/generate_display_names()
 	var/static/list/bshield
 	if(!bshield)
 		bshield = list()
-		bshield["Mateba"] = /obj/item/gun/ballistic/revolver/mateba
 		bshield["M1911"] = /obj/item/gun/ballistic/automatic/pistol/m1911
 	return bshield
