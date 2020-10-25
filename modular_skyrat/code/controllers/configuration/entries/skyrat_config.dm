@@ -14,7 +14,7 @@
 
 /datum/controller/configuration
 	var/static/regex/ic_filter_regex //For the cringe filter.
-	var/static/regex/punctuation_filter //For the punctuation forcing
+	var/static/regex/punctuation_filter //For the punctuation forcing.
 
 /datum/config_entry/cringe
 	config_entry_value = list()
