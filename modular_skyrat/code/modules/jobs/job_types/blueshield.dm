@@ -35,10 +35,10 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/heads/blueshield
 	uniform = /obj/item/clothing/under/rank/security/officer
-	gloves = /obj/item/clothing/gloves/combat
+	gloves = /obj/item/clothing/gloves/color/black
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	suit = /obj/item/clothing/suit/space/hardsuit/security_armor
-	shoes = /obj/item/clothing/shoes/combat
+	shoes = /obj/item/clothing/shoes/jackboots
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/assembly/flash/handheld
 	backpack_contents = list(/obj/item/melee/classic_baton/black=1)
