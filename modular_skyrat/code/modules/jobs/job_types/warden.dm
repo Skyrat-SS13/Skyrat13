@@ -6,9 +6,9 @@
 	spawn_positions = 0
 
 /datum/outfit/job/warden
-	backpack_contents = list(/obj/item/melee/classic_baton/black=1,
-					/obj/item/gun/ballistic/automatic/pistol/nangler=1,
+	backpack_contents = list(
 					/obj/item/ammo_box/magazine/nangler=1,
+					/obj/item/melee/classic_baton/black=1,
 					/obj/item/choice_beacon/warden=1)
 	suit_store = /obj/item/gun/ballistic/automatic/pistol/nangler
 
