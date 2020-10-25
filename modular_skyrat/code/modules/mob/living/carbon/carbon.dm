@@ -163,13 +163,14 @@
 		return FALSE
 
 	var/ranged_skill = GET_SKILL_LEVEL(src, ranged)
-	var/zoomies = round(default_zoomies * ranged_skill/(MAX_SKILL/2))
+	var/dist = get_dist(src, A)
+	var/zoomies = min(dist, round(default_zoomies * ranged_skill/(MAX_SKILL/2)))
 	var/zoomout = default_zoomout
 
 	//Certain guns change our zoomies abilities
 	var/obj/item/gun/G = get_active_held_item()
 	if(istype(G))
-		zoomies = round(G.zoom_amt * ranged_skill/(MAX_SKILL/2))
+		zoomies = mind(dist, round(G.zoom_amt * ranged_skill/(MAX_SKILL/2)))
 		zoomout = round(G.zoom_out_amt * ranged_skill/(MAX_SKILL/2))
 	
 	//Big chungus
