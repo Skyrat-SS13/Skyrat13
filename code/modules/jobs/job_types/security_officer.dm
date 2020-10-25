@@ -32,7 +32,7 @@
 	L |= ..() | check_config_for_sec_maint()
 	return L
 
-GLOBAL_LIST_INIT(available_depts, list("elite", SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
+GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ELITE, SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
 
 /datum/job/officer/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
@@ -41,8 +41,8 @@ GLOBAL_LIST_INIT(available_depts, list("elite", SEC_DEPT_ENGINEERING, SEC_DEPT_M
 	if(M && M.client && M.client.prefs)
 		department = M.client.prefs.prefered_security_department
 		if(current_positions <= 1)
-			department = "elite"
-			GLOB.available_depts -= "elite"
+			department = SEC_DEPT_ELITE
+			GLOB.available_depts -= SEC_DEPT_ELITE
 		else if(!LAZYLEN(GLOB.available_depts) || department == "None")
 			return
 		else if(department in GLOB.available_depts)
@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(available_depts, list("elite", SEC_DEPT_ENGINEERING, SEC_DEPT_M
 	var/destination = null
 	var/spawn_point = null
 	switch(department)
-		if("elite")
+		if(SEC_DEPT_ELITE)
 			for(var/obj/item/I in H.get_equipped_items(TRUE))
 				qdel(I)
 			var/datum/outfit/job/warden/J = new()
@@ -117,9 +117,9 @@ GLOBAL_LIST_INIT(available_depts, list("elite", SEC_DEPT_ENGINEERING, SEC_DEPT_M
 					continue
 				else
 					break
-	if(department && !(department == "elite"))
+	if(department && !(department == SEC_DEPT_ELITE))
 		to_chat(M, "<b>You have been assigned to [department]!</b>")
-	else if(department == "elite")
+	else if(department == SEC_DEPT_ELITE)
 		to_chat(M, "<b>You are the Lieutenant, an elite Enforcer. You have better gear than your coworkers, and have better training, but your dutiees remain the same.</span>")
 	else
 		to_chat(M, "<b>You have not been assigned to any department. Patrol the halls and help where needed.</b>")
