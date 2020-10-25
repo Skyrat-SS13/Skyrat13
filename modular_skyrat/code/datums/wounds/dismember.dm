@@ -22,7 +22,7 @@
 	if(L.body_zone == BODY_ZONE_CHEST)
 		qdel(src)
 		var/datum/wound/disembowel/des = new()
-		des.apply_disembowel(L, wounding_type)
+		des.apply_disembowel(L, wounding_type, TRUE)
 		return
 
 	if(ishuman(L.owner))
