@@ -190,6 +190,10 @@
 // REVOLVERS //
 ///////////////
 //
+/obj/item/gun/ballistic/revolver/detective
+	name = "\improper .38 snubnose revolver"
+	icon_state = "snubnose"
+	unique_reskin = null
 
 /obj/item/gun/ballistic/revolver/dual_ammo
 	name = "\improper .38 revolver"
