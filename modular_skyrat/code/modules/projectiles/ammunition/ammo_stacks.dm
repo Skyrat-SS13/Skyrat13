@@ -25,7 +25,7 @@
 	name = "ammo stack"
 	desc = "A stack of ammo."
 	icon = 'modular_skyrat/icons/obj/bobstation/ammo/stacks.dmi'
-	icon_state = "bullet-stack"
+	icon_state = "nothing"
 	max_ammo = 12
 	multiple_sprites = FALSE
 	start_empty = TRUE
