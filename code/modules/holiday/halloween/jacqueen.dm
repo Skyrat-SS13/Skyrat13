@@ -184,9 +184,9 @@
 
 	var/choices = list("Trick", "Treat", "How do I get candies?")
 	var/date = time2text(world.realtime, "YYYY") //Keep track of where Jacq is in terms of years
+	var/choice = input(C, "Trick or Treat?", "Trick or Treat?") in choices
 	if(!(date == "2020"))
 		choice += "Do I know you from somewhere?"
-	var/choice = input(C, "Trick or Treat?", "Trick or Treat?") in choices
 	switch(choice)
 		if("Trick")
 			trick(C)
@@ -195,7 +195,7 @@
 			if(check_candies(C))
 				treat(C, gender)
 			else
-				visible_message("<b>[src]</b> raises aneyebrow, <span class='spooky'>\"You've nae got any candies Ah want! They're the orange round ones, now bugger off an go get em first.\"</span>")
+				visible_message("<b>[src]</b> raises an eyebrow, <span class='spooky'>\"You've nae got any candies Ah want! They're the orange round ones, now bugger off an go get em first.\"</span>")
 				jacqrunes("You've nae got any candies Ah want! They're the orange round ones, now bugger off an go get em first.", C)
 			return
 		if("How do I get candies?")
