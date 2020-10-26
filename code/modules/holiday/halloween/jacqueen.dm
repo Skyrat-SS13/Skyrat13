@@ -79,7 +79,7 @@
 	health = 25
 	poof()
 
-/mob/living/simple_animal/jacq/on_attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_animal/jacq/attack_hand(mob/living/carbon/human/M)
 	if(!active)
 		say("Hello there [gender_check(M)]!")
 		return ..()
@@ -182,7 +182,10 @@
 
 		progression["[C.real_name]"] = progression["[C.real_name]"] | JACQ_HELLO
 
-	var/choices = list("Trick", "Treat", "How do I get candies?", "Do I know you from somewhere?")
+	var/choices = list("Trick", "Treat", "How do I get candies?")
+	var/date = time2text(world.realtime, "YYYY") //Keep track of where Jacq is in terms of years
+	if(!(date == "2020"))
+		choice += "Do I know you from somewhere?"
 	var/choice = input(C, "Trick or Treat?", "Trick or Treat?") in choices
 	switch(choice)
 		if("Trick")
@@ -199,7 +202,7 @@
 			visible_message("<b>[src]</b> says, <span class='spooky'>\"Gae find my familiar; Bartholomew. Ee's tendin the cauldron which ken bring oot t' magic energy in items scattered aroond. Knowing him, ee's probably gone tae somewhere with books.\"</span>")
 			jacqrunes("Gae find my familiar; Bartholomew. Ee's tendin the cauldron which ken bring oot t' magic energy in items scattered aroond. Knowing him, ee's probably gone tae somewhere with books.", C)
 			return
-		if("Do I know you from somewhere?")
+		if("Do I know you from somewhere?") //2021+ only
 			visible_message("<b>[src]</b> says, <span class='spooky'>\"Aye ye micht dae, ah was kicking aboot round 'ere aboot a year ago when ah had a wee... altercation wit the witch academy n' ran oot here tae crash oan me sis's floor. Course she pushed me tae git it a' sorted oot lik', bit nae before ah hud a wee bit o' fun oan this station. Or maybe ye jest recognise me ma's prized pumpkin atop me nonce.\"</span>")
 			jacqrunes("Aye ye micht dae, ah was kicking aboot round 'ere aboot a year ago when ah had a wee... altercation wit the witch academy n' ran oot here tae crash oan me sis's floor. Course she pushed me tae git it a' sorted oot lik', bit nae before ah hud a wee bit o' fun oan this station. Or maybe ye jest recognise me ma's prized pumpkin atop me nonce.", C)
 
@@ -279,8 +282,8 @@
 
 		//chitchats!
 		if("Can I get to know you instead?")
-			var/date = time2text(world.realtime, "YYYY") //Keep track of where Jacq is in the story
 			var/choices = list()
+			var/date = time2text(world.realtime, "YYYY") //Keep track of where Jacq is in terms of years
 			//Figure out where the C is in the story
 			if(!progression["[C.real_name]"]) //I really don't want to get here withoot a hello, but just to be safe
 				progression["[C.real_name]"] = NONE
@@ -395,7 +398,7 @@
 					visible_message("<b>[src]</b> Gives you a blank look at the pun, before continuing, <span class='spooky'>\"Not quite, Ah know Ah ken get back into the academy, it's only an explosion, they happen all the time, but, tae be fair it's my fault that things came tae their explosive climax. You don't know what it's like when you're after a witch doctorate, everyone else is doing well, everyone's making new spells and the like, and I'm just good at making explosions really, or fireworks. So, Ah did something Ah knew was dangerous, because Ah had tae do something tae stand oot, but Ah know this life ain't fer me, Ah don't want tae be locked up in dusty towers, grinding reagent after reagent together, trying tae find new reactions, some of the wizards in there haven't left fer years. Ah want tae live, Ah want tae fly around on a broom, turn people into cats fer a day and disappear cackling! That's what got me into witchcraft!\"</span> she throws her arms up in the arm, spinning the pumpkin upon her head slightly. She carefully spins it back to face you, giving oot a soft sigh, <span class='spooky'>\"Ah know my mother's obsession with this dumb thing on my head is just her trying tae fill the void of me and my sis moving oot, and it really shouldn't be on my head. And Ah know that I'm really here tae get help from my sis.. She's the sensible one, and she gives good hugs.\" </span>")
 					jacqrunes("Not quite, Ah know Ah ken get back into the academy, it's only an explosion, they happen all the time, but, tae be fair it's my fault that things came tae their explosive climax. You don't know what it's like when you're after a witch doctorate, everyone else is doing well, everyone's making new spells and the like, and I'm just good at making explosions really, or fireworks. So, Ah did something Ah knew was dangerous, because Ah had tae do something tae stand oot, but Ah know this life ain't fer me, Ah don't want tae be locked up in dusty towers, grinding reagent after reagent together, trying tae find new reactions, some of the wizards in there haven't left fer years. Ah want tae live, Ah want tae fly around on a broom, turn people into cats fer a day and disappear cackling! That's what got me into witchcraft!", C)
 					sleep(20)
-					jacqrunes("Ah know my mother's obsession with this dumb thing on my head is just her trying tae fill the void of me and my sis moving oot, and it really shouldn't be on my head. And Ah know that I'm really here tae get help from my sis.. She's the sensible one, and she gives good hugs.")
+					jacqrunes("Ah know my mother's obsession with this dumb thing on my head is just her trying tae fill the void of me and my sis moving oot, and it really shouldn't be on my head. And Ah know that I'm really here tae get help from my sis.. She's the sensible one, and she gives good hugs.", C)
 					progression["[C.real_name]"] = progression["[C.real_name]"] | JACQ_EXPELL
 					sleep(20)
 
@@ -407,6 +410,7 @@
 
 				if("Nevermind")
 					visible_message("<b>[src]</b> shrugs, <span class='spooky'>\"Suit yerself then, here's your candy back.\"</span>")
+					jacqrunes("Suit yerself then, here's your candy back." , C)
 					new /obj/item/reagent_containers/food/snacks/special_candy(loc)
 
 
@@ -427,7 +431,8 @@
 		if(2)
 			visible_message("<b>[src]</b> waves their arms around, <span class='spooky'>\"If only you had a better upbringing, your ears are now full of my singing!\"</span>")
 			jacqrunes("If only you had a better upbringing, your ears are now full of my singing!", C)
-			C.client.tgui_panel?.play_music("https://katlin.dog/v/spooky.mp4")
+			var/client/C2 = C.client
+			C2.chatOutput.sendMusic("https://katlin.dog/v/spooky.mp4")
 		if(3)
 			visible_message("<b>[src]</b> waves their arms around, <span class='spooky'>\"You're cute little bumpkin, On your head is a pumpkin!\"</span>")
 			jacqrunes("You're cute little bumpkin, On your head is a pumpkin!", C)
@@ -510,14 +515,14 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, GLUED_ITEM_TRAIT)
 
-/obj/item/clothing/suit/ghost_sheet/sticky/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+/obj/item/clothing/suit/ghost_sheet/sticky/attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
 	if(iscarbon(user))
 		to_chat(user, "<span class='spooky'><i>Boooooo~!</i></span>")
 		return
 	else
 		..()
 
-/obj/item/clothing/suit/ghost_sheet/sticky/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+/obj/item/clothing/suit/ghost_sheet/sticky/attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
 	if(iscarbon(user))
 		to_chat(user, "<span class='spooky'><i>Boooooo~!</i></span>")
 		return
