@@ -24,7 +24,7 @@
 	/// Boolean sed for strangling
 	var/strangling = FALSE
 
-/obj/item/grab/on_examine_check()
+/obj/item/grab/on_examined_check()
 	return FALSE //nope
 
 /obj/item/grab/Destroy()
