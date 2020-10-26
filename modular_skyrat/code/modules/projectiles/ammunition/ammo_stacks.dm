@@ -27,9 +27,20 @@
 	icon = 'modular_skyrat/icons/obj/bobstation/ammo/stacks.dmi'
 	icon_state = "bullet-stack"
 	max_ammo = 12
-	multiple_sprites = TRUE
+	multiple_sprites = FALSE
 	start_empty = TRUE
 	multiload = FALSE
+
+/obj/item/ammo_box/magazine/ammo_stack/update_overlays()
+	..()
+	cut_overlays()
+	for(var/casing in stored_ammo)
+		var/obj/item/ammo_casing/AC = casing
+		var/mutable_appearance/comicao = mutable_appearance(AC.icon, AC.icon_state)
+		comicao.pixel_x = rand(0, 16)
+		comicao.pixel_y = rand(0, 16)
+		comicao.transform.Turn(rand(0, 360))
+		add_overlay(comicao)
 
 /obj/item/ammo_box/magazine/ammo_stack/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..()
@@ -41,18 +52,14 @@
 
 /obj/item/ammo_box/magazine/ammo_stack/get_round(keep)
 	var/i = ..()
-	update_icon()
+	update_overlays()
 	if(ammo_count() <= 0)
 		qdel(src)
 	return i
 	
 /obj/item/ammo_box/magazine/ammo_stack/give_round(obj/item/ammo_casing/R, replace_spent)
 	var/i = ..()
-	update_icon()
+	update_overlays()
 	if(ammo_count() <= 0)
 		qdel(src)
 	return i
-
-//fuck idk what to do with this
-/obj/item/ammo_box/magazine/ammo_stack/shotgun
-	icon_state = "shell-stack"
