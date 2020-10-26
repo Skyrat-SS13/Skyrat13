@@ -60,3 +60,10 @@
 	icon_state = "cloaker"
 	armor = list("melee" = 40, "bullet" = 35, "laser" = 35, "energy" = 50, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100, "wound" = 25)
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+
+//captin carapace
+/obj/item/clothing/suit/armor/vest/capcarapace
+	icon = 'modular_skyrat/icons/obj/clothing/captain.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/captain.dmi'
+	icon_state = "carapace"
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
