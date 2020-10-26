@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ELITE, SEC_DEPT_ENGINEERING, SEC
 	if(department && !(department == SEC_DEPT_ELITE))
 		to_chat(M, "<b>You have been assigned to [department]!</b>")
 	else if(department == SEC_DEPT_ELITE)
-		to_chat(M, "<b>You are the Lieutenant, an elite Enforcer. You have better gear than your coworkers, and have better training, but your dutiees remain the same.</span>")
+		to_chat(M, "<b>You are the Lieutenant, an elite Enforcer. You have better gear than your coworkers, and have better training, but your duties remain the same.</span>")
 	else
 		to_chat(M, "<b>You have not been assigned to any department. Patrol the halls and help where needed.</b>")
 
