@@ -729,6 +729,7 @@
 	righthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/sabre_righthand.dmi'
 	attack_verb = list("slashed", "cut", "gutted")
 	force = 21
+	throwforce = 15
 	armour_penetration = 20 //Trade penetration for damage buff and weight loss
 	w_class = WEIGHT_CLASS_NORMAL
 	total_mass = 2.5
@@ -762,6 +763,7 @@
 	righthand_file = 'modular_skyrat/icons/obj/bobstation/melee/inhands/mace_righthand.dmi'
 	attacksound = 'modular_skyrat/sound/weapons/club.ogg'
 	force = 18
+	throwforce = 14
 	wound_bonus = 5 //Great at breaking bones!
 	bare_wound_bonus = 5 //Very great in fact!
 	w_class = WEIGHT_CLASS_NORMAL
