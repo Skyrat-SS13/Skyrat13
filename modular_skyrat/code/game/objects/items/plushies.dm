@@ -151,3 +151,11 @@
 	desc = "A stuffed toy who look like a cosplayer, <b>He looks sad.</b>"
 	icon_state = "sarmie"
 	item_state = "sarmie"
+
+/obj/item/toy/plush/mammal/lea
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	name = "deer plushie"
+	desc = "An adorable stuffed toy resembling some sort of crew member."
+	icon_state = "heatherholm"
+	item_state = "heatherholm"
+	attack_verb = list("plaps")

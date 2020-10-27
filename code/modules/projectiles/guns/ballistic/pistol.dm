@@ -165,7 +165,7 @@
 	icon_state = "ipistol"
 	item_state = "pistol"
 	mag_type = /obj/item/ammo_box/magazine/m32acp
-	fire_delay = 7.5
+	fire_delay = 5
 	can_suppress = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	spread = 15		// Keep the spread between 15 and 20. This hardlocks it into being a mid-range pistol, the magazine size means you're allowed to miss. Fills the mid-range niche that slugs/rifle and buckshot doesn't fill.

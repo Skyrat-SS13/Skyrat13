@@ -25,6 +25,7 @@
 	var/list/restricted_jobs = list()	// Jobs it doesn't make sense to be.  I.E chaplain or AI cultist
 	var/list/protected_jobs = list()	// Jobs that can't be traitors because
 	var/list/required_jobs = list()		// alternative required job groups eg list(list(cap=1),list(hos=1,sec=2)) translates to one captain OR one hos and two secmans
+	var/list/restricted_species = list() //The ID of the species you dont want to be considered for this gamemode's antags, like bloodless species being a bloodsucker.
 	var/required_players = 0
 	var/maximum_players = -1 // -1 is no maximum, positive numbers limit the selection of a mode on overstaffed stations
 	var/required_enemies = 0
@@ -420,6 +421,13 @@
 				if(player.assigned_role == job)
 					candidates -= player
 
+	if(restricted_species)
+		for(var/datum/mind/player in candidates)
+			for(var/species_id in restricted_species)
+				var/mob/living/carbon/player_mob = player.current
+				if(player_mob.dna.species == restricted_species)
+					candidates -= player
+
 	if(candidates.len < recommended_enemies && CONFIG_GET(keyed_list/force_antag_count)[config_tag])
 		for(var/mob/dead/new_player/player in players)
 			if(player.client && player.ready == PLAYER_READY_TO_PLAY)
@@ -610,12 +618,15 @@
 		if(config_tag in initial(G.gamemode_blacklist))
 			continue
 		possible += T
-	var/goal_weights = 0
+	
+	// Skyrat change: All station goals, all the time.
+
+	station_goals = possible
+	/*var/goal_weights = 0
 	while(possible.len && goal_weights < STATION_GOAL_BUDGET)
 		var/datum/station_goal/picked = pick_n_take(possible)
 		goal_weights += initial(picked.weight)
-		station_goals += new picked
-
+		station_goals += new picked*/
 
 /datum/game_mode/proc/generate_report() //Generates a small text blurb for the gamemode in centcom report
 	return "Gamemode report for [name] not set.  Contact a coder."

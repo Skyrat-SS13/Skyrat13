@@ -511,6 +511,7 @@
 	alpha = 0;
 	invisibility = 100
 	},
+/obj/effect/landmark/eorg,
 /turf/open/indestructible/hoteltile{
 	icon_state = "floor"
 	},
@@ -2309,14 +2310,29 @@
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/court)
 "com" = (
-/obj/structure/chair/comfy/shuttle{
+/obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/effect/landmark/eorg,
-/turf/open/indestructible/hoteltile{
-	icon_state = "darkfull"
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
 	},
-/area/centcom/holding/cafepark)
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/vending/cola/black{
+	default_price = 0;
+	extended_inventory = 1;
+	extra_price = 0;
+	fair_market_price = 0
+	},
+/turf/open/indestructible/hoteltile{
+	icon_state = "floor"
+	},
+/area/centcom/holding/cafe)
 "cos" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -3765,8 +3781,30 @@
 	},
 /area/centcom/holding/cafe)
 "dAu" = (
-/obj/machinery/computer/arcade/battle,
-/turf/open/indestructible/hotelwood,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/vending/cigarette/syndicate{
+	custom_premium_price = 0;
+	custom_price = 0;
+	default_price = 0;
+	extended_inventory = 1;
+	extra_price = 0;
+	fair_market_price = 0
+	},
+/turf/open/indestructible/hoteltile{
+	icon_state = "floor"
+	},
 /area/centcom/holding/cafe)
 "dAB" = (
 /obj/effect/turf_decal/delivery,
@@ -3855,7 +3893,7 @@
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/thunderdome1218)
 "dDZ" = (
-/obj/machinery/computer/arcade/minesweeper,
+/obj/machinery/computer/arcade/tetris,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "dEf" = (
@@ -3918,7 +3956,9 @@
 	},
 /area/centcom/holding/cafe)
 "dHD" = (
-/obj/machinery/computer/arcade/tetris,
+/obj/machinery/computer/slot_machine,
+/obj/item/coin/silver,
+/obj/item/coin/silver,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "dHF" = (
@@ -3928,10 +3968,23 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeadmin)
 "dHY" = (
-/obj/machinery/computer/slot_machine,
-/obj/item/coin/silver,
-/obj/item/coin/silver,
-/turf/open/indestructible/hotelwood,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/vending/games,
+/turf/open/indestructible/hoteltile{
+	icon_state = "floor"
+	},
 /area/centcom/holding/cafe)
 "dIa" = (
 /obj/structure/rack,
@@ -4435,7 +4488,20 @@
 /turf/open/floor/mineral/titanium/white,
 /area/centcom/evac)
 "egF" = (
-/obj/machinery/vending/cigarette/syndicate{
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/vending/snack/blue{
 	custom_premium_price = 0;
 	custom_price = 0;
 	default_price = 0;
@@ -4443,7 +4509,9 @@
 	extra_price = 0;
 	fair_market_price = 0
 	},
-/turf/open/indestructible/hotelwood,
+/turf/open/indestructible/hoteltile{
+	icon_state = "floor"
+	},
 /area/centcom/holding/cafe)
 "egR" = (
 /obj/machinery/computer/camera_advanced/abductor{
@@ -4475,7 +4543,15 @@
 /turf/open/floor/plating/abductor,
 /area/abductor_ship)
 "eiJ" = (
-/obj/machinery/vending/games,
+/obj/machinery/vending/kink{
+	custom_premium_price = 0;
+	custom_price = 0;
+	default_price = 0;
+	extended_inventory = 1;
+	extra_price = 0;
+	fair_market_price = 0;
+	product_slogans = "Hi, Captain. Want to call an ERT team? Yeah, we all know you get so little action that you'd rather call an ERP Team instead. Get help with that right here!;There's no cock like horsecock, send my asshole into shock!;There's no kinkshaming here. There's just poor performance shaming."
+	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "eiM" = (
@@ -4500,6 +4576,12 @@
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
+	},
+/obj/machinery/vending/coffee{
+	default_price = 0;
+	extended_inventory = 1;
+	extra_price = 0;
+	fair_market_price = 0
 	},
 /turf/open/indestructible/hoteltile{
 	icon_state = "floor"
@@ -7247,13 +7329,6 @@
 /obj/item/reagent_containers/food/drinks/beer/light,
 /turf/open/floor/wood,
 /area/fabric_of_reality)
-"gOk" = (
-/obj/structure/chair/comfy/shuttle,
-/obj/effect/landmark/eorg,
-/turf/open/indestructible/hoteltile{
-	icon_state = "darkfull"
-	},
-/area/centcom/holding/cafepark)
 "gPh" = (
 /obj/structure/noticeboard{
 	dir = 8;
@@ -11302,15 +11377,6 @@
 /obj/structure/chair/stool,
 /turf/open/floor/wood,
 /area/fabric_of_reality)
-"kAo" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/obj/effect/landmark/eorg,
-/turf/open/indestructible/hoteltile{
-	icon_state = "darkfull"
-	},
-/area/centcom/holding/cafepark)
 "kAR" = (
 /obj/item/sharpener,
 /obj/structure/table/plasmaglass,
@@ -17489,6 +17555,14 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
+/obj/machinery/vending/cigarette/syndicate{
+	custom_premium_price = 0;
+	custom_price = 0;
+	default_price = 0;
+	extended_inventory = 1;
+	extra_price = 0;
+	fair_market_price = 0
+	},
 /turf/open/indestructible/hoteltile{
 	icon_state = "floor"
 	},
@@ -17825,15 +17899,7 @@
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
 "sde" = (
-/obj/machinery/vending/kink{
-	custom_premium_price = 0;
-	custom_price = 0;
-	default_price = 0;
-	extended_inventory = 1;
-	extra_price = 0;
-	fair_market_price = 0;
-	product_slogans = "Hi, Captain. Want to call an ERT team? Yeah, we all know you get so little action that you'd rather call an ERP Team instead. Get help with that right here!;There's no cock like horsecock, send my asshole into shock!;There's no kinkshaming here. There's just poor performance shaming."
-	},
+/obj/machinery/computer/arcade/battle,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "sds" = (
@@ -17847,15 +17913,6 @@
 	},
 /turf/open/floor/plating,
 /area/syndicate_mothership)
-"sdD" = (
-/obj/machinery/vending/cola/black{
-	default_price = 0;
-	extended_inventory = 1;
-	extra_price = 0;
-	fair_market_price = 0
-	},
-/turf/open/indestructible/hotelwood,
-/area/centcom/holding/cafe)
 "seF" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Security";
@@ -17911,16 +17968,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
-"sgI" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/effect/landmark/eorg,
-/obj/machinery/light,
-/turf/open/indestructible/hoteltile{
-	icon_state = "darkfull"
-	},
-/area/centcom/holding/cafepark)
 "shi" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -18471,16 +18518,6 @@
 /obj/effect/landmark/holding_facility,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
-"sIA" = (
-/obj/structure/chair/comfy/shuttle,
-/obj/effect/landmark/eorg,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/indestructible/hoteltile{
-	icon_state = "darkfull"
-	},
-/area/centcom/holding/cafepark)
 "sIH" = (
 /obj/item/kirbyplants{
 	icon_state = "plant-21"
@@ -21910,12 +21947,7 @@
 	},
 /area/centcom/holding/cafe)
 "wAc" = (
-/obj/machinery/vending/coffee{
-	default_price = 0;
-	extended_inventory = 1;
-	extra_price = 0;
-	fair_market_price = 0
-	},
+/obj/machinery/computer/arcade/minesweeper,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "wAi" = (
@@ -30356,7 +30388,7 @@ cKu
 bKt
 sde
 hFJ
-egF
+xOf
 bKt
 aNz
 oLq
@@ -30613,7 +30645,7 @@ hFt
 bKt
 wAc
 xOf
-eiJ
+xOf
 bKt
 aNz
 fye
@@ -30868,7 +30900,7 @@ eOh
 nwb
 njl
 axy
-sdD
+xOf
 xOf
 ekg
 qdO
@@ -31382,7 +31414,7 @@ nwb
 nwb
 cWk
 axy
-dAu
+xOf
 xOf
 xOf
 qdO
@@ -32153,7 +32185,7 @@ cqn
 xOf
 xOf
 gYv
-dHY
+xOf
 xOf
 xOf
 bKt
@@ -32414,7 +32446,7 @@ xOf
 xOf
 xOf
 qdO
-wux
+com
 swa
 wCx
 cSr
@@ -32671,7 +32703,7 @@ rof
 xOf
 xOf
 qdO
-wux
+dAu
 idq
 aKT
 wCx
@@ -34213,7 +34245,7 @@ rof
 xOf
 xOf
 qdO
-wux
+dHY
 jAA
 jAA
 ktd
@@ -34470,7 +34502,7 @@ xOf
 xOf
 xOf
 qdO
-wux
+egF
 jAA
 jAA
 jAA
@@ -35254,7 +35286,7 @@ ebn
 fMo
 xOf
 xOf
-xOf
+eiJ
 bKt
 brP
 vWE
@@ -37546,9 +37578,9 @@ pRV
 aTU
 xya
 xya
-gOk
+jIj
 cRs
-com
+jTT
 xya
 xya
 dXX
@@ -37803,9 +37835,9 @@ jkI
 xya
 xya
 xya
-sIA
+jLn
 cRs
-sgI
+jTW
 xya
 xya
 xya
@@ -38060,9 +38092,9 @@ pRV
 rLo
 rLo
 xya
-gOk
+jIj
 cRs
-com
+jTT
 xya
 rLo
 rLo
@@ -38574,9 +38606,9 @@ pRV
 pRV
 pRV
 xya
-kAo
-kAo
-kAo
+xEK
+xEK
+xEK
 xya
 pRV
 pRV

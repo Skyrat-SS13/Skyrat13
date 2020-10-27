@@ -1,6 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - rscadd: "Added the black baton to illegal technology node"
-  - rscadd: "Added a tactical SWAT cargo pack, with the advanced vest, night visor helmet and other tactical equipment"
-  - rscdel: "Removed SWAT bepis node"

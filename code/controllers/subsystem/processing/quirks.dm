@@ -139,6 +139,10 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	if(cli.prefs.toggles & METRIC_OR_BUST)
 		for(var/obj/item/organ/genital/genetool in H.internal_organs)
 			genetool.update()
+	//If the player has combat mode music enabled, let's send the sound file just to be sure it won't cause any lag when played
+	if(cli.prefs.combat_music)
+		user.playsound_local(user, GLOB.combat_music_options[cli.prefs.combat_music], 75, 0, channel = CHANNEL_COMBAT)
+		user.stop_sound_channel(CHANNEL_COMBAT)
 	//
 
 /datum/controller/subsystem/processing/quirks/proc/quirk_path_by_name(name)
