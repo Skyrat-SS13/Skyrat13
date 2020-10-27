@@ -99,15 +99,20 @@
 		var/mob/living/simple_animal/hostile/blob/B = user
 		B.blob_chat(message)
 		return FALSE
-	if(isdrone(user))
-		var/mob/living/simple_animal/drone/D = user
-		D.drone_chat(message)
-		return FALSE
 	if(user.binarycheck())
 		user.robot_talk(message)
 		return FALSE
 	return FALSE
 
+/datum/saymode/drone // Drones can use :b for binary, they now fall under binarycheck()
+	key = MODE_KEY_DRONE
+	mode = MODE_DRONE
+
+/datum/saymode/drone/handle_message(mob/living/user, message, datum/language/language)
+	if(isdrone(user))
+		var/mob/living/simple_animal/drone/D = user
+		D.drone_chat(message)
+		return FALSE
 
 /datum/saymode/holopad
 	key = "h"

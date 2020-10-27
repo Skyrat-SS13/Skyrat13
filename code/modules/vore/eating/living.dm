@@ -276,15 +276,7 @@
 		return FALSE
 	ENABLE_BITFIELD(vore_flags,VOREPREF_INIT)
 
-	// garbage data coming back the other way or breaking absorbed would be bad, so instead we do this
-	vore_flags |= CHECK_BITFIELD(client.prefs.vore_flags,DIGESTABLE) // set to 1 if prefs is 1
-	vore_flags |= CHECK_BITFIELD(client.prefs.vore_flags,DEVOURABLE)
-	vore_flags |= CHECK_BITFIELD(client.prefs.vore_flags,FEEDING)
-
-	vore_flags &= CHECK_BITFIELD(client.prefs.vore_flags,DIGESTABLE) // set to 0 if prefs is 0
-	vore_flags &= CHECK_BITFIELD(client.prefs.vore_flags,DEVOURABLE)
-	vore_flags &= CHECK_BITFIELD(client.prefs.vore_flags,FEEDING)
-
+	COPY_SPECIFIC_BITFIELDS(vore_flags,client.prefs.vore_flags,DIGESTABLE | DEVOURABLE | FEEDING | LICKABLE)
 	vore_taste = client.prefs.vore_taste
 
 	release_vore_contents(silent = TRUE)

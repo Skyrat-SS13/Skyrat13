@@ -1,6 +1,6 @@
 #define TIME_BLOODSUCKER_DAY_WARN	90 		// 1.5 minutes
 #define TIME_BLOODSUCKER_DAY_FINAL_WARN	25 	// 25 sec
-#define TIME_BLOODSUCKER_DAY	60 			// 1.5 minutes // 10 is a second, 600 is a minute.
+#define TIME_BLOODSUCKER_DAY	180 		// 3 minutes
 #define TIME_BLOODSUCKER_BURN_INTERVAL	40 	// 4 sec
 
 
@@ -10,7 +10,7 @@
 	var/cancel_me = FALSE
 	var/amDay = FALSE
 	var/time_til_cycle = 0
-	var/nightime_duration = 900 //15 Minutes
+	var/nightime_duration = 3600 //60 Minutes
 
 /obj/effect/sunlight/Initialize()
 	countdown()
@@ -81,7 +81,7 @@
 				  	  "<span class = 'announce'>The solar flare has ended, and the daylight danger has passed...for now.</span>")
 		amDay = FALSE
 		day_end()   // Remove VANISHING ACT power from all vamps who have it! Clear Warnings (sunlight, locker protection)
-		nightime_duration += 100 //Each day makes the night a minute longer.
+		//nightime_duration += 100 //Used to make night-time a minute longer per night; No.
 		message_admins("BLOODSUCKER NOTICE: Daylight Ended. Resetting to Night (Lasts for [nightime_duration / 60] minutes.)")
 
 

@@ -1460,6 +1460,7 @@
 #include "code\modules\antagonists\bloodsucker\powers\brawn.dm"
 #include "code\modules\antagonists\bloodsucker\powers\cloak.dm"
 #include "code\modules\antagonists\bloodsucker\powers\feed.dm"
+#include "code\modules\antagonists\bloodsucker\powers\forcelevel.dm"
 #include "code\modules\antagonists\bloodsucker\powers\fortitude.dm"
 #include "code\modules\antagonists\bloodsucker\powers\go_home.dm"
 #include "code\modules\antagonists\bloodsucker\powers\haste.dm"

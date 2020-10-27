@@ -1,8 +1,0 @@
-author: "Floof Ball#0798 Kathrin Morrison"
-delete-after: True
-changes: 
-  - rscadd: "New sprites for improvised shotgun and rifle."
-  - rscadd: "Revolving rifles - three, including a craftable and a golden one."
-  - tweak: "Improvised shotgun refactored - it's now a break-action shotgun; the barrel must be opened and closed manually."
-  - balance: ".32 rubber bullets now do 24 stamina damage from 20."
-  - balance: "Improvised laser is now worth crafting. It's now a burst-fire weapon that does 7 damage. per laser, it fires in bursts of three. It can fire 25 lasers, meaning 8 bursts and a single laser."

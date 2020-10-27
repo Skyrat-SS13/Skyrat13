@@ -13,7 +13,7 @@
 		if(score)
 			prize_amount = score
 		else
-			prize_amount = rand(1, 10)
+			prize_amount = rand(10, 30)
 		new prize(get_turf(src), prize_amount)
 	else
 		var/atom/movable/prize = pick(contents)

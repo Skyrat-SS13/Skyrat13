@@ -1,0 +1,5 @@
+author: "Thalpy"
+delete-after: True
+changes: 
+  - tweak: "tweaked Jacq's dialogue"
+  - bugfix: "fixes Jacq's tricks, treats and poofs"

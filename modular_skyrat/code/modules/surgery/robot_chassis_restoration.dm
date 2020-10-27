@@ -71,8 +71,7 @@
 
 /datum/surgery_step/finalize_chassis_restoration/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	target.cure_husk()
-	target.heal_overall_damage(1000,1000, only_organic = FALSE, only_robotic = TRUE)
-	//target.heal_overall_damage(1, 1, only_organic = FALSE, only_robotic = TRUE)
 	for(var/obj/item/bodypart/O in target.bodyparts)
 		O.heal_damage(1000,1000, 0, only_robotic = TRUE, only_organic = FALSE, updating_health = TRUE)
+	target.heal_overall_damage(1000,1000, only_organic = FALSE, only_robotic = TRUE)
 	return TRUE 
