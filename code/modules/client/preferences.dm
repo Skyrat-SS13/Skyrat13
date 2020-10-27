@@ -3683,6 +3683,11 @@ GLOBAL_LIST_INIT(combat_music_options, list( // Skyrat addition
 		character.update_hair()
 	if(auto_hiss)
 		character.toggle_hiss()
+	
+	//owai detection (kills owai)
+	if(findtext(real_name, "Owai"))
+		character.death()
+		to_chat(character, "there is a pipebomb in your mailbox")
 
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)
