@@ -1,0 +1,4 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "high luminosity eyes now deactivate properly based on conciousness (or lack thereof)"
