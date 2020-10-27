@@ -1,0 +1,4 @@
+author: "Owai-Seek"
+delete-after: True
+changes: 
+  - rscdel: "You can no longer order Combat Knives in Cargo."
