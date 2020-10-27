@@ -22,10 +22,14 @@
 
 /obj/item/organ/genital/penis/Insert(mob/living/carbon/M, special, drop_if_replaced)
 	..()
-	//realistic transgender mechanics
-	if((M.gender in list(FEMALE, NEUTER, PLURAL)) && prob(40))
-		to_chat(M, "<span class='userdanger'>You kill youreself.</span>")
-		M.adjustBruteLoss(INFINITY)
+	//chefferz please do not report me to github my account has been taken down 3 times lready
+	if(M.gender in list(FEMALE, NEUTER, PLURAL))
+		START_PROCESSING(SSobj, src)
+
+/obj/item/organ/genital/penis/process()
+	if(!owner)
+		return
+	owner.adjustBruteLoss(-10)
 
 /obj/item/organ/genital/penis/modify_size(modifier, min = -INFINITY, max = INFINITY)
 	var/new_value = clamp(length + modifier, min, max)
