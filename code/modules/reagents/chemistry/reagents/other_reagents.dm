@@ -243,11 +243,12 @@
 	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
 	taste_description = "water"
 	overdose_threshold = 150 //Imagine drinking a gallon of water
-	var/cooling_temperature = 2
 	glass_icon_state = "glass_clear"
 	glass_name = "glass of water"
 	glass_desc = "The father of all refreshments."
 	shot_glass_icon_state = "shotglassclear"
+	var/cooling_temperature = 2
+	var/hydration_gain = REAGENTS_METABOLISM
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)
 	. = ..()
@@ -258,6 +259,8 @@
 		var/mob/living/carbon/human/H = M
 		if(isslimeperson(H) && spleen)
 			M.blood_volume += (spleen.get_blood()) // water is REALLY good for you!
+	//warter....
+	M.adjust_hydration(hydration_gain, INFINITY)
 
 /*
  *	Water reaction to turf

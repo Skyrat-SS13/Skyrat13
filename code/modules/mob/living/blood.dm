@@ -57,8 +57,15 @@
 					nutrition_ratio = 0.8
 				else
 					nutrition_ratio = 1
+			var/hydration_ratio = 0
+			switch(hydration)
+				if(0 to HYDRATION_LEVEL_THIRSTY)
+					hydration_ratio = 0.5
+				else
+					hydration_ratio =  1
 			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR)
-			blood_volume += (spleen.get_blood() * nutrition_ratio)
+			adjust_hydration(-hydration_ratio * HUNGER_FACTOR)
+			blood_volume += (spleen.get_blood() * nutrition_ratio * hydration_ratio)
 		if(blood_volume < BLOOD_VOLUME_OKAY)
 			adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.02, 1))
 //
@@ -96,8 +103,14 @@
 				nutrition_ratio *= 1.2
 			if(satiety > 80)
 				nutrition_ratio *= 1.25
+			var/hydration_ratio = 0
+			switch(hydration)
+				if(0 to HYDRATION_LEVEL_THIRSTY)
+					hydration_ratio = 0.5
+				else
+					hydration_ratio =  1
 			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR)
-			blood_volume = min((BLOOD_VOLUME_NORMAL * blood_ratio), blood_volume + spleen.get_blood() * nutrition_ratio)
+			blood_volume = min((BLOOD_VOLUME_NORMAL * blood_ratio), blood_volume + spleen.get_blood() * nutrition_ratio * hydration_ratio)
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")

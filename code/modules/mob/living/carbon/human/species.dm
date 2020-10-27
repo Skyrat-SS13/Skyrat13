@@ -108,6 +108,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/obj/item/organ/stomach/mutantstomach = /obj/item/organ/stomach
 	var/obj/item/organ/intestines/mutantintestines = /obj/item/organ/intestines
 	var/obj/item/organ/spleen/mutantspleen = /obj/item/organ/spleen
+	var/obj/item/organ/bladder/mutantbladder = /obj/item/organ/bladder
 	var/obj/item/organ/innards/mutant_mystery_organ
 	var/obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue
 	var/obj/item/organ/tail/mutanttail
@@ -214,6 +215,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/obj/item/organ/stomach/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
 	var/obj/item/organ/intestines/intestines = C.getorganslot(ORGAN_SLOT_INTESTINES)
 	var/obj/item/organ/spleen/spleen = C.getorganslot(ORGAN_SLOT_SPLEEN)
+	var/obj/item/organ/bladder/bladder = C.getorganslot(ORGAN_SLOT_BLADDER)
 	var/obj/item/organ/innards/mystery_organ = C.getorganslot(ORGAN_SLOT_INNARDS)
 	var/obj/item/organ/tail/tail = C.getorganslot(ORGAN_SLOT_TAIL)
 
@@ -229,6 +231,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/should_have_stomach = !(NOSTOMACH in species_traits)
 	var/should_have_spleen = !(NOSPLEEN in species_traits)
 	var/should_have_intestines = !(NOINTESTINES in species_traits)
+	var/should_have_bladder = !(NOBLADDER in species_traits)
 	var/should_have_mystery_organ = !(NOAPPENDIX in species_traits) //Mystery organ is like a second appendix anyways
 	var/should_have_tail = mutanttail
 
@@ -313,6 +316,16 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	if(should_have_appendix && !appendix)
 		appendix = new()
 		appendix.Insert(C)
+
+	if(bladder && (!should_have_bladder || replace_current))
+		bladder.Remove(TRUE)
+		QDEL_NULL(bladder)
+	if(should_have_bladder && !bladder)
+		if(mutantbladder)
+			bladder = new mutantbladder()
+		else
+			bladder = new()
+		bladder.Insert(C)
 	
 	if(mystery_organ && (!should_have_mystery_organ || replace_current))
 		mystery_organ.Remove(TRUE)
@@ -1461,8 +1474,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			H.update_inv_wear_suit()
 
 	var/obj/item/organ/intestines/intestines = H.getorganslot(ORGAN_SLOT_INTESTINES)
-	var/intestines_nutrition_loss = 2 //This is the maximum loss multiplier you can get with an intestine, in case they have none
-	var/intestines_nutrition_gain 
+	var/intestines_nutrition_loss = 2 //This is the maximum loss multiplier you can get with an intestine, in case they don't have none
+	var/intestines_nutrition_gain = 0
 	if(intestines)
 		intestines_nutrition_loss = intestines.get_nutrition_loss()
 		intestines_nutrition_gain = intestines.get_nutrition_gain()
@@ -1546,6 +1559,54 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 				H.throw_alert("nutrition", /obj/screen/alert/hungry)
 			if(0 to NUTRITION_LEVEL_STARVING)
 				H.throw_alert("nutrition", /obj/screen/alert/starving)
+
+//copypasta from handle digestion lole!
+/datum/species/proc/handle_hydration(mob/living/carbon/human/H)
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
+		return //thirst is for BABIES (in hot cars)
+
+	var/obj/item/organ/bladder/bladder = H.getorganslot(ORGAN_SLOT_BLADDER)
+	var/bladder_hydration_loss = 2 //This is the maximum loss multiplier you can get with a bladder, in case they don't have none
+	var/bladder_hydration_gain = 0
+	if(bladder)
+		bladder_hydration_loss = bladder.get_hydration_loss()
+		bladder_hydration_gain = bladder.get_hydration_gain()
+	// hydration decrease wowie
+	if(H.hydration > 0 && H.stat != DEAD && !HAS_TRAIT(H, TRAIT_NOHUNGER))
+		// THEY hydrate
+		var/dehydration_rate = THIRST_FACTOR
+		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
+		if(mood && mood.sanity > SANITY_DISTURBED)
+			dehydration_rate *= max(0.5, 1 - 0.002 * mood.sanity) //0.85 to 0.75
+
+		dehydration_rate *= bladder_hydration_loss
+		dehydration_rate *= H.physiology.hunger_mod
+		H.adjust_hydration(-dehydration_rate)
+
+	//Metabolism change
+	if(H.hydration > HYDRATION_LEVEL_FULL)
+		H.metabolism_efficiency = 1
+	else if(H.hydration > HYDRATION_LEVEL_HYDRATED)
+		if(H.metabolism_efficiency != 1.25 && !HAS_TRAIT(H, TRAIT_NOHUNGER))
+			to_chat(H, "<span class='notice'>You feel vigorous.</span>")
+			H.metabolism_efficiency = 1.25
+	else if(H.hydration < HYDRATION_LEVEL_DEHYDRATED + 50)
+		if(H.metabolism_efficiency != 0.8)
+			to_chat(H, "<span class='notice'>You feel sluggish.</span>")
+		H.metabolism_efficiency = 0.8
+	else
+		if(H.metabolism_efficiency == 1.25)
+			to_chat(H, "<span class='notice'>You no longer feel vigorous.</span>")
+		H.metabolism_efficiency = 1
+	
+	H.metabolism_efficiency *= bladder_hydration_gain
+	switch(H.hydration)
+		if(HYDRATION_LEVEL_THIRSTY to INFINITY)
+			H.clear_alert("hydration")
+		if(HYDRATION_LEVEL_DEHYDRATED to HYDRATION_LEVEL_THIRSTY)
+			H.throw_alert("hydration", /obj/screen/alert/thirsty)
+		if(0 to HYDRATION_LEVEL_DEHYDRATED)
+			H.throw_alert("hydration", /obj/screen/alert/dehydrated)
 
 /datum/species/proc/update_health_hud(mob/living/carbon/human/H)
 	return 0

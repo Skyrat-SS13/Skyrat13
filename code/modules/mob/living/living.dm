@@ -601,6 +601,7 @@
 	SetSleeping(0, FALSE)
 	radiation = 0
 	set_nutrition(NUTRITION_LEVEL_FED + 50)
+	set_hydration(HYDRATION_LEVEL_FULL)
 	bodytemperature = BODYTEMP_NORMAL
 	set_blindness(0)
 	set_blurriness(0)

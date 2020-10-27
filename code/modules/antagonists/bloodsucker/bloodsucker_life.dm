@@ -178,6 +178,7 @@
 		owner.current.blur_eyes(8 - 8 * (owner.current.blood_volume / BLOOD_VOLUME_BAD))
 	// Nutrition
 	owner.current.set_nutrition(min(owner.current.blood_volume, NUTRITION_LEVEL_FED)) //The amount of blood is how full we are.
+	owner.current.set_hydration(min(owner.current.blood_volume, HYDRATION_LEVEL_HYDRATED)) //The amount of blood is how hydrated we are.
 	//A bit higher regeneration based on blood volume
 	if(owner.current.blood_volume < 700)
 		additional_regen = 0.4
@@ -323,7 +324,6 @@
 	// We're a bloodsucker? Try to eat food...
 	var/datum/antagonist/bloodsucker/B = L.mind.has_antag_datum(ANTAG_DATUM_BLOODSUCKER)
 	B.handle_eat_human_food(food_nutrition)
-
 
 /datum/antagonist/bloodsucker/proc/handle_eat_human_food(food_nutrition, puke_blood = TRUE, masquerade_override) // Called from snacks.dm and drinks.dm
 	set waitfor = FALSE

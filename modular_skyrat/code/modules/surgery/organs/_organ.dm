@@ -526,6 +526,7 @@
 		var/has_kidneys = (!(NOKIDNEYS in dna.species.species_traits))
 		var/has_intestines = (!(NOINTESTINES in dna.species.species_traits))
 		var/has_spleen = (!(NOSPLEEN in dna.species.species_traits))
+		var/has_bladder = (!(NOBLADDER in dna.species.species_traits))
 
 		for(var/obj/item/organ/O in internal_organs)
 			if(O.organ_flags & ORGAN_FAILING)
@@ -587,6 +588,17 @@
 			else
 				SP = new()
 			SP.Insert(src)
+			if(only_one)
+				return TRUE
+
+		if(has_bladder && !getorganslot(ORGAN_SLOT_BLADDER))
+			var/obj/item/organ/bladder/BL
+
+			if(dna.species.mutantbladder)
+				BL = new dna.species.mutantspleen()
+			else
+				BL = new()
+			BL.Insert(src)
 			if(only_one)
 				return TRUE
 

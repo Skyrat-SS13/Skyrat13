@@ -27,3 +27,16 @@
 	desc = "Unit's power cell has no charge remaining, and is running on backup power. Please recharge as soon as possible."
 	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
 	icon_state = "starving_synth"
+
+//hydration alert
+/obj/screen/alert/thirsty
+	name = "Thirsty"
+	desc = "I could do with a cup of water."
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "thirsty"
+
+/obj/screen/alert/dehydrated
+	name = "Dehydrated"
+	desc = "I REALLY need a drink..."
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "dehydrated"

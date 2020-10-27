@@ -364,6 +364,7 @@ GENETICS SCANNER
 		var/has_stomach = C.dna && !(NOSTOMACH in C.dna.species.species_traits)
 		var/has_spleen = C.dna && !(NOSPLEEN in C.dna.species.species_traits)
 		var/has_kidneys = C.dna && !(NOKIDNEYS in C.dna.species.species_traits)
+		var/has_bladder = C.dna && !(NOBLADDER in C.dna.species.species_traits)
 		if(!M.getorganslot(ORGAN_SLOT_EYES))
 			msg += "<span class='alert'><b>Subject does not have eyes.</b></span>\n"
 		if(!M.getorganslot(ORGAN_SLOT_EARS))
@@ -384,6 +385,8 @@ GENETICS SCANNER
 			msg += "<span class='alert'><b>Subject's intestines are missing!</span>\n"
 		if(has_kidneys && !M.getorganslot(ORGAN_SLOT_KIDNEYS))
 			msg += "<span class='alert'><b>Subject's kidneys are missing!</span>\n"
+		if(has_bladder && !M.getorganslot(ORGAN_SLOT_BLADDER))
+			msg += "<span class='alert'><b>Subject's bladder is missing!</span>\n"
 
 		if(M.radiation)
 			msg += "<span class='alert'>Subject is irradiated.</span>\n"

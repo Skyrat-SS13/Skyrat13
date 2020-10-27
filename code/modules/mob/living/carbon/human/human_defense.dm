@@ -1078,6 +1078,22 @@
 			if(0 to NUTRITION_LEVEL_STARVING)
 				to_chat(src, "<span class='danger'>You're starving!</span>")
 
+	//warter
+	if(!HAS_TRAIT(src, TRAIT_NOHUNGER))
+		switch(hydration)
+			if(HYDRATION_LEVEL_FULL to INFINITY)
+				to_chat(src, "<span class='info'>You're completely full!</span>")
+			if(HYDRATION_LEVEL_WELL_HYDRATED to HYDRATION_LEVEL_FULL)
+				to_chat(src, "<span class='info'>You're well hydrated!</span>")
+			if(HYDRATION_LEVEL_HYDRATED to HYDRATION_LEVEL_WELL_HYDRATED)
+				to_chat(src, "<span class='info'>You're not thirsty.</span>")
+			if(HYDRATION_LEVEL_THIRSTY to HYDRATION_LEVEL_HYDRATED)
+				to_chat(src, "<span class='info'>You could use a drink.</span>")
+			if(HYDRATION_LEVEL_DEHYDRATED to HYDRATION_LEVEL_THIRSTY)
+				to_chat(src, "<span class='info'>You feel quite thirsty.</span>")
+			if(0 to HYDRATION_LEVEL_DEHYDRATED)
+				to_chat(src, "<span class='danger'>You're dehydrated!</span>")
+
 	//Compiles then shows the list of damaged organs and broken organs
 	var/list/broken = list()
 	var/list/damaged = list()

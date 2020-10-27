@@ -67,3 +67,11 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/captain.dmi'
 	icon_state = "carapace"
 	mutantrace_variation = STYLE_NO_ANTHRO_ICON
+
+//detective 
+/obj/item/clothing/suit/armor/vest/det_suit
+	icon = 'modular_skyrat/icons/obj/clothing/deputy.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/deputy.dmi'
+	icon_state = "deputy_vest"
+	desc = "An unremarkable green armored vest."
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON

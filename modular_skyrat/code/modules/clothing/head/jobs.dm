@@ -21,3 +21,10 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	icon_state = "blueshield_navy"
 	item_state = "blueshield_navy"
+
+//captain
+/obj/item/clothing/head/caphat
+	icon = 'modular_skyrat/icons/obj/clothing/captain.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/captain.dmi'
+	icon_state = "hat"
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON

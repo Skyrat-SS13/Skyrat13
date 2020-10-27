@@ -485,6 +485,7 @@
 	if(radiation > RAD_MOB_SAFE)
 		adjustToxLoss(log(radiation-RAD_MOB_SAFE)*RAD_TOX_COEFFICIENT)
 
+//i literally do not know what the fuck this code is but i assume its bad stuff
 /mob/living/carbon/handle_stomach()
 	set waitfor = 0
 	for(var/mob/living/M in stomach_contents)
@@ -501,6 +502,7 @@
 				if(!(M.status_flags & GODMODE))
 					M.adjustBruteLoss(5)
 				adjust_nutrition(10)
+				adjust_hydration(10)
 
 /*
 Alcohol Poisoning Chart

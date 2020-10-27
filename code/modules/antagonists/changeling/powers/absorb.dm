@@ -60,6 +60,9 @@
 
 	if(user.nutrition < NUTRITION_LEVEL_WELL_FED)
 		user.adjust_nutrition(target.nutrition, NUTRITION_LEVEL_WELL_FED)
+	
+	if(user.hydration < HYDRATION_LEVEL_HYDRATED)
+		user.adjust_hydration(target.hydration, HYDRATION_LEVEL_HYDRATED)
 
 	// Absorb a lizard, speak Draconic.
 	user.copy_languages(target, LANGUAGE_ABSORB)

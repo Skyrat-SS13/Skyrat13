@@ -101,8 +101,8 @@
 	name = ".50 Magazines"
 	desc = "Contains 2 .50 cal magazines."
 	cost = 15000
-	contains = list(/obj/item/ammo_box/magazine/m50,
-					/obj/item/ammo_box/magazine/m50)
+	contains = list(/obj/item/ammo_box/magazine/sniper_rounds,
+					/obj/item/ammo_box/magazine/sniper_rounds)
 
 /datum/supply_pack/goody/tactical_smg
 	name = "9mm Tactical Submachine Gun"

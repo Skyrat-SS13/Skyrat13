@@ -164,6 +164,14 @@
 	build_path = /obj/item/organ/intestines
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
+/datum/design/bladder
+	name = "Bladder"
+	id = "bladder"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
+	build_path = /obj/item/organ/bladder
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
+
 /datum/design/spleen
 	name = "Spleen"
 	id = "spleen"

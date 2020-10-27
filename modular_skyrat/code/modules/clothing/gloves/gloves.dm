@@ -177,3 +177,11 @@
 //Sterile gloves
 /obj/item/clothing/gloves/color/latex
 	germ_level = 0
+
+//captin gloves
+/obj/item/clothing/gloves/color/captain
+	icon = 'modular_skyrat/icons/obj/clothing/captain.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/captain.dmi'
+	icon_state = "gloves"
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
+	desc = "Regal black gloves, with a nice silver trim, a diamond anti-shock coating, and an integrated thermal barrier. Swanky."

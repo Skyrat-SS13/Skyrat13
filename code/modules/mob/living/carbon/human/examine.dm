@@ -327,10 +327,20 @@
 	if(nutrition < NUTRITION_LEVEL_STARVING - 50)
 		msg += "[t_He] [t_is] severely malnourished.\n"
 	else if(nutrition >= NUTRITION_LEVEL_FAT)
+		//what the fuck is this shit
 		if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
 			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
 		else
 			msg += "[t_He] [t_is] quite chubby.\n"
+
+	//ok lets follow the same pattern of the previous insane coder
+	if(hydration < HYDRATION_LEVEL_DEHYDRATED - 50)
+		msg += "[t_He] [t_is] severely dehydrated.\n"
+	else if(hydration >= HYDRATION_LEVEL_FULL)
+		//no message for being full of water because that would be fucking stupid
+		if(user.hydration < HYDRATION_LEVEL_DEHYDRATED - 50)
+			msg += "[t_He] [t_is] plump and balloony looking - Like a fat little whale. A tasty whale.\n"
+	
 	switch(disgust)
 		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
 			msg += "[t_He] look[p_s()] a bit grossed out.\n"

@@ -96,6 +96,7 @@
 				stat("Unique Identity:", "[dna.unique_enzymes]")
 				stat("Overall Status:", "[stat > 1 ? "dead" : "[health]% healthy"]")
 				stat("Nutrition Status:", "[nutrition]")
+				stat("Hydration Status:", "[hydration]")
 				stat("Oxygen Loss:", "[getOxyLoss()]")
 				stat("Toxin Levels:", "[getToxLoss()]")
 				stat("Burn Severity:", "[getFireLoss()]")

@@ -568,7 +568,7 @@
 							"<span class='userdanger'>You try to throw up, but there's nothing in your stomach!</span>")
 		if(stun)
 			DefaultCombatKnockdown(200)
-		return 1
+		return TRUE
 
 	if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious
 		if(message)
@@ -588,6 +588,8 @@
 	var/turf/T = get_turf(src)
 	if(!blood)
 		adjust_nutrition(-lost_nutrition)
+		//i dont give a shit the loss of hydration is the same as the loss of hunger
+		adjust_hydration(-lost_nutrition)
 		adjustToxLoss(-3)
 	for(var/i=0 to distance)
 		if(blood)

@@ -5,6 +5,8 @@
 	fire_sound = 'modular_skyrat/sound/weapons/revolver1.ogg'
 	safety_sound = 'modular_skyrat/sound/weapons/safety2.ogg'
 	safety = FALSE
+	var/open_sound = 'modular_skyrat/sound/weapons/revolver_open.ogg'
+	var/close_sound = 'modular_skyrat/sound/weapons/revolver_close.ogg'
 	var/chamber_open = FALSE
 
 /obj/item/gun/ballistic/revolver/do_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread, stam_cost)
@@ -61,9 +63,9 @@
 	chamber_open = !chamber_open
 	if(!silent)
 		if(chamber_open)
-			playsound(src, 'modular_skyrat/sound/weapons/revolver_open.ogg', 50)
+			playsound(src, open_sound, 50)
 		else
-			playsound(src, 'modular_skyrat/sound/weapons/revolver_close.ogg', 50)
+			playsound(src, close_sound, 50)
 	update_icon()
 	if(user)
 		to_chat(user, "<span class='notice'>I [chamber_open ? "open" : "close"] [src]'s chamber.</span>")
@@ -89,6 +91,10 @@
 	obj_flags = UNIQUE_RENAME
 	unique_reskin = 0
 	fire_delay = 2
+
+/obj/item/gun/ballistic/revolver/doublebarrel/contender/update_icon()
+	..()
+	icon_state = "contender-s"
 
 /obj/item/gun/ballistic/revolver/doublebarrel/contender/sawoff(mob/user)
 	to_chat(user, "<span class='warning'>Why would you mutilate this work of art?</span>")
@@ -218,15 +224,18 @@
 	icon_state = "bladerunner"
 	fire_sound = 'modular_skyrat/sound/weapons/revolver2.ogg'
 
+//new double barreled shotgun
+//we interpret "chamber_open" as having the shotgun break open or not
 /obj/item/gun/ballistic/revolver/doublebarrel
-	name = "\improper triple-barreled revolving shotgun"
-	desc = "Not the classic but, fuck man that's pretty cool."
-	icon = 'modular_skyrat/icons/obj/bobstation/guns/revolver.dmi'
-	icon_state = "dshotgun"
+	name = "\improper double barreled shotgun"
+	desc = "The Bobox double barreled shotgun - Not the classic but, fuck man that's pretty cool."
+	icon = 'modular_skyrat/icons/obj/bobstation/guns/shotgun.dmi'
+	icon_state = "bobox"
 	fire_sound = 'modular_skyrat/sound/weapons/shotgun.ogg'
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual/triple
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual
+	sawn_off = TRUE
 	unique_reskin = null
 
 /obj/item/gun/ballistic/revolver/doublebarrel/update_icon()
 	..()
-	icon_state = "[initial(icon_state)][sawn_off ? "_sawn" : ""][chamber_open ? "-open-[min(6, get_ammo())]" : ""]"
+	icon_state = "[initial(icon_state)][sawn_off ? "_sawn" : ""][chamber_open ? "-open" : ""]"

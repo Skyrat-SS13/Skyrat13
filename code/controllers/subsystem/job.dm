@@ -69,6 +69,13 @@ SUBSYSTEM_DEF(job)
 	RETURN_TYPE(/datum/job)
 	if(!occupations.len)
 		SetupOccupations()
+	//this is very chungus code
+	if(rank == "Assistant")
+		rank = "Stowaway"
+	if(rank == "Security Officer")
+		rank = "Enforcer"
+	if(rank == "Head of Security")
+		rank = "Chief Enforcer"
 	return name_occupations[rank]
 
 /datum/controller/subsystem/job/proc/GetJobType(jobtype)

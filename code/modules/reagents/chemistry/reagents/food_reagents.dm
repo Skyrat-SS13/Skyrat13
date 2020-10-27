@@ -13,12 +13,15 @@
 	taste_mult = 4
 	value = REAGENT_VALUE_VERY_COMMON
 	var/nutriment_factor = 1 * REAGENTS_METABOLISM
+	var/worter_factor = 0.5 * REAGENTS_METABOLISM
 	var/max_nutrition = INFINITY
+	var/max_worter = INFINITY
 	var/quality = 0	//affects mood, typically higher for mixed drinks with more complex recipes
 
 /datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
 	current_cycle++
 	M.adjust_nutrition(nutriment_factor, max_nutrition)
+	M.adjust_hydration(worter_factor, max_worter)
 	M.CheckBloodsuckerEatFood(nutriment_factor)
 	holder.remove_reagent(type, metabolization_rate)
 

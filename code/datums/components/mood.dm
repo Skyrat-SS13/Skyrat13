@@ -185,6 +185,7 @@
 			setSanity(sanity+0.4, maximum=SANITY_AMAZING)
 
 	HandleNutrition(owner)
+	HandleHydration(owner)
 
 /datum/component/mood/proc/setSanity(amount, minimum=SANITY_INSANE, maximum=SANITY_NEUTRAL)//I'm sure bunging this in here will have no negative repercussions.
 	var/mob/living/master = parent
@@ -332,7 +333,7 @@
 			add_event(null, "nutrition", /datum/mood_event/fat)
 		if(NUTRITION_LEVEL_WELL_FED to NUTRITION_LEVEL_FULL)
 			add_event(null, "nutrition", /datum/mood_event/wellfed)
-		if( NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
+		if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
 			add_event(null, "nutrition", /datum/mood_event/fed)
 		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
 			clear_event(null, "nutrition")
@@ -340,6 +341,19 @@
 			add_event(null, "nutrition", /datum/mood_event/hungry)
 		if(0 to NUTRITION_LEVEL_STARVING)
 			add_event(null, "nutrition", /datum/mood_event/starving)
+
+/datum/component/mood/proc/HandleHydration(mob/living/L)
+	switch(L.hydration)
+		if(HYDRATION_LEVEL_FULL to INFINITY)
+			add_event(null, "hydration", /datum/mood_event/wellhydrated)
+		if( HYDRATION_LEVEL_WELL_HYDRATED to HYDRATION_LEVEL_FULL)
+			add_event(null, "hydration", /datum/mood_event/hydrated)
+		if(HYDRATION_LEVEL_THIRSTY to HYDRATION_LEVEL_WELL_HYDRATED)
+			clear_event(null, "hydration")
+		if(HYDRATION_LEVEL_DEHYDRATED to HYDRATION_LEVEL_THIRSTY)
+			add_event(null, "hydration", /datum/mood_event/thirsty)
+		if(0 to HYDRATION_LEVEL_DEHYDRATED)
+			add_event(null, "hydration", /datum/mood_event/dehydrated)
 
 /datum/component/mood/proc/update_beauty(area/A)
 	if(A.outdoors) //if we're outside, we don't care.
