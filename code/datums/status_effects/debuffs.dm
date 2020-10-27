@@ -51,6 +51,14 @@
 	id = "unconscious"
 	needs_update_stat = TRUE
 
+/datum/status_effect/incapacitating/unconscious/on_apply()
+	. = ..()
+	SEND_SIGNAL(owner,COMSIG_LIVING_GAIN_UNCONSCIOUS)
+
+/datum/status_effect/incapacitating/unconscious/on_remove()
+	. = ..()
+	SEND_SIGNAL(owner,COMSIG_LIVING_STOP_UNCONSCIOUS)
+
 /datum/status_effect/incapacitating/unconscious/tick()
 	if(owner.getStaminaLoss())
 		owner.adjustStaminaLoss(-0.3) //reduce stamina loss by 0.3 per tick, 6 per 2 seconds
@@ -86,6 +94,14 @@
 	// 2% per second, tick interval is in deciseconds
 	if(prob((tick_interval+1) * 0.2) && owner.health > owner.crit_threshold)
 		owner.emote("snore")
+
+/datum/status_effect/incapacitating/sleeping/on_apply()
+	. = ..()
+	SEND_SIGNAL(owner,COMSIG_LIVING_GAIN_UNCONSCIOUS)
+
+/datum/status_effect/incapacitating/sleeping/on_remove()
+	. = ..()
+	SEND_SIGNAL(owner,COMSIG_LIVING_STOP_UNCONSCIOUS)
 
 /datum/status_effect/staggered
 	id = "staggered"

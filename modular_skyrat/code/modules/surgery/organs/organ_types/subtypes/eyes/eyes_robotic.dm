@@ -242,6 +242,14 @@
 		return INITIALIZE_HINT_QDEL
 
 /obj/item/organ/eyes/robotic/glow/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
-    RegisterSignal(M,COMSIG_LIVING_STATUS_UNCONSCIOUS,.proc/deactivate)
-    . = ..()
-	// makes High lum eyes depower upon conciousness loss
+	. = ..()
+	if(.)
+		RegisterSignal(M, COMSIG_MOB_DEATH, .proc/deactivate)
+		RegisterSignal(M, COMSIG_LIVING_GAIN_UNCONSCIOUS, .proc/deactivate)
+		RegisterSignal(M, COMSIG_LIVING_STOP_UNCONSCIOUS, .proc/active_block)
+
+/obj/item/organ/eyes/robotic/glow/Remove(special)
+	. = ..()
+	UnregisterSignal(owner, COMSIG_MOB_DEATH)
+	UnregisterSignal(owner, COMSIG_LIVING_GAIN_UNCONSCIOUS)
+	UnregisterSignal(owner, COMSIG_LIVING_STOP_UNCONSCIOUS)
