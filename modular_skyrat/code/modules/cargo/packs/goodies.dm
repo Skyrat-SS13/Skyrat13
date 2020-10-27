@@ -234,6 +234,13 @@
 	contains = list(/obj/item/ammo_box/magazine/m10mm/rifle,
 					/obj/item/ammo_box/magazine/m10mm/rifle)
 
+//fuck you owai
+/datum/supply_pack/goody/combatknives_single
+	name = "Combat knife single-pack"
+	desc = "A knife. For combat. Never know when you need it."
+	cost = 800
+	contains = list(/obj/item/kitchen/knife/combat)
+
 /datum/supply_pack/goody/blackbaton
 	name = "Black Police Baton"
 	desc = "A sturdy police baton. Never know when you need it."
