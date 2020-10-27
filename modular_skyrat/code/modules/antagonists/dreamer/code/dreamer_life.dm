@@ -240,7 +240,6 @@
 	if(!W || !client)
 		return
 	var/image/I = image('modular_skyrat/icons/effects/shit_and_piss.dmi', W, "splat[rand(1,8)]", W.layer+0.1)
-	I.color = BLOOD_COLOR_HUMAN
 	src.client?.images += I
 	var/offset = pick(-1, 1, 2)
 	var/disappearfirst = rand(20, 40)
