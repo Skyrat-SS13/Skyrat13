@@ -1,0 +1,5 @@
+author: "Arturlang"
+delete-after: True
+changes: 
+  - rscadd: "Its now possible to blacklist species from gamemode antagonists"
+  - tweak: "Made robotic species unable to be changelings, and robotic and bloodless species bloodsuckers"
