@@ -210,7 +210,7 @@
 		spawn(0)
 			handle_dreamer_floor(F)
 	
-	//Walls go crazy go stupid
+	//shit on THA walls
 	var/list/turf/closed/wall/walllist = list()
 	for(var/turf/closed/wall/W in view(src))
 		if(prob(7))
@@ -239,7 +239,7 @@
 /mob/living/carbon/proc/handle_dreamer_wall(turf/closed/wall/W)
 	if(!W || !client)
 		return
-	var/image/I = image('icons/effects/blood.dmi', W, "floor[rand(1,7)]", W.layer+0.1)
+	var/image/I = image('modular_skyrat/icons/effects/shit_and_piss.dmi', W, "splat[rand(1,8)]", W.layer+0.1)
 	I.color = BLOOD_COLOR_HUMAN
 	src.client?.images += I
 	var/offset = pick(-1, 1, 2)
