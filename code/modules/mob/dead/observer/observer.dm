@@ -13,6 +13,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	density = FALSE
 	move_resist = INFINITY
 	see_invisible = SEE_INVISIBLE_OBSERVER
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 100
 	invisibility = INVISIBILITY_OBSERVER
 	hud_type = /datum/hud/ghost
@@ -132,6 +133,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	. = ..()
 	AddElement(/datum/element/ghost_role_eligibility)
 	grant_all_languages()
+	show_data_huds()
+	data_huds_on = 1
 
 	// Skyrat change START
 	RegisterSignal(src, COMSIG_CLICK_CTRL_SHIFT, .proc/on_click_ctrl_shift)
