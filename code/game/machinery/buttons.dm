@@ -3,7 +3,8 @@
 	desc = "A remote control switch."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl"
-	plane = ABOVE_WALL_PLANE
+	plane = GAME_PLANE //FLUFFY EDIT, ABOVE_WALL_PLANE
+	layer = OBJ_LAYER //FLUFFY EDIT
 	var/skin = "doorctrl"
 	power_channel = ENVIRON
 	var/obj/item/assembly/device
