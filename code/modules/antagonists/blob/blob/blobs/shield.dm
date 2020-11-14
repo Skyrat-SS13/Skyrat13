@@ -56,7 +56,7 @@
 	explosion_block = 2
 	//SKYRAT EDIT START - BLOB
 	ricochet_chance_mod = 2
-	ricochet_damage_mod = 0.2
+	ricochet_damage_mod = 0.02
 	//SKYRAT EDIT END - BLOB
 
 /obj/structure/blob/shield/reflective/check_projectile_ricochet(obj/item/projectile/P)
