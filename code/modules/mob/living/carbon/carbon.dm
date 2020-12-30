@@ -92,7 +92,7 @@
 	if(surgeries.len)
 		if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
 			for(var/datum/surgery/S in surgeries)
-				if(!S.lying_required || (S.lying_required && lying))
+				if((S.self_operable || user != src) && !S.lying_required || (S.lying_required && lying))
 					if(S.next_step(user,user.a_intent))
 						return 1
 	//skyrat edit

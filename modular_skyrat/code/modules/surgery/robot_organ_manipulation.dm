@@ -3,6 +3,7 @@
 	name = "Prosthesis organ manipulation"
 	possible_locs = ORGAN_BODYPARTS //skyrat edit
 	requires_bodypart_type = BODYPART_ROBOTIC
+	self_operable = TRUE
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/open_hatch,

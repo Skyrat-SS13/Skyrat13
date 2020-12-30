@@ -16,6 +16,7 @@
 	possible_locs = ALL_BODYPARTS
 	requires_real_bodypart = TRUE
 	requires_bodypart_type = BODYPART_ROBOTIC
+	self_operable = TRUE
 	targetable_wound = /datum/wound/mechanical/pierce
 	var/puncture_or_slash = "puncture"
 

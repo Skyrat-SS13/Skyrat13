@@ -22,6 +22,7 @@
 	//skyrat edit
 	var/datum/wound/operated_wound								//The actual wound datum instance we're targeting
 	var/datum/wound/targetable_wound							//The wound type this surgery targets
+	var/self_operable = FALSE									//Can the surgery be performed by the patient himself
 	//
 
 /datum/surgery/New(surgery_target, surgery_location, surgery_bodypart)
