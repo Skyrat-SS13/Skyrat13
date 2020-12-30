@@ -403,7 +403,7 @@
 //              BLOB (GHOST)                //
 //                                          //
 //////////////////////////////////////////////
-
+/*
 /datum/dynamic_ruleset/midround/from_ghosts/blob
 	name = "Blob"
 	config_tag = "blob"
@@ -414,7 +414,7 @@
 	required_candidates = 1
 	blocking_rules = list(/datum/dynamic_ruleset/roundstart/clockcult)
 	weight = 4
-	cost = 20
+	cost = 50
 	requirements = list(101,101,101,80,60,50,50,50,50,50)
 	high_population_requirement = 50
 	repeatable = TRUE
@@ -423,7 +423,7 @@
 /datum/dynamic_ruleset/midround/from_ghosts/blob/generate_ruleset_body(mob/applicant)
 	var/body = applicant.become_overmind()
 	return body
-
+*/
 //////////////////////////////////////////////
 //                                          //
 //           XENOMORPH (GHOST)              //
