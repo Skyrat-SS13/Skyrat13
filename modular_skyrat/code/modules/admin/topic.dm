@@ -190,9 +190,9 @@
 		if(istype(fax, /obj/item/paper))
 			var/obj/item/paper/P = fax
 			usr.examinate(P)
-		else if(istype(fax, /obj/item/photo))
-			var/obj/item/photo/H = fax
-			H.show(usr)
+//		else if(istype(fax, /obj/item/photo))
+//			var/obj/item/photo/H = fax
+//			H.show(usr)
 		else
 			to_chat(usr, "<span class='warning'>The faxed item is not viewable. This is probably a bug, and should be reported on the tracker: [fax.type]</span>")
 		return

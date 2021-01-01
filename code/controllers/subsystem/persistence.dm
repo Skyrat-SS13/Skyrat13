@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(persistence)
 	LoadRecentStorytellers()
 	LoadRecentRulesets()
 	LoadRecentMaps()
-	LoadPhotoPersistence()
+//	LoadPhotoPersistence()
 	for(var/client/C in GLOB.clients)
 		LoadSavedVote(C.ckey)
 	if(CONFIG_GET(flag/use_antag_rep))
@@ -262,7 +262,7 @@ SUBSYSTEM_DEF(persistence)
 		CollectStoryteller(mode)
 		CollectRulesets(mode)
 	RecordMaps()
-	SavePhotoPersistence()						//THIS IS PERSISTENCE, NOT THE LOGGING PORTION.
+//	SavePhotoPersistence()						//THIS IS PERSISTENCE, NOT THE LOGGING PORTION.
 	if(CONFIG_GET(flag/use_antag_rep))
 		CollectAntagReputation()
 	SaveRandomizedRecipes()
@@ -280,7 +280,7 @@ SUBSYSTEM_DEF(persistence)
 		for(var/ckey in GLOB.bunker_passthrough)
 			if(daysSince(GLOB.bunker_passthrough[ckey]) >= CONFIG_GET(number/max_bunker_days))
 				GLOB.bunker_passthrough -= ckey
-
+/*
 /datum/controller/subsystem/persistence/proc/GetPhotoAlbums()
 	var/album_path = file("data/photo_albums.json")
 	if(fexists(album_path))
@@ -349,7 +349,7 @@ SUBSYSTEM_DEF(persistence)
 	frame_json = json_encode(frame_json)
 
 	WRITE_FILE(frame_path, frame_json)
-
+*/
 /datum/controller/subsystem/persistence/proc/CollectSecretSatchels()
 	satchel_blacklist = typecacheof(list(/obj/item/stack/tile/plasteel, /obj/item/crowbar))
 	var/list/satchels_to_add = list()

@@ -386,7 +386,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 				msg = temp_message
 				updateUsrDialog()
 		else if(href_list["set_attachment"])
-			AttachPhoto(usr)
+//			AttachPhoto(usr)
 			updateUsrDialog()
 		else if(href_list["submit_new_message"])
 			if(msg =="" || msg=="\[REDACTED\]" || scanned_user == "Unknown" || channel_name == "" )
@@ -612,7 +612,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		to_chat(user, "<span class='warning'>The newscaster controls are far too complicated for your tiny brain!</span>")
 	else
 		take_damage(5, BRUTE, "melee")
-
+/*
 /obj/machinery/newscaster/proc/AttachPhoto(mob/user)
 	var/obj/item/photo/photo = user.is_holding_item_of_type(/obj/item/photo)
 	if(photo)
@@ -636,7 +636,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		var/datum/picture/selection = targetcam.selectpicture(user)
 		if(selection)
 			picture = selection
-
+*/
 /obj/machinery/newscaster/proc/scan_user(mob/living/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user

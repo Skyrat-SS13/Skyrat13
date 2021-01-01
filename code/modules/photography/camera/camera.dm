@@ -36,7 +36,7 @@
 	var/picture_size_y_max = 4
 	var/can_customise = TRUE
 	var/default_picture_name
-
+/*skyrat edit - temp remove of camera systems
 /obj/item/camera/attack_self(mob/user)
 	if(!disk)
 		return
@@ -222,3 +222,4 @@
 		p.set_picture(picture, TRUE, TRUE)
 		if(CONFIG_GET(flag/picture_logging_camera))
 			picture.log_to_file()
+*/

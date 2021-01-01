@@ -7,9 +7,9 @@
 	custom_materials = list(/datum/material/wood = 2000)
 	flags_1 = 0
 	icon_state = "frame-empty"
-	result_path = /obj/structure/sign/picture_frame
+	result_path = /obj/item/toy/plush/carpplushie
 	var/obj/item/photo/displayed
-
+/* - Skyrat temporary removal
 /obj/item/wallframe/picture/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/photo))
 		if(!displayed)
@@ -164,3 +164,4 @@
 			I.forceMove(F)
 		F.update_icon()
 	qdel(src)
+*/

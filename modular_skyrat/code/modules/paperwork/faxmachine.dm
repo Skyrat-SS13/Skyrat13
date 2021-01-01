@@ -289,7 +289,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 	if(istype(incoming, /obj/item/paper))
 		copy(incoming)
 	else if(istype(incoming, /obj/item/photo))
-		photocopy(incoming)
+//		photocopy(incoming)
 	else
 		return FALSE
 
@@ -308,7 +308,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 	if(copy)
 		rcvdcopy = copy(copy)
 	else if(photocopy)
-		rcvdcopy = photocopy(photocopy)
+	//	rcvdcopy = photocopy(photocopy)
 	else
 		visible_message("<span class='notice'>[src] beeps, \"Error transmitting message.\"</span>")
 		return

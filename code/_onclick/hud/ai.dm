@@ -129,7 +129,7 @@
 /obj/screen/ai/image_take
 	name = "Take Image"
 	icon_state = "take_picture"
-
+/*
 /obj/screen/ai/image_take/Click()
 	if(..())
 		return
@@ -153,7 +153,7 @@
 	else if(iscyborg(usr))
 		var/mob/living/silicon/robot/R = usr
 		R.aicamera.viewpictures(usr)
-
+*/
 /obj/screen/ai/sensors
 	name = "Sensor Augmentation"
 	icon_state = "ai_sensor"
@@ -271,6 +271,7 @@
 	static_inventory += using
 
 //Take image
+/*
 	using = new /obj/screen/ai/image_take()
 	using.screen_loc = ui_ai_take_picture
 	using.hud = src
@@ -281,6 +282,7 @@
 	using.screen_loc = ui_ai_view_images
 	using.hud = src
 	static_inventory += using
+*/
 
 //Medical/Security sensors
 	using = new /obj/screen/ai/sensors()

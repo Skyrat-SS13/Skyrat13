@@ -49,8 +49,8 @@
 		return
 	*/
 	if(aicamera.in_camera_mode) //Cyborg picture taking
-		aicamera.camera_mode_off()
-		aicamera.captureimage(A, usr)
+	//	aicamera.camera_mode_off()
+	//	aicamera.captureimage(A, usr)
 		return
 
 	var/obj/item/W = get_active_held_item()

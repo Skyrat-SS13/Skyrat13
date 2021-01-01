@@ -1,3 +1,4 @@
+/*skyrat edit - temp remove of camera systems
 /obj/effect/appearance_clone
 
 /obj/effect/appearance_clone/New(loc, atom/A)			//Intentionally not Initialize(), to make sure the clone assumes the intended appearance in time for the camera getFlatIcon.
@@ -87,3 +88,4 @@
 		QDEL_LIST(atoms)
 
 	return res
+*/

@@ -78,8 +78,8 @@
 		return
 
 	if(aicamera.in_camera_mode)
-		aicamera.camera_mode_off()
-		aicamera.captureimage(pixel_turf, usr)
+	//	aicamera.camera_mode_off()
+	//	aicamera.captureimage(pixel_turf, usr)
 		return
 	if(waypoint_mode)
 		waypoint_mode = 0

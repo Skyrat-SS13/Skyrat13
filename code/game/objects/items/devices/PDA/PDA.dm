@@ -1155,13 +1155,13 @@ GLOBAL_LIST_EMPTY(PDAs)
 		return
 
 	var/selected = plist[c]
-
+/*
 	if(aicamera.stored.len)
 		var/add_photo = input(user,"Do you want to attach a photo?","Photo","No") as null|anything in list("Yes","No")
 		if(add_photo=="Yes")
 			var/datum/picture/Pic = aicamera.selectpicture(user)
 			aiPDA.picture = Pic
-
+*/
 	if(incapacitated())
 		return
 

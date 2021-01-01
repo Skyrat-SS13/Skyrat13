@@ -12,7 +12,7 @@
 	grind_results = list(/datum/reagent/iodine = 4)
 	var/datum/picture/picture
 	var/scribble		//Scribble on the back.
-
+/* -Skyrat edit, temporary removal
 /obj/item/photo/Initialize(mapload, datum/picture/P, datum_name = TRUE, datum_desc = TRUE)
 	set_picture(P, datum_name, datum_desc, TRUE)
 	if(!istype(picture)) // Skyrat addition -- helps with errors in some edge cases
@@ -117,3 +117,4 @@
 	if(n_name && (loc == usr || loc.loc && loc.loc == usr) && CHECK_MOBILITY(L, MOBILITY_USE))
 		name = "photo[(n_name ? text("- '[n_name]'") : null)]"
 	add_fingerprint(usr)
+*/

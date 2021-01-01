@@ -327,6 +327,7 @@
 			var/perpname = get_face_name(get_id_name(""))
 			if(istype(H.glasses, /obj/item/clothing/glasses/hud) || istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud))
 				var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.general)
+/*
 				if(href_list["photo_front"] || href_list["photo_side"])
 					if(R)
 						if(!H.canUseHUD())
@@ -340,7 +341,7 @@
 							P = R.fields["photo_side"]
 						if(P)
 							P.show(H)
-
+*/
 				if(href_list["hud"] == "m")
 					if(istype(H.glasses, /obj/item/clothing/glasses/hud/health) || istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/medical))
 						if(href_list["p_stat"])

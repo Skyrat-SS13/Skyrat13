@@ -95,14 +95,16 @@
 
 					dat += "<table><tr><td><b><font size='4'>Medical Record</font></b></td></tr>"
 					if(active1 in GLOB.data_core.general)
+/*
 						if(istype(active1.fields["photo_front"], /obj/item/photo))
 							var/obj/item/photo/P1 = active1.fields["photo_front"]
 							user << browse_rsc(P1.picture.picture_image, "photo_front")
 						if(istype(active1.fields["photo_side"], /obj/item/photo))
 							var/obj/item/photo/P2 = active1.fields["photo_side"]
 							user << browse_rsc(P2.picture.picture_image, "photo_side")
+*/
 						dat += "<tr><td>Name:</td><td>[active1.fields["name"]]</td>"
-						dat += "<td><a href='?src=[REF(src)];field=show_photo_front'><img src=photo_front height=80 width=80 border=4></a></td>"
+						//dat += "<td><a href='?src=[REF(src)];field=show_photo_front'><img src=photo_front height=80 width=80 border=4></a></td>"
 						dat += "<td><a href='?src=[REF(src)];field=show_photo_side'><img src=photo_side height=80 width=80 border=4></a></td></tr>"
 						dat += "<tr><td>ID:</td><td>[active1.fields["id"]]</td></tr>"
 						dat += "<tr><td>Gender:</td><td><A href='?src=[REF(src)];field=gender'>&nbsp;[active1.fields["gender"]]&nbsp;</A></td></tr>"
@@ -386,6 +388,7 @@
 							if(!canUseMedicalRecordsConsole(usr, t1, null, a2))
 								return
 							active2.fields["b_dna"] = t1
+/*
 					if("show_photo_front")
 						if(active1)
 							if(active1.fields["photo_front"])
@@ -398,6 +401,7 @@
 								if(istype(active1.fields["photo_side"], /obj/item/photo))
 									var/obj/item/photo/P = active1.fields["photo_side"]
 									P.show(usr)
+*/
 					else
 
 			else if(href_list["p_stat"])
