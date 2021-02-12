@@ -762,3 +762,12 @@ GLOBAL_LIST_INIT(valid_plushie_paths, valid_plushie_paths())
 	icon_state = "deer"
 	attack_verb = list("headbutt", "booped", "bapped", "bumped")
 	squeak_override = list('modular_skyrat/sound/voice/deerplush.ogg' = 1)
+
+/obj/item/toy/plush/borbplushie
+	name = "borb plushie"
+	desc = "An adorable stuffed toy that resembles a round, fluffy looking bird. Not to be mistaken for his friend, the birb plushie."
+	icon_state = "plushie_borb"
+	inhand_icon_state = "plushie_borb"
+	attack_verb_continuous = list("pecks", "peeps")
+	attack_verb_simple = list("peck", "peep")
+	squeak_override = list('Skyrat13/modular_skyrat/sound/voice/peep_once.ogg' = 1)
