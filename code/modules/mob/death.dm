@@ -1,5 +1,7 @@
 //This is the proc for gibbing a mob. Cannot gib ghosts.
 //added different sort of gibs and animations. N
+if(name=Johnny Deserador) //so long LRP
+then
 /mob/proc/gib()
 	return
 
