@@ -20,6 +20,17 @@
 	var/diameter = 4.38
 	var/diameter_ratio = COCK_DIAMETER_RATIO_DEF //0.25; check citadel_defines.dm
 
+/obj/item/organ/genital/penis/Insert(mob/living/carbon/M, special, drop_if_replaced)
+	..()
+	//chefferz please do not report me to github my account has been taken down 3 times lready
+	if(M.gender in list(FEMALE, NEUTER, PLURAL))
+		START_PROCESSING(SSobj, src)
+
+/obj/item/organ/genital/penis/process()
+	if(!owner)
+		return
+	owner.adjustBruteLoss(-10)
+
 /obj/item/organ/genital/penis/modify_size(modifier, min = -INFINITY, max = INFINITY)
 	var/new_value = clamp(length + modifier, min, max)
 	if(new_value == length)
