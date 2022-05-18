@@ -6,8 +6,8 @@
 	department_flag = ENGSEC
 	faction = "Station"
 	// Skyrat EDIT: 4 open positions
-	total_positions = 8 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
-	spawn_positions = 8 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
+	total_positions = 4 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
+	spawn_positions = 4 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	supervisors = "the head of security, and the head of your assigned department (if applicable)"
 	selection_color = "#c02f2f"
 	minimal_player_age = 7
