@@ -410,7 +410,7 @@
 	/obj/item/reagent_containers/dropper,//SR addition begins here.
 	/obj/item/reagent_containers/medspray,
 	/obj/item/reagent_containers/syringe,
-	/obj/item/reagent_containers/cup/vial,//Addition End
+	/obj/item/reagent_containers/glass/bottle/vial,//Addition End
 	))
 
 /*
